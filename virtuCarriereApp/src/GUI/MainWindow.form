@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.MainWindow">
+  <grid id="27dc6" binding="panel1" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="888" height="532"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="b4492" class="javax.swing.JMenuBar" binding="MenuBar" layout-manager="FlowLayout" hgap="5" vgap="1" flow-align="0">
+        <constraints>
+          <grid row="0" column="0" row-span="6" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="74955" class="javax.swing.JMenu" binding="menuFichier" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <armed value="false"/>
+              <enabled value="true"/>
+              <font/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="2"/>
+              <text value="Fichier"/>
+              <verticalAlignment value="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="4feb1" class="javax.swing.JMenuItem" binding="menuFichierNouveau">
+                <constraints/>
+                <properties>
+                  <text value="Nouveau projet"/>
+                </properties>
+              </component>
+              <component id="f772f" class="javax.swing.JMenuItem" binding="menuFichierOuvrir">
+                <constraints/>
+                <properties>
+                  <text value="Ouvrir un projet"/>
+                </properties>
+              </component>
+              <component id="12643" class="javax.swing.JMenuItem" binding="menuFichierSauvegarder">
+                <constraints/>
+                <properties>
+                  <text value="Sauvegarder"/>
+                </properties>
+              </component>
+              <component id="93d7e" class="javax.swing.JMenuItem" binding="menuFichierSauvegarderSous">
+                <constraints/>
+                <properties>
+                  <text value="Sauvegarder sous..."/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="285dc" class="javax.swing.JMenu" binding="menuEdition" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <font size="14"/>
+              <foreground color="-16777216"/>
+              <text value="Édition"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="490cf" class="javax.swing.JMenuItem" binding="editionUndo">
+                <constraints/>
+                <properties>
+                  <text value="Undo"/>
+                </properties>
+              </component>
+              <component id="23f9c" class="javax.swing.JMenuItem" binding="editionRedo">
+                <constraints/>
+                <properties>
+                  <text value="Redo"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="5fdf6" class="javax.swing.JMenu" binding="menuAffichage" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <text value="Affichage"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="ca96d" class="javax.swing.JMenu" binding="menuInserer" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints/>
+            <properties>
+              <text value="Insérer"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="3bac0" class="javax.swing.JMenu" binding="menuFenetre" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints/>
+            <properties>
+              <text value="Fenêtre"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <tabbedpane id="61fac" binding="panneauPermanent">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="400" height="283"/>
+          </grid>
+        </constraints>
+        <properties>
+          <tabPlacement value="1"/>
+        </properties>
+        <border type="etched" title="Propriétés" title-justification="2" title-position="3">
+          <font/>
+        </border>
+        <children>
+          <grid id="a98f1" binding="menuPlan" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <tabbedpane title="Plan"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="b9efc" binding="menuSimulation" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Simulation"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
