@@ -29,10 +29,11 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ajouterElements = new javax.swing.ButtonGroup();
         panneauPermanent = new javax.swing.JPanel();
         permanentPanel = new javax.swing.JTabbedPane();
         panelPlan = new javax.swing.JPanel();
-        buttonAjouternoeud = new javax.swing.JToggleButton();
+        buttonAjouterNoeud = new javax.swing.JToggleButton();
         buttonAjouterArc = new javax.swing.JToggleButton();
         buttonAjouterConcasseur = new javax.swing.JToggleButton();
         buttonAjouterCrible = new javax.swing.JToggleButton();
@@ -51,6 +52,7 @@ public class MainWindow extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         panelSimulation = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
         toggleSelection = new javax.swing.JToggleButton();
@@ -75,6 +77,15 @@ public class MainWindow extends javax.swing.JFrame {
         insererMenu = new javax.swing.JMenu();
         fenetreMenu = new javax.swing.JMenu();
 
+        ajouterElements.add(buttonAjouterNoeud);
+        ajouterElements.add(buttonAjouterArc);
+        ajouterElements.add(buttonAjouterConcasseur);
+        ajouterElements.add(buttonAjouterCrible);
+        ajouterElements.add(buttonAjouterEntree);
+        ajouterElements.add(buttonAjouterTas);
+        ajouterElements.add(buttonAjouterBroyeur);
+        ajouterElements.add(buttonAjouterConvoyeur);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panneauPermanent.setAlignmentY(1.0F);
@@ -88,10 +99,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelPlan.setAutoscrolls(true);
 
-        buttonAjouternoeud.setText("Ajouter un noeud");
-        buttonAjouternoeud.addActionListener(new java.awt.event.ActionListener() {
+        buttonAjouterNoeud.setText("Ajouter un noeud");
+        buttonAjouterNoeud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAjouternoeudActionPerformed(evt);
+                buttonAjouterNoeudActionPerformed(evt);
             }
         });
 
@@ -170,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addGroup(panelPlanLayout.createSequentialGroup()
                                 .addGap(74, 74, 74)
                                 .addGroup(panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(buttonAjouternoeud, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonAjouterNoeud, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonAjouterArc, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(buttonAjouterConcasseur)
                                     .addComponent(buttonAjouterCrible, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +209,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouternoeud)
+                .addComponent(buttonAjouterNoeud)
                 .addGap(4, 4, 4)
                 .addComponent(buttonAjouterArc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,13 +248,22 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Modifier une simulation");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelSimulationLayout = new javax.swing.GroupLayout(panelSimulation);
         panelSimulation.setLayout(panelSimulationLayout);
         panelSimulationLayout.setHorizontalGroup(
             panelSimulationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSimulationLayout.createSequentialGroup()
                 .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(panelSimulationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
         );
         panelSimulationLayout.setVerticalGroup(
@@ -251,7 +271,9 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(panelSimulationLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jButton1)
-                .addContainerGap(831, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addContainerGap(790, Short.MAX_VALUE))
         );
 
         permanentPanel.addTab("Simulation", panelSimulation);
@@ -380,9 +402,9 @@ public class MainWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menuQuitterActionPerformed
 
-    private void buttonAjouternoeudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAjouternoeudActionPerformed
+    private void buttonAjouterNoeudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAjouterNoeudActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonAjouternoeudActionPerformed
+    }//GEN-LAST:event_buttonAjouterNoeudActionPerformed
 
     private void buttonAjouterArcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAjouterArcActionPerformed
         // TODO add your handling code here:
@@ -399,6 +421,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,14 +463,15 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu affichageMenu;
+    private javax.swing.ButtonGroup ajouterElements;
     private javax.swing.JToggleButton buttonAjouterArc;
     private javax.swing.JToggleButton buttonAjouterBroyeur;
     private javax.swing.JToggleButton buttonAjouterConcasseur;
     private javax.swing.JToggleButton buttonAjouterConvoyeur;
     private javax.swing.JToggleButton buttonAjouterCrible;
     private javax.swing.JToggleButton buttonAjouterEntree;
+    private javax.swing.JToggleButton buttonAjouterNoeud;
     private javax.swing.JToggleButton buttonAjouterTas;
-    private javax.swing.JToggleButton buttonAjouternoeud;
     private javax.swing.JPanel buttonTopPanel;
     private javax.swing.JMenu editionMenu;
     private javax.swing.JMenu fenetreMenu;
@@ -453,6 +480,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
