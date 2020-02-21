@@ -101,10 +101,23 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="insererMenu">
+        <Menu class="javax.swing.JMenu" name="importerMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ins&#xe9;rer"/>
+            <Property name="text" type="java.lang.String" value="Importer"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="importerCarriereMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Importer une carri&#xe8;re"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="importerSimulationMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Importer une simulation"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="fenetreMenu">
           <Properties>

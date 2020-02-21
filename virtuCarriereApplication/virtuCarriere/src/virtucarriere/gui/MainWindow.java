@@ -76,7 +76,9 @@ public class MainWindow extends javax.swing.JFrame {
         menuZoomer = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        insererMenu = new javax.swing.JMenu();
+        importerMenu = new javax.swing.JMenu();
+        importerCarriereMenu = new javax.swing.JMenuItem();
+        importerSimulationMenu = new javax.swing.JMenuItem();
         fenetreMenu = new javax.swing.JMenu();
 
         ajouterElements.add(buttonAjouterNoeud);
@@ -378,8 +380,16 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(affichageMenu);
 
-        insererMenu.setText("Insérer");
-        jMenuBar1.add(insererMenu);
+        importerMenu.setText("Importer");
+        importerMenu.setToolTipText("");
+
+        importerCarriereMenu.setText("Importer une carrière");
+        importerMenu.add(importerCarriereMenu);
+
+        importerSimulationMenu.setText("Importer une simulation");
+        importerMenu.add(importerSimulationMenu);
+
+        jMenuBar1.add(importerMenu);
 
         fenetreMenu.setText("Fenêtre");
         jMenuBar1.add(fenetreMenu);
@@ -488,7 +498,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu editionMenu;
     private javax.swing.JMenu fenetreMenu;
     private javax.swing.JMenu fichierMenu;
-    private javax.swing.JMenu insererMenu;
+    private javax.swing.JMenuItem importerCarriereMenu;
+    private javax.swing.JMenu importerMenu;
+    private javax.swing.JMenuItem importerSimulationMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
