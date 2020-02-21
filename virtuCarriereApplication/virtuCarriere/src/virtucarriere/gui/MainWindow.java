@@ -56,6 +56,8 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
         toggleSelection = new javax.swing.JToggleButton();
+        zoomButton = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         mainScrollPane = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
@@ -286,6 +288,16 @@ public class MainWindow extends javax.swing.JFrame {
         toggleSelection.setText("Sélection");
         buttonTopPanel.add(toggleSelection);
 
+        zoomButton.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        zoomButton.setText("+");
+        zoomButton.setPreferredSize(new java.awt.Dimension(30, 25));
+        buttonTopPanel.add(zoomButton);
+
+        jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton6.setText("-");
+        jButton6.setPreferredSize(new java.awt.Dimension(30, 25));
+        buttonTopPanel.add(jButton6);
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -481,6 +493,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -509,5 +522,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panneauPermanent;
     private javax.swing.JTabbedPane permanentPanel;
     private javax.swing.JToggleButton toggleSelection;
+    private javax.swing.JButton zoomButton;
     // End of variables declaration//GEN-END:variables
 }
