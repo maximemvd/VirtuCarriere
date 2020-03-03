@@ -10,5 +10,8 @@ package virtucarriere.Domaine.Carriere.Plan;
  * @author vincentmasse
  */
 public class Catalogue {
+    private String code;
+    private String description;
+    private double price;
     
 }

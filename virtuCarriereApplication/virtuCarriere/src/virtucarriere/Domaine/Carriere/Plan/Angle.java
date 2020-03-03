@@ -9,7 +9,6 @@ package virtucarriere.Domaine.Carriere.Plan;
  *
  * @author vincentmasse
  */
-public class Coordonnees {
-    private int x;
-    private int y;
+public class Angle {
+    
 }

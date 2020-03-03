@@ -10,5 +10,6 @@ package virtucarriere.Domaine.Carriere.Plan;
  * @author vincentmasse
  */
 public class Equipement {
-    
+    private Noeud location;
+    private Angle direction;
 }

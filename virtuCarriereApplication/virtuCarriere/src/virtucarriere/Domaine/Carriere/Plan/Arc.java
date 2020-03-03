@@ -10,5 +10,7 @@ package virtucarriere.Domaine.Carriere.Plan;
  * @author vincentmasse
  */
 public class Arc {
+    private Coordonnees starting;
+    private Coordonnees arrival;
     
 }

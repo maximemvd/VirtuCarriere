@@ -10,5 +10,9 @@ package virtucarriere.Domaine.Carriere.Plan;
  * @author vincentmasse
  */
 public class Element {
-    
+    private String type;
+    private Coordonnees coordonnees;
+    private  int width;
+    private int lengt;
+    private boolean selectionStatus;
 }
