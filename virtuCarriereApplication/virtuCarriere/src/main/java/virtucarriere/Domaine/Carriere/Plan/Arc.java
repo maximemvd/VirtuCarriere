@@ -5,12 +5,13 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-/**
- *
- * @author vincentmasse
- */
 public class Arc {
     private Coordonnees starting;
     private Coordonnees arrival;
-    
+
+    public Arc(Coordonnees starting, Coordonnees arrival){
+        //TODO ajouter verification que les deux coordonnees contiennent des objets
+        this.starting = starting;
+        this.arrival = arrival;
+    }
 }
