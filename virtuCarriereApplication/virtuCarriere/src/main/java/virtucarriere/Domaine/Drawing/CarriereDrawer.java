@@ -23,6 +23,7 @@ public class CarriereDrawer {
     }
 
 
+
 // zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
     public void zoomOut(Point point) {
         this.imagePanel.setZoom(this.imagePanel.getZoom() * 0.9f);
