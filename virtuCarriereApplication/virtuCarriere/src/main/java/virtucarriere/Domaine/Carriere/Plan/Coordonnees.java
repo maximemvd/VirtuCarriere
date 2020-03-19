@@ -23,4 +23,8 @@ public class Coordonnees {
         return this.y;
     }
     
+    public String toString(){
+        return String.valueOf(this.x) + ", " + String.valueOf(this.y);
+    }
+    
 }
