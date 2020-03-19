@@ -5,10 +5,14 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+
 /**
  *
  * @author vincentmasse
  */
 public class Concasseur extends Equipement{
+
+
+
     
 }
