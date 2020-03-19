@@ -4,21 +4,18 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Drawing;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.awt.Graphics;
-import java.awt.Color;
 import java.awt.Point;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.ElementContainer;
-import gui.MainWindow;
+import virtucarriere.Domaine.Carriere.Plan.Element;
+import virtucarriere.gui.MainWindow;
 
 public class CarriereDrawer {
 
-    private Controler controller;
+    private Controller controller;
     private MainWindow.MeasurementUnitMode measurementMode;
     private double zoom;
 
@@ -38,9 +35,9 @@ public class CarriereDrawer {
     {
         System.out.println("ici qu'on draw toutes les items");
         System.out.println(g);
-        System.out.printl(elementContainer);
-        System.out.printl(zoom);
-        System.out.printl(mousePoint);
+        System.out.println(elementContainer);
+        System.out.println(zoom);
+        System.out.println(mousePoint);
     }
 
     public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode)

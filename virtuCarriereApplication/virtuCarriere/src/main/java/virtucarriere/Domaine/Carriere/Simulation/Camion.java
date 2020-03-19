@@ -5,6 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-public class Camion {
+public class Camion extends Vehicule {
     
 }

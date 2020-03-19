@@ -6,5 +6,6 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 public class Simulation {
+    private String nom;
     
 }

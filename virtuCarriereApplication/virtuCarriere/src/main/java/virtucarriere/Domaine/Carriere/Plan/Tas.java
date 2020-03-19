@@ -5,7 +5,7 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-public class Tas {
+public class Tas extends Noeud {
     private String materialCode;
     private Double dimension;
 }

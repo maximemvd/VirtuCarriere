@@ -7,4 +7,10 @@ package virtucarriere.Domaine.Carriere.Simulation;
 
 public class Vehicule {
     
+    private Itineraire route;
+
+    public Itineraire getRoute() {
+        return route;
+    }
+    
 }

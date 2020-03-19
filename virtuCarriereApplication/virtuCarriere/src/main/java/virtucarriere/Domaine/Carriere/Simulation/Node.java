@@ -6,5 +6,7 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 public class Node {
+    private int cost;
+    private int number;
     
 }
