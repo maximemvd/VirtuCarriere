@@ -23,59 +23,51 @@ public class ElementContainer {
     private ArrayList<Camion> vehiculeList;
 
     public void ElementContainer() {
-        this.elementList = new ArrayList<Element>();
-        this.vehiculeList = new ArrayList<Camion>();
+        elementList = new ArrayList<Element>();
+        vehiculeList = new ArrayList<Camion>();
     }
 
-    ;
+
 
     public boolean elementIsEmpty() {
-        boolean returnValue = false;
-        if (this.elementList.size() == 0) {
-            returnValue = true;
-        }
-        return returnValue;
+        return elementList.isEmpty();
     }
 
     public boolean VehiculeIsEmpty() {
-        boolean returnValue = false;
-        if (this.vehiculeList.size() == 0) {
-            returnValue = true;
-        }
-        return returnValue;
+        return vehiculeList.isEmpty();
     }
 
     public ArrayList<Element> getElementList() {
-        return this.elementList;
+        return elementList;
     }
 
     public ArrayList<Vehicule> getVehiculeList() {
-        return this.elementList;
+        return elementList;
     }
 
     public double getNumberOfElementsList() {
-        return this.elementList.size():
+        return elementList.size():
     }
 
     public double getNumberOfVehiculeList() {
-        return this.vehiculeList.size():
+        return vehiculeList.size():
     }
 
     public void addEquipement(Equipement p_equipement)
     {
-        this.elementList.add(p_equipement);
+        elementList.add(p_equipement);
     }
 
     public void addCamion(Jeton jeton, double start, Coordonnees coordonnees)
     {
         Camion newCamion = new Camion(jeton, start, coordonnees);
-        this.vehiculeList.add(newCamion)
+        vehiculeList.add(newCamion)
     }
 
     public void addNoeud(double x, double y)
     {
-     Noeud newNoeud = new Noeud(x, y);
-     this.elementList.add(newNoeud);
+        Noeud newNoeud = new Noeud(x, y);
+        elementList.add(newNoeud);
     }
 
     public String askReason()
@@ -102,16 +94,10 @@ public class ElementContainer {
         }
     }
 
-    public boolean validanceDependanceType()
+    public boolean validanceDependance(String type, Coordonnees coord)
     {
         return true;
     }
-
-
-
-
-
-
 }
 
 
