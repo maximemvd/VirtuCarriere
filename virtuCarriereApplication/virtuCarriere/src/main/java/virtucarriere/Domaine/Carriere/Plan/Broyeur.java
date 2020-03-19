@@ -5,10 +5,7 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-/**
- *
- * @author vincentmasse
- */
+
 public class Broyeur extends Equipement {
 
 }

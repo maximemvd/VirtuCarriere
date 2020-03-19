@@ -6,5 +6,6 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 public class Angle {
-    Double degree;
+
+  Double degree;
 }

@@ -6,10 +6,6 @@
 package virtucarriere.Domaine.Controller;
 import virtucarriere.Domaine.Controller.Controller
 
-/**
- *
- * @author vincentmasse
- */
 public class ElementContainer {
     
 }

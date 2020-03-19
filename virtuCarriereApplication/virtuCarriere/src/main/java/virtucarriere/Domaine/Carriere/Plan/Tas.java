@@ -5,10 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-/**
- *
- * @author vincentmasse
- */
 public class Tas {
     private String materialCode;
     private Double dimension;

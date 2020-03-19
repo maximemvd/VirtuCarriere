@@ -7,10 +7,6 @@ package virtucarriere.gui;
 
 import java.awt.FlowLayout;
 
-/**
- *
- * @author maximemivilledeschenes
- */
 public class MainWindow extends javax.swing.JFrame {
 
     /**

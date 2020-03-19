@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-/**
- *
- * @author vincentmasse
- */
 public class CarriereDrawer {
 
 
@@ -25,7 +21,7 @@ public class CarriereDrawer {
 
 
 // zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
-    public void zoomOut(Point point) {
+    public void zoomOut(Coordoonees point) {
         this.imagePanel.setZoom(this.imagePanel.getZoom() * 0.9f);
         Point pos = this.getViewport().getViewPosition();
 
@@ -37,7 +33,7 @@ public class CarriereDrawer {
         this.imagePanel.repaint();
     }
 
-    public void zoomIn(Point point) {
+    public void zoomIn(Coordoones point) {
         this.imagePanel.setZoom(this.imagePanel.getZoom() * 1.1f);
         Point pos = this.getViewport().getViewPosition();
 

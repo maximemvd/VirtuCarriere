@@ -6,10 +6,6 @@
 package virtucarriere.Domaine.Controller;
 import virtucarriere.Domaine.Controller.ElementContainer;
 
-/**
- *
- * @author vincentmasse
- */
 public class Controller {
 
     public double attribute;
