@@ -11,7 +11,7 @@ import  virtucarriere.Domaine.Carriere.Plan.Element;
  *
  * @author vincentmasse
  */
-public class Equipement extends Elements {
+public class Equipement extends Element {
 
     private double Coordonnees;
 
