@@ -18,15 +18,17 @@ public class Controller {
     }
 
     public void Controller() {
+        this.attribute = attribute;
+        this.elementContainer = elementContainer;
+        this.Controller = new Controller();
     }
 
     public void addNoeud(double x, double y) {
 
+
     }
 
-    public void ajouterEquipement(Equipement equipement) {
-        this.equipement = equipement;
-    };
+    public void ajouterEquipement(Equipement equipement) { };
 
     public ElementContainer getElementContainer() {
         return elementContainer;

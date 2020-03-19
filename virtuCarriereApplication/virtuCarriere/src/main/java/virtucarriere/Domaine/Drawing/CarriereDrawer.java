@@ -10,9 +10,13 @@ import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Point;
+import virtucarriere.Domaine.Controller.Controller
 
 public class CarriereDrawer {
 
+    public Controler controller
 
     public CarriereDrawer(Controller controller) {
         this.controller = controller;
@@ -23,7 +27,7 @@ public class CarriereDrawer {
 
 
 // zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
-    public void zoomOut(Coordoonees point) {
+    public void zoomOut(Point point) {
         this.imagePanel.setZoom(this.imagePanel.getZoom() * 0.9f);
         Point pos = this.getViewport().getViewPosition();
 
@@ -35,7 +39,7 @@ public class CarriereDrawer {
         this.imagePanel.repaint();
     }
 
-    public void zoomIn(Coordoones point) {
+    public void zoomIn(Point point) {
         this.imagePanel.setZoom(this.imagePanel.getZoom() * 1.1f);
         Point pos = this.getViewport().getViewPosition();
 
