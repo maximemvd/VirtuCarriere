@@ -10,6 +10,21 @@ package virtucarriere.Domaine.Carriere.Plan;
  * @author vincentmasse
  */
 public class Coordonnees {
-    private int x;
-    private int y;
+    
+    private double x;
+    private double y;
+    
+    public Coordonnees(double abscisse, double ordonnee) {
+        this.x = abscisse;
+        this.y = ordonnee;
+    }
+    
+    public double getX(){
+        return this.x;
+    }
+    
+    public double getY(){
+        return this.y;
+    }
+    
 }
