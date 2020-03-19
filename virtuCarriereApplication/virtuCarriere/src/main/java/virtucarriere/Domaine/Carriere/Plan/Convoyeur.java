@@ -5,10 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-/**
- *
- * @author vincentmasse
- */
 public class Convoyeur extends Equipement{
     private Noeud destination;
 }

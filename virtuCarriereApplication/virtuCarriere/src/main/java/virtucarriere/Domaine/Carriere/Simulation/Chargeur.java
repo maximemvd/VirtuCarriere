@@ -5,10 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-/**
- *
- * @author vincentmasse
- */
 public class Chargeur {
     
 }

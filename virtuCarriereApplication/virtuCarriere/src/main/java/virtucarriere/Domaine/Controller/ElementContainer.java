@@ -5,10 +5,6 @@
  */
 package virtucarriere.Domaine.Controller;
 
-/**
- *
- * @author vincentmasse
- */
 public class ElementContainer {
     
 }

@@ -4,22 +4,18 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Carriere.Plan;
-import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
-import  virtucarriere.Domaine.Carriere.Plan.Element;
 
-/**
- *
- * @author vincentmasse
- */
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+import virtucarriere.Domaine.Carriere.Plan.Element;
+
 public class Equipement extends Element {
 
-    private double Coordonnees;
+  private double Coordonnees;
 
-    private double angle;
+  private double angle;
 
 
-
-    public static String equipement() {
-        return "First Commits";
-    }
+  public static String equipement() {
+    return "First Commits";
+  }
 }

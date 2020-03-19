@@ -5,10 +5,6 @@
  */
 package virtucarriere.Domaine.Drawing;
 
-/**
- *
- * @author vincentmasse
- */
 public class CarriereDrawer {
     
 }
