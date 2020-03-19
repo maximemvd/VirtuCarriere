@@ -7,5 +7,9 @@ package virtucarriere.Domaine.Controller;
 import virtucarriere.Domaine.Controller.Controller
 
 public class ElementContainer {
+
+    public bool isEmpty() {
+        return true;
+    }
     
 }
