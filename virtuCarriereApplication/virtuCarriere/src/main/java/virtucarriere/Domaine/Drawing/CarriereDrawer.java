@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.awt.Graphics;
 
 public class CarriereDrawer {
 
@@ -17,6 +17,8 @@ public class CarriereDrawer {
     public CarriereDrawer(Controller controller) {
         this.controller = controller;
     }
+
+    public void drawCarriere(Graphics g, ElementContainer elementContainer, double zoom, MousePoint mousePoint);
 
 
 
