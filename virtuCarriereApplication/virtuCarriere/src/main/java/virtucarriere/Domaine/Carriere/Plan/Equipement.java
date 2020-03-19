@@ -18,6 +18,7 @@ public class Equipement extends Elements {
     private double angle;
 
 
+
     public static String equipement() {
         return "First Commits";
     }
