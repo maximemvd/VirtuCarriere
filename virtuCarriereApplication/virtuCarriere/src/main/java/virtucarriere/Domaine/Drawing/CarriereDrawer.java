@@ -12,19 +12,41 @@ import java.util.Arrays;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Point;
-import virtucarriere.Domaine.Controller.Controller
+import virtucarriere.Domaine.Controller.Controller;
+import virtucarriere.Domaine.Controller.ElementContainer;
+import gui.MainWindow;
 
 public class CarriereDrawer {
 
-    public Controler controller
+    private Controler controller;
+    private MainWindow.MeasurementUnitMode measurementMode;
+    private double zoom;
 
-    public CarriereDrawer(Controller controller) {
+    public CarriereDrawer(Controller controller)
+    {
         this.controller = controller;
     }
 
-    public void drawCarriere(Graphics g, ElementContainer elementContainer, double zoom, MousePoint mousePoint);
+
+    public void draw(Graphics2D g, ArrayList<Element> elementList, double zoom, Point currentMousePoint)
+    {
+        drawCarriere(g, elementList, zoom, currentMousePoint);
+    }
 
 
+    public void drawCarriere(Graphics g, ElementContainer elementContainer, double zoom, MousePoint mousePoint)
+    {
+        System.out.println("ici qu'on draw toutes les items");
+        System.out.println(g);
+        System.out.printl(elementContainer);
+        System.out.printl(zoom);
+        System.out.printl(mousePoint);
+    }
+
+    public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode)
+    {
+        this.measurementMode = measurementMode;
+    }
 
 // zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
     public void zoomOut(Point point) {
