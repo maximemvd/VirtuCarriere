@@ -4,7 +4,13 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Controller;
-import virtucarriere.Domaine.Controller.ElementContainer;
+
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+import virtucarriere.Domaine.Carriere.Plan.Equipement;
+import virtucarriere.gui.DrawingPanel;
+import virtucarriere.gui.MainWindow;
 
 public class Controller {
 
@@ -32,6 +38,13 @@ public class Controller {
 
     public ElementContainer getElementContainer() {
         return elementContainer;
+    }
+    
+    
+    public void draw(Graphics2D g, MainWindow.MeasurementUnitMode measurementUnitMode, DrawingPanel drawingPanel, double zoom, Point currentMousePoint){
+        
+        
+    
     }
 
 

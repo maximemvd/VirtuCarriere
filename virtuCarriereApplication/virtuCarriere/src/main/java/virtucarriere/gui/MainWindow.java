@@ -5,15 +5,47 @@
  */
 package virtucarriere.gui;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import javax.swing.JFrame;
+import virtucarriere.Domaine.Controller.Controller;
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends JFrame {
+    
+    private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
+    private ApplicationMode currentApplicationMode = ApplicationMode.SELECT;
+
+    
+    public Point currentMousePoint = new Point();
+
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+    }
+    
+    public enum MeasurementUnitMode {
+        METRIC, IMPERIAL
+    }
+    
+    public enum ApplicationMode {
+        SELECT, ADD_PLAN, ADD_SIMULATION
+    }
+    
+     public MeasurementUnitMode getCurrentMeasurementUnitMode() {
+        return currentMeasurementUnitMode;
+    }
+
+    public void setCurrentMeasurementUnitMode(MeasurementUnitMode newMeasurementUnitMode) {
+        this.currentMeasurementUnitMode = newMeasurementUnitMode;
+    }
+    
+    public void setCurrentApplicationMode(ApplicationMode newApplicationMode) {
+        this.currentApplicationMode = newApplicationMode;
     }
 
     /**
@@ -478,6 +510,16 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
+    
+   public Dimension getMainScrollPaneDimension(){
+       return mainScrollPane.getSize();
+   
+   }
+   
+    public void draw(Graphics2D g, DrawingPanel drawingPanel, double zoom) {
+        Controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu affichageMenu;
