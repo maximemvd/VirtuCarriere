@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Controller;
+import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Controller.ElementContainer;
 
 public class Controller {
@@ -20,7 +21,6 @@ public class Controller {
     public void Controller() {
         this.attribute = attribute;
         this.elementContainer = elementContainer;
-        this.Controller = new Controller();
     }
 
     public void addNoeud(double x, double y) {

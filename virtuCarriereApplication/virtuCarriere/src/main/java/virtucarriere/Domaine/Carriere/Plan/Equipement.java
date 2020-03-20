@@ -8,7 +8,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 
-abstract class Equipement extends Element{
+public abstract class Equipement extends Element{
     
     private double angle;
     
