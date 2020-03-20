@@ -14,7 +14,6 @@ public class Arc extends Element {
     //TODO Valider comment intégrer element
     super(starting, 1, 1, false);
 
-    //TODO ajouter verification que les deux coordonnees contiennent des objets
     this.starting = starting;
     this.arrival = arrival;
   }

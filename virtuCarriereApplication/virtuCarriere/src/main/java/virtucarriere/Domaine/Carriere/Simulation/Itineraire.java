@@ -5,6 +5,13 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
+
 public class Itineraire {
-    
+    private List<Tas> stops;
+
+    Itineraire(List<Tas> stops){
+      this.stops = stops;
+    }
 }
