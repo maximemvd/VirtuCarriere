@@ -6,17 +6,15 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 public class Element {
-    
-    private String type;
+
     private Coordonnees coordonnees;
     private  int width;
     private int length;
     private boolean selectionStatus;
     
-    public Element(String type, Coordonnees coordonnees, int width, int length,
-            boolean selectionStatus){
-        
-        this.type = type;
+    public Element(Coordonnees coordonnees, int width, int length,
+        boolean selectionStatus){
+
         this.coordonnees = coordonnees;
         this.width = width;
         this.length = length;
@@ -45,14 +43,6 @@ public class Element {
     
     public boolean isSelected(){
         return this.selectionStatus;
-    }
-    
-    public String getType(){
-        return this.type;
-    }
-    
-    public void setType(String type){
-        this.type = type;
     }
     
     public String getCoordonnees(){

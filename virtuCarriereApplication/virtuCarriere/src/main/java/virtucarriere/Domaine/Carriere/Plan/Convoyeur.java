@@ -9,10 +9,10 @@ public class Convoyeur extends Equipement{
     
     private Noeud destination;
     
-    public Convoyeur(String type, Coordonnees coordonnees, int width, int length,
+    public Convoyeur(Coordonnees coordonnees, int width, int length,
             boolean selectionStatus, double angle, Noeud destination){
         
-        super(type, coordonnees, width, length, selectionStatus, angle);
+        super(coordonnees, width, length, selectionStatus, angle);
         
         this.destination = destination;
     }

@@ -12,9 +12,9 @@ public abstract class Equipement extends Element{
     
     private double angle;
     
-    public Equipement(String type, Coordonnees coordonnees, int width, int length,
+    public Equipement(Coordonnees coordonnees, int width, int length,
             boolean selectionStatus, double angle){
-        super(type, coordonnees, width, length, selectionStatus);
+        super(coordonnees, width, length, selectionStatus);
         
         this.angle = angle;
     }
