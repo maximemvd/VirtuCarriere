@@ -6,6 +6,19 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 public class Tas extends Noeud {
+    
     private String materialCode;
-    private Double dimension;
+    
+    private double dimension;
+    
+    public Tas(double x, double y, String materialCode, double dimension){
+        
+        super(x, y);
+        
+        this.materialCode = materialCode;
+        
+        this.dimension = dimension;
+        
+    }
+    
 }
