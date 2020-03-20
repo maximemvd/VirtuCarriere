@@ -5,12 +5,15 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-public class Arc {
+public class Arc extends Element {
 
   private Coordonnees starting;
   private Coordonnees arrival;
 
   public Arc(Coordonnees starting, Coordonnees arrival) {
+    //TODO Valider comment intégrer element
+    super(starting, 1, 1, false);
+
     //TODO ajouter verification que les deux coordonnees contiennent des objets
     this.starting = starting;
     this.arrival = arrival;
