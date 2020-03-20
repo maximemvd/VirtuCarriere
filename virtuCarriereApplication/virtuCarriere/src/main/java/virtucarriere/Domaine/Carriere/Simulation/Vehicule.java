@@ -5,10 +5,17 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
+
 public class Vehicule {
     
     private Itineraire route;
-
+    
+    public void getShortestPath(Jeton jeton){
+        List<Tas> stops = null;
+        route = new Itineraire(stops);
+    }
     public Itineraire getRoute() {
         return route;
     }
