@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import virtucarriere.Domaine.Controller.Controller;
 
 public class MainWindow extends JFrame {
@@ -513,8 +514,15 @@ public class MainWindow extends JFrame {
     
    public Dimension getMainScrollPaneDimension(){
        return mainScrollPane.getSize();
-   
    }
+   
+   public JScrollPane getMainScrollPane(){
+        return this.mainScrollPane;
+    }
+   
+    public void setMainScrollPanePosition(Point point) {
+        this.mainScrollPane.getViewport().setViewPosition(point);
+    }
    
     public void draw(Graphics2D g, DrawingPanel drawingPanel, double zoom) {
         Controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);

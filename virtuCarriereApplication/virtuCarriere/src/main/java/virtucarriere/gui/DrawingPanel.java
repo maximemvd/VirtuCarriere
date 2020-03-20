@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.io.Serializable;
 import javax.swing.JPanel;
         
@@ -28,6 +29,7 @@ public class DrawingPanel extends JPanel implements Serializable{
     private double zoom = 1d;
     
     private double gapGrille = 100d;
+    final double ZoomFactor = 1.05;
 
 
     
@@ -104,6 +106,38 @@ public class DrawingPanel extends JPanel implements Serializable{
     public double getGapGrille() {
         return gapGrille;
     }
+    
+    
+    // zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
+    
+    
+    public void zoomIn(Point point) {
+        this.setZoom(getZoom() * ZoomFactor);
+        Point pos = mainWindow.getMainScrollPane().getViewport().getViewPosition();
+
+        int newX = (int)(point.x*(1.1f - 1f) + ZoomFactor * pos.x);
+        int newY = (int)(point.y*(1.1f - 1f) + ZoomFactor * pos.y);
+        Point newPoint = new Point(newX, newY);
+        mainWindow.setMainScrollPanePosition(newPoint);
+        setDrawingPanelDimensions();
+
+        revalidate();
+        repaint();
+    }
+    
+    public void zoomOut(Point point) {
+        this.setZoom(getZoom() / ZoomFactor);
+        Point pos = mainWindow.getMainScrollPane.getViewport().getViewPosition();
+
+        int newX = (int)(point.x*(0.9f - 1f) + 0.9f*pos.x);
+        int newY = (int)(point.y*(0.9f - 1f) + 0.9f*pos.y);
+        this.getViewport().setViewPosition(new Point(newX, newY));
+
+        revalidate();
+        repaint();
+    }
+
+
             
    }
         
