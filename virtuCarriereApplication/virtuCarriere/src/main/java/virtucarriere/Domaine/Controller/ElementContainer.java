@@ -7,13 +7,12 @@ package virtucarriere.Domaine.Controller;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
-import virtucarriere.Domaine.Carriere.Simulation.Coordonnees;
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Equipement;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.String;
 import java.util.ArrayList;
 
 public class ElementContainer {
@@ -22,9 +21,15 @@ public class ElementContainer {
 
     private ArrayList<Camion> vehiculeList;
 
-    public void ElementContainer() {
+    public  ElementContainer() {
         elementList = new ArrayList<Element>();
         vehiculeList = new ArrayList<Camion>();
+    }
+
+    public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(isShiftDown);
     }
 
 
@@ -41,16 +46,16 @@ public class ElementContainer {
         return elementList;
     }
 
-    public ArrayList<Vehicule> getVehiculeList() {
-        return elementList;
+    public ArrayList<Camion> getVehiculeList() {
+        return vehiculeList;
     }
 
     public double getNumberOfElementsList() {
-        return elementList.size():
+        return elementList.size();
     }
 
     public double getNumberOfVehiculeList() {
-        return vehiculeList.size():
+        return vehiculeList.size();
     }
 
     public void addEquipement(Equipement p_equipement)
@@ -61,13 +66,13 @@ public class ElementContainer {
     public void addCamion(Jeton jeton, double start, Coordonnees coordonnees)
     {
         Camion newCamion = new Camion(jeton, start, coordonnees);
-        vehiculeList.add(newCamion)
+        vehiculeList.add(newCamion);
     }
 
     public void addNoeud(double x, double y)
     {
         Noeud newNoeud = new Noeud(x, y);
-        elementList.add(newNoeud);
+        //elementList.add(newNoeud);
     }
 
     public String askReason()
@@ -82,10 +87,11 @@ public class ElementContainer {
         return nextPosition;
     }
 
-    public boolean askValidPlace(Coordonnees coord)
+    public boolean askValidPlace(Coordonnees coordonnee)
     {
-        if (coord)
-        {
+        int x = 10;
+        if (x < 10)
+        { 
             return true;
         }
         else
@@ -94,7 +100,7 @@ public class ElementContainer {
         }
     }
 
-    public boolean validanceDependance(String type, Coordonnees coord)
+    public boolean validanceDependance(String type, Coordonnees coordonnee)
     {
         return true;
     }

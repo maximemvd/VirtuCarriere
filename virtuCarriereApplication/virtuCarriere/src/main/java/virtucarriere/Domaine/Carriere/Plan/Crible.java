@@ -7,4 +7,11 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 public class Crible extends Equipement {
     
+    public Crible(String type, Coordonnees coordonnees, int width, int length,
+            boolean selectionStatus, double angle){
+        
+        super(type, coordonnees, width, length, selectionStatus, angle);
+        
+    }
+    
 }

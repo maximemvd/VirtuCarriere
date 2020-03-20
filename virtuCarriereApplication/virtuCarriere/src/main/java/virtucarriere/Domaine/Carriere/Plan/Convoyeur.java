@@ -6,5 +6,23 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 public class Convoyeur extends Equipement{
+    
     private Noeud destination;
+    
+    public Convoyeur(String type, Coordonnees coordonnees, int width, int length,
+            boolean selectionStatus, double angle, Noeud destination){
+        
+        super(type, coordonnees, width, length, selectionStatus, angle);
+        
+        this.destination = destination;
+    }
+    
+    public void setDestination(Noeud destination){
+        this.destination = destination;
+    }
+    
+    public Noeud getDestination(){
+        return this.destination;
+    }
+    
 }

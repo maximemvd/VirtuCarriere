@@ -7,5 +7,10 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 public class Concasseur extends Equipement {
 
-
+    public Concasseur(String type, Coordonnees coordonnees, int width, int length,
+            boolean selectionStatus, double angle){
+        
+        super(type, coordonnees, width, length, selectionStatus, angle);
+        
+    }
 }
