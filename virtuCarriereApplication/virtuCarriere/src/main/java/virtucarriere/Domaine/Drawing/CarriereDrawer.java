@@ -16,7 +16,6 @@ import virtucarriere.gui.MainWindow;
 public class CarriereDrawer {
 
     private Controller controller;
-    private MainWindow.MeasurementUnitMode measurementMode;
     private double zoom;
 
     public CarriereDrawer(Controller controller)
@@ -31,7 +30,7 @@ public class CarriereDrawer {
     }
 
 
-    public void drawCarriere(Graphics g, ElementContainer elementContainer, double zoom, MousePoint mousePoint)
+    public void drawCarriere(Graphics2D g, ArrayList<Element>  elementContainer, double zoom, Point mousePoint)
     {
         System.out.println("ici qu'on draw toutes les items");
         System.out.println(g);
@@ -40,7 +39,7 @@ public class CarriereDrawer {
         System.out.println(mousePoint);
     }
 
-    public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode)
+    public void setMeasurementUnitMode(MeasurementUnitMode measurementMode)
     {
         this.measurementMode = measurementMode;
     }

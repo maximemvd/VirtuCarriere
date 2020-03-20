@@ -5,6 +5,11 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
+
 public class Camion extends Vehicule {
+
+    public Camion(Jeton jeton,double start, Coordonnees coordonnees) {};
     
 }

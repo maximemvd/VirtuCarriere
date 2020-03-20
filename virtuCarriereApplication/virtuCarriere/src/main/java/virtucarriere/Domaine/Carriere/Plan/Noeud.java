@@ -7,4 +7,8 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 public class Noeud {
     private Coordonnees coordonnees;
+
+    public Noeud(double x, double y) {
+        coordonnees = new Coordonnees(x, y);
+    }
 }
