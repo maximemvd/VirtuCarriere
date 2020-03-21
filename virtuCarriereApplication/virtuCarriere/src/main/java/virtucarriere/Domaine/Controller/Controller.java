@@ -81,16 +81,6 @@ public class Controller {
     }
 
 
-    public void addNoeud(double x, double y) {
-// on peux pas ajouter de noeud parce qu'ils sont pas un element
-    }
-
-    public void generateCamion(Jeton jeton, double depart) 
-    {
-
-    }
-
-  
 
     public ElementContainer getElementContainer() {
         return elementContainer;
@@ -110,7 +100,6 @@ public class Controller {
     public void draw(Graphics2D g, MainWindow.MeasurementUnitMode measurementUnitMode, DrawingPanel drawingPanel, double zoom, Point currentMousePoint){
         
         
-    
     }
 
 
