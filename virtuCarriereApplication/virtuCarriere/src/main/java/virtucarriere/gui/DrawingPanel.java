@@ -14,6 +14,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.Serializable;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import virtucarriere.Domaine.Drawing.CarriereDrawer;
         
 
 /**
@@ -25,7 +27,7 @@ public class DrawingPanel extends JPanel implements Serializable{
     public Dimension initialDimension;
     private MainWindow mainWindow;
 
-    private Boolean grilleActivee = false;
+    private boolean grilleActivee = false;
     private double zoom = 1d;
     
     private double gapGrille = 100d;
@@ -38,14 +40,14 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public DrawingPanel(MainWindow mainWindow){
         this.mainWindow = mainWindow;
-        
+        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
         int width = mainWindow.getMainScrollPaneDimension().width;
         int height = mainWindow.getMainScrollPaneDimension().height;
         
         setPreferredSize(new Dimension(width,height));
         setVisible(true);
         this.initialDimension = new Dimension(width,height);
-        setBackground(Color.WHITE);
+        //setBackground(Color.WHITE);
     
     }
     
@@ -68,6 +70,7 @@ public class DrawingPanel extends JPanel implements Serializable{
                     for (int row = 1; row <= ajustingDimension.getHeight() / this.gapGrille; row++) {
                         g2d.drawLine(0, (int) (row * this.gapGrille), (int)ajustingDimension.getWidth(), (int) (row * this.gapGrille));
                     }
+                    
                     for (int col = 1; col <= (int)ajustingDimension.getWidth() / this.gapGrille; col++) {
                         g2d.drawLine((int) (col * this.gapGrille), 0, (int) (col * this.gapGrille), (int)ajustingDimension.getHeight());
                     }
@@ -98,7 +101,7 @@ public class DrawingPanel extends JPanel implements Serializable{
     }
 
     public MainWindow getMainWindow() {
-        return mainWindow;
+        return this.mainWindow;
     }
 
     public void setMainWindow(MainWindow mainWindow) {
@@ -116,7 +119,7 @@ public class DrawingPanel extends JPanel implements Serializable{
     }
     
     public double getGapGrille() {
-        return gapGrille;
+        return this.gapGrille;
     }
     
     
@@ -159,9 +162,9 @@ public class DrawingPanel extends JPanel implements Serializable{
     public void setGapGrille(double newGapGrille) {
         this.gapGrille = newGapGrille;
     }
-
-            
+    
    }
+
         
     
  
