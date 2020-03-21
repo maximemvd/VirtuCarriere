@@ -11,6 +11,7 @@ import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 public class Itineraire {
     private List<Coordonnees> stops;
 
+    // list de coordonnes ou de noeud ? 
     Itineraire(List<Coordonnees> stops){
       this.stops = stops;
     }

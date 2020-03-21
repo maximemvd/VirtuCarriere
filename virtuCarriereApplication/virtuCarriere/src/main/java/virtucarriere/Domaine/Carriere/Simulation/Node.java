@@ -9,32 +9,26 @@ public class Node {
     private int cost;
     private int numberNode;
 
-    public Node(){};
+    public Node() {
+    };
 
-    public Node(int numberNode, int cost)
-    {
+    public Node(int numberNode, int cost) {
         this.numberNode = numberNode;
         this.cost = cost;
     }
 
-    public int compare(Node nodeA, Node NodeB)
-    {
+    public int compare(Node nodeA, Node NodeB) {
         System.out.println(nodeA.numberNode);
         System.out.println(NodeB.numberNode);
 
-        if (nodeA.cost < NodeB.cost)
-         {
-             return -1;
-         }
-         if (nodeA.cost > NodeB.cost)
-         {
-             return 1;
-         }
-         else
-         {
-             return 0;
-         }
+        if (nodeA.cost < NodeB.cost) {
+            return -1;
+        }
+        if (nodeA.cost > NodeB.cost) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
-    
 }

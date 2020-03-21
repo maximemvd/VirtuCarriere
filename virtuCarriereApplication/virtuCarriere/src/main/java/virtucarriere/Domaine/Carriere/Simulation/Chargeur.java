@@ -5,6 +5,24 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+
 public class Chargeur extends Vehicule {
-    
+
+    private Coordonnees destination;
+
+    public Chargeur(Coordonnees p_destination)
+    {
+        this.destination = p_destination;
+    };
+
+    public Coordonnees getDestination()
+    {
+        return this.destination;
+    }
+
+    public void changeDestination(Coordonnees p_coordonnees)
+    {
+        this.destination = p_coordonnees;
+    }
 }

@@ -11,6 +11,9 @@ import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 public class Vehicule {
     
     private Itineraire route;
+
+    public Vehicule(){};
+    // jsais pas a quel point cette classe la est utile
     
     public void getShortestPath(Jeton jeton){
         List<Coordonnees> stops = null;

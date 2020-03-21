@@ -24,7 +24,7 @@ public class Camion extends Vehicule {
 
     public Camion(Jeton jeton,double start, Coordonnees coordonnees) 
     {
-        itineraireCamion = new ArrayList<Node>();
+        this.itineraireCamion = new ArrayList<Node>();
         this.jeton = jeton;
         this.start = start;
         this.coordonnees = coordonnees;
@@ -39,19 +39,19 @@ public class Camion extends Vehicule {
 
     public ArrayList<Node> getItineaireList()
     {
-        return itineraireCamion;
+        return this.itineraireCamion;
     }
 
     public void addDestination(Node p_node)
     {
-        itineraireCamion.add(p_node);
+        this.itineraireCamion.add(p_node);
     };
 
     public void removeDestination(Node p_node)
     {
         try 
         {
-            itineraireCamion.remove(p_node);
+            this.itineraireCamion.remove(p_node);
         }
         catch(Exception e)
         {
@@ -68,7 +68,7 @@ public class Camion extends Vehicule {
 
     public void Simulation()
     {
-        for (Node i: itineraireCamion)
+        for (Node i: this.itineraireCamion)
         {
             System.out.println(i);
             //call getShortestPath

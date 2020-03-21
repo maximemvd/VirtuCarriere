@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import virtucarriere.gui.MainWindow.MeasurementUnitMode;
 import virtucarriere.gui.MainWindow;
 import java.awt.Point;
-import virtucarriere.gui.DrawingPanel;
-
 
 public class Controller {
 
@@ -24,90 +22,75 @@ public class Controller {
 
     private ArrayList<ElementContainer> containerList;
 
-    private int undoRedo = -1;
-
+    private int undoRedo;
 
     public Controller(ElementContainer elementContainer) {
         this.elementContainer = elementContainer;
         // peut etre rajouter la fonction addElementContainer ici
-        //modifier la variable undoRedo chaque fois qu'on appel le controleur
+        // modifier la variable undoRedo chaque fois qu'on appel le controleur
     }
 
     public Controller() {
-        elementContainer = new ElementContainer();
-        containerList = new ArrayList<ElementContainer>();
+        this.elementContainer = new ElementContainer();
+        this.containerList = new ArrayList<ElementContainer>();
+        this.undoRedo = -1;
     }
 
-    public void setElement(ElementContainer elementContainer)
-    {
+    public void setElement(ElementContainer elementContainer) {
         this.elementContainer = elementContainer;
     }
 
-    private ArrayList<ElementContainer> getContainerList()
-    {
-        return containerList;
+    private ArrayList<ElementContainer> getContainerList() {
+        return this.containerList;
     }
 
-    public void undo()
-    {
-        if (undoRedo <= 0)
-        {
+    public void undo() {
+        if (undoRedo <= 0) {
             return;
         }
-        undoRedo--;
-        setElement(containerList.get(undoRedo));
-    } 
-
-    public void redo()
-    {
-        if (undoRedo == containerList.size() - 1) {
-            return;
-        }
-        undoRedo++;
-        setElement((containerList.get(undoRedo)));
+        this.undoRedo--;
+        this.setElement(this.containerList.get(this.undoRedo));
     }
 
+    public void redo() {
+        if (this.undoRedo == this.containerList.size() - 1) {
+            return;
+        }
+        this.undoRedo++;
+        this.setElement((this.containerList.get(this.undoRedo)));
+    }
 
     public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
-        elementContainer.switchSelectionStatus(x, y, isShiftDown);
+        this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
     }
-
-
 
     public ElementContainer getElementContainer() {
-        return elementContainer;
+        return this.elementContainer;
     }
 
-    public ArrayList<Element> getElemeneArrayList() 
-    {
-        return elementContainer.getElementList();
+    public ArrayList<Element> getElemeneArrayList() {
+        return this.elementContainer.getElementList();
     }
 
-    public ArrayList<Camion> getCamionArrayList() 
-    {
-        return elementContainer.getVehiculeList();
-    }
-    
-    
-    public void draw(Graphics2D g, MainWindow.MeasurementUnitMode measurementUnitMode, DrawingPanel drawingPanel, double zoom, Point currentMousePoint){
-        
-        
+    public ArrayList<Camion> getCamionArrayList() {
+        return this.elementContainer.getVehiculeList();
     }
 
+    public void draw(Graphics2D g, MainWindow.MeasurementUnitMode measurementUnitMode, DrawingPanel drawingPanel,
+            double zoom, Point currentMousePoint) {
 
+    }
 
-    public void draw(Graphics2D g, double zoom,  Point mousePoint, CarriereDrawer carriereDrawer,  MeasurementUnitMode measurementUnitMode)
-     {
-        ArrayList<ElementContainer> containers = getContainerList();
+    public void draw(Graphics2D g, double zoom, Point mousePoint, CarriereDrawer carriereDrawer,
+            MeasurementUnitMode measurementUnitMode) {
+        ArrayList<ElementContainer> containers = this.getContainerList();
 
-        if (carriereDrawer == null)
-        {
+        if (carriereDrawer == null) {
             carriereDrawer = new CarriereDrawer(this);
         }
 
         carriereDrawer.setMeasurementUnitMode(measurementUnitMode);
         carriereDrawer.draw(g, containers, zoom, mousePoint);
-     }
-
+    }
 
 }

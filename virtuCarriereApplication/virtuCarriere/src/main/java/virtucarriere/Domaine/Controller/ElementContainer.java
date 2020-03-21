@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Controller;
+
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
@@ -21,7 +22,7 @@ public class ElementContainer {
 
     private ArrayList<Camion> vehiculeList;
 
-    public  ElementContainer() {
+    public ElementContainer() {
         elementList = new ArrayList<Element>();
         vehiculeList = new ArrayList<Camion>();
     }
@@ -31,8 +32,6 @@ public class ElementContainer {
         System.out.println(y);
         System.out.println(isShiftDown);
     }
-
-
 
     public boolean elementIsEmpty() {
         return elementList.isEmpty();
@@ -58,83 +57,64 @@ public class ElementContainer {
         return vehiculeList.size();
     }
 
-    public void addElement(Element p_element)
-    {
+    public void addElement(Element p_element) {
+        try {
         elementList.add(p_element);
+        }
+        catch (Exception error)
+        {
+            System.out.println(error);
+        }
     }
 
-    public void removeElement(Element p_element)
-    {
-        try 
-        {
+    public void removeElement(Element p_element) {
+        try {
             elementList.remove(p_element);
-        }
-        catch(Exception error)
-        {
+        } catch (Exception error) {
             System.out.println("Element is not in the list");
         }
     }
 
-
-    public void addCamion(Jeton jeton, double start, Coordonnees coordonnees)
-    {
+    public void addCamion(Jeton jeton, double start, Coordonnees coordonnees) {
         Camion newCamion = new Camion(jeton, start, coordonnees);
         vehiculeList.add(newCamion);
     }
 
-    public void removeCamion(Camion p_camion)
-    {
-        try 
-        {
+    public void removeCamion(Camion p_camion) {
+        try {
             vehiculeList.remove(p_camion);
-        }
-        catch(Exception error)
-        {
+        } catch (Exception error) {
             System.out.println("Vehicule is not in the list");
         }
     }
 
-    public void generateCamionSimulation(Jeton jeton, double depart) 
-    {
+    public void generateCamionSimulation(Jeton jeton, double depart) {
         Camion vehiculePretPourSimulation = vehiculeList.get(0);
         System.out.println(vehiculePretPourSimulation);
-        //appeler fonction pour simulation
+        // appeler fonction pour simulation
         vehiculeList.remove(vehiculePretPourSimulation);
     }
 
-
-
-    public String askReason()
-    {
+    public String askReason() {
         return "La raison";
     }
 
-    public double getNextPosition()
-    {
+    public double getNextPosition() {
         // on appel une fonction de vehicule ici
         double nextPosition = 10;
         return nextPosition;
     }
 
-    public boolean askValidPlace(Coordonnees coordonnee)
-    {
+    public boolean askValidPlace(Coordonnees coordonnee) {
         int x = 10;
-        if (x < 10)
-        { 
+        if (x < 10) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public boolean validanceDependance(String type, Coordonnees coordonnee)
-    {
+    public boolean validanceDependance(String type, Coordonnees coordonnee) {
         return true;
     }
 }
-
-
-
-

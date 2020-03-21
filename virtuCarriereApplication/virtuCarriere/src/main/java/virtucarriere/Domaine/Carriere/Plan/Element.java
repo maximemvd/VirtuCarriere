@@ -8,73 +8,72 @@ package virtucarriere.Domaine.Carriere.Plan;
 public class Element {
 
     private Coordonnees coordonnees;
-    private  int width;
+    private int width;
     private int length;
     private boolean selectionStatus;
-    
-    public Element(Coordonnees coordonnees, int width, int length,
-        boolean selectionStatus){
+
+    public Element(Coordonnees coordonnees, int width, int length, boolean selectionStatus) {
 
         this.coordonnees = coordonnees;
         this.width = width;
         this.length = length;
         this.selectionStatus = selectionStatus;
     }
-    
-    public boolean contains(double x, double y){
+
+    public boolean contains(double x, double y) {
         return true;
     }
-    
-    public boolean xIsInsideElementWidth(double x){
+
+    public boolean xIsInsideElementWidth(double x) {
         return (this.coordonnees.getX() <= x && x <= this.coordonnees.getX() + this.width);
     }
-    
-    public boolean yIsInsideElementLength(double y){
+
+    public boolean yIsInsideElementLength(double y) {
         return (this.coordonnees.getY() <= y && y <= this.coordonnees.getY() + this.width);
     }
-    
-    public void switchElementStatus(){
+
+    public void switchElementStatus() {
         this.selectionStatus = !this.selectionStatus;
     }
-    
-    public void unselect(){
+
+    public void unselect() {
         this.selectionStatus = false;
     }
-    
-    public boolean isSelected(){
+
+    public boolean isSelected() {
         return this.selectionStatus;
     }
-    
-    public String getCoordonnees(){
+
+    public String getCoordonnees() {
         return this.coordonnees.toString();
     }
-    
-    public void setCoordonnees(Coordonnees coordonnees){
+
+    public void setCoordonnees(Coordonnees coordonnees) {
         this.coordonnees = coordonnees;
     }
-    
-    public int getWidth(){
+
+    public int getWidth() {
         return this.width;
     }
-    
-    public void setWidth(int width){
+
+    public void setWidth(int width) {
         this.width = width;
     }
-    
-    public int getLength(){
+
+    public int getLength() {
         return this.length;
     }
-    
-    public void setLength(int length){
+
+    public void setLength(int length) {
         this.length = length;
     }
-    
-    public boolean getSelectionStatus(){
+
+    public boolean getSelectionStatus() {
         return this.selectionStatus;
     }
-    
-    public void setSelectionStatus(boolean selectionStatus){
+
+    public void setSelectionStatus(boolean selectionStatus) {
         this.selectionStatus = selectionStatus;
     }
-    
+
 }
