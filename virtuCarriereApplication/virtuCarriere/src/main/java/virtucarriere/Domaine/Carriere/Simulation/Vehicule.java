@@ -6,14 +6,14 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.util.List;
-import virtucarriere.Domaine.Carriere.Plan.Tas;
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 
 public class Vehicule {
     
     private Itineraire route;
     
     public void getShortestPath(Jeton jeton){
-        List<Tas> stops = null;
+        List<Coordonnees> stops = null;
         route = new Itineraire(stops);
     }
     public Itineraire getRoute() {
