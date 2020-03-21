@@ -48,14 +48,25 @@ public class Simulation {
 
     public void startSimulation() {
         this.start();
+        ArrayList<Camion> camionFinish = new ArrayList<Camion>();
         while (this.simulation) {
             for (Camion camionSimulation : this.camionList) {
                 System.out.println(camionSimulation);
                 for (Node destination : camionSimulation.itineraireCamion) {
                     System.out.println(destination);
                 }
+                camionFinish.add(camionSimulation);
             }
         }
+        this.removeCamionUse(camionFinish);
+    }
+
+    public void removeCamionUse(ArrayList<Camion> camionUse)
+    {
+        for (Camion camionAlreadyUse : camionUse)
+        {
+            this.removeCamion(camionAlreadyUse);
+        }   
     }
 
     public void start() {

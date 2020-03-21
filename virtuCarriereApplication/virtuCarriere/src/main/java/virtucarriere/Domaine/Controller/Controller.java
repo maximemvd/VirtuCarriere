@@ -76,10 +76,6 @@ public class Controller {
         return this.elementContainer.getVehiculeList();
     }
 
-    public void draw(Graphics2D g, MainWindow.MeasurementUnitMode measurementUnitMode, DrawingPanel drawingPanel,
-            double zoom, Point currentMousePoint) {
-
-    }
 
     public void draw(Graphics2D g, double zoom, Point mousePoint, CarriereDrawer carriereDrawer,
             MeasurementUnitMode measurementUnitMode) {
