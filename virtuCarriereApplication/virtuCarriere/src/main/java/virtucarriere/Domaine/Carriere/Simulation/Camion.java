@@ -5,11 +5,30 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.util.ArrayList;
+
 import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 
 public class Camion extends Vehicule {
 
-    public Camion(Jeton jeton,double start, Coordonnees coordonnees) {};
-    
+    ArrayList<Node> itineraireCamion;
+
+    public Camion() {};
+
+    public Camion(Jeton jeton,double start, Coordonnees coordonnees) 
+    {
+        createCamion(jeton, start, coordonnees);
+    }
+
+    public void createCamion(Jeton jeton,double start, Coordonnees coordonnees) 
+    {
+        
+    };
+
+    public void addDestination(Node p_node)
+    {
+        itineraireCamion.add(p_node);
+    };
+
 }
