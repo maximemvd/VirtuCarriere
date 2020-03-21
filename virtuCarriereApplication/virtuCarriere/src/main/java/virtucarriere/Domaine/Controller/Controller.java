@@ -8,7 +8,6 @@ package virtucarriere.Domaine.Controller;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Controller.ElementContainer;
@@ -31,20 +30,49 @@ public class Controller {
 
     private ElementContainer elementContainer;
 
-    private ArrayList<Element> elementList;
+    private ArrayList<ElementContainer> containerList;
 
-    private ArrayList<Camion> camionArrayList;
+    private int undoRedo = -1;
 
 
     public Controller(ElementContainer elementContainer) {
         this.elementContainer = elementContainer;
         // peut etre rajouter la fonction addElementContainer ici
+        //modifier la variable undoRedo chaque fois qu'on appel le controleur
     }
 
     public Controller() {
         elementContainer = new ElementContainer();
-        elementList = new ArrayList<Element>();
-        camionArrayList = new ArrayList<Camion>();
+        containerList = new ArrayList<ElementContainer>();
+    }
+
+    public void setElement(ElementContainer elementContainer)
+    {
+        this.elementContainer = elementContainer;
+    }
+
+    private ArrayList<ElementContainer> getContainerList()
+    {
+        return containerList;
+    }
+
+    public void undo()
+    {
+        if (undoRedo <= 0)
+        {
+            return;
+        }
+        undoRedo--;
+        setElement(containerList.get(undoRedo));
+    } 
+
+    public void redo()
+    {
+        if (undoRedo == containerList.size() - 1) {
+            return;
+        }
+        undoRedo++;
+        setElement((containerList.get(undoRedo)));
     }
 
 
@@ -62,17 +90,20 @@ public class Controller {
 
     }
 
-    public void ajouterEquipement(Equipement equipement) { 
-        elementList.add(equipement);
-    };
-
-    public void ajouterCamion(Camion p_camion)
-    {
-        camionArrayList.add(p_camion);
-    }
+  
 
     public ElementContainer getElementContainer() {
         return elementContainer;
+    }
+
+    public ArrayList<Element> getElemeneArrayList() 
+    {
+        return elementContainer.getElementList();
+    }
+
+    public ArrayList<Camion> getCamionArrayList() 
+    {
+        return elementContainer.getVehiculeList();
     }
     
     
@@ -82,17 +113,11 @@ public class Controller {
     
     }
 
-    public ArrayList<Element> getElementsList() {
-        return elementList;
-    }
 
-    public ArrayList<Camion> getCamionList() {
-        return camionArrayList;
-    }
 
     public void draw(Graphics2D g, double zoom,  Point mousePoint, CarriereDrawer carriereDrawer,  MeasurementUnitMode measurementUnitMode)
      {
-        ArrayList<Element> elementList = getElementsList();
+        ArrayList<ElementContainer> containers = getContainerList();
 
         if (carriereDrawer == null)
         {
@@ -100,7 +125,7 @@ public class Controller {
         }
 
         carriereDrawer.setMeasurementUnitMode(measurementUnitMode);
-        carriereDrawer.draw(g, elementList, zoom, mousePoint);
+        carriereDrawer.draw(g, containers, zoom, mousePoint);
      }
 
 
