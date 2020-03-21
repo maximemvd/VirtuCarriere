@@ -15,22 +15,30 @@ import virtucarriere.gui.MainWindow;
 
 public class CarriereDrawer {
 
+
     private final Controller controller;
     private double zoom;
     private Dimension initialDimension;
     private MainWindow.MeasurementUnitMode measurementMode;
 
-    public CarriereDrawer(Controller controller) {
+
+    public CarriereDrawer(Controller controller)
+    {
         this.controller = controller;
     }
 
 
-    public void draw(Graphics2D g, ArrayList<Element> elementList, double zoom, Point currentMousePoint) {
+
+    public void draw(Graphics2D g, ArrayList<ElementContainer> elementList, double zoom, Point currentMousePoint)
+    {
         drawCarriere(g, elementList, zoom, currentMousePoint);
     }
 
 
-    public void drawCarriere(Graphics2D g, ArrayList<Element> elementContainer, double zoom, Point mousePoint) {
+
+ 
+    public void drawCarriere(Graphics2D g, ArrayList<ElementContainer>  elementContainer, double zoom, Point mousePoint)
+    {
         System.out.println("ici qu'on draw toutes les items");
         System.out.println(g);
         System.out.println(elementContainer);
@@ -38,10 +46,15 @@ public class CarriereDrawer {
         System.out.println(mousePoint);
     }
 
+
     public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {
 
         this.measurementMode = measurementMode;
     }
 
+    
 }
+
+
+
 

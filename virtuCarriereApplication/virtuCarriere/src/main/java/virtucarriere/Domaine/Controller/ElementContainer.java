@@ -58,10 +58,23 @@ public class ElementContainer {
         return vehiculeList.size();
     }
 
-    public void addEquipement(Equipement p_equipement)
+    public void addElement(Element p_element)
     {
-        elementList.add(p_equipement);
+        elementList.add(p_element);
     }
+
+    public void removeElement(Element p_element)
+    {
+        try 
+        {
+            elementList.remove(p_element);
+        }
+        catch(Exception error)
+        {
+            System.out.println("Element is not in the list");
+        }
+    }
+
 
     public void addCamion(Jeton jeton, double start, Coordonnees coordonnees)
     {
@@ -69,11 +82,27 @@ public class ElementContainer {
         vehiculeList.add(newCamion);
     }
 
-    public void addNoeud(double x, double y)
+    public void removeCamion(Camion p_camion)
     {
-        Noeud newNoeud = new Noeud(x, y);
-        //elementList.add(newNoeud);
+        try 
+        {
+            vehiculeList.remove(p_camion);
+        }
+        catch(Exception error)
+        {
+            System.out.println("Vehicule is not in the list");
+        }
     }
+
+    public void generateCamionSimulation(Jeton jeton, double depart) 
+    {
+        Camion vehiculePretPourSimulation = vehiculeList.get(0);
+        System.out.println(vehiculePretPourSimulation);
+        //appeler fonction pour simulation
+        vehiculeList.remove(vehiculePretPourSimulation);
+    }
+
+
 
     public String askReason()
     {
