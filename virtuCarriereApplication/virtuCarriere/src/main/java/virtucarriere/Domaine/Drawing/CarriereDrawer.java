@@ -15,23 +15,22 @@ import virtucarriere.gui.MainWindow;
 
 public class CarriereDrawer {
 
-    private Controller controller;
+    private final Controller controller;
     private double zoom;
+    private Dimension initialDimension;
+    private MainWindow.MeasurementUnitMode measurementMode;
 
-    public CarriereDrawer(Controller controller)
-    {
+    public CarriereDrawer(Controller controller) {
         this.controller = controller;
     }
 
 
-    public void draw(Graphics2D g, ArrayList<Element> elementList, double zoom, Point currentMousePoint)
-    {
+    public void draw(Graphics2D g, ArrayList<Element> elementList, double zoom, Point currentMousePoint) {
         drawCarriere(g, elementList, zoom, currentMousePoint);
     }
 
 
-    public void drawCarriere(Graphics2D g, ArrayList<Element>  elementContainer, double zoom, Point mousePoint)
-    {
+    public void drawCarriere(Graphics2D g, ArrayList<Element> elementContainer, double zoom, Point mousePoint) {
         System.out.println("ici qu'on draw toutes les items");
         System.out.println(g);
         System.out.println(elementContainer);
@@ -39,34 +38,10 @@ public class CarriereDrawer {
         System.out.println(mousePoint);
     }
 
-    public void setMeasurementUnitMode(MeasurementUnitMode measurementMode)
-    {
+    public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {
+
         this.measurementMode = measurementMode;
     }
 
-// zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
-    public void zoomOut(Point point) {
-        this.imagePanel.setZoom(this.imagePanel.getZoom() * 0.9f);
-        Point pos = this.getViewport().getViewPosition();
-
-        int newX = (int)(point.x*(0.9f - 1f) + 0.9f*pos.x);
-        int newY = (int)(point.y*(0.9f - 1f) + 0.9f*pos.y);
-        this.getViewport().setViewPosition(new Point(newX, newY));
-
-        this.imagePanel.revalidate();
-        this.imagePanel.repaint();
-    }
-
-    public void zoomIn(Point point) {
-        this.imagePanel.setZoom(this.imagePanel.getZoom() * 1.1f);
-        Point pos = this.getViewport().getViewPosition();
-
-        int newX = (int)(point.x*(1.1f - 1f) + 1.1f*pos.x);
-        int newY = (int)(point.y*(1.1f - 1f) + 1.1f*pos.y);
-        this.getViewport().setViewPosition(new Point(newX, newY));
-
-        this.imagePanel.revalidate();
-        this.imagePanel.repaint();
-    }
-    
 }
+

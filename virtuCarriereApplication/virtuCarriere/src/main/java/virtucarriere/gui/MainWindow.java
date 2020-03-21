@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import virtucarriere.Domaine.Controller.Controller;
 
 public class MainWindow extends JFrame {
     
@@ -20,6 +19,7 @@ public class MainWindow extends JFrame {
 
     
     public Point currentMousePoint = new Point();
+    public Point initMousePoint = new Point();
 
 
     /**
@@ -27,6 +27,7 @@ public class MainWindow extends JFrame {
      */
     public MainWindow() {
         initComponents();
+        setFocusable(true);
     }
     
     public enum MeasurementUnitMode {
@@ -47,6 +48,10 @@ public class MainWindow extends JFrame {
     
     public void setCurrentApplicationMode(ApplicationMode newApplicationMode) {
         this.currentApplicationMode = newApplicationMode;
+    }
+    
+    public DrawingPanel getDrawingPanel(){
+        return this.drawingPanel;
     }
 
     /**
@@ -88,6 +93,7 @@ public class MainWindow extends JFrame {
         zoomButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         mainScrollPane = new javax.swing.JScrollPane();
+        drawingPanel = new virtucarriere.gui.DrawingPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         menuNouveauProjet = new javax.swing.JMenuItem();
@@ -104,7 +110,7 @@ public class MainWindow extends JFrame {
         affichageMenu = new javax.swing.JMenu();
         menuZoomer = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuAffichageGrille = new javax.swing.JMenuItem();
         importerMenu = new javax.swing.JMenu();
         importerCarriereMenu = new javax.swing.JMenuItem();
         importerSimulationMenu = new javax.swing.JMenuItem();
@@ -329,11 +335,24 @@ public class MainWindow extends JFrame {
         jButton6.setPreferredSize(new java.awt.Dimension(30, 25));
         buttonTopPanel.add(jButton6);
 
+        javax.swing.GroupLayout drawingPanelLayout = new javax.swing.GroupLayout(drawingPanel);
+        drawingPanel.setLayout(drawingPanelLayout);
+        drawingPanelLayout.setHorizontalGroup(
+            drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1001, Short.MAX_VALUE)
+        );
+        drawingPanelLayout.setVerticalGroup(
+            drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 752, Short.MAX_VALUE)
+        );
+
+        mainScrollPane.setViewportView(drawingPanel);
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(buttonTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1017, Short.MAX_VALUE)
+            .addComponent(buttonTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainScrollPane)
@@ -404,8 +423,13 @@ public class MainWindow extends JFrame {
         jMenuItem6.setText("Dézoomer");
         affichageMenu.add(jMenuItem6);
 
-        jMenuItem1.setText("Grille magnétique");
-        affichageMenu.add(jMenuItem1);
+        menuAffichageGrille.setText("Grille magnétique");
+        menuAffichageGrille.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAffichageGrilleActionPerformed(evt);
+            }
+        });
+        affichageMenu.add(menuAffichageGrille);
 
         jMenuBar1.add(affichageMenu);
 
@@ -436,7 +460,7 @@ public class MainWindow extends JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panneauPermanent, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            .addComponent(panneauPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -476,6 +500,10 @@ public class MainWindow extends JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void menuAffichageGrilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAffichageGrilleActionPerformed
+        drawingPanel.setGridLines();
+    }//GEN-LAST:event_menuAffichageGrilleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -525,7 +553,7 @@ public class MainWindow extends JFrame {
     }
    
     public void draw(Graphics2D g, DrawingPanel drawingPanel, double zoom) {
-        Controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
+        //Controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
     }
     
 
@@ -541,6 +569,7 @@ public class MainWindow extends JFrame {
     private javax.swing.JToggleButton buttonAjouterNoeud;
     private javax.swing.JToggleButton buttonAjouterTas;
     private javax.swing.JPanel buttonTopPanel;
+    private virtucarriere.gui.DrawingPanel drawingPanel;
     private javax.swing.JMenu editionMenu;
     private javax.swing.JMenu fenetreMenu;
     private javax.swing.JMenu fichierMenu;
@@ -558,12 +587,12 @@ public class MainWindow extends JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
+    private javax.swing.JMenuItem menuAffichageGrille;
     private javax.swing.JMenuItem menuColler;
     private javax.swing.JMenuItem menuCopier;
     private javax.swing.JMenuItem menuCouper;
