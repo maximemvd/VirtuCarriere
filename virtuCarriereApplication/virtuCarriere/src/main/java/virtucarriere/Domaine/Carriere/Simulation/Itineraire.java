@@ -6,12 +6,12 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.util.List;
-import virtucarriere.Domaine.Carriere.Plan.Tas;
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 
 public class Itineraire {
-    private List<Tas> stops;
+    private List<Coordonnees> stops;
 
-    Itineraire(List<Tas> stops){
+    Itineraire(List<Coordonnees> stops){
       this.stops = stops;
     }
 }
