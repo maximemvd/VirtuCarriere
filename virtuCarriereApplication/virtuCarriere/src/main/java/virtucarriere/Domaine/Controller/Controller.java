@@ -6,22 +6,14 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Graphics2D;
-import java.awt.Point;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.gui.MainWindow;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.Domaine.Controller.ElementContainer;
 import virtucarriere.Domaine.Drawing.CarriereDrawer;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import java.util.ArrayList;
 import virtucarriere.gui.MainWindow.MeasurementUnitMode;
 import virtucarriere.gui.MainWindow;
-import javax.swing.*;
-import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.*;
+import virtucarriere.gui.DrawingPanel;
 
 
 public class Controller {

@@ -13,4 +13,8 @@ public class Angle {
       throw new RuntimeException("L'angle en argument est invalide");
     }
   }
+
+  double get(){
+    return this.degree;
+  }
 }

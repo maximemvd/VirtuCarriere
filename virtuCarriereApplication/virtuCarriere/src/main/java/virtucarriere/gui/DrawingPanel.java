@@ -14,6 +14,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.Serializable;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import virtucarriere.Domaine.Drawing.CarriereDrawer;
         
 
 /**
@@ -24,8 +26,8 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public Dimension initialDimension;
     private MainWindow mainWindow;
-    
-    private Boolean grilleActivee = false;
+
+    private boolean grilleActivee = false;
     private double zoom = 1d;
     
     private double gapGrille = 100d;
@@ -38,14 +40,14 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public DrawingPanel(MainWindow mainWindow){
         this.mainWindow = mainWindow;
-        
+        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
         int width = mainWindow.getMainScrollPaneDimension().width;
         int height = mainWindow.getMainScrollPaneDimension().height;
         
         setPreferredSize(new Dimension(width,height));
         setVisible(true);
         this.initialDimension = new Dimension(width,height);
-        setBackground(Color.WHITE);
+        //setBackground(Color.WHITE);
     
     }
     
@@ -58,7 +60,7 @@ public class DrawingPanel extends JPanel implements Serializable{
             Graphics2D g2d = (Graphics2D) g;
             
             
-            if (grilleActivee == true){
+            if (grilleActivee){
                 
                 g2d.scale(zoom, zoom);
                 g2d.setPaint(Color.LIGHT_GRAY);
@@ -68,6 +70,7 @@ public class DrawingPanel extends JPanel implements Serializable{
                     for (int row = 1; row <= ajustingDimension.getHeight() / this.gapGrille; row++) {
                         g2d.drawLine(0, (int) (row * this.gapGrille), (int)ajustingDimension.getWidth(), (int) (row * this.gapGrille));
                     }
+                    
                     for (int col = 1; col <= (int)ajustingDimension.getWidth() / this.gapGrille; col++) {
                         g2d.drawLine((int) (col * this.gapGrille), 0, (int) (col * this.gapGrille), (int)ajustingDimension.getHeight());
                     }
@@ -96,6 +99,18 @@ public class DrawingPanel extends JPanel implements Serializable{
     public void setZoom(double zoom) {
         this.zoom = zoom;
     }
+
+    public MainWindow getMainWindow() {
+        return this.mainWindow;
+    }
+
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+    }
+
+    public Dimension getInitialDimension() {
+        return initialDimension;
+    }
     
     public void setGridLines() {
         initialDimension = mainWindow.getMainScrollPaneDimension();
@@ -104,13 +119,12 @@ public class DrawingPanel extends JPanel implements Serializable{
     }
     
     public double getGapGrille() {
-        return gapGrille;
+        return this.gapGrille;
     }
     
     
     // zoom inspiré de https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
-    
-    
+
     public void zoomIn(Point point) {
         this.setZoom(getZoom() * ZoomFactor);
         Point pos = mainWindow.getMainScrollPane().getViewport().getViewPosition();
@@ -127,19 +141,30 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public void zoomOut(Point point) {
         this.setZoom(getZoom() / ZoomFactor);
-        Point pos = mainWindow.getMainScrollPane.getViewport().getViewPosition();
+        Point pos = mainWindow.getMainScrollPane().getViewport().getViewPosition();
 
-        int newX = (int)(point.x*(0.9f - 1f) + 0.9f*pos.x);
-        int newY = (int)(point.y*(0.9f - 1f) + 0.9f*pos.y);
-        this.getViewport().setViewPosition(new Point(newX, newY));
+        int newX = (int)(point.x*(0.9f - 1f) + pos.x / ZoomFactor);
+        int newY = (int)(point.y*(0.9f - 1f) + pos.y / ZoomFactor);
+        Point newPoint = new Point(newX, newY);
+        mainWindow.setMainScrollPanePosition(newPoint);
+        setDrawingPanelDimensions();
 
         revalidate();
         repaint();
     }
 
+    public void setDrawingPanelDimensions() {
+        Dimension dimension = new Dimension((int)initialDimension.getWidth(), (int)initialDimension.getHeight());
+        this.setPreferredSize(new Dimension((int)(dimension.getWidth() * zoom), (int)(dimension.getHeight() * zoom)));
+        revalidate();
+    }
 
-            
+    public void setGapGrille(double newGapGrille) {
+        this.gapGrille = newGapGrille;
+    }
+    
    }
+
         
     
  

@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         virtucarriere.gui.MainWindow mainWindow = new virtucarriere.gui.MainWindow();
         mainWindow.setExtendedState(mainWindow.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        mainWindow.setTitle("VirtuCarrière");
         mainWindow.setVisible(true);
     }
     
