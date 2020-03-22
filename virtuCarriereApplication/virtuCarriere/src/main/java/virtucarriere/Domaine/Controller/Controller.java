@@ -11,14 +11,15 @@ import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import java.util.ArrayList;
 import virtucarriere.gui.MainWindow.MeasurementUnitMode;
-import virtucarriere.gui.MainWindow;
 import java.awt.Point;
+import virtucarriere.gui.DrawingPanel;
 
 public class Controller {
 
     private double attribute;
 
     private ElementContainer elementContainer;
+    private CarriereDrawer carriereDrawer;
 
     private ArrayList<ElementContainer> containerList;
 
@@ -77,16 +78,15 @@ public class Controller {
     }
 
 
-    public void draw(Graphics2D g, double zoom, Point mousePoint, CarriereDrawer carriereDrawer,
-            MeasurementUnitMode measurementUnitMode) {
-        ArrayList<ElementContainer> containers = this.getContainerList();
+    public void draw(Graphics2D g, MeasurementUnitMode measurementUnitMode, DrawingPanel drawingPanel, double zoom, Point currentMousePoint) {
+        
+        ArrayList<ElementContainer> containers = getContainerList();
 
         if (carriereDrawer == null) {
             carriereDrawer = new CarriereDrawer(this);
         }
-
         carriereDrawer.setMeasurementUnitMode(measurementUnitMode);
-        carriereDrawer.draw(g, containers, zoom, mousePoint);
+        carriereDrawer.draw(g, containers, zoom, currentMousePoint);
     }
 
 }

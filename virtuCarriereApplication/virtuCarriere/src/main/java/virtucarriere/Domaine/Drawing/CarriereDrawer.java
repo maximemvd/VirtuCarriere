@@ -29,13 +29,12 @@ public class CarriereDrawer {
         drawCarriere(g, elementList, zoom, currentMousePoint);
     }
 
-    public void drawCarriere(Graphics2D g, ArrayList<ElementContainer> elementContainer, double zoom,
-            Point mousePoint) {
+    public void drawCarriere(Graphics2D g, ArrayList<ElementContainer> elementContainer, double zoom, Point currentMousePoint) {
         System.out.println("ici qu'on draw toutes les items");
         System.out.println(g);
         System.out.println(elementContainer);
         System.out.println(zoom);
-        System.out.println(mousePoint);
+        System.out.println(currentMousePoint);
     }
 
     public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {

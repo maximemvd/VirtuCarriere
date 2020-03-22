@@ -163,6 +163,10 @@ public class DrawingPanel extends JPanel implements Serializable{
         this.gapGrille = newGapGrille;
     }
     
+    public boolean getGridlines() {
+        return this.grilleActivee;
+    }
+    
    }
 
         
