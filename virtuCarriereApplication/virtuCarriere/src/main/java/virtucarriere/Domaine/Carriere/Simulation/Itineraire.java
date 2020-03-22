@@ -6,13 +6,12 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.util.List;
-import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
 public class Itineraire {
-    private List<Coordonnees> stops;
+    private List<Noeud> stops;
 
-    // list de coordonnes ou de noeud ? 
-    Itineraire(List<Coordonnees> stops){
+    Itineraire(List<Noeud> stops){
       this.stops = stops;
     }
 }
