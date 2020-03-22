@@ -9,6 +9,7 @@ public class Arc extends Element {
 
   private Coordonnees starting;
   private Coordonnees arrival;
+  private int cout;
 
   public Arc(Coordonnees starting, Coordonnees arrival) {
     //TODO Valider comment intégrer element
