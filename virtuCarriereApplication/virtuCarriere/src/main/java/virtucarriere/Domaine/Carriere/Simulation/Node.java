@@ -6,29 +6,27 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 public class Node {
-    private int cost;
-    private int numberNode;
 
-    public Node() {
-    };
+  private int cost;
+  private int numberNode;
 
-    public Node(int numberNode, int cost) {
-        this.numberNode = numberNode;
-        this.cost = cost;
+  public Node(int numberNode, int cost) {
+    this.numberNode = numberNode;
+    this.cost = cost;
+  }
+
+  public int compare(Node nodeA, Node NodeB) {
+    System.out.println(nodeA.numberNode);
+    System.out.println(NodeB.numberNode);
+
+    if (nodeA.cost < NodeB.cost) {
+      return -1;
     }
-
-    public int compare(Node nodeA, Node NodeB) {
-        System.out.println(nodeA.numberNode);
-        System.out.println(NodeB.numberNode);
-
-        if (nodeA.cost < NodeB.cost) {
-            return -1;
-        }
-        if (nodeA.cost > NodeB.cost) {
-            return 1;
-        } else {
-            return 0;
-        }
+    if (nodeA.cost > NodeB.cost) {
+      return 1;
+    } else {
+      return 0;
     }
+  }
 
 }
