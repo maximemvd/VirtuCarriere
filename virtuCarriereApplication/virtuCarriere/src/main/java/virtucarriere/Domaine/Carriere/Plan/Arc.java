@@ -7,15 +7,19 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 public class Arc extends Element {
 
-  private Coordonnees starting;
-  private Coordonnees arrival;
+  private Noeud starting;
+  private Noeud arrival;
   private int cout;
 
-  public Arc(Coordonnees starting, Coordonnees arrival) {
+  public Arc(Noeud starting, Noeud arrival) {
     //TODO Valider comment intégrer element
-    super(starting, 1, 1, false);
+    super(starting.getCoordonnees(), 1, 1, false);
 
     this.starting = starting;
     this.arrival = arrival;
+  }
+
+  public Noeud getArrival(){
+    return arrival;
   }
 }
