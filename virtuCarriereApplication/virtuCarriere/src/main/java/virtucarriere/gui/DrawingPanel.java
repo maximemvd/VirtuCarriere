@@ -26,6 +26,7 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public Dimension initialDimension;
     private MainWindow mainWindow;
+    private CarriereDrawer carriereDrawer;
 
     private boolean grilleActivee = false;
     private double zoom = 1d;
@@ -40,14 +41,14 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public DrawingPanel(MainWindow mainWindow){
         this.mainWindow = mainWindow;
-        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
+        //setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
         int width = mainWindow.getMainScrollPaneDimension().width;
         int height = mainWindow.getMainScrollPaneDimension().height;
         
         setPreferredSize(new Dimension(width,height));
         setVisible(true);
         this.initialDimension = new Dimension(width,height);
-        //setBackground(Color.WHITE);
+        setBackground(Color.WHITE);
     
     }
     

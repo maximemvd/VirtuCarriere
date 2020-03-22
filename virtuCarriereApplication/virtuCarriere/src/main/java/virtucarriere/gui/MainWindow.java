@@ -6,6 +6,7 @@
 package virtucarriere.gui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -65,35 +66,12 @@ public class MainWindow extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ajouterElements = new javax.swing.ButtonGroup();
-        panneauPermanent = new javax.swing.JPanel();
-        permanentPanel = new javax.swing.JTabbedPane();
-        panelPlan = new javax.swing.JPanel();
-        buttonAjouterNoeud = new javax.swing.JToggleButton();
-        buttonAjouterArc = new javax.swing.JToggleButton();
-        buttonAjouterConcasseur = new javax.swing.JToggleButton();
-        buttonAjouterCrible = new javax.swing.JToggleButton();
-        buttonAjouterEntree = new javax.swing.JToggleButton();
-        buttonAjouterTas = new javax.swing.JToggleButton();
-        buttonAjouterBroyeur = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
-        buttonAjouterConvoyeur = new javax.swing.JToggleButton();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        panelSimulation = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
         jToggleButton1 = new javax.swing.JToggleButton();
         mainScrollPane = new javax.swing.JScrollPane();
         drawingPanel = new virtucarriere.gui.DrawingPanel();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         menuNouveauProjet = new javax.swing.JMenuItem();
@@ -116,249 +94,42 @@ public class MainWindow extends JFrame {
         importerSimulationMenu = new javax.swing.JMenuItem();
         fenetreMenu = new javax.swing.JMenu();
 
-        ajouterElements.add(buttonAjouterNoeud);
-        ajouterElements.add(buttonAjouterArc);
-        ajouterElements.add(buttonAjouterConcasseur);
-        ajouterElements.add(buttonAjouterCrible);
-        ajouterElements.add(buttonAjouterEntree);
-        ajouterElements.add(buttonAjouterTas);
-        ajouterElements.add(buttonAjouterBroyeur);
-        ajouterElements.add(buttonAjouterConvoyeur);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        panneauPermanent.setAlignmentY(1.0F);
-
-        permanentPanel.setToolTipText("");
-        permanentPanel.setAlignmentY(1.0F);
-        permanentPanel.setAutoscrolls(true);
-        permanentPanel.setMinimumSize(new java.awt.Dimension(111, 100));
-        permanentPanel.setName(""); // NOI18N
-        permanentPanel.setPreferredSize(new java.awt.Dimension(338, 950));
-
-        panelPlan.setAutoscrolls(true);
-
-        buttonAjouterNoeud.setText("Ajouter un noeud");
-        buttonAjouterNoeud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAjouterNoeudActionPerformed(evt);
-            }
-        });
-
-        buttonAjouterArc.setText("Ajouter un arc");
-        buttonAjouterArc.setToolTipText("");
-        buttonAjouterArc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAjouterArcActionPerformed(evt);
-            }
-        });
-
-        buttonAjouterConcasseur.setText("Ajouter un concasseur");
-        buttonAjouterConcasseur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAjouterConcasseurActionPerformed(evt);
-            }
-        });
-
-        buttonAjouterCrible.setText("Ajouter un crible");
-
-        buttonAjouterEntree.setText("Ajouter une entrée");
-
-        buttonAjouterTas.setText("Ajouter un tas");
-
-        buttonAjouterBroyeur.setText("Ajouter un broyeur");
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel1.setText("Ajouter un élément");
-
-        buttonAjouterConvoyeur.setText("Ajouter un convoyeur");
-        buttonAjouterConvoyeur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAjouterConvoyeurActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel2.setText("Supprimer un élément");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Noeud1", "Arc1", "Noeud2", "Tas1", "Arc2" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Noeud1", "Arc1", "Noeud2", "Tas1", "Arc2" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel3.setText("Modifier un élément");
-
-        jButton2.setText("Modifier");
-
-        jButton3.setText("Supprimer");
-
-        javax.swing.GroupLayout panelPlanLayout = new javax.swing.GroupLayout(panelPlan);
-        panelPlan.setLayout(panelPlanLayout);
-        panelPlanLayout.setHorizontalGroup(
-            panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(253, 253, 253))
-            .addGroup(panelPlanLayout.createSequentialGroup()
-                .addGroup(panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPlanLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2))
-                            .addGroup(panelPlanLayout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addGroup(panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(buttonAjouterNoeud, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonAjouterArc, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonAjouterConcasseur)
-                                    .addComponent(buttonAjouterCrible, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonAjouterEntree, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonAjouterTas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonAjouterBroyeur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonAjouterConvoyeur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlanLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(panelPlanLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelPlanLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelPlanLayout.setVerticalGroup(
-            panelPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterNoeud)
-                .addGap(4, 4, 4)
-                .addComponent(buttonAjouterArc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterConcasseur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterCrible)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterEntree)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterTas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterBroyeur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonAjouterConvoyeur)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
-
-        permanentPanel.addTab("Plan", panelPlan);
-
-        jButton1.setText("Créer une simulation");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Modifier une simulation");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelSimulationLayout = new javax.swing.GroupLayout(panelSimulation);
-        panelSimulation.setLayout(panelSimulationLayout);
-        panelSimulationLayout.setHorizontalGroup(
-            panelSimulationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSimulationLayout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addGroup(panelSimulationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(62, 62, 62))
-        );
-        panelSimulationLayout.setVerticalGroup(
-            panelSimulationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSimulationLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addContainerGap(790, Short.MAX_VALUE))
-        );
-
-        permanentPanel.addTab("Simulation", panelSimulation);
-
-        panneauPermanent.add(permanentPanel);
-        permanentPanel.getAccessibleContext().setAccessibleName("Plan");
 
         mainPanel.setLayout(new java.awt.BorderLayout());
 
-        jToggleButton1.setText("jToggleButton1");
+        buttonTopPanel.setToolTipText("");
+        buttonTopPanel.setPreferredSize(new java.awt.Dimension(1410, 35));
+
+        jToggleButton1.setText("SELECT");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        buttonTopPanel.add(jToggleButton1);
+
+        mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
+
+        drawingPanel.setLayout(new java.awt.BorderLayout());
+        mainScrollPane.setViewportView(drawingPanel);
+
+        mainPanel.add(mainScrollPane, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jToggleButton1)
-                .addContainerGap(716, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToggleButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 765, Short.MAX_VALUE)
         );
 
-        mainPanel.add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        mainScrollPane.setPreferredSize(new java.awt.Dimension(150, 100));
-
-        javax.swing.GroupLayout drawingPanelLayout = new javax.swing.GroupLayout(drawingPanel);
-        drawingPanel.setLayout(drawingPanelLayout);
-        drawingPanelLayout.setHorizontalGroup(
-            drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1016, Short.MAX_VALUE)
-        );
-        drawingPanelLayout.setVerticalGroup(
-            drawingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
-        );
-
-        mainScrollPane.setViewportView(drawingPanel);
-
-        mainPanel.add(mainScrollPane, java.awt.BorderLayout.CENTER);
+        mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
 
         fichierMenu.setText("Fichier");
 
@@ -452,19 +223,19 @@ public class MainWindow extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panneauPermanent, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1524, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panneauPermanent, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void menuNouveauProjetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuNouveauProjetActionPerformed
         // TODO add your handling code here:
@@ -566,15 +337,7 @@ public class MainWindow extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu affichageMenu;
-    private javax.swing.ButtonGroup ajouterElements;
-    private javax.swing.JToggleButton buttonAjouterArc;
-    private javax.swing.JToggleButton buttonAjouterBroyeur;
-    private javax.swing.JToggleButton buttonAjouterConcasseur;
-    private javax.swing.JToggleButton buttonAjouterConvoyeur;
-    private javax.swing.JToggleButton buttonAjouterCrible;
-    private javax.swing.JToggleButton buttonAjouterEntree;
-    private javax.swing.JToggleButton buttonAjouterNoeud;
-    private javax.swing.JToggleButton buttonAjouterTas;
+    private javax.swing.JPanel buttonTopPanel;
     private virtucarriere.gui.DrawingPanel drawingPanel;
     private javax.swing.JMenu editionMenu;
     private javax.swing.JMenu fenetreMenu;
@@ -582,20 +345,9 @@ public class MainWindow extends JFrame {
     private javax.swing.JMenuItem importerCarriereMenu;
     private javax.swing.JMenu importerMenu;
     private javax.swing.JMenuItem importerSimulationMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
@@ -611,9 +363,5 @@ public class MainWindow extends JFrame {
     private javax.swing.JMenuItem menuSauvegarderSous;
     private javax.swing.JMenuItem menuUndo;
     private javax.swing.JMenuItem menuZoomer;
-    private javax.swing.JPanel panelPlan;
-    private javax.swing.JPanel panelSimulation;
-    private javax.swing.JPanel panneauPermanent;
-    private javax.swing.JTabbedPane permanentPanel;
     // End of variables declaration//GEN-END:variables
 }
