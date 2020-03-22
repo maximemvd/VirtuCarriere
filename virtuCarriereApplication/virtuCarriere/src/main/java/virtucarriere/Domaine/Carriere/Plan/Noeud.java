@@ -11,4 +11,8 @@ public class Noeud {
     public Noeud(double x, double y) {
         coordonnees = new Coordonnees(x, y);
     }
+
+    public Coordonnees getCoordonnees() {
+        return coordonnees;
+    }
 }
