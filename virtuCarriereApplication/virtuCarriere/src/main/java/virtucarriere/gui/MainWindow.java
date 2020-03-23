@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
         mainPanel = new javax.swing.JPanel();
         buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
         jToggleButton1 = new javax.swing.JToggleButton();
-        mainScrollPane = new javax.swing.JScrollPane(this);
+        mainScrollPane = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         AddBroyeur = new javax.swing.JButton();
         AddConcasseur = new javax.swing.JButton();
