@@ -4,15 +4,25 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Carriere.Plan;
+ import java.awt.Point;
+ import java.awt.Color;
 
 
 public class Broyeur extends Equipement {
     
-    public Broyeur(Coordonnees p_coordonnees, int p_width, int p_length,
+    private Color color;
+    
+    public Broyeur(Point point, Coordonnees p_coordonnees, int p_width, int p_length,
             boolean p_selectionStatus, double p_angle){
         
-        super(p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
+        super(point, p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
+        this.color = Color.GREEN;
         
+    }
+    
+    public Color getColor()
+    {
+        return color;
     }
 
 }

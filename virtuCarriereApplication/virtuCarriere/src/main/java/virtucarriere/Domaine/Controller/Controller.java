@@ -9,10 +9,17 @@ import java.awt.Graphics2D;
 import virtucarriere.Domaine.Drawing.CarriereDrawer;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Plan.Element;
+import virtucarriere.Domaine.Carriere.Plan.Crible;
+import virtucarriere.Domaine.Carriere.Plan.Concasseur;
+import virtucarriere.Domaine.Carriere.Plan.Convoyeur;
+import virtucarriere.Domaine.Carriere.Plan.Broyeur;
+import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import java.util.ArrayList;
 import virtucarriere.gui.MainWindow.MeasurementUnitMode;
 import java.awt.Point;
 import virtucarriere.gui.DrawingPanel;
+import java.util.List;
 
 public class Controller {
 
@@ -22,6 +29,11 @@ public class Controller {
     private CarriereDrawer carriereDrawer;
 
     private ArrayList<ElementContainer> containerList;
+    
+     public enum ElementModes 
+     {
+         CONCASSEUR, CRIBLE, BROYEUR, CONVOYEUR
+     }
 
     private int undoRedo;
 
@@ -30,19 +42,71 @@ public class Controller {
         // peut etre rajouter la fonction addElementContainer ici
         // modifier la variable undoRedo chaque fois qu'on appel le controleur
     }
+    
+   
 
     public Controller() {
-        this.elementContainer = new ElementContainer();
-        this.containerList = new ArrayList<ElementContainer>();
-        this.undoRedo = -1;
+        elementContainer = new ElementContainer();
+    //    this.containerList = new ArrayList<ElementContainer>();
+      //  this.undoRedo = -1;
     }
 
     public void setElement(ElementContainer elementContainer) {
         this.elementContainer = elementContainer;
     }
+    
+    public void addCrible(Point mousePoint)
+    {
+        Coordonnees p = new Coordonnees(0, 0);
+        Crible newCrible = new Crible(mousePoint, p, 2, 2, true, 2);
+        elementContainer.addElement(newCrible);
+    }
+    
+     public void addConcasseur(Point mousePoint)
+    {
+        Coordonnees p = new Coordonnees(0, 0);
+        Concasseur newConcasseur = new Concasseur(mousePoint, p, 2, 2, true, 2);
+        elementContainer.addElement(newConcasseur);
+    }
+     
+         public void addBroyeur(Point mousePoint)
+    {
+        Coordonnees p = new Coordonnees(0, 0);
+        Concasseur newBroyeur = new Concasseur(mousePoint, p, 2, 2, true, 2);
+        elementContainer.addElement(newBroyeur);
+    }
+         
+       public void addConvoyeur(Point mousePoint)
+    {
+        Coordonnees p = new Coordonnees(0, 0);
+        Noeud noeud = new Noeud(0, 0);
+        Convoyeur newConvoyeur = new Convoyeur(mousePoint, p, 2, 2, true, 2, noeud);
+        elementContainer.addElement(newConvoyeur);
+    }
+    
+    public void addElements(ElementModes mode, Point mousePoint)
+    {
+        if (mode == ElementModes.CONCASSEUR)
+        {
+            addConcasseur(mousePoint);
+        }
+        if (mode == ElementModes.CRIBLE)
+        {
+            addCrible(mousePoint);
+        }
+        if (mode == ElementModes.CONVOYEUR)
+        {
+            addConvoyeur(mousePoint);
+        }
+         if (mode == ElementModes.BROYEUR)
+        {
+            addBroyeur(mousePoint);
+        }
+        
+    }
 
     private ArrayList<ElementContainer> getContainerList() {
-        return this.containerList;
+        return containerList;
     }
 
     public void undo() {
@@ -66,15 +130,15 @@ public class Controller {
     }
 
     public ElementContainer getElementContainer() {
-        return this.elementContainer;
+        return elementContainer;
     }
 
-    public ArrayList<Element> getElemeneArrayList() {
-        return this.elementContainer.getElementList();
+    public List<Element> getElementArrayList() {
+        return elementContainer.getElementList();
     }
 
-    public ArrayList<Camion> getCamionArrayList() {
-        return this.elementContainer.getVehiculeList();
+    public List<Camion> getCamionArrayList() {
+        return elementContainer.getVehiculeList();
     }
 
 
@@ -83,10 +147,10 @@ public class Controller {
         ArrayList<ElementContainer> containers = getContainerList();
 
         if (carriereDrawer == null) {
-            carriereDrawer = new CarriereDrawer(this);
+           // carriereDrawer = new CarriereDrawer(this);
         }
         carriereDrawer.setMeasurementUnitMode(measurementUnitMode);
-        carriereDrawer.draw(g, containers, zoom, currentMousePoint);
+        carriereDrawer.draw(g);
     }
 
 }

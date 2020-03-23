@@ -7,29 +7,38 @@ package virtucarriere.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Point;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import virtucarriere.Domaine.Controller.Controller;
+import virtucarriere.Domaine.Controller.Controller.ElementModes;
 
 public class MainWindow extends JFrame {
     
     public Controller controller;
+    
+    public ElementModes  selectedElementModes;
+    
+    public DrawingPanel drawingPanel;
 
     private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
     private ApplicationMode currentApplicationMode = ApplicationMode.SELECT;
 
     public Point currentMousePoint = new Point();
     public Point initMousePoint = new Point();
-
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        controller = new Controller();
         initComponents();
-        setFocusable(true);
+    }
+    
+        public void setMode(ElementModes newMode) {
+        this.selectedElementModes = newMode;
     }
 
     public enum MeasurementUnitMode {
@@ -53,7 +62,7 @@ public class MainWindow extends JFrame {
     }
 
     public DrawingPanel getDrawingPanel() {
-        return this.drawingPanel;
+        return drawingPanel;
     }
 
     /**
@@ -69,9 +78,12 @@ public class MainWindow extends JFrame {
         mainPanel = new javax.swing.JPanel();
         buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
         jToggleButton1 = new javax.swing.JToggleButton();
-        mainScrollPane = new javax.swing.JScrollPane();
-        drawingPanel = new virtucarriere.gui.DrawingPanel();
+        mainScrollPane = new javax.swing.JScrollPane(this);
         jPanel1 = new javax.swing.JPanel();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         menuNouveauProjet = new javax.swing.JMenuItem();
@@ -111,22 +123,66 @@ public class MainWindow extends JFrame {
 
         mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
 
-        drawingPanel.setLayout(new java.awt.BorderLayout());
-        mainScrollPane.setViewportView(drawingPanel);
-
+        mainScrollPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mainScrollPaneMousePressed(evt);
+            }
+        });
         mainPanel.add(mainScrollPane, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
+        jToggleButton2.setText("Ajouter Broyeur");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton3.setText("Ajout Crible");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton4.setText("Ajout Concasseur");
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton5.setText("Ajout Convoyeur");
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton5)
+                    .addComponent(jToggleButton4)
+                    .addComponent(jToggleButton3)
+                    .addComponent(jToggleButton2))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 765, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jToggleButton2)
+                .addGap(76, 76, 76)
+                .addComponent(jToggleButton3)
+                .addGap(81, 81, 81)
+                .addComponent(jToggleButton4)
+                .addGap(60, 60, 60)
+                .addComponent(jToggleButton5)
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
@@ -234,8 +290,35 @@ public class MainWindow extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void mainScrollPaneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainScrollPaneMousePressed
+        // TODO add your handling code here:
+        Point mousePoint = evt.getPoint();
+        Controller.ElementModes actualMode = this.selectedElementModes;
+        this.controller.addElements(actualMode,mousePoint);
+        drawingPanel.repaint();
+    }//GEN-LAST:event_mainScrollPaneMousePressed
+
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+        // TODO add your handling code here:
+        this.setMode(ElementModes.CONVOYEUR);
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setMode(ElementModes.BROYEUR);
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+        this.setMode(ElementModes.CONCASSEUR);
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        // TODO add your handling code here:
+        this.setMode(ElementModes.CRIBLE);
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void menuNouveauProjetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuNouveauProjetActionPerformed
         // TODO add your handling code here:
@@ -261,9 +344,7 @@ public class MainWindow extends JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_buttonAjouterConvoyeurActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton1ActionPerformed
+
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -331,14 +412,9 @@ public class MainWindow extends JFrame {
         this.mainScrollPane.getViewport().setViewPosition(point);
     }
 
-    public void draw(Graphics2D g, DrawingPanel drawingPanel, double zoom) {
-        controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu affichageMenu;
     private javax.swing.JPanel buttonTopPanel;
-    private virtucarriere.gui.DrawingPanel drawingPanel;
     private javax.swing.JMenu editionMenu;
     private javax.swing.JMenu fenetreMenu;
     private javax.swing.JMenu fichierMenu;
@@ -349,6 +425,10 @@ public class MainWindow extends JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JMenuItem menuAffichageGrille;

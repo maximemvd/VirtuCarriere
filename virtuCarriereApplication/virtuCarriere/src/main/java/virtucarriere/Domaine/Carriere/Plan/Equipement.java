@@ -7,14 +7,15 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Plan.Element;
+ import java.awt.Point;
 
 public abstract class Equipement extends Element{
     
     private double angle;
     
-    public Equipement(Coordonnees p_coordonnees, int p_width, int p_length,
+    public Equipement(Point point, Coordonnees p_coordonnees, int p_width, int p_length,
             boolean p_selectionStatus, double p_angle){
-        super(p_coordonnees, p_width, p_length, p_selectionStatus);
+        super(point, p_coordonnees, p_width, p_length, p_selectionStatus);
         
         this.angle = p_angle;
     }

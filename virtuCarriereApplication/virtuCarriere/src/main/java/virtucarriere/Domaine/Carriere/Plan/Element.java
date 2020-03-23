@@ -4,21 +4,38 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Carriere.Plan;
+ import java.awt.Color;
+ import java.awt.Point;
 
-public class Element {
+
+public  class Element {
+    
+    private Point point;
 
     private Coordonnees coordonnees;
     private int width;
     private int length;
     private boolean selectionStatus;
 
-    public Element(Coordonnees p_coordonnees, int p_width, int p_length, boolean p_selectionStatus) {
-
+    public Element(Point point, Coordonnees p_coordonnees, int p_width, int p_length, boolean p_selectionStatus) {
+        this.point  = point;
         this.coordonnees = p_coordonnees;
         this.width = p_width;
         this.length = p_length;
         this.selectionStatus = p_selectionStatus;
     }
+    
+     public Point getPoint() 
+     {
+         return point;
+     }
+     
+     public Color getColor()
+     {
+        return  Color.RED; // a changer 
+     }
+ 
+     
 
     public boolean contains(double p_x, double p_y) {
         return true;

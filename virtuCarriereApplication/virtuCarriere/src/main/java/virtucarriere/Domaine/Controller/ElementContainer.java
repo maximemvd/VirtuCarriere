@@ -13,18 +13,21 @@ import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
+import java.util.List;
+import java.util.LinkedList;
+ 
 
 import java.util.ArrayList;
 
 public class ElementContainer {
 
-    private ArrayList<Element> elementList;
+    private List<Element> elementList;
 
-    private ArrayList<Camion> vehiculeList;
+    private List<Camion> vehiculeList;
 
     public ElementContainer() {
-        this.elementList = new ArrayList<Element>();
-        this.vehiculeList = new ArrayList<Camion>();
+        elementList = new LinkedList<Element>();
+        vehiculeList = new LinkedList<Camion>();
     }
 
     public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -34,32 +37,32 @@ public class ElementContainer {
     }
 
     public boolean elementIsEmpty() {
-        return this.elementList.isEmpty();
+        return elementList.isEmpty();
     }
 
     public boolean VehiculeIsEmpty() {
-        return this.vehiculeList.isEmpty();
+        return vehiculeList.isEmpty();
     }
 
-    public ArrayList<Element> getElementList() {
-        return this.elementList;
+    public List<Element> getElementList() {
+        return elementList;
     }
 
-    public ArrayList<Camion> getVehiculeList() {
-        return this.vehiculeList;
+    public List<Camion> getVehiculeList() {
+        return vehiculeList;
     }
 
     public double getNumberOfElementsList() {
-        return this.elementList.size();
+        return elementList.size();
     }
 
     public double getNumberOfVehiculeList() {
-        return this.vehiculeList.size();
+        return vehiculeList.size();
     }
 
     public void addElement(Element p_element) {
         try {
-        this.elementList.add(p_element);
+        elementList.add(p_element);
         }
         catch (Exception error)
         {
@@ -69,20 +72,19 @@ public class ElementContainer {
 
     public void removeElement(Element p_element) {
         try {
-            this.elementList.remove(p_element);
+            elementList.remove(p_element);
         } catch (Exception error) {
             System.out.println("Element is not in the list");
         }
     }
 
-    public void addCamion(Jeton jeton, double start, Coordonnees coordonnees) {
-        Camion newCamion = new Camion(jeton, start, coordonnees);
-        this.vehiculeList.add(newCamion);
+    public void addCamion(Camion newCamion) {
+        vehiculeList.add(newCamion);
     }
 
     public void removeCamion(Camion p_camion) {
         try {
-            this.vehiculeList.remove(p_camion);
+            vehiculeList.remove(p_camion);
         } catch (Exception error) {
             System.out.println("Vehicule is not in the list");
         }

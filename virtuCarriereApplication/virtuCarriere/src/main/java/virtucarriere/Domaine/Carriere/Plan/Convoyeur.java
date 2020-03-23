@@ -4,17 +4,22 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Carriere.Plan;
+ import java.awt.Point;
+ import java.awt.Color;
 
 public class Convoyeur extends Equipement{
     
     private Noeud destination;
     
-    public Convoyeur(Coordonnees p_coordonnees, int p_width, int p_length,
+    private Color color;
+    
+    public Convoyeur(Point point, Coordonnees p_coordonnees, int p_width, int p_length,
             boolean p_selectionStatus, double p_angle, Noeud p_destination){
         
-        super(p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
+        super(point, p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
         
         this.destination = p_destination;
+        this.color = Color.ORANGE;
     }
     
     public void setDestination(Noeud p_destination){
@@ -23,6 +28,11 @@ public class Convoyeur extends Equipement{
     
     public Noeud getDestination(){
         return this.destination;
+    }
+    
+    public Color getColor()
+    {
+        return Color.PINK;
     }
     
 }
