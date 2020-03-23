@@ -9,7 +9,7 @@ public class Arc extends Element {
 
   private Noeud starting;
   private Noeud arrival;
-  private int cout;
+  private double cout;
 
   public Arc(Noeud starting, Noeud arrival) {
     //TODO Valider comment intégrer element
@@ -21,5 +21,9 @@ public class Arc extends Element {
 
   public Noeud getArrival(){
     return arrival;
+  }
+
+  public double getCost(){
+    return cout;
   }
 }
