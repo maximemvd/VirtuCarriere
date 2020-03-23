@@ -9,16 +9,16 @@ public class Convoyeur extends Equipement{
     
     private Noeud destination;
     
-    public Convoyeur(Coordonnees coordonnees, int width, int length,
-            boolean selectionStatus, double angle, Noeud destination){
+    public Convoyeur(Coordonnees p_coordonnees, int p_width, int p_length,
+            boolean p_selectionStatus, double p_angle, Noeud p_destination){
         
-        super(coordonnees, width, length, selectionStatus, angle);
+        super(p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
         
-        this.destination = destination;
+        this.destination = p_destination;
     }
     
-    public void setDestination(Noeud destination){
-        this.destination = destination;
+    public void setDestination(Noeud p_destination){
+        this.destination = p_destination;
     }
     
     public Noeud getDestination(){

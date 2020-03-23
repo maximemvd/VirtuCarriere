@@ -16,7 +16,6 @@ public class Tas extends Noeud {
         super(x, y);
         
         this.materialCode = materialCode;
-        
         this.dimension = dimension;
         
     }

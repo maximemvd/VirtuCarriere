@@ -12,24 +12,24 @@ public class Element {
     private int length;
     private boolean selectionStatus;
 
-    public Element(Coordonnees coordonnees, int width, int length, boolean selectionStatus) {
+    public Element(Coordonnees p_coordonnees, int p_width, int p_length, boolean p_selectionStatus) {
 
-        this.coordonnees = coordonnees;
-        this.width = width;
-        this.length = length;
-        this.selectionStatus = selectionStatus;
+        this.coordonnees = p_coordonnees;
+        this.width = p_width;
+        this.length = p_length;
+        this.selectionStatus = p_selectionStatus;
     }
 
-    public boolean contains(double x, double y) {
+    public boolean contains(double p_x, double p_y) {
         return true;
     }
 
-    public boolean xIsInsideElementWidth(double x) {
-        return (this.coordonnees.getX() <= x && x <= this.coordonnees.getX() + this.width);
+    public boolean xIsInsideElementWidth(double p_x) {
+        return (this.coordonnees.getX() <= p_x && p_x <= this.coordonnees.getX() + this.width);
     }
 
-    public boolean yIsInsideElementLength(double y) {
-        return (this.coordonnees.getY() <= y && y <= this.coordonnees.getY() + this.width);
+    public boolean yIsInsideElementLength(double p_y) {
+        return (this.coordonnees.getY() <= p_y && p_y <= this.coordonnees.getY() + this.width);
     }
 
     public void switchElementStatus() {

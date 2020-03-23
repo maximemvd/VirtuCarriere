@@ -12,11 +12,11 @@ public abstract class Equipement extends Element{
     
     private double angle;
     
-    public Equipement(Coordonnees coordonnees, int width, int length,
-            boolean selectionStatus, double angle){
-        super(coordonnees, width, length, selectionStatus);
+    public Equipement(Coordonnees p_coordonnees, int p_width, int p_length,
+            boolean p_selectionStatus, double p_angle){
+        super(p_coordonnees, p_width, p_length, p_selectionStatus);
         
-        this.angle = angle;
+        this.angle = p_angle;
     }
     
     public static String equipement() {
@@ -27,8 +27,8 @@ public abstract class Equipement extends Element{
         return this.angle;
     }
     
-    public void setAngle(double angle){
-        this.angle = angle;
+    public void setAngle(double p_angle){
+        this.angle = p_angle;
     }
     
 }

@@ -10,9 +10,9 @@ public class Coordonnees {
     private double x;
     private double y;
     
-    public Coordonnees(double abscisse, double ordonnee) {
-        this.x = abscisse;
-        this.y = ordonnee;
+    public Coordonnees(double p_abscisse, double p_ordonnee) {
+        this.x = p_abscisse;
+        this.y = p_ordonnee;
     }
     
     public double getX(){
