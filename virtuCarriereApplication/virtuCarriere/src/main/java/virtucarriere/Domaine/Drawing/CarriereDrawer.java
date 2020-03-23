@@ -5,14 +5,14 @@
  */
 package virtucarriere.Domaine.Drawing;
 
-import java.awt.*;
-import java.util.ArrayList;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.ElementModes;
 import virtucarriere.Domaine.Controller.ElementContainer;
 import virtucarriere.Domaine.Carriere.Plan.Element;
+import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.gui.MainWindow;
 import java.awt.Dimension;
 import java.util.List;
@@ -34,6 +34,7 @@ public class CarriereDrawer {
     public void draw(Graphics g) {
         drawCarriere(g);
         drawElement(g);
+        drawCamion(g);
     }
 
     public void drawCarriere(Graphics g) 
@@ -47,13 +48,24 @@ public class CarriereDrawer {
     public void drawElement(Graphics g)
     {
         List<Element> element = controller.getElementArrayList();
-       for (Element elements : element)
-    {
-      Point elementPoint = elements.getPoint();
-      Color color = elements.getColor();
-      g.setColor(color);
-      g.fillOval((int)elementPoint.getX()-radius,(int)elementPoint.getY()-radius, radius*2, radius*2);
+        element.forEach((elements) -> {
+            Point elementPoint = elements.getPoint();
+            Color color = elements.getColor();
+            g.setColor(color);
+            g.fillOval((int)elementPoint.getX()-radius,(int)elementPoint.getY()-radius, radius*2, radius*2);
+        });
     }
+    
+    public void drawCamion(Graphics g)
+    {
+        List<Camion> camions = controller.getCamionArrayList();
+            camions.forEach((camion) -> {
+           // Point elementPoint = camion.getRoute();
+            Color color = Color.YELLOW;
+            g.setColor(color);
+           // g.fillOval((int)elementPoint.getX()-radius,(int)elementPoint.getY()-radius, radius*2, radius*2);
+        });
+       
     }
 
     public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {

@@ -42,8 +42,8 @@ public class DrawingPanel extends JPanel implements Serializable{
     public DrawingPanel(MainWindow mainWindow){
         this.mainWindow = mainWindow;
          setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
-        int width = mainWindow.getMainScrollPaneDimension().width;
-        int height = mainWindow.getMainScrollPaneDimension().height;
+        int width = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
+        int height = (int)(width*0.5);
         
         setPreferredSize(new Dimension(width,1));
         setVisible(true);
