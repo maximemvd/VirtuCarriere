@@ -9,14 +9,14 @@ public class GraphePlan {
   private Vector<Noeud> noeuds;
   private Vector<List<Arc>> arcs;
 
-  void addNoeud(Noeud noeud){
+  public void addNoeud(Noeud noeud){
     if (noeudExiste(noeud)){
       throw new RuntimeException("Le noeud existe déja");
     }
     noeuds.add(noeud);
   }
 
-  void removeNoeud(Noeud noeud){
+  public void removeNoeud(Noeud noeud){
     if (noeudExiste(noeud)){
       noeuds.remove(noeud);
     }else {
@@ -24,17 +24,17 @@ public class GraphePlan {
     }
   }
 
-  boolean noeudExiste(Noeud noeud){
+  public boolean noeudExiste(Noeud noeud){
     return noeuds.contains(noeud);
   }
 
-  void addArc(Arc arc){
+  public void addArc(Arc arc){
     if(arcExiste(arc)){
       throw new RuntimeException("Cet arc existe déjà");
     }
   }
 
-  void removeArc(Arc arc){
+  public void removeArc(Arc arc){
     if (arcExiste(arc)){
       arcs.remove(arc);
     }else {
@@ -42,7 +42,7 @@ public class GraphePlan {
     }
   }
 
-  boolean arcExiste(Arc arc){
+  public boolean arcExiste(Arc arc){
     return arcs.contains(arc);
   }
 
