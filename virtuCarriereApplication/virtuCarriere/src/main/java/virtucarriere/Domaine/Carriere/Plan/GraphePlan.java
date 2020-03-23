@@ -57,7 +57,7 @@ public class GraphePlan {
         .collect(Collectors.toList());
     return adjacents;
   }
-
+/*
   double getCost(Noeud source, Noeud destination) {
     Arc arc = new Arc(source, destination);
     double cost = 0;
@@ -66,4 +66,6 @@ public class GraphePlan {
     }
     return cost;
   }
+
+ */
 }
