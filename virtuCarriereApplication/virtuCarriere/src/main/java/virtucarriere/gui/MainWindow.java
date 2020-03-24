@@ -332,7 +332,7 @@ public class MainWindow extends JFrame {
     }
 
     public void draw(Graphics2D g, DrawingPanel drawingPanel, double zoom) {
-        controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
+       // controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

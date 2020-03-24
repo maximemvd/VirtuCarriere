@@ -15,19 +15,20 @@ import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import java.util.List;
 import java.util.LinkedList;
- 
 
-import java.util.ArrayList;
 
 public class ElementContainer {
 
-    private List<Element> elementList;
+    private List<Equipement> equipementList;
+    
+    private List<Noeud> noeudList;
 
     private List<Camion> vehiculeList;
 
     public ElementContainer() {
-        elementList = new LinkedList<Element>();
+        equipementList = new LinkedList<Equipement>();
         vehiculeList = new LinkedList<Camion>();
+        noeudList = new LinkedList<Noeud>();
     }
 
     public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -36,33 +37,47 @@ public class ElementContainer {
         System.out.println(isShiftDown);
     }
 
-    public boolean elementIsEmpty() {
-        return elementList.isEmpty();
+    public boolean equipementIsEmpty() {
+        return equipementList.isEmpty();
     }
 
     public boolean VehiculeIsEmpty() {
         return vehiculeList.isEmpty();
     }
+    
+    public boolean noeudIsEmpty()
+    {
+        return noeudList.isEmpty();
+    }
 
-    public List<Element> getElementList() {
-        return elementList;
+    public List<Equipement> getEquipemenetList() {
+        return equipementList;
     }
 
     public List<Camion> getVehiculeList() {
         return vehiculeList;
     }
+    
+    public List<Noeud> getNoeudList()
+    {
+        return noeudList;
+    }
 
-    public double getNumberOfElementsList() {
-        return elementList.size();
+    public double getNumberOfEquipementList() {
+        return equipementList.size();
     }
 
     public double getNumberOfVehiculeList() {
         return vehiculeList.size();
     }
+    
+    public double getNumberOfNoeudList() {
+        return noeudList.size();
+    }
 
-    public void addElement(Element p_element) {
+    public void addEquipement(Equipement p_equipement) {
         try {
-        elementList.add(p_element);
+        equipementList.add(p_equipement);
         }
         catch (Exception error)
         {
@@ -70,11 +85,11 @@ public class ElementContainer {
         }
     }
 
-    public void removeElement(Element p_element) {
+    public void removeEquipement(Equipement p_equipement) {
         try {
-            elementList.remove(p_element);
+            equipementList.remove(p_equipement);
         } catch (Exception error) {
-            System.out.println("Element is not in the list");
+            System.out.println(error);
         }
     }
 
@@ -86,7 +101,24 @@ public class ElementContainer {
         try {
             vehiculeList.remove(p_camion);
         } catch (Exception error) {
-            System.out.println("Vehicule is not in the list");
+            System.out.println(error);
+        }
+    }
+    
+    public void addNoeud(Noeud p_noeud)
+    {
+        noeudList.add(p_noeud);
+    }
+    
+    public void removeNoeud(Noeud p_noeud)
+    {
+        try 
+        {
+            noeudList.remove(p_noeud);
+        }
+        catch (Exception error)
+        {
+            System.out.println(error);
         }
     }
 
