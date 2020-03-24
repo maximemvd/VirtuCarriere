@@ -7,16 +7,19 @@ package virtucarriere.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import virtucarriere.Domaine.Controller.Controller;
+import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 
 public class MainWindow extends JFrame {
     
     public Controller controller;
+    
+    public EquipementModes selectedEquipementMode;
 
     private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
     private ApplicationMode currentApplicationMode = ApplicationMode.SELECT;
@@ -28,8 +31,13 @@ public class MainWindow extends JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
+        controller = new Controller();
         initComponents();
-        setFocusable(true);
+       // setFocusable(true);
+    }
+    
+    public void setMode(EquipementModes newMode) {
+        this.selectedEquipementMode = newMode;
     }
 
     public enum MeasurementUnitMode {
@@ -115,6 +123,11 @@ public class MainWindow extends JFrame {
 
         mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
 
+        drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                drawingPanelMousePressed(evt);
+            }
+        });
         drawingPanel.setLayout(new java.awt.BorderLayout());
         mainScrollPane.setViewportView(drawingPanel);
 
@@ -123,12 +136,32 @@ public class MainWindow extends JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
 
         AddBroyeur.setText("Ajout Broyeur");
+        AddBroyeur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBroyeurActionPerformed(evt);
+            }
+        });
 
         addConcasseur.setText("Ajout Concasseur");
+        addConcasseur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addConcasseurActionPerformed(evt);
+            }
+        });
 
         addCrible.setText("Ajout Crible");
+        addCrible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCribleActionPerformed(evt);
+            }
+        });
 
         addConvoyeur.setText("Ajout Convoyeur");
+        addConvoyeur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addConvoyeurActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,6 +307,31 @@ public class MainWindow extends JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void AddBroyeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBroyeurActionPerformed
+        // TODO add your handling code here:
+        this.setMode(EquipementModes.BROYEUR);
+    }//GEN-LAST:event_AddBroyeurActionPerformed
+
+    private void addConcasseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConcasseurActionPerformed
+        this.setMode(EquipementModes.CONCASSEUR);
+    }//GEN-LAST:event_addConcasseurActionPerformed
+
+    private void addCribleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCribleActionPerformed
+       this.setMode(EquipementModes.CRIBLE);
+    }//GEN-LAST:event_addCribleActionPerformed
+
+    private void addConvoyeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConvoyeurActionPerformed
+        // TODO add your handling code here:
+        this.setMode(EquipementModes.CONVOYEUR);
+    }//GEN-LAST:event_addConvoyeurActionPerformed
+
+    private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drawingPanelMousePressed
+        Point mousePoint = evt.getPoint();
+        Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
+        this.controller.addEquipement(actualEquipement, mousePoint);
+        drawingPanel.repaint();
+    }//GEN-LAST:event_drawingPanelMousePressed
 
     private void menuNouveauProjetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuNouveauProjetActionPerformed
         // TODO add your handling code here:

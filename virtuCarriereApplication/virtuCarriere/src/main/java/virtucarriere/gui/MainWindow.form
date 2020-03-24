@@ -204,6 +204,9 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Container class="virtucarriere.gui.DrawingPanel" name="drawingPanel">
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="drawingPanelMousePressed"/>
+              </Events>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
             </Container>
@@ -272,21 +275,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajout Broyeur"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddBroyeurActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addConcasseur">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajout Concasseur"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addConcasseurActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addCrible">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajout Crible"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCribleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addConvoyeur">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajout Convoyeur"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addConvoyeurActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

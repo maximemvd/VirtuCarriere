@@ -82,7 +82,7 @@ public class Controller {
         elementContainer.addEquipement(newConvoyeur);
     }
     
-    public void addElements(EquipementModes mode, Point mousePoint)
+    public void addEquipement(EquipementModes mode, Point mousePoint)
     {
         if (mode == EquipementModes.CONCASSEUR)
         {
