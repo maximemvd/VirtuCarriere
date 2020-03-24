@@ -8,16 +8,20 @@ package virtucarriere.Domaine.Carriere.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Plan.Element;
  import java.awt.Point;
+ import java.awt.Color;
 
 public abstract class Equipement extends Element{
     
     private double angle;
+    
+    private Color color;
     
     public Equipement(Point point, Coordonnees p_coordonnees, int p_width, int p_length,
             boolean p_selectionStatus, double p_angle){
         super(point, p_coordonnees, p_width, p_length, p_selectionStatus);
         
         this.angle = p_angle;
+        this.color = Color.CYAN;
     }
     
     public static String equipement() {
@@ -25,7 +29,12 @@ public abstract class Equipement extends Element{
     }
     
     public double getAngle(){
-        return this.angle;
+        return angle;
+    }
+    
+    public Color getColor()
+    {
+        return color;
     }
     
     public void setAngle(double p_angle){

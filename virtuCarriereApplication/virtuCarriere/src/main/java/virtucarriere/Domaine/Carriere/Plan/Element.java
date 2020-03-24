@@ -30,12 +30,6 @@ public  class Element {
          return point;
      }
      
-     public Color getColor()
-     {
-        return  Color.RED; // a changer 
-     }
- 
-     
 
     public boolean contains(double p_x, double p_y) {
         return true;

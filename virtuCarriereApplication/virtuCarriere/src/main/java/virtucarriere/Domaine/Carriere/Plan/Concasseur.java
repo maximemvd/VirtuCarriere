@@ -15,12 +15,13 @@ public class Concasseur extends Equipement {
             boolean p_selectionStatus, double p_angle){
         
         super(point, p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
-        this.color = color;
+        this.color = Color.BLUE;
         
     }
     
         public Color getColor()
     {
-        return Color.BLUE;
+        System.out.print(color);
+        return color;
     }
 }

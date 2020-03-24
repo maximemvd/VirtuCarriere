@@ -32,7 +32,8 @@ public class Convoyeur extends Equipement{
     
     public Color getColor()
     {
-        return Color.PINK;
+        System.out.print(color);
+        return color;
     }
     
 }
