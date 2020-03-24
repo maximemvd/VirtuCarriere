@@ -15,7 +15,7 @@ public class Concasseur extends Equipement {
             boolean p_selectionStatus, double p_angle){
         
         super(point, p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
-        this.color = Color.BLUE;
+        this.color = Color.PINK;
         
     }
     

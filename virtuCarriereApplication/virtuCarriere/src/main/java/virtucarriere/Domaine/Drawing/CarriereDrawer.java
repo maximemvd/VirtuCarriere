@@ -23,7 +23,7 @@ public class CarriereDrawer {
     private Dimension initialDimension;
     private MainWindow.MeasurementUnitMode measurementMode;
     
-    private int radius = 50;
+    private int radius = 25;
 
     public CarriereDrawer(Controller controller, Dimension initialDimension) {
         this.controller = controller;
@@ -31,16 +31,16 @@ public class CarriereDrawer {
     }
 
     public void draw(Graphics g) {
-        drawCarriere(g);
         drawEquipement(g);
+        drawCarriere(g);
     }
-
-    public void drawCarriere(Graphics g) 
+ 
+     public void drawCarriere(Graphics g) 
     {
     int width = (int) initialDimension.getWidth();
     int height = (int) initialDimension.getHeight();
-    g.setColor(new Color(140,98,57));
-    g.fillRect(width/4, (int)(height/1.75), width/2, height/4);
+    g.setColor(Color.BLUE);
+    g.fillRect(0, 0, width/2, height/2);
     }
     
     public void drawEquipement(Graphics g)

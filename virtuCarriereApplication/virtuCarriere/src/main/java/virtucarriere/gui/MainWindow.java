@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
         buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
         jToggleButton1 = new javax.swing.JToggleButton();
         mainScrollPane = new javax.swing.JScrollPane();
-        drawingPanel = new virtucarriere.gui.DrawingPanel();
+        drawingPanel = new virtucarriere.gui.DrawingPanel(this);
         jPanel1 = new javax.swing.JPanel();
         AddBroyeur = new javax.swing.JButton();
         addConcasseur = new javax.swing.JButton();
@@ -123,6 +123,7 @@ public class MainWindow extends JFrame {
 
         mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
 
+        drawingPanel.setOpaque(false);
         drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 drawingPanelMousePressed(evt);

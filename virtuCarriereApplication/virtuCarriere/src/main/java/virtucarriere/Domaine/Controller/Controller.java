@@ -70,7 +70,7 @@ public class Controller {
          public void addBroyeur(Point mousePoint)
     {
         Coordonnees p = new Coordonnees(0, 0);
-        Concasseur newBroyeur = new Concasseur(mousePoint, p, 2, 2, true, 2);
+        Broyeur newBroyeur = new Broyeur(mousePoint, p, 2, 2, true, 2);
         elementContainer.addEquipement(newBroyeur);
     }
          

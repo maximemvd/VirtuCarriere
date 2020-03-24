@@ -26,7 +26,6 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public Dimension initialDimension;
     private MainWindow mainWindow;
-    private CarriereDrawer carriereDrawer;
 
     private boolean grilleActivee = false;
     private double zoom = 1d;
@@ -41,23 +40,23 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public DrawingPanel(MainWindow mainWindow){
         this.mainWindow = mainWindow;
-        //setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
+        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
         int width = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
-        int height = (int)(width*0.5);
-        
-        setPreferredSize(new Dimension(width,height));
+        setPreferredSize(new Dimension(width,1));
         setVisible(true);
+        int height = (int)(width*0.5);
         this.initialDimension = new Dimension(width,height);
-        setBackground(Color.WHITE);
-    
     }
     
-    @Override
+     @Override
     protected void paintComponent(Graphics g){
         
         if (mainWindow != null) {
             
             super.paintComponent(g);
+            CarriereDrawer carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
+            carriereDrawer.draw(g);
+            
             Graphics2D g2d = (Graphics2D) g;
             
             
@@ -87,7 +86,6 @@ public class DrawingPanel extends JPanel implements Serializable{
                 }
                 g2d.scale(1/zoom, 1/zoom);
             }
-            mainWindow.draw(g2d, this, zoom);
         }
                 
      }
