@@ -24,8 +24,8 @@ import virtucarriere.Domaine.Drawing.CarriereDrawer;
  */
 public class DrawingPanel extends JPanel implements Serializable{
     
-    public Dimension initialDimension; // ok
-    private MainWindow mainWindow; // ok
+    public Dimension initialDimension;
+    private MainWindow mainWindow;
     private CarriereDrawer carriereDrawer;
 
     private boolean grilleActivee = false;
@@ -41,13 +41,13 @@ public class DrawingPanel extends JPanel implements Serializable{
     
     public DrawingPanel(MainWindow mainWindow){
         this.mainWindow = mainWindow;
-         setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
+        //setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
         int width = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
         int height = (int)(width*0.5);
         
-        setPreferredSize(new Dimension(width,1));
+        setPreferredSize(new Dimension(width,height));
         setVisible(true);
-        initialDimension = new Dimension(width,height);
+        this.initialDimension = new Dimension(width,height);
         setBackground(Color.WHITE);
     
     }
@@ -58,9 +58,36 @@ public class DrawingPanel extends JPanel implements Serializable{
         if (mainWindow != null) {
             
             super.paintComponent(g);
-            //Graphics2D g2d = (Graphics2D) g;
-            CarriereDrawer newCarriere = new CarriereDrawer(mainWindow.controller, initialDimension);
-            newCarriere.draw(g);
+            Graphics2D g2d = (Graphics2D) g;
+            
+            
+            if (grilleActivee){
+                
+                g2d.scale(zoom, zoom);
+                g2d.setPaint(Color.LIGHT_GRAY);
+                g2d.setStroke(new BasicStroke(0.25f / (float)getZoom()));
+                Dimension ajustingDimension = new Dimension(this.getWidth(), this.getHeight());
+                if (zoom >= 1) {
+                    for (int row = 1; row <= ajustingDimension.getHeight() / this.gapGrille; row++) {
+                        g2d.drawLine(0, (int) (row * this.gapGrille), (int)ajustingDimension.getWidth(), (int) (row * this.gapGrille));
+                    }
+                    
+                    for (int col = 1; col <= (int)ajustingDimension.getWidth() / this.gapGrille; col++) {
+                        g2d.drawLine((int) (col * this.gapGrille), 0, (int) (col * this.gapGrille), (int)ajustingDimension.getHeight());
+                    }
+                }
+                else if (zoom < 1) {
+                    for (int row = 1; row <= (int)ajustingDimension.getHeight()/ this.gapGrille / (zoom) ; row++) {
+                        g2d.drawLine(0, (int) (row * this.gapGrille), (int)(ajustingDimension.getWidth() / zoom), (int) (row * this.gapGrille));
+                    }
+                    
+                    for (int col = 1; col <= ((int)ajustingDimension.getWidth() / this.gapGrille) / (zoom); col++) {
+                        g2d.drawLine((int) ((col) * this.gapGrille), 0, (int) ((col) * this.gapGrille), (int)(ajustingDimension.getHeight() / zoom));
+                    }
+                }
+                g2d.scale(1/zoom, 1/zoom);
+            }
+            mainWindow.draw(g2d, this, zoom);
         }
                 
      }
@@ -75,7 +102,7 @@ public class DrawingPanel extends JPanel implements Serializable{
     }
 
     public MainWindow getMainWindow() {
-        return mainWindow;
+        return this.mainWindow;
     }
 
     public void setMainWindow(MainWindow mainWindow) {
