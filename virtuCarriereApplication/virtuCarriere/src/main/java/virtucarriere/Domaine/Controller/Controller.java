@@ -10,6 +10,7 @@ import virtucarriere.Domaine.Drawing.CarriereDrawer;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Convoyeur;
@@ -100,7 +101,28 @@ public class Controller {
             addBroyeur(mousePoint);
         }
     }
-
+    
+    public void addNoeud(NoeudModes mode, Point mousePoint)
+    {
+        if (mode == NoeudModes.TAS)
+        {
+            addTas(mousePoint);
+        }
+        if (mode == NoeudModes.NOEUD)
+        {
+            ajoutNoeud(mousePoint);
+        }
+    }
+    
+    public void addTas(Point mousePoint)
+    {
+        System.out.print("hey");
+    }
+    
+    public void ajoutNoeud(Point mousePoint)
+    {
+        System.out.print("hey");
+    }
     public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
         this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
     }
