@@ -72,6 +72,10 @@ public class MainWindow extends JFrame {
         mainScrollPane = new javax.swing.JScrollPane();
         drawingPanel = new virtucarriere.gui.DrawingPanel();
         jPanel1 = new javax.swing.JPanel();
+        AddBroyeur = new javax.swing.JButton();
+        addConcasseur = new javax.swing.JButton();
+        addCrible = new javax.swing.JButton();
+        addConvoyeur = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         menuNouveauProjet = new javax.swing.JMenuItem();
@@ -118,15 +122,49 @@ public class MainWindow extends JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
 
+        AddBroyeur.setText("Ajout Broyeur");
+
+        addConcasseur.setText("Ajout Concasseur");
+
+        addCrible.setText("Ajout Crible");
+
+        addConvoyeur.setText("Ajout Convoyeur");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(addCrible)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 75, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddBroyeur)
+                    .addComponent(addConcasseur))
+                .addGap(70, 70, 70))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(addConvoyeur)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 765, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(AddBroyeur)
+                .addGap(49, 49, 49)
+                .addComponent(addConcasseur)
+                .addGap(64, 64, 64)
+                .addComponent(addCrible)
+                .addContainerGap(497, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(addConvoyeur)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
@@ -336,6 +374,10 @@ public class MainWindow extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddBroyeur;
+    private javax.swing.JButton addConcasseur;
+    private javax.swing.JButton addConvoyeur;
+    private javax.swing.JButton addCrible;
     private javax.swing.JMenu affichageMenu;
     private javax.swing.JPanel buttonTopPanel;
     private virtucarriere.gui.DrawingPanel drawingPanel;
