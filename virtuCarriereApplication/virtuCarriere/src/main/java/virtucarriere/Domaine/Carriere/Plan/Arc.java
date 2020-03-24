@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Carriere.Plan;
- import java.awt.Point;
+
+import java.awt.Point;
 
 public class Arc extends Element {
 
@@ -13,18 +14,18 @@ public class Arc extends Element {
   private double cout;
 
   public Arc(Point point, Noeud starting, Noeud arrival) {
-    //TODO Valider comment intégrer element
+    // TODO Valider comment intégrer element
     super(point, starting.getCoordonnees(), 1, 1, false);
 
     this.starting = starting;
     this.arrival = arrival;
   }
 
-  public Noeud getArrival(){
+  public Noeud getArrival() {
     return arrival;
   }
 
-  public double getCost(){
+  public double getCost() {
     return cout;
   }
 }

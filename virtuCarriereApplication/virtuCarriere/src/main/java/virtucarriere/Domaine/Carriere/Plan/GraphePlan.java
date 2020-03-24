@@ -2,7 +2,6 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.util.List;
 import java.util.Vector;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class GraphePlan {
@@ -16,7 +15,6 @@ public class GraphePlan {
     }
     noeuds.add(noeud);
   }
-
 
   public void removeNoeud(Noeud noeud) {
     if (noeudExiste(noeud)) {
@@ -44,7 +42,6 @@ public class GraphePlan {
     }
   }
 
-
   public boolean arcExiste(Arc arc) {
     return arcs.contains(arc);
   }
@@ -52,20 +49,18 @@ public class GraphePlan {
   List<Noeud> getAdjacents(Noeud noeud) {
     List<Noeud> adjacents;
     int index = noeuds.indexOf(noeud);
-    adjacents = arcs.elementAt(index).stream()
-        .map(Arc::getArrival)
-        .collect(Collectors.toList());
+    adjacents = arcs.elementAt(index).stream().map(Arc::getArrival).collect(Collectors.toList());
     return adjacents;
   }
-/*
-  double getCost(Noeud source, Noeud destination) {
-    Arc arc = new Arc(source, destination);
-    double cost = 0;
-    if (arcExiste(arc)) {
-      cost = arc.getCost();
-    }
-    return cost;
-  }
+  /*
+   double getCost(Noeud source, Noeud destination) {
+     Arc arc = new Arc(source, destination);
+     double cost = 0;
+     if (arcExiste(arc)) {
+       cost = arc.getCost();
+     }
+     return cost;
+   }
 
- */
+  */
 }

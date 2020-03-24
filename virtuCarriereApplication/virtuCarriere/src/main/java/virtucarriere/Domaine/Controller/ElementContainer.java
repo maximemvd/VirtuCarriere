@@ -5,154 +5,137 @@
  */
 package virtucarriere.Domaine.Controller;
 
-import virtucarriere.Domaine.Controller.Controller;
-import virtucarriere.Domaine.Carriere.Plan.Element;
-import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
-import virtucarriere.Domaine.Carriere.Simulation.Camion;
-import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import java.util.List;
 import java.util.LinkedList;
-
+import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+import virtucarriere.Domaine.Carriere.Plan.Equipement;
+import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
 public class ElementContainer {
 
-    private List<Equipement> equipementList;
-    
-    private List<Noeud> noeudList;
+  private List<Equipement> equipementList;
 
-    private List<Camion> vehiculeList;
+  private List<Noeud> noeudList;
 
-    public ElementContainer() {
-        equipementList = new LinkedList<Equipement>();
-        vehiculeList = new LinkedList<Camion>();
-        noeudList = new LinkedList<Noeud>();
-    }
+  private List<Camion> vehiculeList;
 
-    public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(isShiftDown);
-    }
+  public ElementContainer() {
+    equipementList = new LinkedList<Equipement>();
+    vehiculeList = new LinkedList<Camion>();
+    noeudList = new LinkedList<Noeud>();
+  }
 
-    public boolean equipementIsEmpty() {
-        return equipementList.isEmpty();
-    }
+  public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
+    System.out.println(x);
+    System.out.println(y);
+    System.out.println(isShiftDown);
+  }
 
-    public boolean VehiculeIsEmpty() {
-        return vehiculeList.isEmpty();
-    }
-    
-    public boolean noeudIsEmpty()
-    {
-        return noeudList.isEmpty();
-    }
+  public boolean equipementIsEmpty() {
+    return equipementList.isEmpty();
+  }
 
-    public List<Equipement> getEquipemenetList() {
-        return equipementList;
-    }
+  public boolean VehiculeIsEmpty() {
+    return vehiculeList.isEmpty();
+  }
 
-    public List<Camion> getVehiculeList() {
-        return vehiculeList;
-    }
-    
-    public List<Noeud> getNoeudList()
-    {
-        return noeudList;
-    }
+  public boolean noeudIsEmpty() {
+    return noeudList.isEmpty();
+  }
 
-    public double getNumberOfEquipementList() {
-        return equipementList.size();
-    }
+  public List<Equipement> getEquipemenetList() {
+    return equipementList;
+  }
 
-    public double getNumberOfVehiculeList() {
-        return vehiculeList.size();
-    }
-    
-    public double getNumberOfNoeudList() {
-        return noeudList.size();
-    }
+  public List<Camion> getVehiculeList() {
+    return vehiculeList;
+  }
 
-    public void addEquipement(Equipement p_equipement) {
-        try {
-        equipementList.add(p_equipement);
-        }
-        catch (Exception error)
-        {
-            System.out.println(error);
-        }
-    }
+  public List<Noeud> getNoeudList() {
+    return noeudList;
+  }
 
-    public void removeEquipement(Equipement p_equipement) {
-        try {
-            equipementList.remove(p_equipement);
-        } catch (Exception error) {
-            System.out.println(error);
-        }
-    }
+  public double getNumberOfEquipementList() {
+    return equipementList.size();
+  }
 
-    public void addCamion(Camion newCamion) {
-        vehiculeList.add(newCamion);
-    }
+  public double getNumberOfVehiculeList() {
+    return vehiculeList.size();
+  }
 
-    public void removeCamion(Camion p_camion) {
-        try {
-            vehiculeList.remove(p_camion);
-        } catch (Exception error) {
-            System.out.println(error);
-        }
-    }
-    
-    public void addNoeud(Noeud p_noeud)
-    {
-        noeudList.add(p_noeud);
-    }
-    
-    public void removeNoeud(Noeud p_noeud)
-    {
-        try 
-        {
-            noeudList.remove(p_noeud);
-        }
-        catch (Exception error)
-        {
-            System.out.println(error);
-        }
-    }
+  public double getNumberOfNoeudList() {
+    return noeudList.size();
+  }
 
-    // public void generateCamionSimulation(Jeton jeton, double depart) {
-    //     Camion vehiculePretPourSimulation = vehiculeList.get(0);
-    //     System.out.println(vehiculePretPourSimulation);
-    //     // appeler fonction pour simulation
-    //     this.vehiculeList.remove(vehiculePretPourSimulation);
-    // }
-
-    public String askReason() {
-        return "La raison";
+  public void addEquipement(Equipement p_equipement) {
+    try {
+      equipementList.add(p_equipement);
+    } catch (Exception error) {
+      System.out.println(error);
     }
+  }
 
-    // public double getNextPosition() {
-    //     double nextPosition = 10;
-    //     return nextPosition;
-    // }
-
-    public boolean askValidPlace(Coordonnees coordonnee) {
-        double x = coordonnee.getX();
-        double y = coordonnee.getY();
-
-        if (x < 0 && y < 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+  public void removeEquipement(Equipement p_equipement) {
+    try {
+      equipementList.remove(p_equipement);
+    } catch (Exception error) {
+      System.out.println(error);
     }
+  }
 
-    public boolean validanceDependance(String type, Coordonnees coordonnee) {
-        return true;
+  public void addCamion(Camion newCamion) {
+    vehiculeList.add(newCamion);
+  }
+
+  public void removeCamion(Camion p_camion) {
+    try {
+      vehiculeList.remove(p_camion);
+    } catch (Exception error) {
+      System.out.println(error);
     }
+  }
+
+  public void addNoeud(Noeud p_noeud) {
+    noeudList.add(p_noeud);
+  }
+
+  public void removeNoeud(Noeud p_noeud) {
+    try {
+      noeudList.remove(p_noeud);
+    } catch (Exception error) {
+      System.out.println(error);
+    }
+  }
+
+  // public void generateCamionSimulation(Jeton jeton, double depart) {
+  //     Camion vehiculePretPourSimulation = vehiculeList.get(0);
+  //     System.out.println(vehiculePretPourSimulation);
+  //     // appeler fonction pour simulation
+  //     this.vehiculeList.remove(vehiculePretPourSimulation);
+  // }
+
+  public String askReason() {
+    return "La raison";
+  }
+
+  // public double getNextPosition() {
+  //     double nextPosition = 10;
+  //     return nextPosition;
+  // }
+
+  public boolean askValidPlace(Coordonnees coordonnee) {
+    double x = coordonnee.getX();
+    double y = coordonnee.getY();
+
+    if (x < 0 && y < 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public boolean validanceDependance(String type, Coordonnees coordonnee) {
+    return true;
+  }
 }

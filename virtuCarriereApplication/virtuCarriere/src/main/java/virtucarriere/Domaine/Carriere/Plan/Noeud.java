@@ -6,13 +6,13 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 public class Noeud {
-    private Coordonnees coordonnees;
+  private Coordonnees coordonnees;
 
-    public Noeud(double x, double y) {
-        coordonnees = new Coordonnees(x, y);
-    }
+  public Noeud(double x, double y) {
+    coordonnees = new Coordonnees(x, y);
+  }
 
-    public Coordonnees getCoordonnees() {
-        return coordonnees;
-    }
+  public Coordonnees getCoordonnees() {
+    return coordonnees;
+  }
 }

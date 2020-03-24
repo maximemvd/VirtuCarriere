@@ -7,20 +7,14 @@ package virtucarriere;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author maximemivilledeschenes
- */
+/** @author maximemivilledeschenes */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        virtucarriere.gui.MainWindow mainWindow = new virtucarriere.gui.MainWindow();
-        mainWindow.setExtendedState(mainWindow.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        mainWindow.setTitle("VirtuCarrière");
-        mainWindow.setVisible(true);
-    }
-    
+  /** @param args the command line arguments */
+  public static void main(String[] args) {
+    virtucarriere.gui.MainWindow mainWindow = new virtucarriere.gui.MainWindow();
+    mainWindow.setExtendedState(mainWindow.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+    mainWindow.setTitle("VirtuCarrière");
+    mainWindow.setVisible(true);
+  }
 }

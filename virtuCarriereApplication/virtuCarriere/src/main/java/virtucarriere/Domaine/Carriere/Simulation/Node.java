@@ -28,5 +28,4 @@ public class Node {
       return 0;
     }
   }
-
 }

@@ -4,87 +4,88 @@
  * and open the template in the editor.
  */
 package virtucarriere.Domaine.Carriere.Plan;
- import java.awt.Color;
- import java.awt.Point;
 
+import java.awt.Point;
 
-public  class Element {
-    
-    private Point point;
+public class Element {
 
-    private Coordonnees coordonnees;
-    private int width;
-    private int length;
-    private boolean selectionStatus;
+  private Point point;
 
-    public Element(Point point, Coordonnees p_coordonnees, int p_width, int p_length, boolean p_selectionStatus) {
-        this.point  = point;
-        this.coordonnees = p_coordonnees;
-        this.width = p_width;
-        this.length = p_length;
-        this.selectionStatus = p_selectionStatus;
-    }
-    
-     public Point getPoint() 
-     {
-         return point;
-     }
-     
+  private Coordonnees coordonnees;
+  private int width;
+  private int length;
+  private boolean selectionStatus;
 
-    public boolean contains(double p_x, double p_y) {
-        return true;
-    }
+  public Element(
+      Point point,
+      Coordonnees p_coordonnees,
+      int p_width,
+      int p_length,
+      boolean p_selectionStatus) {
+    this.point = point;
+    this.coordonnees = p_coordonnees;
+    this.width = p_width;
+    this.length = p_length;
+    this.selectionStatus = p_selectionStatus;
+  }
 
-    public boolean xIsInsideElementWidth(double p_x) {
-        return (this.coordonnees.getX() <= p_x && p_x <= this.coordonnees.getX() + this.width);
-    }
+  public Point getPoint() {
+    return point;
+  }
 
-    public boolean yIsInsideElementLength(double p_y) {
-        return (this.coordonnees.getY() <= p_y && p_y <= this.coordonnees.getY() + this.width);
-    }
+  public boolean contains(double p_x, double p_y) {
+    return true;
+  }
 
-    public void switchElementStatus() {
-        this.selectionStatus = !this.selectionStatus;
-    }
+  public boolean xIsInsideElementWidth(double p_x) {
+    return (this.coordonnees.getX() <= p_x && p_x <= this.coordonnees.getX() + this.width);
+  }
 
-    public void unselect() {
-        this.selectionStatus = false;
-    }
+  public boolean yIsInsideElementLength(double p_y) {
+    return (this.coordonnees.getY() <= p_y && p_y <= this.coordonnees.getY() + this.width);
+  }
 
-    public boolean isSelected() {
-        return this.selectionStatus;
-    }
+  public void switchElementStatus() {
+    this.selectionStatus = !this.selectionStatus;
+  }
 
-    public String getCoordonnees() {
-        return this.coordonnees.toString();
-    }
+  public void unselect() {
+    this.selectionStatus = false;
+  }
 
-    public void setCoordonnees(Coordonnees coordonnees) {
-        this.coordonnees = coordonnees;
-    }
+  public boolean isSelected() {
+    return this.selectionStatus;
+  }
 
-    public int getWidth() {
-        return this.width;
-    }
+  public String getCoordonnees() {
+    return this.coordonnees.toString();
+  }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
+  public void setCoordonnees(Coordonnees coordonnees) {
+    this.coordonnees = coordonnees;
+  }
 
-    public int getLength() {
-        return this.length;
-    }
+  public int getWidth() {
+    return this.width;
+  }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
+  public void setWidth(int width) {
+    this.width = width;
+  }
 
-    public boolean getSelectionStatus() {
-        return this.selectionStatus;
-    }
+  public int getLength() {
+    return this.length;
+  }
 
-    public void setSelectionStatus(boolean selectionStatus) {
-        this.selectionStatus = selectionStatus;
-    }
+  public void setLength(int length) {
+    this.length = length;
+  }
 
+  public boolean getSelectionStatus() {
+    return this.selectionStatus;
+  }
+
+  public void setSelectionStatus(boolean selectionStatus) {
+    this.selectionStatus = selectionStatus;
+  }
 }

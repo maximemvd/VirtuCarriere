@@ -8,13 +8,13 @@ package virtucarriere.Domaine.Carriere.Plan;
 public class Angle {
   private Double degree;
 
-  Angle(double degree){
-    if (degree > 360 || degree < 0){
+  Angle(double degree) {
+    if (degree > 360 || degree < 0) {
       throw new RuntimeException("L'angle en argument est invalide");
     }
   }
 
-  double get(){
+  double get() {
     return this.degree;
   }
 }

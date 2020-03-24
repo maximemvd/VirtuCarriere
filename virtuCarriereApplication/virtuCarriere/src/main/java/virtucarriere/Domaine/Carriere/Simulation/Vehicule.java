@@ -20,5 +20,4 @@ public class Vehicule {
   public Itineraire getRoute() {
     return route;
   }
-
 }

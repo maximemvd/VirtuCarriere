@@ -9,9 +9,9 @@ import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
 public class Itineraire {
-    private List<Noeud> stops;
+  private List<Noeud> stops;
 
-    Itineraire(List<Noeud> stops){
-      this.stops = stops;
-    }
+  Itineraire(List<Noeud> stops) {
+    this.stops = stops;
+  }
 }
