@@ -107,6 +107,11 @@ public class MainWindow extends JFrame {
         fenetreMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
+            }
+        });
 
         mainPanel.setLayout(new java.awt.BorderLayout());
 
@@ -122,6 +127,12 @@ public class MainWindow extends JFrame {
         buttonTopPanel.add(jToggleButton1);
 
         mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
+
+        mainScrollPane.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                mainScrollPaneMouseWheelMoved(evt);
+            }
+        });
 
         drawingPanel.setOpaque(false);
         drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -333,6 +344,28 @@ public class MainWindow extends JFrame {
         this.controller.addEquipement(actualEquipement, mousePoint);
         drawingPanel.repaint();
     }//GEN-LAST:event_drawingPanelMousePressed
+
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+        Point point = evt.getPoint();
+        this.currentMousePoint = evt.getPoint();
+        if(evt.getPreciseWheelRotation() > 0){
+            drawingPanel.zoomIn(point);
+        }
+        else{
+            drawingPanel.zoomOut(point);
+        }
+    }//GEN-LAST:event_formMouseWheelMoved
+
+    private void mainScrollPaneMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_mainScrollPaneMouseWheelMoved
+        Point point = evt.getPoint();
+        this.currentMousePoint = evt.getPoint();
+        if(evt.getPreciseWheelRotation() > 0){
+            drawingPanel.zoomIn(point);
+        }
+        else{
+            drawingPanel.zoomOut(point);
+        }
+    }//GEN-LAST:event_mainScrollPaneMouseWheelMoved
 
     private void menuNouveauProjetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuNouveauProjetActionPerformed
         // TODO add your handling code here:
