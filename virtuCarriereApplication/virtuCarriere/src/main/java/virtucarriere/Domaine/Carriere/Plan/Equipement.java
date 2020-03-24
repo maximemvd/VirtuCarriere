@@ -14,14 +14,12 @@ public abstract class Equipement extends Element{
     
     private double angle;
     
-    private Color color;
     
     public Equipement(Point point, Coordonnees p_coordonnees, int p_width, int p_length,
             boolean p_selectionStatus, double p_angle){
         super(point, p_coordonnees, p_width, p_length, p_selectionStatus);
         
         this.angle = p_angle;
-        this.color = Color.CYAN;
     }
     
     public static String equipement() {
@@ -32,10 +30,7 @@ public abstract class Equipement extends Element{
         return angle;
     }
     
-    public Color getColor()
-    {
-        return color;
-    }
+    public abstract Color getColor();
     
     public void setAngle(double p_angle){
         this.angle = p_angle;
