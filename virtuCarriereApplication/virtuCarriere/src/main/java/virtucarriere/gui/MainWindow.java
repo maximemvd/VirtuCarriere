@@ -80,10 +80,10 @@ public class MainWindow extends JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         mainScrollPane = new javax.swing.JScrollPane(this);
         jPanel1 = new javax.swing.JPanel();
-        AddBroyeur = new javax.swing.JButton();
-        AddConcasseur = new javax.swing.JButton();
-        AddConvoyeur = new javax.swing.JButton();
-        AddCrible = new javax.swing.JButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fichierMenu = new javax.swing.JMenu();
         menuNouveauProjet = new javax.swing.JMenuItem();
@@ -130,31 +130,31 @@ public class MainWindow extends JFrame {
         });
         mainPanel.add(mainScrollPane, java.awt.BorderLayout.CENTER);
 
-        AddBroyeur.setText("Ajout Broyeur");
-        AddBroyeur.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButton2.setText("Ajouter Broyeur");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddBroyeurActionPerformed(evt);
+                jToggleButton2ActionPerformed(evt);
             }
         });
 
-        AddConcasseur.setText("Ajout Concasseur");
-        AddConcasseur.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButton3.setText("Ajout Crible");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddConcasseurActionPerformed(evt);
+                jToggleButton3ActionPerformed(evt);
             }
         });
 
-        AddConvoyeur.setText("Ajout Convoyeur");
-        AddConvoyeur.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButton4.setText("Ajout Concasseur");
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddConvoyeurActionPerformed(evt);
+                jToggleButton4ActionPerformed(evt);
             }
         });
 
-        AddCrible.setText("Add Crible");
-        AddCrible.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButton5.setText("Ajout Convoyeur");
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCribleActionPerformed(evt);
+                jToggleButton5ActionPerformed(evt);
             }
         });
 
@@ -163,32 +163,26 @@ public class MainWindow extends JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(AddConvoyeur)
-                            .addComponent(AddConcasseur)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(AddBroyeur)
-                                .addGap(20, 20, 20)))
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(AddCrible)
-                        .addGap(95, 95, 95))))
+                    .addComponent(jToggleButton5)
+                    .addComponent(jToggleButton4)
+                    .addComponent(jToggleButton3)
+                    .addComponent(jToggleButton2))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(AddBroyeur)
-                .addGap(74, 74, 74)
-                .addComponent(AddConcasseur)
                 .addGap(68, 68, 68)
-                .addComponent(AddConvoyeur)
-                .addGap(72, 72, 72)
-                .addComponent(AddCrible)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addComponent(jToggleButton2)
+                .addGap(76, 76, 76)
+                .addComponent(jToggleButton3)
+                .addGap(81, 81, 81)
+                .addComponent(jToggleButton4)
+                .addGap(60, 60, 60)
+                .addComponent(jToggleButton5)
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
@@ -306,21 +300,25 @@ public class MainWindow extends JFrame {
         drawingPanel.repaint();
     }//GEN-LAST:event_mainScrollPaneMousePressed
 
-    private void AddConcasseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddConcasseurActionPerformed
-        this.setMode(ElementModes.CONCASSEUR);
-    }//GEN-LAST:event_AddConcasseurActionPerformed
-
-    private void AddBroyeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBroyeurActionPerformed
-        this.setMode(ElementModes.BROYEUR);
-    }//GEN-LAST:event_AddBroyeurActionPerformed
-
-    private void AddConvoyeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddConvoyeurActionPerformed
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+        // TODO add your handling code here:
         this.setMode(ElementModes.CONVOYEUR);
-    }//GEN-LAST:event_AddConvoyeurActionPerformed
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
 
-    private void AddCribleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCribleActionPerformed
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setMode(ElementModes.BROYEUR);
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+        this.setMode(ElementModes.CONCASSEUR);
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        // TODO add your handling code here:
         this.setMode(ElementModes.CRIBLE);
-    }//GEN-LAST:event_AddCribleActionPerformed
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void menuNouveauProjetActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_menuNouveauProjetActionPerformed
         // TODO add your handling code here:
@@ -415,10 +413,6 @@ public class MainWindow extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddBroyeur;
-    private javax.swing.JButton AddConcasseur;
-    private javax.swing.JButton AddConvoyeur;
-    private javax.swing.JButton AddCrible;
     private javax.swing.JMenu affichageMenu;
     private javax.swing.JPanel buttonTopPanel;
     private javax.swing.JMenu editionMenu;
@@ -431,6 +425,10 @@ public class MainWindow extends JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane mainScrollPane;
     private javax.swing.JMenuItem menuAffichageGrille;
