@@ -10,8 +10,6 @@ import java.awt.Point;
 
 public abstract class Element extends Point {
 
-  private Point point;
-
   private int width;
   private int length;
   private boolean selectionStatus;
@@ -24,7 +22,7 @@ public abstract class Element extends Point {
   }
 
   public Point getPoint() {
-    return point;
+    return super.getLocation();
   }
 
   public boolean contains(double p_x, double p_y) {
