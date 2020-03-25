@@ -5,15 +5,15 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+import virtucarriere.Domaine.Carriere.Plan.OutdatedCoordonnees;
 
 public class Jeton {
   private String code;
   private Boolean etat;
-  private Coordonnees destination;
+  private OutdatedCoordonnees destination;
   private int quantite;
 
-  public Jeton(String code, Boolean etat, Coordonnees destination, int quantite) {
+  public Jeton(String code, Boolean etat, OutdatedCoordonnees destination, int quantite) {
     this.code = code;
     this.etat = etat;
     this.destination = destination;
@@ -32,11 +32,11 @@ public class Jeton {
     this.etat = etat;
   }
 
-  public Coordonnees getDestination() {
+  public OutdatedCoordonnees getDestination() {
     return destination;
   }
 
-  public void setDestination(Coordonnees destination) {
+  public void setDestination(OutdatedCoordonnees destination) {
     this.destination = destination;
   }
 

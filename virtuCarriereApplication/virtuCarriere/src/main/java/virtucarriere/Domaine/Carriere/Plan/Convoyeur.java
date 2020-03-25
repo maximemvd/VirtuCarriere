@@ -16,14 +16,14 @@ public class Convoyeur extends Equipement {
 
   public Convoyeur(
       Point point,
-      Coordonnees p_coordonnees,
+      OutdatedCoordonnees p_Outdated_coordonnees,
       int p_width,
       int p_length,
       boolean p_selectionStatus,
       double p_angle,
       Noeud p_destination) {
 
-    super(point, p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
+    super(point, p_Outdated_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
 
     this.destination = p_destination;
     this.color = Color.magenta;

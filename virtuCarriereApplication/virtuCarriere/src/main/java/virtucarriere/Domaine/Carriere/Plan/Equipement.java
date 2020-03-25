@@ -14,7 +14,7 @@ public abstract class Equipement extends Element {
 
   public Equipement(
       Point point,
-      Coordonnees p_coordonnees,
+      OutdatedCoordonnees p_Outdated_coordonnees,
       int p_width,
       int p_length,
       boolean p_selectionStatus,

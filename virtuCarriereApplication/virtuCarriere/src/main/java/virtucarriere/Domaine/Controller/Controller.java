@@ -10,10 +10,10 @@ import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Convoyeur;
-import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.OutdatedCoordonnees;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
 public class Controller {
@@ -46,25 +46,25 @@ public class Controller {
   }
 
   public void addCrible(Point mousePoint) {
-    Coordonnees p = new Coordonnees(0, 0);
+    OutdatedCoordonnees p = new OutdatedCoordonnees(0, 0);
     Crible newCrible = new Crible(mousePoint, p, 2, 2, true, 2);
     elementContainer.addEquipement(newCrible);
   }
 
   public void addConcasseur(Point mousePoint) {
-    Coordonnees p = new Coordonnees(0, 0);
+    OutdatedCoordonnees p = new OutdatedCoordonnees(0, 0);
     Concasseur newConcasseur = new Concasseur(mousePoint, p, 2, 2, true, 2);
     elementContainer.addEquipement(newConcasseur);
   }
 
   public void addBroyeur(Point mousePoint) {
-    Coordonnees p = new Coordonnees(0, 0);
+    OutdatedCoordonnees p = new OutdatedCoordonnees(0, 0);
     Broyeur newBroyeur = new Broyeur(mousePoint, p, 2, 2, true, 2);
     elementContainer.addEquipement(newBroyeur);
   }
 
   public void addConvoyeur(Point mousePoint) {
-    Coordonnees p = new Coordonnees(0, 0);
+    OutdatedCoordonnees p = new OutdatedCoordonnees(0, 0);
     Noeud noeud = new Noeud(mousePoint, 1, 1, true);
     Convoyeur newConvoyeur = new Convoyeur(mousePoint, p, 2, 2, true, 2, noeud);
     elementContainer.addEquipement(newConvoyeur);

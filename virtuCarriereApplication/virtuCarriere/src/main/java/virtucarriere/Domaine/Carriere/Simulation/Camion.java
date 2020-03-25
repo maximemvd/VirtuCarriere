@@ -6,7 +6,7 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.util.ArrayList;
-import virtucarriere.Domaine.Carriere.Plan.Coordonnees;
+import virtucarriere.Domaine.Carriere.Plan.OutdatedCoordonnees;
 
 public class Camion extends Vehicule {
 
@@ -16,20 +16,20 @@ public class Camion extends Vehicule {
 
   private Jeton jeton;
 
-  private Coordonnees coordonnees;
+  private OutdatedCoordonnees outdatedCoordonnees;
 
   public Camion() {};
 
-  public Camion(Jeton jeton, double start, Coordonnees coordonnees) {
+  public Camion(Jeton jeton, double start, OutdatedCoordonnees outdatedCoordonnees) {
     this.itineraireCamion = new ArrayList<Node>();
     this.jeton = jeton;
     this.start = start;
-    this.coordonnees = coordonnees;
+    this.outdatedCoordonnees = outdatedCoordonnees;
     // createCamion(jeton, start, coordonnees);
   }
 
-  public Camion createCamion(Jeton jeton, double start, Coordonnees coordonnees) {
-    Camion newCamion = new Camion(jeton, start, coordonnees);
+  public Camion createCamion(Jeton jeton, double start, OutdatedCoordonnees outdatedCoordonnees) {
+    Camion newCamion = new Camion(jeton, start, outdatedCoordonnees);
     return newCamion;
   };
 
@@ -49,10 +49,10 @@ public class Camion extends Vehicule {
     }
   }
 
-  public void editerParams(Jeton jeton, double start, Coordonnees coordonnees) {
+  public void editerParams(Jeton jeton, double start, OutdatedCoordonnees outdatedCoordonnees) {
     this.jeton = jeton;
     this.start = start;
-    this.coordonnees = coordonnees;
+    this.outdatedCoordonnees = outdatedCoordonnees;
   }
 
   public void Simulation() {
