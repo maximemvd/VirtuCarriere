@@ -26,7 +26,7 @@ public class Convoyeur extends Equipement {
     super(point, p_coordonnees, p_width, p_length, p_selectionStatus, p_angle);
 
     this.destination = p_destination;
-    this.color = Color.ORANGE;
+    this.color = Color.magenta;
   }
 
   public void setDestination(Noeud p_destination) {

@@ -29,16 +29,16 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics g) {
-    drawEquipement(g);
     drawCarriere(g);
+    drawEquipement(g);
     drawNoeud(g);
   }
 
   public void drawCarriere(Graphics g) {
     int width = (int) initialDimension.getWidth();
     int height = (int) initialDimension.getHeight();
-    g.setColor(Color.BLUE);
-    g.fillRect(0, 0, width / 2, height / 2);
+    g.setColor(Color.ORANGE);
+    g.fillRect(0, 0, width, height);
   }
 
   public void drawEquipement(Graphics g) {
@@ -62,6 +62,10 @@ public class CarriereDrawer {
     List<Noeud> noeuds = controller.getNoeudList();
     noeuds.forEach(
         (noeud) -> {
+          System.out.print("hello my great Friends");
+          System.out.print(noeud.getPoint());
+          System.out.print(noeud.getColor());
+          System.out.print("hello my great Friends");
           Point noeudPoint = noeud.getPoint();
           Color noeudColor = noeud.getColor();
           g.setColor(noeudColor);

@@ -29,10 +29,6 @@ public class Controller {
     CRIBLE,
     BROYEUR,
     CONVOYEUR,
-    NOEUD
-  }
-
-  public enum NoeudModes {
     NOEUD,
     TAS
   }
@@ -75,17 +71,26 @@ public class Controller {
   }
 
   public void addEquipement(EquipementModes mode, Point mousePoint) {
-    if (mode == EquipementModes.CONCASSEUR) {
-      addConcasseur(mousePoint);
-    } else if (mode == EquipementModes.CRIBLE) {
-      addCrible(mousePoint);
-    } else if (mode == EquipementModes.CONVOYEUR) {
-      addConvoyeur(mousePoint);
-    } else if (mode == EquipementModes.BROYEUR) {
-      addBroyeur(mousePoint);
-    } else if (mode == EquipementModes.NOEUD) {
-      addNoeud(mousePoint);
-    }
+    if (null != mode)
+      switch (mode) {
+        case CONCASSEUR:
+          addConcasseur(mousePoint);
+          break;
+        case CRIBLE:
+          addCrible(mousePoint);
+          break;
+        case CONVOYEUR:
+          addConvoyeur(mousePoint);
+          break;
+        case BROYEUR:
+          addBroyeur(mousePoint);
+          break;
+        case NOEUD:
+          addNoeud(mousePoint);
+          break;
+        default:
+          break;
+      }
   }
 
   public void addTas(Point mousePoint) {
