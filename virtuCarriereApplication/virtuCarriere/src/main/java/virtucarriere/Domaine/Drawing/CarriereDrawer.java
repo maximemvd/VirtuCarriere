@@ -62,18 +62,14 @@ public class CarriereDrawer {
     List<Noeud> noeuds = controller.getNoeudList();
     noeuds.forEach(
         (noeud) -> {
-          System.out.print("hello my great Friends");
-          System.out.print(noeud.getPoint());
-          System.out.print(noeud.getColor());
-          System.out.print("hello my great Friends");
           Point noeudPoint = noeud.getPoint();
           Color noeudColor = noeud.getColor();
           g.setColor(noeudColor);
           g.fillOval(
-              (int) noeudPoint.getX() - radius,
-              (int) noeudPoint.getY() - radius,
-              radius * 2,
-              radius * 2);
+              (int) noeudPoint.getX() - radius / 2,
+              (int) noeudPoint.getY() - radius / 2,
+              radius,
+              radius);
         });
   }
 

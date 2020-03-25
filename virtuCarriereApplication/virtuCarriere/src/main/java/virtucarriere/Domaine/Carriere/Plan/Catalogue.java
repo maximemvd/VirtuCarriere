@@ -10,4 +10,16 @@ public class Catalogue {
   private String code;
   private String description;
   private double price;
+
+  public String getCode() {
+    return code;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public double getPrice() {
+    return price;
+  }
 }

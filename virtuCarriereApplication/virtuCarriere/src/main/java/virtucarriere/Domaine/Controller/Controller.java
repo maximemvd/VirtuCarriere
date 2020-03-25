@@ -6,6 +6,7 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
@@ -20,6 +21,7 @@ public class Controller {
   private double attribute;
 
   private int undoRedo;
+  private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
 
@@ -116,4 +118,19 @@ public class Controller {
   public List<Noeud> getNoeudList() {
     return elementContainer.getNoeudList();
   }
+
+  public void addContainer() {
+    // ElementContainer elementContainer = new ElementContainer(this.elementContainer);
+
+  }
+
+  private void deleteElementsAfterPointer(int undoRedoPointerState) {
+    if (elementContainerList.isEmpty()) {
+      return;
+    }
+  }
+
+  public void undo() {}
+
+  public void redo() {}
 }
