@@ -8,7 +8,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Color;
 import java.awt.Point;
 
-public abstract class Element {
+public abstract class Element extends Point {
 
   private Point point;
 
@@ -17,7 +17,7 @@ public abstract class Element {
   private boolean selectionStatus;
 
   public Element(Point point, int p_width, int p_length, boolean p_selectionStatus) {
-    this.point = point;
+    super(point);
     this.width = p_width;
     this.length = p_length;
     this.selectionStatus = p_selectionStatus;

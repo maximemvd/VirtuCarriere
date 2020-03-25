@@ -8,7 +8,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Color;
 import java.awt.Point;
 
-public class Arc extends Element {
+public class Arc extends AbstractLien<Noeud> {
 
   private Noeud starting;
   private Noeud arrival;
