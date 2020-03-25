@@ -28,7 +28,8 @@ public class Controller {
     CONCASSEUR,
     CRIBLE,
     BROYEUR,
-    CONVOYEUR
+    CONVOYEUR,
+    NOEUD
   }
 
   public enum NoeudModes {
@@ -68,7 +69,7 @@ public class Controller {
 
   public void addConvoyeur(Point mousePoint) {
     Coordonnees p = new Coordonnees(0, 0);
-    Noeud noeud = new Noeud(0, 0);
+    Noeud noeud = new Noeud(mousePoint, 1, 1, true);
     Convoyeur newConvoyeur = new Convoyeur(mousePoint, p, 2, 2, true, 2, noeud);
     elementContainer.addEquipement(newConvoyeur);
   }
@@ -76,24 +77,14 @@ public class Controller {
   public void addEquipement(EquipementModes mode, Point mousePoint) {
     if (mode == EquipementModes.CONCASSEUR) {
       addConcasseur(mousePoint);
-    }
-    if (mode == EquipementModes.CRIBLE) {
+    } else if (mode == EquipementModes.CRIBLE) {
       addCrible(mousePoint);
-    }
-    if (mode == EquipementModes.CONVOYEUR) {
+    } else if (mode == EquipementModes.CONVOYEUR) {
       addConvoyeur(mousePoint);
-    }
-    if (mode == EquipementModes.BROYEUR) {
+    } else if (mode == EquipementModes.BROYEUR) {
       addBroyeur(mousePoint);
-    }
-  }
-
-  public void addNoeud(NoeudModes mode, Point mousePoint) {
-    if (mode == NoeudModes.TAS) {
-      addTas(mousePoint);
-    }
-    if (mode == NoeudModes.NOEUD) {
-      ajoutNoeud(mousePoint);
+    } else if (mode == EquipementModes.NOEUD) {
+      addNoeud(mousePoint);
     }
   }
 
@@ -101,8 +92,9 @@ public class Controller {
     System.out.print("hey");
   }
 
-  public void ajoutNoeud(Point mousePoint) {
-    System.out.print("hey");
+  public void addNoeud(Point mousePoint) {
+    Noeud noeud = new Noeud(mousePoint, 1, 1, true);
+    elementContainer.addNoeud(noeud);
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {

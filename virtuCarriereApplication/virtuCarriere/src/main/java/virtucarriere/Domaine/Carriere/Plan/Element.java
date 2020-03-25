@@ -5,25 +5,19 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.awt.Color;
 import java.awt.Point;
 
-public class Element {
+public abstract class Element {
 
   private Point point;
 
-  private Coordonnees coordonnees;
   private int width;
   private int length;
   private boolean selectionStatus;
 
-  public Element(
-      Point point,
-      Coordonnees p_coordonnees,
-      int p_width,
-      int p_length,
-      boolean p_selectionStatus) {
+  public Element(Point point, int p_width, int p_length, boolean p_selectionStatus) {
     this.point = point;
-    this.coordonnees = p_coordonnees;
     this.width = p_width;
     this.length = p_length;
     this.selectionStatus = p_selectionStatus;
@@ -37,13 +31,14 @@ public class Element {
     return true;
   }
 
-  public boolean xIsInsideElementWidth(double p_x) {
-    return (this.coordonnees.getX() <= p_x && p_x <= this.coordonnees.getX() + this.width);
-  }
+  /*public boolean xIsInsideElementWidth(double p_x) {
+      return (this.coordonnees.getX() <= p_x && p_x <= this.coordonnees.getX() + this.width);
+    }
 
-  public boolean yIsInsideElementLength(double p_y) {
-    return (this.coordonnees.getY() <= p_y && p_y <= this.coordonnees.getY() + this.width);
-  }
+    public boolean yIsInsideElementLength(double p_y) {
+      return (this.coordonnees.getY() <= p_y && p_y <= this.coordonnees.getY() + this.width);
+    }
+  */
 
   public void switchElementStatus() {
     this.selectionStatus = !this.selectionStatus;
@@ -55,14 +50,6 @@ public class Element {
 
   public boolean isSelected() {
     return this.selectionStatus;
-  }
-
-  public String getCoordonnees() {
-    return this.coordonnees.toString();
-  }
-
-  public void setCoordonnees(Coordonnees coordonnees) {
-    this.coordonnees = coordonnees;
   }
 
   public int getWidth() {
@@ -88,4 +75,6 @@ public class Element {
   public void setSelectionStatus(boolean selectionStatus) {
     this.selectionStatus = selectionStatus;
   }
+
+  public abstract Color getColor();
 }

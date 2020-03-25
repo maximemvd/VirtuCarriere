@@ -19,7 +19,7 @@ public abstract class Equipement extends Element {
       int p_length,
       boolean p_selectionStatus,
       double p_angle) {
-    super(point, p_coordonnees, p_width, p_length, p_selectionStatus);
+    super(point, p_width, p_length, p_selectionStatus);
 
     this.angle = p_angle;
   }

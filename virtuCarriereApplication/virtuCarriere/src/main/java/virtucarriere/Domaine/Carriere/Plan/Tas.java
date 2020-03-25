@@ -5,16 +5,21 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.awt.Point;
+
 public class Tas extends Noeud {
 
   private String materialCode;
-
   private double dimension;
 
-  public Tas(double x, double y, String materialCode, double dimension) {
-
-    super(x, y);
-
+  public Tas(
+      Point point,
+      int p_width,
+      int p_length,
+      boolean p_selectionStatus,
+      String materialCode,
+      double dimension) {
+    super(point, p_width, p_length, p_selectionStatus);
     this.materialCode = materialCode;
     this.dimension = dimension;
   }

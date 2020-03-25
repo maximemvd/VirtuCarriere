@@ -79,10 +79,11 @@ public class MainWindow extends JFrame {
     mainScrollPane = new javax.swing.JScrollPane();
     drawingPanel = new virtucarriere.gui.DrawingPanel(this);
     jPanel1 = new javax.swing.JPanel();
-    AddBroyeur = new javax.swing.JButton();
-    addConcasseur = new javax.swing.JButton();
-    addCrible = new javax.swing.JButton();
-    addConvoyeur = new javax.swing.JButton();
+    jTabbedPane1 = new javax.swing.JTabbedPane();
+    jPanel2 = new javax.swing.JPanel();
+    jComboBox1 = new javax.swing.JComboBox<>();
+    jLabel2 = new javax.swing.JLabel();
+    jPanel3 = new javax.swing.JPanel();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -150,37 +151,74 @@ public class MainWindow extends JFrame {
 
     jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
 
-    AddBroyeur.setText("Ajout Broyeur");
-    AddBroyeur.addActionListener(
+    jComboBox1.setModel(
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {"Broyeur", "Concasseur", "Crible", "Convoyeur", "Noeud"}));
+    jComboBox1.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
-            AddBroyeurActionPerformed(evt);
+            jComboBox1ActionPerformed(evt);
           }
         });
 
-    addConcasseur.setText("Ajout Concasseur");
-    addConcasseur.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            addConcasseurActionPerformed(evt);
-          }
-        });
+    jLabel2.setText("Ajouter un équipement");
 
-    addCrible.setText("Ajout Crible");
-    addCrible.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            addCribleActionPerformed(evt);
-          }
-        });
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+        jPanel2Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGap(67, 67, 67)
+                                    .addComponent(
+                                        jComboBox1,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel2)))
+                    .addContainerGap(71, Short.MAX_VALUE)));
+    jPanel2Layout.setVerticalGroup(
+        jPanel2Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addGap(9, 9, 9)
+                    .addComponent(jLabel2)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(
+                        jComboBox1,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(655, Short.MAX_VALUE)));
 
-    addConvoyeur.setText("Ajout Convoyeur");
-    addConvoyeur.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            addConvoyeurActionPerformed(evt);
-          }
-        });
+    jTabbedPane1.addTab("Plan", jPanel2);
+
+    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+    jPanel3.setLayout(jPanel3Layout);
+    jPanel3Layout.setHorizontalGroup(
+        jPanel3Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 267, Short.MAX_VALUE));
+    jPanel3Layout.setVerticalGroup(
+        jPanel3Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 713, Short.MAX_VALUE));
+
+    jTabbedPane1.addTab("Simulation", jPanel3);
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -190,51 +228,18 @@ public class MainWindow extends JFrame {
             .addGroup(
                 jPanel1Layout
                     .createSequentialGroup()
-                    .addGap(97, 97, 97)
-                    .addComponent(addCrible)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(
-                javax.swing.GroupLayout.Alignment.TRAILING,
-                jPanel1Layout
-                    .createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addGroup(
-                        jPanel1Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddBroyeur)
-                            .addComponent(addConcasseur))
-                    .addGap(70, 70, 70))
-            .addGroup(
-                jPanel1Layout
-                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(
-                        jPanel1Layout
-                            .createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(addConvoyeur)
-                            .addGap(0, 0, Short.MAX_VALUE))));
+                    .addContainerGap()
+                    .addComponent(jTabbedPane1)
+                    .addContainerGap()));
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
                 jPanel1Layout
                     .createSequentialGroup()
-                    .addGap(68, 68, 68)
-                    .addComponent(AddBroyeur)
-                    .addGap(49, 49, 49)
-                    .addComponent(addConcasseur)
-                    .addGap(64, 64, 64)
-                    .addComponent(addCrible)
-                    .addContainerGap(497, Short.MAX_VALUE))
-            .addGroup(
-                jPanel1Layout
-                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(
-                        jPanel1Layout
-                            .createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(addConvoyeur)
-                            .addGap(0, 0, Short.MAX_VALUE))));
+                    .addComponent(jTabbedPane1)
+                    .addContainerGap()));
 
     mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
 
@@ -347,6 +352,24 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void jComboBox1ActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox1ActionPerformed
+    if (jComboBox1.getSelectedItem() == "Broyeur") {
+      this.setMode(EquipementModes.BROYEUR);
+
+    } else if (jComboBox1.getSelectedItem() == "Concasseur") {
+      this.setMode(EquipementModes.CONCASSEUR);
+
+    } else if (jComboBox1.getSelectedItem() == "Crible") {
+      this.setMode(EquipementModes.CRIBLE);
+
+    } else if (jComboBox1.getSelectedItem() == "Convoyeur") {
+      this.setMode(EquipementModes.CONVOYEUR);
+    } else if (jComboBox1.getSelectedItem() == "Noeud") {
+      this.setMode(EquipementModes.NOEUD);
+    }
+  } // GEN-LAST:event_jComboBox1ActionPerformed
 
   private void jToggleButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -514,10 +537,6 @@ public class MainWindow extends JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton AddBroyeur;
-  private javax.swing.JButton addConcasseur;
-  private javax.swing.JButton addConvoyeur;
-  private javax.swing.JButton addCrible;
   private javax.swing.JMenu affichageMenu;
   private javax.swing.JPanel buttonTopPanel;
   private virtucarriere.gui.DrawingPanel drawingPanel;
@@ -527,9 +546,14 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem importerCarriereMenu;
   private javax.swing.JMenu importerMenu;
   private javax.swing.JMenuItem importerSimulationMenu;
+  private javax.swing.JComboBox<String> jComboBox1;
+  private javax.swing.JLabel jLabel2;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JMenuItem jMenuItem6;
   private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
+  private javax.swing.JPanel jPanel3;
+  private javax.swing.JTabbedPane jTabbedPane1;
   private javax.swing.JToggleButton jToggleButton1;
   private javax.swing.JPanel mainPanel;
   private javax.swing.JScrollPane mainScrollPane;

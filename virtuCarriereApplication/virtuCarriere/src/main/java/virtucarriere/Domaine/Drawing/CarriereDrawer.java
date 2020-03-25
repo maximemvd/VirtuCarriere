@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
+import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.MainWindow;
 
@@ -30,6 +31,7 @@ public class CarriereDrawer {
   public void draw(Graphics g) {
     drawEquipement(g);
     drawCarriere(g);
+    drawNoeud(g);
   }
 
   public void drawCarriere(Graphics g) {
@@ -56,10 +58,22 @@ public class CarriereDrawer {
 
   public void drawCamion(Graphics g) {};
 
-  public void drawNoeud(Graphics g) {};
+  public void drawNoeud(Graphics g) {
+    List<Noeud> noeuds = controller.getNoeudList();
+    noeuds.forEach(
+        (noeud) -> {
+          Point noeudPoint = noeud.getPoint();
+          Color noeudColor = noeud.getColor();
+          g.setColor(noeudColor);
+          g.fillOval(
+              (int) noeudPoint.getX() - radius,
+              (int) noeudPoint.getY() - radius,
+              radius * 2,
+              radius * 2);
+        });
+  }
 
   public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {
-
     this.measurementMode = measurementMode;
   }
 }

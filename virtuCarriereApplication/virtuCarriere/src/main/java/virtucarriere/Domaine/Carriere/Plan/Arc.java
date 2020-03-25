@@ -5,6 +5,7 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Arc extends Element {
@@ -12,10 +13,17 @@ public class Arc extends Element {
   private Noeud starting;
   private Noeud arrival;
   private double cout;
+  private Color color;
 
-  public Arc(Point point, Noeud starting, Noeud arrival) {
+  public Arc(
+      Point point,
+      int p_width,
+      int p_length,
+      boolean p_selectionStatus,
+      Noeud starting,
+      Noeud arrival) {
     // TODO Valider comment intégrer element
-    super(point, starting.getCoordonnees(), 1, 1, false);
+    super(point, p_width, p_length, p_selectionStatus);
 
     this.starting = starting;
     this.arrival = arrival;
@@ -27,5 +35,10 @@ public class Arc extends Element {
 
   public double getCost() {
     return cout;
+  }
+
+  public Color getColor() {
+    System.out.print(color);
+    return color;
   }
 }
