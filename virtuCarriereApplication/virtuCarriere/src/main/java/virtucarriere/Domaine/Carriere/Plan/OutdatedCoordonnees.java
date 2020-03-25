@@ -5,12 +5,12 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-public class Coordonnees {
+public class OutdatedCoordonnees {
 
   private double x;
   private double y;
 
-  public Coordonnees(double p_abscisse, double p_ordonnee) {
+  public OutdatedCoordonnees(double p_abscisse, double p_ordonnee) {
     this.x = p_abscisse;
     this.y = p_ordonnee;
   }

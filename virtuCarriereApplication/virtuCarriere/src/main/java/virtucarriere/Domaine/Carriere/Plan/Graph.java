@@ -1,9 +1,8 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
-import java.awt.Point;
 import java.util.List;
 
-public interface Graphe<End extends Point, Link extends AbstractLien<End>> {
+public interface Graph<End extends Element, Link extends AbstractLien<End>> {
 
   void addEnd(End end);
 
@@ -17,5 +16,5 @@ public interface Graphe<End extends Point, Link extends AbstractLien<End>> {
 
   boolean linkExist(Link link);
 
-  List<Lien<Point>> getAdjacents(End noeud);
+  List<Lien<End>> getAdjacents(End noeud);
 }

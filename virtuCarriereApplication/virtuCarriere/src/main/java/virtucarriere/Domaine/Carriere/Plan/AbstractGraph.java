@@ -1,11 +1,10 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
-import java.awt.Point;
 import java.util.List;
 import java.util.Vector;
 
-public abstract class AbstractGraph<End extends Point, Link extends AbstractLien<End>>
-    implements Graphe<End, Link> {
+public abstract class AbstractGraph<End extends Element, Link extends AbstractLien<End>>
+    implements Graph<End, Link> {
 
   private Vector<End> ends;
   private Vector<List<AbstractLien<End>>> links;
@@ -53,7 +52,7 @@ public abstract class AbstractGraph<End extends Point, Link extends AbstractLien
   }
 
   @Override
-  public List<Lien<Point>> getAdjacents(End noeud) {
+  public List<Lien<End>> getAdjacents(End noeud) {
     return null;
   }
 }
