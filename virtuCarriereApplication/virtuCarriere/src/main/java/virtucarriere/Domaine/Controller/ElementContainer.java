@@ -7,9 +7,9 @@ package virtucarriere.Domaine.Controller;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.awt.Point;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.OutdatedCoordonnees;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
 public class ElementContainer {
@@ -124,9 +124,9 @@ public class ElementContainer {
   //     return nextPosition;
   // }
 
-  public boolean askValidPlace(OutdatedCoordonnees coordonnee) {
-    double x = coordonnee.getX();
-    double y = coordonnee.getY();
+  public boolean askValidPlace(Point point) {
+    double x = point.getX();
+    double y = point.getY();
 
     if (x < 0 && y < 0) {
       return false;
@@ -135,7 +135,7 @@ public class ElementContainer {
     }
   }
 
-  public boolean validanceDependance(String type, OutdatedCoordonnees coordonnee) {
+  public boolean validanceDependance(String type, Point point) {
     return true;
   }
 }

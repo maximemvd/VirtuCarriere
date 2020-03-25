@@ -25,19 +25,30 @@ public abstract class Element {
   public Point getPoint() {
     return point;
   }
+  
+  public void setPoint(int p_x, int p_y){
+      this.point = new Point(p_x, p_y);
+  }
+  
+  public double getX(){
+      return this.point.getX();
+  }
+  
+  public double getY(){
+      return this.point.getY();
+  }
 
   public boolean contains(double p_x, double p_y) {
     return true;
   }
 
-  /*public boolean xIsInsideElementWidth(double p_x) {
-      return (this.coordonnees.getX() <= p_x && p_x <= this.coordonnees.getX() + this.width);
-    }
+  public boolean xIsInsideElementWidth(double p_x) {
+    return (this.point.getX() <= p_x && p_x <= this.point.getX() + this.width);
+  }
 
-    public boolean yIsInsideElementLength(double p_y) {
-      return (this.coordonnees.getY() <= p_y && p_y <= this.coordonnees.getY() + this.width);
-    }
-  */
+  public boolean yIsInsideElementLength(double p_y) {
+    return (this.point.getY() <= p_y && p_y <= this.point.getY() + this.width);
+  }
 
   public void switchElementStatus() {
     this.selectionStatus = !this.selectionStatus;

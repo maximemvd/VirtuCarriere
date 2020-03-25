@@ -5,21 +5,21 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-import virtucarriere.Domaine.Carriere.Plan.OutdatedCoordonnees;
+import java.awt.Point;
 
 public class Chargeur extends Vehicule {
 
-  private OutdatedCoordonnees destination;
+  private Point destination;
 
-  public Chargeur(OutdatedCoordonnees p_destination) {
+  public Chargeur(Point p_destination) {
     this.destination = p_destination;
   };
 
-  public OutdatedCoordonnees getDestination() {
+  public Point getDestination() {
     return this.destination;
   }
 
-  public void changeDestination(OutdatedCoordonnees p_Outdated_coordonnees) {
-    this.destination = p_Outdated_coordonnees;
+  public void changeDestination(Point p_point) {
+    this.destination = p_point;
   }
 }

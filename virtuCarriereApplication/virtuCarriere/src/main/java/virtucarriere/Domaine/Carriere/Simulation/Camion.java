@@ -6,7 +6,7 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.util.ArrayList;
-import virtucarriere.Domaine.Carriere.Plan.OutdatedCoordonnees;
+import java.awt.Point;
 
 public class Camion extends Vehicule {
 
@@ -16,20 +16,20 @@ public class Camion extends Vehicule {
 
   private Jeton jeton;
 
-  private OutdatedCoordonnees outdatedCoordonnees;
+  private Point point;
 
   public Camion() {};
 
-  public Camion(Jeton jeton, double start, OutdatedCoordonnees outdatedCoordonnees) {
+  public Camion(Jeton jeton, double start, Point point) {
     this.itineraireCamion = new ArrayList<Node>();
     this.jeton = jeton;
     this.start = start;
-    this.outdatedCoordonnees = outdatedCoordonnees;
+    this.point = point;
     // createCamion(jeton, start, coordonnees);
   }
 
-  public Camion createCamion(Jeton jeton, double start, OutdatedCoordonnees outdatedCoordonnees) {
-    Camion newCamion = new Camion(jeton, start, outdatedCoordonnees);
+  public Camion createCamion(Jeton jeton, double start, Point point) {
+    Camion newCamion = new Camion(jeton, start, point);
     return newCamion;
   };
 
@@ -49,10 +49,10 @@ public class Camion extends Vehicule {
     }
   }
 
-  public void editerParams(Jeton jeton, double start, OutdatedCoordonnees outdatedCoordonnees) {
+  public void editerParams(Jeton jeton, double start, Point point) {
     this.jeton = jeton;
     this.start = start;
-    this.outdatedCoordonnees = outdatedCoordonnees;
+    this.point = point;
   }
 
   public void Simulation() {
