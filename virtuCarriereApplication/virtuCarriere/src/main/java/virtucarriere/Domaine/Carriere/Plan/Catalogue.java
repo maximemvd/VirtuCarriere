@@ -11,6 +11,12 @@ public class Catalogue {
   private String description;
   private double price;
 
+  public Catalogue(String code, String description, double price) {
+    this.code = code;
+    this.description = description;
+    this.price = price;
+  }
+
   public String getCode() {
     return code;
   }

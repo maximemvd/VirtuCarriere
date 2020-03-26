@@ -26,7 +26,7 @@ public class DrawingPanel extends JPanel implements Serializable {
   private double zoom = 1d;
 
   private double gapGrille = 100d;
-  final double ZoomFactor = 1.05;
+  final double ZoomFactor = 1.03;
 
   public DrawingPanel() {}
 

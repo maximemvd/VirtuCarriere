@@ -138,6 +138,12 @@ public class MainWindow extends JFrame {
         });
 
     drawingPanel.setOpaque(false);
+    drawingPanel.addMouseWheelListener(
+        new java.awt.event.MouseWheelListener() {
+          public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+            drawingPanelMouseWheelMoved(evt);
+          }
+        });
     drawingPanel.addMouseListener(
         new java.awt.event.MouseAdapter() {
           public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -353,6 +359,17 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void drawingPanelMouseWheelMoved(
+      java.awt.event.MouseWheelEvent evt) { // GEN-FIRST:event_drawingPanelMouseWheelMoved
+    Point point = evt.getPoint();
+    this.currentMousePoint = evt.getPoint();
+    if (evt.getPreciseWheelRotation() > 0) {
+      drawingPanel.zoomIn(point);
+    } else {
+      drawingPanel.zoomOut(point);
+    }
+  } // GEN-LAST:event_drawingPanelMouseWheelMoved
+
   private void jComboBox1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox1ActionPerformed
     if (jComboBox1.getSelectedItem() == "Broyeur") {
@@ -400,21 +417,28 @@ public class MainWindow extends JFrame {
 
   private void drawingPanelMousePressed(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_drawingPanelMousePressed
+    /*Point point = new Point(
+            (int)(evt.getX() / drawingPanel.getZoom()),
+            (int)(evt.getY() / drawingPanel.getZoom()));
+    this.currentMousePoint = new Point(point);
+    this.requestFocus();
+    */
     Point mousePoint = evt.getPoint();
+
     Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
     this.controller.addEquipement(actualEquipement, mousePoint);
     drawingPanel.repaint();
-  } // GEN-LAST:event_drawingPanelMousePressed
+  }
 
   private void formMouseWheelMoved(
       java.awt.event.MouseWheelEvent evt) { // GEN-FIRST:event_formMouseWheelMoved
-    Point point = evt.getPoint();
+    /*Point point = evt.getPoint();
     this.currentMousePoint = evt.getPoint();
     if (evt.getPreciseWheelRotation() > 0) {
       drawingPanel.zoomIn(point);
     } else {
       drawingPanel.zoomOut(point);
-    }
+    }*/
   } // GEN-LAST:event_formMouseWheelMoved
 
   private void mainScrollPaneMouseWheelMoved(

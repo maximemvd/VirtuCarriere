@@ -5,12 +5,14 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Tas extends Noeud {
 
   private String materialCode;
   private double dimension;
+  private Color color;
 
   public Tas(
       Point point,
@@ -22,5 +24,10 @@ public class Tas extends Noeud {
     super(point, p_width, p_length, p_selectionStatus);
     this.materialCode = materialCode;
     this.dimension = dimension;
+    this.color = Color.WHITE;
+  }
+
+  public Color getColor() {
+    return color;
   }
 }
