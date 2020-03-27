@@ -84,6 +84,8 @@ public class MainWindow extends JFrame {
     jComboBox1 = new javax.swing.JComboBox<>();
     jLabel2 = new javax.swing.JLabel();
     jPanel3 = new javax.swing.JPanel();
+    ajoutCamion = new javax.swing.JToggleButton();
+    ajoutChargeur = new javax.swing.JToggleButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -213,16 +215,51 @@ public class MainWindow extends JFrame {
 
     jTabbedPane1.addTab("Plan", jPanel2);
 
+    ajoutCamion.setText("Ajouter un camion");
+    ajoutCamion.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutCamionActionPerformed(evt);
+          }
+        });
+
+    ajoutChargeur.setText("Ajouter un chargeur");
+
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 267, Short.MAX_VALUE));
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addContainerGap(45, Short.MAX_VALUE)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(
+                                ajoutChargeur,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                            .addComponent(
+                                ajoutCamion,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE))
+                    .addGap(53, 53, 53)));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE));
+            .addGroup(
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(ajoutCamion)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ajoutChargeur)
+                    .addContainerGap(624, Short.MAX_VALUE)));
 
     jTabbedPane1.addTab("Simulation", jPanel3);
 
@@ -359,6 +396,11 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void ajoutCamionActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutCamionActionPerformed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_ajoutCamionActionPerformed
+
   private void drawingPanelMouseWheelMoved(
       java.awt.event.MouseWheelEvent evt) { // GEN-FIRST:event_drawingPanelMouseWheelMoved
     Point point = evt.getPoint();
@@ -425,7 +467,10 @@ public class MainWindow extends JFrame {
     */
     Point mousePoint = evt.getPoint();
 
-    Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
+    Controller.EquipementModes actualEquipement =
+        this
+            .selectedEquipementMode; // On va devoir changer ca pour que les equipements  s'adaptent
+                                     // au zoom, début plus haut
     this.controller.addEquipement(actualEquipement, mousePoint);
     drawingPanel.repaint();
   }
@@ -562,6 +607,8 @@ public class MainWindow extends JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenu affichageMenu;
+  private javax.swing.JToggleButton ajoutCamion;
+  private javax.swing.JToggleButton ajoutChargeur;
   private javax.swing.JPanel buttonTopPanel;
   private virtucarriere.gui.DrawingPanel drawingPanel;
   private javax.swing.JMenu editionMenu;
