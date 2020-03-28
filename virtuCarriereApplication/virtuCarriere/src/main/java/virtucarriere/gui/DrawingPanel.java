@@ -21,6 +21,9 @@ public class DrawingPanel extends JPanel implements Serializable {
 
   public Dimension initialDimension;
   private MainWindow mainWindow;
+  
+  private double mouseX;
+  private double mouseY;
 
   private boolean grilleActivee = false;
   private double zoom = 1d;
@@ -48,6 +51,10 @@ public class DrawingPanel extends JPanel implements Serializable {
       super.paintComponent(g);
       CarriereDrawer carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
       carriereDrawer.draw(g);
+      
+      g.setColor(Color.black);
+      String s = mouseX + ", " + mouseY;
+      g.drawString(s, (int) mouseX, (int) mouseY);
 
       Graphics2D g2d = (Graphics2D) g;
 
@@ -98,7 +105,15 @@ public class DrawingPanel extends JPanel implements Serializable {
       }
     }
   }
-
+  
+  public void setMouseX(double x){
+      this.mouseX = x;
+  }
+  
+  public void setMouseY(double y){
+      this.mouseY = y;
+  }
+  
   public double getZoom() {
     return this.zoom;
   }

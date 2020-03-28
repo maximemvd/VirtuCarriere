@@ -147,6 +147,11 @@ public class MainWindow extends JFrame {
                 drawingPanelMousePressed(evt);
             }
         });
+        drawingPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                drawingPanelMouseMoved(evt);
+            }
+        });
         drawingPanel.setLayout(new java.awt.BorderLayout());
         mainScrollPane.setViewportView(drawingPanel);
 
@@ -418,6 +423,16 @@ public class MainWindow extends JFrame {
                                      // au zoom, début plus haut
     this.controller.addEquipement(actualEquipement, mousePoint);
     drawingPanel.repaint();
+  }
+  
+  private void drawingPanelMouseMoved(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_drawingPanelMousePressed
+      
+    Point mousePoint = evt.getPoint();
+    drawingPanel.setMouseX(mousePoint.getX());
+    drawingPanel.setMouseY(mousePoint.getY());
+    drawingPanel.repaint();
+
   }
 
   private void formMouseWheelMoved(

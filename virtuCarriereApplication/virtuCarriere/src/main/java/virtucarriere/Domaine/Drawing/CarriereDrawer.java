@@ -33,7 +33,7 @@ public class CarriereDrawer {
     drawEquipement(g);
     drawNoeud(g);
   }
-
+  
   public void drawCarriere(Graphics g) {
     int width = (int) initialDimension.getWidth();
     int height = (int) initialDimension.getHeight();
