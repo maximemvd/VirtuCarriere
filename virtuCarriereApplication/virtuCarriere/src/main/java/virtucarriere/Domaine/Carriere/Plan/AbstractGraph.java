@@ -52,7 +52,14 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
   }
 
   @Override
-  public List<AbstractLien<End>> getAdjacents(End noeud) {
+  public List<AbstractLien<End>> getAdjacentsIn(End end) {
     return null;
+  }
+
+  @Override
+  public List<AbstractLien<End>> getAdjacentsOut(End end) {
+    int index = ends.indexOf(end);
+
+    return links.elementAt(index);
   }
 }
