@@ -7,19 +7,18 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Collections;
+import java.util.List;
 
 public class Concasseur extends Equipement {
 
   private Color color;
+  private static List<Class<? extends Equipement>> dependency = Collections.emptyList();
 
   public Concasseur(
-      Point point,
-      int p_width,
-      int p_length,
-      boolean p_selectionStatus,
-      double p_angle) {
+      Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
 
-    super(point, p_width, p_length, p_selectionStatus, p_angle);
+    super(point, p_width, p_length, p_selectionStatus, p_angle, dependency);
     this.color = Color.PINK;
   }
 
