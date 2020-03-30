@@ -52,7 +52,7 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
   }
 
   @Override
-  public List<Lien<End>> getAdjacents(End noeud) {
+  public List<AbstractLien<End>> getAdjacents(End noeud) {
     return null;
   }
 }
