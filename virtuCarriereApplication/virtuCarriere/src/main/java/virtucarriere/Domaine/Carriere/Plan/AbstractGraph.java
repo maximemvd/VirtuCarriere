@@ -1,7 +1,9 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 public abstract class AbstractGraph<End extends Element, Link extends AbstractLien<End>>
     implements Graph<End, Link> {
@@ -52,14 +54,28 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
   }
 
   @Override
-  public List<AbstractLien<End>> getAdjacentsIn(End end) {
-    return null;
+  public List<End> getAdjacentsIn(End end) {
+    List<End> adjacentsIn = Collections.emptyList();
+    links.forEach(
+        l_link ->
+            l_link.stream()
+                .map(
+                    link -> {
+                      End endLink = link.getArrival();
+                      if (endLink == end) {
+                        adjacentsIn.add(link.getStarting());
+                      }
+                      return null;
+                    }));
+    return adjacentsIn;
   }
 
   @Override
-  public List<AbstractLien<End>> getAdjacentsOut(End end) {
+  public List<End> getAdjacentsOut(End end) {
     int index = ends.indexOf(end);
 
-    return links.elementAt(index);
+    return links.elementAt(index).stream()
+        .map(AbstractLien::getArrival)
+        .collect(Collectors.toList());
   }
 }

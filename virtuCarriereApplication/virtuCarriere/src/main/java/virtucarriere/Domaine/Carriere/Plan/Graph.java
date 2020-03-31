@@ -16,7 +16,7 @@ public interface Graph<End extends Element, Link extends AbstractLien<End>> {
 
   boolean linkExist(Link link);
 
-  List<AbstractLien<End>> getAdjacentsIn(End end);
+  List<End> getAdjacentsIn(End end);
 
-  List<AbstractLien<End>> getAdjacentsOut(End end);
+  List<End> getAdjacentsOut(End end);
 }

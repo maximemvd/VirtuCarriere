@@ -11,4 +11,8 @@ public abstract class AbstractLien<EndType extends Element> extends Element {
   public EndType getArrival() {
     return null;
   }
+
+  public EndType getStarting() {
+    return null;
+  }
 }
