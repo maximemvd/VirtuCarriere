@@ -273,6 +273,12 @@ public class MainWindow extends JFrame {
     ajoutChargeur.setText("Ajouter un chargeur");
 
     ajoutSimulation.setText("Ajout Simulation");
+    ajoutSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutSimulationActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
@@ -450,6 +456,11 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void ajoutSimulationActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutSimulationActionPerformed
+    this.setAppMode(ApplicationMode.ADD_SIMULATION);
+  } // GEN-LAST:event_ajoutSimulationActionPerformed
+
   private void ajoutElementActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutElementActionPerformed
     this.setAppMode(ApplicationMode.ADD_PLAN);
@@ -518,8 +529,7 @@ public class MainWindow extends JFrame {
     this.setMode(EquipementModes.CONVOYEUR);
   } // GEN-LAST:event_addConvoyeurActionPerformed
 
-  private void drawingPanelMousePressed(
-      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_drawingPanelMousePressed
+  private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
     this.initMousePoint =
         new Point(
             (int) (evt.getX() / drawingPanel.getZoom()),
@@ -538,13 +548,6 @@ public class MainWindow extends JFrame {
       this.controller.addEquipement(actualEquipement, mousePoint);
       drawingPanel.repaint();
     }
-
-    Point mousePoint = evt.getPoint();
-
-    Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-
-    this.controller.addEquipement(actualEquipement, mousePoint);
-    drawingPanel.repaint();
   }
 
   private void drawingPanelMouseMoved(java.awt.event.MouseEvent evt) {
@@ -557,8 +560,7 @@ public class MainWindow extends JFrame {
 
   private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {}
 
-  private void mainScrollPaneMouseWheelMoved(
-      java.awt.event.MouseWheelEvent evt) { // GEN-FIRST:event_mainScrollPaneMouseWheelMoved
+  private void mainScrollPaneMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
     Point point = evt.getPoint();
     this.currentMousePoint = evt.getPoint();
     if (evt.getPreciseWheelRotation() > 0) {
@@ -566,7 +568,7 @@ public class MainWindow extends JFrame {
     } else {
       drawingPanel.zoomOut(point);
     }
-  } // GEN-LAST:event_mainScrollPaneMouseWheelMoved
+  }
 
   private void menuNouveauProjetActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuNouveauProjetActionPerformed
