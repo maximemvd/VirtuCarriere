@@ -490,8 +490,14 @@ public class MainWindow extends JFrame {
     // TODO add your handling code here:
   } // GEN-LAST:event_ajoutCamionActionPerformed
 
-  private void drawingPanelMouseWheelMoved(
-      java.awt.event.MouseWheelEvent evt) { // GEN-FIRST:event_drawingPanelMouseWheelMoved
+  private void drawingPanelMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+    Point point = evt.getPoint();
+    this.currentMousePoint = evt.getPoint();
+    if (evt.getPreciseWheelRotation() > 0) {
+      drawingPanel.zoomIn(point);
+    } else {
+      drawingPanel.zoomOut(point);
+    }
   } // GEN-LAST:event_drawingPanelMouseWheelMoved
 
   public void mouseWheelMovedEventPerformed(MouseWheelEvent evt) {

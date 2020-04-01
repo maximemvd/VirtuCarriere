@@ -46,6 +46,7 @@ public class CarriereDrawer {
     equipements.forEach(
         (equipement) -> {
           Point equipementPoint = equipement.getPoint();
+          System.out.println(equipement.isSelected());
           if (equipement.isSelected()) {
             g.setColor(new Color(255, 0, 0));
             int offsetRadius = radius + 2;

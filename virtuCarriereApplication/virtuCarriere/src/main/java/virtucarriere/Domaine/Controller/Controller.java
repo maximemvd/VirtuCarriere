@@ -6,6 +6,7 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
@@ -16,7 +17,7 @@ import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
-public class Controller {
+public class Controller implements Serializable {
 
   private double attribute;
 
