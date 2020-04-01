@@ -11,13 +11,19 @@ import java.awt.Point;
 public class Noeud extends Element {
 
   private Color color;
+  private String name;
 
   public Noeud(Point point, int p_width, int p_length, boolean p_selectionStatus) {
     super(point, p_width, p_length, p_selectionStatus);
     this.color = Color.CYAN;
+    this.name = "Noeud";
   }
 
   public Color getColor() {
     return color;
+  }
+
+  public String getName() {
+    return name;
   }
 }

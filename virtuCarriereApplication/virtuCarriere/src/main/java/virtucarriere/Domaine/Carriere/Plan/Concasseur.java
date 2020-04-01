@@ -11,15 +11,21 @@ import java.awt.Point;
 public class Concasseur extends Equipement {
 
   private Color color;
+  private String name;
 
   public Concasseur(
       Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
 
     super(point, p_width = 2, p_length = 2, p_selectionStatus = false, p_angle);
     this.color = Color.PINK;
+    this.name = "Concasseur";
   }
 
   public Color getColor() {
     return color;
+  }
+
+  public String getName() {
+    return name;
   }
 }

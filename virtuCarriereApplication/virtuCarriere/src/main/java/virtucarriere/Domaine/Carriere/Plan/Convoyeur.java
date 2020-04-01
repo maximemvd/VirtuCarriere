@@ -11,6 +11,7 @@ import java.awt.Point;
 public class Convoyeur extends Equipement {
 
   private Noeud destination;
+  private String name;
 
   private Color color;
 
@@ -26,6 +27,7 @@ public class Convoyeur extends Equipement {
 
     this.destination = p_destination;
     this.color = Color.magenta;
+    this.name = "Convoyeur";
   }
 
   public void setDestination(Noeud p_destination) {
@@ -38,5 +40,9 @@ public class Convoyeur extends Equipement {
 
   public Color getColor() {
     return color;
+  }
+
+  public String getName() {
+    return name;
   }
 }

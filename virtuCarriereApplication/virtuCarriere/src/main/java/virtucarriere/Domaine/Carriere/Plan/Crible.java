@@ -12,14 +12,20 @@ import java.awt.Point;
 public class Crible extends Equipement {
 
   private Color color;
+  private String name;
 
   public Crible(Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
 
     super(point, p_width = 2, p_length = 2, p_selectionStatus = false, p_angle);
     this.color = Color.RED;
+    this.name = "Crible";
   }
 
   public Color getColor() {
     return color;
+  }
+
+  public String getName() {
+    return name;
   }
 }

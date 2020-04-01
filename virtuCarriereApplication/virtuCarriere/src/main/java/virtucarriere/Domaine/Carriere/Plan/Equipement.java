@@ -13,11 +13,7 @@ public abstract class Equipement extends Element {
   private double angle;
 
   public Equipement(
-      Point point,
-      int p_width,
-      int p_length,
-      boolean p_selectionStatus,
-      double p_angle) {
+      Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
     super(point, p_width, p_length, p_selectionStatus);
 
     this.angle = p_angle;
@@ -36,4 +32,6 @@ public abstract class Equipement extends Element {
   public void setAngle(double p_angle) {
     this.angle = p_angle;
   }
+
+  public abstract String getName();
 }
