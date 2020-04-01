@@ -31,7 +31,7 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics g) {
-    drawCarriere(g);
+    // drawCarriere(g);
     drawEquipement(g);
     drawNoeud(g);
   }
