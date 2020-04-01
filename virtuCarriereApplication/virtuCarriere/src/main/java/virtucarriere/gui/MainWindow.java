@@ -542,6 +542,9 @@ public class MainWindow extends JFrame {
       double xPos = this.initMousePoint.getX();
       double yPos = this.initMousePoint.getY();
 
+      this.controller.switchSelectionStatus(xPos, yPos, evt.isShiftDown());
+      drawingPanel.repaint();
+
     } else if (this.currentApplicationMode == ApplicationMode.ADD_PLAN) {
       Point mousePoint = new Point(this.initMousePoint);
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;

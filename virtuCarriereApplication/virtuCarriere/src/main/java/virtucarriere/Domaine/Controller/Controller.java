@@ -47,23 +47,23 @@ public class Controller {
   }
 
   public void addCrible(Point mousePoint) {
-    Crible newCrible = new Crible(mousePoint, 2, 2, true, 2);
+    Crible newCrible = new Crible(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newCrible);
   }
 
   public void addConcasseur(Point mousePoint) {
-    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, true, 2);
+    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newConcasseur);
   }
 
   public void addBroyeur(Point mousePoint) {
-    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, true, 2);
+    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newBroyeur);
   }
 
   public void addConvoyeur(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 1, 1, true);
-    Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, true, 2, noeud);
+    Noeud noeud = new Noeud(mousePoint, 1, 1, false);
+    Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, false, 2, noeud);
     elementContainer.addEquipement(newConvoyeur);
   }
 
@@ -95,7 +95,7 @@ public class Controller {
   }
 
   public void addNoeud(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 1, 1, true);
+    Noeud noeud = new Noeud(mousePoint, 1, 1, false);
     elementContainer.addNoeud(noeud);
   }
 

@@ -5,9 +5,10 @@
  */
 package virtucarriere.Domaine.Controller;
 
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
-import java.awt.Point;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -27,9 +28,11 @@ public class ElementContainer {
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
-    System.out.println(x);
-    System.out.println(y);
-    System.out.println(isShiftDown);
+    for (Element item : this.equipementList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
   }
 
   public boolean equipementIsEmpty() {

@@ -14,52 +14,54 @@ public abstract class Element {
   private int width;
   private int length;
   private boolean selectionStatus;
+  private int radius;
 
   public Element(Point point, int p_width, int p_length, boolean p_selectionStatus) {
     this.point = point;
     this.width = p_width;
     this.length = p_length;
-    this.selectionStatus = p_selectionStatus;
+    this.selectionStatus = false;
+    this.radius = 50;
   }
 
   public Point getPoint() {
     return point;
   }
-  
-  public void setPoint(int p_x, int p_y){
-      this.point = new Point(p_x, p_y);
+
+  public void setPoint(int p_x, int p_y) {
+    this.point = new Point(p_x, p_y);
   }
-  
-  public double getX(){
-      return this.point.getX();
+
+  public double getX() {
+    return this.point.getX();
   }
-  
-  public double getY(){
-      return this.point.getY();
+
+  public double getY() {
+    return this.point.getY();
   }
 
   public boolean contains(double p_x, double p_y) {
-    return true;
+    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
   }
 
-  public boolean xIsInsideElementWidth(double p_x) {
-    return (this.point.getX() <= p_x && p_x <= this.point.getX() + this.width);
+  private boolean xIsInsideElementWidth(double p_x) {
+    return ((p_x < point.getX() + (getWidth() / 2)) && (p_x > point.getX() - (getWidth() / 2)));
   }
 
-  public boolean yIsInsideElementLength(double p_y) {
-    return (this.point.getY() <= p_y && p_y <= this.point.getY() + this.width);
+  private boolean yIsInsideElementLength(double p_y) {
+    return ((p_y < point.getY() + (getLength() / 2)) && (p_y > point.getY() - (getLength() / 2)));
   }
 
-  public void switchElementStatus() {
+  public boolean isSelected() {
+    return this.selectionStatus;
+  }
+
+  public void switchSelectionStatus() {
     this.selectionStatus = !this.selectionStatus;
   }
 
   public void unselect() {
     this.selectionStatus = false;
-  }
-
-  public boolean isSelected() {
-    return this.selectionStatus;
   }
 
   public int getWidth() {

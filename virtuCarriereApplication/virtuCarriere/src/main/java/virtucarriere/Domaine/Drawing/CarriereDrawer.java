@@ -33,7 +33,7 @@ public class CarriereDrawer {
     drawEquipement(g);
     drawNoeud(g);
   }
-  
+
   public void drawCarriere(Graphics g) {
     int width = (int) initialDimension.getWidth();
     int height = (int) initialDimension.getHeight();
@@ -46,6 +46,16 @@ public class CarriereDrawer {
     equipements.forEach(
         (equipement) -> {
           Point equipementPoint = equipement.getPoint();
+
+          if (equipement.isSelected()) {
+            g.setColor(Color.BLUE);
+            int offsetRadius = radius + 1;
+            g.fillOval(
+                (int) equipementPoint.getX() - offsetRadius,
+                (int) equipementPoint.getY() - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
           Color equipementColor = equipement.getColor();
           g.setColor(equipementColor);
           g.fillOval(
