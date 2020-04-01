@@ -14,7 +14,11 @@ public class Angle {
     }
   }
 
-  double get() {
+  public double get() {
     return this.degree;
+  }
+
+  public void set(double degree) {
+    this.degree = degree;
   }
 }

@@ -8,15 +8,19 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Collections;
+import java.util.List;
 
 public class Crible extends Equipement {
 
   private Color color;
   private String name;
+  private static List<Class<? extends Equipement>> dependency = Collections.emptyList();
 
   public Crible(Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
 
     super(point, p_width = 2, p_length = 2, p_selectionStatus = false, p_angle);
+
     this.color = Color.RED;
     this.name = "Crible";
   }

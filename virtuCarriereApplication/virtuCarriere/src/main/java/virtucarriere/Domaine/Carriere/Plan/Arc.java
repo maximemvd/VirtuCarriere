@@ -7,6 +7,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Objects;
 
 public class Arc extends AbstractLien<Noeud> {
 
@@ -40,5 +41,22 @@ public class Arc extends AbstractLien<Noeud> {
   public Color getColor() {
     System.out.print(color);
     return color;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Arc arc = (Arc) o;
+    return starting.equals(arc.starting) && arrival.equals(arc.arrival);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(starting, arrival);
   }
 }

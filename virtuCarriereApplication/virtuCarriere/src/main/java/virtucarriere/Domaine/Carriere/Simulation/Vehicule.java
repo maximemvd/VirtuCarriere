@@ -13,8 +13,8 @@ public class Vehicule {
   private Itineraire route;
 
   public void getShortestPath(Jeton jeton) {
-    List<Noeud> stops = null;
-    route = new Itineraire(stops);
+    List<Noeud> start;
+    List<Noeud> result;
   }
 
   public Itineraire getRoute() {
