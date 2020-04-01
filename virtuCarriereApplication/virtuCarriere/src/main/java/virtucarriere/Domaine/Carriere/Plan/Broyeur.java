@@ -20,7 +20,6 @@ public class Broyeur extends Equipement {
   }
 
   public Color getColor() {
-    System.out.print(color);
     return color;
   }
 }

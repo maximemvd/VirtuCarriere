@@ -47,6 +47,11 @@ public class ElementContainer {
         item.translate(delta);
       }
     }
+    for (Element item : this.noeudList) {
+      if (item.isSelected()) {
+        item.translate(delta);
+      }
+    }
   }
 
   public boolean equipementIsEmpty() {

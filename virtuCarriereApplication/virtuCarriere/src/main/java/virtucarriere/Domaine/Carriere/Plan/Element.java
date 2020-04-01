@@ -93,8 +93,8 @@ public abstract class Element {
   }
 
   public void translate(Point delta) {
-    this.point.x = (int) (this.point.x + delta.x);
-    this.point.y = (int) (this.point.y + delta.y);
+    this.point.x = (int) (this.point.getX() + delta.getX());
+    this.point.y = (int) (this.point.getY() + delta.getY());
   }
 
   public abstract Color getColor();

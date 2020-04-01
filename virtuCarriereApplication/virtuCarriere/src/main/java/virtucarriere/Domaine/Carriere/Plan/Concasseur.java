@@ -20,7 +20,6 @@ public class Concasseur extends Equipement {
   }
 
   public Color getColor() {
-    System.out.print(color);
     return color;
   }
 }

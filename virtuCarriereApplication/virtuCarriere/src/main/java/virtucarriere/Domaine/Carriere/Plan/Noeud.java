@@ -18,7 +18,6 @@ public class Noeud extends Element {
   }
 
   public Color getColor() {
-    System.out.print(color);
     return color;
   }
 }

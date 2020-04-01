@@ -37,7 +37,6 @@ public class Convoyeur extends Equipement {
   }
 
   public Color getColor() {
-    System.out.print(color);
     return color;
   }
 }
