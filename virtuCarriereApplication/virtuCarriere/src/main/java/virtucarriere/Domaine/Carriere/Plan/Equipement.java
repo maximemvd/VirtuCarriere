@@ -7,20 +7,24 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.List;
 
 public abstract class Equipement extends Element {
 
-  private double angle;
+  private Angle angle;
+  private List<Class<? extends Equipement>> dependency;
 
   public Equipement(
       Point point,
       int p_width,
       int p_length,
       boolean p_selectionStatus,
-      double p_angle) {
+      double p_angle,
+      List<Class<? extends Equipement>> dependency) {
     super(point, p_width, p_length, p_selectionStatus);
 
-    this.angle = p_angle;
+    this.angle = new Angle(p_angle);
+    this.dependency = dependency;
   }
 
   public static String equipement() {
@@ -28,12 +32,12 @@ public abstract class Equipement extends Element {
   }
 
   public double getAngle() {
-    return angle;
+    return angle.get();
   }
 
   public abstract Color getColor();
 
   public void setAngle(double p_angle) {
-    this.angle = p_angle;
+    angle.set(p_angle);
   }
 }

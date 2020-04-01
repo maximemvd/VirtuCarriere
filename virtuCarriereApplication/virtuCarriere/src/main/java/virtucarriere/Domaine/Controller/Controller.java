@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
-import virtucarriere.Domaine.Carriere.Plan.Convoyeur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
@@ -61,12 +60,13 @@ public class Controller implements Serializable {
     Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newBroyeur);
   }
-
-  public void addConvoyeur(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 1, 1, false);
-    Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, false, 2, noeud);
-    elementContainer.addEquipement(newConvoyeur);
-  }
+  /*
+    public void addConvoyeur(Point mousePoint) {
+      Noeud noeud = new Noeud(mousePoint, 1, 1, false);
+      Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, false, 2, noeud);
+      elementContainer.addEquipement(newConvoyeur);
+    }
+  */
 
   public void addEquipement(EquipementModes mode, Point mousePoint) {
     if (null != mode)
@@ -77,9 +77,11 @@ public class Controller implements Serializable {
         case CRIBLE:
           addCrible(mousePoint);
           break;
-        case CONVOYEUR:
-          addConvoyeur(mousePoint);
-          break;
+          /*
+          case CONVOYEUR:
+            addConvoyeur(mousePoint);
+            break;
+             */
         case BROYEUR:
           addBroyeur(mousePoint);
           break;
