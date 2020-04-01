@@ -22,7 +22,7 @@ public class Convoyeur extends Equipement {
       double p_angle,
       Noeud p_destination) {
 
-    super(point, p_width, p_length, p_selectionStatus, p_angle);
+    super(point, p_width = 2, p_length = 2, p_selectionStatus = false, p_angle);
 
     this.destination = p_destination;
     this.color = Color.magenta;

@@ -103,6 +103,10 @@ public class Controller {
     this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
   }
 
+  public void updateSelectedItemsPositions(Point delta) {
+    elementContainer.updateSelectedItemsPosition(delta);
+  }
+
   public ElementContainer getElementContainer() {
     return elementContainer;
   }

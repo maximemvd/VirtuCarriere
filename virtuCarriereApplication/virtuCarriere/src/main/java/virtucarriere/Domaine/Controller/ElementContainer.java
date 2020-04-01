@@ -33,6 +33,20 @@ public class ElementContainer {
         item.switchSelectionStatus();
       }
     }
+
+    for (Element item : this.noeudList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+  }
+
+  void updateSelectedItemsPosition(Point delta) {
+    for (Element item : this.equipementList) {
+      if (item.isSelected()) {
+        item.translate(delta);
+      }
+    }
   }
 
   public boolean equipementIsEmpty() {

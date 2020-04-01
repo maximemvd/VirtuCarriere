@@ -88,5 +88,10 @@ public abstract class Element {
     this.selectionStatus = selectionStatus;
   }
 
+  public void translate(Point delta) {
+    this.point.x = (int) (this.point.x + delta.x);
+    this.point.y = (int) (this.point.y + delta.y);
+  }
+
   public abstract Color getColor();
 }

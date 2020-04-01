@@ -12,6 +12,7 @@ import java.awt.Point;
 import java.awt.event.MouseWheelEvent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 
@@ -24,7 +25,8 @@ public class MainWindow extends JFrame {
   private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
   private ApplicationMode currentApplicationMode;
 
-  public Point currentMousePoint = new Point();
+  public Point currentMousePoint;
+  public Point delta;
   public Point initMousePoint = new Point();
 
   /** Creates new form MainWindow */
@@ -152,6 +154,12 @@ public class MainWindow extends JFrame {
         });
 
     drawingPanel.setOpaque(false);
+    drawingPanel.addMouseMotionListener(
+        new java.awt.event.MouseMotionAdapter() {
+          public void mouseDragged(java.awt.event.MouseEvent evt) {
+            drawingPanelMouseDragged(evt);
+          }
+        });
     drawingPanel.addMouseWheelListener(
         new java.awt.event.MouseWheelListener() {
           public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -456,6 +464,17 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void drawingPanelMouseDragged(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_drawingPanelMouseDragged
+    if (SwingUtilities.isRightMouseButton(evt)) {
+      delta.setLocation(
+          (evt.getX() - this.currentMousePoint.x), (evt.getY() - this.currentMousePoint.y));
+      this.controller.updateSelectedItemsPositions(delta);
+      this.currentMousePoint = evt.getPoint();
+      drawingPanel.repaint();
+    }
+  } // GEN-LAST:event_drawingPanelMouseDragged
+
   private void ajoutSimulationActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutSimulationActionPerformed
     this.setAppMode(ApplicationMode.ADD_SIMULATION);
@@ -530,23 +549,17 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_addConvoyeurActionPerformed
 
   private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
-    this.initMousePoint =
-        new Point(
-            (int) (evt.getX() / drawingPanel.getZoom()),
-            (int) (evt.getY() / drawingPanel.getZoom()));
+    Point mousePoint = evt.getPoint();
+    this.currentMousePoint = mousePoint;
 
-    this.currentMousePoint = new Point(this.initMousePoint);
-    this.requestFocus();
-
-    if (this.currentApplicationMode == ApplicationMode.SELECT) {
-      double xPos = this.initMousePoint.getX();
-      double yPos = this.initMousePoint.getY();
-
-      this.controller.switchSelectionStatus(xPos, yPos, evt.isShiftDown());
+    if (this.currentApplicationMode == ApplicationMode.SELECT
+        && SwingUtilities.isLeftMouseButton(evt)) {
+      double xPos = this.currentMousePoint.getX();
+      double yPos = this.currentMousePoint.getY();
+      this.controller.switchSelectionStatus(
+          mousePoint.getX(), mousePoint.getY(), evt.isShiftDown());
       drawingPanel.repaint();
-
     } else if (this.currentApplicationMode == ApplicationMode.ADD_PLAN) {
-      Point mousePoint = new Point(this.initMousePoint);
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
       this.controller.addEquipement(actualEquipement, mousePoint);
       drawingPanel.repaint();
