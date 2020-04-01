@@ -2,14 +2,15 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
 public abstract class AbstractGraph<End extends Element, Link extends AbstractLien<End>>
     implements Graph<End, Link> {
 
-  private Vector<End> ends;
-  private Vector<List<AbstractLien<End>>> links;
+  protected Vector<End> ends;
+  protected Vector<List<AbstractLien<End>>> links;
 
   @Override
   public void addEnd(End end) {
@@ -77,5 +78,18 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
     return links.elementAt(index).stream()
         .map(AbstractLien::getArrival)
         .collect(Collectors.toList());
+  }
+
+  protected Link getLink(End start, End end) {
+    int index = ends.indexOf(start);
+    Optional<Link> result =
+        (Optional<Link>)
+            links.elementAt(index).stream()
+                .filter(endAbstractLien -> endAbstractLien.getArrival().equals(end))
+                .findFirst();
+    if (!result.isPresent()) {
+      throw new RuntimeException("Le lien n'existe pas");
+    }
+    return result.get();
   }
 }
