@@ -21,7 +21,7 @@ public abstract class Element {
     this.width = p_width;
     this.length = p_length;
     this.selectionStatus = false;
-    this.radius = 50;
+    this.radius = 25;
   }
 
   public Point getPoint() {
@@ -45,11 +45,11 @@ public abstract class Element {
   }
 
   private boolean xIsInsideElementWidth(double p_x) {
-    return ((p_x < point.getX() + (getWidth() / 2)) && (p_x > point.getX() - (getWidth() / 2)));
+    return ((p_x < point.getX() + radius) && (p_x > point.getX() - radius));
   }
 
   private boolean yIsInsideElementLength(double p_y) {
-    return ((p_y < point.getY() + (getLength() / 2)) && (p_y > point.getY() - (getLength() / 2)));
+    return ((p_y < point.getY() + radius) && (p_y > point.getY() - radius));
   }
 
   public boolean isSelected() {
@@ -64,8 +64,12 @@ public abstract class Element {
     this.selectionStatus = false;
   }
 
+  public int getRadius() {
+    return radius;
+  }
+
   public int getWidth() {
-    return this.width;
+    return width;
   }
 
   public void setWidth(int width) {
@@ -73,7 +77,7 @@ public abstract class Element {
   }
 
   public int getLength() {
-    return this.length;
+    return length;
   }
 
   public void setLength(int length) {
@@ -81,7 +85,7 @@ public abstract class Element {
   }
 
   public boolean getSelectionStatus() {
-    return this.selectionStatus;
+    return selectionStatus;
   }
 
   public void setSelectionStatus(boolean selectionStatus) {

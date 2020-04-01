@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Controller.Controller;
@@ -20,6 +21,7 @@ public class CarriereDrawer {
   private final Controller controller;
   private Dimension initialDimension;
   private MainWindow.MeasurementUnitMode measurementMode;
+  private Element element;
 
   private int radius = 25;
 
