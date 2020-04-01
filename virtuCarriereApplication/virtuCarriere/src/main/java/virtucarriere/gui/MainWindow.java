@@ -63,10 +63,6 @@ public class MainWindow extends JFrame {
     this.currentMeasurementUnitMode = newMeasurementUnitMode;
   }
 
-  public void setCurrentApplicationMode(ApplicationMode newApplicationMode) {
-    this.currentApplicationMode = newApplicationMode;
-  }
-
   public DrawingPanel getDrawingPanel() {
     return this.drawingPanel;
   }
