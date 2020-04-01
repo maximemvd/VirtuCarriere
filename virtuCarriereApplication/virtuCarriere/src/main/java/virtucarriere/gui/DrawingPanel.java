@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -21,7 +22,8 @@ public class DrawingPanel extends JPanel implements Serializable {
 
   public Dimension initialDimension;
   private MainWindow mainWindow;
-  
+  AffineTransform tx = new AffineTransform();
+
   private double mouseX;
   private double mouseY;
 
@@ -36,11 +38,13 @@ public class DrawingPanel extends JPanel implements Serializable {
   public DrawingPanel(MainWindow mainWindow) {
     this.mainWindow = mainWindow;
     setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
-    int width = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
-    setPreferredSize(new Dimension(width, 1));
+    int width = mainWindow.getMainScrollPaneDimension().width;
+    int height = mainWindow.getMainScrollPaneDimension().height;
+    setPreferredSize(new Dimension(width, height));
     setVisible(true);
-    int height = (int) (width * 0.5);
-    this.initialDimension = new Dimension(width, height);
+
+    this.initialDimension = new Dimension(2400, 1800);
+    setBackground(Color.WHITE);
   }
 
   @Override
@@ -51,10 +55,10 @@ public class DrawingPanel extends JPanel implements Serializable {
       super.paintComponent(g);
       CarriereDrawer carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
       carriereDrawer.draw(g);
-      
-      //draw mouse coordinates
+
+      // draw mouse coordinates
       g.setColor(Color.black);
-      String s = mouseX + ", " + mouseY;
+      String s = " \n " + " " + mouseX + ", " + mouseY;
       g.drawString(s, (int) mouseX, (int) mouseY);
 
       Graphics2D g2d = (Graphics2D) g;
@@ -106,15 +110,15 @@ public class DrawingPanel extends JPanel implements Serializable {
       }
     }
   }
-  
-  public void setMouseX(double x){
-      this.mouseX = x;
+
+  public void setMouseX(double x) {
+    this.mouseX = x / zoom;
   }
-  
-  public void setMouseY(double y){
-      this.mouseY = y;
+
+  public void setMouseY(double y) {
+    this.mouseY = y / zoom;
   }
-  
+
   public double getZoom() {
     return this.zoom;
   }
@@ -155,6 +159,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     int newX = (int) (point.x * (1.1f - 1f) + ZoomFactor * pos.x);
     int newY = (int) (point.y * (1.1f - 1f) + ZoomFactor * pos.y);
     Point newPoint = new Point(newX, newY);
+    setMouseX(newX);
+    setMouseY(newY);
     mainWindow.setMainScrollPanePosition(newPoint);
     setDrawingPanelDimensions();
 
@@ -169,6 +175,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     int newX = (int) (point.x * (0.9f - 1f) + pos.x / ZoomFactor);
     int newY = (int) (point.y * (0.9f - 1f) + pos.y / ZoomFactor);
     Point newPoint = new Point(newX, newY);
+    setMouseX(newX);
+    setMouseY(newY);
     mainWindow.setMainScrollPanePosition(newPoint);
     setDrawingPanelDimensions();
 

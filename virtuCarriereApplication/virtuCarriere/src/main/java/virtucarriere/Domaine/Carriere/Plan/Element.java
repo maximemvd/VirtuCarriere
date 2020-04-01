@@ -14,43 +14,49 @@ public abstract class Element {
   private int width;
   private int length;
   private boolean selectionStatus;
+  private int radius;
 
   public Element(Point point, int p_width, int p_length, boolean p_selectionStatus) {
     this.point = point;
     this.width = p_width;
     this.length = p_length;
-    this.selectionStatus = p_selectionStatus;
+    this.selectionStatus = false;
+    this.radius = 25;
   }
 
   public Point getPoint() {
     return point;
   }
-  
-  public void setPoint(int p_x, int p_y){
-      this.point = new Point(p_x, p_y);
+
+  public void setPoint(int p_x, int p_y) {
+    this.point = new Point(p_x, p_y);
   }
-  
-  public double getX(){
-      return this.point.getX();
+
+  public double getX() {
+    return this.point.getX();
   }
-  
-  public double getY(){
-      return this.point.getY();
+
+  public double getY() {
+    return this.point.getY();
   }
 
   public boolean contains(double p_x, double p_y) {
-    return true;
+    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
   }
 
-  public boolean xIsInsideElementWidth(double p_x) {
-    return (this.point.getX() <= p_x && p_x <= this.point.getX() + this.width);
+  private boolean xIsInsideElementWidth(double p_x) {
+    return ((p_x < point.getX() + radius) && (p_x > point.getX() - radius));
   }
 
-  public boolean yIsInsideElementLength(double p_y) {
-    return (this.point.getY() <= p_y && p_y <= this.point.getY() + this.width);
+  private boolean yIsInsideElementLength(double p_y) {
+    return ((p_y < point.getY() + radius) && (p_y > point.getY() - radius));
   }
 
-  public void switchElementStatus() {
+  public boolean isSelected() {
+    return this.selectionStatus;
+  }
+
+  public void switchSelectionStatus() {
     this.selectionStatus = !this.selectionStatus;
   }
 
@@ -58,12 +64,12 @@ public abstract class Element {
     this.selectionStatus = false;
   }
 
-  public boolean isSelected() {
-    return this.selectionStatus;
+  public int getRadius() {
+    return radius;
   }
 
   public int getWidth() {
-    return this.width;
+    return width;
   }
 
   public void setWidth(int width) {
@@ -71,7 +77,7 @@ public abstract class Element {
   }
 
   public int getLength() {
-    return this.length;
+    return length;
   }
 
   public void setLength(int length) {
@@ -79,11 +85,16 @@ public abstract class Element {
   }
 
   public boolean getSelectionStatus() {
-    return this.selectionStatus;
+    return selectionStatus;
   }
 
   public void setSelectionStatus(boolean selectionStatus) {
     this.selectionStatus = selectionStatus;
+  }
+
+  public void translate(Point delta) {
+    this.point.x = (int) (this.point.x + delta.x);
+    this.point.y = (int) (this.point.y + delta.y);
   }
 
   public abstract Color getColor();

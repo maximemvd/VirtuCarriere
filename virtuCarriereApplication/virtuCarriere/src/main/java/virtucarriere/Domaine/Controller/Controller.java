@@ -6,6 +6,7 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
@@ -15,7 +16,7 @@ import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
-public class Controller {
+public class Controller implements Serializable {
 
   private double attribute;
 
@@ -46,26 +47,25 @@ public class Controller {
   }
 
   public void addCrible(Point mousePoint) {
-    Crible newCrible = new Crible(mousePoint, 2, 2, true, 2);
+    Crible newCrible = new Crible(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newCrible);
   }
 
   public void addConcasseur(Point mousePoint) {
-    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, true, 2);
+    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newConcasseur);
   }
 
   public void addBroyeur(Point mousePoint) {
-    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, true, 2);
+    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newBroyeur);
   }
   /*
-   public void addConvoyeur(Point mousePoint) {
-     Noeud noeud = new Noeud(mousePoint, 1, 1, true);
-     Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, true, 2, noeud);
-     elementContainer.addEquipement(newConvoyeur);
-   }
-
+    public void addConvoyeur(Point mousePoint) {
+      Noeud noeud = new Noeud(mousePoint, 1, 1, false);
+      Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, false, 2, noeud);
+      elementContainer.addEquipement(newConvoyeur);
+    }
   */
 
   public void addEquipement(EquipementModes mode, Point mousePoint) {
@@ -98,12 +98,16 @@ public class Controller {
   }
 
   public void addNoeud(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 1, 1, true);
+    Noeud noeud = new Noeud(mousePoint, 1, 1, false);
     elementContainer.addNoeud(noeud);
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
     this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
+  }
+
+  public void updateSelectedItemsPositions(Point delta) {
+    elementContainer.updateSelectedItemsPosition(delta);
   }
 
   public ElementContainer getElementContainer() {

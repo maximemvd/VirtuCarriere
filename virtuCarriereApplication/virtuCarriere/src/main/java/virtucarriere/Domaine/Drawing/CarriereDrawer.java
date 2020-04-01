@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Controller.Controller;
@@ -20,6 +21,7 @@ public class CarriereDrawer {
   private final Controller controller;
   private Dimension initialDimension;
   private MainWindow.MeasurementUnitMode measurementMode;
+  private Element element;
 
   private int radius = 25;
 
@@ -29,11 +31,11 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics g) {
-    drawCarriere(g);
+    // drawCarriere(g);
     drawEquipement(g);
     drawNoeud(g);
   }
-  
+
   public void drawCarriere(Graphics g) {
     int width = (int) initialDimension.getWidth();
     int height = (int) initialDimension.getHeight();
@@ -46,6 +48,15 @@ public class CarriereDrawer {
     equipements.forEach(
         (equipement) -> {
           Point equipementPoint = equipement.getPoint();
+          if (equipement.isSelected()) {
+            g.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius + 2;
+            g.fillOval(
+                (int) equipementPoint.getX() - offsetRadius,
+                (int) equipementPoint.getY() - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
           Color equipementColor = equipement.getColor();
           g.setColor(equipementColor);
           g.fillOval(
@@ -63,6 +74,15 @@ public class CarriereDrawer {
     noeuds.forEach(
         (noeud) -> {
           Point noeudPoint = noeud.getPoint();
+          if (noeud.isSelected()) {
+            g.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius / 2 + 2;
+            g.fillOval(
+                (int) noeud.getX() - offsetRadius,
+                (int) noeud.getY() - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
           Color noeudColor = noeud.getColor();
           g.setColor(noeudColor);
           g.fillOval(
