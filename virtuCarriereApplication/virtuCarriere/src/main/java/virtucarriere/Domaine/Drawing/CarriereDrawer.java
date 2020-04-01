@@ -31,8 +31,8 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics g) {
+    drawCarriere(g);
     drawEquipement(g);
-    // drawCarriere(g);
     drawNoeud(g);
   }
 
@@ -48,7 +48,6 @@ public class CarriereDrawer {
     equipements.forEach(
         (equipement) -> {
           Point equipementPoint = equipement.getPoint();
-          System.out.println(equipement.isSelected());
           if (equipement.isSelected()) {
             g.setColor(new Color(255, 0, 0));
             int offsetRadius = radius + 2;
@@ -75,6 +74,15 @@ public class CarriereDrawer {
     noeuds.forEach(
         (noeud) -> {
           Point noeudPoint = noeud.getPoint();
+          if (noeud.isSelected()) {
+            g.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius / 2 + 2;
+            g.fillOval(
+                (int) noeud.getX() - offsetRadius,
+                (int) noeud.getY() - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
           Color noeudColor = noeud.getColor();
           g.setColor(noeudColor);
           g.fillOval(
