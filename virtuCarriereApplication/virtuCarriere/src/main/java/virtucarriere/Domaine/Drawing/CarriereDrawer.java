@@ -9,8 +9,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.HashMap;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
+import virtucarriere.Domaine.Carriere.Plan.Broyeur;
+import virtucarriere.Domaine.Carriere.Plan.Concasseur;
+import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
@@ -28,10 +32,14 @@ public class CarriereDrawer {
   private Element element;
 
   private int radius = 25;
+  private HashMap<String, Color> equipementColor = new HashMap<>();
 
   public CarriereDrawer(Controller controller, Dimension initialDimension) {
     this.controller = controller;
     this.initialDimension = initialDimension;
+    equipementColor.put(Broyeur.class.getName(), Color.GREEN);
+    equipementColor.put(Concasseur.class.getName(), Color.PINK);
+    equipementColor.put(Crible.class.getName(), Color.RED);
   }
 
   public void draw(Graphics g) {
@@ -63,7 +71,7 @@ public class CarriereDrawer {
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
-          Color equipementColor = equipement.getColor();
+          Color equipementColor = getColor(equipement);
           g.setColor(equipementColor);
           g.fillOval(
               (int) equipementPoint.getX() - radius,
@@ -71,6 +79,10 @@ public class CarriereDrawer {
               radius * 2,
               radius * 2);
         });
+  }
+
+  private Color getColor(Equipement equipement) {
+    return equipementColor.get(equipement.getClass().getName());
   }
 
   public void drawCamion(Graphics g) {};
