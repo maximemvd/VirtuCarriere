@@ -26,16 +26,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ouvrir un projet"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuOuvrirProjetActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuSauvegarderProjet">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sauvegarder"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSauvegarderProjetActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuSauvegarderSous">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sauvegarder sous..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSauvegarderSousActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuQuitter">
               <Properties>

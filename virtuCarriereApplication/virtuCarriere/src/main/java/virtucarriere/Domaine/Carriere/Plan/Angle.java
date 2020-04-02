@@ -5,7 +5,9 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-public class Angle {
+import java.io.Serializable;
+
+public class Angle implements Serializable {
   private Double degree;
 
   Angle(double degree) {

@@ -6,8 +6,9 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
+import java.io.Serializable;
 
-public abstract class Element {
+public abstract class Element implements Serializable {
 
   private Point point;
   private int width;

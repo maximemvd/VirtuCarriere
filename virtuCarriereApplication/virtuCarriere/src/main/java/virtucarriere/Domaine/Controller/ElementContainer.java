@@ -8,6 +8,8 @@ package virtucarriere.Domaine.Controller;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.*;
+import java.io.Serializable;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
@@ -15,7 +17,7 @@ import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
-public class ElementContainer {
+public class ElementContainer implements Serializable {
 
   private List<Equipement> equipementList;
 
@@ -28,6 +30,8 @@ public class ElementContainer {
   private List<Arc> arcList;
 
   private List<Object> selectionList;
+  
+  static File file;
 
   public ElementContainer() {
     equipementList = new LinkedList<Equipement>();
@@ -120,6 +124,14 @@ public class ElementContainer {
 
   public double getNumberOfNoeudList() {
     return noeudList.size();
+  }
+  
+  public void setFile(File p_file){
+      this.file = p_file;
+  }
+  
+  public File getFile(){
+      return this.file;
   }
 
   public void addEquipement(Equipement p_equipement) {

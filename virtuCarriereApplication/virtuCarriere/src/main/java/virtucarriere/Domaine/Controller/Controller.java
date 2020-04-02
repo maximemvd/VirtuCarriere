@@ -9,6 +9,10 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileInputStream;
+import java.io.*;
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
@@ -186,6 +190,52 @@ public class Controller implements Serializable {
     }
   }
 
+  public void OpenFile(){
+    JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+    chooser.setDialogTitle("Open");
+    int returnValue = chooser.showDialog(null, "Open");
+
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = chooser.getSelectedFile();
+        try {
+            FileInputStream inputFile = new FileInputStream(new File(String.valueOf(selectedFile)));
+            ObjectInputStream inputObject = new ObjectInputStream(inputFile);
+            setElement((ElementContainer) inputObject.readObject());
+            System.out.println(selectedFile);
+            selectedFile = new File(String.valueOf(selectedFile).substring(0, String.valueOf(selectedFile).lastIndexOf('.')));
+            elementContainer.setFile(selectedFile);
+            
+
+        } catch (IOException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+  }
+ 
+  public void SaveAs(){
+      
+    JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+    chooser.setDialogTitle("Save");
+    int returnValue = chooser.showDialog(null, "Save");
+
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = chooser.getSelectedFile();
+        try {
+            FileOutputStream fileOut = new FileOutputStream(selectedFile + ".ser");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this.elementContainer);
+            objectOut.close();
+            elementContainer.setFile(selectedFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+  }
+  
   public void undo() {}
 
   public void redo() {}
