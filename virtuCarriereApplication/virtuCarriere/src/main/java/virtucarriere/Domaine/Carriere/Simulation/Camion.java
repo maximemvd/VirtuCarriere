@@ -5,8 +5,8 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-import java.util.ArrayList;
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class Camion extends Vehicule {
 

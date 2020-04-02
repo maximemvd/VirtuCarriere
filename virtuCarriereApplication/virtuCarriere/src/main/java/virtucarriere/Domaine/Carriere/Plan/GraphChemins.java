@@ -12,6 +12,23 @@ public class GraphChemins extends AbstractGraph<Noeud, Arc> {
     return arc.getCost();
   }
 
+  public Vector<Noeud> getShortestPath(Vector<Noeud> stops) {
+    Vector<Noeud> results = new Vector<>();
+
+    Noeud treating = stops.elementAt(0);
+    Noeud next = stops.elementAt(1);
+    results.add(treating);
+    stops.remove(treating);
+
+    do {
+      treating = next;
+      next = stops.elementAt(1);
+      Vector<Noeud> intermediateResult = getShortestPathBetweenTwoNoeuds(treating, next);
+      stops.remove(treating);
+    } while (!(stops.size() == 1));
+    return results;
+  }
+
   public Vector<Noeud> getShortestPathBetweenTwoNoeuds(Noeud start, Noeud end) {
     Vector<DataDijkstra> result = new Vector<DataDijkstra>();
     List<DataDijkstra> data = new java.util.ArrayList<>(Collections.emptyList());
@@ -54,31 +71,38 @@ public class GraphChemins extends AbstractGraph<Noeud, Arc> {
 
     } while (!data.isEmpty());
 
+    DataDijkstra endOfPath =
+        result.stream().filter(dataDijkstra -> dataDijkstra.getEnd() == end).findFirst().get();
+
+    if (endOfPath.getTotalCost() == Double.MAX_VALUE)
+      throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");
+
     return buildPath(start, end, result);
   }
 
   private Vector<Noeud> buildPath(Noeud start, Noeud end, Vector<DataDijkstra> afterAlgo) {
-    Vector<Noeud> path = new Vector<Noeud>();
+    Vector<Noeud> path = new Vector<>();
 
     final Noeud[] now = {end};
-    Optional<DataDijkstra> treating;
+    Optional<DataDijkstra> treating =
+        afterAlgo.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(now[0])).findFirst();
     do {
-      treating =
-          afterAlgo.stream()
-              .filter(dataDijkstra -> dataDijkstra.getEnd().equals(now[0]))
-              .findFirst();
       treating.ifPresent(
           dataDijkstra -> {
             path.add(dataDijkstra.getPredecessor());
             now[0] = dataDijkstra.getPredecessor();
           });
-    } while (!start.equals(now[0]));
+      treating =
+          afterAlgo.stream()
+              .filter(dataDijkstra -> dataDijkstra.getEnd().equals(now[0]))
+              .findFirst();
+    } while (!start.equals(treating.get().getEnd()));
 
     Collections.reverse(path);
     return path;
   }
 
-  private class DataDijkstra {
+  private static class DataDijkstra {
 
     private Noeud predecessor = null;
     private Noeud end;
