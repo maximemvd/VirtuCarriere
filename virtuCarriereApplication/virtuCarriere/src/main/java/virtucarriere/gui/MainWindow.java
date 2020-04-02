@@ -748,6 +748,7 @@ public class MainWindow extends JFrame {
 
   public void rafraichissementTextField() {
     jTextArea1.setText("");
+    jTextField2.setText("0");
     int numTotal = 0;
     int numNoeud = 0;
     int numTas = 0;

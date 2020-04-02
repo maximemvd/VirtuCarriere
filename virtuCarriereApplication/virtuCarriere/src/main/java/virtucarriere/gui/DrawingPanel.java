@@ -58,7 +58,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
       // draw mouse coordinates
       g.setColor(Color.black);
-      String s = " \n " + " " + mouseX + ", " + mouseY;
+      String s = " \n " + " " + (int) mouseX + ", " + (int) mouseY;
       g.drawString(s, (int) mouseX, (int) mouseY);
 
       Graphics2D g2d = (Graphics2D) g;
