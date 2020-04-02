@@ -107,6 +107,10 @@ public class Controller implements Serializable {
       }
   }
 
+  public void removeEquipement(Equipement equipement) {
+    elementContainer.removeEquipement(equipement);
+  }
+
   public void addTas(Point mousePoint) {
     Tas tas = new Tas(mousePoint, 1, 1, false, "matériaux", 2);
     elementContainer.addNoeud(tas);
@@ -117,9 +121,17 @@ public class Controller implements Serializable {
     elementContainer.addNoeud(noeud);
   }
 
+  public void removeNoeud(Noeud noeud) {
+    elementContainer.removeNoeud(noeud);
+  }
+
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, false, 4);
     elementContainer.addEntree(entree);
+  }
+
+  public void removeEntree(Entree entree) {
+    elementContainer.removeEntree(entree);
   }
 
   public void addArc(Point mousePoint, Noeud firstNoeud, Noeud secondNoeud) {
@@ -145,6 +157,10 @@ public class Controller implements Serializable {
 
   public List<Arc> getArcList() {
     return elementContainer.getArcList();
+  }
+
+  public List<Object> getSelectionList() {
+    return elementContainer.getSelectionList();
   }
 
   public List<Entree> getEntreeList() {

@@ -27,30 +27,36 @@ public class ElementContainer {
 
   private List<Arc> arcList;
 
+  private List<Object> selectionList;
+
   public ElementContainer() {
     equipementList = new LinkedList<Equipement>();
     vehiculeList = new LinkedList<Camion>();
     noeudList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
     arcList = new LinkedList<Arc>();
+    selectionList = new LinkedList<Object>();
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
     for (Element item : this.equipementList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
+        selectionList.add(item);
       }
     }
 
     for (Element item : this.noeudList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
+        selectionList.add(item);
       }
     }
 
     for (Element item : this.entreeList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
+        selectionList.add(item);
       }
     }
   }
@@ -82,6 +88,10 @@ public class ElementContainer {
 
   public List<Equipement> getEquipemenetList() {
     return equipementList;
+  }
+
+  public List<Object> getSelectionList() {
+    return selectionList;
   }
 
   public List<Camion> getVehiculeList() {

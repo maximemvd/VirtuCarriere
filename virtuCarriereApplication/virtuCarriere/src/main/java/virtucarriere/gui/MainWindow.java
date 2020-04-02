@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -83,6 +84,7 @@ public class MainWindow extends JFrame {
     mainPanel = new javax.swing.JPanel();
     buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
     modeSelection = new javax.swing.JToggleButton();
+    toutEffacerButton = new javax.swing.JButton();
     mainScrollPane = new javax.swing.JScrollPane();
     drawingPanel = new virtucarriere.gui.DrawingPanel(this);
     jPanel1 = new javax.swing.JPanel();
@@ -101,6 +103,8 @@ public class MainWindow extends JFrame {
     entreeButton = new javax.swing.JButton();
     jLabel5 = new javax.swing.JLabel();
     arcButton = new javax.swing.JButton();
+    deleteButton = new javax.swing.JButton();
+    jLabel6 = new javax.swing.JLabel();
     jPanel3 = new javax.swing.JPanel();
     ajoutCamion = new javax.swing.JToggleButton();
     ajoutChargeur = new javax.swing.JToggleButton();
@@ -152,6 +156,15 @@ public class MainWindow extends JFrame {
           }
         });
     buttonTopPanel.add(modeSelection);
+
+    toutEffacerButton.setText("Tout effacer");
+    toutEffacerButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            toutEffacerButtonActionPerformed(evt);
+          }
+        });
+    buttonTopPanel.add(toutEffacerButton);
 
     mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
 
@@ -261,6 +274,16 @@ public class MainWindow extends JFrame {
           }
         });
 
+    deleteButton.setText("Delete");
+    deleteButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteButtonActionPerformed(evt);
+          }
+        });
+
+    jLabel6.setText("Supprimer élément sélectionné");
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -301,24 +324,6 @@ public class MainWindow extends JFrame {
                                                         39,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(
-                                jPanel2Layout
-                                    .createSequentialGroup()
-                                    .addGroup(
-                                        jPanel2Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addGroup(
-                                                jPanel2Layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(jLabel5)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addComponent(arcButton)))
-                                    .addContainerGap(
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel2Layout
@@ -365,7 +370,37 @@ public class MainWindow extends JFrame {
                                                 jPanel2Layout
                                                     .createSequentialGroup()
                                                     .addComponent(entreeButton)
-                                                    .addGap(87, 87, 87)))))));
+                                                    .addGap(87, 87, 87))))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel5)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
+                                                    .addComponent(arcButton)))
+                                    .addContainerGap(89, Short.MAX_VALUE))))
+            .addGroup(
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabel6)
+                    .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteButton)
+                    .addGap(81, 81, 81)));
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,7 +442,11 @@ public class MainWindow extends JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(arcButton)))
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(deleteButton)
+                    .addGap(19, 19, 19)
                     .addGroup(
                         jPanel2Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -620,6 +659,57 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void deleteButtonActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteButtonActionPerformed
+    List<Equipement> equipements = controller.getEquipementList();
+    List<Noeud> noeuds = controller.getNoeudList();
+    List<Entree> entrees = controller.getEntreeList();
+
+    for (Equipement equipement : equipements) {
+      if (equipement.isSelected()) {
+        controller.removeEquipement(equipement);
+        drawingPanel.repaint();
+      }
+    }
+    for (Noeud noeud : noeuds) {
+      if (noeud.isSelected()) {
+        controller.removeNoeud(noeud);
+        drawingPanel.repaint();
+      }
+    }
+    for (Entree entree : entrees) {
+      if (entree.isSelected()) {
+        controller.removeEntree(entree);
+        drawingPanel.repaint();
+      }
+    }
+    rafraichissementTextField();
+    drawingPanel.repaint();
+  } // GEN-LAST:event_deleteButtonActionPerformed
+
+  private void toutEffacerButtonActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_toutEffacerButtonActionPerformed
+    List<Equipement> equipements = controller.getEquipementList();
+    List<Noeud> noeuds = controller.getNoeudList();
+    List<Entree> entrees = controller.getEntreeList();
+
+    for (Equipement equipement : equipements) {
+      controller.removeEquipement(equipement);
+      drawingPanel.repaint();
+    }
+
+    for (Noeud noeud : noeuds) {
+      controller.removeNoeud(noeud);
+      drawingPanel.repaint();
+    }
+
+    for (Entree entree : entrees) {
+      controller.removeEntree(entree);
+      drawingPanel.repaint();
+    }
+    drawingPanel.repaint();
+  } // GEN-LAST:event_toutEffacerButtonActionPerformed
+
   private void arcButtonActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_arcButtonActionPerformed
     this.setMode(EquipementModes.ARC);
@@ -642,6 +732,19 @@ public class MainWindow extends JFrame {
   private void jTextArea1ComponentAdded(
       java.awt.event.ContainerEvent evt) { // GEN-FIRST:event_jTextArea1ComponentAdded
   } // GEN-LAST:event_jTextArea1ComponentAdded
+
+  public void keyPressed(KeyEvent evt) {
+    if (evt.getKeyChar() == KeyEvent.VK_DELETE) {
+      List<Equipement> equipements = controller.getEquipementList();
+      List<Noeud> noeuds = controller.getNoeudList();
+      List<Entree> entrees = controller.getEntreeList();
+      for (Equipement equipement : equipements) {
+        if (equipement.isSelected()) {
+          controller.removeEquipement(equipement);
+        }
+      }
+    }
+  }
 
   public void rafraichissementTextField() {
     jTextArea1.setText("");
@@ -948,6 +1051,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JButton arcButton;
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.JPanel buttonTopPanel;
+  private javax.swing.JButton deleteButton;
   private virtucarriere.gui.DrawingPanel drawingPanel;
   private javax.swing.JMenu editionMenu;
   private javax.swing.JButton entreeButton;
@@ -963,6 +1067,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JMenuItem jMenuItem6;
   private javax.swing.JPanel jPanel1;
@@ -987,5 +1092,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem menuUndo;
   private javax.swing.JMenuItem menuZoomer;
   private javax.swing.JToggleButton modeSelection;
+  private javax.swing.JButton toutEffacerButton;
   // End of variables declaration//GEN-END:variables
 }
