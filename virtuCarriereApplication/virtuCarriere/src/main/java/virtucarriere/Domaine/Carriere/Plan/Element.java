@@ -53,7 +53,7 @@ public abstract class Element {
   }
 
   public boolean isSelected() {
-    return this.selectionStatus;
+    return selectionStatus;
   }
 
   public void switchSelectionStatus() {

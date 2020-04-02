@@ -12,8 +12,10 @@ import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
+import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
 public class Controller implements Serializable {
@@ -26,12 +28,15 @@ public class Controller implements Serializable {
   private ElementContainer elementContainer;
 
   public enum EquipementModes {
+    RIEN,
     CONCASSEUR,
     CRIBLE,
     BROYEUR,
     CONVOYEUR,
     NOEUD,
-    TAS
+    TAS,
+    ENTREE,
+    CAMION
   }
 
   public Controller(ElementContainer elementContainer) {
@@ -88,18 +93,35 @@ public class Controller implements Serializable {
         case NOEUD:
           addNoeud(mousePoint);
           break;
+        case TAS:
+          addTas(mousePoint);
+          break;
+        case ENTREE:
+          addEntree(mousePoint);
+          break;
         default:
           break;
       }
   }
 
   public void addTas(Point mousePoint) {
-    System.out.print("hey");
+    Tas tas = new Tas(mousePoint, 1, 1, false, "matériaux", 2);
+    elementContainer.addNoeud(tas);
   }
 
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 1, 1, false);
     elementContainer.addNoeud(noeud);
+  }
+
+  public void addEntree(Point mousePoint) {
+    Entree entree = new Entree(mousePoint, 3, 3, false, 4);
+    elementContainer.addEntree(entree);
+  }
+
+  public void addCamion(Point mousePoint) {
+    // Camion camion = new Camion();
+
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -116,6 +138,10 @@ public class Controller implements Serializable {
 
   public List<Equipement> getEquipementList() {
     return elementContainer.getEquipemenetList();
+  }
+
+  public List<Entree> getEntreeList() {
+    return elementContainer.getEntreeList();
   }
 
   public List<Camion> getCamionList() {

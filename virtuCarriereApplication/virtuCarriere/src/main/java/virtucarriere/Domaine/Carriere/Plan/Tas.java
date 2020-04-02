@@ -13,6 +13,7 @@ public class Tas extends Noeud {
   private String materialCode;
   private double dimension;
   private Color color;
+  private String name;
 
   public Tas(
       Point point,
@@ -24,10 +25,15 @@ public class Tas extends Noeud {
     super(point, p_width, p_length, p_selectionStatus);
     this.materialCode = materialCode;
     this.dimension = dimension;
-    this.color = Color.WHITE;
+    this.color = Color.BLACK;
+    this.name = "Tas";
   }
 
   public Color getColor() {
     return color;
+  }
+
+  public String getName() {
+    return name;
   }
 }

@@ -11,15 +11,18 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Element;
+import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Controller.Controller;
+import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
 
 public class CarriereDrawer {
 
   private final Controller controller;
   private Dimension initialDimension;
+  private DrawingPanel drawingPanel;
   private MainWindow.MeasurementUnitMode measurementMode;
   private Element element;
 
@@ -34,11 +37,12 @@ public class CarriereDrawer {
     // drawCarriere(g);
     drawEquipement(g);
     drawNoeud(g);
+    drawEntree(g);
   }
 
   public void drawCarriere(Graphics g) {
-    int width = (int) initialDimension.getWidth();
-    int height = (int) initialDimension.getHeight();
+    int width = (int) initialDimension.getWidth() / (int) drawingPanel.getZoom();
+    int height = (int) initialDimension.getHeight() / (int) drawingPanel.getZoom();
     g.setColor(Color.ORANGE);
     g.fillRect(0, 0, width, height);
   }
@@ -90,6 +94,30 @@ public class CarriereDrawer {
               (int) noeudPoint.getY() - radius / 2,
               radius,
               radius);
+        });
+  }
+
+  public void drawEntree(Graphics g) {
+    List<Entree> entrees = controller.getEntreeList();
+    entrees.forEach(
+        (entree) -> {
+          Point entreePoint = entree.getPoint();
+          if (entree.isSelected()) {
+            g.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius + 2;
+            g.fillRect(
+                (int) entree.getX() - offsetRadius,
+                (int) entree.getY() - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
+          Color entreeColor = entree.getColor();
+          g.setColor(entreeColor);
+          g.fillRect(
+              (int) entreePoint.getX() - radius,
+              (int) entreePoint.getY() - radius,
+              radius * 2,
+              radius * 2);
         });
   }
 

@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Element;
+import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -21,10 +22,13 @@ public class ElementContainer {
 
   private List<Camion> vehiculeList;
 
+  private List<Entree> entreeList;
+
   public ElementContainer() {
     equipementList = new LinkedList<Equipement>();
     vehiculeList = new LinkedList<Camion>();
     noeudList = new LinkedList<Noeud>();
+    entreeList = new LinkedList<Entree>();
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -35,6 +39,12 @@ public class ElementContainer {
     }
 
     for (Element item : this.noeudList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Element item : this.entreeList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
       }
@@ -78,6 +88,10 @@ public class ElementContainer {
     return noeudList;
   }
 
+  public List<Entree> getEntreeList() {
+    return entreeList;
+  }
+
   public double getNumberOfEquipementList() {
     return equipementList.size();
   }
@@ -113,6 +127,18 @@ public class ElementContainer {
   public void removeCamion(Camion p_camion) {
     try {
       vehiculeList.remove(p_camion);
+    } catch (Exception error) {
+      System.out.println(error);
+    }
+  }
+
+  public void addEntree(Entree newEntree) {
+    entreeList.add(newEntree);
+  }
+
+  public void removeEntree(Entree p_entree) {
+    try {
+      entreeList.remove(p_entree);
     } catch (Exception error) {
       System.out.println(error);
     }
