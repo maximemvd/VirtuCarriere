@@ -45,7 +45,6 @@ public class Arc extends AbstractLien<Noeud> {
     return starting;
   }
 
-  @Override
   public Color getColor() {
     return color;
   }

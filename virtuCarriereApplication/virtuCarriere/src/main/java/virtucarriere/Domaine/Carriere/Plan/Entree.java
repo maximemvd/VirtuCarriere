@@ -23,7 +23,6 @@ public class Entree extends Element {
     this.name = "Entrée";
   }
 
-  @Override
   public Color getColor() {
     return color;
   }

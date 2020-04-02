@@ -5,7 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-import java.awt.Color;
 import java.awt.Point;
 
 public class Convoyeur extends AbstractLien<Equipement> {
@@ -13,14 +12,11 @@ public class Convoyeur extends AbstractLien<Equipement> {
   private Noeud destination;
   private String name;
 
-  private Color color;
-
   public Convoyeur(
       Point point, int p_width, int p_length, boolean p_selectionStatus, Noeud p_destination) {
     super(point, p_width, p_length, p_selectionStatus);
 
     this.destination = p_destination;
-    this.color = Color.magenta;
     this.name = "Convoyeur";
   }
 
@@ -30,10 +26,6 @@ public class Convoyeur extends AbstractLien<Equipement> {
 
   public Noeud getDestination() {
     return this.destination;
-  }
-
-  public Color getColor() {
-    return color;
   }
 
   public String getName() {
