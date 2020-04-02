@@ -5,7 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-import java.awt.Color;
 import java.awt.Point;
 
 public abstract class Element {
@@ -96,6 +95,4 @@ public abstract class Element {
     this.point.x = (int) (this.point.getX() + delta.getX());
     this.point.y = (int) (this.point.getY() + delta.getY());
   }
-
-  public abstract Color getColor();
 }

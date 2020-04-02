@@ -5,7 +5,6 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 
@@ -30,8 +29,6 @@ public abstract class Equipement extends Element {
   public double getAngle() {
     return angle.get();
   }
-
-  public abstract Color getColor();
 
   public void setAngle(double p_angle) {
     angle.set(p_angle);
