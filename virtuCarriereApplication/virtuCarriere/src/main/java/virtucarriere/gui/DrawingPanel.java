@@ -141,8 +141,8 @@ public class DrawingPanel extends JPanel implements Serializable {
 
   public void setGridLines() {
     initialDimension = mainWindow.getMainScrollPaneDimension();
-    this.grilleActivee = !grilleActivee;
-    this.repaint();
+    grilleActivee = !grilleActivee;
+    repaint();
   }
 
   public double getGapGrille() {
