@@ -71,11 +71,17 @@ public class GraphChemins extends AbstractGraph<Noeud, Arc> {
 
     } while (!data.isEmpty());
 
+    DataDijkstra endOfPath =
+        result.stream().filter(dataDijkstra -> dataDijkstra.getEnd() == end).findFirst().get();
+
+    if (endOfPath.getTotalCost() == Double.MAX_VALUE)
+      throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");
+
     return buildPath(start, end, result);
   }
 
   private Vector<Noeud> buildPath(Noeud start, Noeud end, Vector<DataDijkstra> afterAlgo) {
-    Vector<Noeud> path = new Vector<Noeud>();
+    Vector<Noeud> path = new Vector<>();
 
     final Noeud[] now = {end};
     Optional<DataDijkstra> treating =
