@@ -8,6 +8,7 @@ package virtucarriere.Domaine.Controller;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
@@ -24,11 +25,14 @@ public class ElementContainer {
 
   private List<Entree> entreeList;
 
+  private List<Arc> arcList;
+
   public ElementContainer() {
     equipementList = new LinkedList<Equipement>();
     vehiculeList = new LinkedList<Camion>();
     noeudList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
+    arcList = new LinkedList<Arc>();
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -92,6 +96,10 @@ public class ElementContainer {
     return entreeList;
   }
 
+  public List<Arc> getArcList() {
+    return arcList;
+  }
+
   public double getNumberOfEquipementList() {
     return equipementList.size();
   }
@@ -134,6 +142,18 @@ public class ElementContainer {
 
   public void addEntree(Entree newEntree) {
     entreeList.add(newEntree);
+  }
+
+  public void addArc(Arc newArc) {
+    arcList.add(newArc);
+  }
+
+  public void removeArc(Arc p_arc) {
+    try {
+      arcList.remove(p_arc);
+    } catch (Exception error) {
+      System.out.println(error);
+    }
   }
 
   public void removeEntree(Entree p_entree) {

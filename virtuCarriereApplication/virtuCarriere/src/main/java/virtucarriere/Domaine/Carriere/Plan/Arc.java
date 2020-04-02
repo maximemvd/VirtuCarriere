@@ -28,8 +28,10 @@ public class Arc extends AbstractLien<Noeud> {
 
     this.starting = starting;
     this.arrival = arrival;
+    this.color = Color.green;
   }
 
+  @Override
   public Noeud getArrival() {
     return arrival;
   }
@@ -38,8 +40,13 @@ public class Arc extends AbstractLien<Noeud> {
     return cout;
   }
 
+  @Override
+  public Noeud getStarting() {
+    return starting;
+  }
+
+  @Override
   public Color getColor() {
-    System.out.print(color);
     return color;
   }
 

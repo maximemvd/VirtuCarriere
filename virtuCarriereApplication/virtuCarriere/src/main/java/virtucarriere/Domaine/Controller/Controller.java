@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
@@ -36,7 +37,7 @@ public class Controller implements Serializable {
     NOEUD,
     TAS,
     ENTREE,
-    CAMION
+    ARC
   }
 
   public Controller(ElementContainer elementContainer) {
@@ -99,6 +100,8 @@ public class Controller implements Serializable {
         case ENTREE:
           addEntree(mousePoint);
           break;
+        case ARC:
+          // addArc(mousePoint)
         default:
           break;
       }
@@ -119,9 +122,9 @@ public class Controller implements Serializable {
     elementContainer.addEntree(entree);
   }
 
-  public void addCamion(Point mousePoint) {
-    // Camion camion = new Camion();
-
+  public void addArc(Point mousePoint, Noeud firstNoeud, Noeud secondNoeud) {
+    Arc arc = new Arc(mousePoint, 5, 1, false, firstNoeud, secondNoeud);
+    elementContainer.addArc(arc);
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -138,6 +141,10 @@ public class Controller implements Serializable {
 
   public List<Equipement> getEquipementList() {
     return elementContainer.getEquipemenetList();
+  }
+
+  public List<Arc> getArcList() {
+    return elementContainer.getArcList();
   }
 
   public List<Entree> getEntreeList() {

@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
@@ -38,6 +39,7 @@ public class CarriereDrawer {
     drawEquipement(g);
     drawNoeud(g);
     drawEntree(g);
+    drawArc(g);
   }
 
   public void drawCarriere(Graphics g) {
@@ -118,6 +120,23 @@ public class CarriereDrawer {
               (int) entreePoint.getY() - radius,
               radius * 2,
               radius * 2);
+        });
+  }
+
+  public void drawArc(Graphics g) {
+    List<Arc> arcs = controller.getArcList();
+    arcs.forEach(
+        (arc) -> {
+          Noeud startingNoeud = arc.getStarting();
+          Noeud arrivalNoeud = arc.getArrival();
+          Color arcColor = arc.getColor();
+
+          g.setColor(arcColor);
+          g.drawLine(
+              (int) startingNoeud.getX(),
+              (int) startingNoeud.getY(),
+              (int) arrivalNoeud.getX(),
+              (int) arrivalNoeud.getY());
         });
   }
 

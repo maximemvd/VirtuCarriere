@@ -99,6 +99,8 @@ public class MainWindow extends JFrame {
     jComboBox2 = new javax.swing.JComboBox<>();
     jLabel4 = new javax.swing.JLabel();
     entreeButton = new javax.swing.JButton();
+    jLabel5 = new javax.swing.JLabel();
+    arcButton = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
     ajoutCamion = new javax.swing.JToggleButton();
     ajoutChargeur = new javax.swing.JToggleButton();
@@ -249,6 +251,16 @@ public class MainWindow extends JFrame {
           }
         });
 
+    jLabel5.setText("Ajouter un Arc");
+
+    arcButton.setText("Arc");
+    arcButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            arcButtonActionPerformed(evt);
+          }
+        });
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -261,17 +273,57 @@ public class MainWindow extends JFrame {
                     .addGroup(
                         jPanel2Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(
+                                jScrollPane1,
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                261,
+                                Short.MAX_VALUE)
                             .addGroup(
                                 jPanel2Layout
                                     .createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addContainerGap(117, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel1)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
+                                                    .addComponent(
+                                                        jTextField2,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        39,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel5)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
+                                                    .addComponent(arcButton)))
+                                    .addContainerGap(
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel2Layout
                                     .createSequentialGroup()
-                                    .addGap(0, 64, Short.MAX_VALUE)
+                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addGroup(
                                         jPanel2Layout
                                             .createParallelGroup(
@@ -307,36 +359,13 @@ public class MainWindow extends JFrame {
                                                                     .DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout
                                                                     .PREFERRED_SIZE))
-                                                    .addGap(64, 64, 64))))
-                            .addGroup(
-                                jPanel2Layout
-                                    .createSequentialGroup()
-                                    .addGroup(
-                                        jPanel2Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
+                                                    .addGap(64, 64, 64))
                                             .addGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING,
                                                 jPanel2Layout
                                                     .createSequentialGroup()
-                                                    .addComponent(jLabel1)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addComponent(
-                                                        jTextField2,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        39,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(
-                javax.swing.GroupLayout.Alignment.TRAILING,
-                jPanel2Layout
-                    .createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(entreeButton)
-                    .addGap(87, 87, 87)));
+                                                    .addComponent(entreeButton)
+                                                    .addGap(87, 87, 87)))))));
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,8 +393,21 @@ public class MainWindow extends JFrame {
                     .addComponent(jLabel4)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(entreeButton)
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addComponent(jLabel5))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(arcButton)))
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                     .addGroup(
                         jPanel2Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -577,6 +619,11 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void arcButtonActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_arcButtonActionPerformed
+    this.setMode(EquipementModes.ARC);
+  } // GEN-LAST:event_arcButtonActionPerformed
 
   private void jComboBox2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox2ActionPerformed
@@ -898,6 +945,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JToggleButton ajoutChargeur;
   private javax.swing.JToggleButton ajoutElement;
   private javax.swing.JToggleButton ajoutSimulation;
+  private javax.swing.JButton arcButton;
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.JPanel buttonTopPanel;
   private virtucarriere.gui.DrawingPanel drawingPanel;
@@ -914,6 +962,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JMenuItem jMenuItem6;
   private javax.swing.JPanel jPanel1;
