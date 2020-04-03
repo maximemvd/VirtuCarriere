@@ -6,11 +6,11 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
+import java.io.*;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileInputStream;
-import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
@@ -22,6 +22,8 @@ import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 
 public class Controller implements Serializable {
 
@@ -42,6 +44,12 @@ public class Controller implements Serializable {
     TAS,
     ENTREE,
     ARC
+  }
+
+  public enum VehiculeModes {
+    NOTHING,
+    CAMION,
+    CHARGEUR
   }
 
   public Controller(ElementContainer elementContainer) {
@@ -70,13 +78,27 @@ public class Controller implements Serializable {
     Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, false, 2);
     elementContainer.addEquipement(newBroyeur);
   }
-  /*
-    public void addConvoyeur(Point mousePoint) {
-      Noeud noeud = new Noeud(mousePoint, 1, 1, false);
-      Convoyeur newConvoyeur = new Convoyeur(mousePoint, 2, 2, false, 2, noeud);
-      elementContainer.addEquipement(newConvoyeur);
-    }
-  */
+
+  public void addCamion(Point mousePoint) {
+    Jeton jeton = new Jeton("hey", true, mousePoint, 10);
+    Camion p_camion = new Camion(jeton, 2, mousePoint);
+  }
+
+  public void addChargeur(Point mousePoint) {
+    Chargeur p_chargeur = new Chargeur(mousePoint);
+  }
+
+  public void addVehicule(VehiculeModes mode, Point mousePoint) {
+    if (null != mode)
+      switch (mode) {
+        case CAMION:
+          addCamion(mousePoint);
+          break;
+        case CHARGEUR:
+          addChargeur(mousePoint);
+          break;
+      }
+  }
 
   public void addEquipement(EquipementModes mode, Point mousePoint) {
     if (null != mode)
@@ -87,11 +109,6 @@ public class Controller implements Serializable {
         case CRIBLE:
           addCrible(mousePoint);
           break;
-          /*
-          case CONVOYEUR:
-            addConvoyeur(mousePoint);
-            break;
-             */
         case BROYEUR:
           addBroyeur(mousePoint);
           break;
@@ -190,80 +207,89 @@ public class Controller implements Serializable {
     }
   }
 
-  public void openFile(){
+  public void openFile() {
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
     chooser.setDialogTitle("Open");
     int returnValue = chooser.showDialog(null, "Open");
 
     if (returnValue == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = chooser.getSelectedFile();
-        try {
-            FileInputStream inputFile = new FileInputStream(new File(String.valueOf(selectedFile)));
-            ObjectInputStream inputObject = new ObjectInputStream(inputFile);
-            setElement((ElementContainer) inputObject.readObject());
-            System.out.println(selectedFile);
-            selectedFile = new File(String.valueOf(selectedFile).substring(0, String.valueOf(selectedFile).lastIndexOf('.')));
-            elementContainer.setFile(selectedFile);
-            
+      File selectedFile = chooser.getSelectedFile();
+      try {
+        FileInputStream inputFile = new FileInputStream(new File(String.valueOf(selectedFile)));
+        ObjectInputStream inputObject = new ObjectInputStream(inputFile);
+        setElement((ElementContainer) inputObject.readObject());
+        System.out.println(selectedFile);
+        selectedFile =
+            new File(
+                String.valueOf(selectedFile)
+                    .substring(0, String.valueOf(selectedFile).lastIndexOf('.')));
+        elementContainer.setFile(selectedFile);
 
-        } catch (IOException e) {
-            System.out.println(e);
-        } catch (ClassNotFoundException e) {
-            System.out.println(e);
-        }
+      } catch (IOException e) {
+        System.out.println(e);
+      } catch (ClassNotFoundException e) {
+        System.out.println(e);
+      }
     }
   }
- 
-  public void saveAs(){
-      
+
+  public void saveAs() {
+
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
     chooser.setDialogTitle("Save");
     int returnValue = chooser.showDialog(null, "Save");
 
     if (returnValue == JFileChooser.APPROVE_OPTION) {
-        File selectedFile = chooser.getSelectedFile();
-        try {
-            FileOutputStream fileOut = new FileOutputStream(selectedFile + ".ser");
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(this.elementContainer);
-            objectOut.close();
-            elementContainer.setFile(selectedFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+      File selectedFile = chooser.getSelectedFile();
+      try {
+        FileOutputStream fileOut = new FileOutputStream(selectedFile + ".ser");
+        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(this.elementContainer);
+        objectOut.close();
+        elementContainer.setFile(selectedFile);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
-  
-  public void save(){
-    
-    if (elementContainer.getFile() == null){
-        saveAs();
-    }
-    else {
-        try {
-            FileOutputStream fileOut = new FileOutputStream(elementContainer.getFile() + ".ser");
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(this.elementContainer);
-            objectOut.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+  public void save() {
+
+    if (elementContainer.getFile() == null) {
+      saveAs();
+    } else {
+      try {
+        FileOutputStream fileOut = new FileOutputStream(elementContainer.getFile() + ".ser");
+        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(this.elementContainer);
+        objectOut.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
-  
-  public void newProject(){
+
+  public void newProject() {
     String[] options = {"Enregistrer", "Nouveau projet"};
-    int choix = JOptionPane.showOptionDialog(null, "Voulez-vous enregistrer votre travail ?",
-            "Attention!", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+    int choix =
+        JOptionPane.showOptionDialog(
+            null,
+            "Voulez-vous enregistrer votre travail ?",
+            "Attention!",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.WARNING_MESSAGE,
+            null,
+            options,
+            options[0]);
 
     if (choix == 0) {
-        save();
+      save();
     }
     this.elementContainer = new ElementContainer();
   }
-  
+
   public void undo() {}
 
   public void redo() {}
