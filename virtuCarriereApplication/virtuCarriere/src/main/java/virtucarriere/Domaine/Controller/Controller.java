@@ -190,7 +190,7 @@ public class Controller implements Serializable {
     }
   }
 
-  public void OpenFile(){
+  public void openFile(){
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
     chooser.setDialogTitle("Open");
@@ -215,7 +215,7 @@ public class Controller implements Serializable {
     }
   }
  
-  public void SaveAs(){
+  public void saveAs(){
       
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
@@ -230,6 +230,23 @@ public class Controller implements Serializable {
             objectOut.writeObject(this.elementContainer);
             objectOut.close();
             elementContainer.setFile(selectedFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+  }
+  
+  public void save(){
+    
+    if (elementContainer.getFile() == null){
+        saveAs();
+    }
+    else {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(elementContainer.getFile() + ".ser");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this.elementContainer);
+            objectOut.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

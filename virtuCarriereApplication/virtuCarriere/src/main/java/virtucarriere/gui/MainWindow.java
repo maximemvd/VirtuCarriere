@@ -533,16 +533,17 @@ public class MainWindow extends JFrame {
 
     private void menuSauvegarderSousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSauvegarderSousActionPerformed
         // TODO add your handling code here:
-        this.controller.SaveAs();
+        this.controller.saveAs();
     }//GEN-LAST:event_menuSauvegarderSousActionPerformed
 
     private void menuOuvrirProjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOuvrirProjetActionPerformed
         // TODO add your handling code here:
-        this.controller.OpenFile();
+        this.controller.openFile();
     }//GEN-LAST:event_menuOuvrirProjetActionPerformed
 
     private void menuSauvegarderProjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSauvegarderProjetActionPerformed
         // TODO add your handling code here:
+        this.controller.save();
     }//GEN-LAST:event_menuSauvegarderProjetActionPerformed
 
   private void deleteButtonActionPerformed(
