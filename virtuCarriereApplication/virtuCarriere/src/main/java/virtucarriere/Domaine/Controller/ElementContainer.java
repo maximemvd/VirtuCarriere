@@ -6,16 +6,18 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
-import java.util.LinkedList;
-import java.util.List;
 import java.io.*;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class ElementContainer implements Serializable {
 
@@ -23,19 +25,19 @@ public class ElementContainer implements Serializable {
 
   private List<Noeud> noeudList;
 
-  private List<Camion> vehiculeList;
+  private List<Vehicule> vehiculeList;
 
   private List<Entree> entreeList;
 
   private List<Arc> arcList;
 
   private List<Object> selectionList;
-  
+
   static File file;
 
   public ElementContainer() {
     equipementList = new LinkedList<Equipement>();
-    vehiculeList = new LinkedList<Camion>();
+    vehiculeList = new LinkedList<Vehicule>();
     noeudList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
     arcList = new LinkedList<Arc>();
@@ -98,7 +100,7 @@ public class ElementContainer implements Serializable {
     return selectionList;
   }
 
-  public List<Camion> getVehiculeList() {
+  public List<Vehicule> getVehiculeList() {
     return vehiculeList;
   }
 
@@ -125,13 +127,13 @@ public class ElementContainer implements Serializable {
   public double getNumberOfNoeudList() {
     return noeudList.size();
   }
-  
-  public void setFile(File p_file){
-      this.file = p_file;
+
+  public void setFile(File p_file) {
+    this.file = p_file;
   }
-  
-  public File getFile(){
-      return this.file;
+
+  public File getFile() {
+    return file;
   }
 
   public void addEquipement(Equipement p_equipement) {
@@ -150,8 +152,20 @@ public class ElementContainer implements Serializable {
     }
   }
 
-  public void addCamion(Camion newCamion) {
-    vehiculeList.add(newCamion);
+  public void addChargeur(Chargeur p_chargeur) {
+    vehiculeList.add(p_chargeur);
+  }
+
+  public void removeChargeur(Chargeur p_chargeur) {
+    try {
+      vehiculeList.remove(p_chargeur);
+    } catch (Exception error) {
+      System.out.println(error);
+    }
+  }
+
+  public void addCamion(Camion p_Camion) {
+    vehiculeList.add(p_Camion);
   }
 
   public void removeCamion(Camion p_camion) {

@@ -24,6 +24,7 @@ import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
+import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
 
@@ -82,10 +83,20 @@ public class Controller implements Serializable {
   public void addCamion(Point mousePoint) {
     Jeton jeton = new Jeton("hey", true, mousePoint, 10);
     Camion p_camion = new Camion(jeton, 2, mousePoint);
+    elementContainer.addCamion(p_camion);
   }
 
   public void addChargeur(Point mousePoint) {
     Chargeur p_chargeur = new Chargeur(mousePoint);
+    elementContainer.addChargeur(p_chargeur);
+  }
+
+  public void removeCamion(Camion p_camion) {
+    elementContainer.removeCamion(p_camion);
+  }
+
+  public void removeChargeur(Chargeur p_chargeur) {
+    elementContainer.removeChargeur(p_chargeur);
   }
 
   public void addVehicule(VehiculeModes mode, Point mousePoint) {
@@ -188,7 +199,7 @@ public class Controller implements Serializable {
     return elementContainer.getEntreeList();
   }
 
-  public List<Camion> getCamionList() {
+  public List<Vehicule> getCamionList() {
     return elementContainer.getVehiculeList();
   }
 
