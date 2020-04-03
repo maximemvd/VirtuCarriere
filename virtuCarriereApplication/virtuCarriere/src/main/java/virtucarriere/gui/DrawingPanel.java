@@ -58,7 +58,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
       // draw mouse coordinates
       g.setColor(Color.black);
-      String s = " \n " + " " + (int) mouseX + ", " + (int) mouseY;
+      String s = " \n " + " " + (int) (mouseX / zoom) + ", " + (int) (mouseY / zoom);
       g.drawString(s, (int) mouseX, (int) mouseY);
 
       Graphics2D g2d = (Graphics2D) g;
@@ -112,11 +112,11 @@ public class DrawingPanel extends JPanel implements Serializable {
   }
 
   public void setMouseX(double x) {
-    this.mouseX = x / zoom;
+    this.mouseX = x;
   }
 
   public void setMouseY(double y) {
-    this.mouseY = y / zoom;
+    this.mouseY = y;
   }
 
   public double getZoom() {
