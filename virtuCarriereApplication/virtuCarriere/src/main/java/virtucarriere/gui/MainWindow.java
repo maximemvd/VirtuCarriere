@@ -231,10 +231,26 @@ public class MainWindow extends JFrame {
     jLabel2.setText("Ajouter un équipement");
 
     ajoutElement.setText("Ajout Plan");
+    ajoutElement.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mouseClicked(java.awt.event.MouseEvent evt) {
+            ajoutElementMouseClicked(evt);
+          }
+
+          public void mousePressed(java.awt.event.MouseEvent evt) {
+            ajoutElementMousePressed(evt);
+          }
+        });
     ajoutElement.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
             ajoutElementActionPerformed(evt);
+          }
+        });
+    ajoutElement.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyPressed(java.awt.event.KeyEvent evt) {
+            ajoutElementKeyPressed(evt);
           }
         });
 
@@ -505,10 +521,22 @@ public class MainWindow extends JFrame {
     ajoutChargeur.setText("Ajouter un chargeur");
 
     ajoutSimulation.setText("Ajout Simulation");
+    ajoutSimulation.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mousePressed(java.awt.event.MouseEvent evt) {
+            ajoutSimulationMousePressed(evt);
+          }
+        });
     ajoutSimulation.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
             ajoutSimulationActionPerformed(evt);
+          }
+        });
+    ajoutSimulation.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyPressed(java.awt.event.KeyEvent evt) {
+            ajoutSimulationKeyPressed(evt);
           }
         });
 
@@ -705,6 +733,31 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void ajoutSimulationMousePressed(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_ajoutSimulationMousePressed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_ajoutSimulationMousePressed
+
+  private void ajoutSimulationKeyPressed(
+      java.awt.event.KeyEvent evt) { // GEN-FIRST:event_ajoutSimulationKeyPressed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_ajoutSimulationKeyPressed
+
+  private void ajoutElementMouseClicked(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_ajoutElementMouseClicked
+    // TODO add your handling code here:
+  } // GEN-LAST:event_ajoutElementMouseClicked
+
+  private void ajoutElementKeyPressed(
+      java.awt.event.KeyEvent evt) { // GEN-FIRST:event_ajoutElementKeyPressed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_ajoutElementKeyPressed
+
+  private void ajoutElementMousePressed(
+      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_ajoutElementMousePressed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_ajoutElementMousePressed
 
   private void menuSauvegarderSousActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuSauvegarderSousActionPerformed
@@ -1015,6 +1068,11 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
       this.controller.addEquipement(actualEquipement, mousePoint);
+      drawingPanel.repaint();
+    } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION
+        && SwingUtilities.isLeftMouseButton(evt)) {
+      Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
+      controller.addVehicule(vehiculetoDraw, mousePoint);
       drawingPanel.repaint();
     }
   }

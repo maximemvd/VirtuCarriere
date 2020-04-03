@@ -20,10 +20,6 @@ public class Chargeur extends Vehicule {
     return destination;
   }
 
-  public Point getDestination() {
-    return this.destination;
-  }
-
   public void changeDestination(Point p_point) {
     this.destination = p_point;
   }

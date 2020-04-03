@@ -56,12 +56,12 @@ public class CarriereDrawer {
     List<Vehicule> vehicules = controller.getVehiculeList();
     vehicules.forEach(
         (vehicule) -> {
-          Point camionPoint = vehicule.getPoint();
+          Point vehiculePoint = vehicule.getPoint();
           Color noeudColor = vehicule.getColor();
           g.setColor(noeudColor);
           g.fillOval(
-              (int) camionPoint.getX() - radius,
-              (int) camionPoint.getY() - radius,
+              (int) vehiculePoint.getX() - radius,
+              (int) vehiculePoint.getY() - radius,
               radius * 2,
               radius * 2);
         });

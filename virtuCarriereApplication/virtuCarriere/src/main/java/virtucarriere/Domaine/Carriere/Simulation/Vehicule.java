@@ -30,6 +30,6 @@ public abstract class Vehicule {
   public abstract Point getPoint();
 
   public Color getColor() {
-    return Color.GRAY;
+    return Color.MAGENTA;
   }
 }
