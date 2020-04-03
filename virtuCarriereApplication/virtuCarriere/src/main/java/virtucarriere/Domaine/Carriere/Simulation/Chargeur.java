@@ -15,6 +15,11 @@ public class Chargeur extends Vehicule {
     this.destination = p_destination;
   };
 
+  @Override
+  public Point getPoint() {
+    return destination;
+  }
+
   public Point getDestination() {
     return this.destination;
   }

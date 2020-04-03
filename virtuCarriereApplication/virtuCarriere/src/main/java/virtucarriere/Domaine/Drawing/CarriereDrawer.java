@@ -19,6 +19,7 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
@@ -44,10 +45,26 @@ public class CarriereDrawer {
 
   public void draw(Graphics g) {
     // drawCarriere(g);
+    drawVehicule(g);
     drawEquipement(g);
     drawNoeud(g);
     drawEntree(g);
     drawArc(g);
+  }
+
+  public void drawVehicule(Graphics g) {
+    List<Vehicule> vehicules = controller.getVehiculeList();
+    vehicules.forEach(
+        (vehicule) -> {
+          Point camionPoint = vehicule.getPoint();
+          Color noeudColor = vehicule.getColor();
+          g.setColor(noeudColor);
+          g.fillOval(
+              (int) camionPoint.getX() - radius,
+              (int) camionPoint.getY() - radius,
+              radius * 2,
+              radius * 2);
+        });
   }
 
   public void drawCarriere(Graphics g) {
@@ -84,8 +101,6 @@ public class CarriereDrawer {
   private Color getColor(Equipement equipement) {
     return equipementColor.get(equipement.getClass().getName());
   }
-
-  public void drawCamion(Graphics g) {};
 
   public void drawNoeud(Graphics g) {
     List<Noeud> noeuds = controller.getNoeudList();

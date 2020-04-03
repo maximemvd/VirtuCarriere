@@ -33,6 +33,11 @@ public class Camion extends Vehicule {
     return newCamion;
   };
 
+  @Override
+  public Point getPoint() {
+    return point;
+  }
+
   public ArrayList<Node> getItineaireList() {
     return this.itineraireCamion;
   }

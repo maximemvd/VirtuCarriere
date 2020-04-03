@@ -199,7 +199,7 @@ public class Controller implements Serializable {
     return elementContainer.getEntreeList();
   }
 
-  public List<Vehicule> getCamionList() {
+  public List<Vehicule> getVehiculeList() {
     return elementContainer.getVehiculeList();
   }
 
