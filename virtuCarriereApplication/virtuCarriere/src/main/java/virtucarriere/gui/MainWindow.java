@@ -202,6 +202,12 @@ public class MainWindow extends JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
 
+        jTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPaneStateChanged(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sélectionner", "Broyeur", "Concasseur", "Crible", "Convoyeur" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -524,6 +530,20 @@ public class MainWindow extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPaneStateChanged
+        // TODO add your handling code here:
+        if (jTabbedPane.getSelectedIndex() == 0){
+            if (this.currentApplicationMode != ApplicationMode.ADD_PLAN){
+                setAppMode(ApplicationMode.ADD_PLAN);
+            }
+        }
+        else {
+            if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION){
+                setAppMode(ApplicationMode.ADD_SIMULATION);
+            }
+        }
+    }//GEN-LAST:event_jTabbedPaneStateChanged
 
   private void menuSauvegarderSousActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuSauvegarderSousActionPerformed
