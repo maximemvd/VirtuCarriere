@@ -253,6 +253,17 @@ public class Controller implements Serializable {
     }
   }
   
+  public void newProject(){
+    String[] options = {"Enregistrer", "Nouveau projet"};
+    int choix = JOptionPane.showOptionDialog(null, "Voulez-vous enregistrer votre travail ?",
+            "Attention!", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+
+    if (choix == 0) {
+        save();
+    }
+    this.elementContainer = new ElementContainer();
+  }
+  
   public void undo() {}
 
   public void redo() {}

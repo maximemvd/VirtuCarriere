@@ -825,6 +825,7 @@ public class MainWindow extends JFrame {
   private void menuNouveauProjetActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuNouveauProjetActionPerformed
     // TODO add your handling code here:
+    this.controller.newProject();
   } // GEN-LAST:event_menuNouveauProjetActionPerformed
 
   private void menuQuitterActionPerformed(
