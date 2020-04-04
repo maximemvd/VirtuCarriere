@@ -527,42 +527,44 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="97" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ajoutChargeur" max="32767" attributes="0"/>
-                                  <Component id="ajoutCamion" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="ADDCHARGEUR" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ADDCAMION" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="75" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                              <Component id="ajoutCamion" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ajoutChargeur" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="597" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="ADDCAMION" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="ADDCHARGEUR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="501" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JToggleButton" name="ajoutCamion">
+                    <Component class="javax.swing.JButton" name="ADDCAMION">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Ajouter un camion"/>
+                        <Property name="text" type="java.lang.String" value="AJout Camion"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ajoutCamionActionPerformed"/>
-                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ajoutCamionKeyPressed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ADDCAMIONActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="ajoutChargeur">
+                    <Component class="javax.swing.JButton" name="ADDCHARGEUR">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Ajouter un chargeur"/>
+                        <Property name="text" type="java.lang.String" value="Ajout Chargeur"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ADDCHARGEURActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

@@ -16,7 +16,11 @@ public abstract class Vehicule {
 
   private Itineraire route;
 
-  public Vehicule() {};
+  private Point point;
+
+  public Vehicule(Point point) {
+    this.point = point;
+  };
 
   public void getShortestPath(Jeton jeton) {
     List<Noeud> start;
@@ -27,9 +31,9 @@ public abstract class Vehicule {
     return route;
   }
 
-  public abstract Point getPoint();
-
-  public Color getColor() {
-    return Color.MAGENTA;
+  public Point getPoint() {
+    return point;
   }
+
+  public abstract Color getColor();
 }

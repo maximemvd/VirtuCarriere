@@ -48,7 +48,6 @@ public class Controller implements Serializable {
   }
 
   public enum VehiculeModes {
-    NOTHING,
     CAMION,
     CHARGEUR
   }

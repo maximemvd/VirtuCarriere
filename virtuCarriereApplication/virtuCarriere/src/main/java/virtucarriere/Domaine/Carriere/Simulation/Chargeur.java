@@ -5,22 +5,24 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Chargeur extends Vehicule {
 
-  private Point destination;
+  private Point point;
+  private Color color;
 
-  public Chargeur(Point p_destination) {
-    this.destination = p_destination;
+  public Chargeur(Point point) {
+    super(point);
+    this.color = Color.GREEN;
   };
 
-  @Override
-  public Point getPoint() {
-    return destination;
+  public Color getColor() {
+    return color;
   }
 
   public void changeDestination(Point p_point) {
-    this.destination = p_point;
+    this.point = p_point;
   }
 }
