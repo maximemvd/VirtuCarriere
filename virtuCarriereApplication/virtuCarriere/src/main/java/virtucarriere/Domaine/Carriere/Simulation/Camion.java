@@ -36,9 +36,21 @@ public class Camion extends Vehicule {
     return newCamion;
   };
 
+  public void changeEtat(String etat) {
+    jeton.setEtat(etat);
+  }
+
+  public void goTO(Point new_point) {
+    this.point = new_point;
+  }
+
   @Override
   public Color getColor() {
     return color;
+  }
+
+  public Jeton getJeton() {
+    return jeton;
   }
 
   public ArrayList<Node> getItineaireList() {
@@ -61,12 +73,5 @@ public class Camion extends Vehicule {
     this.jeton = jeton;
     this.start = start;
     this.point = point;
-  }
-
-  public void Simulation() {
-    for (Node i : this.itineraireCamion) {
-      System.out.println(i);
-      // call getShortestPath
-    }
   }
 }
