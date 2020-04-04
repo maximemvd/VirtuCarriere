@@ -19,6 +19,8 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
@@ -31,6 +33,7 @@ public class CarriereDrawer {
   private DrawingPanel drawingPanel;
   private MainWindow.MeasurementUnitMode measurementMode;
   private Element element;
+  private Simulation simulation;
 
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
@@ -49,6 +52,10 @@ public class CarriereDrawer {
     drawNoeud(g);
     drawEntree(g);
     drawArc(g);
+  }
+
+  public void startSimulation(Graphics g) {
+    List<Camion> camions = simulation.getCamionList();
   }
 
   public void drawVehicule(Graphics g) {
