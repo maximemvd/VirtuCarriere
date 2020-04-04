@@ -20,6 +20,7 @@ import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
@@ -38,7 +39,8 @@ public class CarriereDrawer {
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
 
-  public CarriereDrawer(Controller controller, Dimension initialDimension) {
+  public CarriereDrawer(Controller controller, Dimension initialDimension, Simulation simulation) {
+    this.simulation = simulation;
     this.controller = controller;
     this.initialDimension = initialDimension;
     equipementColor.put(Broyeur.class.getName(), Color.GREEN);
@@ -47,6 +49,7 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics g) {
+    // faire un switch case ici
     drawVehicule(g);
     drawEquipement(g);
     drawNoeud(g);
@@ -56,6 +59,36 @@ public class CarriereDrawer {
 
   public void startSimulation(Graphics g) {
     List<Camion> camions = simulation.getCamionList();
+    camions.forEach(
+        (camion) -> {
+          try {
+            // the camion start at the start
+            Color camionColor = camion.getColor();
+            Point camionPoint = camion.getPoint();
+            g.setColor(camionColor);
+            g.fillOval(
+                (int) camionPoint.getX() - radius,
+                (int) camionPoint.getY() - radius,
+                radius * 2,
+                radius * 2);
+            Thread.sleep(30000); // wait 3 seconds
+
+            // on indique la position la plus proche
+            Jeton jeton = camion.getJeton();
+            String code = jeton.getCodeProduit();
+            Point pointToGo = simulation.indiqueAuCamionEmplacement(code);
+            g.fillOval(
+                (int) pointToGo.getX() - radius,
+                (int) pointToGo.getY() - radius,
+                radius * 2,
+                radius * 2);
+
+            Thread.sleep(30000); // wait 3 seconds
+
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        });
   }
 
   public void drawVehicule(Graphics g) {

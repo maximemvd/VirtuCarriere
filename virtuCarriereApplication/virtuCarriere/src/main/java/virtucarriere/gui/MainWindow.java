@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
@@ -24,6 +25,8 @@ import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 public class MainWindow extends JFrame {
 
   public Controller controller;
+
+  public Simulation simulation;
 
   public EquipementModes selectedEquipementMode;
 
@@ -39,6 +42,7 @@ public class MainWindow extends JFrame {
   /** Creates new form MainWindow */
   public MainWindow() {
     controller = new Controller();
+    simulation = new Simulation();
     initComponents();
     // setFocusable(true);
   }

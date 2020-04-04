@@ -37,13 +37,17 @@ public class Simulation {
     return newJeton;
   }
 
-  public Point indiqueAuCamionEmplacement(String produit, double quantite) {
+  public Point indiqueAuCamionEmplacement(String produit) {
     // getSHortestPath to produit
-    Point point = new Point(200, 200);
+    Point point = new Point(300, 500);
     return point;
   };
 
   public void changeEtat(Camion p_camion, String etat) {
     p_camion.changeEtat(etat);
+  }
+
+  public void envoieAuCHargeur(Jeton jeton) {
+    // retourne le chargeur que l'on veut
   }
 }
