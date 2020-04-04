@@ -17,14 +17,50 @@ public abstract class Vehicule {
   private Itineraire route;
 
   private Point point;
+  private boolean selectionStatus;
+  private int radius;
 
-  public Vehicule(Point point) {
+  public Vehicule(Point point, boolean p_selectionStatus) {
     this.point = point;
+    this.selectionStatus = false;
+    this.radius = 25;
   };
 
   public void getShortestPath(Jeton jeton) {
     List<Noeud> start;
     List<Noeud> result;
+  }
+
+  public boolean contains(double p_x, double p_y) {
+    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
+  }
+
+  private boolean xIsInsideElementWidth(double p_x) {
+    return ((p_x < point.getX() + radius) && (p_x > point.getX() - radius));
+  }
+
+  private boolean yIsInsideElementLength(double p_y) {
+    return ((p_y < point.getY() + radius) && (p_y > point.getY() - radius));
+  }
+
+  public boolean isSelected() {
+    return selectionStatus;
+  }
+
+  public void switchSelectionStatus() {
+    this.selectionStatus = !this.selectionStatus;
+  }
+
+  public double getX() {
+    return this.point.getX();
+  }
+
+  public double getY() {
+    return this.point.getY();
+  }
+
+  public void unselect() {
+    this.selectionStatus = false;
   }
 
   public Itineraire getRoute() {
@@ -36,4 +72,6 @@ public abstract class Vehicule {
   }
 
   public abstract Color getColor();
+
+  public abstract String getName();
 }

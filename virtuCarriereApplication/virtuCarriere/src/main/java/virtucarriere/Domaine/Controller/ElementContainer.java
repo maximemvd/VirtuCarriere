@@ -31,7 +31,7 @@ public class ElementContainer implements Serializable {
 
   private List<Arc> arcList;
 
-  private List<Object> selectionList;
+  private List<Element> selectionList;
 
   static File file;
 
@@ -41,7 +41,7 @@ public class ElementContainer implements Serializable {
     noeudList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
     arcList = new LinkedList<Arc>();
-    selectionList = new LinkedList<Object>();
+    selectionList = new LinkedList<Element>();
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -63,6 +63,12 @@ public class ElementContainer implements Serializable {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
         selectionList.add(item);
+      }
+    }
+
+    for (Vehicule item : this.vehiculeList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
       }
     }
   }
@@ -96,7 +102,7 @@ public class ElementContainer implements Serializable {
     return equipementList;
   }
 
-  public List<Object> getSelectionList() {
+  public List<Element> getSelectionList() {
     return selectionList;
   }
 
@@ -156,9 +162,9 @@ public class ElementContainer implements Serializable {
     vehiculeList.add(p_chargeur);
   }
 
-  public void removeChargeur(Chargeur p_chargeur) {
+  public void removeVehicule(Vehicule p_vehicule) {
     try {
-      vehiculeList.remove(p_chargeur);
+      vehiculeList.remove(p_vehicule);
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -166,14 +172,6 @@ public class ElementContainer implements Serializable {
 
   public void addCamion(Camion p_Camion) {
     vehiculeList.add(p_Camion);
-  }
-
-  public void removeCamion(Camion p_camion) {
-    try {
-      vehiculeList.remove(p_camion);
-    } catch (Exception error) {
-      System.out.println(error);
-    }
   }
 
   public void addEntree(Entree newEntree) {

@@ -18,6 +18,7 @@ import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
+import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
@@ -109,8 +110,8 @@ public class MainWindow extends JFrame {
     jLabel5 = new javax.swing.JLabel();
     arcButton = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
-    ADDCAMION = new javax.swing.JButton();
-    ADDCHARGEUR = new javax.swing.JButton();
+    jComboBox3 = new javax.swing.JComboBox<>();
+    jLabel7 = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
     jTextArea1 = new javax.swing.JTextArea();
     jLabel1 = new javax.swing.JLabel();
@@ -400,21 +401,16 @@ public class MainWindow extends JFrame {
 
     jTabbedPane.addTab("Plan", jPanel2);
 
-    ADDCAMION.setText("AJout Camion");
-    ADDCAMION.addActionListener(
+    jComboBox3.setModel(
+        new javax.swing.DefaultComboBoxModel<>(new String[] {"Camion", "Chargeur"}));
+    jComboBox3.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
-            ADDCAMIONActionPerformed(evt);
+            jComboBox3ActionPerformed(evt);
           }
         });
 
-    ADDCHARGEUR.setText("Ajout Chargeur");
-    ADDCHARGEUR.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            ADDCHARGEURActionPerformed(evt);
-          }
-        });
+    jLabel7.setText("Ajouter un véhicule ");
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
@@ -424,24 +420,35 @@ public class MainWindow extends JFrame {
             .addGroup(
                 jPanel3Layout
                     .createSequentialGroup()
-                    .addGap(53, 53, 53)
-                    .addGroup(
-                        jPanel3Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ADDCHARGEUR)
-                            .addComponent(ADDCAMION))
-                    .addContainerGap(75, Short.MAX_VALUE)));
+                    .addContainerGap()
+                    .addComponent(jLabel7)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addGap(0, 69, Short.MAX_VALUE)
+                    .addComponent(
+                        jComboBox3,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(85, 85, 85)));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(
                 jPanel3Layout
                     .createSequentialGroup()
-                    .addGap(125, 125, 125)
-                    .addComponent(ADDCAMION)
-                    .addGap(29, 29, 29)
-                    .addComponent(ADDCHARGEUR)
-                    .addContainerGap(159, Short.MAX_VALUE)));
+                    .addContainerGap()
+                    .addComponent(jLabel7)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(
+                        jComboBox3,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(316, Short.MAX_VALUE)));
 
     jTabbedPane.addTab("Simulation", jPanel3);
 
@@ -683,6 +690,15 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void jComboBox3ActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox3ActionPerformed
+    if (jComboBox3.getSelectedItem().equals("Chargeur")) {
+      this.setVehicule(selectedVehicules.CHARGEUR);
+    } else if (jComboBox3.getSelectedItem().equals("Camion")) {
+      this.setVehicule(selectedVehicules.CAMION);
+    }
+  } // GEN-LAST:event_jComboBox3ActionPerformed
+
   private void jTabbedPaneStateChanged(
       javax.swing.event.ChangeEvent evt) { // GEN-FIRST:event_jTabbedPaneStateChanged
     // TODO add your handling code here:
@@ -696,16 +712,6 @@ public class MainWindow extends JFrame {
       }
     }
   } // GEN-LAST:event_jTabbedPaneStateChanged
-
-  private void ADDCHARGEURActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ADDCHARGEURActionPerformed
-    this.setVehicule(selectedVehicules.CHARGEUR);
-  } // GEN-LAST:event_ADDCHARGEURActionPerformed
-
-  private void ADDCAMIONActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ADDCAMIONActionPerformed
-    this.setVehicule(selectedVehicules.CAMION);
-  } // GEN-LAST:event_ADDCAMIONActionPerformed
 
   private void menuSauvegarderSousActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuSauvegarderSousActionPerformed
@@ -751,6 +757,7 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
+    List<Vehicule> vehicules = controller.getVehiculeList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -767,6 +774,12 @@ public class MainWindow extends JFrame {
     for (Entree entree : entrees) {
       if (entree.isSelected()) {
         controller.removeEntree(entree);
+        drawingPanel.repaint();
+      }
+    }
+    for (Vehicule vehicule : vehicules) {
+      if (vehicule.isSelected()) {
+        controller.removeVehicule(vehicule);
         drawingPanel.repaint();
       }
     }
@@ -875,6 +888,7 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
+    List<Vehicule> vehicules = controller.getVehiculeList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -923,6 +937,18 @@ public class MainWindow extends JFrame {
         String nom = String.format("\nCoordonnées de l'%s", entree.getName());
         String xCoord = String.format(":\n x : %d", (int) entree.getX());
         String yCoord = String.format(", y : %d", (int) entree.getY());
+        String nombreTotal = String.format("%d", numTotal);
+        jTextArea1.append(nom + xCoord + yCoord);
+        jTextField2.setText(nombreTotal);
+      }
+    }
+
+    for (Vehicule vehicule : vehicules) {
+      if (vehicule.isSelected()) {
+        numTotal++;
+        String nom = String.format("\nCoordonnées du %s", vehicule.getName());
+        String xCoord = String.format(":\n x : %d", (int) vehicule.getX());
+        String yCoord = String.format(", y : %d", (int) vehicule.getY());
         String nombreTotal = String.format("%d", numTotal);
         jTextArea1.append(nom + xCoord + yCoord);
         jTextField2.setText(nombreTotal);
@@ -1177,8 +1203,6 @@ public class MainWindow extends JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton ADDCAMION;
-  private javax.swing.JButton ADDCHARGEUR;
   private javax.swing.JMenu affichageMenu;
   private javax.swing.JButton arcButton;
   private javax.swing.JPanel buttonTopPanel;
@@ -1193,12 +1217,14 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem importerSimulationMenu;
   private javax.swing.JComboBox<String> jComboBox1;
   private javax.swing.JComboBox<String> jComboBox2;
+  private javax.swing.JComboBox<String> jComboBox3;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
   private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JMenuItem jMenuItem6;
   private javax.swing.JPanel jPanel1;

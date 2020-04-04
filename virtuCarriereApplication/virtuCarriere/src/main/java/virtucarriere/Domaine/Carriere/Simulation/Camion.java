@@ -14,25 +14,24 @@ public class Camion extends Vehicule {
   ArrayList<Node> itineraireCamion;
 
   private double start;
-
   private Color color;
-
   private Jeton jeton;
-
   private Point point;
+  private String name;
 
-  public Camion(Jeton jeton, double start, Point point) {
-    super(point);
+  public Camion(Jeton jeton, double start, Point point, boolean p_selectionStatus) {
+    super(point, p_selectionStatus = false);
     this.itineraireCamion = new ArrayList<Node>();
     this.jeton = jeton;
     this.start = start;
+    this.name = "Camion";
 
     this.color = Color.MAGENTA;
     // createCamion(jeton, start, coordonnees);
   }
 
   public Camion createCamion(Jeton jeton, double start, Point point) {
-    Camion newCamion = new Camion(jeton, start, point);
+    Camion newCamion = new Camion(jeton, start, point, false);
     return newCamion;
   };
 
@@ -57,9 +56,14 @@ public class Camion extends Vehicule {
     return itineraireCamion;
   }
 
+  @Override
+  public String getName() {
+    return name;
+  }
+
   public void addDestination(Node p_node) {
     itineraireCamion.add(p_node);
-  };
+  }
 
   public void removeDestination(Node p_node) {
     try {

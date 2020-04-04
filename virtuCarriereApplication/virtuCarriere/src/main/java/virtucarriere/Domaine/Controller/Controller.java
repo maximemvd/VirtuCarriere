@@ -17,6 +17,7 @@ import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
@@ -81,21 +82,17 @@ public class Controller implements Serializable {
 
   public void addCamion(Point mousePoint) {
     Jeton jeton = new Jeton("1", "1", 2, "1");
-    Camion p_camion = new Camion(jeton, 2, mousePoint);
+    Camion p_camion = new Camion(jeton, 2, mousePoint, false);
     elementContainer.addCamion(p_camion);
   }
 
   public void addChargeur(Point mousePoint) {
-    Chargeur p_chargeur = new Chargeur(mousePoint);
+    Chargeur p_chargeur = new Chargeur(mousePoint, false);
     elementContainer.addChargeur(p_chargeur);
   }
 
-  public void removeCamion(Camion p_camion) {
-    elementContainer.removeCamion(p_camion);
-  }
-
-  public void removeChargeur(Chargeur p_chargeur) {
-    elementContainer.removeChargeur(p_chargeur);
+  public void removeVehicule(Vehicule p_vehicule) {
+    elementContainer.removeVehicule(p_vehicule);
   }
 
   public void addVehicule(VehiculeModes mode, Point mousePoint) {
@@ -190,7 +187,7 @@ public class Controller implements Serializable {
     return elementContainer.getArcList();
   }
 
-  public List<Object> getSelectionList() {
+  public List<Element> getSelectionList() {
     return elementContainer.getSelectionList();
   }
 

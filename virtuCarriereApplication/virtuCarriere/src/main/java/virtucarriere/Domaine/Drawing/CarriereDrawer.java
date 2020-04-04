@@ -94,13 +94,19 @@ public class CarriereDrawer {
   public void drawVehicule(Graphics g) {
     List<Vehicule> vehicules = controller.getVehiculeList();
     System.out.println(vehicules);
-
     vehicules.forEach(
         (vehicule) -> {
           Point vehiculePoint = vehicule.getPoint();
+          if (vehicule.isSelected()) {
+            g.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius + 2;
+            g.fillOval(
+                (int) vehiculePoint.getX() - offsetRadius,
+                (int) vehiculePoint.getY() - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
           Color vehiculeColor = vehicule.getColor();
-          System.out.println(vehiculePoint);
-          System.out.println(vehiculeColor);
           g.setColor(vehiculeColor);
           g.fillOval(
               (int) vehiculePoint.getX() - radius,

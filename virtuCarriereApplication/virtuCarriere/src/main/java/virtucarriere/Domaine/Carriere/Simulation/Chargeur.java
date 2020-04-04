@@ -12,14 +12,22 @@ public class Chargeur extends Vehicule {
 
   private Point point;
   private Color color;
+  private String name;
 
-  public Chargeur(Point point) {
-    super(point);
+  public Chargeur(Point point, boolean p_selectionStatus) {
+    super(point, p_selectionStatus);
     this.color = Color.GREEN;
+    this.name = "Chargeur";
   };
 
+  @Override
   public Color getColor() {
     return color;
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 
   public void changeDestination(Point p_point) {
