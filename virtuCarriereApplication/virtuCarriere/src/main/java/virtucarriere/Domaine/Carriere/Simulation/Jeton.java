@@ -5,46 +5,48 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-import java.awt.Point;
-
 public class Jeton {
-  private String code;
-  private Boolean etat;
-  private Point destination;
-  private int quantite;
+  private String codeProduit;
+  private String etat;
+  private double quantite;
+  private String referenceClient;
 
-  public Jeton(String code, Boolean etat, Point destination, int quantite) {
-    this.code = code;
-    this.etat = etat;
-    this.destination = destination;
+  public Jeton(String referenceClient, String codeProduit, double quantite, String etat) {
+    this.referenceClient = referenceClient;
+    this.codeProduit = codeProduit;
     this.quantite = quantite;
+    this.etat = etat;
   }
 
-  public String getCode() {
-    return code;
+  public String getRefClient() {
+    return referenceClient;
   }
 
-  public Boolean getEtat() {
+  public String getCodeProduit() {
+    return codeProduit;
+  }
+
+  public void setCodeProduit(String p_code) {
+    this.codeProduit = p_code;
+  }
+
+  public String getEtat() {
     return etat;
   }
 
-  public void setEtat(Boolean etat) {
-    this.etat = etat;
+  public void setEtat(String p_etat) {
+    if (!"LIVRER".equals(p_etat) && !"ENCOURS".equals(p_etat) && !"PAYER".equals(p_etat)) {
+      return;
+    }
+
+    this.etat = p_etat;
   }
 
-  public Point getDestination() {
-    return destination;
-  }
-
-  public void setDestination(Point destination) {
-    this.destination = destination;
-  }
-
-  public int getQuantite() {
+  public double getQuantite() {
     return quantite;
   }
 
-  public void setQuantite(int quantite) {
+  public void setQuantite(double quantite) {
     this.quantite = quantite;
   }
 }
