@@ -39,6 +39,10 @@ public class Camion extends Vehicule {
     jeton.setEtat(etat);
   }
 
+  public String getEtat() {
+    return jeton.getEtat();
+  }
+
   public void goTO(Point new_point) {
     this.point = new_point;
   }

@@ -10,6 +10,7 @@ import java.awt.Point;
 
 public class Chargeur extends Vehicule {
 
+  private Jeton jetonCourant;
   private Point point;
   private Color color;
   private String name;
@@ -23,6 +24,14 @@ public class Chargeur extends Vehicule {
   @Override
   public Color getColor() {
     return color;
+  }
+
+  public void setJeton(Jeton p_jeton) {
+    this.jetonCourant = p_jeton;
+  }
+
+  public Jeton getJeton() {
+    return jetonCourant;
   }
 
   @Override
