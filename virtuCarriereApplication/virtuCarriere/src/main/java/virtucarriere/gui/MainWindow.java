@@ -1075,8 +1075,9 @@ public class MainWindow extends JFrame {
           Noeud starting = this.controller.getNoeudForArcList().get(0);
           Noeud arrival = this.controller.getNoeudForArcList().get(1);
           this.controller.addArc(mousePoint, starting, arrival);
-          this.controller.getNoeudForArcList().get(0).switchSelectionStatus();
-          this.controller.getNoeudForArcList().get(1).switchSelectionStatus();
+          for (Noeud noeud : this.controller.getNoeudForArcList()) {
+            noeud.switchSelectionStatus();
+          }
           this.controller.getNoeudForArcList().clear();
       }
       

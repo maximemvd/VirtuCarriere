@@ -85,8 +85,8 @@ public class ElementContainer implements Serializable {
   public void noeudSelection(double x, double y) {
     for (Noeud noeud : this.noeudList) {
       if (noeud.contains(x, y)) {
-        noeud.switchSelectionStatus();
         noeudForArcList.add(noeud);
+        noeud.setSelectionStatus(true);
       }
     }
   }
