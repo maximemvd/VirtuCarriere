@@ -28,7 +28,7 @@ public class Arc extends AbstractLien<Noeud> {
 
     this.starting = starting;
     this.arrival = arrival;
-    this.color = Color.green;
+    this.color = Color.BLACK;
   }
 
   @Override

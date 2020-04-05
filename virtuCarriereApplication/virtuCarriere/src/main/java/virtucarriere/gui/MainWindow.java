@@ -68,6 +68,7 @@ public class MainWindow extends JFrame {
   public enum ApplicationMode {
     SELECT,
     ADD_PLAN,
+    ADD_ARC,
     ADD_SIMULATION
   }
 
@@ -828,15 +829,11 @@ public class MainWindow extends JFrame {
     drawingPanel.repaint();
   } // GEN-LAST:event_toutEffacerButtonActionPerformed
 
-  private void arcButtonActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_arcButtonActionPerformed
+  private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
-    if (this.currentApplicationMode != ApplicationMode.ADD_PLAN) {
-      setAppMode(ApplicationMode.ADD_PLAN);
-    }
-
-    this.setMode(EquipementModes.ARC);
-  } // GEN-LAST:event_arcButtonActionPerformed
+    setAppMode(ApplicationMode.ADD_ARC);
+    // this.setMode(EquipementModes.ARC);
+  }
 
   private void jComboBox2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox2ActionPerformed
@@ -1046,8 +1043,6 @@ public class MainWindow extends JFrame {
 
   private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
     Point mousePoint = evt.getPoint();
-    System.out.println(this.currentApplicationMode);
-    System.out.println(this.selectedVehicules);
 
     this.currentMousePoint = mousePoint;
 
@@ -1070,6 +1065,23 @@ public class MainWindow extends JFrame {
       Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
       controller.addVehicule(vehiculetoDraw, mousePoint);
       drawingPanel.repaint();
+    } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
+        && SwingUtilities.isLeftMouseButton(evt)) {
+      this.controller.noeudSelection(mousePoint.getX(), mousePoint.getY());
+
+      Noeud starting = this.controller.getNoeudSelect1();
+      Noeud arrival = this.controller.getNoeudSelect2();
+
+      this.controller.addArc(mousePoint, starting, arrival);
+
+      drawingPanel.repaint();
+
+      // Premièrement, il faut sélectionner 2 noeuds et obtenir leur coordonnées(x,y)
+      // Après, on appel la méthode ajouterArc(Noeud starting, Noeud arrival) du controller
+      // Cette méthode prend les deux noeuds sélectionnés
+      // Dans CarrièreDrawer, on a la méthode drawArc qui dessine une ligne entre les coordonnées
+      // des deux noeuds
+
     }
   }
 

@@ -50,10 +50,10 @@ public class CarriereDrawer {
 
   public void draw(Graphics g) {
     // faire un switch case ici
-    drawVehicule(g);
     drawEquipement(g);
     drawNoeud(g);
     drawEntree(g);
+    drawVehicule(g);
     drawArc(g);
   }
 
@@ -93,7 +93,6 @@ public class CarriereDrawer {
 
   public void drawVehicule(Graphics g) {
     List<Vehicule> vehicules = controller.getVehiculeList();
-    System.out.println(vehicules);
     vehicules.forEach(
         (vehicule) -> {
           Point vehiculePoint = vehicule.getPoint();
@@ -203,12 +202,11 @@ public class CarriereDrawer {
 
   public void drawArc(Graphics g) {
     List<Arc> arcs = controller.getArcList();
+    Noeud startingNoeud = controller.getNoeudSelect1();
+    Noeud arrivalNoeud = controller.getNoeudSelect2();
     arcs.forEach(
         (arc) -> {
-          Noeud startingNoeud = arc.getStarting();
-          Noeud arrivalNoeud = arc.getArrival();
           Color arcColor = arc.getColor();
-
           g.setColor(arcColor);
           g.drawLine(
               (int) startingNoeud.getX(),

@@ -22,17 +22,12 @@ import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 public class ElementContainer implements Serializable {
 
   private List<Equipement> equipementList;
-
   private List<Noeud> noeudList;
-
   private List<Vehicule> vehiculeList;
-
   private List<Entree> entreeList;
-
   private List<Arc> arcList;
-
   private List<Element> selectionList;
-
+  private List<Noeud> noeudForArcList;
   static File file;
 
   public ElementContainer() {
@@ -42,6 +37,7 @@ public class ElementContainer implements Serializable {
     entreeList = new LinkedList<Entree>();
     arcList = new LinkedList<Arc>();
     selectionList = new LinkedList<Element>();
+    noeudForArcList = new LinkedList<Noeud>();
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -83,6 +79,33 @@ public class ElementContainer implements Serializable {
       if (item.isSelected()) {
         item.translate(delta);
       }
+    }
+  }
+
+  public void noeudSelection(double x, double y) {
+    for (Noeud noeud : this.noeudList) {
+      if (noeud.contains(x, y)) {
+        noeud.switchSelectionStatus();
+        noeudForArcList.add(noeud);
+      } else if (noeudForArcList.size() > 2) {
+        break;
+      }
+    }
+  }
+
+  public Noeud noeudSelectPoint1() {
+    if (this.noeudForArcList.size() > 0) {
+      return this.noeudForArcList.get(0);
+    } else {
+      return null;
+    }
+  }
+
+  public Noeud noeudSelectPoint2() {
+    if (this.noeudForArcList.size() > 1) {
+      return this.noeudForArcList.get(1);
+    } else {
+      return null;
     }
   }
 

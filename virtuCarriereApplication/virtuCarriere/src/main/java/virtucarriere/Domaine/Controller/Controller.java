@@ -44,13 +44,16 @@ public class Controller implements Serializable {
     CONVOYEUR,
     NOEUD,
     TAS,
-    ENTREE,
-    ARC
+    ENTREE
   }
 
   public enum VehiculeModes {
     CAMION,
     CHARGEUR
+  }
+
+  public enum ArcMode {
+    ARC
   }
 
   public Controller(ElementContainer elementContainer) {
@@ -95,6 +98,11 @@ public class Controller implements Serializable {
     elementContainer.removeVehicule(p_vehicule);
   }
 
+  public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
+    Arc arc = new Arc(mousePoint, 5, 5, false, starting, arrival);
+    elementContainer.addArc(arc);
+  }
+
   public void addVehicule(VehiculeModes mode, Point mousePoint) {
     if (null != mode)
       switch (mode) {
@@ -128,8 +136,6 @@ public class Controller implements Serializable {
         case ENTREE:
           addEntree(mousePoint);
           break;
-        case ARC:
-          // addArc(mousePoint)
         default:
           break;
       }
@@ -162,9 +168,8 @@ public class Controller implements Serializable {
     elementContainer.removeEntree(entree);
   }
 
-  public void addArc(Point mousePoint, Noeud firstNoeud, Noeud secondNoeud) {
-    Arc arc = new Arc(mousePoint, 5, 1, false, firstNoeud, secondNoeud);
-    elementContainer.addArc(arc);
+  public void noeudSelection(double x, double y) {
+    this.elementContainer.noeudSelection(x, y);
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
@@ -201,6 +206,14 @@ public class Controller implements Serializable {
 
   public List<Noeud> getNoeudList() {
     return elementContainer.getNoeudList();
+  }
+
+  public Noeud getNoeudSelect1() {
+    return elementContainer.noeudSelectPoint1();
+  }
+
+  public Noeud getNoeudSelect2() {
+    return elementContainer.noeudSelectPoint2();
   }
 
   public void addContainer() {
