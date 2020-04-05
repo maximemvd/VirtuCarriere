@@ -1067,13 +1067,18 @@ public class MainWindow extends JFrame {
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
         && SwingUtilities.isLeftMouseButton(evt)) {
+        
       this.controller.noeudSelection(mousePoint.getX(), mousePoint.getY());
-
-      Noeud starting = this.controller.getNoeudSelect1();
-      Noeud arrival = this.controller.getNoeudSelect2();
-
-      this.controller.addArc(mousePoint, starting, arrival);
-
+      
+      if (this.controller.getNoeudForArcList().size() == 2){
+          Noeud starting = this.controller.getNoeudForArcList().get(0);
+          Noeud arrival = this.controller.getNoeudForArcList().get(1);
+          this.controller.addArc(mousePoint, starting, arrival);
+          this.controller.getNoeudForArcList().get(0).switchSelectionStatus();
+          this.controller.getNoeudForArcList().get(1).switchSelectionStatus();
+          this.controller.getNoeudForArcList().clear();
+      }
+      
       drawingPanel.repaint();
 
       // Premièrement, il faut sélectionner 2 noeuds et obtenir leur coordonnées(x,y)

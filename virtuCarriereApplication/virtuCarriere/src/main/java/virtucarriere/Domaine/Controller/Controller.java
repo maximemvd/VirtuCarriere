@@ -207,13 +207,9 @@ public class Controller implements Serializable {
   public List<Noeud> getNoeudList() {
     return elementContainer.getNoeudList();
   }
-
-  public Noeud getNoeudSelect1() {
-    return elementContainer.noeudSelectPoint1();
-  }
-
-  public Noeud getNoeudSelect2() {
-    return elementContainer.noeudSelectPoint2();
+  
+  public List<Noeud> getNoeudForArcList(){
+      return elementContainer.getNoeudForArcList();
   }
 
   public void addContainer() {

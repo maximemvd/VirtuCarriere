@@ -87,26 +87,12 @@ public class ElementContainer implements Serializable {
       if (noeud.contains(x, y)) {
         noeud.switchSelectionStatus();
         noeudForArcList.add(noeud);
-      } else if (noeudForArcList.size() > 2) {
-        break;
       }
     }
   }
-
-  public Noeud noeudSelectPoint1() {
-    if (this.noeudForArcList.size() > 0) {
-      return this.noeudForArcList.get(0);
-    } else {
-      return null;
-    }
-  }
-
-  public Noeud noeudSelectPoint2() {
-    if (this.noeudForArcList.size() > 1) {
-      return this.noeudForArcList.get(1);
-    } else {
-      return null;
-    }
+  
+  public List<Noeud> getNoeudForArcList(){
+      return this.noeudForArcList;
   }
 
   public boolean equipementIsEmpty() {

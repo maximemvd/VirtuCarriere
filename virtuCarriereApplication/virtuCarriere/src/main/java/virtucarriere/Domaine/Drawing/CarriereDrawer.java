@@ -202,17 +202,15 @@ public class CarriereDrawer {
 
   public void drawArc(Graphics g) {
     List<Arc> arcs = controller.getArcList();
-    Noeud startingNoeud = controller.getNoeudSelect1();
-    Noeud arrivalNoeud = controller.getNoeudSelect2();
     arcs.forEach(
         (arc) -> {
           Color arcColor = arc.getColor();
           g.setColor(arcColor);
           g.drawLine(
-              (int) startingNoeud.getX(),
-              (int) startingNoeud.getY(),
-              (int) arrivalNoeud.getX(),
-              (int) arrivalNoeud.getY());
+              (int) arc.getStarting().getX(),
+              (int) arc.getStarting().getY(),
+              (int) arc.getArrival().getX(),
+              (int) arc.getArrival().getY());
         });
   }
 
