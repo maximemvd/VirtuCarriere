@@ -832,6 +832,7 @@ public class MainWindow extends JFrame {
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
     setAppMode(ApplicationMode.ADD_ARC);
+    this.controller.getNoeudForArcList().clear();
     // this.setMode(EquipementModes.ARC);
   }
 
