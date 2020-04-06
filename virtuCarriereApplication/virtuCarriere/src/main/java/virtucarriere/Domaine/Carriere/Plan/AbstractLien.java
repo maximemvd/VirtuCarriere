@@ -4,8 +4,8 @@ import java.awt.Point;
 
 public abstract class AbstractLien<EndType extends Element> extends Element {
 
-  public AbstractLien(Point point, int p_width, int p_length, boolean p_selectionStatus) {
-    super(point, p_width, p_length, p_selectionStatus);
+  public AbstractLien(Point point, int p_width, int p_length) {
+    super(point, p_width, p_length);
   }
 
   public EndType getArrival() {

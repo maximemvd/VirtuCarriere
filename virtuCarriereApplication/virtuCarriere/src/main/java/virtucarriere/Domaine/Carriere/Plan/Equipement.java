@@ -13,10 +13,9 @@ public abstract class Equipement extends Element {
   private Angle angle;
   private List<Class<? extends Equipement>> dependency;
 
-  public Equipement(
-      Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
+  public Equipement(Point point, int p_width, int p_length, double p_angle) {
 
-    super(point, p_width, p_length, p_selectionStatus);
+    super(point, p_width, p_length);
 
     this.angle = new Angle(p_angle);
     this.dependency = dependency;

@@ -7,11 +7,8 @@ package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.util.ArrayList;
 
 public class Camion extends Vehicule {
-
-  ArrayList<Node> itineraireCamion;
 
   private double start;
   private Color color;
@@ -19,9 +16,8 @@ public class Camion extends Vehicule {
   private Point point;
   private String name;
 
-  public Camion(Jeton jeton, double start, Point point, boolean p_selectionStatus) {
-    super(point, p_selectionStatus = false);
-    this.itineraireCamion = new ArrayList<Node>();
+  public Camion(Jeton jeton, Point point) {
+    super(point);
     this.jeton = jeton;
     this.start = start;
     this.name = "Camion";
@@ -30,8 +26,8 @@ public class Camion extends Vehicule {
     // createCamion(jeton, start, coordonnees);
   }
 
-  public Camion createCamion(Jeton jeton, double start, Point point) {
-    Camion newCamion = new Camion(jeton, start, point, false);
+  public Camion createCamion(Jeton jeton, Point point) {
+    Camion newCamion = new Camion(jeton, point);
     return newCamion;
   };
 
@@ -56,30 +52,13 @@ public class Camion extends Vehicule {
     return jeton;
   }
 
-  public ArrayList<Node> getItineaireList() {
-    return itineraireCamion;
-  }
-
   @Override
   public String getName() {
     return name;
   }
 
-  public void addDestination(Node p_node) {
-    itineraireCamion.add(p_node);
-  }
-
-  public void removeDestination(Node p_node) {
-    try {
-      itineraireCamion.remove(p_node);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-  }
-
-  public void editerParams(Jeton jeton, double start, Point point) {
+  public void editerParams(Jeton jeton, Point point) {
     this.jeton = jeton;
-    this.start = start;
     this.point = point;
   }
 }

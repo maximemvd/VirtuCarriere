@@ -12,9 +12,8 @@ public class Convoyeur extends AbstractLien<Equipement> {
   private Noeud destination;
   private String name;
 
-  public Convoyeur(
-      Point point, int p_width, int p_length, boolean p_selectionStatus, Noeud p_destination) {
-    super(point, p_width, p_length, p_selectionStatus);
+  public Convoyeur(Point point, int p_width, int p_length, Noeud p_destination) {
+    super(point, p_width, p_length);
 
     this.destination = p_destination;
     this.name = "Convoyeur";

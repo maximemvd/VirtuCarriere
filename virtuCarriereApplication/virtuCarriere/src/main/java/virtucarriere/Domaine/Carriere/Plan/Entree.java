@@ -15,9 +15,8 @@ public class Entree extends Element {
   private Color color;
   private String name;
 
-  public Entree(
-      Point p_point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
-    super(p_point, p_width, p_length, p_selectionStatus);
+  public Entree(Point p_point, int p_width, int p_length, double p_angle) {
+    super(p_point, p_width, p_length);
     this.angle = p_angle;
     this.color = Color.DARK_GRAY;
     this.name = "Entrée";
