@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Point;
 
 /** @author maximemivilledeschenes */
-public class Entree extends Element {
+public class Entree extends Noeud {
 
   private double angle;
   private Color color;

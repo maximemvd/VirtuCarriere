@@ -152,7 +152,7 @@ public class Controller implements Serializable {
 
   public void addTas(Point mousePoint) {
     Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 2);
-    elementContainer.addNoeud(tas);
+    elementContainer.addEquipement(tas);
   }
 
   public void addNoeud(Point mousePoint) {

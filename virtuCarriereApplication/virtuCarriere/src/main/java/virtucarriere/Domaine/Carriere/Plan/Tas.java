@@ -7,8 +7,9 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Collections;
 
-public class Tas extends Noeud {
+public class Tas extends Equipement {
 
   private String materialCode;
   private double dimension;
@@ -16,7 +17,7 @@ public class Tas extends Noeud {
   private String name;
 
   public Tas(Point point, int p_width, int p_length, String materialCode, double dimension) {
-    super(point, p_width, p_length);
+    super(point, p_width, p_length, 0, Collections.emptyList());
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.BLACK;

@@ -5,8 +5,6 @@
  */
 package virtucarriere.Domaine.AffichageUtil;
 
-
-
 /** @author vincentmasse */
 public class UnitConverter {
 

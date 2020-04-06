@@ -40,6 +40,7 @@ public class ElementContainer implements Serializable {
     noeudForArcList = new LinkedList<Noeud>();
   }
 
+  // TODO add function to get element with argument point
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
     for (Element item : this.equipementList) {
       if (item.contains(x, y)) {
@@ -293,6 +294,7 @@ public class ElementContainer implements Serializable {
   //     this.vehiculeList.remove(vehiculePretPourSimulation);
   // }
 
+  // TODO useless function as we will be able to add by try and we will throw expected exception
   public String askReason() {
     return "La raison";
   }
