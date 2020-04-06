@@ -403,7 +403,8 @@ public class MainWindow extends JFrame {
     jTabbedPane.addTab("Plan", jPanel2);
 
     jComboBox3.setModel(
-        new javax.swing.DefaultComboBoxModel<>(new String[] {"Camion", "Chargeur"}));
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {"Sélectionner", "Camion", "Chargeur"}));
     jComboBox3.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,7 +429,7 @@ public class MainWindow extends JFrame {
                 javax.swing.GroupLayout.Alignment.TRAILING,
                 jPanel3Layout
                     .createSequentialGroup()
-                    .addGap(0, 69, Short.MAX_VALUE)
+                    .addGap(0, 108, Short.MAX_VALUE)
                     .addComponent(
                         jComboBox3,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -559,7 +560,7 @@ public class MainWindow extends JFrame {
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         310,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 25, Short.MAX_VALUE)));
+                    .addGap(0, 0, Short.MAX_VALUE)));
 
     mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
 
@@ -693,6 +694,11 @@ public class MainWindow extends JFrame {
 
   private void jComboBox3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox3ActionPerformed
+
+    if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
+      setAppMode(ApplicationMode.ADD_SIMULATION);
+    }
+
     if (jComboBox3.getSelectedItem().equals("Chargeur")) {
       this.setVehicule(selectedVehicules.CHARGEUR);
     } else if (jComboBox3.getSelectedItem().equals("Camion")) {
@@ -832,6 +838,7 @@ public class MainWindow extends JFrame {
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
     setAppMode(ApplicationMode.ADD_ARC);
+    this.controller.getNoeudForArcList().clear();
     // this.setMode(EquipementModes.ARC);
   }
 
@@ -1076,6 +1083,18 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
 
       this.controller.noeudSelection(mousePoint.getX(), mousePoint.getY());
+
+      if (this.controller.getNoeudForArcList().size() == 2) {
+        Noeud starting = this.controller.getNoeudForArcList().get(0);
+        Noeud arrival = this.controller.getNoeudForArcList().get(1);
+        this.controller.addArc(mousePoint, starting, arrival);
+        for (Noeud noeud : this.controller.getNoeudForArcList()) {
+          noeud.switchSelectionStatus();
+        }
+        this.controller.getNoeudForArcList().clear();
+      }
+
+      drawingPanel.repaint();
 
       if (this.controller.getNoeudForArcList().size() == 2) {
         Noeud starting = this.controller.getNoeudForArcList().get(0);
