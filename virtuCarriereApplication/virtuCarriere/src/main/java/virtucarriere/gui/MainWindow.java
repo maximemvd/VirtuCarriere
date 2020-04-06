@@ -1081,9 +1081,9 @@ public class MainWindow extends JFrame {
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
         && SwingUtilities.isLeftMouseButton(evt)) {
+      Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
 
-      this.controller.noeudSelection(mousePoint.getX(), mousePoint.getY());
-
+      this.controller.noeudSelection(point.getX(), point.getY());
       if (this.controller.getNoeudForArcList().size() == 2) {
         Noeud starting = this.controller.getNoeudForArcList().get(0);
         Noeud arrival = this.controller.getNoeudForArcList().get(1);
