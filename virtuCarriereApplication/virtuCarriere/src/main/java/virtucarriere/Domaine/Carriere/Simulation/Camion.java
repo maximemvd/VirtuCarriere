@@ -16,7 +16,7 @@ public class Camion extends Vehicule {
   private Point point;
   private String name;
 
-  public Camion(Jeton jeton, double start, Point point) {
+  public Camion(Jeton jeton, Point point) {
     super(point);
     this.jeton = jeton;
     this.start = start;
@@ -26,8 +26,8 @@ public class Camion extends Vehicule {
     // createCamion(jeton, start, coordonnees);
   }
 
-  public Camion createCamion(Jeton jeton, double start, Point point) {
-    Camion newCamion = new Camion(jeton, start, point);
+  public Camion createCamion(Jeton jeton, Point point) {
+    Camion newCamion = new Camion(jeton, point);
     return newCamion;
   };
 
@@ -57,9 +57,8 @@ public class Camion extends Vehicule {
     return name;
   }
 
-  public void editerParams(Jeton jeton, double start, Point point) {
+  public void editerParams(Jeton jeton, Point point) {
     this.jeton = jeton;
-    this.start = start;
     this.point = point;
   }
 }

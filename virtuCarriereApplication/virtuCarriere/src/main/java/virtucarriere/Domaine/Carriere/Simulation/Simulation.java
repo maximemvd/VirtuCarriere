@@ -35,7 +35,7 @@ public class Simulation {
     int sizeCamion = camionList.size();
     int start = 100 * sizeCamion;
     Point point = new Point(start, start);
-    Camion camionSimulation = new Camion(jeton, start, point); // create camion
+    Camion camionSimulation = new Camion(jeton, point); // create camion
     camionList.add(camionSimulation);
   }
 

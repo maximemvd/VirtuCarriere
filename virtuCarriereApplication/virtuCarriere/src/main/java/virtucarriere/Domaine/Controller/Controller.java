@@ -85,7 +85,7 @@ public class Controller implements Serializable {
 
   public void addCamion(Point mousePoint) {
     Jeton jeton = new Jeton("1", "1", 2, "1");
-    Camion p_camion = new Camion(jeton, 2, mousePoint);
+    Camion p_camion = new Camion(jeton, mousePoint);
     elementContainer.addCamion(p_camion);
   }
 
