@@ -84,9 +84,14 @@ public class Controller implements Serializable {
   }
 
   public void addCamion() {
-    Jeton jeton = new Jeton("1", "1", 2, "1");
-    Camion p_camion = new Camion(jeton, getEntreeList().get(0).getPoint());
-    elementContainer.addCamion(p_camion);
+    try {
+      Jeton jeton = new Jeton("1", "1", 2, "1");
+      Camion p_camion = new Camion(jeton, getEntreeList().get(0).getPoint());
+      elementContainer.addCamion(p_camion);
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, l'entrée n'existe pas donc il est impossible d'ajouter une camion");
+    }
   }
 
   public void addChargeur(Point mousePoint) {
