@@ -83,8 +83,7 @@ public class Arc extends AbstractLien<Noeud> {
   }
 
   public Point middlePointOfArc(int x1, int y1, int x2, int y2) {
-    Point point = new Point((x1 + x2) / 2, (y1 + y2) / 2);
-    return point;
+    return new Point((x1 + x2) / 2, (y1 + y2) / 2);
   }
 
   public String getName() {

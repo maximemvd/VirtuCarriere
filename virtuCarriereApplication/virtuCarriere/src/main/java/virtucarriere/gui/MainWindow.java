@@ -805,6 +805,7 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
+    List<Arc> arcs = controller.getArcList();
 
     equipements.stream()
         .map(
@@ -816,7 +817,16 @@ public class MainWindow extends JFrame {
             (_item) -> {
               drawingPanel.repaint();
             });
-
+    arcs.stream()
+        .map(
+            (arc) -> {
+              controller.removeArc(arc);
+              return arc;
+            })
+        .forEachOrdered(
+            (_item) -> {
+              drawingPanel.repaint();
+            });
     noeuds.stream()
         .map(
             (noeud) -> {
