@@ -159,6 +159,10 @@ public class Controller implements Serializable {
     elementContainer.removeNoeud(noeud);
   }
 
+  public void removeArc(Arc arc) {
+    elementContainer.removeArc(arc);
+  }
+
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, false, 4);
     elementContainer.addEntree(entree);

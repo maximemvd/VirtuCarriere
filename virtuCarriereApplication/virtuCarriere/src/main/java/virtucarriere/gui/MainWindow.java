@@ -763,6 +763,7 @@ public class MainWindow extends JFrame {
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
     List<Vehicule> vehicules = controller.getVehiculeList();
+    List<Arc> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -785,6 +786,13 @@ public class MainWindow extends JFrame {
     for (Vehicule vehicule : vehicules) {
       if (vehicule.isSelected()) {
         controller.removeVehicule(vehicule);
+        drawingPanel.repaint();
+      }
+    }
+
+    for (Arc arc : arcs) {
+      if (arc.isSelected()) {
+        controller.removeArc(arc);
         drawingPanel.repaint();
       }
     }

@@ -214,7 +214,7 @@ public class CarriereDrawer {
         (arc) -> {
           if (arc.isSelected()) {
             g2d.setColor(new Color(255, 0, 0));
-            g2d.setStroke(new BasicStroke(6));
+            g2d.setStroke(new BasicStroke(7));
             g2d.drawLine(
                 (int) arc.getStarting().getX(),
                 (int) arc.getStarting().getY(),
