@@ -7,11 +7,8 @@ package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.util.ArrayList;
 
 public class Camion extends Vehicule {
-
-  ArrayList<Node> itineraireCamion;
 
   private double start;
   private Color color;
@@ -55,25 +52,9 @@ public class Camion extends Vehicule {
     return jeton;
   }
 
-  public ArrayList<Node> getItineaireList() {
-    return itineraireCamion;
-  }
-
   @Override
   public String getName() {
     return name;
-  }
-
-  public void addDestination(Node p_node) {
-    itineraireCamion.add(p_node);
-  }
-
-  public void removeDestination(Node p_node) {
-    try {
-      itineraireCamion.remove(p_node);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
   }
 
   public void editerParams(Jeton jeton, double start, Point point) {
