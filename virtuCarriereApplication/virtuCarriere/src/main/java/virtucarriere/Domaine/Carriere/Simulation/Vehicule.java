@@ -71,6 +71,11 @@ public abstract class Vehicule {
     return point;
   }
 
+  public void translate(double deltaX, double deltaY) {
+    this.point.x = (int) (this.point.getX() + deltaX);
+    this.point.y = (int) (this.point.getY() + deltaY);
+  }
+
   public abstract Color getColor();
 
   public abstract String getName();

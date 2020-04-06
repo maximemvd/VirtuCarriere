@@ -77,6 +77,18 @@ public class ElementContainer implements Serializable {
         item.translate(deltaX, deltaY);
       }
     }
+
+    for (Element item : this.entreeList) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+
+    for (Vehicule item : this.vehiculeList) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
   }
 
   public void noeudSelection(double x, double y) {

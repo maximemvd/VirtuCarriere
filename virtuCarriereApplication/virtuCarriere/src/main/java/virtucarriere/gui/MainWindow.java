@@ -972,6 +972,7 @@ public class MainWindow extends JFrame {
               (int) (evt.getX() / drawingPanel.getZoom()),
               (int) (evt.getY() / drawingPanel.getZoom()));
       drawingPanel.repaint();
+      rafraichissementTextField();
     }
   } // GEN-LAST:event_drawingPanelMouseDragged
 
