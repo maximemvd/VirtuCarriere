@@ -83,9 +83,9 @@ public class Controller implements Serializable {
     elementContainer.addEquipement(newBroyeur);
   }
 
-  public void addCamion(Point mousePoint) {
+  public void addCamion() {
     Jeton jeton = new Jeton("1", "1", 2, "1");
-    Camion p_camion = new Camion(jeton, 2, mousePoint);
+    Camion p_camion = new Camion(jeton, getEntreeList().get(0).getPoint());
     elementContainer.addCamion(p_camion);
   }
 
@@ -107,7 +107,7 @@ public class Controller implements Serializable {
     if (null != mode)
       switch (mode) {
         case CAMION:
-          addCamion(mousePoint);
+          addCamion();
           break;
         case CHARGEUR:
           addChargeur(mousePoint);
