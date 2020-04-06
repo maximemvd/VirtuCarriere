@@ -1043,50 +1043,50 @@ public class MainWindow extends JFrame {
 
   private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
     Point mousePoint = evt.getPoint();
+    this.initMousePoint =
+        new Point(
+            (int) (evt.getX() / drawingPanel.getZoom()),
+            (int) (evt.getY() / drawingPanel.getZoom()));
 
-    this.currentMousePoint = mousePoint;
+    this.currentMousePoint = new Point(this.initMousePoint);
+    this.requestFocus();
 
     if (this.currentApplicationMode == ApplicationMode.SELECT
         && SwingUtilities.isLeftMouseButton(evt)) {
-      // double xPos = this.currentMousePoint.getX();
-      // double yPos = this.currentMousePoint.getY();
-      this.controller.switchSelectionStatus(
-          mousePoint.getX(), mousePoint.getY(), evt.isShiftDown());
+      double xPos = this.currentMousePoint.getX();
+      double yPos = this.currentMousePoint.getY();
+      this.controller.switchSelectionStatus(xPos, yPos, evt.isShiftDown());
       rafraichissementTextField();
       drawingPanel.repaint();
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_PLAN
         && SwingUtilities.isLeftMouseButton(evt)) {
+      Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-      this.controller.addEquipement(actualEquipement, mousePoint);
+      this.controller.addEquipement(actualEquipement, point);
       drawingPanel.repaint();
+
     } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION
         && SwingUtilities.isLeftMouseButton(evt)) {
+      Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
-      controller.addVehicule(vehiculetoDraw, mousePoint);
+      controller.addVehicule(vehiculetoDraw, point);
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
         && SwingUtilities.isLeftMouseButton(evt)) {
-        
+
       this.controller.noeudSelection(mousePoint.getX(), mousePoint.getY());
-      
-      if (this.controller.getNoeudForArcList().size() == 2){
-          Noeud starting = this.controller.getNoeudForArcList().get(0);
-          Noeud arrival = this.controller.getNoeudForArcList().get(1);
-          this.controller.addArc(mousePoint, starting, arrival);
-          this.controller.getNoeudForArcList().get(0).switchSelectionStatus();
-          this.controller.getNoeudForArcList().get(1).switchSelectionStatus();
-          this.controller.getNoeudForArcList().clear();
+
+      if (this.controller.getNoeudForArcList().size() == 2) {
+        Noeud starting = this.controller.getNoeudForArcList().get(0);
+        Noeud arrival = this.controller.getNoeudForArcList().get(1);
+        this.controller.addArc(mousePoint, starting, arrival);
+        this.controller.getNoeudForArcList().get(0).switchSelectionStatus();
+        this.controller.getNoeudForArcList().get(1).switchSelectionStatus();
+        this.controller.getNoeudForArcList().clear();
       }
-      
+
       drawingPanel.repaint();
-
-      // Premièrement, il faut sélectionner 2 noeuds et obtenir leur coordonnées(x,y)
-      // Après, on appel la méthode ajouterArc(Noeud starting, Noeud arrival) du controller
-      // Cette méthode prend les deux noeuds sélectionnés
-      // Dans CarrièreDrawer, on a la méthode drawArc qui dessine une ligne entre les coordonnées
-      // des deux noeuds
-
     }
   }
 

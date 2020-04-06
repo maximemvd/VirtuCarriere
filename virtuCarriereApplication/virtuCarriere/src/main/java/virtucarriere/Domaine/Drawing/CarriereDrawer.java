@@ -7,7 +7,7 @@ package virtucarriere.Domaine.Drawing;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.List;
@@ -48,16 +48,16 @@ public class CarriereDrawer {
     equipementColor.put(Crible.class.getName(), Color.RED);
   }
 
-  public void draw(Graphics g) {
+  public void draw(Graphics2D g2d, double zoom) {
     // faire un switch case ici
-    drawEquipement(g);
-    drawNoeud(g);
-    drawEntree(g);
-    drawVehicule(g);
-    drawArc(g);
+    drawEquipement(g2d, zoom);
+    drawNoeud(g2d, zoom);
+    drawEntree(g2d, zoom);
+    drawVehicule(g2d, zoom);
+    drawArc(g2d, zoom);
   }
 
-  public void startSimulation(Graphics g) {
+  public void startSimulation(Graphics2D g2d) {
     List<Camion> camions = simulation.getCamionList();
     camions.forEach(
         (camion) -> {
@@ -65,8 +65,8 @@ public class CarriereDrawer {
             // the camion start at the start
             Color camionColor = camion.getColor();
             Point camionPoint = camion.getPoint();
-            g.setColor(camionColor);
-            g.fillOval(
+            g2d.setColor(camionColor);
+            g2d.fillOval(
                 (int) camionPoint.getX() - radius,
                 (int) camionPoint.getY() - radius,
                 radius * 2,
@@ -77,7 +77,7 @@ public class CarriereDrawer {
             Jeton jeton = camion.getJeton();
             String code = jeton.getCodeProduit();
             Point pointToGo = simulation.indiqueAuCamionEmplacement(code);
-            g.fillOval(
+            g2d.fillOval(
                 (int) pointToGo.getX() - radius,
                 (int) pointToGo.getY() - radius,
                 radius * 2,
@@ -91,45 +91,48 @@ public class CarriereDrawer {
         });
   }
 
-  public void drawVehicule(Graphics g) {
+  public void drawVehicule(Graphics2D g2d, double zoom) {
     List<Vehicule> vehicules = controller.getVehiculeList();
+    g2d.scale(zoom, zoom);
     vehicules.forEach(
         (vehicule) -> {
           Point vehiculePoint = vehicule.getPoint();
           if (vehicule.isSelected()) {
-            g.setColor(new Color(255, 0, 0));
+            g2d.setColor(new Color(255, 0, 0));
             int offsetRadius = radius + 2;
-            g.fillOval(
+            g2d.fillOval(
                 (int) vehiculePoint.getX() - offsetRadius,
                 (int) vehiculePoint.getY() - offsetRadius,
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
           Color vehiculeColor = vehicule.getColor();
-          g.setColor(vehiculeColor);
-          g.fillOval(
+          g2d.setColor(vehiculeColor);
+          g2d.fillOval(
               (int) vehiculePoint.getX() - radius,
               (int) vehiculePoint.getY() - radius,
               radius * 2,
               radius * 2);
         });
+    g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  public void drawCarriere(Graphics g) {
+  public void drawCarriere(Graphics2D g2d) {
     int width = (int) initialDimension.getWidth() / (int) drawingPanel.getZoom();
     int height = (int) initialDimension.getHeight() / (int) drawingPanel.getZoom();
-    g.setColor(Color.ORANGE);
-    g.fillRect(0, 0, width, height);
+    g2d.setColor(Color.ORANGE);
+    g2d.fillRect(0, 0, width, height);
   }
 
-  public void drawEquipement(Graphics g) {
+  public void drawEquipement(Graphics2D g, double zoom) {
+    g.scale(zoom, zoom);
     List<Equipement> equipements = controller.getEquipementList();
     equipements.forEach(
         (equipement) -> {
           Point equipementPoint = equipement.getPoint();
           if (equipement.isSelected()) {
             g.setColor(new Color(255, 0, 0));
-            int offsetRadius = radius + 2;
+            int offsetRadius = (radius + 2) / (int) zoom;
             g.fillOval(
                 (int) equipementPoint.getX() - offsetRadius,
                 (int) equipementPoint.getY() - offsetRadius,
@@ -146,72 +149,79 @@ public class CarriereDrawer {
               radius * 2,
               radius * 2);
         });
+    g.scale(1 / zoom, 1 / zoom);
   }
 
   private Color getColor(Equipement equipement) {
     return equipementColor.get(equipement.getClass().getName());
   }
 
-  public void drawNoeud(Graphics g) {
+  public void drawNoeud(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
     List<Noeud> noeuds = controller.getNoeudList();
     noeuds.forEach(
         (noeud) -> {
           Point noeudPoint = noeud.getPoint();
           if (noeud.isSelected()) {
-            g.setColor(new Color(255, 0, 0));
+            g2d.setColor(new Color(255, 0, 0));
             int offsetRadius = radius / 2 + 2;
-            g.fillOval(
+            g2d.fillOval(
                 (int) noeud.getX() - offsetRadius,
                 (int) noeud.getY() - offsetRadius,
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
           Color noeudColor = noeud.getColor();
-          g.setColor(noeudColor);
-          g.fillOval(
+          g2d.setColor(noeudColor);
+          g2d.fillOval(
               (int) noeudPoint.getX() - radius / 2,
               (int) noeudPoint.getY() - radius / 2,
               radius,
               radius);
         });
+    g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  public void drawEntree(Graphics g) {
+  public void drawEntree(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
     List<Entree> entrees = controller.getEntreeList();
     entrees.forEach(
         (entree) -> {
           Point entreePoint = entree.getPoint();
           if (entree.isSelected()) {
-            g.setColor(new Color(255, 0, 0));
+            g2d.setColor(new Color(255, 0, 0));
             int offsetRadius = radius + 2;
-            g.fillRect(
+            g2d.fillRect(
                 (int) entree.getX() - offsetRadius,
                 (int) entree.getY() - offsetRadius,
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
           Color entreeColor = entree.getColor();
-          g.setColor(entreeColor);
-          g.fillRect(
+          g2d.setColor(entreeColor);
+          g2d.fillRect(
               (int) entreePoint.getX() - radius,
               (int) entreePoint.getY() - radius,
               radius * 2,
               radius * 2);
         });
+    g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  public void drawArc(Graphics g) {
+  public void drawArc(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
     List<Arc> arcs = controller.getArcList();
     arcs.forEach(
         (arc) -> {
           Color arcColor = arc.getColor();
-          g.setColor(arcColor);
-          g.drawLine(
+          g2d.setColor(arcColor);
+          g2d.drawLine(
               (int) arc.getStarting().getX(),
               (int) arc.getStarting().getY(),
               (int) arc.getArrival().getX(),
               (int) arc.getArrival().getY());
         });
+    g2d.scale(1 / zoom, 1 / zoom);
   }
 
   public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {
