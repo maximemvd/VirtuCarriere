@@ -10,6 +10,7 @@ import java.io.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
@@ -36,7 +37,6 @@ public class ElementContainer implements Serializable {
     noeudList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
     arcList = new LinkedList<Arc>();
-    selectionList = new LinkedList<Element>();
     noeudForArcList = new LinkedList<Noeud>();
   }
 
@@ -44,21 +44,18 @@ public class ElementContainer implements Serializable {
     for (Element item : this.equipementList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
-        selectionList.add(item);
       }
     }
 
     for (Element item : this.noeudList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
-        selectionList.add(item);
       }
     }
 
     for (Element item : this.entreeList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
-        selectionList.add(item);
       }
     }
 
@@ -151,11 +148,20 @@ public class ElementContainer implements Serializable {
     return file;
   }
 
+  public boolean isEquipmentPresent(Equipement p_equipement) {
+    for (Equipement item : this.equipementList) {
+      if (item.contains(p_equipement.getX(), p_equipement.getY())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addEquipement(Equipement p_equipement) {
-    try {
+    if (isEquipmentPresent(p_equipement)) {
+      JOptionPane.showMessageDialog(null, "Attention, un équipement est déjà présent");
+    } else {
       equipementList.add(p_equipement);
-    } catch (Exception error) {
-      System.out.println(error);
     }
   }
 
@@ -179,12 +185,30 @@ public class ElementContainer implements Serializable {
     }
   }
 
+  public boolean isVehiculePresent(Vehicule p_vehicule) {
+    for (Vehicule item : this.vehiculeList) {
+      if (item.contains(p_vehicule.getX(), p_vehicule.getY())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addCamion(Camion p_Camion) {
-    vehiculeList.add(p_Camion);
+    if (isVehiculePresent(p_Camion)) {
+      JOptionPane.showMessageDialog(null, "Attention, un véhicule est déjà présent");
+    } else {
+      vehiculeList.add(p_Camion);
+    }
   }
 
   public void addEntree(Entree newEntree) {
-    entreeList.add(newEntree);
+    if (entreeList.size() == 1) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, il ne peut y avoir qu'une seule entrée à la carrière");
+    } else {
+      entreeList.add(newEntree);
+    }
   }
 
   public void addArc(Arc newArc) {
@@ -207,8 +231,21 @@ public class ElementContainer implements Serializable {
     }
   }
 
+  public boolean isNoeudPresent(Noeud p_noeud) {
+    for (Noeud item : this.noeudList) {
+      if (item.contains(p_noeud.getX(), p_noeud.getY())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addNoeud(Noeud p_noeud) {
-    noeudList.add(p_noeud);
+    if (isNoeudPresent(p_noeud)) {
+      JOptionPane.showMessageDialog(null, "Attention, un noeud ou un tas est déjà présent");
+    } else {
+      noeudList.add(p_noeud);
+    }
   }
 
   public void removeNoeud(Noeud p_noeud) {
