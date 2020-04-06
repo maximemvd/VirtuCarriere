@@ -393,9 +393,11 @@ public class MainWindow extends JFrame {
                                                     .addComponent(
                                                         textFieldCoordonneeX,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        37,
+                                                        49,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
                                                     .addComponent(jLabel10)
                                                     .addPreferredGap(
                                                         javax.swing.LayoutStyle.ComponentPlacement
@@ -403,9 +405,9 @@ public class MainWindow extends JFrame {
                                                     .addComponent(
                                                         textFieldCoordonneeY,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        37,
+                                                        48,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(62, 62, 62))))
+                                                    .addGap(51, 51, 51))))
                             .addGroup(
                                 jPanel2Layout
                                     .createSequentialGroup()
@@ -453,7 +455,10 @@ public class MainWindow extends JFrame {
                         javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel8)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addPreferredGap(
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
                     .addGroup(
                         jPanel2Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -469,15 +474,12 @@ public class MainWindow extends JFrame {
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                 javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(
                         jPanel2Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jLabel4)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
