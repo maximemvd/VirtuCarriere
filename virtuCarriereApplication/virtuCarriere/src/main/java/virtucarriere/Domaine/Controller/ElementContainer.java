@@ -41,6 +41,11 @@ public class ElementContainer implements Serializable {
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
+    int HIT_BOX = 2;
+    int boxX = (int) x - HIT_BOX / 2;
+    int boxY = (int) y - HIT_BOX / 2;
+    int width = HIT_BOX;
+    int height = HIT_BOX;
     for (Element item : this.equipementList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();

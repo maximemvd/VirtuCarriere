@@ -15,7 +15,7 @@ public class Simulation {
   public Simulation() {
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
-  };
+  }
 
   public void setChargeurCourant(Chargeur p_chargeur) {
     this.chargeurCourant = p_chargeur;

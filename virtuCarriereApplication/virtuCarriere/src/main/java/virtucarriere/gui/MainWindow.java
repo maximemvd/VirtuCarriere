@@ -960,6 +960,8 @@ public class MainWindow extends JFrame {
   }
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
+    // Serait intéressant de dessiner l'arc au fur et à mesure :
+    // https://stackoverflow.com/questions/9711938/java-draw-line-as-the-mouse-is-moved
     if (SwingUtilities.isRightMouseButton(evt)) {
       double deltaX =
           (((int) evt.getX() / drawingPanel.getZoom()) - (int) (this.currentMousePoint.getX()));
