@@ -132,7 +132,7 @@ public class CarriereDrawer {
           Point equipementPoint = equipement.getPoint();
           if (equipement.isSelected()) {
             g.setColor(new Color(255, 0, 0));
-            int offsetRadius = (radius + 2) / (int) zoom;
+            int offsetRadius = radius + 2;
             g.fillOval(
                 (int) equipementPoint.getX() - offsetRadius,
                 (int) equipementPoint.getY() - offsetRadius,
@@ -140,8 +140,6 @@ public class CarriereDrawer {
                 offsetRadius * 2);
           }
           Color equipementColor = getColor(equipement);
-          System.out.println(equipementColor);
-          System.out.println(equipementPoint);
           g.setColor(equipementColor);
           g.fillOval(
               (int) equipementPoint.getX() - radius,

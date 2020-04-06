@@ -7,7 +7,6 @@ package virtucarriere.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -1232,10 +1231,6 @@ public class MainWindow extends JFrame {
 
   public void setMainScrollPanePosition(Point point) {
     this.mainScrollPane.getViewport().setViewPosition(point);
-  }
-
-  public void draw(Graphics2D g, DrawingPanel drawingPanel, double zoom) {
-    // controller.draw(g, getCurrentMeasurementUnitMode(), drawingPanel, zoom, currentMousePoint);
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
