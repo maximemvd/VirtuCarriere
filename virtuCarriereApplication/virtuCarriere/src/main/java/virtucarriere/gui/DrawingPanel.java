@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -22,7 +21,6 @@ public class DrawingPanel extends JPanel implements Serializable {
 
   public Dimension initialDimension;
   private MainWindow mainWindow;
-  AffineTransform tx = new AffineTransform();
 
   private double mouseX;
   private double mouseY;

@@ -64,6 +64,12 @@ public class ElementContainer implements Serializable {
         item.switchSelectionStatus();
       }
     }
+
+    for (Arc item : this.arcList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
   }
 
   void updateSelectedItemsPosition(double deltaX, double deltaY) {

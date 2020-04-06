@@ -5,6 +5,7 @@
  */
 package virtucarriere.Domaine.Drawing;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -213,6 +214,7 @@ public class CarriereDrawer {
         (arc) -> {
           Color arcColor = arc.getColor();
           g2d.setColor(arcColor);
+          g2d.setStroke(new BasicStroke(5));
           g2d.drawLine(
               (int) arc.getStarting().getX(),
               (int) arc.getStarting().getY(),
