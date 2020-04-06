@@ -16,9 +16,8 @@ public class Broyeur extends Equipement {
 
   private static List<Class<? extends Equipement>> dependency = Collections.emptyList();
 
-  public Broyeur(
-      Point point, int p_width, int p_length, boolean p_selectionStatus, double p_angle) {
-    super(point, p_width = 2, p_length = 2, p_selectionStatus = false, p_angle);
+  public Broyeur(Point point, int p_width, int p_length, double p_angle) {
+    super(point, p_width = 2, p_length = 2, p_angle);
     this.name = "Broyeur";
   }
 

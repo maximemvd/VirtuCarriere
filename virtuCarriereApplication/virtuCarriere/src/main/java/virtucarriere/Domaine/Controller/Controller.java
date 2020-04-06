@@ -69,28 +69,28 @@ public class Controller implements Serializable {
   }
 
   public void addCrible(Point mousePoint) {
-    Crible newCrible = new Crible(mousePoint, 2, 2, false, 2);
+    Crible newCrible = new Crible(mousePoint, 2, 2, 2);
     elementContainer.addEquipement(newCrible);
   }
 
   public void addConcasseur(Point mousePoint) {
-    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, false, 2);
+    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, 2);
     elementContainer.addEquipement(newConcasseur);
   }
 
   public void addBroyeur(Point mousePoint) {
-    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, false, 2);
+    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, 2);
     elementContainer.addEquipement(newBroyeur);
   }
 
   public void addCamion(Point mousePoint) {
     Jeton jeton = new Jeton("1", "1", 2, "1");
-    Camion p_camion = new Camion(jeton, 2, mousePoint, false);
+    Camion p_camion = new Camion(jeton, 2, mousePoint);
     elementContainer.addCamion(p_camion);
   }
 
   public void addChargeur(Point mousePoint) {
-    Chargeur p_chargeur = new Chargeur(mousePoint, false);
+    Chargeur p_chargeur = new Chargeur(mousePoint);
     elementContainer.addChargeur(p_chargeur);
   }
 
@@ -99,7 +99,7 @@ public class Controller implements Serializable {
   }
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
-    Arc arc = new Arc(mousePoint, 5, 5, false, starting, arrival);
+    Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
     elementContainer.addArc(arc);
   }
 
@@ -146,12 +146,12 @@ public class Controller implements Serializable {
   }
 
   public void addTas(Point mousePoint) {
-    Tas tas = new Tas(mousePoint, 1, 1, false, "matériaux", 2);
+    Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 2);
     elementContainer.addNoeud(tas);
   }
 
   public void addNoeud(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 1, 1, false);
+    Noeud noeud = new Noeud(mousePoint, 1, 1);
     elementContainer.addNoeud(noeud);
   }
 
@@ -164,7 +164,7 @@ public class Controller implements Serializable {
   }
 
   public void addEntree(Point mousePoint) {
-    Entree entree = new Entree(mousePoint, 3, 3, false, 4);
+    Entree entree = new Entree(mousePoint, 3, 3, 4);
     elementContainer.addEntree(entree);
   }
 

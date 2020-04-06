@@ -19,9 +19,8 @@ public class Camion extends Vehicule {
   private Point point;
   private String name;
 
-  public Camion(Jeton jeton, double start, Point point, boolean p_selectionStatus) {
-    super(point, p_selectionStatus = false);
-    this.itineraireCamion = new ArrayList<Node>();
+  public Camion(Jeton jeton, double start, Point point) {
+    super(point);
     this.jeton = jeton;
     this.start = start;
     this.name = "Camion";
@@ -31,7 +30,7 @@ public class Camion extends Vehicule {
   }
 
   public Camion createCamion(Jeton jeton, double start, Point point) {
-    Camion newCamion = new Camion(jeton, start, point, false);
+    Camion newCamion = new Camion(jeton, start, point);
     return newCamion;
   };
 

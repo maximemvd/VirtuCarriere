@@ -17,15 +17,9 @@ public class Arc extends AbstractLien<Noeud> {
   private Color color;
   private String name;
 
-  public Arc(
-      Point point,
-      int p_width,
-      int p_length,
-      boolean p_selectionStatus,
-      Noeud starting,
-      Noeud arrival) {
+  public Arc(Point point, int p_width, int p_length, Noeud starting, Noeud arrival) {
     // TODO Valider comment intégrer element
-    super(point, p_width, p_length, p_selectionStatus);
+    super(point, p_width, p_length);
 
     this.starting = starting;
     this.arrival = arrival;

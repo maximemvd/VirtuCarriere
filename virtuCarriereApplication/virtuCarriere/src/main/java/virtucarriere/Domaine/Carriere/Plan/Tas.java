@@ -15,14 +15,8 @@ public class Tas extends Noeud {
   private Color color;
   private String name;
 
-  public Tas(
-      Point point,
-      int p_width,
-      int p_length,
-      boolean p_selectionStatus,
-      String materialCode,
-      double dimension) {
-    super(point, p_width, p_length, p_selectionStatus);
+  public Tas(Point point, int p_width, int p_length, String materialCode, double dimension) {
+    super(point, p_width, p_length);
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.BLACK;

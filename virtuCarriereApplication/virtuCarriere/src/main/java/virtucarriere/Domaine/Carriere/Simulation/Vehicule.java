@@ -20,7 +20,7 @@ public abstract class Vehicule {
   private boolean selectionStatus;
   private int radius;
 
-  public Vehicule(Point point, boolean p_selectionStatus) {
+  public Vehicule(Point point) {
     this.point = point;
     this.selectionStatus = false;
     this.radius = 25;

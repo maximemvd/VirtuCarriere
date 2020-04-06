@@ -16,7 +16,7 @@ public abstract class Element implements Serializable {
   private boolean selectionStatus;
   private int radius;
 
-  public Element(Point point, int p_width, int p_length, boolean p_selectionStatus) {
+  public Element(Point point, int p_width, int p_length) {
     this.point = point;
     this.width = p_width;
     this.length = p_length;
@@ -57,11 +57,11 @@ public abstract class Element implements Serializable {
   }
 
   public void switchSelectionStatus() {
-    this.selectionStatus = !this.selectionStatus;
+    selectionStatus = !selectionStatus;
   }
 
   public void unselect() {
-    this.selectionStatus = false;
+    selectionStatus = false;
   }
 
   public int getRadius() {
