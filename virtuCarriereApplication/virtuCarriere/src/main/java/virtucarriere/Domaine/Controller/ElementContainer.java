@@ -200,7 +200,11 @@ public class ElementContainer implements Serializable {
   }
 
   public void addChargeur(Chargeur p_chargeur) {
-    vehiculeList.add(p_chargeur);
+    if (isVehiculePresent(p_chargeur)) {
+      JOptionPane.showMessageDialog(null, "Attention, un véhicule est déjà présent");
+    } else {
+      vehiculeList.add(p_chargeur);
+    }
   }
 
   public void removeVehicule(Vehicule p_vehicule) {
