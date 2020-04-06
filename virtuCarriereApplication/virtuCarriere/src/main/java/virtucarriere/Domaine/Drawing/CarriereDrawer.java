@@ -212,6 +212,15 @@ public class CarriereDrawer {
     List<Arc> arcs = controller.getArcList();
     arcs.forEach(
         (arc) -> {
+          if (arc.isSelected()) {
+            g2d.setColor(new Color(255, 0, 0));
+            g2d.setStroke(new BasicStroke(6));
+            g2d.drawLine(
+                (int) arc.getStarting().getX(),
+                (int) arc.getStarting().getY(),
+                (int) arc.getArrival().getX(),
+                (int) arc.getArrival().getY());
+          }
           Color arcColor = arc.getColor();
           g2d.setColor(arcColor);
           g2d.setStroke(new BasicStroke(5));

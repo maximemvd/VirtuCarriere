@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
@@ -719,14 +720,12 @@ public class MainWindow extends JFrame {
     }
   } // GEN-LAST:event_jTabbedPaneStateChanged
 
-  private void menuSauvegarderSousActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuSauvegarderSousActionPerformed
+  private void menuSauvegarderSousActionPerformed(java.awt.event.ActionEvent evt) {
     // TODO add your handling code here:
     this.controller.saveAs();
-  } // GEN-LAST:event_menuSauvegarderSousActionPerformed
+  }
 
-  private void menuOuvrirProjetActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuOuvrirProjetActionPerformed
+  private void menuOuvrirProjetActionPerformed(java.awt.event.ActionEvent evt) {
     // TODO add your handling code here:
     this.controller.openFile();
   } // GEN-LAST:event_menuOuvrirProjetActionPerformed
@@ -832,7 +831,7 @@ public class MainWindow extends JFrame {
               drawingPanel.repaint();
             });
     drawingPanel.repaint();
-  } // GEN-LAST:event_toutEffacerButtonActionPerformed
+  }
 
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -888,10 +887,12 @@ public class MainWindow extends JFrame {
     int numTotal = 0;
     int numNoeud = 0;
     int numTas = 0;
+    int numArc = 0;
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
     List<Vehicule> vehicules = controller.getVehiculeList();
+    List<Arc> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -954,6 +955,27 @@ public class MainWindow extends JFrame {
         String yCoord = String.format(", y : %d", (int) vehicule.getY());
         String nombreTotal = String.format("%d", numTotal);
         jTextArea1.append(nom + xCoord + yCoord);
+        jTextField2.setText(nombreTotal);
+      }
+    }
+
+    for (Arc arc : arcs) {
+      if (arc.isSelected()) {
+        numTotal++;
+        numArc++;
+        Point middlePoint =
+            new Point(
+                arc.middlePointOfArc(
+                    (int) arc.getStarting().getX(),
+                    (int) arc.getStarting().getY(),
+                    (int) arc.getArrival().getX(),
+                    (int) arc.getArrival().getY()));
+        String nom = String.format("\nCoordonnées du point milieu de l'%s", arc.getName());
+        String num = String.format(" #%d", numArc);
+        String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
+        String yCoord = String.format(", y : %d", (int) middlePoint.getY());
+        String nombreTotal = String.format("%d", numTotal);
+        jTextArea1.append(nom + num + xCoord + yCoord);
         jTextField2.setText(nombreTotal);
       }
     }

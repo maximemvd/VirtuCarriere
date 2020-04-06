@@ -15,6 +15,7 @@ public class Arc extends AbstractLien<Noeud> {
   private Noeud arrival;
   private double cout;
   private Color color;
+  private String name;
 
   public Arc(
       Point point,
@@ -29,6 +30,7 @@ public class Arc extends AbstractLien<Noeud> {
     this.starting = starting;
     this.arrival = arrival;
     this.color = Color.BLACK;
+    this.name = "Arc";
   }
 
   @Override
@@ -59,6 +61,34 @@ public class Arc extends AbstractLien<Noeud> {
     }
     Arc arc = (Arc) o;
     return starting.equals(arc.starting) && arrival.equals(arc.arrival);
+  }
+
+  public boolean containsArc(double x, double y, double x1, double y1, double x2, double y2) {
+    double dy = y2 - y1;
+    double dx = x2 - x1;
+    double dist = Math.sqrt(dx * dx + dy * dy);
+
+    double angle = Math.atan2(dy, dx);
+    double cos = Math.cos(-angle);
+    double sin = Math.sin(-angle);
+
+    double xRot = (x - x1) * cos - (y - y1) * sin;
+    double yRot = (x - x1) * sin + (y - y1) * cos;
+
+    if (0 <= xRot && xRot <= dist) {
+      double tolerance = 3; // distance tolerance in pixels
+      return Math.abs(yRot) <= tolerance;
+    }
+    return false;
+  }
+
+  public Point middlePointOfArc(int x1, int y1, int x2, int y2) {
+    Point point = new Point((x1 + x2) / 2, (y1 + y2) / 2);
+    return point;
+  }
+
+  public String getName() {
+    return name;
   }
 
   @Override

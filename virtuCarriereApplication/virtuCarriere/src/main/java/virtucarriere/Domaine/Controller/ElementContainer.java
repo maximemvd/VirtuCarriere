@@ -41,11 +41,6 @@ public class ElementContainer implements Serializable {
   }
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
-    int HIT_BOX = 2;
-    int boxX = (int) x - HIT_BOX / 2;
-    int boxY = (int) y - HIT_BOX / 2;
-    int width = HIT_BOX;
-    int height = HIT_BOX;
     for (Element item : this.equipementList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
@@ -71,13 +66,21 @@ public class ElementContainer implements Serializable {
     }
 
     for (Arc item : this.arcList) {
-      if (item.contains(x, y)) {
+      Noeud starting = item.getStarting();
+      Noeud arrival = item.getArrival();
+
+      double xPosStarting = starting.getX();
+      double yPosStarting = starting.getY();
+      double xPosArrival = arrival.getX();
+      double yPosArrival = arrival.getY();
+
+      if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
         item.switchSelectionStatus();
       }
     }
   }
 
-  void updateSelectedItemsPosition(double deltaX, double deltaY) {
+  public void updateSelectedItemsPosition(double deltaX, double deltaY) {
     for (Element item : this.equipementList) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
