@@ -66,15 +66,15 @@ public class ElementContainer implements Serializable {
     }
   }
 
-  void updateSelectedItemsPosition(Point delta) {
+  void updateSelectedItemsPosition(double deltaX, double deltaY) {
     for (Element item : this.equipementList) {
       if (item.isSelected()) {
-        item.translate(delta);
+        item.translate(deltaX, deltaY);
       }
     }
     for (Element item : this.noeudList) {
       if (item.isSelected()) {
-        item.translate(delta);
+        item.translate(deltaX, deltaY);
       }
     }
   }

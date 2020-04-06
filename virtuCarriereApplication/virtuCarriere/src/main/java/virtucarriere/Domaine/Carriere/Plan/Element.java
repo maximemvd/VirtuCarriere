@@ -92,8 +92,8 @@ public abstract class Element implements Serializable {
     this.selectionStatus = selectionStatus;
   }
 
-  public void translate(Point delta) {
-    this.point.x = (int) (this.point.getX() + delta.getX());
-    this.point.y = (int) (this.point.getY() + delta.getY());
+  public void translate(double deltaX, double deltaY) {
+    this.point.x = (int) (this.point.getX() + deltaX);
+    this.point.y = (int) (this.point.getY() + deltaY);
   }
 }

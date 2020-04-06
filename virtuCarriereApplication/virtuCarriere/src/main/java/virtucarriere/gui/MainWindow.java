@@ -962,14 +962,15 @@ public class MainWindow extends JFrame {
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
     if (SwingUtilities.isRightMouseButton(evt)) {
       double deltaX =
-          ((int) evt.getX() / drawingPanel.getZoom()) - (int) (this.currentMousePoint.getX());
+          (((int) evt.getX() / drawingPanel.getZoom()) - (int) (this.currentMousePoint.getX()));
       double deltaY =
-          ((int) evt.getY() / drawingPanel.getZoom()) - (int) (this.currentMousePoint.getX());
-      delta.setLocation(
-          (evt.getX() - this.currentMousePoint.getX()),
-          (evt.getY() - this.currentMousePoint.getY()));
-      this.controller.updateSelectedItemsPositions(delta);
-      this.currentMousePoint = evt.getPoint();
+          (((int) evt.getY() / drawingPanel.getZoom()) - (int) (this.currentMousePoint.getY()));
+      this.controller.updateSelectedItemsPositions(deltaX, deltaY);
+
+      this.currentMousePoint =
+          new Point(
+              (int) (evt.getX() / drawingPanel.getZoom()),
+              (int) (evt.getY() / drawingPanel.getZoom()));
       drawingPanel.repaint();
     }
   } // GEN-LAST:event_drawingPanelMouseDragged
@@ -1109,7 +1110,6 @@ public class MainWindow extends JFrame {
   }
 
   private void drawingPanelMouseMoved(java.awt.event.MouseEvent evt) {
-
     Point mousePoint = evt.getPoint();
     drawingPanel.setMouseX(mousePoint.getX());
     drawingPanel.setMouseY(mousePoint.getY());

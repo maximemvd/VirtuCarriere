@@ -176,8 +176,8 @@ public class Controller implements Serializable {
     this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
   }
 
-  public void updateSelectedItemsPositions(Point delta) {
-    elementContainer.updateSelectedItemsPosition(delta);
+  public void updateSelectedItemsPositions(double deltaX, double deltaY) {
+    elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
   public ElementContainer getElementContainer() {
@@ -207,9 +207,9 @@ public class Controller implements Serializable {
   public List<Noeud> getNoeudList() {
     return elementContainer.getNoeudList();
   }
-  
-  public List<Noeud> getNoeudForArcList(){
-      return elementContainer.getNoeudForArcList();
+
+  public List<Noeud> getNoeudForArcList() {
+    return elementContainer.getNoeudForArcList();
   }
 
   public void addContainer() {
