@@ -61,4 +61,47 @@ public class Plan {
   void removeNoeud(Noeud noeud) {
     chemins.removeEnd(noeud);
   }
+
+  public void switchSelectionStatus(double x, double y) {
+    // TODO switch status
+    /*
+      for (Element item : this.equipementList) {
+        if (item.contains(x, y)) {
+          item.switchSelectionStatus();
+        }
+      }
+
+      for (Element item : this.noeudList) {
+        if (item.contains(x, y)) {
+          item.switchSelectionStatus();
+        }
+      }
+
+      for (Element item : this.entreeList) {
+        if (item.contains(x, y)) {
+          item.switchSelectionStatus();
+        }
+      }
+
+      for (Vehicule item : this.vehiculeList) {
+        if (item.contains(x, y)) {
+          item.switchSelectionStatus();
+        }
+      }
+
+      for (Arc item : this.arcList) {
+        Noeud starting = item.getStarting();
+        Noeud arrival = item.getArrival();
+
+        double xPosStarting = starting.getX();
+        double yPosStarting = starting.getY();
+        double xPosArrival = arrival.getX();
+        double yPosArrival = arrival.getY();
+
+        if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
+          item.switchSelectionStatus();
+        }
+      }
+    */
+  }
 }
