@@ -23,11 +23,6 @@ public class ElementContainer implements Serializable {
   private Simulation simulation = new Simulation();
   static File file;
 
-  public ElementContainer() {
-    plan = new Plan();
-    simulation = new Simulation();
-  }
-
   // TODO add function to get element with argument point
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
     plan.switchSelectionStatus(x, y);
