@@ -205,9 +205,10 @@ public void camionCourantGoTo(Point point)
     public void envoieAuCHargeur(Jeton jeton, Tas tas) {
     // retourne le chargeur que l'on veut
     Point pointTas = tas.getPoint();
-    
     // implemente la méthode à Vincent
   }
+    
+    public void indiqueAuCamionCheminRetour(){};
   
   
   
