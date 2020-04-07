@@ -80,25 +80,35 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
-  public void addCamion() {
-    try {
-      Jeton jeton = new Jeton("1", "1", 2, "1");
-      Camion p_camion = new Camion(jeton, getEntreeList().get(0).getPoint());
-      elementContainer.addCamion(p_camion);
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(
-          null, "Attention, l'entrée n'existe pas donc il est impossible d'ajouter une camion");
-    }
-  }
 
-  public void addChargeur(Point mousePoint) {
-    Chargeur p_chargeur = new Chargeur(mousePoint);
-    elementContainer.addChargeur(p_chargeur);
-  }
 
-  public void removeVehicule(Vehicule p_vehicule) {
+  
+public void getCamionList()
+{
+    elementContainer.getCamionList();
+}
+
+public void getChargeurList(){
+     elementContainer.getChargeurList();
+}
+  
+public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client)
+{
+    elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
+}
+        
+    
+public void removeVehicule(Vehicule p_vehicule) {
     elementContainer.removeVehicule(p_vehicule);
   }
+
+public void genererFacture(Camion p_camion){
+    elementContainer.generateFacture(p_camion);
+}
+
+public void verificationJeton(Camion p_camion){
+    elementContainer.verificationJeton(p_camion);
+}
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);

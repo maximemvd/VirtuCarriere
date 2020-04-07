@@ -19,6 +19,7 @@ import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
@@ -43,7 +44,7 @@ public class ElementContainer implements Serializable {
  
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
-    plan.updateSelectedItemsPosition(double deltaX, double deltaY);
+  //  plan.updateSelectedItemsPosition(double deltaX, double deltaY);
   }
 
   public void noeudSelection(double x, double y) {      
@@ -55,7 +56,7 @@ public class ElementContainer implements Serializable {
       }
     }
   */
-      plan.noeudSelection(x,y);
+     // plan.noeudSelection(x,y);
   }
 
   public void setFile(File p_file) {
@@ -104,7 +105,7 @@ public class ElementContainer implements Serializable {
 
 
     public void removePlan(Element element){
-        plan.removeElement(element);    
+       // plan.removeElement(element);    
     }
 
 
@@ -112,6 +113,7 @@ public class ElementContainer implements Serializable {
       System.out.println("hello world");
       simulation.removeVehicule(p_vehicule);
     }
+    
   public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
     if (null != mode)
       switch (mode) {
@@ -123,4 +125,39 @@ public class ElementContainer implements Serializable {
         break;
       }
   }
+  
+  public void getCamionList() {
+       simulation.getCamionList();
+  }
+  
+  public void getChargeurList(){
+       simulation.getChargeurList();
+  }
+  
+  public void generateFacture(Camion p_camion)
+  {
+      simulation.genererFacture(p_camion);
+  }
+  
+  public void verificationJeton(Camion p_camion){
+      simulation.verificationJeton(p_camion);
+  }
+  
+  public void changeEtat(Camion p_camion, String etat) {
+    simulation.changeEtat(p_camion, etat);
+  }
+  
+  public void indiqueAuCamionEmplacement(String produit) {
+    simulation.indiqueAuCamionEmplacement(produit);
+  };
+  
+    public void envoieAuCHargeur(Jeton jeton) {
+    simulation.envoieAuCHargeur(jeton);
+  }
+  
+   public void createToken(String client, String produit, double quantite) {
+     simulation.createToken(client, produit, quantite);
+  }
+  
+  
 }
