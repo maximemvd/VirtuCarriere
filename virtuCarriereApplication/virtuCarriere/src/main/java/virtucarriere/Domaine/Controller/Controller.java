@@ -23,6 +23,7 @@ import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
@@ -68,7 +69,7 @@ public class Controller implements Serializable {
 
   public void addCrible(Point mousePoint) {
     Crible newCrible = new Crible(mousePoint, 2, 2, 2);
-    elementContainer.addElement(newCrible);
+  //  elementContainer.addElement(newCrible);
   }
 
   public void addConcasseur(Point mousePoint, EquipementModes modes) {
@@ -96,7 +97,30 @@ public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String
 {
     elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
 }
-        
+ public void generateFacture(Camion p_camion)
+  {
+      elementContainer.generateFacture(p_camion);
+  }
+  
+  public void verificationJeton(Camion p_camion){
+      elementContainer.verificationJeton(p_camion);
+  }
+  
+  public void changeEtat(Camion p_camion, String etat) {
+    elementContainer.changeEtat(p_camion, etat);
+  }
+  
+  public void indiqueAuCamionEmplacement(String produit) {
+    elementContainer.indiqueAuCamionEmplacement(produit);
+  };
+  
+    public void envoieAuCHargeur(Jeton jeton) {
+    elementContainer.envoieAuCHargeur(jeton);
+  }
+  
+   public void createToken(String client, String produit, double quantite) {
+     elementContainer.createToken(client, produit, quantite);
+  }  
     
 public void removeVehicule(Vehicule p_vehicule) {
     elementContainer.removeVehicule(p_vehicule);
@@ -106,44 +130,42 @@ public void genererFacture(Camion p_camion){
     elementContainer.generateFacture(p_camion);
 }
 
-public void verificationJeton(Camion p_camion){
-    elementContainer.verificationJeton(p_camion);
-}
+
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    elementContainer.addArc(arc);
+  //  elementContainer.addArc(arc);
   }
 
   public void removeEquipement(Equipement equipement) {
-    elementContainer.removeEquipement(equipement);
+   // elementContainer.removeEquipement(equipement);
   }
 
   public void addTas(Point mousePoint) {
     Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 2);
-    elementContainer.addEquipement(tas);
+  //  elementContainer.addEquipement(tas);
   }
 
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 1, 1);
-    elementContainer.addNoeud(noeud);
+  //  elementContainer.addNoeud(noeud);
   }
 
   public void removeNoeud(Noeud noeud) {
-    elementContainer.removeNoeud(noeud);
+  //  elementContainer.removeNoeud(noeud);
   }
 
   public void removeArc(Arc arc) {
-    elementContainer.removeArc(arc);
+  //  elementContainer.removeArc(arc);
   }
 
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, 4);
-    elementContainer.addEntree(entree);
+//    elementContainer.addEntree(entree);
   }
 
   public void removeEntree(Entree entree) {
-    elementContainer.removeEntree(entree);
+  //  elementContainer.removeEntree(entree);
   }
 
   public void noeudSelection(double x, double y) {
@@ -162,30 +184,9 @@ public void verificationJeton(Camion p_camion){
     return elementContainer;
   }
 
-  public List<Equipement> getEquipementList() {
-    return elementContainer.getEquipemenetList();
-  }
-
-  public List<Arc> getArcList() {
-    return elementContainer.getArcList();
-  }
-
-  public List<Element> getSelectionList() {
-    return elementContainer.getSelectionList();
-  }
-
-  public List<Entree> getEntreeList() {
-    return elementContainer.getEntreeList();
-  }
 
 
-  public List<Noeud> getNoeudList() {
-    return elementContainer.getNoeudList();
-  }
 
-  public List<Noeud> getNoeudForArcList() {
-    return elementContainer.getNoeudForArcList();
-  }
 
   public void addContainer() {
     // ElementContainer elementContainer = new ElementContainer(this.elementContainer);
