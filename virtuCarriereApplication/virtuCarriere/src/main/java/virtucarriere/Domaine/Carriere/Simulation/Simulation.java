@@ -3,10 +3,17 @@ package virtucarriere.Domaine.Carriere.Simulation;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
+import virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur;
+import virtucarriere.Domaine.Carriere.Simulation.Camion;
 
 public class Simulation {
 
   List<Camion> camionList;
+  
+  private GraphChemins graphChemin;
+  
+  private GraphConvoyeur graphConvoyeur;
 
   List<Chargeur> chargeurList;
 
@@ -31,18 +38,29 @@ public class Simulation {
 
   // camion
   public void CamionShowUp(String client, String produit, double quantite) {
-    Jeton jeton = createToken(client, produit, quantite);
-    int sizeCamion = camionList.size();
-    int start = 100 * sizeCamion;
-    Point point = new Point(start, start);
-    Camion camionSimulation = new Camion(jeton, point); // create camion
-    camionList.add(camionSimulation);
+      try 
+      {
+        Jeton jeton = createToken(client, produit, quantite);
+        int sizeCamion = camionList.size();
+        int start = 100 * sizeCamion;
+        Point point = new Point(start, start);
+        Camion camionSimulation = new Camion(jeton, point); // create camion
+        camionList.add(camionSimulation);
+      }
+      catch(Exception exception)
+      {
+        System.out.println(exception);
+      }
   }
 
-  public void removeCamion(Camion p_camion) {
-    try {
+  public void removeCamion(Camion p_camion)
+  {
+    try 
+    {
       camionList.remove(p_camion);
-    } catch (Exception error) {
+    }
+    catch (Exception error)
+    {
       System.out.println(error);
     }
   }
@@ -59,17 +77,37 @@ public class Simulation {
     return camionList.isEmpty();
   }
 
-  public void removeVehicule(Vehicule vehicule) {}
+  public void removeVehicule(Vehicule vehicule) {
+      if (vehicule.getClass() == Camion.class)
+      {
+          //removeCamion(vehicule);
+      }
+      else if (vehicule.getClass() == Camion.class)
+      {
+          //removeChargeur(vehicule);
+      }
+  }
 
-  //  chargeur
+
   public void addChargeur(Point p_point) {
-    // chargeurList.add(p_chargeur);
+      try 
+      {
+      Chargeur p_chargeur = new Chargeur(p_point);
+      chargeurList.add(p_chargeur);
+      }
+      catch (Exception error)
+      {
+          System.out.println(error);
+      }
   }
 
   public void removeChargeur(Chargeur p_chargeur) {
-    try {
+    try 
+    {
       chargeurList.remove(p_chargeur);
-    } catch (Exception error) {
+    } 
+    catch (Exception error) 
+    {
       System.out.println(error);
     }
   }

@@ -168,9 +168,6 @@ public class Controller implements Serializable {
     return elementContainer.getEntreeList();
   }
 
-  public List<Vehicule> getVehiculeList() {
-    return elementContainer.getVehiculeList();
-  }
 
   public List<Noeud> getNoeudList() {
     return elementContainer.getNoeudList();
