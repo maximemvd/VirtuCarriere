@@ -14,8 +14,6 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Broyeur;
-import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
@@ -70,17 +68,16 @@ public class Controller implements Serializable {
 
   public void addCrible(Point mousePoint) {
     Crible newCrible = new Crible(mousePoint, 2, 2, 2);
-    elementContainer.addEquipement(newCrible);
+    elementContainer.addElement(newCrible);
   }
 
-  public void addConcasseur(Point mousePoint) {
-    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, 2);
-    elementContainer.addEquipement(newConcasseur);
+  public void addConcasseur(Point mousePoint, EquipementModes modes) {
+
+    elementContainer.addElement(mousePoint, modes);
   }
 
-  public void addBroyeur(Point mousePoint) {
-    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, 2);
-    elementContainer.addEquipement(newBroyeur);
+  public void addBroyeur(Point mousePoint, EquipementModes modes) {
+    elementContainer.addElement(mousePoint, modes);
   }
 
   public void addCamion() {
@@ -106,44 +103,6 @@ public class Controller implements Serializable {
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
     elementContainer.addArc(arc);
-  }
-
-  public void addVehicule(VehiculeModes mode, Point mousePoint) {
-    if (null != mode)
-      switch (mode) {
-        case CAMION:
-          addCamion();
-          break;
-        case CHARGEUR:
-          addChargeur(mousePoint);
-          break;
-      }
-  }
-
-  public void addEquipement(EquipementModes mode, Point mousePoint) {
-    if (null != mode)
-      switch (mode) {
-        case CONCASSEUR:
-          addConcasseur(mousePoint);
-          break;
-        case CRIBLE:
-          addCrible(mousePoint);
-          break;
-        case BROYEUR:
-          addBroyeur(mousePoint);
-          break;
-        case NOEUD:
-          addNoeud(mousePoint);
-          break;
-        case TAS:
-          addTas(mousePoint);
-          break;
-        case ENTREE:
-          addEntree(mousePoint);
-          break;
-        default:
-          break;
-      }
   }
 
   public void removeEquipement(Equipement equipement) {

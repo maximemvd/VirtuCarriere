@@ -7,58 +7,149 @@ public class Plan {
   GraphConvoyeur equipments = new GraphConvoyeur();
   GraphChemins chemins = new GraphChemins();
 
-  void addArc(Arc arc) {
+  public void addArc(Arc arc) {
     chemins.addLink(arc);
   }
 
-  void removeArc(Arc arc) {
+  public void removeArc(Arc arc) {
     chemins.removeLink(arc);
   }
 
-  void addBroyeur(Broyeur broyeur) {
-    addEquipment(broyeur);
+  public void addBroyeur(Point mousePoint) {
+    // addEquipment(broyeur);
   }
 
-  void addConcasseur(Concasseur concasseur) {
-    addEquipment(concasseur);
+  public void addConcasseur(Point mousePoint) {
+    //  addEquipment(concasseur);
   }
 
-  void addConvoyeur(Convoyeur convoyeur) {
-    equipments.addLink(convoyeur);
+  public void addConvoyeur(Point mousePoint) {
+    //   equipments.addLink(convoyeur);
   }
 
-  void addCrible(Crible crible) {
-    addEquipment(crible);
+  public void addCrible(Point mousePoint) {
+    // addEquipment(crible);
   }
 
-  void addEntree(Entree entree) {
-    chemins.addEnd(entree);
+  public void addEntree(Point mousePoint) {
+    // chemins.addEnd(entree);
   }
 
-  void removeRntree(Entree entree) {
+  public void removeRntree(Entree entree) {
     chemins.removeEnd(entree);
   }
 
-  void addTas(Tas tas) {
-    addEquipment(tas);
+  public void addTas(Point tas) {
+    // addEquipment(tas);
   }
 
-  void addEquipment(Equipement equipement) {
-    // TODO validate dependency
-    // TODO validate that nothing is present in chemin graphe
-    equipments.addEnd(equipement);
-  }
-
-  boolean validateElementPresent(Point point) {
+  public boolean validateElementPresent(Point point) {
     return false;
   }
 
-  void addNoeud(Noeud noeud) {
+  public void addNoeud(Point mousePoint) {
     // TODO validate element present
-    chemins.addEnd(noeud);
+    // chemins.addEnd(mousePoint);
   }
 
-  void removeNoeud(Noeud noeud) {
+  public Element getElement(Element element) {
+    // TODO aller chercher
+
+    return element;
+  }
+
+  public void updateSelectedItemsPosition(double deltaX, double deltaY) {
+
+    /*
+    for (Element item : this.equipementList) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+    for (Element item : this.noeudList) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+
+    for (Element item : this.entreeList) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+
+    for (Vehicule item : this.vehiculeList) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+    */
+
+  }
+
+  public void removeNoeud(Noeud noeud) {
     chemins.removeEnd(noeud);
+  }
+
+  public boolean isNoeudPresent(Noeud p_noeud) {
+
+    /*
+    for (Noeud item : this.noeudList) {
+      if (item.contains(p_noeud.getX(), p_noeud.getY())) {
+        return true;
+      }
+    }
+    return false;
+    */
+    return true;
+  }
+
+  public boolean isEquipementPresent(Equipement equipement) {
+    // TODO
+    return true;
+  }
+
+  public void switchSelectionStatus(double x, double y) {
+    /*for (Element item : this.equipementList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Element item : this.noeudList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Element item : this.entreeList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Vehicule item : this.vehiculeList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Arc item : this.arcList) {
+      Noeud starting = item.getStarting();
+      Noeud arrival = item.getArrival();
+
+      double xPosStarting = starting.getX();
+      double yPosStarting = starting.getY();
+      double xPosArrival = arrival.getX();
+      double yPosArrival = arrival.getY();
+
+      if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
+        item.switchSelectionStatus();
+      }
+    }*/
+  }
+
+  public void removePlan(Element element) {
+    // TODO implement remove element;
   }
 }

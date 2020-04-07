@@ -59,9 +59,11 @@ public class Simulation {
     return camionList.isEmpty();
   }
 
+  public void removeVehicule(Vehicule vehicule) {}
+
   //  chargeur
-  public void addChargeur(Chargeur p_chargeur) {
-    chargeurList.add(p_chargeur);
+  public void addChargeur(Point p_point) {
+    // chargeurList.add(p_chargeur);
   }
 
   public void removeChargeur(Chargeur p_chargeur) {
