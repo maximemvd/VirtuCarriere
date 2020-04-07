@@ -15,20 +15,28 @@ public class Plan {
     chemins.removeLink(arc);
   }
 
+  private void addEquipment(Equipement equipement) {
+    equipments.addEnd(equipement);
+  }
+
   public void addBroyeur(Point mousePoint) {
-    // addEquipment(broyeur);
+    Broyeur broyeur = new Broyeur(mousePoint, 1, 1, 0);
+    addEquipment(broyeur);
   }
 
   public void addConcasseur(Point mousePoint) {
-    //  addEquipment(concasseur);
+    Concasseur concasseur = new Concasseur(mousePoint, 1, 1, 0);
+    addEquipment(concasseur);
   }
 
   public void addConvoyeur(Point mousePoint) {
-    //   equipments.addLink(convoyeur);
+    // Convoyeur convoyeur = new Convoyeur(equipement1, equipement2);
+    // equipments.addLink(convoyeur);
   }
 
   public void addCrible(Point mousePoint) {
-    // addEquipment(crible);
+    Crible crible = new Crible(mousePoint, 1, 1, 0);
+    addEquipment(crible);
   }
 
   public void addEntree(Point mousePoint) {
@@ -152,4 +160,8 @@ public class Plan {
   public void removePlan(Element element) {
     // TODO implement remove element;
   }
+
+  public void noeudSelection(double x, double y) {}
+
+  public void removeElement(Element element) {}
 }
