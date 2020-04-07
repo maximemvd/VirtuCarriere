@@ -57,6 +57,8 @@ public class Arc extends AbstractLien<Noeud> {
     return starting.equals(arc.starting) && arrival.equals(arc.arrival);
   }
 
+  // Code pour savoir si la position de la souris est sur l'arc inspiré de
+  // https://stackoverflow.com/questions/19730302/determining-if-a-coordinate-is-on-a-line
   public boolean containsArc(double x, double y, double x1, double y1, double x2, double y2) {
     double dy = y2 - y1;
     double dx = x2 - x1;
@@ -70,7 +72,7 @@ public class Arc extends AbstractLien<Noeud> {
     double yRot = (x - x1) * sin + (y - y1) * cos;
 
     if (0 <= xRot && xRot <= dist) {
-      double tolerance = 3; // distance tolerance in pixels
+      double tolerance = 3;
       return Math.abs(yRot) <= tolerance;
     }
     return false;
