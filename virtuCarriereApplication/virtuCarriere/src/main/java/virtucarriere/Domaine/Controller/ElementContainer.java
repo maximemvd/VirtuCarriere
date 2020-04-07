@@ -6,8 +6,9 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
-import java.io.File;
+import java.io.*;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
@@ -15,26 +16,69 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class ElementContainer implements Serializable {
 
-  private Plan plan;
-  private Simulation simulation;
+  private List<Equipement> equipementList;
+  private List<Noeud> noeudList;
+  private List<Vehicule> vehiculeList;
+  private List<Entree> entreeList;
+  private List<Arc> arcList;
+  private List<Element> selectionList;
+  private List<Noeud> noeudForArcList;
   static File file;
 
   public ElementContainer() {
-    plan = new Plan();
-    simulation = new Simulation();
+    equipementList = new LinkedList<Equipement>();
+    vehiculeList = new LinkedList<Vehicule>();
+    noeudList = new LinkedList<Noeud>();
+    entreeList = new LinkedList<Entree>();
+    arcList = new LinkedList<Arc>();
+    noeudForArcList = new LinkedList<Noeud>();
   }
 
   // TODO add function to get element with argument point
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
-    Element modElement = plan.switchSelectionStatus(x, y);
+    for (Element item : this.equipementList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Element item : this.noeudList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Element item : this.entreeList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Vehicule item : this.vehiculeList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+
+    for (Arc item : this.arcList) {
+      Noeud starting = item.getStarting();
+      Noeud arrival = item.getArrival();
+
+      double xPosStarting = starting.getX();
+      double yPosStarting = starting.getY();
+      double xPosArrival = arrival.getX();
+      double yPosArrival = arrival.getY();
+
+      if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
+        item.switchSelectionStatus();
+      }
+    }
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
