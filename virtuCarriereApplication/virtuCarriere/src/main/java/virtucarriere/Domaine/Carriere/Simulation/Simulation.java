@@ -4,15 +4,21 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
+import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
 public class Simulation {
 
   List<Camion> camionList;
   
   private Entree entreeCarriere;
+  
+  private List<Tas> tasList;
+  
+ private List<Noeud> noeudList;
   
   private GraphChemins graphChemin;
   
@@ -23,10 +29,24 @@ public class Simulation {
   private Chargeur chargeurCourant;
   
   private Camion camionCourant;
+  
+  private Tas tasCourant;
 
   public Simulation() {
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
+  }
+  
+  private void  setCourantTas(Tas tas){
+      this.tasCourant = tas;
+  }
+  
+  public void setTasList(List<Tas> p_tas){
+      this.tasList = p_tas;
+  }
+  
+  public void setNoeudList(List<Noeud> p_noeud){
+      this.noeudList = p_noeud;
   }
   
   public void setEntreCarriere(Entree p_entree){
@@ -52,6 +72,11 @@ public class Simulation {
   public Jeton getJetonCamionCourant() {
       return camionCourant.getJeton();
   }
+  
+public void camionCourantGoTo(Point point)
+{
+    camionCourant.goTO(point);
+}
  
   // camion
   public void CamionShowUp(String client, String produit, double quantite) {
@@ -152,8 +177,6 @@ public class Simulation {
   }
 
   public boolean verificationJeton(Camion p_camion) {
-    //  Si le jeton courant du chargeur est bien égal au jeton du camion, le camion est chargé, son
-    // jeton passe à l'état livré.
     return camionCourant.getJeton() == getJetonChargeurCourant();
   }
 
@@ -164,13 +187,29 @@ public class Simulation {
     return facture;
   }
 
-  public void envoieAuCHargeur(Jeton jeton) {
-    // retourne le chargeur que l'on veut
-  }
-
   public Point indiqueAuCamionEmplacement(String produit) {
-    // getSHortestPath to produit
-    Point point = new Point(300, 500);
+      List<Tas> tasValide = new LinkedList<>();
+      tasList.forEach((tas) -> {
+          if (tas.getMaterialCode().equals(produit)){
+              tasValide.add(tas);
+          }
+      });
+      // implémenter les méthodes a vincent
+    Tas tas = tasValide.get(0);
+    Point point = tas.getPoint();
     return point;
+      
   };
+  
+  
+    public void envoieAuCHargeur(Jeton jeton, Tas tas) {
+    // retourne le chargeur que l'on veut
+    Point pointTas = tas.getPoint();
+    
+    // implemente la méthode à Vincent
+  }
+  
+  
+  
+  
 }

@@ -114,8 +114,8 @@ public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String
     elementContainer.indiqueAuCamionEmplacement(produit);
   };
   
-    public void envoieAuCHargeur(Jeton jeton) {
-    elementContainer.envoieAuCHargeur(jeton);
+    public void envoieAuCHargeur(Jeton jeton, Tas tas ) {
+    elementContainer.envoieAuCHargeur(jeton, tas);
   }
   
    public void createToken(String client, String produit, double quantite) {
@@ -142,7 +142,7 @@ public void genererFacture(Camion p_camion){
   }
 
   public void addTas(Point mousePoint) {
-    Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 2);
+    //Tas tas = new Tas(mousePoint, 1, double 1, "matériaux", 2, "or", double  100);
   //  elementContainer.addEquipement(tas);
   }
 

@@ -16,6 +16,7 @@ import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Plan;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -151,8 +152,8 @@ public class ElementContainer implements Serializable {
     simulation.indiqueAuCamionEmplacement(produit);
   };
   
-    public void envoieAuCHargeur(Jeton jeton) {
-    simulation.envoieAuCHargeur(jeton);
+    public void envoieAuCHargeur(Jeton jeton, Tas tas) {
+    simulation.envoieAuCHargeur(jeton, tas);
   }
   
    public void createToken(String client, String produit, double quantite) {
