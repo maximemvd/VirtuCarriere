@@ -144,7 +144,7 @@ public class ElementContainer implements Serializable {
   }
   
   public void changeEtat(Camion p_camion, String etat) {
-    simulation.changeEtat(p_camion, etat);
+    simulation.changeEtat(etat);
   }
   
   public void indiqueAuCamionEmplacement(String produit) {

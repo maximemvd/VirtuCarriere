@@ -10,7 +10,6 @@ import java.awt.Point;
 
 public class Camion extends Vehicule {
 
-  private double start;
   private Color color;
   private Jeton jeton;
   private Point point;
@@ -19,7 +18,6 @@ public class Camion extends Vehicule {
   public Camion(Jeton jeton, Point point) {
     super(point);
     this.jeton = jeton;
-    this.start = start;
     this.name = "Camion";
 
     this.color = Color.MAGENTA;

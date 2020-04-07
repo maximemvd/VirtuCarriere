@@ -6,10 +6,13 @@ import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Plan.Entree;
 
 public class Simulation {
 
   List<Camion> camionList;
+  
+  private Entree entreeCarriere;
   
   private GraphChemins graphChemin;
   
@@ -18,14 +21,24 @@ public class Simulation {
   List<Chargeur> chargeurList;
 
   private Chargeur chargeurCourant;
+  
+  private Camion camionCourant;
 
   public Simulation() {
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
   }
+  
+  public void setEntreCarriere(Entree p_entree){
+      this.entreeCarriere = p_entree;
+  }
 
   public void setChargeurCourant(Chargeur p_chargeur) {
     this.chargeurCourant = p_chargeur;
+  }
+  
+  public void setCamionCourant(Camion p_camion){
+      this.camionCourant = p_camion;
   }
 
   public Chargeur getChargeurCourant() {
@@ -35,15 +48,20 @@ public class Simulation {
   public Jeton getJetonChargeurCourant() {
     return chargeurCourant.getJeton();
   }
-
+  
+  public Jeton getJetonCamionCourant() {
+      return camionCourant.getJeton();
+  }
+ 
   // camion
   public void CamionShowUp(String client, String produit, double quantite) {
       try 
       {
+        Point positionEntre = entreeCarriere.getPoint();
         Jeton jeton = createToken(client, produit, quantite);
         int sizeCamion = camionList.size();
         int start = 100 * sizeCamion;
-        Point point = new Point(start, start);
+        Point point = new Point(positionEntre.x + start, positionEntre.y);
         Camion camionSimulation = new Camion(jeton, point); // create camion
         camionList.add(camionSimulation);
       }
@@ -129,14 +147,14 @@ public class Simulation {
     return newJeton;
   }
 
-  public void changeEtat(Camion p_camion, String etat) {
-    p_camion.changeEtat(etat);
+  public void changeEtat(String etat) {
+    camionCourant.changeEtat(etat);
   }
 
   public boolean verificationJeton(Camion p_camion) {
     //  Si le jeton courant du chargeur est bien égal au jeton du camion, le camion est chargé, son
     // jeton passe à l'état livré.
-    return p_camion.getJeton() == getJetonChargeurCourant();
+    return camionCourant.getJeton() == getJetonChargeurCourant();
   }
 
   public Facture genererFacture(Camion p_camion) {
