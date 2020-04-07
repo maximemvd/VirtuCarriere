@@ -29,14 +29,14 @@ public class Plan {
     addEquipment(concasseur);
   }
 
-  public void addConvoyeur(Point mousePoint) {
-    // Convoyeur convoyeur = new Convoyeur(equipement1, equipement2);
-    // equipments.addLink(convoyeur);
-  }
-
   public void addCrible(Point mousePoint) {
     Crible crible = new Crible(mousePoint, 1, 1, 0);
     addEquipment(crible);
+  }
+
+  public void addConvoyeur(Point mousePoint) {
+    // Convoyeur convoyeur = new Convoyeur(equipement1, equipement2);
+    // equipments.addLink(convoyeur);
   }
 
   public void addEntree(Point mousePoint) {
