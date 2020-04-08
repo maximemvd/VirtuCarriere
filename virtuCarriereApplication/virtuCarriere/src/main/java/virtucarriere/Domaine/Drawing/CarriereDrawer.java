@@ -21,6 +21,7 @@ import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
@@ -35,13 +36,11 @@ public class CarriereDrawer {
   private DrawingPanel drawingPanel;
   private MainWindow.MeasurementUnitMode measurementMode;
   private Element element;
-  private Simulation simulation;
 
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
 
-  public CarriereDrawer(Controller controller, Dimension initialDimension, Simulation simulation) {
-    this.simulation = simulation;
+  public CarriereDrawer(Controller controller, Dimension initialDimension) {
     this.controller = controller;
     this.initialDimension = initialDimension;
     equipementColor.put(Broyeur.class.getName(), Color.GREEN);
@@ -50,55 +49,19 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics2D g2d, double zoom) {
-    // faire un switch case ici
     drawEquipement(g2d, zoom);
     drawNoeud(g2d, zoom);
     drawEntree(g2d, zoom);
-    drawVehicule(g2d, zoom);
     drawArc(g2d, zoom);
   }
-
-  public void startSimulation(Graphics2D g2d) {
-    List<Camion> camions = simulation.getCamionList();
-    camions.forEach(
-        (camion) -> {
-          try {
-            // the camion start at the start
-            Color camionColor = camion.getColor();
-            Point camionPoint = camion.getPoint();
-            g2d.setColor(camionColor);
-            g2d.fillOval(
-                (int) camionPoint.getX() - radius,
-                (int) camionPoint.getY() - radius,
-                radius * 2,
-                radius * 2);
-            Thread.sleep(30000); // wait 3 seconds
-
-            // on indique la position la plus proche
-            Jeton jeton = camion.getJeton();
-            String code = jeton.getCodeProduit();
-            Point pointToGo = simulation.indiqueAuCamionEmplacement(code);
-            g2d.fillOval(
-                (int) pointToGo.getX() - radius,
-                (int) pointToGo.getY() - radius,
-                radius * 2,
-                radius * 2);
-
-            Thread.sleep(30000); // wait 3 seconds
-
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
-        });
-  }
-
-  public void drawVehicule(Graphics2D g2d, double zoom) {
-    List<Vehicule> vehicules = controller.getVehiculeList();
-    g2d.scale(zoom, zoom);
-    vehicules.forEach(
-        (vehicule) -> {
-          Point vehiculePoint = vehicule.getPoint();
-          if (vehicule.isSelected()) {
+  
+   public void drawConvoyeur(Graphics2D g2d, double zoom){
+           g2d.scale(zoom, zoom);
+           List<Chargeur> chargeurs = controller.getChargeurList();
+    chargeurs.forEach(
+        (chargeur) -> {
+          Point vehiculePoint = chargeur.getPoint();
+          if (chargeur.isSelected()) {
             g2d.setColor(new Color(255, 0, 0));
             int offsetRadius = radius + 2;
             g2d.fillOval(
@@ -107,7 +70,7 @@ public class CarriereDrawer {
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
-          Color vehiculeColor = vehicule.getColor();
+          Color vehiculeColor = Color.GREEN;
           g2d.setColor(vehiculeColor);
           g2d.fillOval(
               (int) vehiculePoint.getX() - radius,
@@ -117,6 +80,20 @@ public class CarriereDrawer {
         });
     g2d.scale(1 / zoom, 1 / zoom);
   }
+
+  
+  public void drawCamion(Graphics2D g2d, double zoom){
+      
+  }
+  
+ 
+  
+  public void startSimulation(Graphics2D g2d, double zoom){
+      
+  }
+
+
+
 
   public void drawCarriere(Graphics2D g2d) {
     int width = (int) initialDimension.getWidth() / (int) drawingPanel.getZoom();

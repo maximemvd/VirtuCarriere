@@ -84,13 +84,13 @@ public class Controller implements Serializable {
 
 
   
-public void getCamionList()
+public List<Camion> getCamionList()
 {
-    elementContainer.getCamionList();
+    return elementContainer.getCamionList();
 }
 
-public void getChargeurList(){
-     elementContainer.getChargeurList();
+public List<Chargeur> getChargeurList(){
+     return elementContainer.getChargeurList();
 }
   
 public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client)

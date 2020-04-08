@@ -24,7 +24,6 @@ public class MainWindow extends JFrame {
 
   public Controller controller;
 
-  public Simulation simulation;
 
   public EquipementModes selectedEquipementMode;
 
@@ -40,7 +39,6 @@ public class MainWindow extends JFrame {
   /** Creates new form MainWindow */
   public MainWindow() {
     controller = new Controller();
-    simulation = new Simulation();
     initComponents();
     // setFocusable(true);
   }

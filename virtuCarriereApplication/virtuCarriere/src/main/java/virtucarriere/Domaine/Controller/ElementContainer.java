@@ -127,8 +127,8 @@ public class ElementContainer implements Serializable {
       }
   }
   
-  public void getCamionList() {
-       simulation.getCamionList();
+  public List<Camion> getCamionList() {
+       return simulation.getCamionList();
   }
 
   public void addEntree(Entree newEntree, Noeud noeud) {
@@ -157,6 +157,10 @@ public class ElementContainer implements Serializable {
   public void indiqueAuCamionEmplacement(String produit) {
     simulation.indiqueAuCamionEmplacement(produit);
   };
+  
+  public List<Chargeur> getChargeurList(){
+     return  simulation.getChargeurList();
+  }
   
 
   
