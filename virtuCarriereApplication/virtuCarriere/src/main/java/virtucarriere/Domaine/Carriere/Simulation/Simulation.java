@@ -159,71 +159,70 @@ public class Simulation {
     camionCourant.changeEtat(etat);
   }
 
-  public boolean verificationJeton(Camion p_camion) {
-    return camionCourant.getJeton() == getJetonChargeurCourant();
+  public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
+    return p_camion.getJeton() == p_chargeur.getJeton();
   }
 
   public Facture genererFacture(Camion p_camion) {
-    // on va dire que tous les materiaux coutent 10$ pour l'instant
     double quantity = p_camion.getJeton().getQuantite();
-    Facture facture = new Facture(10, quantity);
+    Facture facture = new Facture(20.15, quantity);
     return facture;
   }
 
   public Tas trouverTas(String produit) {
-    
+
     tasList.forEach(
         (tas) -> {
           if (tas.getMaterialCode().equals(produit)) {
-              this.tasCourant = tas;
+            this.tasCourant = tas;
           }
         });
-    
+
     return this.tasCourant;
-   
-
   }
 
-  public Vector<Noeud>  cheminDuCamion(Tas tas) {
-      
-      Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
-      
-     Vector<Noeud> cheminCamion = getShortestPathToGo(noeudDuTas);
-    
-     return cheminCamion;
+  public Vector<Noeud> cheminDuCamion(Tas tas) {
 
-  };
-  
-    public Vector<Noeud>  cheminDuCamionRetour(Tas tas) {
-      
-      Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
-      
-     Vector<Noeud> cheminCamion = getShortestPathToComeBack(noeudDuTas);
-    
-     return cheminCamion;
+    Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
 
+    Vector<Noeud> cheminCamion = getShortestPathToGo(noeudDuTas);
+
+    return cheminCamion;
   };
 
-  public void choisirChargeurIdeal(Tas tas) {
-      Point pointTas = tas.getPoint();
-      List<Integer> list = new ArrayList<Integer>();
-      chargeurList.forEach((chargeur) -> {
-          
-      });
-  }
-  
-  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas){
-      
-      Point pointChargeur = p_chargeur.getPoint();
-      Noeud chargeur = new Noeud(pointChargeur, 10, 10);
-      Point pointTas = p_tas.getPoint();
-      Noeud tas = new Noeud(pointTas, 10, 10);
-      
-      Vector<Noeud> chemin = getShortestPathBetweenTwoNoeuds(chargeur, tas);
-      
-      return chemin;
+  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+
+    Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
+
+    Vector<Noeud> cheminCamion = getShortestPathToComeBack(noeudDuTas);
+
+    return cheminCamion;
+  };
+
+  public Chargeur choisirChargeurIdeal(Tas tas) {
+    Point pointTas = tas.getPoint();
+    List<Integer> list = new ArrayList<Integer>();
+    chargeurList.forEach(
+        (chargeur) -> {
+          int distance =
+              ((chargeur.getPoint().x - pointTas.x) + (chargeur.getPoint().y - pointTas.y));
+          list.add(distance);
+        });
+
+    return chargeurList.get(0);
   }
 
+  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+
+    Point pointChargeur = p_chargeur.getPoint();
+    Noeud chargeur = new Noeud(pointChargeur, 10, 10);
+    Point pointTas = p_tas.getPoint();
+    Noeud tas = new Noeud(pointTas, 10, 10);
+
+    Vector<Noeud> chemin = getShortestPathBetweenTwoNoeuds(chargeur, tas);
+
+    return chemin;
+  }
 
   public Vector<Noeud> getShortestPathToGo(Noeud stop) {
     Vector<Noeud> results = new Vector<>();
@@ -234,8 +233,8 @@ public class Simulation {
 
     return results;
   }
-  
-   public Vector<Noeud> getShortestPathToComeBack(Noeud stop) {
+
+  public Vector<Noeud> getShortestPathToComeBack(Noeud stop) {
     Vector<Noeud> results = new Vector<>();
 
     Noeud entree = entreeCarriere;

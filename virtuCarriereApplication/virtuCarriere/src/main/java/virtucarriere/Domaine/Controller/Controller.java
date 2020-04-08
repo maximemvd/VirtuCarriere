@@ -19,9 +19,11 @@ import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
@@ -88,14 +90,13 @@ public class Controller implements Serializable {
   public void addBroyeur(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
-  
-  public Tas TrouverTasCorrespondant(String produit)
-  {
-      return elementContainer.trouverTasCorrespondant(produit);
+
+  public Tas TrouverTasCorrespondant(String produit) {
+    return elementContainer.trouverTasCorrespondant(produit);
   }
-  
-  public Vector<Noeud> cheminDuCamion(Tas tas){
-      return elementContainer.cheminDuCamion(tas);
+
+  public Vector<Noeud> cheminDuCamion(Tas tas) {
+    return elementContainer.cheminDuCamion(tas);
   }
 
   public List<Camion> getCamionList() {
@@ -115,15 +116,17 @@ public class Controller implements Serializable {
     elementContainer.generateFacture(p_camion);
   }
 
-  public void verificationJeton(Camion p_camion) {
-    elementContainer.verificationJeton(p_camion);
+  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+    return elementContainer.cheminDuCamionRetour(tas);
+  }
+
+  public Facture genererFacture(Camion p_camion) {
+    return elementContainer.genererFacture(p_camion);
   }
 
   public void changeEtat(Camion p_camion, String etat) {
     elementContainer.changeEtat(p_camion, etat);
   }
-
- 
 
   public void createToken(String client, String produit, double quantite) {
     elementContainer.createToken(client, produit, quantite);
@@ -131,10 +134,6 @@ public class Controller implements Serializable {
 
   public void removeVehicule(Vehicule p_vehicule) {
     elementContainer.removeVehicule(p_vehicule);
-  }
-
-  public void genererFacture(Camion p_camion) {
-    elementContainer.generateFacture(p_camion);
   }
 
   public List<Equipement> getEquipementList() {
@@ -152,6 +151,18 @@ public class Controller implements Serializable {
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
     //  elementContainer.addArc(arc);
+  }
+
+  public Chargeur choisirChargeurCorrespondant(Tas tas) {
+    return elementContainer.trouverChargeurCorrespondant(tas);
+  }
+
+  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+    return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas);
+  }
+
+  public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
+    return elementContainer.verificationJeton(p_camion, p_chargeur);
   }
 
   public void removeEquipement(Equipement equipement) {

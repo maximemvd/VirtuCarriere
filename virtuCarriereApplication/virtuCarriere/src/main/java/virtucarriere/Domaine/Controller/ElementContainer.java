@@ -11,15 +11,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
-import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -39,9 +40,17 @@ public class ElementContainer implements Serializable {
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
     plan.updateSelectedItemsPosition(deltaX, deltaY);
   }
-  
-  public Tas trouverTasCorrespondant(String produit){
-      return simulation.trouverTas(produit);
+
+  public Chargeur trouverChargeurCorrespondant(Tas tas) {
+    return simulation.choisirChargeurIdeal(tas);
+  }
+
+  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+    return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
+  }
+
+  public Tas trouverTasCorrespondant(String produit) {
+    return simulation.trouverTas(produit);
   }
 
   public void noeudSelection(double x, double y) {
@@ -59,9 +68,9 @@ public class ElementContainer implements Serializable {
   public void setFile(File p_file) {
     this.file = p_file;
   }
-  
-  public Vector<Noeud> cheminDuCamion(Tas tas){
-      return simulation.cheminDuCamion(tas);
+
+  public Vector<Noeud> cheminDuCamion(Tas tas) {
+    return simulation.cheminDuCamion(tas);
   }
 
   public File getFile() {
@@ -132,14 +141,21 @@ public class ElementContainer implements Serializable {
     simulation.genererFacture(p_camion);
   }
 
-  public void verificationJeton(Camion p_camion) {
-    simulation.verificationJeton(p_camion);
+  public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
+    return simulation.verificationJeton(p_camion, p_chargeur);
+  }
+
+  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+    return simulation.cheminDuCamionRetour(tas);
+  }
+
+  public Facture genererFacture(Camion p_camion) {
+    return simulation.genererFacture(p_camion);
   }
 
   public void changeEtat(Camion p_camion, String etat) {
     simulation.changeEtat(etat);
   }
-
 
   public List<Chargeur> getChargeurList() {
     return simulation.getChargeurList();
