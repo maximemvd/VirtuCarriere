@@ -11,19 +11,20 @@ import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
+import virtucarriere.Domaine.Carriere.Plan.Broyeur;
+import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Facture;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
@@ -62,15 +63,6 @@ public class Controller implements Serializable {
 
   public Controller() {
     elementContainer = new ElementContainer();
-  }
-
-  public Point getEntreePoint() {
-    Point entree = new Point(300, 0);
-    return entree;
-  }
-
-  public List<Noeud> getNoeudForArcList() {
-    return elementContainer.getNoeudForArcList();
   }
 
   public void setElement(ElementContainer elementContainer) {
@@ -120,12 +112,15 @@ public class Controller implements Serializable {
     return elementContainer.cheminDuCamionRetour(tas);
   }
 
-  public Facture genererFacture(Camion p_camion) {
-    return elementContainer.genererFacture(p_camion);
-  }
-
-  public void changeEtat(Camion p_camion, String etat) {
-    elementContainer.changeEtat(p_camion, etat);
+  public void addCamion() {
+    try {
+      Jeton jeton = new Jeton("1", "1", 2, "1");
+      Camion p_camion = new Camion(jeton, getEntreeList().get(0).getPoint());
+      elementContainer.addCamion(p_camion);
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, l'entrée n'existe pas donc il est impossible d'ajouter une camion");
+    }
   }
 
   public void createToken(String client, String produit, double quantite) {
@@ -136,69 +131,79 @@ public class Controller implements Serializable {
     elementContainer.removeVehicule(p_vehicule);
   }
 
-  public List<Equipement> getEquipementList() {
-    return elementContainer.getEquipementList();
-  }
-
-  public List<Entree> getEntreeList() {
-    return elementContainer.getEntreeList();
-  }
-
-  public List<Noeud> getNoeudList() {
-    return elementContainer.getNoeudList();
-  }
-  
-  public ArrayList<List<Arc>> getArcList() {
-    return elementContainer.getArcList();
-  }
-
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    //  elementContainer.addArc(arc);
+    elementContainer.addArc(arc);
   }
 
-  public Chargeur choisirChargeurCorrespondant(Tas tas) {
-    return elementContainer.trouverChargeurCorrespondant(tas);
+  public void addVehicule(VehiculeModes mode, Point mousePoint) {
+    if (null != mode)
+      switch (mode) {
+        case CAMION:
+          addCamion();
+          break;
+        case CHARGEUR:
+          addChargeur(mousePoint);
+          break;
+      }
   }
 
-  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
-    return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas);
-  }
-
-  public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
-    return elementContainer.verificationJeton(p_camion, p_chargeur);
+  public void addEquipement(EquipementModes mode, Point mousePoint) {
+    if (null != mode)
+      switch (mode) {
+        case CONCASSEUR:
+          addConcasseur(mousePoint);
+          break;
+        case CRIBLE:
+          addCrible(mousePoint);
+          break;
+        case BROYEUR:
+          addBroyeur(mousePoint);
+          break;
+        case NOEUD:
+          addNoeud(mousePoint);
+          break;
+        case TAS:
+          addTas(mousePoint);
+          break;
+        case ENTREE:
+          addEntree(mousePoint);
+          break;
+        default:
+          break;
+      }
   }
 
   public void removeEquipement(Equipement equipement) {
-    // elementContainer.removeEquipement(equipement);
+    elementContainer.removeEquipement(equipement);
   }
 
   public void addTas(Point mousePoint) {
-    // Tas tas = new Tas(mousePoint, 1, double 1, "matériaux", 2, "or", double  100);
-    //  elementContainer.addEquipement(tas);
+    Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 2);
+    elementContainer.addEquipement(tas);
   }
 
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 1, 1);
-    //  elementContainer.addNoeud(noeud);
+    elementContainer.addNoeud(noeud);
   }
 
   public void removeNoeud(Noeud noeud) {
-    //  elementContainer.removeNoeud(noeud);
+    elementContainer.removeNoeud(noeud);
   }
 
   public void removeArc(Arc arc) {
-    //  elementContainer.removeArc(arc);
+    elementContainer.removeArc(arc);
   }
 
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, 4);
     Noeud noeud = new Noeud(mousePoint, 1, 1);
-    // elementContainer.addEntree(entree, noeud);
+    elementContainer.addEntree(entree, noeud);
   }
 
   public void removeEntree(Entree entree) {
-    //  elementContainer.removeEntree(entree);
+    elementContainer.removeEntree(entree);
   }
 
   public void noeudSelection(double x, double y) {
