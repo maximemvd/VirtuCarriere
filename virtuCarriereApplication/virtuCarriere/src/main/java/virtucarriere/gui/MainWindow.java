@@ -1086,20 +1086,6 @@ public class MainWindow extends JFrame {
     }
   } // GEN-LAST:event_jButton2ActionPerformed
 
-  private void jComboBox3ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox3ActionPerformed
-
-    if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
-      setAppMode(ApplicationMode.ADD_SIMULATION);
-    }
-
-    if (jComboBox3.getSelectedItem().equals("Chargeur")) {
-      this.setVehicule(selectedVehicules.CHARGEUR);
-    } else if (jComboBox3.getSelectedItem().equals("Camion")) {
-      this.setVehicule(selectedVehicules.CAMION);
-    }
-  } // GEN-LAST:event_jComboBox3ActionPerformed
-
   private void jTabbedPaneStateChanged(
       javax.swing.event.ChangeEvent evt) { // GEN-FIRST:event_jTabbedPaneStateChanged
     // TODO add your handling code here:

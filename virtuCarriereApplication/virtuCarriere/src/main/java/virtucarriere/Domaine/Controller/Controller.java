@@ -12,11 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
-import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Crible;
-import virtucarriere.Domaine.Carriere.Plan.Entree;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
@@ -28,6 +24,7 @@ public class Controller implements Serializable {
   private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
+  private Plan plan;
 
   public enum EquipementModes {
     RIEN,
@@ -167,6 +164,10 @@ public class Controller implements Serializable {
 
   public ElementContainer getElementContainer() {
     return elementContainer;
+  }
+
+  public void deleteSelected() {
+    plan.deleteSelected();
   }
 
   public void addContainer() {

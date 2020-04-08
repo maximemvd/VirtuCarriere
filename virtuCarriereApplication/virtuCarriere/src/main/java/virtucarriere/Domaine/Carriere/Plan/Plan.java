@@ -66,6 +66,10 @@ public class Plan {
     return element;
   }
 
+  public void deleteSelected() {
+    // TODO delete les éléments sélectionnés
+  }
+
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
 
     /*
