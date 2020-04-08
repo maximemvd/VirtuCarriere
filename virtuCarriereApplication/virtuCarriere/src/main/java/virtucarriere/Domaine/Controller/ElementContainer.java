@@ -152,9 +152,7 @@ public class ElementContainer implements Serializable {
     simulation.indiqueAuCamionEmplacement(produit);
   };
   
-    public void envoieAuCHargeur(Jeton jeton, Tas tas) {
-    simulation.envoieAuCHargeur(jeton, tas);
-  }
+
   
    public void createToken(String client, String produit, double quantite) {
      simulation.createToken(client, produit, quantite);

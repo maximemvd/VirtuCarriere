@@ -114,9 +114,7 @@ public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String
     elementContainer.indiqueAuCamionEmplacement(produit);
   };
   
-    public void envoieAuCHargeur(Jeton jeton, Tas tas ) {
-    elementContainer.envoieAuCHargeur(jeton, tas);
-  }
+ 
   
    public void createToken(String client, String produit, double quantite) {
      elementContainer.createToken(client, produit, quantite);

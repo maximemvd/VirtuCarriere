@@ -167,8 +167,11 @@ public class Simulation {
     Facture facture = new Facture(10, quantity);
     return facture;
   }
-
-  public Point indiqueAuCamionEmplacement(String produit) {
+  
+  public void choisirTasIdeal(String produit) {
+      
+      // donc ici on veux choisir c'est quel le tas le plus approprié selon la commande du client
+      // donc premierement on regarde c'est quel les tas qui contiennent les matériaux que le camion a de besoin, on les mets dans la liste tasValide
     List<Tas> tasValide = new LinkedList<>();
     tasList.forEach(
         (tas) -> {
@@ -176,17 +179,39 @@ public class Simulation {
             tasValide.add(tas);
           }
         });
-    // implémenter les méthodes a vincent
-    Tas tas = tasValide.get(0);
-    Point point = tas.getPoint();
-    return point;
-  };
-
-  public void envoieAuCHargeur(Jeton jeton, Tas tas) {
-    // retourne le chargeur que l'on veut
-    Point pointTas = tas.getPoint();
-    // implemente la méthode à Vincent
+    
+    // apres on va avoir une liste de tas valide, on veut le tas le  plus proche du camion
+    
+    // on peux avoir les coordonnées du camion avec camionCourant.getPoint() ou entreeCourant.getPoint(), c'est mieux d'y aller avec camionCourant()
+    
+    // une fois qu'on la choisit, on fait setTasCourant(Le tas choisit) 
+    
+    
   }
 
-  public void indiqueAuCamionCheminRetour() {};
+  
+  public void indiqueAuCamionEmplacement(String produit) {
+      // donc ici on veut indiquer au camion le meilleur chemin pour se rendre au tas
+      
+      // donc le camionCourant doit se rendre au tasCourant.getPoint();
+      
+      // la liste de noeud va etre dans noeudList
+      
+      // retourner une liste de point que le camion doit prendre si possible
+     
+  };
+
+  public void choisirCargeurIdeal(Jeton jeton, Tas tas) {
+      // ici on va chercher tous les chargeurs et on prends le chargeur le plus proche de tasCourant
+      // on faire this.chargeurCourant = (le chargeur qu'on vient de choisir) ou juste retourner le chargeur le mieux adapter
+  }
+  
+  public void indiqueAuChargeurChemin(){
+      // on indique au chargeurCourant le chemin pour se rendre au tas
+
+  }
+
+  public void indiqueAuCamionCheminRetour() {
+   // on indique au camion le chemin de retour pour retourner à l'entrée
+  };
 }
