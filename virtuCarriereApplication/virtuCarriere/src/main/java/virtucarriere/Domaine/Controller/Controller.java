@@ -75,6 +75,22 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
+<<<<<<< HEAD
+
+
+  
+public List<Camion> getCamionList()
+{
+    return elementContainer.getCamionList();
+}
+
+public List<Chargeur> getChargeurList(){
+     return elementContainer.getChargeurList();
+}
+  
+public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client)
+{
+=======
   public void getCamionList() {
     elementContainer.getCamionList();
   }
@@ -85,6 +101,7 @@ public class Controller implements Serializable {
 
   public void addVehicule(
       VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
+>>>>>>> f833e627b3b8c389752b614724b2fd98a3f022fc
     elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
   }
 
