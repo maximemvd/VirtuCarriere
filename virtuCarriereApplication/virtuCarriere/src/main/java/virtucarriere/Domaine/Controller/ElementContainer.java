@@ -6,324 +6,187 @@
 package virtucarriere.Domaine.Controller;
 
 import java.awt.Point;
-import java.io.*;
+import java.io.File;
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
-import virtucarriere.Domaine.Carriere.Plan.Arc;
+import java.util.Vector;
+import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
+import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
+import virtucarriere.Domaine.Controller.Controller.EquipementModes;
+import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 
 public class ElementContainer implements Serializable {
 
-  private List<Equipement> equipementList;
-  private List<Noeud> noeudList;
-  private List<Vehicule> vehiculeList;
-  private List<Entree> entreeList;
-  private List<Arc> arcList;
-  private List<Element> selectionList;
-  private List<Noeud> noeudForArcList;
-  private List<Tas> tasList;
+  private Plan plan = new Plan();
+  private Simulation simulation = new Simulation();
   static File file;
-
-  public ElementContainer() {
-    equipementList = new LinkedList<Equipement>();
-    vehiculeList = new LinkedList<Vehicule>();
-    noeudList = new LinkedList<Noeud>();
-    entreeList = new LinkedList<Entree>();
-    arcList = new LinkedList<Arc>();
-    noeudForArcList = new LinkedList<Noeud>();
-    tasList = new LinkedList<Tas>();
-  }
 
   // TODO add function to get element with argument point
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
-    for (Element item : this.equipementList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-
-    for (Element item : this.noeudList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-
-    for (Element item : this.entreeList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-
-    for (Vehicule item : this.vehiculeList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-
-    for (Arc item : this.arcList) {
-      Noeud starting = item.getStarting();
-      Noeud arrival = item.getArrival();
-
-      double xPosStarting = starting.getX();
-      double yPosStarting = starting.getY();
-      double xPosArrival = arrival.getX();
-      double yPosArrival = arrival.getY();
-
-      if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
-        item.switchSelectionStatus();
-      }
-    }
+    plan.switchSelectionStatus(x, y);
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
-    for (Element item : this.equipementList) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
-    }
-    for (Element item : this.noeudList) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
-    }
+    plan.updateSelectedItemsPosition(deltaX, deltaY);
+  }
 
-    for (Element item : this.entreeList) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
-    }
+  public Chargeur trouverChargeurCorrespondant(Tas tas) {
+    return simulation.choisirChargeurIdeal(tas);
+  }
 
-    for (Vehicule item : this.vehiculeList) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
-    }
+  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+    return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
+  }
+
+  public Tas trouverTasCorrespondant(String produit) {
+    return simulation.trouverTas(produit);
   }
 
   public void noeudSelection(double x, double y) {
-    for (Noeud noeud : this.noeudList) {
-      if (noeud.contains(x, y)) {
-        noeudForArcList.add(noeud);
-        noeud.setSelectionStatus(true);
+    /*
+        for (Noeud noeud : this.noeudList) {
+        if (noeud.contains(x, y)) {
+          noeudForArcList.add(noeud);
+          noeud.setSelectionStatus(true);
+        }
       }
-    }
-  }
-
-  public List<Noeud> getNoeudForArcList() {
-    return this.noeudForArcList;
-  }
-
-  public boolean equipementIsEmpty() {
-    return equipementList.isEmpty();
-  }
-
-  public boolean VehiculeIsEmpty() {
-    return vehiculeList.isEmpty();
-  }
-
-  public boolean noeudIsEmpty() {
-    return noeudList.isEmpty();
-  }
-
-  public List<Equipement> getEquipemenetList() {
-    return equipementList;
-  }
-
-  public List<Element> getSelectionList() {
-    return selectionList;
-  }
-
-  public List<Tas> getTasList() {
-    return tasList;
-  }
-
-  public List<Vehicule> getVehiculeList() {
-    return vehiculeList;
-  }
-
-  public List<Noeud> getNoeudList() {
-    return noeudList;
-  }
-
-  public List<Entree> getEntreeList() {
-    return entreeList;
-  }
-
-  public List<Arc> getArcList() {
-    return arcList;
-  }
-
-  public double getNumberOfEquipementList() {
-    return equipementList.size();
-  }
-
-  public double getNumberOfVehiculeList() {
-    return vehiculeList.size();
-  }
-
-  public double getNumberOfNoeudList() {
-    return noeudList.size();
+    */
+    plan.noeudSelection(x, y);
   }
 
   public void setFile(File p_file) {
     this.file = p_file;
   }
 
+  public Vector<Noeud> cheminDuCamion(Tas tas) {
+    return simulation.cheminDuCamion(tas);
+  }
+
   public File getFile() {
     return file;
   }
 
-  public boolean isEquipmentPresent(Equipement p_equipement) {
-    for (Equipement item : this.equipementList) {
-      if (item.contains(p_equipement.getX(), p_equipement.getY())) {
-        return true;
+  public void isNoeudPresent(Noeud p_noeud) {
+    plan.isNoeudPresent(p_noeud);
+  }
+
+  public void isEquipementPresent(Equipement equipement) {
+    plan.isEquipementPresent(equipement);
+  }
+
+  public void addElement(Point mousePoint, EquipementModes mode) {
+    if (null != mode)
+      switch (mode) {
+        case CONCASSEUR:
+          plan.addConcasseur(mousePoint);
+          break;
+        case CRIBLE:
+          plan.addCrible(mousePoint);
+          break;
+        case BROYEUR:
+          plan.addBroyeur(mousePoint);
+          break;
+        case NOEUD:
+          plan.addNoeud(mousePoint);
+          break;
+        case TAS:
+          plan.addTas(mousePoint);
+          break;
+        case ENTREE:
+          plan.addEntree(mousePoint);
+          break;
+        default:
+          break;
       }
-    }
-    return false;
   }
 
-  public void addEquipement(Equipement p_equipement) {
-    if (isEquipmentPresent(p_equipement)) {
-      JOptionPane.showMessageDialog(null, "Attention, un équipement est déjà présent");
-    } else {
-      equipementList.add(p_equipement);
-    }
-  }
-
-  public void removeEquipement(Equipement p_equipement) {
-    try {
-      equipementList.remove(p_equipement);
-    } catch (Exception error) {
-      System.out.println(error);
-    }
-  }
-
-  public void addChargeur(Chargeur p_chargeur) {
-    if (isVehiculePresent(p_chargeur)) {
-      JOptionPane.showMessageDialog(null, "Attention, un véhicule est déjà présent");
-    } else {
-      vehiculeList.add(p_chargeur);
-    }
+  public void removePlan(Element element) {
+    plan.removeElement(element);
   }
 
   public void removeVehicule(Vehicule p_vehicule) {
-    try {
-      vehiculeList.remove(p_vehicule);
-    } catch (Exception error) {
-      System.out.println(error);
-    }
+    System.out.println("hello world");
+    simulation.removeVehicule(p_vehicule);
   }
 
-  public boolean isVehiculePresent(Vehicule p_vehicule) {
-    for (Vehicule item : this.vehiculeList) {
-      if (item.contains(p_vehicule.getX(), p_vehicule.getY())) {
-        return true;
+  public void addVehicule(
+      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
+    if (null != mode)
+      switch (mode) {
+        case CAMION:
+          simulation.CamionShowUp(client, produit, qte);
+          break;
+        case CHARGEUR:
+          simulation.addChargeur(mousePoint);
+          break;
       }
-    }
-    return false;
   }
 
-  public void addCamion(Camion p_Camion) {
-    if (isVehiculePresent(p_Camion)) {
-      JOptionPane.showMessageDialog(null, "Attention, un véhicule est déjà présent");
-    } else {
-      vehiculeList.add(p_Camion);
-    }
+  public List<Camion> getCamionList() {
+    return simulation.getCamionList();
   }
 
-  public void addEntree(Entree newEntree, Noeud noeud) {
-    if (entreeList.size() == 1) {
-      JOptionPane.showMessageDialog(
-          null, "Attention, il ne peut y avoir qu'une seule entrée à la carrière");
-    } else {
-      entreeList.add(newEntree);
-      noeudList.add(noeud);
-    }
+  public void generateFacture(Camion p_camion) {
+    simulation.genererFacture(p_camion);
   }
 
-  public void addArc(Arc newArc) {
-    arcList.add(newArc);
+  public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
+    return simulation.verificationJeton(p_camion, p_chargeur);
   }
 
-  public void removeArc(Arc p_arc) {
-    try {
-      arcList.remove(p_arc);
-    } catch (Exception error) {
-      System.out.println(error);
-    }
+  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+    return simulation.cheminDuCamionRetour(tas);
   }
 
-  public void removeEntree(Entree p_entree) {
-    try {
-      entreeList.remove(p_entree);
-    } catch (Exception error) {
-      System.out.println(error);
-    }
+  public Facture genererFacture(Camion p_camion) {
+    return simulation.genererFacture(p_camion);
   }
 
-  public boolean isNoeudPresent(Noeud p_noeud) {
-    for (Noeud item : this.noeudList) {
-      if (item.contains(p_noeud.getX(), p_noeud.getY())) {
-        return true;
-      }
-    }
-    return false;
+  public void changeEtat(Camion p_camion, String etat) {
+    simulation.changeEtat(etat);
   }
 
-  public void addNoeud(Noeud p_noeud) {
-    if (isNoeudPresent(p_noeud)) {
-      JOptionPane.showMessageDialog(null, "Attention, un noeud ou un tas est déjà présent");
-    } else {
-      noeudList.add(p_noeud);
-    }
+  public List<Chargeur> getChargeurList() {
+    return simulation.getChargeurList();
   }
 
-  public void removeNoeud(Noeud p_noeud) {
-    try {
-      noeudList.remove(p_noeud);
-    } catch (Exception error) {
-      System.out.println(error);
-    }
+  public void createToken(String client, String produit, double quantite) {
+    simulation.createToken(client, produit, quantite);
   }
 
-  // public void generateCamionSimulation(Jeton jeton, double depart) {
-  //     Camion vehiculePretPourSimulation = vehiculeList.get(0);
-  //     System.out.println(vehiculePretPourSimulation);
-  //     // appeler fonction pour simulation
-  //     this.vehiculeList.remove(vehiculePretPourSimulation);
-  // }
-
-  // TODO useless function as we will be able to add by try and we will throw expected exception
-  public String askReason() {
-    return "La raison";
+  public List<Noeud> getNoeudForArcList() {
+    return plan.getNoeudForArcList();
   }
 
-  // public double getNextPosition() {
-  //     double nextPosition = 10;
-  //     return nextPosition;
-  // }
-
-  public boolean askValidPlace(Point point) {
-    double x = point.getX();
-    double y = point.getY();
-
-    if (x < 0 && y < 0) {
-      return false;
-    } else {
-      return true;
-    }
+  public List<Equipement> getEquipementList() {
+    return plan.getEquipements();
   }
 
-  public boolean validanceDependance(String type, Point point) {
-    return true;
+  public List<Entree> getEntreeList() {
+    return plan.getEntreeList();
+  }
+  
+  public List<Noeud> getNoeudList() {
+    return plan.getNoeuds();
+  }
+
+  public ArrayList<List<Arc>> getArcList() {
+    return plan.getArcs();
+
+    // public void addEntree(Entree entree, Noeud noeud){
+    // TODO
+    // }
+
   }
 }
