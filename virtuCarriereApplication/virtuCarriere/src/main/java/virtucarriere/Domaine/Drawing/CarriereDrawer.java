@@ -20,11 +20,7 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
-import virtucarriere.Domaine.Carriere.Simulation.Simulation;
-import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
@@ -54,10 +50,10 @@ public class CarriereDrawer {
     drawEntree(g2d, zoom);
     drawArc(g2d, zoom);
   }
-  
-   public void drawConvoyeur(Graphics2D g2d, double zoom){
-           g2d.scale(zoom, zoom);
-           List<Chargeur> chargeurs = controller.getChargeurList();
+
+  public void drawConvoyeur(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
+    List<Chargeur> chargeurs = controller.getChargeurList();
     chargeurs.forEach(
         (chargeur) -> {
           Point vehiculePoint = chargeur.getPoint();
@@ -81,19 +77,9 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  
-  public void drawCamion(Graphics2D g2d, double zoom){
-      
-  }
-  
- 
-  
-  public void startSimulation(Graphics2D g2d, double zoom){
-      
-  }
+  public void drawCamion(Graphics2D g2d, double zoom) {}
 
-
-
+  public void startSimulation(Graphics2D g2d, double zoom) {}
 
   public void drawCarriere(Graphics2D g2d) {
     int width = (int) initialDimension.getWidth() / (int) drawingPanel.getZoom();

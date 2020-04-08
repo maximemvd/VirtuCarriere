@@ -52,7 +52,7 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
         .collect(Collectors.toList());
   }
 
-  protected Link getLink(End start, End end) {
+  public Link getLink(End start, End end) {
     int index = ends.indexOf(start);
     Optional<Link> result =
         (Optional<Link>)

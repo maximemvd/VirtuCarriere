@@ -8,12 +8,14 @@ package virtucarriere.Domaine.Controller;
 import java.awt.Point;
 import java.io.File;
 import java.io.Serializable;
+import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -109,15 +111,9 @@ public class ElementContainer implements Serializable {
           break;
       }
   }
-<<<<<<< HEAD
-  
-  public List<Camion> getCamionList() {
-       return simulation.getCamionList();
-=======
 
-  public void getCamionList() {
-    simulation.getCamionList();
->>>>>>> f833e627b3b8c389752b614724b2fd98a3f022fc
+  public List<Camion> getCamionList() {
+    return simulation.getCamionList();
   }
 
   public void addEntree(Entree newEntree, Noeud noeud) {
@@ -139,14 +135,10 @@ public class ElementContainer implements Serializable {
   public void indiqueAuCamionEmplacement(String produit) {
     simulation.indiqueAuCamionEmplacement(produit);
   };
-<<<<<<< HEAD
-  
-  public List<Chargeur> getChargeurList(){
-     return  simulation.getChargeurList();
+
+  public List<Chargeur> getChargeurList() {
+    return simulation.getChargeurList();
   }
-  
-=======
->>>>>>> f833e627b3b8c389752b614724b2fd98a3f022fc
 
   public void createToken(String client, String produit, double quantite) {
     simulation.createToken(client, produit, quantite);
