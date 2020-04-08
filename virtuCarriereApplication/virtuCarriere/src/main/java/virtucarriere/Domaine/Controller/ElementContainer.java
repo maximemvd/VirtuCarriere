@@ -233,12 +233,13 @@ public class ElementContainer implements Serializable {
     }
   }
 
-  public void addEntree(Entree newEntree) {
+  public void addEntree(Entree newEntree, Noeud noeud) {
     if (entreeList.size() == 1) {
       JOptionPane.showMessageDialog(
           null, "Attention, il ne peut y avoir qu'une seule entrée à la carrière");
     } else {
       entreeList.add(newEntree);
+      noeudList.add(noeud);
     }
   }
 

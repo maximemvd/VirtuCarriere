@@ -140,7 +140,6 @@ public class Controller implements Serializable {
           break;
         case ENTREE:
           addEntree(mousePoint);
-          addNoeud(mousePoint);
           break;
         default:
           break;
@@ -171,7 +170,8 @@ public class Controller implements Serializable {
 
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, 4);
-    elementContainer.addEntree(entree);
+    Noeud noeud = new Noeud(mousePoint, 1, 1);
+    elementContainer.addEntree(entree, noeud);
   }
 
   public void removeEntree(Entree entree) {
