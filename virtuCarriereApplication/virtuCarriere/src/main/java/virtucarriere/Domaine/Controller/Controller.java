@@ -32,6 +32,7 @@ public class Controller implements Serializable {
   private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
+  private Plan plan;
 
   public enum EquipementModes {
     RIEN,
@@ -60,10 +61,14 @@ public class Controller implements Serializable {
   public Controller() {
     elementContainer = new ElementContainer();
   }
-  
-  public Point getEntreePoint(){
-      Point entree = new Point(300, 0);
-      return entree;
+
+  public Point getEntreePoint() {
+    Point entree = new Point(300, 0);
+    return entree;
+  }
+
+  public List<Noeud> getNoeudForArcList() {
+    return elementContainer.getNoeudForArcList();
   }
 
   public void setElement(ElementContainer elementContainer) {
@@ -93,17 +98,16 @@ public class Controller implements Serializable {
       return elementContainer.cheminDuCamion(tas);
   }
 
-
-public List<Camion> getCamionList()
-{
+  public List<Camion> getCamionList() {
     return elementContainer.getCamionList();
-}
+  }
 
-public List<Chargeur> getChargeurList(){
-     return elementContainer.getChargeurList();
-}
-  
-  public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
+  public List<Chargeur> getChargeurList() {
+    return elementContainer.getChargeurList();
+  }
+
+  public void addVehicule(
+      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
     elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
   }
 
@@ -131,6 +135,18 @@ public List<Chargeur> getChargeurList(){
 
   public void genererFacture(Camion p_camion) {
     elementContainer.generateFacture(p_camion);
+  }
+
+  public List<Equipement> getEquipementList() {
+    return elementContainer.getEquipementList();
+  }
+
+  public List<Entree> getEntreeList() {
+    return elementContainer.getEntreeList();
+  }
+
+  public ArrayList<List<Arc>> getArcList() {
+    return elementContainer.getArcList();
   }
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
@@ -163,7 +179,7 @@ public List<Chargeur> getChargeurList(){
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, 4);
     Noeud noeud = new Noeud(mousePoint, 1, 1);
-    elementContainer.addEntree(entree, noeud);
+    // elementContainer.addEntree(entree, noeud);
   }
 
   public void removeEntree(Entree entree) {
@@ -184,6 +200,10 @@ public List<Chargeur> getChargeurList(){
 
   public ElementContainer getElementContainer() {
     return elementContainer;
+  }
+
+  public void deleteSelected() {
+    plan.deleteSelected();
   }
 
   public void addContainer() {

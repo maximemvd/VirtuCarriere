@@ -70,6 +70,10 @@ public class Plan {
     return element;
   }
 
+  public void deleteSelected() {
+    // TODO delete les éléments sélectionnés
+  }
+
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
 
     /*
@@ -183,5 +187,13 @@ public class Plan {
 
   public ArrayList<List<Arc>> getArcs() {
     return chemins.getLinks();
+  }
+
+  public List<Noeud> getNoeudForArcList() {
+    return null;
+  }
+
+  public List<Entree> getEntreeList() {
+    return null;
   }
 }
