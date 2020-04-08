@@ -130,9 +130,6 @@ public class ElementContainer implements Serializable {
   public void getCamionList() {
        simulation.getCamionList();
   }
-  
-  public void getChargeurList(){
-       simulation.getChargeurList();
 
   public void addEntree(Entree newEntree, Noeud noeud) {
     if (entreeList.size() == 1) {
