@@ -201,6 +201,10 @@ public class Controller implements Serializable {
     return elementContainer.getArcList();
   }
 
+  public List<Camion> getCamionList() {
+    return elementContainer.getCamionList();
+  }
+
   public List<Element> getSelectionList() {
     return elementContainer.getSelectionList();
   }
