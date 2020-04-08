@@ -130,9 +130,15 @@ public class ElementContainer implements Serializable {
   public void getCamionList() {
        simulation.getCamionList();
   }
-  
-  public void getChargeurList(){
-       simulation.getChargeurList();
+
+  public void addEntree(Entree newEntree, Noeud noeud) {
+    if (entreeList.size() == 1) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, il ne peut y avoir qu'une seule entrée à la carrière");
+    } else {
+      entreeList.add(newEntree);
+      noeudList.add(noeud);
+    }
   }
   
   public void generateFacture(Camion p_camion)

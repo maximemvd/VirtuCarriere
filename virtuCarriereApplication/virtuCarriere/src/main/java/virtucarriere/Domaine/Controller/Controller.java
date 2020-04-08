@@ -159,7 +159,8 @@ public void genererFacture(Camion p_camion){
 
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, 4);
-//    elementContainer.addEntree(entree);
+    Noeud noeud = new Noeud(mousePoint, 1, 1);
+    elementContainer.addEntree(entree, noeud);
   }
 
   public void removeEntree(Entree entree) {
