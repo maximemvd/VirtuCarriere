@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -302,10 +303,12 @@ public class CarriereDrawer {
   public void drawArc(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
     // TODO change List for ArrayList and correctly implement method
-    List<Arc> arcs = controller.getArcList();
+    ArrayList<List<Arc>> arcs = controller.getArcList();
     arcs.forEach(
-        (arc) -> {
-          if (arc.isSelected()) {
+        (arcc) -> {
+          arcc.forEach(
+          (arc) -> {
+            if (arc.isSelected()) {
             g2d.setColor(new Color(255, 0, 0));
             g2d.setStroke(new BasicStroke(7));
             g2d.drawLine(
@@ -313,15 +316,17 @@ public class CarriereDrawer {
                 (int) arc.getStarting().getY(),
                 (int) arc.getArrival().getX(),
                 (int) arc.getArrival().getY());
+            }
+            Color arcColor = arc.getColor();
+            g2d.setColor(arcColor);
+            g2d.setStroke(new BasicStroke(5));
+            g2d.drawLine(
+                (int) arc.getStarting().getX(),
+                (int) arc.getStarting().getY(),
+                (int) arc.getArrival().getX(),
+                (int) arc.getArrival().getY());
           }
-          Color arcColor = arc.getColor();
-          g2d.setColor(arcColor);
-          g2d.setStroke(new BasicStroke(5));
-          g2d.drawLine(
-              (int) arc.getStarting().getX(),
-              (int) arc.getStarting().getY(),
-              (int) arc.getArrival().getX(),
-              (int) arc.getArrival().getY());
+          );
         });
     g2d.scale(1 / zoom, 1 / zoom);
   }
