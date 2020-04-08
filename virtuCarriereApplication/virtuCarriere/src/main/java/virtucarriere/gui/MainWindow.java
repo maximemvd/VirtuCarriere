@@ -7,6 +7,7 @@ package virtucarriere.gui;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
@@ -1261,7 +1262,7 @@ public class MainWindow extends JFrame {
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
     List<Vehicule> vehicules = controller.getVehiculeList();
-    List<Arc> arcs = controller.getArcList();
+    ArrayList<List<Arc>> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -1322,7 +1323,7 @@ public class MainWindow extends JFrame {
         jTextField2.setText(nombreTotal);
       }
     }
-
+    /*
     for (Arc arc : arcs) {
       if (arc.isSelected()) {
         numTotal++;
@@ -1343,6 +1344,7 @@ public class MainWindow extends JFrame {
         jTextField2.setText(nombreTotal);
       }
     }
+    */
   }
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
