@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public abstract class AbstractGraph<End extends Element, Link extends AbstractLien<End>>
     implements Graph<End, Link> {
 
-  protected Vector<End> ends;
-  protected Vector<List<AbstractLien<End>>> links;
+  protected Vector<End> ends = new Vector<>();
+  protected Vector<List<AbstractLien<End>>> links = new Vector<>();
 
   @Override
   public void removeLink(Link link) {

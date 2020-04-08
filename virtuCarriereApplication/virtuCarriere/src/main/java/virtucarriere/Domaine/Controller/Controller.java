@@ -10,20 +10,14 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
-import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
-import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
-import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
@@ -69,7 +63,7 @@ public class Controller implements Serializable {
 
   public void addCrible(Point mousePoint) {
     Crible newCrible = new Crible(mousePoint, 2, 2, 2);
-  //  elementContainer.addElement(newCrible);
+    //  elementContainer.addElement(newCrible);
   }
 
   public void addConcasseur(Point mousePoint, EquipementModes modes) {
@@ -81,80 +75,72 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
-
-
-  
-public void getCamionList()
-{
+  public void getCamionList() {
     elementContainer.getCamionList();
-}
+  }
 
-public void getChargeurList(){
-     elementContainer.getChargeurList();
-}
-  
-public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client)
-{
+  public void getChargeurList() {
+    elementContainer.getChargeurList();
+  }
+
+  public void addVehicule(
+      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
     elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
-}
- public void generateFacture(Camion p_camion)
-  {
-      elementContainer.generateFacture(p_camion);
   }
-  
-  public void verificationJeton(Camion p_camion){
-      elementContainer.verificationJeton(p_camion);
+
+  public void generateFacture(Camion p_camion) {
+    elementContainer.generateFacture(p_camion);
   }
-  
+
+  public void verificationJeton(Camion p_camion) {
+    elementContainer.verificationJeton(p_camion);
+  }
+
   public void changeEtat(Camion p_camion, String etat) {
     elementContainer.changeEtat(p_camion, etat);
   }
-  
+
   public void indiqueAuCamionEmplacement(String produit) {
     elementContainer.indiqueAuCamionEmplacement(produit);
   };
-  
- 
-  
-   public void createToken(String client, String produit, double quantite) {
-     elementContainer.createToken(client, produit, quantite);
-  }  
-    
-public void removeVehicule(Vehicule p_vehicule) {
+
+  public void createToken(String client, String produit, double quantite) {
+    elementContainer.createToken(client, produit, quantite);
+  }
+
+  public void removeVehicule(Vehicule p_vehicule) {
     elementContainer.removeVehicule(p_vehicule);
   }
 
-public void genererFacture(Camion p_camion){
+  public void genererFacture(Camion p_camion) {
     elementContainer.generateFacture(p_camion);
-}
-
-
+  }
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-  //  elementContainer.addArc(arc);
+    //  elementContainer.addArc(arc);
   }
 
   public void removeEquipement(Equipement equipement) {
-   // elementContainer.removeEquipement(equipement);
+    // elementContainer.removeEquipement(equipement);
   }
 
   public void addTas(Point mousePoint) {
-    //Tas tas = new Tas(mousePoint, 1, double 1, "matériaux", 2, "or", double  100);
-  //  elementContainer.addEquipement(tas);
+    // Tas tas = new Tas(mousePoint, 1, double 1, "matériaux", 2, "or", double  100);
+    //  elementContainer.addEquipement(tas);
   }
 
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 1, 1);
-  //  elementContainer.addNoeud(noeud);
+    //  elementContainer.addNoeud(noeud);
   }
 
   public void removeNoeud(Noeud noeud) {
-  //  elementContainer.removeNoeud(noeud);
+    //  elementContainer.removeNoeud(noeud);
   }
 
   public void removeArc(Arc arc) {
-  //  elementContainer.removeArc(arc);
+    //  elementContainer.removeArc(arc);
   }
 
   public void addEntree(Point mousePoint) {
@@ -164,7 +150,7 @@ public void genererFacture(Camion p_camion){
   }
 
   public void removeEntree(Entree entree) {
-  //  elementContainer.removeEntree(entree);
+    //  elementContainer.removeEntree(entree);
   }
 
   public void noeudSelection(double x, double y) {
@@ -182,10 +168,6 @@ public void genererFacture(Camion p_camion){
   public ElementContainer getElementContainer() {
     return elementContainer;
   }
-
-
-
-
 
   public void addContainer() {
     // ElementContainer elementContainer = new ElementContainer(this.elementContainer);
