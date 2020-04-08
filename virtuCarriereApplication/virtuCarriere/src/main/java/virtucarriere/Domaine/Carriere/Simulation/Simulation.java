@@ -217,20 +217,14 @@ public class Simulation {
     //  on indique au camion le chemin de retour pour retourner à l'entrée
   };
 
-  public Vector<Noeud> getShortestPath(Vector<Noeud> stops) {
+  public Vector<Noeud> getShortestPath(Noeud stop) {
     Vector<Noeud> results = new Vector<>();
 
-    Noeud treating = stops.elementAt(0);
-    Noeud next = stops.elementAt(1);
-    results.add(treating);
-    stops.remove(treating);
+    Noeud entree = entreeCarriere;
 
-    do {
-      treating = next;
-      next = stops.elementAt(1);
-      Vector<Noeud> intermediateResult = getShortestPathBetweenTwoNoeuds(treating, next);
-      stops.remove(treating);
-    } while (!(stops.size() == 1));
+    results.addAll(getShortestPathBetweenTwoNoeuds(entree, stop));
+    results.addAll(getShortestPathBetweenTwoNoeuds(stop, entree));
+
     return results;
   }
 
