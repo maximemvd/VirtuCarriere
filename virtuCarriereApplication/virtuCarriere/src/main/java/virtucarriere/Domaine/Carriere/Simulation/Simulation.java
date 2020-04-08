@@ -3,22 +3,61 @@ package virtucarriere.Domaine.Carriere.Simulation;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.Entree;
+import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
+import virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur;
+import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 
 public class Simulation {
 
   List<Camion> camionList;
 
+  private Entree entreeCarriere;
+
+  private List<Tas> tasList;
+
+  private List<Noeud> noeudList;
+
+  private GraphChemins graphChemin;
+
+  private GraphConvoyeur graphConvoyeur;
+
   List<Chargeur> chargeurList;
 
   private Chargeur chargeurCourant;
+
+  private Camion camionCourant;
+
+  private Tas tasCourant;
 
   public Simulation() {
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
   }
 
+  private void setCourantTas(Tas tas) {
+    this.tasCourant = tas;
+  }
+
+  public void setTasList(List<Tas> p_tas) {
+    this.tasList = p_tas;
+  }
+
+  public void setNoeudList(List<Noeud> p_noeud) {
+    this.noeudList = p_noeud;
+  }
+
+  public void setEntreCarriere(Entree p_entree) {
+    this.entreeCarriere = p_entree;
+  }
+
   public void setChargeurCourant(Chargeur p_chargeur) {
     this.chargeurCourant = p_chargeur;
+  }
+
+  public void setCamionCourant(Camion p_camion) {
+    this.camionCourant = p_camion;
   }
 
   public Chargeur getChargeurCourant() {
@@ -29,14 +68,27 @@ public class Simulation {
     return chargeurCourant.getJeton();
   }
 
+  public Jeton getJetonCamionCourant() {
+    return camionCourant.getJeton();
+  }
+
+  public void camionCourantGoTo(Point point) {
+    camionCourant.goTO(point);
+  }
+
   // camion
   public void CamionShowUp(String client, String produit, double quantite) {
-    Jeton jeton = createToken(client, produit, quantite);
-    int sizeCamion = camionList.size();
-    int start = 100 * sizeCamion;
-    Point point = new Point(start, start);
-    Camion camionSimulation = new Camion(jeton, point); // create camion
-    camionList.add(camionSimulation);
+    try {
+      Point positionEntre = entreeCarriere.getPoint();
+      Jeton jeton = createToken(client, produit, quantite);
+      int sizeCamion = camionList.size();
+      int start = 100 * sizeCamion;
+      Point point = new Point(positionEntre.x + start, positionEntre.y);
+      Camion camionSimulation = new Camion(jeton, point); // create camion
+      camionList.add(camionSimulation);
+    } catch (Exception exception) {
+      System.out.println(exception);
+    }
   }
 
   public void removeCamion(Camion p_camion) {
@@ -59,12 +111,24 @@ public class Simulation {
     return camionList.isEmpty();
   }
 
-  //  chargeur
-  public void addChargeur(Chargeur p_chargeur) {
-    chargeurList.add(p_chargeur);
+  public void removeVehicule(Vehicule vehicule) {
+    if (vehicule.getClass() == Camion.class) {
+      // removeCamion(vehicule);
+    } else if (vehicule.getClass() == Chargeur.class) {
+      removeChargeur(vehicule);
+    }
   }
 
-  public void removeChargeur(Chargeur p_chargeur) {
+  public void addChargeur(Point p_point) {
+    try {
+      Chargeur p_chargeur = new Chargeur(p_point);
+      chargeurList.add(p_chargeur);
+    } catch (Exception error) {
+      System.out.println(error);
+    }
+  }
+
+  public void removeChargeur(Vehicule p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
     } catch (Exception error) {
@@ -89,14 +153,12 @@ public class Simulation {
     return newJeton;
   }
 
-  public void changeEtat(Camion p_camion, String etat) {
-    p_camion.changeEtat(etat);
+  public void changeEtat(String etat) {
+    camionCourant.changeEtat(etat);
   }
 
   public boolean verificationJeton(Camion p_camion) {
-    //  Si le jeton courant du chargeur est bien égal au jeton du camion, le camion est chargé, son
-    // jeton passe à l'état livré.
-    return p_camion.getJeton() == getJetonChargeurCourant();
+    return camionCourant.getJeton() == getJetonChargeurCourant();
   }
 
   public Facture genererFacture(Camion p_camion) {
@@ -105,14 +167,51 @@ public class Simulation {
     Facture facture = new Facture(10, quantity);
     return facture;
   }
-
-  public void envoieAuCHargeur(Jeton jeton) {
-    // retourne le chargeur que l'on veut
+  
+  public void choisirTasIdeal(String produit) {
+      
+      // donc ici on veux choisir c'est quel le tas le plus approprié selon la commande du client
+      // donc premierement on regarde c'est quel les tas qui contiennent les matériaux que le camion a de besoin, on les mets dans la liste tasValide
+    List<Tas> tasValide = new LinkedList<>();
+    tasList.forEach(
+        (tas) -> {
+          if (tas.getMaterialCode().equals(produit)) {
+            tasValide.add(tas);
+          }
+        });
+    
+    // apres on va avoir une liste de tas valide, on veut le tas le  plus proche du camion
+    
+    // on peux avoir les coordonnées du camion avec camionCourant.getPoint() ou entreeCourant.getPoint(), c'est mieux d'y aller avec camionCourant()
+    
+    // une fois qu'on la choisit, on fait setTasCourant(Le tas choisit) 
+    
+    
   }
 
-  public Point indiqueAuCamionEmplacement(String produit) {
-    // getSHortestPath to produit
-    Point point = new Point(300, 500);
-    return point;
+  
+  public void indiqueAuCamionEmplacement(String produit) {
+      // donc ici on veut indiquer au camion le meilleur chemin pour se rendre au tas
+      
+      // donc le camionCourant doit se rendre au tasCourant.getPoint();
+      
+      // la liste de noeud va etre dans noeudList
+      
+      // retourner une liste de point que le camion doit prendre si possible
+     
+  };
+
+  public void choisirCargeurIdeal(Jeton jeton, Tas tas) {
+      // ici on va chercher tous les chargeurs et on prends le chargeur le plus proche de tasCourant
+      // on faire this.chargeurCourant = (le chargeur qu'on vient de choisir) ou juste retourner le chargeur le mieux adapter
+  }
+  
+  public void indiqueAuChargeurChemin(){
+      // on indique au chargeurCourant le chemin pour se rendre au tas
+
+  }
+
+  public void indiqueAuCamionCheminRetour() {
+   // on indique au camion le chemin de retour pour retourner à l'entrée
   };
 }
