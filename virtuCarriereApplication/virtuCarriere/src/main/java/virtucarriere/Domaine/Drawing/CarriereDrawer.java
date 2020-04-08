@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +12,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
@@ -21,6 +23,7 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
@@ -109,20 +112,43 @@ public class CarriereDrawer {
   
  
   
-  public void startSimulation(Graphics2D g2d, double zoom){
+  public void startSimulation(Graphics2D g2d, double zoom) throws InterruptedException{
+      
       drawCamion(g2d, zoom);
       drawChargeur(g2d, zoom);
+      Color couleurCamion = Color.MAGENTA;
+      
+      Thread.sleep(2000); // wait 2 seconds 
+      
+      List<Camion> camions = controller.getCamionList();
+      
+      // scénario 
+      camions.forEach((camion) -> {
+          
+          Jeton jetonCamion = camion.getJeton();
+          
+          Tas tasCourant = controller.TrouverTasCorrespondant(jetonCamion.getCodeProduit());
+          
+          Vector<Noeud> cheminDuCamion = controller.cheminDuCamion(tasCourant);
+          
+          cheminDuCamion.forEach((noeud) -> {
+              try {
+                  Point point = noeud.getPoint();
+                  g2d.setColor(couleurCamion);
+                  g2d.fillRoundRect(point.x - radius, point.y - radius, radius * 2, radius * 2, radius * 2 , radius * 2);
+                  Thread.sleep(2000); // wait 2 seconds 
+              } catch (InterruptedException ex) {
+                  Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
+              }
+          });
+          
+          
+          
+      });
+      
   }
 
 
-
-
-  public void drawCarriere(Graphics2D g2d) {
-    int width = (int) initialDimension.getWidth() / (int) drawingPanel.getZoom();
-    int height = (int) initialDimension.getHeight() / (int) drawingPanel.getZoom();
-    g2d.setColor(Color.ORANGE);
-    g2d.fillRect(0, 0, width, height);
-  }
 
   public void drawEquipement(Graphics2D g, double zoom) {
     g.scale(zoom, zoom);

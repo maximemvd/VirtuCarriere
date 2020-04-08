@@ -1,6 +1,7 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -169,60 +170,76 @@ public class Simulation {
     return facture;
   }
 
-  public void trouverTas(String produit) {
-
-    // donc ici on veux choisir c'est quel le tas le plus approprié selon la commande du client
-    // donc premierement on regarde c'est quel les tas qui contiennent les matériaux que le camion a
-    // de besoin, on les mets dans la liste tasValide
-    List<Tas> tasValide = new LinkedList<>();
+  public Tas trouverTas(String produit) {
+    
     tasList.forEach(
         (tas) -> {
           if (tas.getMaterialCode().equals(produit)) {
-            tasValide.add(tas);
+              this.tasCourant = tas;
           }
         });
-
-    // apres on va avoir une liste de tas valide, on veut le tas le  plus proche du camion
-
-    // on peux avoir les coordonnées du camion avec camionCourant.getPoint() ou
-    // entreeCourant.getPoint(), c'est mieux d'y aller avec camionCourant()
-
-    // une fois qu'on la choisit, on fait setTasCourant(Le tas choisit)
+    
+    return this.tasCourant;
+   
 
   }
 
-  public void indiqueAuCamionEmplacement(String produit) {
-    // donc ici on veut indiquer au camion le meilleur chemin pour se rendre au tas
+  public Vector<Noeud>  cheminDuCamion(Tas tas) {
+      
+      Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
+      
+     Vector<Noeud> cheminCamion = getShortestPathToGo(noeudDuTas);
+    
+     return cheminCamion;
 
-    //  donc le camionCourant doit se rendre au tasCourant.getPoint();
-
-    // la liste de noeud va etre dans noeudList
-
-    // retourner une liste de point que le camion doit prendre si possible
+  };
+  
+    public Vector<Noeud>  cheminDuCamionRetour(Tas tas) {
+      
+      Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
+      
+     Vector<Noeud> cheminCamion = getShortestPathToComeBack(noeudDuTas);
+    
+     return cheminCamion;
 
   };
 
-  public void choisirCargeurIdeal(Jeton jeton, Tas tas) {
-    // ici on va chercher tous les chargeurs et on prends le chargeur le plus proche de tasCourant
-    // on faire this.chargeurCourant = (le chargeur qu'on vient de choisir) ou juste retourner le
-    // chargeur le mieux adapter
+  public void choisirChargeurIdeal(Tas tas) {
+      Point pointTas = tas.getPoint();
+      List<Integer> list = new ArrayList<Integer>();
+      chargeurList.forEach((chargeur) -> {
+          
+      });
+  }
+  
+  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas){
+      
+      Point pointChargeur = p_chargeur.getPoint();
+      Noeud chargeur = new Noeud(pointChargeur, 10, 10);
+      Point pointTas = p_tas.getPoint();
+      Noeud tas = new Noeud(pointTas, 10, 10);
+      
+      Vector<Noeud> chemin = getShortestPathBetweenTwoNoeuds(chargeur, tas);
+      
+      return chemin;
   }
 
-  public void indiqueAuChargeurChemin() {
-    // on indique au chargeurCourant le chemin pour se rendre au tas
 
-  }
-
-  public void indiqueAuCamionCheminRetour() {
-    //  on indique au camion le chemin de retour pour retourner à l'entrée
-  };
-
-  public Vector<Noeud> getShortestPath(Noeud stop) {
+  public Vector<Noeud> getShortestPathToGo(Noeud stop) {
     Vector<Noeud> results = new Vector<>();
 
     Noeud entree = entreeCarriere;
 
     results.addAll(getShortestPathBetweenTwoNoeuds(entree, stop));
+
+    return results;
+  }
+  
+   public Vector<Noeud> getShortestPathToComeBack(Noeud stop) {
+    Vector<Noeud> results = new Vector<>();
+
+    Noeud entree = entreeCarriere;
+
     results.addAll(getShortestPathBetweenTwoNoeuds(stop, entree));
 
     return results;

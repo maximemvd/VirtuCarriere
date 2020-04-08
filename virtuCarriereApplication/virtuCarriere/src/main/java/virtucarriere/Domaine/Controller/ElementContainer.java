@@ -9,11 +9,13 @@ import java.awt.Point;
 import java.io.File;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Vector;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Plan;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
@@ -35,6 +37,10 @@ public class ElementContainer implements Serializable {
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
     plan.updateSelectedItemsPosition(deltaX, deltaY);
   }
+  
+  public Tas trouverTasCorrespondant(String produit){
+      return simulation.trouverTas(produit);
+  }
 
   public void noeudSelection(double x, double y) {
     /*
@@ -50,6 +56,10 @@ public class ElementContainer implements Serializable {
 
   public void setFile(File p_file) {
     this.file = p_file;
+  }
+  
+  public Vector<Noeud> cheminDuCamion(Tas tas){
+      return simulation.cheminDuCamion(tas);
   }
 
   public File getFile() {
@@ -129,9 +139,6 @@ public class ElementContainer implements Serializable {
     simulation.changeEtat(etat);
   }
 
-  public void indiqueAuCamionEmplacement(String produit) {
-    simulation.indiqueAuCamionEmplacement(produit);
-  };
 
   
   public List<Chargeur> getChargeurList(){

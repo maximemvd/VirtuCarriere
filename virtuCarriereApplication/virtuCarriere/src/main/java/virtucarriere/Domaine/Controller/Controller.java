@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
@@ -18,6 +19,7 @@ import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
@@ -81,6 +83,15 @@ public class Controller implements Serializable {
   public void addBroyeur(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
+  
+  public Tas TrouverTasCorrespondant(String produit)
+  {
+      return elementContainer.trouverTasCorrespondant(produit);
+  }
+  
+  public Vector<Noeud> cheminDuCamion(Tas tas){
+      return elementContainer.cheminDuCamion(tas);
+  }
 
 
 public List<Camion> getCamionList()
@@ -108,9 +119,7 @@ public List<Chargeur> getChargeurList(){
     elementContainer.changeEtat(p_camion, etat);
   }
 
-  public void indiqueAuCamionEmplacement(String produit) {
-    elementContainer.indiqueAuCamionEmplacement(produit);
-  };
+ 
 
   public void createToken(String client, String produit, double quantite) {
     elementContainer.createToken(client, produit, quantite);
