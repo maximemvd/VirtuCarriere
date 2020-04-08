@@ -36,6 +36,12 @@ public class Plan {
     addEquipment(crible);
   }
 
+  public void addTas(Point mousePoint) {
+    Tas tas = new Tas(mousePoint, 1, 1, "code", 1);
+    addEquipment(tas);
+    // TODO add noeudChargement;
+  }
+
   public void addConvoyeur(Point mousePoint) {
     // Convoyeur convoyeur = new Convoyeur(equipement1, equipement2);
     // equipments.addLink(convoyeur);
@@ -47,10 +53,6 @@ public class Plan {
 
   public void removeRntree(Entree entree) {
     chemins.removeEnd(entree);
-  }
-
-  public void addTas(Point tas) {
-    // addEquipment(tas);
   }
 
   public boolean validateElementPresent(Point point) {
