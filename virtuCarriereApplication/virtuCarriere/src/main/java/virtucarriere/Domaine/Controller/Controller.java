@@ -140,6 +140,7 @@ public class Controller implements Serializable {
           break;
         case ENTREE:
           addEntree(mousePoint);
+          addNoeud(mousePoint);
           break;
         default:
           break;
