@@ -301,6 +301,7 @@ public class CarriereDrawer {
 
   public void drawArc(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
+    // TODO change List for ArrayList and correctly implement method
     List<Arc> arcs = controller.getArcList();
     arcs.forEach(
         (arc) -> {

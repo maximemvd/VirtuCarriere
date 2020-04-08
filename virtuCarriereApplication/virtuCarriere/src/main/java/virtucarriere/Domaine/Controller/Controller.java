@@ -36,6 +36,10 @@ public class Controller implements Serializable {
   private ElementContainer elementContainer;
   private Plan plan;
 
+  public List<Noeud> getNoeudList() {
+    return null;
+  }
+
   public enum EquipementModes {
     RIEN,
     CONCASSEUR,
