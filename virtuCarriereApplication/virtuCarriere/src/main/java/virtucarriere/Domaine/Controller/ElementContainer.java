@@ -9,9 +9,11 @@ import java.awt.Point;
 import java.io.File;
 import java.io.Serializable;
 import virtucarriere.Domaine.Carriere.Plan.Element;
+import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Plan;
+import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -106,5 +108,33 @@ public class ElementContainer implements Serializable {
           simulation.addChargeur(mousePoint);
           break;
       }
+  }
+
+  public void getCamionList() {
+    simulation.getCamionList();
+  }
+
+  public void addEntree(Entree newEntree, Noeud noeud) {
+    // TODO Validate if entree present should call method from plan
+  }
+
+  public void generateFacture(Camion p_camion) {
+    simulation.genererFacture(p_camion);
+  }
+
+  public void verificationJeton(Camion p_camion) {
+    simulation.verificationJeton(p_camion);
+  }
+
+  public void changeEtat(Camion p_camion, String etat) {
+    simulation.changeEtat(etat);
+  }
+
+  public void indiqueAuCamionEmplacement(String produit) {
+    simulation.indiqueAuCamionEmplacement(produit);
+  };
+
+  public void createToken(String client, String produit, double quantite) {
+    simulation.createToken(client, produit, quantite);
   }
 }
