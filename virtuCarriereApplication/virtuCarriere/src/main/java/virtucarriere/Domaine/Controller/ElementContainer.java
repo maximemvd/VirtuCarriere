@@ -196,9 +196,6 @@ public class ElementContainer implements Serializable {
       JOptionPane.showMessageDialog(null, "Attention, un équipement est déjà présent");
     } else {
       equipementList.add(p_equipement);
-      if (p_equipement.getClass().getName().equals("Tas")) {
-        //     tasList.add(p_equipement);
-      }
     }
   }
 

@@ -35,7 +35,6 @@ public class Controller implements Serializable {
   private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
-  private Plan plan;
 
   public enum EquipementModes {
     RIEN,
@@ -71,45 +70,17 @@ public class Controller implements Serializable {
 
   public void addCrible(Point mousePoint) {
     Crible newCrible = new Crible(mousePoint, 2, 2, 2);
-    //  elementContainer.addElement(newCrible);
+    elementContainer.addEquipement(newCrible);
   }
 
-  public void addConcasseur(Point mousePoint, EquipementModes modes) {
-
-    elementContainer.addElement(mousePoint, modes);
+  public void addConcasseur(Point mousePoint) {
+    Concasseur newConcasseur = new Concasseur(mousePoint, 2, 2, 2);
+    elementContainer.addEquipement(newConcasseur);
   }
 
-  public void addBroyeur(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
-  }
-
-  public Tas TrouverTasCorrespondant(String produit) {
-    return elementContainer.trouverTasCorrespondant(produit);
-  }
-
-  public Vector<Noeud> cheminDuCamion(Tas tas) {
-    return elementContainer.cheminDuCamion(tas);
-  }
-
-  public List<Camion> getCamionList() {
-    return elementContainer.getCamionList();
-  }
-
-  public List<Chargeur> getChargeurList() {
-    return elementContainer.getChargeurList();
-  }
-
-  public void addVehicule(
-      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
-    elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
-  }
-
-  public void generateFacture(Camion p_camion) {
-    elementContainer.generateFacture(p_camion);
-  }
-
-  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
-    return elementContainer.cheminDuCamionRetour(tas);
+  public void addBroyeur(Point mousePoint) {
+    Broyeur newBroyeur = new Broyeur(mousePoint, 2, 2, 2);
+    elementContainer.addEquipement(newBroyeur);
   }
 
   public void addCamion() {
@@ -123,8 +94,9 @@ public class Controller implements Serializable {
     }
   }
 
-  public void createToken(String client, String produit, double quantite) {
-    elementContainer.createToken(client, produit, quantite);
+  public void addChargeur(Point mousePoint) {
+    Chargeur p_chargeur = new Chargeur(mousePoint);
+    elementContainer.addChargeur(p_chargeur);
   }
 
   public void removeVehicule(Vehicule p_vehicule) {
@@ -222,8 +194,36 @@ public class Controller implements Serializable {
     return elementContainer;
   }
 
-  public void deleteSelected() {
-    plan.deleteSelected();
+  public List<Equipement> getEquipementList() {
+    return elementContainer.getEquipemenetList();
+  }
+
+  public List<Tas> getTasList() {
+    return elementContainer.getTasList();
+  }
+
+  public List<Arc> getArcList() {
+    return elementContainer.getArcList();
+  }
+
+  public List<Element> getSelectionList() {
+    return elementContainer.getSelectionList();
+  }
+
+  public List<Entree> getEntreeList() {
+    return elementContainer.getEntreeList();
+  }
+
+  public List<Vehicule> getVehiculeList() {
+    return elementContainer.getVehiculeList();
+  }
+
+  public List<Noeud> getNoeudList() {
+    return elementContainer.getNoeudList();
+  }
+
+  public List<Noeud> getNoeudForArcList() {
+    return elementContainer.getNoeudForArcList();
   }
 
   public void addContainer() {
