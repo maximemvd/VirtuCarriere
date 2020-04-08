@@ -111,9 +111,19 @@ public class ElementContainer implements Serializable {
           break;
       }
   }
+<<<<<<< HEAD
   
   public List<Camion> getCamionList() {
        return simulation.getCamionList();
+=======
+
+  public List<Camion> getCamionList() {
+    return simulation.getCamionList();
+  }
+
+  public void addEntree(Entree newEntree, Noeud noeud) {
+    // TODO Validate if entree present should call method from plan
+>>>>>>> a447f1111adf8918b7dc770ad0786a3f45f5cf87
   }
  
 
@@ -133,11 +143,17 @@ public class ElementContainer implements Serializable {
     simulation.indiqueAuCamionEmplacement(produit);
   };
 
+<<<<<<< HEAD
   
   public List<Chargeur> getChargeurList(){
      return  simulation.getChargeurList();
   }
   
+=======
+  public List<Chargeur> getChargeurList() {
+    return simulation.getChargeurList();
+  }
+>>>>>>> a447f1111adf8918b7dc770ad0786a3f45f5cf87
 
   public void createToken(String client, String produit, double quantite) {
     simulation.createToken(client, produit, quantite);

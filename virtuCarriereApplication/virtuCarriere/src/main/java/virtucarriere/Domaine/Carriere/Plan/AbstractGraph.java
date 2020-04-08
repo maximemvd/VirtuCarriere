@@ -1,5 +1,6 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
     implements Graph<End, Link> {
 
   protected Vector<End> ends = new Vector<>();
-  protected Vector<List<AbstractLien<End>>> links = new Vector<>();
+  protected Vector<List<Link>> links = new Vector<>();
 
   @Override
   public void removeLink(Link link) {
@@ -51,7 +52,7 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
         .collect(Collectors.toList());
   }
 
-  protected Link getLink(End start, End end) {
+  public Link getLink(End start, End end) {
     int index = ends.indexOf(start);
     Optional<Link> result =
         (Optional<Link>)
@@ -62,5 +63,13 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
       throw new RuntimeException("Le lien n'existe pas");
     }
     return result.get();
+  }
+
+  public List<End> getEnds() {
+    return Collections.list(ends.elements());
+  };
+
+  public ArrayList<List<Link>> getLinks() {
+    return Collections.list(links.elements());
   }
 }
