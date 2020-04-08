@@ -31,7 +31,6 @@ public class Controller implements Serializable {
   private double attribute;
 
   private int undoRedo;
-  private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
   private Plan plan;
@@ -222,12 +221,6 @@ public class Controller implements Serializable {
   public void addContainer() {
     // ElementContainer elementContainer = new ElementContainer(this.elementContainer);
 
-  }
-
-  private void deleteElementsAfterPointer(int undoRedoPointerState) {
-    if (elementContainerList.isEmpty()) {
-      return;
-    }
   }
 
   public void openFile() {
