@@ -17,7 +17,13 @@ public class Tas extends Equipement {
   private String name;
   private double quantite;
 
-  public Tas(Point point, int p_width, int p_length, String materialCode, double dimension, double quantite) {
+  public Tas(
+      Point point,
+      int p_width,
+      int p_length,
+      String materialCode,
+      double dimension,
+      double quantite) {
     super(point, p_width, p_length, 0, Collections.emptyList());
     this.materialCode = materialCode;
     this.dimension = dimension;
@@ -33,12 +39,12 @@ public class Tas extends Equipement {
   public String getName() {
     return name;
   }
-  
-  public String getMaterialCode(){
-      return materialCode;
+
+  public String getMaterialCode() {
+    return materialCode;
   }
-  
-  public double getQuantite(){
-      return quantite;
+
+  public double getQuantite() {
+    return quantite;
   }
 }
