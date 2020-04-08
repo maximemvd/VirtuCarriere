@@ -63,4 +63,8 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
     }
     return result.get();
   }
+
+  public List<End> getEnds() {
+    return Collections.list(ends.elements());
+  };
 }
