@@ -1,6 +1,8 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Plan {
 
@@ -164,4 +166,20 @@ public class Plan {
   public void noeudSelection(double x, double y) {}
 
   public void removeElement(Element element) {}
+
+  public List<Equipement> getEquipements() {
+    return equipments.getEnds();
+  }
+
+  public ArrayList<List<Convoyeur>> getConvoyeurs() {
+    return equipments.getLinks();
+  }
+
+  public List<Noeud> getNoeuds() {
+    return chemins.getEnds();
+  }
+
+  public ArrayList<List<Arc>> getArcs() {
+    return chemins.getLinks();
+  }
 }
