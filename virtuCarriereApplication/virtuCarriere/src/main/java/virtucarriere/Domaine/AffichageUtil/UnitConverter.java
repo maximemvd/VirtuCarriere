@@ -17,6 +17,6 @@ public class UnitConverter {
 
   public static double meterToPixel(double meter) {
     // TODO calcul à faire selon la dimension de notre fenêtre
-    return meter;
+    return meter / PixelToMeter;
   }
 }

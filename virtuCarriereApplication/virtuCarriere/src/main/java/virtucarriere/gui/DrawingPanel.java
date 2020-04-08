@@ -51,8 +51,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     if (mainWindow != null) {
 
       super.paintComponent(g);
-      CarriereDrawer carriereDrawer =
-          new CarriereDrawer(mainWindow.controller, initialDimension, mainWindow.simulation);
+      CarriereDrawer carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
 
       // draw mouse coordinates
       g.setColor(Color.black);
