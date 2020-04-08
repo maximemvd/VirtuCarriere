@@ -10,6 +10,7 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
@@ -18,6 +19,7 @@ import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
@@ -56,6 +58,11 @@ public class Controller implements Serializable {
   public Controller() {
     elementContainer = new ElementContainer();
   }
+  
+  public Point getEntreePoint(){
+      Point entree = new Point(300, 0);
+      return entree;
+  }
 
   public void setElement(ElementContainer elementContainer) {
     this.elementContainer = elementContainer;
@@ -75,10 +82,7 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
-<<<<<<< HEAD
 
-
-  
 public List<Camion> getCamionList()
 {
     return elementContainer.getCamionList();
@@ -88,20 +92,7 @@ public List<Chargeur> getChargeurList(){
      return elementContainer.getChargeurList();
 }
   
-public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client)
-{
-=======
-  public void getCamionList() {
-    elementContainer.getCamionList();
-  }
-
-  public void getChargeurList() {
-    elementContainer.getChargeurList();
-  }
-
-  public void addVehicule(
-      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
->>>>>>> f833e627b3b8c389752b614724b2fd98a3f022fc
+  public void addVehicule(VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
     elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
   }
 

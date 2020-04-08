@@ -53,9 +53,11 @@ public class CarriereDrawer {
     drawNoeud(g2d, zoom);
     drawEntree(g2d, zoom);
     drawArc(g2d, zoom);
+    drawChargeur(g2d, zoom);
+    drawCamion(g2d, zoom);
   }
   
-   public void drawConvoyeur(Graphics2D g2d, double zoom){
+   public void drawChargeur(Graphics2D g2d, double zoom){
            g2d.scale(zoom, zoom);
            List<Chargeur> chargeurs = controller.getChargeurList();
     chargeurs.forEach(
@@ -83,13 +85,32 @@ public class CarriereDrawer {
 
   
   public void drawCamion(Graphics2D g2d, double zoom){
-      
+      List<Camion> camions = controller.getCamionList();
+      int numberOfCLient = camions.size();
+      camions.forEach((camion) -> {
+          Point pointEntree = controller.getEntreePoint();
+          int camionPointX = pointEntree.x - (100 * numberOfCLient);
+          int camionPointY = pointEntree.y;
+              if (camion.isSelected()) {
+            g2d.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius + 2;
+            g2d.fillOval(
+                (int) camionPointX - offsetRadius,
+                (int) camionPointY - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
+             Color couleurCamion = Color.YELLOW;
+             g2d.setColor(couleurCamion);
+             g2d.fillRoundRect(camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius * 2 , radius * 2);
+      });
   }
   
  
   
   public void startSimulation(Graphics2D g2d, double zoom){
-      
+      drawCamion(g2d, zoom);
+      drawChargeur(g2d, zoom);
   }
 
 
