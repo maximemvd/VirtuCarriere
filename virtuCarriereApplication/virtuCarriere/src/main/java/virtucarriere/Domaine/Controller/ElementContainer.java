@@ -151,5 +151,10 @@ public class ElementContainer implements Serializable {
 
   public ArrayList<List<Arc>> getArcList() {
     return plan.getArcs();
+
+    // public void addEntree(Entree entree, Noeud noeud){
+    // TODO
+    // }
+
   }
 }
