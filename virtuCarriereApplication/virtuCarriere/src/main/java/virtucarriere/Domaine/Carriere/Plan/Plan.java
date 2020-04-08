@@ -1,6 +1,8 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Plan {
 
@@ -34,6 +36,12 @@ public class Plan {
     addEquipment(crible);
   }
 
+  public void addTas(Point mousePoint) {
+    Tas tas = new Tas(mousePoint, 1, 1, "code", 1);
+    addEquipment(tas);
+    // TODO add noeudChargement;
+  }
+
   public void addConvoyeur(Point mousePoint) {
     // Convoyeur convoyeur = new Convoyeur(equipement1, equipement2);
     // equipments.addLink(convoyeur);
@@ -45,10 +53,6 @@ public class Plan {
 
   public void removeRntree(Entree entree) {
     chemins.removeEnd(entree);
-  }
-
-  public void addTas(Point tas) {
-    // addEquipment(tas);
   }
 
   public boolean validateElementPresent(Point point) {
@@ -168,4 +172,28 @@ public class Plan {
   public void noeudSelection(double x, double y) {}
 
   public void removeElement(Element element) {}
+
+  public List<Equipement> getEquipements() {
+    return equipments.getEnds();
+  }
+
+  public ArrayList<List<Convoyeur>> getConvoyeurs() {
+    return equipments.getLinks();
+  }
+
+  public List<Noeud> getNoeuds() {
+    return chemins.getEnds();
+  }
+
+  public ArrayList<List<Arc>> getArcs() {
+    return chemins.getLinks();
+  }
+
+  public List<Noeud> getNoeudForArcList() {
+    return null;
+  }
+
+  public List<Entree> getEntreeList() {
+    return null;
+  }
 }

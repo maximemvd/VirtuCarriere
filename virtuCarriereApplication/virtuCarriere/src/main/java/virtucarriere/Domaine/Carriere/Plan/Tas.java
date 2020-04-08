@@ -17,19 +17,13 @@ public class Tas extends Equipement {
   private String name;
   private double quantite;
 
-  public Tas(
-      Point point,
-      int p_width,
-      int p_length,
-      String materialCode,
-      double dimension,
-      double quantite) {
+  // TODO add attribut point de chargement;
+  public Tas(Point point, int p_width, int p_length, String materialCode, double dimension) {
     super(point, p_width, p_length, 0, Collections.emptyList());
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.BLACK;
     this.name = "Tas";
-    this.quantite = quantite;
   }
 
   public Color getColor() {

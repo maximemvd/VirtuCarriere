@@ -10,10 +10,12 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
@@ -54,6 +56,15 @@ public class Controller implements Serializable {
     elementContainer = new ElementContainer();
   }
 
+  public Point getEntreePoint() {
+    Point entree = new Point(300, 0);
+    return entree;
+  }
+
+  public List<Noeud> getNoeudForArcList() {
+    return elementContainer.getNoeudForArcList();
+  }
+
   public void setElement(ElementContainer elementContainer) {
     this.elementContainer = elementContainer;
   }
@@ -72,12 +83,12 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
-  public void getCamionList() {
-    elementContainer.getCamionList();
+  public List<Camion> getCamionList() {
+    return elementContainer.getCamionList();
   }
 
-  public void getChargeurList() {
-    elementContainer.getChargeurList();
+  public List<Chargeur> getChargeurList() {
+    return elementContainer.getChargeurList();
   }
 
   public void addVehicule(
@@ -113,6 +124,18 @@ public class Controller implements Serializable {
     elementContainer.generateFacture(p_camion);
   }
 
+  public List<Equipement> getEquipementList() {
+    return elementContainer.getEquipementList();
+  }
+
+  public List<Entree> getEntreeList() {
+    return elementContainer.getEntreeList();
+  }
+
+  public ArrayList<List<Arc>> getArcList() {
+    return elementContainer.getArcList();
+  }
+
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
     //  elementContainer.addArc(arc);
@@ -143,7 +166,7 @@ public class Controller implements Serializable {
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 3, 3, 4);
     Noeud noeud = new Noeud(mousePoint, 1, 1);
-    elementContainer.addEntree(entree, noeud);
+    // elementContainer.addEntree(entree, noeud);
   }
 
   public void removeEntree(Entree entree) {

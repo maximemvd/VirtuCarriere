@@ -7,21 +7,15 @@ package virtucarriere.gui;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.List;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
-import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Entree;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
-import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 
 public class MainWindow extends JFrame {
-
   public Controller controller;
 
   public Simulation simulation;
@@ -177,15 +171,6 @@ public class MainWindow extends JFrame {
           }
         });
     buttonTopPanel.add(modeSelection);
-
-    toutEffacerButton.setText("Tout effacer");
-    toutEffacerButton.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            toutEffacerButtonActionPerformed(evt);
-          }
-        });
-    buttonTopPanel.add(toutEffacerButton);
 
     mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
 
@@ -935,91 +920,12 @@ public class MainWindow extends JFrame {
 
   private void drawingPanelKeyPressed(
       java.awt.event.KeyEvent evt) { // GEN-FIRST:event_drawingPanelKeyPressed
-    if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-      List<Equipement> equipements = controller.getEquipementList();
-      List<Noeud> noeuds = controller.getNoeudList();
-      List<Entree> entrees = controller.getEntreeList();
-      List<Vehicule> vehicules = controller.getVehiculeList();
-      List<Arc> arcs = controller.getArcList();
-
-      for (Equipement equipement : equipements) {
-        if (equipement.isSelected()) {
-          controller.removeEquipement(equipement);
-          drawingPanel.repaint();
-        }
-      }
-      for (Noeud noeud : noeuds) {
-        if (noeud.isSelected()) {
-          controller.removeNoeud(noeud);
-          drawingPanel.repaint();
-        }
-      }
-      for (Entree entree : entrees) {
-        if (entree.isSelected()) {
-          controller.removeEntree(entree);
-          drawingPanel.repaint();
-        }
-      }
-      for (Vehicule vehicule : vehicules) {
-        if (vehicule.isSelected()) {
-          controller.removeVehicule(vehicule);
-          drawingPanel.repaint();
-        }
-      }
-
-      for (Arc arc : arcs) {
-        if (arc.isSelected()) {
-          controller.removeArc(arc);
-          drawingPanel.repaint();
-        }
-      }
+    if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+      controller.deleteSelected();
       rafraichissementTextField();
       drawingPanel.repaint();
     }
-  } // GEN-LAST:event_drawingPanelKeyPressed
-
-  private void deleteButtonActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteButtonActionPerformed
-    List<Equipement> equipements = controller.getEquipementList();
-    List<Noeud> noeuds = controller.getNoeudList();
-    List<Entree> entrees = controller.getEntreeList();
-    List<Vehicule> vehicules = controller.getVehiculeList();
-    List<Arc> arcs = controller.getArcList();
-
-    for (Equipement equipement : equipements) {
-      if (equipement.isSelected()) {
-        controller.removeEquipement(equipement);
-        drawingPanel.repaint();
-      }
-    }
-    for (Noeud noeud : noeuds) {
-      if (noeud.isSelected()) {
-        controller.removeNoeud(noeud);
-        drawingPanel.repaint();
-      }
-    }
-    for (Entree entree : entrees) {
-      if (entree.isSelected()) {
-        controller.removeEntree(entree);
-        drawingPanel.repaint();
-      }
-    }
-    for (Vehicule vehicule : vehicules) {
-      if (vehicule.isSelected()) {
-        controller.removeVehicule(vehicule);
-        drawingPanel.repaint();
-      }
-    }
-
-    for (Arc arc : arcs) {
-      if (arc.isSelected()) {
-        controller.removeArc(arc);
-        drawingPanel.repaint();
-      }
-    }
-    rafraichissementTextField();
-    drawingPanel.repaint();
-  } // GEN-LAST:event_deleteButtonActionPerformed
+  }
 
   private void resetGrilleActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_resetGrilleActionPerformed
@@ -1137,59 +1043,7 @@ public class MainWindow extends JFrame {
     // TODO add your handling code here:
   } // GEN-LAST:event_drawingPanelMouseClicked
 
-  private void toutEffacerButtonActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_toutEffacerButtonActionPerformed
-    List<Equipement> equipements = controller.getEquipementList();
-    List<Noeud> noeuds = controller.getNoeudList();
-    List<Entree> entrees = controller.getEntreeList();
-    List<Arc> arcs = controller.getArcList();
-
-    equipements.stream()
-        .map(
-            (equipement) -> {
-              controller.removeEquipement(equipement);
-              return equipement;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-    arcs.stream()
-        .map(
-            (arc) -> {
-              controller.removeArc(arc);
-              return arc;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-    noeuds.stream()
-        .map(
-            (noeud) -> {
-              controller.removeNoeud(noeud);
-              return noeud;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-
-    entrees.stream()
-        .map(
-            (entree) -> {
-              controller.removeEntree(entree);
-              return entree;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-    drawingPanel.repaint();
-  }
-
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
     setAppMode(ApplicationMode.ADD_ARC);
     this.controller.getNoeudForArcList().clear();
     // this.setMode(EquipementModes.ARC);
@@ -1223,26 +1077,15 @@ public class MainWindow extends JFrame {
       java.awt.event.ContainerEvent evt) { // GEN-FIRST:event_jTextArea1ComponentAdded
   } // GEN-LAST:event_jTextArea1ComponentAdded
 
-  public void keyPressed(KeyEvent evt) {
-    if (evt.getKeyChar() == KeyEvent.VK_DELETE) {
-      List<Equipement> equipements = controller.getEquipementList();
-      List<Noeud> noeuds = controller.getNoeudList();
-      List<Entree> entrees = controller.getEntreeList();
-      for (Equipement equipement : equipements) {
-        if (equipement.isSelected()) {
-          controller.removeEquipement(equipement);
-        }
-      }
-    }
-  }
-
   public void rafraichissementTextField() {
+    /*
     jTextArea1.setText("");
     jTextField2.setText("0");
     int numTotal = 0;
     int numNoeud = 0;
     int numTas = 0;
     int numArc = 0;
+
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
@@ -1334,6 +1177,8 @@ public class MainWindow extends JFrame {
         jTextField2.setText(nombreTotal);
       }
     }
+
+      */
   }
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
@@ -1450,14 +1295,14 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-      this.controller.addEquipement(actualEquipement, point);
+      // this.controller.addEquipement(actualEquipement, point);
       drawingPanel.repaint();
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
-      controller.addVehicule(vehiculetoDraw, point);
+      // controller.addVehicule(vehiculetoDraw, point);
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
         && SwingUtilities.isLeftMouseButton(evt)) {

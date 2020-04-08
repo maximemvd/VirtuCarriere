@@ -8,12 +8,11 @@ package virtucarriere.Domaine.Controller;
 import java.awt.Point;
 import java.io.File;
 import java.io.Serializable;
-import virtucarriere.Domaine.Carriere.Plan.Element;
-import virtucarriere.Domaine.Carriere.Plan.Entree;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Plan;
+import java.util.ArrayList;
+import java.util.List;
+import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
+import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -110,12 +109,8 @@ public class ElementContainer implements Serializable {
       }
   }
 
-  public void getCamionList() {
-    simulation.getCamionList();
-  }
-
-  public void addEntree(Entree newEntree, Noeud noeud) {
-    // TODO Validate if entree present should call method from plan
+  public List<Camion> getCamionList() {
+    return simulation.getCamionList();
   }
 
   public void generateFacture(Camion p_camion) {
@@ -134,7 +129,27 @@ public class ElementContainer implements Serializable {
     simulation.indiqueAuCamionEmplacement(produit);
   };
 
+  public List<Chargeur> getChargeurList() {
+    return simulation.getChargeurList();
+  }
+
   public void createToken(String client, String produit, double quantite) {
     simulation.createToken(client, produit, quantite);
+  }
+
+  public List<Noeud> getNoeudForArcList() {
+    return plan.getNoeudForArcList();
+  }
+
+  public List<Equipement> getEquipementList() {
+    return plan.getEquipements();
+  }
+
+  public List<Entree> getEntreeList() {
+    return plan.getEntreeList();
+  }
+
+  public ArrayList<List<Arc>> getArcList() {
+    return plan.getArcs();
   }
 }
