@@ -88,19 +88,9 @@
             <Property name="text" type="java.lang.String" value="Affichage"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuZoomer">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Zoomer"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="D&#xe9;zoomer"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAffichageGrille">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Grille magn&#xe9;tique"/>
+                <Property name="text" type="java.lang.String" value="Afficher/cacher la grille"/>
                 <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="drawingPanel.getGridlines()" type="code"/>
                 </Property>
@@ -108,6 +98,22 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuAffichageGrilleMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAffichageGrilleActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="modifierGrille">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modifier la grille"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifierGrilleActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="resetGrille">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="R&#xe9;initialiser la grille"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetGrilleActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

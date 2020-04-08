@@ -5,14 +5,11 @@
  */
 package virtucarriere.gui;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
@@ -140,9 +137,9 @@ public class MainWindow extends JFrame {
     menuColler = new javax.swing.JMenuItem();
     menuCouper = new javax.swing.JMenuItem();
     affichageMenu = new javax.swing.JMenu();
-    menuZoomer = new javax.swing.JMenuItem();
-    jMenuItem6 = new javax.swing.JMenuItem();
     menuAffichageGrille = new javax.swing.JMenuItem();
+    modifierGrille = new javax.swing.JMenuItem();
+    resetGrille = new javax.swing.JMenuItem();
     importerMenu = new javax.swing.JMenu();
     importerCarriereMenu = new javax.swing.JMenuItem();
     importerSimulationMenu = new javax.swing.JMenuItem();
@@ -724,13 +721,7 @@ public class MainWindow extends JFrame {
 
     affichageMenu.setText("Affichage");
 
-    menuZoomer.setText("Zoomer");
-    affichageMenu.add(menuZoomer);
-
-    jMenuItem6.setText("Dézoomer");
-    affichageMenu.add(jMenuItem6);
-
-    menuAffichageGrille.setText("Grille magnétique");
+    menuAffichageGrille.setText("Afficher/cacher la grille");
     menuAffichageGrille.setSelected(drawingPanel.getGridlines());
     menuAffichageGrille.addMouseListener(
         new java.awt.event.MouseAdapter() {
@@ -745,6 +736,24 @@ public class MainWindow extends JFrame {
           }
         });
     affichageMenu.add(menuAffichageGrille);
+
+    modifierGrille.setText("Modifier la grille");
+    modifierGrille.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modifierGrilleActionPerformed(evt);
+          }
+        });
+    affichageMenu.add(modifierGrille);
+
+    resetGrille.setText("Réinitialiser la grille");
+    resetGrille.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            resetGrilleActionPerformed(evt);
+          }
+        });
+    affichageMenu.add(resetGrille);
 
     jMenuBar1.add(affichageMenu);
 
@@ -781,6 +790,48 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void resetGrilleActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_resetGrilleActionPerformed
+    double gapGrille = 100;
+    this.drawingPanel.setGapGrille(gapGrille);
+    this.drawingPanel.repaint();
+  } // GEN-LAST:event_resetGrilleActionPerformed
+
+  private void modifierGrilleActionPerformed(java.awt.event.ActionEvent evt) {
+    JPanel fields = new JPanel(new GridLayout(2, 2));
+    JTextField textField = new JTextField();
+    textField.setPreferredSize(new Dimension(11, 15));
+    JLabel label = new JLabel("mètres");
+
+    fields.add(textField);
+    fields.add(label);
+
+    int result =
+        JOptionPane.showConfirmDialog(
+            null,
+            fields,
+            "Entrer les dimensions d'un carré de la grille",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+
+    if (result == JOptionPane.OK_OPTION) {
+      double newGridGap;
+      try {
+        newGridGap = Double.parseDouble(textField.getText());
+      } catch (Exception exc) {
+        JOptionPane.showMessageDialog(null, "La valeur entrée n'est pas un chiffre valide");
+        return;
+      }
+      if (newGridGap <= 0) {
+        JOptionPane.showMessageDialog(null, "La valeur entrée doit être plus grande que zéro");
+        throw new ArithmeticException("Negative grid gap.");
+      }
+      newGridGap = UnitConverter.pixelToMeter(newGridGap);
+      this.drawingPanel.setGapGrille(newGridGap);
+    }
+    this.drawingPanel.repaint();
+  }
 
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
@@ -1413,7 +1464,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JLabel jLabel8;
   private javax.swing.JLabel jLabel9;
   private javax.swing.JMenuBar jMenuBar1;
-  private javax.swing.JMenuItem jMenuItem6;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
@@ -1434,8 +1484,9 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem menuSauvegarderProjet;
   private javax.swing.JMenuItem menuSauvegarderSous;
   private javax.swing.JMenuItem menuUndo;
-  private javax.swing.JMenuItem menuZoomer;
   private javax.swing.JToggleButton modeSelection;
+  private javax.swing.JMenuItem modifierGrille;
+  private javax.swing.JMenuItem resetGrille;
   private javax.swing.JTextField textFieldCoordonneeX;
   private javax.swing.JTextField textFieldCoordonneeY;
   private javax.swing.JButton toutEffacerButton;
