@@ -176,6 +176,10 @@ public class ElementContainer implements Serializable {
   public List<Entree> getEntreeList() {
     return plan.getEntreeList();
   }
+  
+  public List<Noeud> getNoeudList() {
+    return plan.getNoeuds();
+  }
 
   public ArrayList<List<Arc>> getArcList() {
     return plan.getArcs();

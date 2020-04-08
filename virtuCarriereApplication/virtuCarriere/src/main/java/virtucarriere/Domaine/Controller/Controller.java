@@ -36,10 +36,6 @@ public class Controller implements Serializable {
   private ElementContainer elementContainer;
   private Plan plan;
 
-  public List<Noeud> getNoeudList() {
-    return null;
-  }
-
   public enum EquipementModes {
     RIEN,
     CONCASSEUR,
@@ -148,6 +144,10 @@ public class Controller implements Serializable {
     return elementContainer.getEntreeList();
   }
 
+  public List<Noeud> getNoeudList() {
+    return elementContainer.getNoeudList();
+  }
+  
   public ArrayList<List<Arc>> getArcList() {
     return elementContainer.getArcList();
   }
