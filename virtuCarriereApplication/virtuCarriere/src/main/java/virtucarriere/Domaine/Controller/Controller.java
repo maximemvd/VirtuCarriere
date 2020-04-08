@@ -15,11 +15,9 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -28,13 +26,7 @@ import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
 
-  private double attribute;
-
-  private int undoRedo;
-  private ArrayList<ElementContainer> elementContainerList;
-
   private ElementContainer elementContainer;
-  private Plan plan;
 
   public enum EquipementModes {
     RIEN,
@@ -145,14 +137,9 @@ public class Controller implements Serializable {
   public List<Noeud> getNoeudList() {
     return elementContainer.getNoeudList();
   }
-  
+
   public ArrayList<List<Arc>> getArcList() {
     return elementContainer.getArcList();
-  }
-
-  public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
-    Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    //  elementContainer.addArc(arc);
   }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
@@ -215,19 +202,9 @@ public class Controller implements Serializable {
     return elementContainer;
   }
 
-  public void deleteSelected() {
-    plan.deleteSelected();
-  }
-
   public void addContainer() {
     // ElementContainer elementContainer = new ElementContainer(this.elementContainer);
 
-  }
-
-  private void deleteElementsAfterPointer(int undoRedoPointerState) {
-    if (elementContainerList.isEmpty()) {
-      return;
-    }
   }
 
   public void openFile() {
@@ -312,8 +289,4 @@ public class Controller implements Serializable {
     }
     this.elementContainer = new ElementContainer();
   }
-
-  public void undo() {}
-
-  public void redo() {}
 }
