@@ -95,7 +95,7 @@ public class MainWindow extends JFrame {
     mainPanel = new javax.swing.JPanel();
     buttonTopPanel = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
     modeSelection = new javax.swing.JToggleButton();
-    toutEffacerButton = new javax.swing.JButton();
+    deleteButton = new javax.swing.JButton();
     mainScrollPane = new javax.swing.JScrollPane();
     drawingPanel = new virtucarriere.gui.DrawingPanel(this);
     jPanel1 = new javax.swing.JPanel();
@@ -122,7 +122,6 @@ public class MainWindow extends JFrame {
     jTextArea1 = new javax.swing.JTextArea();
     jLabel7 = new javax.swing.JLabel();
     jLabel15 = new javax.swing.JLabel();
-    deleteButton = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
     jLabel6 = new javax.swing.JLabel();
     ajoutChargeur = new javax.swing.JToggleButton();
@@ -181,14 +180,14 @@ public class MainWindow extends JFrame {
         });
     buttonTopPanel.add(modeSelection);
 
-    toutEffacerButton.setText("Tout effacer");
-    toutEffacerButton.addActionListener(
+    deleteButton.setText("Delete");
+    deleteButton.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
-            toutEffacerButtonActionPerformed(evt);
+            deleteButtonActionPerformed(evt);
           }
         });
-    buttonTopPanel.add(toutEffacerButton);
+    buttonTopPanel.add(deleteButton);
 
     mainPanel.add(buttonTopPanel, java.awt.BorderLayout.NORTH);
 
@@ -352,14 +351,6 @@ public class MainWindow extends JFrame {
 
     jLabel15.setText("Tas :");
 
-    deleteButton.setText("Delete");
-    deleteButton.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            deleteButtonActionPerformed(evt);
-          }
-        });
-
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -508,12 +499,7 @@ public class MainWindow extends JFrame {
                                     .addComponent(jLabel4)
                                     .addPreferredGap(
                                         javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(entreeButton))
-                            .addGroup(
-                                jPanel2Layout
-                                    .createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(deleteButton)))
+                                    .addComponent(entreeButton)))
                     .addGap(0, 0, Short.MAX_VALUE)));
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout
@@ -596,10 +582,8 @@ public class MainWindow extends JFrame {
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(arcButton))
-                    .addGap(18, 18, 18)
-                    .addComponent(deleteButton)
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                     .addGroup(
                         jPanel2Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -743,7 +727,7 @@ public class MainWindow extends JFrame {
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel3Layout
                                     .createSequentialGroup()
-                                    .addGap(0, 35, Short.MAX_VALUE)
+                                    .addGap(0, 25, Short.MAX_VALUE)
                                     .addGroup(
                                         jPanel3Layout
                                             .createParallelGroup(
@@ -806,9 +790,12 @@ public class MainWindow extends JFrame {
             .addGroup(
                 jPanel1Layout
                     .createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jTabbedPane)
-                    .addContainerGap()));
+                    .addComponent(
+                        jTabbedPane,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        301,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)));
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1093,11 +1080,13 @@ public class MainWindow extends JFrame {
     Point point = new Point(coordX, coordY);
     this.controller.addNoeud(point, this.selectedEquipementMode);
     drawingPanel.repaint();
+    rafraichissementTextField();
 
     // }
   }
 
   private void ajoutTasCoordButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    // List<Tas> tas = controller.getTasList();
     // List<Tas> tas = controller.getTasList();
 
     // if (this.currentApplicationMode == ApplicationMode.ADD_PLAN) {
@@ -1212,7 +1201,6 @@ public class MainWindow extends JFrame {
   }
 
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
     setAppMode(ApplicationMode.ADD_ARC);
     this.controller.getNoeudForArcList().clear();
     // this.setMode(EquipementModes.ARC);
@@ -1658,6 +1646,5 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem resetGrille;
   private javax.swing.JTextField textFieldCoordonneeX;
   private javax.swing.JTextField textFieldCoordonneeY;
-  private javax.swing.JButton toutEffacerButton;
   // End of variables declaration//GEN-END:variables
 }

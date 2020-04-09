@@ -3,12 +3,14 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Plan {
 
   GraphConvoyeur equipments = new GraphConvoyeur();
   GraphChemins chemins = new GraphChemins();
+  List<Noeud> noeudsForArcList = new LinkedList<>();
 
   public void addArc(Arc arc) {
     chemins.addLink(arc);
@@ -158,7 +160,15 @@ public class Plan {
     // TODO implement remove element;
   }
 
-  public void noeudSelection(double x, double y) {}
+  public void noeudSelection(double x, double y) {
+    for (AbstractPointChemin noeud : getNoeuds()) {
+      if (noeud.contains(x, y)) {
+        Noeud unNoeud = new Noeud(noeud.getPoint(), 4, 4);
+        noeudsForArcList.add(unNoeud);
+        noeud.setSelectionStatus(true);
+      }
+    }
+  }
 
   public void removeElement(Element element) {}
 
@@ -183,7 +193,7 @@ public class Plan {
   }
 
   public List<Noeud> getNoeudForArcList() {
-    return Collections.emptyList();
+    return this.noeudsForArcList;
   }
 
   public List<Entree> getEntreeList() {
