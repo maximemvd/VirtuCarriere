@@ -42,6 +42,7 @@ public class CarriereDrawer {
     equipementColor.put(Broyeur.class.getName(), Color.GREEN);
     equipementColor.put(Concasseur.class.getName(), Color.PINK);
     equipementColor.put(Crible.class.getName(), Color.RED);
+    equipementColor.put(Tas.class.getName(), Color.DARK_GRAY);
   }
 
   public void draw(Graphics2D g2d, double zoom) {

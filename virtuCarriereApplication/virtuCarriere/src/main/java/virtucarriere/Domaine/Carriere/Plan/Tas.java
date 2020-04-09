@@ -22,7 +22,7 @@ public class Tas extends Equipement {
     super(point, p_width, p_length, 0, Collections.emptyList());
     this.materialCode = materialCode;
     this.dimension = dimension;
-    this.color = Color.BLACK;
+    this.color = Color.DARK_GRAY;
     this.name = "Tas";
   }
 
