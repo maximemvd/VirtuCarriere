@@ -221,7 +221,7 @@ public class Plan {
   }
 
   public List<Equipement> getAllEquipments() {
-    return null;
+    return equipments.getEnds();
   }
 
   public List<Convoyeur> getAllConvoyeur() {
