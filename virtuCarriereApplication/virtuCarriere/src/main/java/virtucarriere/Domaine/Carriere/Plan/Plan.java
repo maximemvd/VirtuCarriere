@@ -212,6 +212,27 @@ public class Plan {
   }
 
   public List<Element> getAllElements() {
+    List<Element> elements = new ArrayList<>();
+    elements.addAll(getAllEquipments());
+    elements.addAll(getAllConvoyeur());
+    elements.addAll(getAllAbstractPointChemin());
+    elements.addAll(getAllArcs());
+    return elements;
+  }
+
+  public List<Equipement> getAllEquipments() {
+    return null;
+  }
+
+  public List<Convoyeur> getAllConvoyeur() {
+    return null;
+  }
+
+  public List<AbstractPointChemin> getAllAbstractPointChemin() {
+    return null;
+  }
+
+  public List<Arc> getAllArcs() {
     return null;
   }
 }
