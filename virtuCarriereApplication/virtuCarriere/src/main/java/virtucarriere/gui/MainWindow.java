@@ -13,7 +13,6 @@ import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
@@ -1014,7 +1013,6 @@ public class MainWindow extends JFrame {
         drawingPanel.repaint();
       }
     }
-    }
 
     /*for (Vehicule vehicule : vehicules) {
       if (vehicule.isSelected()) {
@@ -1080,8 +1078,7 @@ public class MainWindow extends JFrame {
 
     for (AbstractPointChemin noeud : noeuds) {
       if (noeud.isSelected()) {
-        Noeud theNoeud = noeud;
-        this.controller.removeNoeud(theNoeud);
+        this.controller.removeNoeud(noeud);
       }
     }
 
@@ -1089,7 +1086,7 @@ public class MainWindow extends JFrame {
     int coordX = Integer.parseInt(textFieldCoordonneeX.getText());
     int coordY = Integer.parseInt(textFieldCoordonneeY.getText());
     Point point = new Point(coordX, coordY);
-    this.controller.addNoeud(point);
+    this.controller.addNoeud(point, this.selectedEquipementMode);
     drawingPanel.repaint();
 
     // }
@@ -1102,7 +1099,7 @@ public class MainWindow extends JFrame {
     int coordX = Integer.parseInt(textFieldCoordonneeX.getText());
     int coordY = Integer.parseInt(textFieldCoordonneeY.getText());
     Point point = new Point(coordX, coordY);
-    this.controller.addTas(point);
+    this.controller.addTas(point, this.selectedEquipementMode);
     drawingPanel.repaint();
     // }
   } // GEN-LAST:event_jButton2ActionPerformed
@@ -1294,19 +1291,6 @@ public class MainWindow extends JFrame {
       }
     }
 
-    /*for (Vehicule vehicule : vehicules) {
-    >>>>>>> 50540cce76cd131fdf93a6271f41d9dc2fe457ce
-          if (vehicule.isSelected()) {
-            numTotal++;
-            String nom = String.format("\nCoordonnées du %s", vehicule.getName());
-            String xCoord = String.format(":\n x : %d", (int) vehicule.getX());
-            String yCoord = String.format(", y : %d", (int) vehicule.getY());
-            String nombreTotal = String.format("%d", numTotal);
-            jTextArea1.append(nom + xCoord + yCoord);
-            jTextField2.setText(nombreTotal);
-          }
-        }*/
-
     for (List<Arc> listArc : arcs) {
       for (Arc arc : listArc)
         if (arc.isSelected()) {
@@ -1444,9 +1428,7 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-      //      this.controller.addEquipement(actualEquipement, point);
-
-      // this.controller.addElement(point, actualEquipement);
+      this.controller.addEquipement(actualEquipement, point);
 
       drawingPanel.repaint();
 
@@ -1455,7 +1437,7 @@ public class MainWindow extends JFrame {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
 
-      //      controller.addVehicule(vehiculetoDraw, point);
+      controller.addVehicule(vehiculetoDraw, point, 100, "produit", "client");
 
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC

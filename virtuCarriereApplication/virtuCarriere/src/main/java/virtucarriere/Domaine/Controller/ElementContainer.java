@@ -124,6 +124,10 @@ public class ElementContainer implements Serializable {
     simulation.removeVehicule(p_vehicule);
   }
 
+  public void removeArc(Arc p_arc) {
+    plan.removeArc(p_arc);
+  }
+
   public void addVehicule(
       VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
     if (null != mode)

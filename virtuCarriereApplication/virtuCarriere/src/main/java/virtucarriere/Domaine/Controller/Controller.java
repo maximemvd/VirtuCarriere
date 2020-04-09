@@ -167,14 +167,38 @@ public class Controller implements Serializable {
     elementContainer.removeEquipement(equipement);
   }
 
-  public void addTas(Point mousePoint) {
-    Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 100);
-    elementContainer.addEquipement(tas);
+  public void addEquipement(EquipementModes mode, Point mousePoint) {
+    if (null != mode)
+      switch (mode) {
+        case CONCASSEUR:
+          addConcasseur(mousePoint, mode);
+          break;
+        case CRIBLE:
+          addCrible(mousePoint, mode);
+          break;
+        case BROYEUR:
+          addBroyeur(mousePoint, mode);
+          break;
+        case NOEUD:
+          addNoeud(mousePoint, mode);
+          break;
+        case TAS:
+          addTas(mousePoint, mode);
+          break;
+        case ENTREE:
+          addEntree(mousePoint);
+          break;
+        default:
+          break;
+      }
   }
 
-  public void addNoeud(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 1, 1);
-    //  elementContainer.addNoeud(noeud);
+  public void addTas(Point mousePoint, EquipementModes mode) {
+    elementContainer.addElement(mousePoint, mode);
+  }
+
+  public void addNoeud(Point mousePoint, EquipementModes mode) {
+    elementContainer.addElement(mousePoint, mode);
   }
 
   public void removeNoeud(AbstractPointChemin noeud) {
@@ -182,7 +206,7 @@ public class Controller implements Serializable {
   }
 
   public void removeArc(Arc arc) {
-    //  elementContainer.removeArc(arc);
+    elementContainer.removeArc(arc);
   }
 
   public void addEntree(Point mousePoint) {

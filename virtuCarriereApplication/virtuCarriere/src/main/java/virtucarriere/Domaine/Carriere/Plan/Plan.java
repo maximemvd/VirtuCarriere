@@ -77,31 +77,22 @@ public class Plan {
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
 
-    /*
-    for (Element item : this.equipementList) {
+    for (Element item : getEquipements()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
       }
     }
-    for (Element item : this.noeudList) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
-    }
-
-    for (Element item : this.entreeList) {
+    for (Element item : getNoeuds()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
       }
     }
 
-    for (Vehicule item : this.vehiculeList) {
+    for (Element item : getEntreeList()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
       }
     }
-    */
-
   }
 
   public void removeNoeud(Noeud noeud) {
@@ -127,43 +118,39 @@ public class Plan {
   }
 
   public void switchSelectionStatus(double x, double y) {
-    /*for (Element item : this.equipementList) {
+    for (Element item : getEquipements()) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
       }
     }
 
-    for (Element item : this.noeudList) {
+    for (Element item : getNoeuds()) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
       }
     }
 
-    for (Element item : this.entreeList) {
+    for (Element item : getEntreeList()) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
       }
     }
 
-    for (Vehicule item : this.vehiculeList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
+    for (List<Arc> listOfArc : getArcs()) {
+      for (Arc item : listOfArc) {
+        Noeud starting = item.getStarting();
+        Noeud arrival = item.getArrival();
+
+        double xPosStarting = starting.getX();
+        double yPosStarting = starting.getY();
+        double xPosArrival = arrival.getX();
+        double yPosArrival = arrival.getY();
+
+        if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
+          item.switchSelectionStatus();
+        }
       }
     }
-
-    for (Arc item : this.arcList) {
-      Noeud starting = item.getStarting();
-      Noeud arrival = item.getArrival();
-
-      double xPosStarting = starting.getX();
-      double yPosStarting = starting.getY();
-      double xPosArrival = arrival.getX();
-      double yPosArrival = arrival.getY();
-
-      if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
-        item.switchSelectionStatus();
-      }
-    }*/
   }
 
   public void removePlan(Element element) {
@@ -191,7 +178,7 @@ public class Plan {
   }
 
   public List<Noeud> getNoeudForArcList() {
-    return null;
+    return Collections.emptyList();
   }
 
   public List<Entree> getEntreeList() {

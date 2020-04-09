@@ -122,6 +122,33 @@ public class Simulation {
     }
   }
 
+  public void switchSelectionStatus(double x, double y) {
+    for (Vehicule item : this.camionList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+    for (Vehicule item : this.chargeurList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+  }
+
+  public void updateSelectedItemsPosition(double deltaX, double deltaY) {
+    for (Vehicule item : getCamionList()) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+
+    for (Vehicule item : getChargeurList()) {
+      if (item.isSelected()) {
+        item.translate(deltaX, deltaY);
+      }
+    }
+  }
+
   public void addChargeur(Point p_point) {
     try {
       Chargeur p_chargeur = new Chargeur(p_point);
