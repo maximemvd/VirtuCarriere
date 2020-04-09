@@ -177,8 +177,8 @@ public class Controller implements Serializable {
     //  elementContainer.addNoeud(noeud);
   }
 
-  public void removeNoeud(Noeud noeud) {
-    //  elementContainer.removeNoeud(noeud);
+  public void removeNoeud(AbstractPointChemin noeud) {
+    elementContainer.removeNoeud(noeud);
   }
 
   public void removeArc(Arc arc) {
