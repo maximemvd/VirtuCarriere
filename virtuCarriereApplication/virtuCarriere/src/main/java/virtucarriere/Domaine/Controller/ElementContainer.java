@@ -194,7 +194,7 @@ public class ElementContainer implements Serializable {
   }
 
   public void removeEquipement(Equipement equipement) {
-    plan.removeElement(equipement);
+    plan.removeEquipement(equipement);
   }
 
   public void addEquipement(Equipement equipement) {

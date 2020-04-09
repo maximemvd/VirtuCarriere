@@ -97,7 +97,6 @@ public class Plan {
   }
 
   public void removeNoeud(AbstractPointChemin noeud) {
-    System.out.println("Ca marche tu ou quoi");
     chemins.removeEnd(noeud);
   }
 
@@ -162,6 +161,10 @@ public class Plan {
   public void noeudSelection(double x, double y) {}
 
   public void removeElement(Element element) {}
+
+  public void removeEquipement(Equipement equipement) {
+    equipments.removeEnd(equipement);
+  }
 
   public List<Equipement> getEquipements() {
     return equipments.getEnds();
