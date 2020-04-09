@@ -161,10 +161,10 @@ public class Plan {
   }
 
   public void noeudSelection(double x, double y) {
-    for (AbstractPointChemin noeud : getNoeuds()) {
+    for (Element noeud : getNoeuds()) {
       if (noeud.contains(x, y)) {
-        Noeud unNoeud = new Noeud(noeud.getPoint(), 4, 4);
-        noeudsForArcList.add(unNoeud);
+        Noeud newNoeud = new Noeud(noeud.getPoint(), 2, 2);
+        noeudsForArcList.add(newNoeud);
         noeud.setSelectionStatus(true);
       }
     }

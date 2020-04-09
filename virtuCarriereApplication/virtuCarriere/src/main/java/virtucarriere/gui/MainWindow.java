@@ -1149,57 +1149,6 @@ public class MainWindow extends JFrame {
     // TODO add your handling code here:
   } // GEN-LAST:event_drawingPanelMouseClicked
 
-  private void toutEffacerButtonActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_toutEffacerButtonActionPerformed
-    List<Equipement> equipements = controller.getEquipementList();
-    List<AbstractPointChemin> noeuds = controller.getNoeudList();
-
-    ArrayList<List<Arc>> arcs = controller.getArcList();
-
-    equipements.stream()
-        .map(
-            (equipement) -> {
-              controller.removeEquipement(equipement);
-              return equipement;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-
-    noeuds.stream()
-        .map(
-            (noeud) -> {
-              controller.removeNoeud(noeud);
-              return noeud;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-    /*arcs.stream()
-    .map(
-        (arc) -> {
-          controller.removeArc(arc);
-          return arc;
-        })
-    .forEachOrdered(
-        (_item) -> {
-          drawingPanel.repaint();
-        });*/
-    noeuds.stream()
-        .map(
-            (noeud) -> {
-              controller.removeNoeud(noeud);
-              return noeud;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-    drawingPanel.repaint();
-  }
-
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
     setAppMode(ApplicationMode.ADD_ARC);
     this.controller.getNoeudForArcList().clear();
@@ -1437,6 +1386,7 @@ public class MainWindow extends JFrame {
 
       this.controller.noeudSelection(point.getX(), point.getY());
       if (this.controller.getNoeudForArcList().size() == 2) {
+        System.out.println("On a tu dequoi");
         Noeud starting = this.controller.getNoeudForArcList().get(0);
         Noeud arrival = this.controller.getNoeudForArcList().get(1);
         this.controller.addArc(mousePoint, starting, arrival);

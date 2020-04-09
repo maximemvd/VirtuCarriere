@@ -146,11 +146,6 @@ public class Controller implements Serializable {
     return elementContainer.getArcList();
   }
 
-  public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
-    Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    elementContainer.addArc(arc);
-  }
-
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
     return elementContainer.trouverChargeurCorrespondant(tas);
   }
@@ -199,6 +194,11 @@ public class Controller implements Serializable {
 
   public void addNoeud(Point mousePoint, EquipementModes mode) {
     elementContainer.addElement(mousePoint, mode);
+  }
+
+  public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
+    Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
+    elementContainer.addArc(arc);
   }
 
   public void removeNoeud(AbstractPointChemin noeud) {

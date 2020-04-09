@@ -19,7 +19,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
     if (endExist(end)) {
       ends.remove(end);
     } else {
-      throw new RuntimeException("Ce neud n'existe pas");
+      throw new RuntimeException("Ce noeud n'existe pas");
     }
   }
 
