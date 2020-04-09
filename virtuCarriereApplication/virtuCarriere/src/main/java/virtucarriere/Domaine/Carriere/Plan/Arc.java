@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.Objects;
 
-public class Arc extends AbstractLien<Noeud> {
+public class Arc extends AbstractLien<AbstractPointChemin> {
 
   private Noeud starting;
   private Noeud arrival;

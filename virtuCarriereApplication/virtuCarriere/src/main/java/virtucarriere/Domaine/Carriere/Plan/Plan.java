@@ -52,7 +52,7 @@ public class Plan {
     // chemins.addEnd(entree);
   }
 
-  public void removeRntree(Entree entree) {
+  public void removeEntree(Entree entree) {
     chemins.removeEnd(entree);
   }
 
@@ -182,7 +182,7 @@ public class Plan {
     return equipments.getLinks();
   }
 
-  public List<Noeud> getNoeuds() {
+  public List<AbstractPointChemin> getNoeuds() {
     return chemins.getEnds();
   }
 
