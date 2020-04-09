@@ -225,7 +225,7 @@ public class Plan {
   }
 
   public List<Convoyeur> getAllConvoyeur() {
-    return null;
+    return equipments.getLinks().stream().flatMap(List::stream).collect(Collectors.toList());
   }
 
   public List<AbstractPointChemin> getAllAbstractPointChemin() {
