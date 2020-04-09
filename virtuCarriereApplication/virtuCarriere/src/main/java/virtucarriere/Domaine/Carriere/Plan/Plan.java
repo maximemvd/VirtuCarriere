@@ -12,14 +12,12 @@ public class Plan {
   GraphChemins chemins;
   List<Noeud> noeudsForArcList;
   List<Entree> entreeList;
-  List<Noeud> noeudList;
 
   public Plan() {
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
-    noeudList = new LinkedList<Noeud>();
   }
 
   public void addArc(Arc arc) {
@@ -82,7 +80,6 @@ public class Plan {
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 3, 3);
     chemins.addEnd(noeud);
-    noeudList.add(noeud);
   }
 
   public Element getElement(Element element) {
@@ -178,9 +175,9 @@ public class Plan {
   }
 
   public void noeudSelection(double x, double y) {
-    for (Noeud noeud : this.noeudList) {
+    for (Element noeud : getNoeuds()) {
       if (noeud.contains(x, y)) {
-        noeudsForArcList.add(noeud);
+        noeudsForArcList.add((Noeud) noeud);
         noeud.setSelectionStatus(true);
       }
     }
@@ -202,10 +199,6 @@ public class Plan {
 
   public List<AbstractPointChemin> getNoeuds() {
     return chemins.getEnds();
-  }
-
-  public List<Noeud> getListofNoeuds() {
-    return this.noeudList;
   }
 
   public ArrayList<List<Arc>> getArcs() {
