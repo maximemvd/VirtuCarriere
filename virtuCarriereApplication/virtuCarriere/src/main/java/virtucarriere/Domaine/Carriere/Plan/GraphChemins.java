@@ -21,7 +21,9 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
   @Override
   public void removeEnd(AbstractPointChemin end) {
     if (endExist(end)) {
+      int index = ends.indexOf(end);
       ends.remove(end);
+      links.remove(links.elementAt(index));
     } else {
       throw new RuntimeException("Ce noeud n'existe pas");
     }

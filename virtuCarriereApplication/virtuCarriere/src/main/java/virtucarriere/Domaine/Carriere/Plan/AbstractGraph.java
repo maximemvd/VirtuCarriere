@@ -23,7 +23,7 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
   }
 
   public boolean linkExist(Link link) {
-    return links.contains(link);
+    return links.stream().anyMatch(e -> e.contains(link));
   }
 
   @Override
