@@ -229,7 +229,7 @@ public class Plan {
   }
 
   public List<AbstractPointChemin> getAllAbstractPointChemin() {
-    return null;
+    return chemins.getEnds();
   }
 
   public List<Arc> getAllArcs() {
