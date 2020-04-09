@@ -1,5 +1,8 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
 
   public double getCost(Arc arc) {
@@ -34,6 +37,9 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
       throw new RuntimeException("Cet arc existe déjà");
     }
     int index = ends.indexOf(link.getStarting()) + 1;
-    links.elementAt(index).add(link);
+    //links.elementAt(index).add(link);
+    List<Arc> list = new ArrayList<Arc>();
+    list.add(link); 
+    links.add(list);
   }
 }
