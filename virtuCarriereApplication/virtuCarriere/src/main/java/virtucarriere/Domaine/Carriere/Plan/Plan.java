@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.*;
 
 public class Plan {
 
@@ -58,8 +59,14 @@ public class Plan {
   }
 
   public void addEntree(Point mousePoint) {
-    Entree entree = new Entree(mousePoint, 2, 4, 0);
-    chemins.addEnd(entree);
+    if (this.entreeList.size() == 1) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, il ne peut avoir qu'une seule entrée à la carrière");
+    } else {
+      Entree entree = new Entree(mousePoint, 2, 4, 0);
+      chemins.addEnd(entree);
+      entreeList.add(entree);
+    }
   }
 
   public void removeEntree(Entree entree) {

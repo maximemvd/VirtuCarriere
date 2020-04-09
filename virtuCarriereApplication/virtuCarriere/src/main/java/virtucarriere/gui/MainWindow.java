@@ -1067,6 +1067,7 @@ public class MainWindow extends JFrame {
 
   private void ajoutNoeudCoordButtonActionPerformed(java.awt.event.ActionEvent evt) {
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
+    this.selectedEquipementMode = EquipementModes.NOEUD;
 
     for (AbstractPointChemin noeud : noeuds) {
       if (noeud.isSelected()) {
