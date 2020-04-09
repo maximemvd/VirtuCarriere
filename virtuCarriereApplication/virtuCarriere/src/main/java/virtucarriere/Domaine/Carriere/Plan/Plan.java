@@ -80,6 +80,16 @@ public class Plan {
     return element;
   }
 
+  public Element getElement(Point point) {
+    Element returnElement =
+        getAllElements().stream()
+            .filter(element -> element.getPoint() == point)
+            .findFirst()
+            .orElse(null);
+    if (returnElement == null) throw new RuntimeException("Aucun element a cette position");
+    return returnElement;
+  }
+
   public void deleteSelected() {
     // TODO delete les éléments sélectionnés
   }

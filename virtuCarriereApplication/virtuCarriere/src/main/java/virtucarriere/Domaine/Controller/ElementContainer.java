@@ -246,4 +246,7 @@ public class ElementContainer implements Serializable {
 
   */
 
+  public Element getElement(Point point) {
+    return plan.getElement(point);
+  }
 }
