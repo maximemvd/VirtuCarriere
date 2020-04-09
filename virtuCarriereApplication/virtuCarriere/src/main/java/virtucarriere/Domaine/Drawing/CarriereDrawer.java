@@ -47,7 +47,7 @@ public class CarriereDrawer {
   public void draw(Graphics2D g2d, double zoom) {
     drawEquipement(g2d, zoom);
     drawNoeud(g2d, zoom);
-    drawEntree(g2d, zoom);
+    // drawEntree(g2d, zoom);
     drawArc(g2d, zoom);
     drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);
@@ -267,6 +267,7 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
+  /*
   public void drawEntree(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
     List<Entree> entrees = controller.getEntreeList();
@@ -291,7 +292,8 @@ public class CarriereDrawer {
               radius * 2);
         });
     g2d.scale(1 / zoom, 1 / zoom);
-  }
+    }
+   */
 
   public void drawArc(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);

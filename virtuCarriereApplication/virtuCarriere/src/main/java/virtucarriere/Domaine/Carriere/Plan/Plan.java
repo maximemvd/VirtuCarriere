@@ -60,7 +60,6 @@ public class Plan {
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 2, 4, 0);
     chemins.addEnd(entree);
-    entreeList.add(entree);
   }
 
   public void removeEntree(Entree entree) {
