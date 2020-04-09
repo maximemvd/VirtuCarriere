@@ -45,7 +45,7 @@ public class ElementContainer implements Serializable {
     return simulation.choisirChargeurIdeal(tas);
   }
 
-  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
     return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
   }
 
@@ -69,7 +69,7 @@ public class ElementContainer implements Serializable {
     this.file = p_file;
   }
 
-  public Vector<Noeud> cheminDuCamion(Tas tas) {
+  public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
     return simulation.cheminDuCamion(tas);
   }
 
@@ -149,7 +149,7 @@ public class ElementContainer implements Serializable {
     return simulation.verificationJeton(p_camion, p_chargeur);
   }
 
-  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+  public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
     return simulation.cheminDuCamionRetour(tas);
   }
 
@@ -181,7 +181,7 @@ public class ElementContainer implements Serializable {
     return plan.getEntreeList();
   }
 
-  public List<Noeud> getNoeudList() {
+  public List<AbstractPointChemin> getNoeudList() {
     return plan.getNoeuds();
   }
 
