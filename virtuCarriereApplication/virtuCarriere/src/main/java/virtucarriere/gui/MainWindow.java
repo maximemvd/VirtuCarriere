@@ -1460,7 +1460,7 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-      this.controller.addBroyeur(point, actualEquipement);
+      this.controller.addElement(point, actualEquipement);
       drawingPanel.repaint();
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION

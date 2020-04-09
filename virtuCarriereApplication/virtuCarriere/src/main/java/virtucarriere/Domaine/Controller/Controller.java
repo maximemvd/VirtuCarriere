@@ -75,15 +75,7 @@ public class Controller implements Serializable {
     this.elementContainer = elementContainer;
   }
 
-  public void addCrible(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
-  }
-
-  public void addConcasseur(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
-  }
-
-  public void addBroyeur(Point mousePoint, EquipementModes modes) {
+  public void addElement(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
 
