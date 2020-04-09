@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.*;
 
 public class Plan {
 
@@ -11,12 +12,14 @@ public class Plan {
   GraphChemins chemins;
   List<Noeud> noeudsForArcList;
   List<Entree> entreeList;
+  List<Noeud> noeudList;
 
   public Plan() {
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
     entreeList = new LinkedList<Entree>();
+    noeudList = new LinkedList<Noeud>();
   }
 
   public void addArc(Arc arc) {
@@ -58,9 +61,14 @@ public class Plan {
   }
 
   public void addEntree(Point mousePoint) {
-    Entree entree = new Entree(mousePoint, 2, 4, 0);
-    chemins.addEnd(entree);
-    entreeList.add(entree);
+    if (this.entreeList.size() == 1) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, il ne peut avoir qu'une seule entrée à la carrière");
+    } else {
+      Entree entree = new Entree(mousePoint, 2, 4, 0);
+      chemins.addEnd(entree);
+      entreeList.add(entree);
+    }
   }
 
   public void removeEntree(Entree entree) {
@@ -74,6 +82,7 @@ public class Plan {
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 3, 3);
     chemins.addEnd(noeud);
+    noeudList.add(noeud);
   }
 
   public Element getElement(Element element) {
@@ -169,10 +178,9 @@ public class Plan {
   }
 
   public void noeudSelection(double x, double y) {
-    for (Element noeud : getNoeuds()) {
+    for (Noeud noeud : this.noeudList) {
       if (noeud.contains(x, y)) {
-        Noeud newNoeud = new Noeud(noeud.getPoint(), 2, 2);
-        noeudsForArcList.add(newNoeud);
+        noeudsForArcList.add(noeud);
         noeud.setSelectionStatus(true);
       }
     }
@@ -194,6 +202,10 @@ public class Plan {
 
   public List<AbstractPointChemin> getNoeuds() {
     return chemins.getEnds();
+  }
+
+  public List<Noeud> getListofNoeuds() {
+    return this.noeudList;
   }
 
   public ArrayList<List<Arc>> getArcs() {

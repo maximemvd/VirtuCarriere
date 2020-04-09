@@ -204,4 +204,37 @@ public class ElementContainer implements Serializable {
   public void removeNoeud(AbstractPointChemin noeud) {
     plan.removeNoeud(noeud);
   }
+
+  public void snapSelectedElementToGrid(double gridGap) {
+    for (Element element : plan.getEquipements()) {
+      if (element.isSelected()) {
+        this.snapElementToGrid(element, gridGap);
+      }
+    }
+  }
+
+  private void snapElementToGrid(Element element, double gridGap) {
+    int horizontal = (int) (element.getX() / gridGap);
+    int vertical = (int) (element.getY() / gridGap);
+
+    // Point2D[] gridSquaresCorners = getGridSquareCorners(horizontal, vertical, gridGap);
+    // Point2D closestCorner =
+  }
+  /*
+    private Point2D[] getGridSquareCorners(double horizontalGridSquare, double verticalGridSquare, double gridGap) {
+      double[] gridSquarePos = getGridSquarePos(horizontalGridSquare, verticalGridSquare, gridGap);
+
+      Point2D topLeft = new Point2D.Double(gridSquarePos[0], gridSquarePos[2]);
+      Point2D topRight = new Point2D.Double(gridSquarePos[1], gridSquarePos[2]);
+      Point2D bottomRight = new Point2D.Double(gridSquarePos[1], gridSquarePos[3]);
+      Point2D bottomLeft = new Point2D.Double(gridSquarePos[0], gridSquarePos[3]);
+
+      return new Point2D[]{topLeft, topRight, bottomRight, bottomLeft};
+
+    }
+
+
+
+  */
+
 }
