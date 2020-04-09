@@ -233,6 +233,6 @@ public class Plan {
   }
 
   public List<Arc> getAllArcs() {
-    return null;
+    return chemins.getLinks().stream().flatMap(List::stream).collect(Collectors.toList());
   }
 }
