@@ -15,6 +15,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
       throw new RuntimeException("Le Point existe déja");
     }
     ends.add(end);
+    links.add(new ArrayList<Arc>());
   }
 
   @Override
@@ -36,10 +37,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
     if (linkExist(link)) {
       throw new RuntimeException("Cet arc existe déjà");
     }
-    int index = ends.indexOf(link.getStarting()) + 1;
-    //links.elementAt(index).add(link);
-    List<Arc> list = new ArrayList<Arc>();
-    list.add(link); 
-    links.add(list);
+    int index = ends.indexOf(link.getStarting());
+    links.elementAt(index).add(link);
   }
 }
