@@ -97,7 +97,7 @@ public class Plan {
   }
 
   public void removeNoeud(AbstractPointChemin noeud) {
-    System.out.println("Ca marchee tu ou quoi");
+    System.out.println("Ca marche tu ou quoi");
     chemins.removeEnd(noeud);
   }
 
