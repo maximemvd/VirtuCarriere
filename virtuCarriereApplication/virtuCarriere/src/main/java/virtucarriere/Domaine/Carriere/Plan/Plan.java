@@ -2,15 +2,22 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Plan {
 
-  GraphConvoyeur equipments = new GraphConvoyeur();
-  GraphChemins chemins = new GraphChemins();
-  List<Noeud> noeudsForArcList = new LinkedList<>();
+  GraphConvoyeur equipments;
+  GraphChemins chemins;
+  List<Noeud> noeudsForArcList;
+  List<Entree> entreeList;
+
+  public Plan() {
+    equipments = new GraphConvoyeur();
+    chemins = new GraphChemins();
+    noeudsForArcList = new LinkedList<Noeud>();
+    entreeList = new LinkedList<Entree>();
+  }
 
   public void addArc(Arc arc) {
     chemins.addLink(arc);
@@ -53,6 +60,7 @@ public class Plan {
   public void addEntree(Point mousePoint) {
     Entree entree = new Entree(mousePoint, 2, 4, 0);
     chemins.addEnd(entree);
+    entreeList.add(entree);
   }
 
   public void removeEntree(Entree entree) {
@@ -197,6 +205,6 @@ public class Plan {
   }
 
   public List<Entree> getEntreeList() {
-    return Collections.emptyList();
+    return this.entreeList;
   }
 }

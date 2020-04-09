@@ -47,7 +47,7 @@ public class CarriereDrawer {
   public void draw(Graphics2D g2d, double zoom) {
     drawEquipement(g2d, zoom);
     drawNoeud(g2d, zoom);
-    // drawEntree(g2d, zoom);
+    drawEntree(g2d, zoom);
     drawArc(g2d, zoom);
     drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);

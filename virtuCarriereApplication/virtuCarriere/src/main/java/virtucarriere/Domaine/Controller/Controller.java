@@ -181,7 +181,7 @@ public class Controller implements Serializable {
           addTas(mousePoint, mode);
           break;
         case ENTREE:
-          addEntree(mousePoint);
+          addEntree(mousePoint, mode);
           break;
         default:
           break;
@@ -209,10 +209,9 @@ public class Controller implements Serializable {
     elementContainer.removeArc(arc);
   }
 
-  public void addEntree(Point mousePoint) {
-    Entree entree = new Entree(mousePoint, 3, 3, 4);
-    Noeud noeud = new Noeud(mousePoint, 1, 1);
-    // elementContainer.addEntree(entree, noeud);
+  public void addEntree(Point mousePoint, EquipementModes mode) {
+
+    elementContainer.addElement(mousePoint, mode);
   }
 
   public void removeEntree(Entree entree) {
