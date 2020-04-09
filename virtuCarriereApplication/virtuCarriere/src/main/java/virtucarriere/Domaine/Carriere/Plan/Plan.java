@@ -2,6 +2,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Plan {
@@ -194,6 +195,6 @@ public class Plan {
   }
 
   public List<Entree> getEntreeList() {
-    return null;
+    return Collections.emptyList();
   }
 }

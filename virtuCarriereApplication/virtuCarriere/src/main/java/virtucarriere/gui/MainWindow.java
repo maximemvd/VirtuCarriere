@@ -967,6 +967,8 @@ public class MainWindow extends JFrame {
       // List<Vehicule> vehicules = controller.getVehiculeList();
       // List<Arc> arcs = controller.getArcList();
 
+      ArrayList<List<Arc>> arcs = controller.getArcList();
+
       for (Equipement equipement : equipements) {
         if (equipement.isSelected()) {
           controller.removeEquipement(equipement);
@@ -985,8 +987,8 @@ public class MainWindow extends JFrame {
           drawingPanel.repaint();
         }
       }
-      /*
-      for (Arc arc : arcs) {
+
+      /*for (Arc arc : arcs) {
         if (arc.isSelected()) {
           controller.removeArc(arc);
           drawingPanel.repaint();
@@ -1002,8 +1004,10 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
+
     //    List<Vehicule> vehicules = controller.getVehiculeList();
-    //  List<Arc> arcs = controller.getArcList();
+
+    ArrayList<List<Arc>> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -1023,15 +1027,15 @@ public class MainWindow extends JFrame {
         drawingPanel.repaint();
       }
     }
-    /*
-    for (Vehicule vehicule : vehicules) {
+
+    /*for (Vehicule vehicule : vehicules) {
       if (vehicule.isSelected()) {
         controller.removeVehicule(vehicule);
         drawingPanel.repaint();
       }
-    }
+    }*/
 
-    for (Arc arc : arcs) {
+    /*for (Arc arc : arcs) {
       if (arc.isSelected()) {
         controller.removeArc(arc);
         drawingPanel.repaint();
@@ -1104,6 +1108,7 @@ public class MainWindow extends JFrame {
 
   private void ajoutTasCoordButtonActionPerformed(java.awt.event.ActionEvent evt) {
     // List<Tas> tas = controller.getTasList();
+
     // if (this.currentApplicationMode == ApplicationMode.ADD_PLAN) {
     int coordX = Integer.parseInt(textFieldCoordonneeX.getText());
     int coordY = Integer.parseInt(textFieldCoordonneeY.getText());
@@ -1169,7 +1174,8 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
-    //    List<Arc> arcs = controller.getArcList();
+
+    ArrayList<List<Arc>> arcs = controller.getArcList();
 
     equipements.stream()
         .map(
@@ -1181,38 +1187,59 @@ public class MainWindow extends JFrame {
             (_item) -> {
               drawingPanel.repaint();
             });
-    /*
-    arcs.stream()
-         .map(
-             (arc) -> {
-               controller.removeArc(arc);
-               return arc;
-             })
-         .forEachOrdered(
-             (_item) -> {
-               drawingPanel.repaint();
-             });
-     noeuds.stream()
-         .map(
-             (noeud) -> {
-               controller.removeNoeud(noeud);
-               return noeud;
-             })
-         .forEachOrdered(
-             (_item) -> {
-               drawingPanel.repaint();
-             });
 
-     entrees.stream()
-         .map(
-             (entree) -> {
-               controller.removeEntree(entree);
-               return entree;
-             })
-         .forEachOrdered(
-             (_item) -> {
-               drawingPanel.repaint();
-             });*/
+    noeuds.stream()
+        .map(
+            (noeud) -> {
+              controller.removeNoeud(noeud);
+              return noeud;
+            })
+        .forEachOrdered(
+            (_item) -> {
+              drawingPanel.repaint();
+            });
+
+    entrees.stream()
+        .map(
+            (entree) -> {
+              controller.removeEntree(entree);
+              return entree;
+            })
+        .forEachOrdered(
+            (_item) -> {
+              drawingPanel.repaint();
+            });
+    /*arcs.stream()
+    .map(
+        (arc) -> {
+          controller.removeArc(arc);
+          return arc;
+        })
+    .forEachOrdered(
+        (_item) -> {
+          drawingPanel.repaint();
+        });*/
+    noeuds.stream()
+        .map(
+            (noeud) -> {
+              controller.removeNoeud(noeud);
+              return noeud;
+            })
+        .forEachOrdered(
+            (_item) -> {
+              drawingPanel.repaint();
+            });
+
+    entrees.stream()
+        .map(
+            (entree) -> {
+              controller.removeEntree(entree);
+              return entree;
+            })
+        .forEachOrdered(
+            (_item) -> {
+              drawingPanel.repaint();
+            });
     drawingPanel.repaint();
   }
 
@@ -1261,7 +1288,9 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
+
     // List<Vehicule> vehicules = controller.getVehiculeList();
+
     ArrayList<List<Arc>> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
@@ -1311,40 +1340,41 @@ public class MainWindow extends JFrame {
         jTextField2.setText(nombreTotal);
       }
     }
-    /*
-    for (Vehicule vehicule : vehicules) {
-      if (vehicule.isSelected()) {
-        numTotal++;
-        String nom = String.format("\nCoordonnées du %s", vehicule.getName());
-        String xCoord = String.format(":\n x : %d", (int) vehicule.getX());
-        String yCoord = String.format(", y : %d", (int) vehicule.getY());
-        String nombreTotal = String.format("%d", numTotal);
-        jTextArea1.append(nom + xCoord + yCoord);
-        jTextField2.setText(nombreTotal);
-      }
-    }
 
-    for (Arc arc : arcs) {
-      if (arc.isSelected()) {
-        numTotal++;
-        numArc++;
-        Point middlePoint =
-            new Point(
-                arc.middlePointOfArc(
-                    (int) arc.getStarting().getX(),
-                    (int) arc.getStarting().getY(),
-                    (int) arc.getArrival().getX(),
-                    (int) arc.getArrival().getY()));
-        String nom = String.format("\nCoordonnées du point milieu de l'%s", arc.getName());
-        String num = String.format(" #%d", numArc);
-        String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
-        String yCoord = String.format(", y : %d", (int) middlePoint.getY());
-        String nombreTotal = String.format("%d", numTotal);
-        jTextArea1.append(nom + num + xCoord + yCoord);
-        jTextField2.setText(nombreTotal);
-      }
+    /*for (Vehicule vehicule : vehicules) {
+    >>>>>>> 50540cce76cd131fdf93a6271f41d9dc2fe457ce
+          if (vehicule.isSelected()) {
+            numTotal++;
+            String nom = String.format("\nCoordonnées du %s", vehicule.getName());
+            String xCoord = String.format(":\n x : %d", (int) vehicule.getX());
+            String yCoord = String.format(", y : %d", (int) vehicule.getY());
+            String nombreTotal = String.format("%d", numTotal);
+            jTextArea1.append(nom + xCoord + yCoord);
+            jTextField2.setText(nombreTotal);
+          }
+        }*/
+
+    for (List<Arc> listArc : arcs) {
+      for (Arc arc : listArc)
+        if (arc.isSelected()) {
+          numTotal++;
+          numArc++;
+          Point middlePoint =
+              new Point(
+                  arc.middlePointOfArc(
+                      (int) arc.getStarting().getX(),
+                      (int) arc.getStarting().getY(),
+                      (int) arc.getArrival().getX(),
+                      (int) arc.getArrival().getY()));
+          String nom = String.format("\nCoordonnées du point milieu de l'%s", arc.getName());
+          String num = String.format(" #%d", numArc);
+          String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
+          String yCoord = String.format(", y : %d", (int) middlePoint.getY());
+          String nombreTotal = String.format("%d", numTotal);
+          jTextArea1.append(nom + num + xCoord + yCoord);
+          jTextField2.setText(nombreTotal);
+        }
     }
-    */
   }
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
@@ -1462,13 +1492,18 @@ public class MainWindow extends JFrame {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
       //      this.controller.addEquipement(actualEquipement, point);
+
+      // this.controller.addElement(point, actualEquipement);
+
       drawingPanel.repaint();
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
+
       //      controller.addVehicule(vehiculetoDraw, point);
+
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
         && SwingUtilities.isLeftMouseButton(evt)) {
