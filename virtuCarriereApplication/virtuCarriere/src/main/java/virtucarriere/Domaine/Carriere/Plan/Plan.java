@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.*;
+import java.util.stream.Collectors;
 
 public class Plan {
 
@@ -203,5 +203,15 @@ public class Plan {
 
   public Point getEntreePoint() {
     return entree.getPoint();
+  }
+
+  public List<Element> getSelected() {
+    return getAllElements().stream()
+        .filter(Element::getSelectionStatus)
+        .collect(Collectors.toList());
+  }
+
+  public List<Element> getAllElements() {
+    return null;
   }
 }
