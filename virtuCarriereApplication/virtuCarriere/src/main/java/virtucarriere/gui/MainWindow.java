@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
+import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
@@ -962,7 +963,7 @@ public class MainWindow extends JFrame {
       java.awt.event.KeyEvent evt) { // GEN-FIRST:event_drawingPanelKeyPressed
     if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
       List<Equipement> equipements = controller.getEquipementList();
-      List<Noeud> noeuds = controller.getNoeudList();
+      List<AbstractPointChemin> noeuds = controller.getNoeudList();
       List<Entree> entrees = controller.getEntreeList();
       // List<Vehicule> vehicules = controller.getVehiculeList();
       // List<Arc> arcs = controller.getArcList();
@@ -975,9 +976,9 @@ public class MainWindow extends JFrame {
           drawingPanel.repaint();
         }
       }
-      for (Noeud noeud : noeuds) {
+      for (AbstractPointChemin noeud : noeuds) {
         if (noeud.isSelected()) {
-          controller.removeNoeud(noeud);
+          controller.removeNoeud((Noeud) noeud);
           drawingPanel.repaint();
         }
       }
@@ -1002,7 +1003,7 @@ public class MainWindow extends JFrame {
   private void deleteButtonActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteButtonActionPerformed
     List<Equipement> equipements = controller.getEquipementList();
-    List<Noeud> noeuds = controller.getNoeudList();
+    List<AbstractPointChemin> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
 
     //    List<Vehicule> vehicules = controller.getVehiculeList();
@@ -1015,9 +1016,9 @@ public class MainWindow extends JFrame {
         drawingPanel.repaint();
       }
     }
-    for (Noeud noeud : noeuds) {
+    for (AbstractPointChemin noeud : noeuds) {
       if (noeud.isSelected()) {
-        controller.removeNoeud(noeud);
+        controller.removeNoeud((Noeud) noeud);
         drawingPanel.repaint();
       }
     }
@@ -1088,11 +1089,12 @@ public class MainWindow extends JFrame {
   }
 
   private void ajoutNoeudCoordButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    List<Noeud> noeuds = controller.getNoeudList();
+    List<AbstractPointChemin> noeuds = controller.getNoeudList();
 
-    for (Noeud noeud : noeuds) {
+    for (AbstractPointChemin noeud : noeuds) {
       if (noeud.isSelected()) {
-        this.controller.removeNoeud(noeud);
+        Noeud theNoeud = (Noeud) noeud;
+        this.controller.removeNoeud(theNoeud);
       }
     }
 
@@ -1172,7 +1174,7 @@ public class MainWindow extends JFrame {
   private void toutEffacerButtonActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_toutEffacerButtonActionPerformed
     List<Equipement> equipements = controller.getEquipementList();
-    List<Noeud> noeuds = controller.getNoeudList();
+    List<AbstractPointChemin> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
 
     ArrayList<List<Arc>> arcs = controller.getArcList();
@@ -1191,7 +1193,7 @@ public class MainWindow extends JFrame {
     noeuds.stream()
         .map(
             (noeud) -> {
-              controller.removeNoeud(noeud);
+              controller.removeNoeud((Noeud) noeud);
               return noeud;
             })
         .forEachOrdered(
@@ -1222,7 +1224,7 @@ public class MainWindow extends JFrame {
     noeuds.stream()
         .map(
             (noeud) -> {
-              controller.removeNoeud(noeud);
+              controller.removeNoeud((Noeud) noeud);
               return noeud;
             })
         .forEachOrdered(
@@ -1286,7 +1288,7 @@ public class MainWindow extends JFrame {
     int numTas = 0;
     int numArc = 0;
     List<Equipement> equipements = controller.getEquipementList();
-    List<Noeud> noeuds = controller.getNoeudList();
+    List<AbstractPointChemin> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
 
     // List<Vehicule> vehicules = controller.getVehiculeList();
@@ -1305,7 +1307,7 @@ public class MainWindow extends JFrame {
       }
     }
 
-    for (Noeud noeud : noeuds) {
+    for (AbstractPointChemin noeud : noeuds) {
       if (noeud.getName().equals("Noeud")) {
         numNoeud++;
       }

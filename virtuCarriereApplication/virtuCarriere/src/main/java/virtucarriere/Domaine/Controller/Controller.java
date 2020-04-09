@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
+import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
@@ -88,7 +89,7 @@ public class Controller implements Serializable {
     return elementContainer.trouverTasCorrespondant(produit);
   }
 
-  public Vector<Noeud> cheminDuCamion(Tas tas) {
+  public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
     return elementContainer.cheminDuCamion(tas);
   }
 
@@ -109,7 +110,7 @@ public class Controller implements Serializable {
     elementContainer.generateFacture(p_camion);
   }
 
-  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+  public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
     return elementContainer.cheminDuCamionRetour(tas);
   }
 
@@ -137,7 +138,7 @@ public class Controller implements Serializable {
     return elementContainer.getEntreeList();
   }
 
-  public List<Noeud> getNoeudList() {
+  public List<AbstractPointChemin> getNoeudList() {
     return elementContainer.getNoeudList();
   }
 
@@ -147,14 +148,14 @@ public class Controller implements Serializable {
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    //  elementContainer.addArc(arc);
+    elementContainer.addArc(arc);
   }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
     return elementContainer.trouverChargeurCorrespondant(tas);
   }
 
-  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
     return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas);
   }
 
@@ -163,12 +164,12 @@ public class Controller implements Serializable {
   }
 
   public void removeEquipement(Equipement equipement) {
-    // elementContainer.removeEquipement(equipement);
+    elementContainer.removeEquipement(equipement);
   }
 
   public void addTas(Point mousePoint) {
-    // Tas tas = new Tas(mousePoint, 1, double 1, "matériaux", 2, "or", double  100);
-    //  elementContainer.addEquipement(tas);
+    Tas tas = new Tas(mousePoint, 1, 1, "matériaux", 100);
+    elementContainer.addEquipement(tas);
   }
 
   public void addNoeud(Point mousePoint) {
@@ -206,17 +207,8 @@ public class Controller implements Serializable {
     elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
-  public ElementContainer getElementContainer() {
-    return elementContainer;
-  }
-
   public void deleteSelected() {
     plan.deleteSelected();
-  }
-
-  public void addContainer() {
-    // ElementContainer elementContainer = new ElementContainer(this.elementContainer);
-
   }
 
   private void deleteElementsAfterPointer(int undoRedoPointerState) {

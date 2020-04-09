@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
+import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
@@ -181,20 +182,20 @@ public class Simulation {
     return this.tasCourant;
   }
 
-  public Vector<Noeud> cheminDuCamion(Tas tas) {
+  public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
 
     Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
 
-    Vector<Noeud> cheminCamion = getShortestPathToGo(noeudDuTas);
+    Vector<AbstractPointChemin> cheminCamion = getShortestPathToGo(noeudDuTas);
 
     return cheminCamion;
   };
 
-  public Vector<Noeud> cheminDuCamionRetour(Tas tas) {
+  public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
 
-    Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
+    AbstractPointChemin noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
 
-    Vector<Noeud> cheminCamion = getShortestPathToComeBack(noeudDuTas);
+    Vector<AbstractPointChemin> cheminCamion = getShortestPathToComeBack(noeudDuTas);
 
     return cheminCamion;
   };
@@ -212,39 +213,40 @@ public class Simulation {
     return chargeurList.get(0);
   }
 
-  public Vector<Noeud> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
 
     Point pointChargeur = p_chargeur.getPoint();
     Noeud chargeur = new Noeud(pointChargeur, 10, 10);
     Point pointTas = p_tas.getPoint();
     Noeud tas = new Noeud(pointTas, 10, 10);
 
-    Vector<Noeud> chemin = getShortestPathBetweenTwoNoeuds(chargeur, tas);
+    Vector<AbstractPointChemin> chemin = getShortestPathBetweenTwoNoeuds(chargeur, tas);
 
     return chemin;
   }
 
-  public Vector<Noeud> getShortestPathToGo(Noeud stop) {
-    Vector<Noeud> results = new Vector<>();
+  public Vector<AbstractPointChemin> getShortestPathToGo(AbstractPointChemin stop) {
+    Vector<AbstractPointChemin> results = new Vector<>();
 
-    Noeud entree = entreeCarriere;
+    AbstractPointChemin entree = entreeCarriere;
 
     results.addAll(getShortestPathBetweenTwoNoeuds(entree, stop));
 
     return results;
   }
 
-  public Vector<Noeud> getShortestPathToComeBack(Noeud stop) {
-    Vector<Noeud> results = new Vector<>();
+  public Vector<AbstractPointChemin> getShortestPathToComeBack(AbstractPointChemin stop) {
+    Vector<AbstractPointChemin> results = new Vector<>();
 
-    Noeud entree = entreeCarriere;
+    AbstractPointChemin entree = entreeCarriere;
 
     results.addAll(getShortestPathBetweenTwoNoeuds(stop, entree));
 
     return results;
   }
 
-  public Vector<Noeud> getShortestPathBetweenTwoNoeuds(Noeud start, Noeud end) {
+  public Vector<AbstractPointChemin> getShortestPathBetweenTwoNoeuds(
+      AbstractPointChemin start, AbstractPointChemin end) {
     Vector<DataDijkstra> result = new Vector<DataDijkstra>();
     List<DataDijkstra> data = new java.util.ArrayList<>(Collections.emptyList());
 
@@ -269,7 +271,7 @@ public class Simulation {
       final double[] oldCost = new double[1];
       final double[] linkCost = new double[1];
 
-      List<Noeud> adj = graphChemin.getAdjacentsOut(treating.getEnd());
+      List<AbstractPointChemin> adj = graphChemin.getAdjacentsOut(treating.getEnd());
       DataDijkstra finalTreating = treating;
       data.stream()
           .filter(dataDijkstra -> adj.contains(dataDijkstra.getEnd()))
@@ -297,10 +299,11 @@ public class Simulation {
     return buildPath(start, end, result);
   }
 
-  private Vector<Noeud> buildPath(Noeud start, Noeud end, Vector<DataDijkstra> afterAlgo) {
-    Vector<Noeud> path = new Vector<>();
+  private Vector<AbstractPointChemin> buildPath(
+      AbstractPointChemin start, AbstractPointChemin end, Vector<DataDijkstra> afterAlgo) {
+    Vector<AbstractPointChemin> path = new Vector<>();
 
-    final Noeud[] now = {end};
+    final AbstractPointChemin[] now = {end};
     Optional<DataDijkstra> treating =
         afterAlgo.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(now[0])).findFirst();
     do {
@@ -321,16 +324,16 @@ public class Simulation {
 
   private static class DataDijkstra {
 
-    private Noeud predecessor = null;
-    private Noeud end;
+    private AbstractPointChemin predecessor = null;
+    private AbstractPointChemin end;
     private double totalCost;
 
-    public DataDijkstra(Noeud end, double totalCost) {
+    public DataDijkstra(AbstractPointChemin end, double totalCost) {
       this.end = end;
       this.totalCost = totalCost;
     }
 
-    public Noeud getEnd() {
+    public AbstractPointChemin getEnd() {
       return end;
     }
 
@@ -342,11 +345,11 @@ public class Simulation {
       this.totalCost = totalCost;
     }
 
-    public void setPredecessor(Noeud end) {
+    public void setPredecessor(AbstractPointChemin end) {
       predecessor = end;
     }
 
-    public Noeud getPredecessor() {
+    public AbstractPointChemin getPredecessor() {
       return predecessor;
     }
   }

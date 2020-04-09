@@ -8,7 +8,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Color;
 import java.awt.Point;
 
-public class Noeud extends Element {
+public class Noeud extends AbstractPointChemin {
 
   private Color color;
   private String name;
