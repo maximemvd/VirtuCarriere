@@ -10,12 +10,13 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Crible extends Equipement {
 
   private Color color;
   private String name;
-  private static List<Class<? extends Equipement>> dependency = Collections.emptyList();
+  private static List<? extends Equipement> dependency = new ArrayList<Tas>();
 
   public Crible(Point point, int p_width, int p_length, double p_angle) {
 

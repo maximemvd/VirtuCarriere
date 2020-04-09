@@ -11,14 +11,14 @@ import java.util.List;
 public abstract class Equipement extends Element {
 
   private Angle angle;
-  private List<Class<? extends Equipement>> dependency;
+  private List<? extends Equipement> dependency;
 
   public Equipement(
       Point point,
       int p_width,
       int p_length,
       double p_angle,
-      List<Class<? extends Equipement>> dependency) {
+      List<? extends Equipement> dependency) {
 
     super(point, p_width, p_length);
 
