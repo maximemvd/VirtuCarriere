@@ -1367,11 +1367,25 @@ public class MainWindow extends JFrame {
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_PLAN
         && SwingUtilities.isLeftMouseButton(evt)) {
-      Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
-      Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-      this.controller.addEquipement(actualEquipement, point);
+      if (drawingPanel.getGridlines()) {
+        int coordX =
+            (int) (this.initMousePoint.getX() / drawingPanel.getGapGrille())
+                * (int) drawingPanel.getGapGrille();
+        int coordY =
+            (int) (this.initMousePoint.getY() / drawingPanel.getGapGrille())
+                * (int) drawingPanel.getGapGrille();
+        Point apoint = new Point(coordX, coordY);
+        Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
+        this.controller.addEquipement(actualEquipement, apoint);
+        drawingPanel.repaint();
 
-      drawingPanel.repaint();
+      } else {
+        Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
+        Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
+        this.controller.addEquipement(actualEquipement, point);
+
+        drawingPanel.repaint();
+      }
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION
         && SwingUtilities.isLeftMouseButton(evt)) {

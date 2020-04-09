@@ -33,7 +33,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
     if (linkExist(link)) {
       throw new RuntimeException("Cet arc existe déjà");
     }
-    int index = ends.indexOf(link.getStarting());
+    int index = ends.indexOf(link.getStarting()) + 1;
     links.elementAt(index).add(link);
   }
 }
