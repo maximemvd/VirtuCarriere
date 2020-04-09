@@ -33,7 +33,6 @@ public class Controller implements Serializable {
   private int undoRedo;
 
   private ElementContainer elementContainer;
-  private Plan plan;
 
   public enum EquipementModes {
     RIEN,
@@ -151,7 +150,7 @@ public class Controller implements Serializable {
 
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    //  elementContainer.addArc(arc);
+    elementContainer.addArc(arc);
   }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
@@ -212,10 +211,6 @@ public class Controller implements Serializable {
 
   public ElementContainer getElementContainer() {
     return elementContainer;
-  }
-
-  public void deleteSelected() {
-    plan.deleteSelected();
   }
 
   public void addContainer() {

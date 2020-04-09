@@ -9,7 +9,7 @@ public class Plan {
   GraphConvoyeur equipments = new GraphConvoyeur();
   GraphChemins chemins = new GraphChemins();
 
-  public void addArc(Arc arc) {
+  public void addArc(Arc arc){
     chemins.addLink(arc);
   }
 
