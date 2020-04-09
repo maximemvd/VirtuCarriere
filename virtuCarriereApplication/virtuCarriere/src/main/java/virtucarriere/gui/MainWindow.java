@@ -15,9 +15,7 @@ import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
-import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
@@ -966,8 +964,8 @@ public class MainWindow extends JFrame {
       List<Equipement> equipements = controller.getEquipementList();
       List<Noeud> noeuds = controller.getNoeudList();
       List<Entree> entrees = controller.getEntreeList();
-      List<Vehicule> vehicules = controller.getVehiculeList();
-      List<Arc> arcs = controller.getArcList();
+      // List<Vehicule> vehicules = controller.getVehiculeList();
+      // List<Arc> arcs = controller.getArcList();
 
       for (Equipement equipement : equipements) {
         if (equipement.isSelected()) {
@@ -987,13 +985,13 @@ public class MainWindow extends JFrame {
           drawingPanel.repaint();
         }
       }
-
+      /*
       for (Arc arc : arcs) {
         if (arc.isSelected()) {
           controller.removeArc(arc);
           drawingPanel.repaint();
         }
-      }
+      }*/
       rafraichissementTextField();
       drawingPanel.repaint();
     }
@@ -1004,8 +1002,8 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
-    List<Vehicule> vehicules = controller.getVehiculeList();
-    List<Arc> arcs = controller.getArcList();
+    //    List<Vehicule> vehicules = controller.getVehiculeList();
+    //  List<Arc> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -1025,6 +1023,7 @@ public class MainWindow extends JFrame {
         drawingPanel.repaint();
       }
     }
+    /*
     for (Vehicule vehicule : vehicules) {
       if (vehicule.isSelected()) {
         controller.removeVehicule(vehicule);
@@ -1037,7 +1036,7 @@ public class MainWindow extends JFrame {
         controller.removeArc(arc);
         drawingPanel.repaint();
       }
-    }
+    }*/
     rafraichissementTextField();
     drawingPanel.repaint();
   } // GEN-LAST:event_deleteButtonActionPerformed
@@ -1104,7 +1103,7 @@ public class MainWindow extends JFrame {
   }
 
   private void ajoutTasCoordButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    List<Tas> tas = controller.getTasList();
+    // List<Tas> tas = controller.getTasList();
     // if (this.currentApplicationMode == ApplicationMode.ADD_PLAN) {
     int coordX = Integer.parseInt(textFieldCoordonneeX.getText());
     int coordY = Integer.parseInt(textFieldCoordonneeY.getText());
@@ -1170,7 +1169,7 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
-    List<Arc> arcs = controller.getArcList();
+    //    List<Arc> arcs = controller.getArcList();
 
     equipements.stream()
         .map(
@@ -1182,37 +1181,38 @@ public class MainWindow extends JFrame {
             (_item) -> {
               drawingPanel.repaint();
             });
+    /*
     arcs.stream()
-        .map(
-            (arc) -> {
-              controller.removeArc(arc);
-              return arc;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
-    noeuds.stream()
-        .map(
-            (noeud) -> {
-              controller.removeNoeud(noeud);
-              return noeud;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
+         .map(
+             (arc) -> {
+               controller.removeArc(arc);
+               return arc;
+             })
+         .forEachOrdered(
+             (_item) -> {
+               drawingPanel.repaint();
+             });
+     noeuds.stream()
+         .map(
+             (noeud) -> {
+               controller.removeNoeud(noeud);
+               return noeud;
+             })
+         .forEachOrdered(
+             (_item) -> {
+               drawingPanel.repaint();
+             });
 
-    entrees.stream()
-        .map(
-            (entree) -> {
-              controller.removeEntree(entree);
-              return entree;
-            })
-        .forEachOrdered(
-            (_item) -> {
-              drawingPanel.repaint();
-            });
+     entrees.stream()
+         .map(
+             (entree) -> {
+               controller.removeEntree(entree);
+               return entree;
+             })
+         .forEachOrdered(
+             (_item) -> {
+               drawingPanel.repaint();
+             });*/
     drawingPanel.repaint();
   }
 
@@ -1261,7 +1261,7 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<Noeud> noeuds = controller.getNoeudList();
     List<Entree> entrees = controller.getEntreeList();
-    List<Vehicule> vehicules = controller.getVehiculeList();
+    // List<Vehicule> vehicules = controller.getVehiculeList();
     ArrayList<List<Arc>> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
@@ -1311,7 +1311,7 @@ public class MainWindow extends JFrame {
         jTextField2.setText(nombreTotal);
       }
     }
-
+    /*
     for (Vehicule vehicule : vehicules) {
       if (vehicule.isSelected()) {
         numTotal++;
@@ -1323,7 +1323,7 @@ public class MainWindow extends JFrame {
         jTextField2.setText(nombreTotal);
       }
     }
-    /*
+
     for (Arc arc : arcs) {
       if (arc.isSelected()) {
         numTotal++;
@@ -1461,14 +1461,14 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
-      this.controller.addEquipement(actualEquipement, point);
+      //      this.controller.addEquipement(actualEquipement, point);
       drawingPanel.repaint();
 
     } else if (this.currentApplicationMode == ApplicationMode.ADD_SIMULATION
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
       Controller.VehiculeModes vehiculetoDraw = this.selectedVehicules;
-      controller.addVehicule(vehiculetoDraw, point);
+      //      controller.addVehicule(vehiculetoDraw, point);
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.ADD_ARC
         && SwingUtilities.isLeftMouseButton(evt)) {
