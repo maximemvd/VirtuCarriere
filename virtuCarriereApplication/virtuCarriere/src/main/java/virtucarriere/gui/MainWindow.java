@@ -122,6 +122,7 @@ public class MainWindow extends JFrame {
     jTextArea1 = new javax.swing.JTextArea();
     jLabel7 = new javax.swing.JLabel();
     jLabel15 = new javax.swing.JLabel();
+    deleteButton = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
     jLabel6 = new javax.swing.JLabel();
     ajoutChargeur = new javax.swing.JToggleButton();
@@ -351,6 +352,14 @@ public class MainWindow extends JFrame {
 
     jLabel15.setText("Tas :");
 
+    deleteButton.setText("Delete");
+    deleteButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteButtonActionPerformed(evt);
+          }
+        });
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -499,7 +508,12 @@ public class MainWindow extends JFrame {
                                     .addComponent(jLabel4)
                                     .addPreferredGap(
                                         javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(entreeButton)))
+                                    .addComponent(entreeButton))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGap(90, 90, 90)
+                                    .addComponent(deleteButton)))
                     .addGap(0, 0, Short.MAX_VALUE)));
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout
@@ -582,8 +596,10 @@ public class MainWindow extends JFrame {
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(arcButton))
+                    .addGap(18, 18, 18)
+                    .addComponent(deleteButton)
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                     .addGroup(
                         jPanel2Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -940,65 +956,10 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
-  private void textFieldCoordonneeXActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textFieldCoordonneeXActionPerformed
-  } // GEN-LAST:event_textFieldCoordonneeXActionPerformed
-
-  private void jButton3ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
-    ajoutClientJFrame.setVisible(true);
-    ajoutClientJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-  } // GEN-LAST:event_jButton3ActionPerformed
-
-  private void ajoutChargeurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutChargeurActionPerformed
-    if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
-      setAppMode(ApplicationMode.ADD_SIMULATION);
-    }
-    this.setVehicule(selectedVehicules.CHARGEUR);
-  } // GEN-LAST:event_ajoutChargeurActionPerformed
-
-  private void drawingPanelKeyPressed(
-      java.awt.event.KeyEvent evt) { // GEN-FIRST:event_drawingPanelKeyPressed
-    if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-      List<Equipement> equipements = controller.getEquipementList();
-      List<AbstractPointChemin> noeuds = controller.getNoeudList();
-      // List<Vehicule> vehicules = controller.getVehiculeList();
-      // List<Arc> arcs = controller.getArcList();
-
-      ArrayList<List<Arc>> arcs = controller.getArcList();
-
-      for (Equipement equipement : equipements) {
-        if (equipement.isSelected()) {
-          controller.removeEquipement(equipement);
-          drawingPanel.repaint();
-        }
-      }
-      for (AbstractPointChemin noeud : noeuds) {
-        if (noeud.isSelected()) {
-          controller.removeNoeud(noeud);
-          drawingPanel.repaint();
-        }
-      }
-
-      /*for (Arc arc : arcs) {
-        if (arc.isSelected()) {
-          controller.removeArc(arc);
-          drawingPanel.repaint();
-        }
-      }*/
-      rafraichissementTextField();
-      drawingPanel.repaint();
-    }
-  } // GEN-LAST:event_drawingPanelKeyPressed
-
   private void deleteButtonActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteButtonActionPerformed
     List<Equipement> equipements = controller.getEquipementList();
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
-
-    //    List<Vehicule> vehicules = controller.getVehiculeList();
-
     ArrayList<List<Arc>> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
@@ -1014,22 +975,66 @@ public class MainWindow extends JFrame {
       }
     }
 
-    /*for (Vehicule vehicule : vehicules) {
-      if (vehicule.isSelected()) {
-        controller.removeVehicule(vehicule);
-        drawingPanel.repaint();
+    for (List<Arc> arcList : arcs) {
+      for (Arc arc : arcList) {
+        if (arc.isSelected()) {
+          controller.removeArc(arc);
+          drawingPanel.repaint();
+        }
       }
-    }*/
-
-    /*for (Arc arc : arcs) {
-      if (arc.isSelected()) {
-        controller.removeArc(arc);
-        drawingPanel.repaint();
-      }
-    }*/
+    }
     rafraichissementTextField();
     drawingPanel.repaint();
   } // GEN-LAST:event_deleteButtonActionPerformed
+
+  private void textFieldCoordonneeXActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textFieldCoordonneeXActionPerformed
+  } // GEN-LAST:event_textFieldCoordonneeXActionPerformed
+
+  private void jButton3ActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
+    ajoutClientJFrame.setVisible(true);
+    ajoutClientJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+  } // GEN-LAST:event_jButton3ActionPerformed
+
+  private void ajoutChargeurActionPerformed(java.awt.event.ActionEvent evt) {
+    if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
+      setAppMode(ApplicationMode.ADD_SIMULATION);
+    }
+    this.setVehicule(selectedVehicules.CHARGEUR);
+  }
+
+  private void drawingPanelKeyPressed(java.awt.event.KeyEvent evt) {
+    if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+      List<Equipement> equipements = controller.getEquipementList();
+      List<AbstractPointChemin> noeuds = controller.getNoeudList();
+      ArrayList<List<Arc>> arcs = controller.getArcList();
+
+      for (Equipement equipement : equipements) {
+        if (equipement.isSelected()) {
+          controller.removeEquipement(equipement);
+          drawingPanel.repaint();
+        }
+      }
+      for (AbstractPointChemin noeud : noeuds) {
+        if (noeud.isSelected()) {
+          controller.removeNoeud(noeud);
+          drawingPanel.repaint();
+        }
+      }
+
+      for (List<Arc> arcList : arcs) {
+        for (Arc arc : arcList) {
+          if (arc.isSelected()) {
+            controller.removeArc(arc);
+            drawingPanel.repaint();
+          }
+        }
+      }
+      rafraichissementTextField();
+      drawingPanel.repaint();
+    }
+  } // GEN-LAST:event_drawingPanelKeyPressed
 
   private void resetGrilleActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_resetGrilleActionPerformed
@@ -1213,8 +1218,7 @@ public class MainWindow extends JFrame {
     // this.setMode(EquipementModes.ARC);
   }
 
-  private void jComboBox2ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jComboBox2ActionPerformed
+  private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {
 
     if (this.currentApplicationMode != ApplicationMode.ADD_PLAN) {
       setAppMode(ApplicationMode.ADD_PLAN);
@@ -1225,17 +1229,16 @@ public class MainWindow extends JFrame {
     } else if (jComboBox2.getSelectedItem() == "Tas") {
       this.setMode(EquipementModes.TAS);
     }
-  } // GEN-LAST:event_jComboBox2ActionPerformed
+  }
 
-  private void entreeButtonActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_entreeButtonActionPerformed
+  private void entreeButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
     if (this.currentApplicationMode != ApplicationMode.ADD_PLAN) {
       setAppMode(ApplicationMode.ADD_PLAN);
     }
 
     this.setMode(EquipementModes.ENTREE);
-  } // GEN-LAST:event_entreeButtonActionPerformed
+  }
 
   private void jTextArea1ComponentAdded(
       java.awt.event.ContainerEvent evt) { // GEN-FIRST:event_jTextArea1ComponentAdded
@@ -1596,6 +1599,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JButton ajoutTasCoordButton;
   private javax.swing.JButton arcButton;
   private javax.swing.JPanel buttonTopPanel;
+  private javax.swing.JButton deleteButton;
   private virtucarriere.gui.DrawingPanel drawingPanel;
   private javax.swing.JMenu editionMenu;
   private javax.swing.JButton entreeButton;

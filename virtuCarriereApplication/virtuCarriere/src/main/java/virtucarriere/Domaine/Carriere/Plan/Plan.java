@@ -44,12 +44,13 @@ public class Plan {
   }
 
   public void addConvoyeur(Point mousePoint) {
-    // Convoyeur convoyeur = new Convoyeur(equipement1, equipement2);
+    // Convoyeur convoyeur = new Convoyeur(mousePoint, 1, 4, );
     // equipments.addLink(convoyeur);
   }
 
   public void addEntree(Point mousePoint) {
-    // chemins.addEnd(entree);
+    Entree entree = new Entree(mousePoint, 2, 4, 0);
+    chemins.addEnd(entree);
   }
 
   public void removeEntree(Entree entree) {
@@ -61,8 +62,8 @@ public class Plan {
   }
 
   public void addNoeud(Point mousePoint) {
-    // TODO validate element present
-    // chemins.addEnd(mousePoint);
+    Noeud noeud = new Noeud(mousePoint, 3, 3);
+    chemins.addEnd(noeud);
   }
 
   public Element getElement(Element element) {
@@ -95,7 +96,8 @@ public class Plan {
     }
   }
 
-  public void removeNoeud(Noeud noeud) {
+  public void removeNoeud(AbstractPointChemin noeud) {
+    System.out.println("Ca marchee tu ou quoi");
     chemins.removeEnd(noeud);
   }
 
