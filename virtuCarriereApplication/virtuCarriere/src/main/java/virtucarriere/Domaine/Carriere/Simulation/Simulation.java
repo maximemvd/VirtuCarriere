@@ -30,8 +30,6 @@ public class Simulation {
 
   private Chargeur chargeurCourant;
 
-  private Camion camionCourant;
-
   private Tas tasCourant;
 
   public Simulation() {
@@ -59,24 +57,12 @@ public class Simulation {
     this.chargeurCourant = p_chargeur;
   }
 
-  public void setCamionCourant(Camion p_camion) {
-    this.camionCourant = p_camion;
-  }
-
   public Chargeur getChargeurCourant() {
     return chargeurCourant;
   }
 
   public Jeton getJetonChargeurCourant() {
     return chargeurCourant.getJeton();
-  }
-
-  public Jeton getJetonCamionCourant() {
-    return camionCourant.getJeton();
-  }
-
-  public void camionCourantGoTo(Point point) {
-    camionCourant.goTO(point);
   }
 
   // camion
@@ -108,14 +94,6 @@ public class Simulation {
 
   public boolean camionIsEmpty() {
     return camionList.isEmpty();
-  }
-
-  public void removeVehicule(Vehicule vehicule) {
-    if (vehicule.getClass() == Camion.class) {
-      // removeCamion(vehicule);
-    } else if (vehicule.getClass() == Chargeur.class) {
-      removeChargeur(vehicule);
-    }
   }
 
   public void switchSelectionStatus(double x, double y) {
@@ -177,10 +155,6 @@ public class Simulation {
   public Jeton createToken(String client, String produit, double quantite) {
     Jeton newJeton = new Jeton(client, produit, quantite);
     return newJeton;
-  }
-
-  public void changeEtat(String etat) {
-    camionCourant.changeEtat(etat);
   }
 
   public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {

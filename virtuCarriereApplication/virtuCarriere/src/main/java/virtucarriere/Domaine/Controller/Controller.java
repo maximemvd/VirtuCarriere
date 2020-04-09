@@ -97,11 +97,6 @@ public class Controller implements Serializable {
     return elementContainer.getChargeurList();
   }
 
-  public void addVehicule(
-      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
-    elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
-  }
-
   public void addChargeur(Point point) {
     elementContainer.addChargeur(point);
   };
@@ -120,10 +115,6 @@ public class Controller implements Serializable {
 
   public Facture genererFacture(Camion p_camion) {
     return elementContainer.genererFacture(p_camion);
-  }
-
-  public void changeEtat(Camion p_camion, String etat) {
-    elementContainer.changeEtat(p_camion, etat);
   }
 
   public void createToken(String client, String produit, double quantite) {

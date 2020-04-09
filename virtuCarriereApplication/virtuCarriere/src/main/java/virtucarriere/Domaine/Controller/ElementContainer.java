@@ -23,7 +23,6 @@ import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
-import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 
 public class ElementContainer implements Serializable {
 
@@ -127,16 +126,6 @@ public class ElementContainer implements Serializable {
     simulation.addChargeur(point);
   }
 
-  public void addVehicule(
-      VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
-    if (null != mode)
-      switch (mode) {
-        case CHARGEUR:
-          simulation.addChargeur(mousePoint);
-          break;
-      }
-  }
-
   public List<Camion> getCamionList() {
     return simulation.getCamionList();
   }
@@ -159,10 +148,6 @@ public class ElementContainer implements Serializable {
 
   public Facture genererFacture(Camion p_camion) {
     return simulation.genererFacture(p_camion);
-  }
-
-  public void changeEtat(Camion p_camion, String etat) {
-    simulation.changeEtat(etat);
   }
 
   public List<Chargeur> getChargeurList() {
