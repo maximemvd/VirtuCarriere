@@ -49,11 +49,24 @@ public class AjoutClientJFrame extends javax.swing.JFrame {
     jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
     jLabel4.setText("Quantité :");
 
+    textFieldNomClient.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            textFieldNomClientActionPerformed(evt);
+          }
+        });
+
     jComboBox1.setModel(
         new javax.swing.DefaultComboBoxModel<>(
             new String[] {"Item 1", "Item 2", "Item 3", "Item 4"}));
 
     jButton1.setText("OK");
+    jButton1.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -192,6 +205,16 @@ public class AjoutClientJFrame extends javax.swing.JFrame {
     pack();
     setLocationRelativeTo(null);
   } // </editor-fold>//GEN-END:initComponents
+
+  private void jButton1ActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_jButton1ActionPerformed
+
+  private void textFieldNomClientActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textFieldNomClientActionPerformed
+    // TODO add your handling code here:
+  } // GEN-LAST:event_textFieldNomClientActionPerformed
 
   /** @param args the command line arguments */
   public static void main(String args[]) {

@@ -22,7 +22,6 @@ import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
-import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
 
@@ -112,22 +111,26 @@ public class ElementContainer implements Serializable {
     plan.removeElement(element);
   }
 
-  public void removeVehicule(Vehicule p_vehicule) {
-    System.out.println("hello world");
-    simulation.removeVehicule(p_vehicule);
+  public void removeCamion(Camion p_camion) {
+    simulation.removeCamion(p_camion);
+  }
+
+  public void addCamion(Point point, String client, String produit, double qte) {
+    simulation.CamionShowUp(point, client, produit, qte);
   }
 
   public void removeArc(Arc p_arc) {
     plan.removeArc(p_arc);
   }
 
+  public void addChargeur(Point point) {
+    simulation.addChargeur(point);
+  }
+
   public void addVehicule(
       VehiculeModes mode, Point mousePoint, double qte, String produit, String client) {
     if (null != mode)
       switch (mode) {
-        case CAMION:
-          simulation.CamionShowUp(client, produit, qte);
-          break;
         case CHARGEUR:
           simulation.addChargeur(mousePoint);
           break;
@@ -148,6 +151,10 @@ public class ElementContainer implements Serializable {
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
     return simulation.cheminDuCamionRetour(tas);
+  }
+
+  public void removeChargeur(Chargeur p_chargeur) {
+    simulation.removeChargeur(p_chargeur);
   }
 
   public Facture genererFacture(Camion p_camion) {

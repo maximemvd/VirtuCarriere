@@ -80,13 +80,9 @@ public class Simulation {
   }
 
   // camion
-  public void CamionShowUp(String client, String produit, double quantite) {
+  public void CamionShowUp(Point point, String client, String produit, double quantite) {
     try {
-      Point positionEntre = entreeCarriere.getPoint();
-      Jeton jeton = createToken(client, produit, quantite);
-      int sizeCamion = camionList.size();
-      int start = 100 * sizeCamion;
-      Point point = new Point(positionEntre.x + start, positionEntre.y);
+      Jeton jeton = new Jeton(client, produit, quantite);
       Camion camionSimulation = new Camion(jeton, point); // create camion
       camionList.add(camionSimulation);
     } catch (Exception exception) {
@@ -179,7 +175,7 @@ public class Simulation {
   }
 
   public Jeton createToken(String client, String produit, double quantite) {
-    Jeton newJeton = new Jeton(client, produit, quantite, "ENCOURS");
+    Jeton newJeton = new Jeton(client, produit, quantite);
     return newJeton;
   }
 

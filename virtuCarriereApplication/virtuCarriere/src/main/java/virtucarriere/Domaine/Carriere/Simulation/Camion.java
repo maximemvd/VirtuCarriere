@@ -19,15 +19,9 @@ public class Camion extends Vehicule {
     super(point);
     this.jeton = jeton;
     this.name = "Camion";
-
     this.color = Color.MAGENTA;
     // createCamion(jeton, start, coordonnees);
   }
-
-  public Camion createCamion(Jeton jeton, Point point) {
-    Camion newCamion = new Camion(jeton, point);
-    return newCamion;
-  };
 
   public void changeEtat(String etat) {
     jeton.setEtat(etat);

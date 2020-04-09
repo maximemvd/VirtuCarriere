@@ -11,11 +11,11 @@ public class Jeton {
   private double quantite;
   private String referenceClient;
 
-  public Jeton(String referenceClient, String codeProduit, double quantite, String etat) {
+  public Jeton(String referenceClient, String codeProduit, double quantite) {
     this.referenceClient = referenceClient;
     this.codeProduit = codeProduit;
     this.quantite = quantite;
-    this.etat = etat;
+    this.etat = "ENCOURS";
   }
 
   public String getRefClient() {

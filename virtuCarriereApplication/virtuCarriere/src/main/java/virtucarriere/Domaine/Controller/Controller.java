@@ -24,13 +24,9 @@ import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
-import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
 
 public class Controller implements Serializable {
 
-  private double attribute;
-
-  private int undoRedo;
   private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
@@ -106,6 +102,14 @@ public class Controller implements Serializable {
     elementContainer.addVehicule(mode, mousePoint, qte, produit, client);
   }
 
+  public void addChargeur(Point point) {
+    elementContainer.addChargeur(point);
+  };
+
+  public void addCamion(Point point, String client, String produit, double qte) {
+    elementContainer.addCamion(point, client, produit, qte);
+  };
+
   public void generateFacture(Camion p_camion) {
     elementContainer.generateFacture(p_camion);
   }
@@ -126,8 +130,12 @@ public class Controller implements Serializable {
     elementContainer.createToken(client, produit, quantite);
   }
 
-  public void removeVehicule(Vehicule p_vehicule) {
-    elementContainer.removeVehicule(p_vehicule);
+  public void removeChargeur(Chargeur p_chargeur) {
+    elementContainer.removeChargeur(p_chargeur);
+  }
+
+  public void removeCamion(Camion p_camion) {
+    elementContainer.removeCamion(p_camion);
   }
 
   public List<Equipement> getEquipementList() {

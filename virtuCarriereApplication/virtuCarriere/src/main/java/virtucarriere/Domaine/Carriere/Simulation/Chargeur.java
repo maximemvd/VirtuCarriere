@@ -11,12 +11,14 @@ import java.awt.Point;
 public class Chargeur extends Vehicule {
 
   private Jeton jetonCourant;
+  private boolean selectionStatus;
   private Point point;
   private Color color;
   private String name;
 
   public Chargeur(Point point) {
     super(point);
+    this.selectionStatus = false;
     this.color = Color.GREEN;
     this.name = "Chargeur";
   };
@@ -41,5 +43,17 @@ public class Chargeur extends Vehicule {
 
   public void changeDestination(Point p_point) {
     this.point = p_point;
+  }
+
+  public boolean isSelected() {
+    return selectionStatus;
+  }
+
+  public void switchSelectionStatus() {
+    selectionStatus = !selectionStatus;
+  }
+
+  public void unselect() {
+    selectionStatus = false;
   }
 }

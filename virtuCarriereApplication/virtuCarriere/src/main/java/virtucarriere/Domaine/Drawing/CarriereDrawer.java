@@ -53,6 +53,7 @@ public class CarriereDrawer {
     drawCamion(g2d, zoom);
   }
 
+  // drawChargeur is good
   public void drawChargeur(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
     List<Chargeur> chargeurs = controller.getChargeurList();
@@ -68,7 +69,7 @@ public class CarriereDrawer {
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
-          Color vehiculeColor = Color.GREEN;
+          Color vehiculeColor = Color.orange;
           g2d.setColor(vehiculeColor);
           g2d.fillOval(
               (int) vehiculePoint.getX() - radius,
@@ -79,33 +80,38 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
+  // draw Camion is good
   public void drawCamion(Graphics2D g2d, double zoom) {
     List<Camion> camions = controller.getCamionList();
     int numberOfCLient = camions.size();
-    camions.forEach(
-        (camion) -> {
-          Point pointEntree = controller.getEntreePoint();
-          int camionPointX = pointEntree.x - (100 * numberOfCLient);
-          int camionPointY = pointEntree.y;
-          if (camion.isSelected()) {
-            g2d.setColor(new Color(255, 0, 0));
-            int offsetRadius = radius + 2;
-            g2d.fillOval(
-                (int) camionPointX - offsetRadius,
-                (int) camionPointY - offsetRadius,
-                offsetRadius * 2,
-                offsetRadius * 2);
-          }
-          Color couleurCamion = Color.YELLOW;
-          g2d.setColor(couleurCamion);
-          g2d.fillRoundRect(
-              camionPointX - radius,
-              camionPointY - radius,
-              radius * 2,
-              radius * 2,
-              radius * 2,
-              radius * 2);
-        });
+    System.out.println(numberOfCLient);
+    int index = 0;
+    for (Camion camion : camions) {
+      System.out.println(camion.getJeton().getRefClient());
+      System.out.println(camion.getJeton().getEtat());
+      System.out.println(camion.getJeton().getQuantite());
+      System.out.println(camion.getJeton().getCodeProduit());
+      Point pointEntree = camion.getPoint();
+      int camionPointX = pointEntree.x - (100 * index);
+      int camionPointY = pointEntree.y;
+      if (camion.isSelected()) {
+        g2d.setColor(new Color(255, 0, 0));
+        int offsetRadius = radius + 2;
+        g2d.fillOval(
+            (int) camionPointX - offsetRadius,
+            (int) camionPointY - offsetRadius,
+            offsetRadius * 2,
+            offsetRadius * 2);
+      }
+      Color couleurCamion = Color.YELLOW;
+      System.out.println(camionPointX);
+      System.out.println(camionPointY);
+      g2d.setColor(couleurCamion);
+      g2d.fillRoundRect(
+          camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
+      index++;
+    }
+    ;
   }
 
   public void startSimulation(Graphics2D g2d, double zoom) throws InterruptedException {

@@ -8,8 +8,9 @@ package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 public class Facture {
 
-  private double prixDuMateriaux;
-  private double quantite;
+  private final double prixDuMateriaux;
+
+  private final double quantite;
 
   public Facture(double p_prixDuMateriau, double p_quantite) {
     this.quantite = p_quantite;
