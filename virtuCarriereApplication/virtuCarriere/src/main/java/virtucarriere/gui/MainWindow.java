@@ -1570,24 +1570,12 @@ public class MainWindow extends JFrame {
 
       this.controller.noeudSelection(point.getX(), point.getY());
       if (this.controller.getNoeudForArcList().size() == 2) {
-        System.out.println("On a tu dequoi");
         Noeud starting = this.controller.getNoeudForArcList().get(0);
         Noeud arrival = this.controller.getNoeudForArcList().get(1);
         this.controller.addArc(mousePoint, starting, arrival);
         for (Noeud noeud : this.controller.getNoeudForArcList()) {
           noeud.switchSelectionStatus();
         }
-        this.controller.getNoeudForArcList().clear();
-      }
-
-      drawingPanel.repaint();
-
-      if (this.controller.getNoeudForArcList().size() == 2) {
-        Noeud starting = this.controller.getNoeudForArcList().get(0);
-        Noeud arrival = this.controller.getNoeudForArcList().get(1);
-        this.controller.addArc(mousePoint, starting, arrival);
-        this.controller.getNoeudForArcList().get(0).switchSelectionStatus();
-        this.controller.getNoeudForArcList().get(1).switchSelectionStatus();
         this.controller.getNoeudForArcList().clear();
       }
 
