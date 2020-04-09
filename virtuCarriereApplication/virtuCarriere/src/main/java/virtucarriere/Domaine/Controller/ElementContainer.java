@@ -187,10 +187,13 @@ public class ElementContainer implements Serializable {
 
   public ArrayList<List<Arc>> getArcList() {
     return plan.getArcs();
+  }
 
-    // public void addEntree(Entree entree, Noeud noeud){
-    // TODO
-    // }
+  public void removeEquipement(Equipement equipement) {
+    plan.removeElement(equipement);
+  }
 
+  public void addEquipement(Equipement equipement) {
+    plan.addEquipment(equipement);
   }
 }

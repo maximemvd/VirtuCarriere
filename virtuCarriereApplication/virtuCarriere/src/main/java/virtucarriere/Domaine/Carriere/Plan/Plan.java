@@ -18,7 +18,7 @@ public class Plan {
     chemins.removeLink(arc);
   }
 
-  private void addEquipment(Equipement equipement) {
+  public void addEquipment(Equipement equipement) {
     equipments.addEnd(equipement);
   }
 

@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Plan.Concasseur;
 import virtucarriere.Domaine.Carriere.Plan.Crible;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -134,9 +134,9 @@ public class CarriereDrawer {
 
           Chargeur chargeurCourant = controller.choisirChargeurCorrespondant(tasCourant);
 
-          Vector<Noeud> cheminDuCamion = controller.cheminDuCamion(tasCourant);
+          Vector<AbstractPointChemin> cheminDuCamion = controller.cheminDuCamion(tasCourant);
 
-          Vector<Noeud> cheminDuChargeur =
+          Vector<AbstractPointChemin> cheminDuChargeur =
               controller.ChargeurCheminToPath(chargeurCourant, tasCourant);
 
           cheminDuCamion.forEach(
@@ -188,7 +188,8 @@ public class CarriereDrawer {
             Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
           }
 
-          Vector<Noeud> cheminRetourCamion = controller.cheminDuCamionRetour(tasCourant);
+          Vector<AbstractPointChemin> cheminRetourCamion =
+              controller.cheminDuCamionRetour(tasCourant);
 
           cheminRetourCamion.forEach(
               (noeud) -> {
@@ -249,7 +250,7 @@ public class CarriereDrawer {
 
   public void drawNoeud(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
-    List<Noeud> noeuds = controller.getNoeudList();
+    List<AbstractPointChemin> noeuds = controller.getNoeudList();
     noeuds.forEach(
         (noeud) -> {
           Point noeudPoint = noeud.getPoint();
