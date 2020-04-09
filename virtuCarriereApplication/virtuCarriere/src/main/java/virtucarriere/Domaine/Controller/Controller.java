@@ -56,11 +56,6 @@ public class Controller implements Serializable {
     elementContainer = new ElementContainer();
   }
 
-  public Point getEntreePoint() {
-    Point entree = new Point(300, 0);
-    return entree;
-  }
-
   public List<Noeud> getNoeudForArcList() {
     return elementContainer.getNoeudForArcList();
   }
@@ -133,8 +128,8 @@ public class Controller implements Serializable {
     return elementContainer.getEquipementList();
   }
 
-  public List<Entree> getEntreeList() {
-    return elementContainer.getEntreeList();
+  public Entree getEntree() {
+    return elementContainer.getEntree();
   }
 
   public List<AbstractPointChemin> getNoeudList() {

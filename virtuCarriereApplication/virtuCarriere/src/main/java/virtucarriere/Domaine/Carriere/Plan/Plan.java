@@ -11,13 +11,14 @@ public class Plan {
   GraphConvoyeur equipments;
   GraphChemins chemins;
   List<Noeud> noeudsForArcList;
-  List<Entree> entreeList;
+
+  private Entree entree;
 
   public Plan() {
+    entree = new Entree(new Point(300, 300), 100, 100, 0);
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
-    entreeList = new LinkedList<Entree>();
   }
 
   public void addArc(Arc arc) {
@@ -59,18 +60,7 @@ public class Plan {
   }
 
   public void addEntree(Point mousePoint) {
-    if (this.entreeList.size() == 1) {
-      JOptionPane.showMessageDialog(
-          null, "Attention, il ne peut avoir qu'une seule entrée à la carrière");
-    } else {
-      Entree entree = new Entree(mousePoint, 2, 4, 0);
-      chemins.addEnd(entree);
-      entreeList.add(entree);
-    }
-  }
-
-  public void removeEntree(Entree entree) {
-    chemins.removeEnd(entree);
+    entree = new Entree(mousePoint, 100, 100, 0);
   }
 
   public boolean validateElementPresent(Point point) {
@@ -105,10 +95,8 @@ public class Plan {
       }
     }
 
-    for (Element item : getEntreeList()) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
+    if (entree.isSelected()) {
+      entree.translate(deltaX, deltaY);
     }
   }
 
@@ -147,10 +135,8 @@ public class Plan {
       }
     }
 
-    for (Element item : getEntreeList()) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
+    if (entree.contains(x, y)) {
+      entree.switchSelectionStatus();
     }
 
     for (List<Arc> listOfArc : getArcs()) {
@@ -209,7 +195,11 @@ public class Plan {
     return this.noeudsForArcList;
   }
 
-  public List<Entree> getEntreeList() {
-    return this.entreeList;
+  public Entree getEntree() {
+    return entree;
+  }
+
+  public Point getEntreePoint() {
+    return entree.getPoint();
   }
 }

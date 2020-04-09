@@ -166,8 +166,8 @@ public class ElementContainer implements Serializable {
     return plan.getEquipements();
   }
 
-  public List<Entree> getEntreeList() {
-    return plan.getEntreeList();
+  public Entree getEntree() {
+    return plan.getEntree();
   }
 
   public List<AbstractPointChemin> getNoeudList() {

@@ -1088,7 +1088,7 @@ public class MainWindow extends JFrame {
   private void addCamionActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addCamionActionPerformed
     // TODO add your handling code here:
-    Point point = new Point(400, 300);
+    Point point = controller.getEntree().getPoint();
     String nomCLient = NomClient.getText();
     String materiau = nomMateriau.getText();
     String quantite = qtyMateriaux.getText();
