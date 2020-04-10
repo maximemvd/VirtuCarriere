@@ -807,13 +807,6 @@ public class MainWindow extends JFrame {
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel3Layout
                                     .createSequentialGroup()
-                                    .addContainerGap(
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addCamion))
-                            .addGroup(
-                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                jPanel3Layout
-                                    .createSequentialGroup()
                                     .addGap(16, 16, 16)
                                     .addGroup(
                                         jPanel3Layout
@@ -996,6 +989,12 @@ public class MainWindow extends JFrame {
                                         jPanel3Layout
                                             .createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                jPanel3Layout
+                                                    .createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addComponent(addCamion))
                                             .addGroup(
                                                 jPanel3Layout
                                                     .createSequentialGroup()
@@ -1408,7 +1407,11 @@ public class MainWindow extends JFrame {
   public void simulationTextField() {
     TextSimulation.setText("");
     NomClient.setText("");
+    xCoordSimul.setText("");
+    yCoordSimul.setText("");
     List<Camion> camions = controller.getCamionList();
+    List<Chargeur> chargeurs = controller.getChargeurList();
+
     for (Camion camion : camions) {
       if (camion.isSelected()) {
         String codeProduit = camion.getJeton().getCodeProduit();
@@ -1422,6 +1425,19 @@ public class MainWindow extends JFrame {
         TextSimulation.append("\nQuantité demandé : " + laQuantite);
 
         NomClient.setText(nomClient);
+      }
+    }
+
+    for (Chargeur chargeur : chargeurs) {
+      if (chargeur.isSelected()) {
+        int xCoord = (int) chargeur.getX();
+        int yCoord = (int) chargeur.getY();
+
+        String x = String.format("%d", xCoord);
+        String y = String.format("%d", yCoord);
+
+        xCoordSimul.setText(x);
+        yCoordSimul.setText(y);
       }
     }
   }
