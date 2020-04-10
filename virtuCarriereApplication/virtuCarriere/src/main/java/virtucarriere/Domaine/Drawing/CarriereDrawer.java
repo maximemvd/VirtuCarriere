@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -124,11 +125,23 @@ public class CarriereDrawer {
 
     List<AbstractPointChemin> listeDesNoeuds = controller.getNoeudList();
 
-    List<Equipement> getEquipementList = controller.getEquipementList();
+    List<Equipement> EquipementList = controller.getEquipementList();
+
+    List<Equipement> listeTas = new LinkedList<Equipement>();
+
+    for (Equipement equipement : EquipementList) {
+      if (equipement.getName().equals("Tas")) {
+        listeTas.add(equipement);
+      }
+    }
 
     List<Camion> listeDesCamion = controller.getCamionList();
 
     List<Chargeur> listeChargeur = controller.getChargeurList();
+
+    for (Camion camionCourant : listeDesCamion) {
+      System.out.println("hello");
+    }
   }
 
   public void drawEquipement(Graphics2D g, double zoom) {

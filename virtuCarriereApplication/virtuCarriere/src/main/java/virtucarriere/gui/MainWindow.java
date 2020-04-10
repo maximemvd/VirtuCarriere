@@ -33,7 +33,9 @@ public class MainWindow extends JFrame {
   public AjoutClientJFrame ajoutClientJFrame = new AjoutClientJFrame();
 
   public Point currentMousePoint;
+
   public Point delta;
+
   public Point initMousePoint = new Point();
 
   /** Creates new form MainWindow */
@@ -124,7 +126,7 @@ public class MainWindow extends JFrame {
     jLabel11 = new javax.swing.JLabel();
     jLabel12 = new javax.swing.JLabel();
     jLabel13 = new javax.swing.JLabel();
-    jButton4 = new javax.swing.JButton();
+    StartSimulation = new javax.swing.JButton();
     jButton6 = new javax.swing.JButton();
     jButton7 = new javax.swing.JButton();
     jScrollPane2 = new javax.swing.JScrollPane();
@@ -645,8 +647,14 @@ public class MainWindow extends JFrame {
     jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
     jLabel13.setText("Visuel");
 
-    jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-    jButton4.setText("▶");
+    StartSimulation.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+    StartSimulation.setText("▶");
+    StartSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            StartSimulationActionPerformed(evt);
+          }
+        });
 
     jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
     jButton6.setText("▶▶");
@@ -710,17 +718,42 @@ public class MainWindow extends JFrame {
                             .addGroup(
                                 jPanel3Layout
                                     .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel11))
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel14)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel17)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(
+                                        materiauxComboBox,
+                                        0,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel18)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(
+                                        quantiteSpinner,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        72,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap(
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(
                                         jPanel3Layout
                                             .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addContainerGap()
-                                                    .addComponent(jLabel11))
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel14)
+                                                javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(
                                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                                 jPanel3Layout
@@ -733,36 +766,9 @@ public class MainWindow extends JFrame {
                                                         153,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(jLabel17)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addComponent(
-                                                        materiauxComboBox,
-                                                        0,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        Short.MAX_VALUE))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(jLabel18)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addComponent(
-                                                        quantiteSpinner,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        72,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(
                                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                                 jPanel3Layout
                                                     .createSequentialGroup()
-                                                    .addContainerGap(
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        Short.MAX_VALUE)
                                                     .addComponent(
                                                         jButton7,
                                                         javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -778,7 +784,7 @@ public class MainWindow extends JFrame {
                                                                 jPanel3Layout
                                                                     .createSequentialGroup()
                                                                     .addComponent(
-                                                                        jButton4,
+                                                                        StartSimulation,
                                                                         javax.swing.GroupLayout
                                                                             .PREFERRED_SIZE,
                                                                         40,
@@ -809,8 +815,7 @@ public class MainWindow extends JFrame {
                                                                 jPanel3Layout
                                                                     .createSequentialGroup()
                                                                     .addComponent(jLabel13)
-                                                                    .addGap(79, 79, 79)))))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
+                                                                    .addGap(79, 79, 79)))))))
                     .addContainerGap())
             .addGroup(
                 javax.swing.GroupLayout.Alignment.TRAILING,
@@ -895,7 +900,7 @@ public class MainWindow extends JFrame {
                         jPanel3Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(
-                                jButton4,
+                                StartSimulation,
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 38,
@@ -1090,6 +1095,11 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void StartSimulationActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_StartSimulationActionPerformed
+    controller.startSimulation();
+  } // GEN-LAST:event_StartSimulationActionPerformed
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed
@@ -1770,6 +1780,7 @@ public class MainWindow extends JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField NomClient;
+  private javax.swing.JButton StartSimulation;
   private javax.swing.JTextArea TextSimulation;
   private javax.swing.JButton addCamion;
   private javax.swing.JMenu affichageMenu;
@@ -1788,7 +1799,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenu importerMenu;
   private javax.swing.JMenuItem importerSimulationMenu;
   private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton4;
   private javax.swing.JButton jButton6;
   private javax.swing.JButton jButton7;
   private javax.swing.JComboBox<String> jComboBox1;
