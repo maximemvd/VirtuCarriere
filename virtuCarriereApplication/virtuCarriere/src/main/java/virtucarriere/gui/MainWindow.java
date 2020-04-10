@@ -729,7 +729,7 @@ public class MainWindow extends JFrame {
           }
         });
 
-    addCamion.setText("Ajout Camion");
+    addCamion.setText("Ajout/Modifier Camion");
     addCamion.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -995,19 +995,19 @@ public class MainWindow extends JFrame {
                                             .createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addGap(0, 0, Short.MAX_VALUE)
-                                                    .addComponent(addCamion))
-                                            .addGroup(
                                                 jPanel3Layout
                                                     .createSequentialGroup()
                                                     .addComponent(jLabel11)
                                                     .addGap(0, 0, Short.MAX_VALUE))
                                             .addComponent(
                                                 jScrollPane2,
-                                                javax.swing.GroupLayout.Alignment.TRAILING))))
+                                                javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(addCamion)))
                     .addContainerGap()));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
