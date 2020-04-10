@@ -16,6 +16,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
+import virtucarriere.Domaine.Carriere.Plan.Convoyeur;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
@@ -135,6 +136,10 @@ public class Controller implements Serializable {
 
   public ArrayList<List<Arc>> getArcList() {
     return elementContainer.getArcList();
+  }
+  
+  public ArrayList<List<Convoyeur>> getConvoyeurList() {
+    return elementContainer.getConvoyeurList();
   }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {

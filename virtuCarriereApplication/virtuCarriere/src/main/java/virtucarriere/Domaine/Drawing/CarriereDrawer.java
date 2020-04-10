@@ -50,6 +50,7 @@ public class CarriereDrawer {
     drawNoeud(g2d, zoom);
     drawEntree(g2d, zoom);
     drawArc(g2d, zoom);
+    drawConvoyeur(g2d, zoom);
     drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);
 
@@ -275,6 +276,35 @@ public class CarriereDrawer {
   }
 
   public void drawArc(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
+    ArrayList<List<Arc>> arcs = controller.getArcList();
+    arcs.forEach(
+        (arcc) -> {
+          arcc.forEach(
+              (arc) -> {
+                if (arc.isSelected()) {
+                  g2d.setColor(new Color(255, 0, 0));
+                  g2d.setStroke(new BasicStroke(7));
+                  g2d.drawLine(
+                      (int) arc.getStarting().getX(),
+                      (int) arc.getStarting().getY(),
+                      (int) arc.getArrival().getX(),
+                      (int) arc.getArrival().getY());
+                }
+                Color arcColor = arc.getColor();
+                g2d.setColor(arcColor);
+                g2d.setStroke(new BasicStroke(5));
+                g2d.drawLine(
+                    (int) arc.getStarting().getX(),
+                    (int) arc.getStarting().getY(),
+                    (int) arc.getArrival().getX(),
+                    (int) arc.getArrival().getY());
+              });
+        });
+    g2d.scale(1 / zoom, 1 / zoom);
+  }
+  
+  public void drawConvoyeur(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
     ArrayList<List<Arc>> arcs = controller.getArcList();
     arcs.forEach(

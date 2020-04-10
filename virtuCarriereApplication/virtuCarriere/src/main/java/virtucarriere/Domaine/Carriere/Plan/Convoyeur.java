@@ -5,26 +5,41 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.awt.Color;
 import java.awt.Point;
 
 public class Convoyeur extends AbstractLien<Equipement> {
 
-  private Noeud destination;
+  private Equipement arrival;
+  private Equipement starting;
+  private Color color;
   private String name;
 
-  public Convoyeur(Point point, int p_width, int p_length, Noeud p_destination) {
+  public Convoyeur(Point point, int p_width, int p_length, Equipement starting, Equipement arrival) {
     super(point, p_width, p_length);
 
-    this.destination = p_destination;
+    this.starting = starting;
+    this.arrival = arrival;
+    this.color = Color.RED;
     this.name = "Convoyeur";
   }
 
-  public void setDestination(Noeud p_destination) {
-    this.destination = p_destination;
+  public void setStarting(Equipement starting) {
+    this.starting = starting;
   }
 
-  public Noeud getDestination() {
-    return this.destination;
+  @Override
+  public Equipement getStarting() {
+    return this.starting;
+  }
+  
+  public void setArrival(Equipement arrival) {
+    this.arrival = arrival;
+  }
+
+  @Override
+  public Equipement getArrival() {
+    return this.arrival;
   }
 
   public String getName() {
