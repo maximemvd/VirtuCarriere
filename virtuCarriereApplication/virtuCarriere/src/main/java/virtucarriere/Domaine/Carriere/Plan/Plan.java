@@ -246,4 +246,8 @@ public class Plan implements Serializable {
   public List<Arc> getAllArcs() {
     return chemins.getLinks().stream().flatMap(List::stream).collect(Collectors.toList());
   }
+
+  public GraphChemins GetGraphChemins() {
+    return chemins;
+  }
 }

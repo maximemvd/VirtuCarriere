@@ -404,9 +404,7 @@ public class MainWindow extends JFrame {
 
     comboBoxMateriaux.setModel(
         new javax.swing.DefaultComboBoxModel<>(
-            new String[] {
-              "Matériaux", "1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"
-            }));
+            new String[] {"1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"}));
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);

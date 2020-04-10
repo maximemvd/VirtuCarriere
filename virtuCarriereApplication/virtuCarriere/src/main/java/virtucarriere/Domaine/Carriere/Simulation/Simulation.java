@@ -19,8 +19,6 @@ public class Simulation implements Serializable {
 
   private Entree entreeCarriere;
 
-  private List<Noeud> noeudList;
-
   private GraphChemins graphChemin;
 
   List<Camion> camionList;
@@ -38,6 +36,10 @@ public class Simulation implements Serializable {
     simulationAnimation = false;
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
+  }
+
+  public void setGraphCheminSimulation(GraphChemins p_graphChemin) {
+    this.graphChemin = p_graphChemin;
   }
 
   public void EditCamion(Camion p_camion, String nom, String produit, double qte) {
@@ -63,10 +65,6 @@ public class Simulation implements Serializable {
 
   public void closeSimulation() {
     this.simulationAnimation = false;
-  }
-
-  public void setNoeudList(List<Noeud> p_noeud) {
-    this.noeudList = p_noeud;
   }
 
   public void setEntreCarriere(Entree p_entree) {
