@@ -32,9 +32,24 @@ public class Simulation {
 
   private Tas tasCourant;
 
+  private boolean simulationAnimation;
+
   public Simulation() {
+    simulationAnimation = false;
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
+  }
+
+  public boolean getSimulationAnimation() {
+    return simulationAnimation;
+  }
+
+  public void startSimulation() {
+    this.simulationAnimation = true;
+  }
+
+  public void closeSimulation() {
+    this.simulationAnimation = false;
   }
 
   private void setCourantTas(Tas tas) {
