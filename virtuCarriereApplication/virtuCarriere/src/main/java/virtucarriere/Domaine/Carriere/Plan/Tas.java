@@ -19,6 +19,8 @@ public class Tas extends Equipement {
   private String name;
   private double quantite;
 
+  private PointChargement pointChargement;
+
   private List<String> listMateriau;
 
   // TODO add attribut point de chargement;
@@ -30,6 +32,11 @@ public class Tas extends Equipement {
     this.name = "Tas";
     this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
+    this.pointChargement = new PointChargement(new Point(point.x - 25, point.y + 15));
+  }
+
+  public PointChargement getPointChargement() {
+    return pointChargement;
   }
 
   private void setlistMateriau() {

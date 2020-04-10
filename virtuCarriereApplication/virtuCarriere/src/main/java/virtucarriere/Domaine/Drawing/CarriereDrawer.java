@@ -53,6 +53,7 @@ public class CarriereDrawer {
     drawArc(g2d, zoom);
     drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);
+    drawPointChargement(g2d, zoom);
 
     if (controller.getSimulationAnimation()) {
       try {
@@ -60,6 +61,27 @@ public class CarriereDrawer {
       } catch (InterruptedException ex) {
         Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
       }
+    }
+  }
+
+  public void drawPointChargement(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
+    List<Equipement> equipements = controller.getEquipementList();
+
+    List<PointChargement> listePointChargement = new LinkedList<>();
+
+    for (Equipement equipement : equipements) {
+      if (equipement.getName().equals("Tas")) {
+        Tas tas = (Tas) equipement;
+        listePointChargement.add(tas.getPointChargement());
+      }
+    }
+
+    for (PointChargement point : listePointChargement) {
+      g2d.setColor(point.getColor());
+      Point pointCharge = point.getPoint();
+      g2d.fillOval((int) pointCharge.x - radius, (int) pointCharge.y - radius, radius, radius);
+      g2d.scale(1 / zoom, 1 / zoom);
     }
   }
 
