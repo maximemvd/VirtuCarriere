@@ -137,6 +137,10 @@ public class ElementContainer implements Serializable {
   public void removeArc(Arc p_arc) {
     plan.removeArc(p_arc);
   }
+  
+  public void removeConvoyeur(Convoyeur convoyeur) {
+    plan.removeConvoyeur(convoyeur);
+  }
 
   public void addChargeur(Point point) {
     simulation.addChargeur(point);

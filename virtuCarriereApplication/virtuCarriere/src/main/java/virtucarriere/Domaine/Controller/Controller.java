@@ -219,6 +219,10 @@ public class Controller implements Serializable {
   public void removeArc(Arc arc) {
     elementContainer.removeArc(arc);
   }
+  
+  public void removeConvoyeur(Convoyeur convoyeur) {
+    elementContainer.removeConvoyeur(convoyeur);
+  }
 
   public void addEntree(Point mousePoint, EquipementModes mode) {
 

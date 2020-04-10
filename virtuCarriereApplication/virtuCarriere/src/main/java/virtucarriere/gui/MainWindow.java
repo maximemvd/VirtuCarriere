@@ -1323,6 +1323,7 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
     ArrayList<List<Arc>> arcs = controller.getArcList();
+    ArrayList<List<Convoyeur>> convoyeurs = controller.getConvoyeurList();
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
@@ -1346,7 +1347,16 @@ public class MainWindow extends JFrame {
         }
       }
     }
-
+      
+    for (List<Convoyeur> convoyeurList : convoyeurs) {
+     for (Convoyeur convoyeur : convoyeurList) {
+        if (convoyeur.isSelected()) {
+          controller.removeConvoyeur(convoyeur);
+          drawingPanel.repaint();
+        }
+     }
+    }
+    
     rafraichissementTextField();
     drawingPanel.repaint();
   } // GEN-LAST:event_deleteButtonActionPerformed
@@ -1375,7 +1385,17 @@ public class MainWindow extends JFrame {
       ArrayList<List<Arc>> arcs = controller.getArcList();
       List<Chargeur> chargeurs = controller.getChargeurList();
       Entree entree = controller.getEntree();
+      ArrayList<List<Convoyeur>> convoyeurs = controller.getConvoyeurList();
 
+      for (List<Convoyeur> convoyeurList : convoyeurs) {
+        for (Convoyeur convoyeur : convoyeurList) {
+            if (convoyeur.isSelected()) {
+                controller.removeConvoyeur(convoyeur);
+                drawingPanel.repaint();
+            }
+        }
+      }
+      
       for (Equipement equipement : equipements) {
         if (equipement.isSelected()) {
           controller.removeEquipement(equipement);

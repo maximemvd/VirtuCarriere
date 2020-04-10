@@ -33,6 +33,10 @@ public class Plan implements Serializable {
   public void removeArc(Arc arc) {
     chemins.removeLink(arc);
   }
+  
+  public void removeConvoyeur(Convoyeur convoyeur) {
+    equipments.removeLink(convoyeur);
+  }
 
   public void addEquipment(Equipement equipement) {
     equipments.addEnd(equipement);
@@ -239,6 +243,22 @@ public class Plan implements Serializable {
         double yPosArrival = arrival.getY();
 
         if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
+          item.switchSelectionStatus();
+        }
+      }
+    }
+    
+    for (List<Convoyeur> listOfConvoyeur : getConvoyeurs()) {
+      for (Convoyeur item : listOfConvoyeur) {
+        Equipement starting = item.getStarting();
+        Equipement arrival = item.getArrival();
+
+        double xPosStarting = starting.getX();
+        double yPosStarting = starting.getY();
+        double xPosArrival = arrival.getX();
+        double yPosArrival = arrival.getY();
+
+        if (item.containsConvoyeur(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
           item.switchSelectionStatus();
         }
       }
