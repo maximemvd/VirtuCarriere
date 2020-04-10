@@ -642,6 +642,12 @@ public class MainWindow extends JFrame {
     jLabel13.setText("Visuel");
 
     jButton4.setText("Démarrer simulation");
+    jButton4.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton4ActionPerformed(evt);
+          }
+        });
 
     jButton5.setText("Pause");
 
@@ -1052,6 +1058,12 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void jButton4ActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton4ActionPerformed
+    controller.startSimulation();
+    drawingPanel.repaint();
+  } // GEN-LAST:event_jButton4ActionPerformed
 
   private void deleteButtonMousePressed(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_deleteButtonMousePressed
@@ -1641,11 +1653,6 @@ public class MainWindow extends JFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_buttonAjouterConvoyeurActionPerformed
     // TODO add your handling code here:
   } // GEN-LAST:event_buttonAjouterConvoyeurActionPerformed
-
-  private void jButton4ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton4ActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_jButton4ActionPerformed
 
   private void menuAffichageGrilleActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuAffichageGrilleActionPerformed

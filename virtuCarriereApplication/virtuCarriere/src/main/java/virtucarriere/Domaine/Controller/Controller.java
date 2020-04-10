@@ -316,6 +316,18 @@ public class Controller implements Serializable {
     }
   }
 
+  public boolean getSimulationAnimation() {
+    return elementContainer.getSimulationAnimation();
+  }
+
+  public void startSimulation() {
+    elementContainer.startSimulation();
+  }
+
+  public void closeSimulation() {
+    elementContainer.closeSimulation();
+  }
+
   public void undo() {}
 
   public void redo() {}

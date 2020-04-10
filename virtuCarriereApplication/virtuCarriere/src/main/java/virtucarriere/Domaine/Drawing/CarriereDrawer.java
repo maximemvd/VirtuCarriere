@@ -13,14 +13,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Facture;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
@@ -52,6 +47,10 @@ public class CarriereDrawer {
     drawArc(g2d, zoom);
     drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);
+
+    if (controller.getSimulationAnimation()) {
+      startSimulation(g2d, zoom);
+    }
   }
 
   // drawChargeur is good
@@ -115,107 +114,8 @@ public class CarriereDrawer {
     ;
   }
 
-  public void startSimulation(Graphics2D g2d, double zoom) throws InterruptedException {
-
-    drawCamion(g2d, zoom);
-    drawChargeur(g2d, zoom);
-    Color couleurCamion = Color.MAGENTA;
-
-    Thread.sleep(2000); // wait 2 seconds
-
-    List<Camion> camions = controller.getCamionList();
-
-    // scénario
-    camions.forEach(
-        (camion) -> {
-          Jeton jetonCamion = camion.getJeton();
-
-          Tas tasCourant = controller.TrouverTasCorrespondant(jetonCamion.getCodeProduit());
-
-          Chargeur chargeurCourant = controller.choisirChargeurCorrespondant(tasCourant);
-
-          Vector<AbstractPointChemin> cheminDuCamion = controller.cheminDuCamion(tasCourant);
-
-          Vector<AbstractPointChemin> cheminDuChargeur =
-              controller.ChargeurCheminToPath(chargeurCourant, tasCourant);
-
-          cheminDuCamion.forEach(
-              (noeud) -> {
-                try {
-                  Point point = noeud.getPoint();
-                  g2d.setColor(couleurCamion);
-                  g2d.fillRoundRect(
-                      point.x - radius,
-                      point.y - radius,
-                      radius * 2,
-                      radius * 2,
-                      radius * 2,
-                      radius * 2);
-                  Thread.sleep(2000); // wait 2 seconds
-                } catch (InterruptedException ex) {
-                  Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              });
-
-          cheminDuChargeur.forEach(
-              (noeud) -> {
-                try {
-                  Point point = noeud.getPoint();
-                  g2d.setColor(couleurCamion);
-                  g2d.fillRoundRect(
-                      point.x - radius,
-                      point.y - radius,
-                      radius * 2,
-                      radius * 2,
-                      radius * 2,
-                      radius * 2);
-                  Thread.sleep(2000); // wait 2 seconds
-                } catch (InterruptedException ex) {
-                  Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              });
-
-          boolean Confirmation = controller.verificationJeton(camion, chargeurCourant);
-
-          if (!Confirmation) {
-            return;
-          }
-
-          try {
-            camion.changeEtat("Livraison");
-            Thread.sleep(2000); // wait 2 seconds
-          } catch (InterruptedException ex) {
-            Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-          }
-
-          Vector<AbstractPointChemin> cheminRetourCamion =
-              controller.cheminDuCamionRetour(tasCourant);
-
-          cheminRetourCamion.forEach(
-              (noeud) -> {
-                try {
-                  Point point = noeud.getPoint();
-                  g2d.setColor(couleurCamion);
-                  g2d.fillRoundRect(
-                      point.x - radius,
-                      point.y - radius,
-                      radius * 2,
-                      radius * 2,
-                      radius * 2,
-                      radius * 2);
-                  Thread.sleep(2000); // wait 2 seconds
-                } catch (InterruptedException ex) {
-                  Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              });
-
-          camion.changeEtat("Facture");
-
-          Facture facture = controller.genererFacture(camion);
-
-          double prix = facture.getPrice();
-          System.out.println(prix);
-        });
+  public void startSimulation(Graphics2D g2d, double zoom) {
+    System.out.println("la simulation commence");
   }
 
   public void drawEquipement(Graphics2D g, double zoom) {

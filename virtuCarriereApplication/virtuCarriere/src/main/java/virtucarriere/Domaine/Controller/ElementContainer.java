@@ -198,6 +198,18 @@ public class ElementContainer implements Serializable {
     }
   }
 
+  public boolean getSimulationAnimation() {
+    return simulation.getSimulationAnimation();
+  }
+
+  public void startSimulation() {
+    simulation.startSimulation();
+  }
+
+  public void closeSimulation() {
+    simulation.closeSimulation();
+  }
+
   private void snapElementToGrid(Element element, double gridGap) {
     int horizontal = (int) (element.getX() / gridGap);
     int vertical = (int) (element.getY() / gridGap);
