@@ -795,21 +795,8 @@ public class MainWindow extends JFrame {
                                 jPanel3Layout
                                     .createSequentialGroup()
                                     .addGap(11, 11, 11)
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(
-                                                        jScrollPane2,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel14))))
-                    .addGap(0, 19, Short.MAX_VALUE))
+                                    .addComponent(jLabel14)))
+                    .addGap(0, 86, Short.MAX_VALUE))
             .addGroup(
                 jPanel3Layout
                     .createSequentialGroup()
@@ -852,11 +839,7 @@ public class MainWindow extends JFrame {
                                         jButton2,
                                         javax.swing.GroupLayout.PREFERRED_SIZE,
                                         138,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE))
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(
                                 jPanel3Layout
                                     .createSequentialGroup()
@@ -1004,14 +987,24 @@ public class MainWindow extends JFrame {
                                                     .createSequentialGroup()
                                                     .addContainerGap()
                                                     .addComponent(jLabel21)))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
-                    .addContainerGap())
-            .addGroup(
-                jPanel3Layout
-                    .createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel11)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(
+                                                jPanel3Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel11)
+                                                    .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(
+                                                jScrollPane2,
+                                                javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addContainerGap()));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1407,6 +1400,7 @@ public class MainWindow extends JFrame {
 
   public void simulationTextField() {
     TextSimulation.setText("");
+    NomClient.setText("");
     List<Camion> camions = controller.getCamionList();
     for (Camion camion : camions) {
       if (camion.isSelected()) {
@@ -1419,6 +1413,8 @@ public class MainWindow extends JFrame {
         TextSimulation.append("\n\nNom du client : " + nomClient);
         TextSimulation.append("\nCode du produit demandé : " + codeProduit);
         TextSimulation.append("\nQuantité demandé : " + laQuantite);
+
+        NomClient.setText(nomClient);
       }
     }
   }
