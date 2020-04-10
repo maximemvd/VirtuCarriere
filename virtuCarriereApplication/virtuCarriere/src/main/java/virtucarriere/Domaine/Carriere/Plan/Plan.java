@@ -67,6 +67,11 @@ public class Plan implements Serializable {
     if (equipementForConvList.size() == 2){
         Convoyeur convoyeur = new Convoyeur(mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
         equipments.addLink(convoyeur);
+        for (Equipement equipement : equipementForConvList) {
+          equipement.switchSelectionStatus();
+        }
+        equipementForConvList.clear();
+        
     }
   }
 
