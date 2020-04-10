@@ -19,7 +19,6 @@ import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Plan;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -30,7 +29,6 @@ public class Controller implements Serializable {
   private ArrayList<ElementContainer> elementContainerList;
 
   private ElementContainer elementContainer;
-  private Plan plan;
 
   public enum EquipementModes {
     RIEN,
@@ -224,10 +222,6 @@ public class Controller implements Serializable {
     elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
-  public void deleteSelected() {
-    plan.deleteSelected();
-  }
-
   private void deleteElementsAfterPointer(int undoRedoPointerState) {
     if (elementContainerList.isEmpty()) {
       return;
@@ -314,6 +308,30 @@ public class Controller implements Serializable {
     if (choix == 0) {
       save();
     }
+  }
+
+  public void setEntreSimulation(Entree p_entree) {
+    elementContainer.setEntreSimulation(p_entree);
+  }
+
+  public boolean getSimulationAnimation() {
+    return elementContainer.getSimulationAnimation();
+  }
+
+  public void startSimulation() {
+    elementContainer.startSimulation();
+  }
+
+  public void closeSimulation() {
+    elementContainer.closeSimulation();
+  }
+
+  public double getSimulationSpeed() {
+    return elementContainer.getSimulationSpeed();
+  }
+
+  public void setSimulationSpeed(double newSpeed) {
+    elementContainer.setSimulationSpeed(newSpeed);
   }
 
   public void undo() {}
