@@ -1352,6 +1352,7 @@ public class MainWindow extends JFrame {
       }
     }
     drawingPanel.repaint();
+    simulationTextField();
   } // GEN-LAST:event_deleteSimulActionPerformed
 
   private void selectionSimulActionPerformed(
@@ -1406,6 +1407,9 @@ public class MainWindow extends JFrame {
 
     if (nomClient.isBlank()) {
       JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
+    } else if (quantite <= 0) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, vous devez entrer un chiffre plus grand que zéro");
     } else {
       for (Camion camion : controller.getCamionList()) {
         if (camion.isSelected()) {
