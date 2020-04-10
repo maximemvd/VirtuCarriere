@@ -1263,7 +1263,7 @@ public class MainWindow extends JFrame {
     this.selectedEquipementMode = EquipementModes.TAS;
     List<Equipement> equipements = controller.getEquipementList();
     for (Equipement equipement : equipements) {
-      if (equipement.getClass().getName().equals("Tas")) {
+      if (equipement.getName().equals("Tas")) {
         if (equipement.isSelected()) {
           this.controller.removeEquipement(equipement);
         }
@@ -1275,6 +1275,7 @@ public class MainWindow extends JFrame {
     this.controller.addTas(point, this.selectedEquipementMode);
 
     drawingPanel.repaint();
+    rafraichissementTextField();
   }
 
   private void jTabbedPaneStateChanged(
