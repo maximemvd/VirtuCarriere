@@ -8,24 +8,42 @@ package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 public class Facture {
 
-  private final double prixDuMateriaux;
+  private final String codeMateriau;
 
   private final double quantite;
 
-  public Facture(double p_prixDuMateriau, double p_quantite) {
+  public Facture(String p_codeDuMateriau, double p_quantite) {
     this.quantite = p_quantite;
-    this.prixDuMateriaux = p_prixDuMateriau;
+    this.codeMateriau = p_codeDuMateriau;
   };
 
-  public double getPrice() {
-    return prixDuMateriaux * quantite;
-  }
-
-  public double getQuantity() {
+  public double getQuantite() {
     return quantite;
   }
 
-  public double getprixDuMateriaux() {
-    return prixDuMateriaux;
+  public String getCodeProduit() {
+    return codeMateriau;
+  }
+
+  public double getPrice() {
+
+    double prixMateriau = 0;
+
+    if ("1-214".equals(codeMateriau) || "1-110".equals(codeMateriau)) {
+      prixMateriau = 20.15;
+    }
+
+    if ("1-220".equals(codeMateriau) || "1-228".equals(codeMateriau)) {
+      prixMateriau = 15.90;
+    }
+
+    if ("1-644".equals(codeMateriau)) {
+      prixMateriau = 15;
+    }
+
+    if ("1-630".equals(codeMateriau) || "1-695".equals(codeMateriau)) {
+      prixMateriau = 20.90;
+    }
+    return prixMateriau * quantite;
   }
 }

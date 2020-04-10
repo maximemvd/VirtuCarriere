@@ -192,8 +192,8 @@ public class Simulation {
   }
 
   public Facture genererFacture(Camion p_camion) {
-    double quantity = p_camion.getJeton().getQuantite();
-    Facture facture = new Facture(20.15, quantity);
+    Jeton jeton = p_camion.getJeton();
+    Facture facture = new Facture(jeton.getCodeProduit(), jeton.getQuantite());
     return facture;
   }
 
