@@ -42,6 +42,16 @@ public class Tas extends Equipement {
     this.listMateriau.add("1-695");
   }
 
+  public boolean verifierCodeMateriau(String materiau) {
+    int index = 0;
+    for (String code : listMateriau) {
+      if (!materiau.equals(code)) {
+        index++;
+      }
+    }
+    return index == listMateriau.size();
+  }
+
   public List<String> getListMateriau() {
     return listMateriau;
   }

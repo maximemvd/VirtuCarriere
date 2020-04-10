@@ -19,8 +19,6 @@ public class Simulation implements Serializable {
 
   private Entree entreeCarriere;
 
-  private List<Noeud> noeudList;
-
   private GraphChemins graphChemin;
 
   List<Camion> camionList;
@@ -67,10 +65,6 @@ public class Simulation implements Serializable {
 
   public void closeSimulation() {
     this.simulationAnimation = false;
-  }
-
-  public void setNoeudList(List<Noeud> p_noeud) {
-    this.noeudList = p_noeud;
   }
 
   public void setEntreCarriere(Entree p_entree) {
