@@ -97,7 +97,7 @@ public class ElementContainer implements Serializable {
           plan.addNoeud(mousePoint);
           break;
         case TAS:
-          plan.addTas(mousePoint);
+          // plan.addTas(mousePoint);
           break;
         case ENTREE:
           plan.addEntree(mousePoint);
@@ -109,6 +109,10 @@ public class ElementContainer implements Serializable {
 
   public void removePlan(Element element) {
     plan.removeElement(element);
+  }
+
+  public void addTas(Point mousePoint, String code) {
+    plan.addTas(mousePoint, code);
   }
 
   public void removeCamion(Camion p_camion) {

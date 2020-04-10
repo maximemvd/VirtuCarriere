@@ -8,9 +8,8 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.util.Collections;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Crible extends Equipement {
 
@@ -32,5 +31,10 @@ public class Crible extends Equipement {
 
   public String getName() {
     return name;
+  }
+
+  @Override
+  public String getMaterialCode() {
+    return null;
   }
 }

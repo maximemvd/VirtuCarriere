@@ -49,8 +49,8 @@ public class Plan implements Serializable {
     addEquipment(crible);
   }
 
-  public void addTas(Point mousePoint) {
-    Tas tas = new Tas(mousePoint, 1, 1, "code", 1);
+  public void addTas(Point mousePoint, String code) {
+    Tas tas = new Tas(mousePoint, 1, 1, code, 1);
     addEquipment(tas);
     // TODO add noeudChargement;
   }

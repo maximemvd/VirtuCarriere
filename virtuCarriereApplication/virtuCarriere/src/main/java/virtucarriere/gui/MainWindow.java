@@ -125,6 +125,7 @@ public class MainWindow extends JFrame {
     ajoutNoeud = new javax.swing.JToggleButton();
     jLabel19 = new javax.swing.JLabel();
     ajoutTas = new javax.swing.JToggleButton();
+    comboBoxMateriaux = new javax.swing.JComboBox<>();
     jPanel3 = new javax.swing.JPanel();
     jLabel6 = new javax.swing.JLabel();
     ajoutChargeur = new javax.swing.JToggleButton();
@@ -401,6 +402,12 @@ public class MainWindow extends JFrame {
           }
         });
 
+    comboBoxMateriaux.setModel(
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {
+              "Matériaux", "1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"
+            }));
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -497,34 +504,21 @@ public class MainWindow extends JFrame {
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel2Layout
                                     .createSequentialGroup()
-                                    .addGroup(
-                                        jPanel2Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(
-                                                jPanel2Layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(jLabel19)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addComponent(ajoutTas)
-                                                    .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(
-                                                jComboBox1,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(64, 64, 64))
-                            .addGroup(
-                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                jPanel2Layout
-                                    .createSequentialGroup()
                                     .addGap(0, 0, Short.MAX_VALUE)
                                     .addGroup(
                                         jPanel2Layout
                                             .createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(
+                                                        jComboBox1,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(64, 64, 64))
                                             .addGroup(
                                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                                 jPanel2Layout
@@ -585,7 +579,21 @@ public class MainWindow extends JFrame {
                                                 jPanel2Layout
                                                     .createSequentialGroup()
                                                     .addGap(92, 92, 92)
-                                                    .addComponent(ajoutNoeud)))
+                                                    .addComponent(ajoutNoeud))
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addGap(52, 52, 52)
+                                                    .addComponent(ajoutTas)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
+                                                    .addComponent(
+                                                        comboBoxMateriaux,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel19))
                                     .addGap(0, 0, Short.MAX_VALUE)))));
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout
@@ -612,21 +620,18 @@ public class MainWindow extends JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(ajoutNoeud)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel19)
+                    .addGap(2, 2, 2)
                     .addGroup(
                         jPanel2Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(
-                                jPanel2Layout
-                                    .createSequentialGroup()
-                                    .addComponent(jLabel19)
-                                    .addGap(35, 35, 35))
-                            .addGroup(
-                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                jPanel2Layout
-                                    .createSequentialGroup()
-                                    .addComponent(ajoutTas)
-                                    .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ajoutTas)
+                            .addComponent(
+                                comboBoxMateriaux,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jLabel8)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(
@@ -1009,7 +1014,7 @@ public class MainWindow extends JFrame {
                                     .addGap(33, 33, 33)
                                     .addComponent(addCamion)))
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jLabel13)
@@ -1223,7 +1228,7 @@ public class MainWindow extends JFrame {
       setAppMode(ApplicationMode.ADD_PLAN);
     }
     this.setMode(EquipementModes.TAS);
-  } // GEN-LAST:event_ajoutTasActionPerformed
+  }
 
   private void deleteSimulActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteSimulActionPerformed
@@ -1484,7 +1489,9 @@ public class MainWindow extends JFrame {
     int coordX = Integer.parseInt(textFieldCoordonneeX.getText());
     int coordY = Integer.parseInt(textFieldCoordonneeY.getText());
     Point point = new Point(coordX, coordY);
-    this.controller.addTas(point, this.selectedEquipementMode);
+    String code = (String) comboBoxMateriaux.getSelectedItem();
+
+    this.controller.addTas(point, code);
 
     drawingPanel.repaint();
     rafraichissementTextField();
@@ -1611,6 +1618,8 @@ public class MainWindow extends JFrame {
         if (equipement.getName().equals("Tas")) {
           String x = String.format("%d", (int) equipement.getX());
           String y = String.format("%d", (int) equipement.getY());
+          String code = equipement.getMaterialCode();
+          jTextArea1.append("\n Code du matériau : " + code);
           textFieldCoordonneeX.setText(x);
           textFieldCoordonneeY.setText(y);
         }
@@ -1790,6 +1799,11 @@ public class MainWindow extends JFrame {
 
       } else {
         Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
+        if (this.selectedEquipementMode == EquipementModes.TAS) {
+          String code = (String) comboBoxMateriaux.getSelectedItem();
+
+          this.controller.addTas(point, code);
+        }
         Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
         this.controller.addEquipement(actualEquipement, point);
 
@@ -1961,6 +1975,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JButton ajoutTasCoordButton;
   private javax.swing.JButton arcButton;
   private javax.swing.ButtonGroup buttonGroup1;
+  private javax.swing.JComboBox<String> comboBoxMateriaux;
   private javax.swing.JButton deleteButton;
   private javax.swing.JButton deleteSimul;
   private virtucarriere.gui.DrawingPanel drawingPanel;

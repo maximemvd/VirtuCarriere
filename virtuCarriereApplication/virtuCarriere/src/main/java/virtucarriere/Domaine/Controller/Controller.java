@@ -168,7 +168,7 @@ public class Controller implements Serializable {
           addNoeud(mousePoint, mode);
           break;
         case TAS:
-          addTas(mousePoint, mode);
+          // addTas(mousePoint);
           break;
         case ENTREE:
           addEntree(mousePoint, mode);
@@ -178,8 +178,8 @@ public class Controller implements Serializable {
       }
   }
 
-  public void addTas(Point mousePoint, EquipementModes mode) {
-    elementContainer.addElement(mousePoint, mode);
+  public void addTas(Point mousePoint, String code) {
+    elementContainer.addTas(mousePoint, code);
   }
 
   public void addNoeud(Point mousePoint, EquipementModes mode) {
