@@ -144,7 +144,7 @@ public class MainWindow extends JFrame {
     quantiteSpinner = new javax.swing.JSpinner();
     jButton1 = new javax.swing.JButton();
     selectionSimul = new javax.swing.JToggleButton();
-    jButton2 = new javax.swing.JButton();
+    deleteSimul = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -724,7 +724,13 @@ public class MainWindow extends JFrame {
           }
         });
 
-    jButton2.setText("Supprimer");
+    deleteSimul.setText("Supprimer");
+    deleteSimul.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteSimulActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
@@ -768,7 +774,7 @@ public class MainWindow extends JFrame {
                         javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(
-                        jButton2,
+                        deleteSimul,
                         javax.swing.GroupLayout.PREFERRED_SIZE,
                         95,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -902,7 +908,7 @@ public class MainWindow extends JFrame {
                         jPanel3Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(selectionSimul)
-                            .addComponent(jButton2))
+                            .addComponent(deleteSimul))
                     .addGap(18, 18, 18)
                     .addComponent(jLabel11)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1152,6 +1158,27 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void deleteSimulActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteSimulActionPerformed
+    List<Chargeur> chargeurs = controller.getChargeurList();
+    List<Camion> camions = controller.getCamionList();
+
+    for (Chargeur chargeur : chargeurs) {
+      if (chargeur.isSelected()) {
+        controller.removeChargeur(chargeur);
+        drawingPanel.repaint();
+      }
+    }
+
+    for (Camion camion : camions) {
+      if (camion.isSelected()) {
+        controller.removeCamion(camion);
+        drawingPanel.repaint();
+      }
+    }
+    drawingPanel.repaint();
+  } // GEN-LAST:event_deleteSimulActionPerformed
+
   private void selectionSimulActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_selectionSimulActionPerformed
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
@@ -1225,7 +1252,6 @@ public class MainWindow extends JFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteButtonActionPerformed
     List<Equipement> equipements = controller.getEquipementList();
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
-    List<Chargeur> chargeurs = controller.getChargeurList();
     ArrayList<List<Arc>> arcs = controller.getArcList();
 
     for (Equipement equipement : equipements) {
@@ -1235,12 +1261,6 @@ public class MainWindow extends JFrame {
       }
     }
 
-    for (Chargeur chargeur : chargeurs) {
-      if (chargeur.isSelected()) {
-        controller.removeChargeur(chargeur);
-        drawingPanel.repaint();
-      }
-    }
     for (AbstractPointChemin noeud : noeuds) {
       if (noeud.isSelected()) {
         controller.removeNoeud(noeud);
@@ -1871,6 +1891,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JButton arcButton;
   private javax.swing.ButtonGroup buttonGroup1;
   private javax.swing.JButton deleteButton;
+  private javax.swing.JButton deleteSimul;
   private virtucarriere.gui.DrawingPanel drawingPanel;
   private javax.swing.JMenu editionMenu;
   private javax.swing.JButton entreeButton;
@@ -1880,7 +1901,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenu importerMenu;
   private javax.swing.JMenuItem importerSimulationMenu;
   private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton6;
   private javax.swing.JButton jButton7;
   private javax.swing.JComboBox<String> jComboBox1;
