@@ -61,6 +61,8 @@ public class Plan {
 
   public void addEntree(Point mousePoint) {
     entree = new Entree(mousePoint, 100, 100, 0);
+    Noeud noeud = new Noeud(mousePoint, 3, 3);
+    chemins.addEnd(noeud);
   }
 
   public boolean validateElementPresent(Point point) {
