@@ -40,6 +40,10 @@ public class Tas extends Equipement {
     this.listMateriau.add("1-695");
   }
 
+  public List<String> getListMateriau() {
+    return listMateriau;
+  }
+
   public Color getColor() {
     return color;
   }
