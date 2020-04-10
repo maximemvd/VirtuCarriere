@@ -152,7 +152,7 @@ public class MainWindow extends JFrame {
     jLabel21 = new javax.swing.JLabel();
     yCoordSimul = new javax.swing.JTextField();
     jLabel22 = new javax.swing.JLabel();
-    jButton2 = new javax.swing.JButton();
+    ajoutModifChargeur = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -773,7 +773,13 @@ public class MainWindow extends JFrame {
 
     jLabel22.setText("y :");
 
-    jButton2.setText("Ajouter/Modifier");
+    ajoutModifChargeur.setText("Ajouter/Modifier");
+    ajoutModifChargeur.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutModifChargeurActionPerformed(evt);
+          }
+        });
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
@@ -827,12 +833,13 @@ public class MainWindow extends JFrame {
                                                 Short.MAX_VALUE)
                                             .addComponent(yCoordSimul))
                                     .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(
-                                        jButton2,
+                                        ajoutModifChargeur,
                                         javax.swing.GroupLayout.PREFERRED_SIZE,
                                         138,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(6, 6, 6))
                             .addGroup(
                                 jPanel3Layout
                                     .createSequentialGroup()
@@ -1022,13 +1029,13 @@ public class MainWindow extends JFrame {
                     .addComponent(ajoutChargeur)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jLabel21)
-                    .addGap(8, 8, 8)
                     .addGroup(
                         jPanel3Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(
                                 jPanel3Layout
                                     .createSequentialGroup()
+                                    .addGap(8, 8, 8)
                                     .addGroup(
                                         jPanel3Layout
                                             .createParallelGroup(
@@ -1054,8 +1061,8 @@ public class MainWindow extends JFrame {
                             .addGroup(
                                 jPanel3Layout
                                     .createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addComponent(jButton2)))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ajoutModifChargeur)))
                     .addGap(57, 57, 57)
                     .addComponent(jLabel12)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1293,6 +1300,24 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void ajoutModifChargeurActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutModifChargeurActionPerformed
+    List<Chargeur> chargeurs = controller.getChargeurList();
+
+    for (Chargeur chargeur : chargeurs) {
+      if (chargeur.isSelected()) {
+        this.controller.removeChargeur(chargeur);
+      }
+    }
+
+    int coordX = Integer.parseInt(xCoordSimul.getText());
+    int coordY = Integer.parseInt(yCoordSimul.getText());
+    Point point = new Point(coordX, coordY);
+    this.controller.addChargeur(point);
+    drawingPanel.repaint();
+    simulationTextField();
+  } // GEN-LAST:event_ajoutModifChargeurActionPerformed
 
   private void ajoutNoeudActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutNoeudActionPerformed
@@ -2078,6 +2103,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JButton addCamion;
   private javax.swing.JMenu affichageMenu;
   private javax.swing.JToggleButton ajoutChargeur;
+  private javax.swing.JButton ajoutModifChargeur;
   private javax.swing.JToggleButton ajoutNoeud;
   private javax.swing.JButton ajoutNoeudCoordButton;
   private javax.swing.JToggleButton ajoutTas;
@@ -2096,7 +2122,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenu importerMenu;
   private javax.swing.JMenuItem importerSimulationMenu;
   private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
   private javax.swing.JButton jButton6;
   private javax.swing.JButton jButton7;
   private javax.swing.JComboBox<String> jComboBox1;
