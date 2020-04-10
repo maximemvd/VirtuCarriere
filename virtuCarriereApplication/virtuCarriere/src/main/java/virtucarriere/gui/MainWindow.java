@@ -1094,9 +1094,7 @@ public class MainWindow extends JFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_NomClientActionPerformed
   } // GEN-LAST:event_NomClientActionPerformed
 
-  private void addCamionActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addCamionActionPerformed
-    // TODO add your handling code here:
+  private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
     Point point = controller.getEntree().getPoint();
     String nomCLient = NomClient.getText();
     String materiau = nomMateriau.getText();
@@ -1108,7 +1106,7 @@ public class MainWindow extends JFrame {
     TextSimulation.append(materiau);
     TextSimulation.append(quantite);
     drawingPanel.repaint();
-  } // GEN-LAST:event_addCamionActionPerformed
+  }
 
   private void deleteButtonActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_deleteButtonActionPerformed
@@ -1273,18 +1271,24 @@ public class MainWindow extends JFrame {
   }
 
   private void ajoutTasCoordButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    // List<Tas> tas = controller.getTasList();
-    // List<Tas> tas = controller.getTasList();
 
-    // if (this.currentApplicationMode == ApplicationMode.ADD_PLAN) {
+    this.selectedEquipementMode = EquipementModes.TAS;
+    List<Equipement> equipements = controller.getEquipementList();
+    for (Equipement equipement : equipements) {
+      if (equipement.getName().equals("Tas")) {
+        if (equipement.isSelected()) {
+          this.controller.removeEquipement(equipement);
+        }
+      }
+    }
     int coordX = Integer.parseInt(textFieldCoordonneeX.getText());
     int coordY = Integer.parseInt(textFieldCoordonneeY.getText());
     Point point = new Point(coordX, coordY);
     this.controller.addTas(point, this.selectedEquipementMode);
 
     drawingPanel.repaint();
-    // }
-  } // GEN-LAST:event_jButton2ActionPerformed
+    rafraichissementTextField();
+  }
 
   private void jTabbedPaneStateChanged(
       javax.swing.event.ChangeEvent evt) { // GEN-FIRST:event_jTabbedPaneStateChanged
@@ -1401,6 +1405,13 @@ public class MainWindow extends JFrame {
         String nombreTotal = String.format("%d", numTotal);
         jTextArea1.append(nom + xCoord + yCoord);
         jTextField2.setText(nombreTotal);
+
+        if (equipement.getName().equals("Tas")) {
+          String x = String.format("%d", (int) equipement.getX());
+          String y = String.format("%d", (int) equipement.getY());
+          textFieldCoordonneeX.setText(x);
+          textFieldCoordonneeY.setText(y);
+        }
       }
     }
 
