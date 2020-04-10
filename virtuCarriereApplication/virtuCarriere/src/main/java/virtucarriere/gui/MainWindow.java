@@ -739,9 +739,7 @@ public class MainWindow extends JFrame {
 
     materiauxComboBox.setModel(
         new javax.swing.DefaultComboBoxModel<>(
-            new String[] {
-              "Sélectionner", "1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"
-            }));
+            new String[] {"1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"}));
 
     jLabel16.setText("Nom :");
 
