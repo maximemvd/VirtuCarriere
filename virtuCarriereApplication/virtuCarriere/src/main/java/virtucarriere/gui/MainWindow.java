@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
-import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
-import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
+import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -1164,6 +1161,7 @@ public class MainWindow extends JFrame {
       List<AbstractPointChemin> noeuds = controller.getNoeudList();
       ArrayList<List<Arc>> arcs = controller.getArcList();
       List<Chargeur> chargeurs = controller.getChargeurList();
+      Entree entree = controller.getEntree();
 
       for (Equipement equipement : equipements) {
         if (equipement.isSelected()) {
@@ -1370,6 +1368,17 @@ public class MainWindow extends JFrame {
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
 
     ArrayList<List<Arc>> arcs = controller.getArcList();
+    Entree entree = controller.getEntree();
+
+    if (entree.isSelected()) {
+      numTotal++;
+      String nom = String.format("\nCoordonnées de l'%s", entree.getName());
+      String xCoord = String.format(":\n x : %d", (int) entree.getX());
+      String yCoord = String.format(", y : %d", (int) entree.getY());
+      String nombreTotal = String.format("%d", numTotal);
+      jTextArea1.append(nom + xCoord + yCoord);
+      jTextField2.setText(nombreTotal);
+    }
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
