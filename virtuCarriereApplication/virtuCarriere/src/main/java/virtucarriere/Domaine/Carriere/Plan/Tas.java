@@ -8,6 +8,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.Collections;
+import java.util.List;
 
 public class Tas extends Equipement {
 
@@ -17,6 +18,8 @@ public class Tas extends Equipement {
   private String name;
   private double quantite;
 
+  private List<String> listMateriau;
+
   // TODO add attribut point de chargement;
   public Tas(Point point, int p_width, int p_length, String materialCode, double dimension) {
     super(point, p_width, p_length, 0, Collections.emptyList());
@@ -24,6 +27,17 @@ public class Tas extends Equipement {
     this.dimension = dimension;
     this.color = Color.DARK_GRAY;
     this.name = "Tas";
+    this.setlistMateriau();
+  }
+
+  private void setlistMateriau() {
+    this.listMateriau.add("1-110");
+    this.listMateriau.add("1-214");
+    this.listMateriau.add("1-220");
+    this.listMateriau.add("1-228");
+    this.listMateriau.add("1-644");
+    this.listMateriau.add("1-630");
+    this.listMateriau.add("1-695");
   }
 
   public Color getColor() {
