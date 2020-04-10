@@ -32,6 +32,7 @@ public class Simulation implements Serializable {
   private double simulationSpeed;
 
   public Simulation() {
+    entreeCarriere = null;
     simulationSpeed = 2;
     simulationAnimation = false;
     camionList = new LinkedList<Camion>();
@@ -255,7 +256,7 @@ public class Simulation implements Serializable {
 
   public Vector<AbstractPointChemin> getShortestPathToGo(AbstractPointChemin stop) {
     Vector<AbstractPointChemin> results = new Vector<>();
-
+    System.out.print(entreeCarriere);
     AbstractPointChemin entree = entreeCarriere;
 
     results.addAll(getShortestPathBetweenTwoNoeuds(entree, stop));

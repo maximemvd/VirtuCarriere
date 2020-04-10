@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import virtucarriere.Domaine.Carriere.Plan.*;
@@ -149,24 +150,47 @@ public class CarriereDrawer {
       if (cheminPlan != null && listeChargeur.size() > 0) {
 
         controller.setGraphCheminSimulation(cheminPlan);
-
-        // début simulation pour les camions
-        System.out.print("avant");
-        Thread.sleep(2000);
         System.out.print(cheminPlan);
-        Thread.sleep(2000);
-        System.out.print("apres");
-
-        camionCourant.changeEtat("ENCOURS");
+        // début simulation pour les camions
+        Thread.sleep(1000);
 
         Jeton jetonCamionCourant = camionCourant.getJeton();
+        System.out.print(jetonCamionCourant);
+        Thread.sleep(1000);
 
         Tas tasSimulation =
             controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
+        System.out.print(tasSimulation);
+        Thread.sleep(1000);
+
         Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
 
+        System.out.print(courantChargeur);
+        Thread.sleep(1000);
+
         courantChargeur.setJeton(jetonCamionCourant);
+        System.out.print("hey");
+        Thread.sleep(1000);
+
+        camionCourant.changeEtat("ENCOURS");
+
+        Thread.sleep(1000);
+
+        Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+
+        System.out.print(cheminCamionAller);
+
+        Vector<AbstractPointChemin> cheminChargeur =
+            controller.ChargeurCheminToPath(courantChargeur, tasSimulation);
+
+        System.out.print(cheminChargeur);
+
+        Thread.sleep(1000);
+
+        if (!controller.verificationJeton(camionCourant, courantChargeur)) {
+          return;
+        }
       }
     }
   }
