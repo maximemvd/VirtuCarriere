@@ -1,7 +1,7 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
 
@@ -21,9 +21,28 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
   @Override
   public void removeEnd(AbstractPointChemin end) {
     if (endExist(end)) {
+      // Enlever les arcs qui ont comme Arrival le noeud a supprimer
+      List<Arc> toDelete = new ArrayList<Arc>();
+      links.forEach(
+          l_link -> {
+            l_link.forEach(
+                arc -> {
+                  if (arc.getArrival() == end) {
+                    toDelete.add(arc);
+                  }
+                });
+          });
+
+      toDelete.forEach(
+          arc -> {
+            removeLink(arc);
+          });
+
+      // Enlever le noeud et les arcs qui sortent de celui ci
       int index = ends.indexOf(end);
       ends.remove(end);
       links.remove(links.elementAt(index));
+
     } else {
       throw new RuntimeException("Ce noeud n'existe pas");
     }
