@@ -40,6 +40,10 @@ public abstract class Element implements Serializable {
     return this.point.getY();
   }
 
+  public void setPoint(Point newPoint) {
+    this.point = newPoint;
+  }
+
   public boolean contains(double p_x, double p_y) {
     return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
   }
