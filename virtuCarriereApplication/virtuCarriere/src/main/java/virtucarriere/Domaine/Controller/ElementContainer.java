@@ -37,6 +37,7 @@ public class ElementContainer implements Serializable {
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
     plan.updateSelectedItemsPosition(deltaX, deltaY);
+    simulation.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
   public Chargeur trouverChargeurCorrespondant(Tas tas) {
@@ -116,6 +117,10 @@ public class ElementContainer implements Serializable {
 
   public void addCamion(Point point, String client, String produit, double qte) {
     simulation.CamionShowUp(point, client, produit, qte);
+  }
+
+  public void changementSelectionStatus(double x, double y) {
+    simulation.changementSelectionStatus(x, y);
   }
 
   public void removeArc(Arc p_arc) {

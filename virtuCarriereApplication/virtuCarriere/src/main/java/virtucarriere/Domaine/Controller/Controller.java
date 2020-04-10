@@ -187,6 +187,10 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, mode);
   }
 
+  public void changementSelectionStatus(double x, double y) {
+    this.elementContainer.changementSelectionStatus(x, y);
+  }
+
   public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
     elementContainer.addArc(arc);
