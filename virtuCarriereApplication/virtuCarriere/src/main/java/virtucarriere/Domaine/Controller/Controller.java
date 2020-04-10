@@ -145,6 +145,10 @@ public class Controller implements Serializable {
   public ArrayList<List<Convoyeur>> getConvoyeurList() {
     return elementContainer.getConvoyeurList();
   }
+  
+  public void clearEquipementConv(){
+      elementContainer.clearEquipementConv();
+  }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
     return elementContainer.trouverChargeurCorrespondant(tas);

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Plan implements Serializable {
 
@@ -56,14 +58,75 @@ public class Plan implements Serializable {
     addEquipment(tas);
     // TODO add noeudChargement;
   }
+  
+  public void clearEquipementConv(){
+      this.equipementForConvList.clear();
+  }
 
   public void addConvoyeur(Point mousePoint) {
     for (Element equipement : getEquipements()) {
       if (equipement.contains(mousePoint.getX(), mousePoint.getY())) {
-        equipementForConvList.add((Equipement) equipement);
-        equipement.setSelectionStatus(true);
+          
+        //Si la liste est vide, on ajoute simplement element
+        if (equipementForConvList.isEmpty()){
+          equipementForConvList.add((Equipement) equipement);
+          equipement.setSelectionStatus(true);
+        }
+        
+        //Sil y a deja un element, on verifie si on peut ajouter un convoyeur a celui ci
+        else if (equipementForConvList.size() == 1){
+            
+            String actualEquipement = equipementForConvList.get(0).getName();
+            
+            switch (actualEquipement) {
+                
+                case "Crible" :
+                  if (((Equipement) equipement).getName().equals("Broyeur")){
+                      equipementForConvList.add((Equipement) equipement);
+                      equipement.setSelectionStatus(true);
+                  }
+                  else {
+                      JOptionPane.showMessageDialog(null, 
+                              "Une crible doit être reliée à un broyeur.",
+                              "Attention",
+                              JOptionPane.WARNING_MESSAGE);
+                  }
+                  break;
+                  
+                case "Broyeur" :
+                  if ((((Equipement) equipement).getName().equals("Crible"))
+                        || (((Equipement) equipement).getName().equals("Concasseur"))){
+                      equipementForConvList.add((Equipement) equipement);
+                      equipement.setSelectionStatus(true);
+                  }
+                  else {
+                      JOptionPane.showMessageDialog(null,
+                              "Un broyeur doit être relié à une crible ou un concasseur.",
+                              "Attention",
+                              JOptionPane.WARNING_MESSAGE);
+                  }
+                  break;
+                  
+                case "Concasseur" :
+                  if (((Equipement) equipement).getName().equals("Broyeur")){
+                      equipementForConvList.add((Equipement) equipement);
+                      equipement.setSelectionStatus(true);
+                  }
+                  else {
+                      JOptionPane.showMessageDialog(null,
+                              "Un concasseur doit être relié à un broyeur.",
+                              "Attention",
+                              JOptionPane.WARNING_MESSAGE);
+                  }
+                default:
+                  break;
+              }
+        }
+        //equipementForConvList.add((Equipement) equipement);
+        //equipement.setSelectionStatus(true);
       }
     }
+    
     if (equipementForConvList.size() == 2){
         Convoyeur convoyeur = new Convoyeur(mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
         equipments.addLink(convoyeur);

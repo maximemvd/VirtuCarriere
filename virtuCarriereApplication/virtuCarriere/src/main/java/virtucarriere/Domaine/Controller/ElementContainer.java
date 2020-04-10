@@ -80,6 +80,10 @@ public class ElementContainer implements Serializable {
   public void addArc(Arc arc) {
     plan.addArc(arc);
   }
+  
+  public void clearEquipementConv(){
+      plan.clearEquipementConv();
+  }
 
   public void addElement(Point mousePoint, EquipementModes mode) {
     if (null != mode)

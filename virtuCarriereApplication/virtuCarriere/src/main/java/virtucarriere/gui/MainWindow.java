@@ -1732,6 +1732,7 @@ public class MainWindow extends JFrame {
 
     } else if (jComboBox1.getSelectedItem() == "Convoyeur") {
       this.setMode(EquipementModes.CONVOYEUR);
+      controller.clearEquipementConv();
     } else if (jComboBox1.getSelectedItem() == "Sélectionner") {
       this.setMode(EquipementModes.RIEN);
     }
