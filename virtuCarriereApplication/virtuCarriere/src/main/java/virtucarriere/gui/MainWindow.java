@@ -26,8 +26,6 @@ public class MainWindow extends JFrame {
 
   public VehiculeModes selectedVehicules;
 
-  private Point pointEntree;
-
   private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
   private ApplicationMode currentApplicationMode;
 
@@ -153,6 +151,7 @@ public class MainWindow extends JFrame {
     yCoordSimul = new javax.swing.JTextField();
     jLabel22 = new javax.swing.JLabel();
     ajoutModifChargeur = new javax.swing.JButton();
+    modifierCamion = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -729,7 +728,7 @@ public class MainWindow extends JFrame {
           }
         });
 
-    addCamion.setText("Ajout/Modifier Camion");
+    addCamion.setText("Ajouter Camion");
     addCamion.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -779,6 +778,14 @@ public class MainWindow extends JFrame {
           }
         });
 
+    modifierCamion.setText("Modifier Camion");
+    modifierCamion.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modifierCamionActionPerformed(evt);
+          }
+        });
+
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
@@ -800,7 +807,7 @@ public class MainWindow extends JFrame {
                                     .createSequentialGroup()
                                     .addGap(11, 11, 11)
                                     .addComponent(jLabel14)))
-                    .addGap(0, 86, Short.MAX_VALUE))
+                    .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(
                 jPanel3Layout
                     .createSequentialGroup()
@@ -811,7 +818,8 @@ public class MainWindow extends JFrame {
                                 javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel3Layout
                                     .createSequentialGroup()
-                                    .addGap(16, 16, 16)
+                                    .addContainerGap(
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(
                                         jPanel3Layout
                                             .createParallelGroup(
@@ -1007,6 +1015,8 @@ public class MainWindow extends JFrame {
                                 jPanel3Layout
                                     .createSequentialGroup()
                                     .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(modifierCamion)
+                                    .addGap(18, 18, 18)
                                     .addComponent(addCamion)))
                     .addContainerGap()));
     jPanel3Layout.setVerticalGroup(
@@ -1097,7 +1107,11 @@ public class MainWindow extends JFrame {
                         javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                         javax.swing.GroupLayout.DEFAULT_SIZE,
                         Short.MAX_VALUE)
-                    .addComponent(addCamion)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addCamion)
+                            .addComponent(modifierCamion))
                     .addGap(57, 57, 57)
                     .addComponent(jLabel6)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1299,6 +1313,29 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  private void modifierCamionActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_modifierCamionActionPerformed
+    // TODO add your handling code here:
+    String nomClient = NomClient.getText();
+    String materiau = (String) materiauxComboBox.getSelectedItem();
+    double quantite = (Integer) quantiteSpinner.getValue();
+
+    if (nomClient.isBlank()) {
+      JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
+    } else if (quantite <= 0) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, vous devez entrer un chiffre plus grand que zéro");
+    } else {
+      for (Camion camion : controller.getCamionList()) {
+        if (camion.isSelected()) {
+          controller.EditCamion(camion, nomClient, materiau, quantite);
+        }
+      }
+      drawingPanel.repaint();
+      simulationTextField();
+    }
+  } // GEN-LAST:event_modifierCamionActionPerformed
+
   private void ajoutModifChargeurActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutModifChargeurActionPerformed
     List<Chargeur> chargeurs = controller.getChargeurList();
@@ -1411,11 +1448,6 @@ public class MainWindow extends JFrame {
       JOptionPane.showMessageDialog(
           null, "Attention, vous devez entrer un chiffre plus grand que zéro");
     } else {
-      for (Camion camion : controller.getCamionList()) {
-        if (camion.isSelected()) {
-          controller.removeCamion(camion);
-        }
-      }
 
       int index = 0;
       // mettre la camion dans la file d'attente
@@ -2173,6 +2205,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem menuSauvegarderSous;
   private javax.swing.JMenuItem menuUndo;
   private javax.swing.JToggleButton modeSelection;
+  private javax.swing.JButton modifierCamion;
   private javax.swing.JMenuItem modifierGrille;
   private javax.swing.JSpinner quantiteSpinner;
   private javax.swing.JMenuItem resetGrille;

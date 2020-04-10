@@ -39,6 +39,7 @@ public class Jeton implements Serializable {
   public void setEtat(String p_etat) {
     if (!"ATTENTE".equals(p_etat)
         && !"LIVRER".equals(p_etat)
+        && !"FACTURE".equals(p_etat)
         && !"ENCOURS".equals(p_etat)
         && !"PAYER".equals(p_etat)) {
       return;
