@@ -131,7 +131,26 @@ public class Plan implements Serializable {
     
     if (equipementForConvList.size() == 2){
         Convoyeur convoyeur = new Convoyeur(mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
-        equipments.addLink(convoyeur);
+        try {
+          equipments.getLink(convoyeur.getArrival(), convoyeur.getStarting());
+          JOptionPane.showMessageDialog(null,
+                            "Un convoyeur est déjà à cet emplacement.",
+                            "Attention",
+                            JOptionPane.WARNING_MESSAGE);
+        }
+        catch (RuntimeException e) {
+            try {
+                equipments.getLink(convoyeur.getStarting(), convoyeur.getArrival());
+                JOptionPane.showMessageDialog(null,
+                            "Un convoyeur est déjà à cet emplacement.",
+                            "Attention",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            catch (RuntimeException er) {
+                equipments.addLink(convoyeur);
+            }
+        }
+        
         for (Equipement equipement : equipementForConvList) {
           equipement.switchSelectionStatus();
         }
