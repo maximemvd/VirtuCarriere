@@ -40,6 +40,10 @@ public class Simulation implements Serializable {
     chargeurList = new LinkedList<Chargeur>();
   }
 
+  public void setGraphCheminSimulation(GraphChemins p_graphChemin) {
+    this.graphChemin = p_graphChemin;
+  }
+
   public void EditCamion(Camion p_camion, String nom, String produit, double qte) {
     Jeton jeton = new Jeton(nom, produit, qte);
     p_camion.editerParams(jeton);

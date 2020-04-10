@@ -119,8 +119,6 @@ public class CarriereDrawer {
 
     controller.setEntreSimulation(entreeCarriere);
 
-    List<AbstractPointChemin> listeDesNoeuds = controller.getNoeudList();
-
     List<Equipement> EquipementList = controller.getEquipementList();
 
     List<Tas> listeTas = new LinkedList<Tas>();
@@ -137,17 +135,29 @@ public class CarriereDrawer {
     List<Chargeur> listeChargeur = controller.getChargeurList();
 
     for (Camion camionCourant : listeDesCamion) {
-      // début simulation pour le camion 1
-      camionCourant.changeEtat("ENCOURS");
 
-      Jeton jetonCamionCourant = camionCourant.getJeton();
+      GraphChemins cheminPlan = controller.getGraphChemin();
 
-      Tas tasSimulation =
-          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+      if (cheminPlan != null && listeChargeur.size() > 0) {
 
-      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+        controller.setGraphCheminSimulation(cheminPlan);
 
-      courantChargeur.setJeton(jetonCamionCourant);
+        // début simulation pour les camions
+        System.out.print("avant");
+        System.out.print(cheminPlan);
+        System.out.print("apres");
+
+        camionCourant.changeEtat("ENCOURS");
+
+        Jeton jetonCamionCourant = camionCourant.getJeton();
+
+        Tas tasSimulation =
+            controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+
+        Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+
+        courantChargeur.setJeton(jetonCamionCourant);
+      }
     }
   }
 

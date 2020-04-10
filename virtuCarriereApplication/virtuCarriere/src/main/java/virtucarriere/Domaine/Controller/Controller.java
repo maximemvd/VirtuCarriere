@@ -18,6 +18,7 @@ import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.Equipement;
+import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -324,6 +325,14 @@ public class Controller implements Serializable {
 
   public void setSimulationSpeed(double newSpeed) {
     elementContainer.setSimulationSpeed(newSpeed);
+  }
+
+  public GraphChemins getGraphChemin() {
+    return elementContainer.getGraphChemin();
+  }
+
+  public void setGraphCheminSimulation(GraphChemins p_chemin) {
+    elementContainer.setGraphCheminSimulation(p_chemin);
   }
 
   public void undo() {}

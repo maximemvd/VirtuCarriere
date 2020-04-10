@@ -253,4 +253,12 @@ public class ElementContainer implements Serializable {
   public Element getElement(Point point) {
     return plan.getElement(point);
   }
+
+  public GraphChemins getGraphChemin() {
+    return plan.GetGraphChemins();
+  }
+
+  public void setGraphCheminSimulation(GraphChemins p_chemin) {
+    simulation.setGraphCheminSimulation(p_chemin);
+  }
 }
