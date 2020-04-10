@@ -72,8 +72,8 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
-  public Tas TrouverTasCorrespondant(String produit) {
-    return elementContainer.trouverTasCorrespondant(produit);
+  public Tas TrouverTasCorrespondant(List<Tas> tas, String produit) {
+    return elementContainer.trouverTasCorrespondant(tas, produit);
   }
 
   public void EditCamion(Camion p_camion, String nom, String produit, double qte) {

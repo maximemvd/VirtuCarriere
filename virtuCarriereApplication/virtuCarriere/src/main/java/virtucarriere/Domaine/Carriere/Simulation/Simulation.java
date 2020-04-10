@@ -18,8 +18,6 @@ public class Simulation {
 
   private Entree entreeCarriere;
 
-  private List<Tas> tasList;
-
   private List<Noeud> noeudList;
 
   private GraphChemins graphChemin;
@@ -29,8 +27,6 @@ public class Simulation {
   List<Chargeur> chargeurList;
 
   private Chargeur chargeurCourant;
-
-  private Tas tasCourant;
 
   private boolean simulationAnimation;
 
@@ -66,14 +62,6 @@ public class Simulation {
 
   public void closeSimulation() {
     this.simulationAnimation = false;
-  }
-
-  private void setCourantTas(Tas tas) {
-    this.tasCourant = tas;
-  }
-
-  public void setTasList(List<Tas> p_tas) {
-    this.tasList = p_tas;
   }
 
   public void setNoeudList(List<Noeud> p_noeud) {
@@ -197,16 +185,17 @@ public class Simulation {
     return facture;
   }
 
-  public Tas trouverTas(String produit) {
+  public Tas trouverTas(List<Tas> tasList, String produit) {
 
-    tasList.forEach(
-        (tas) -> {
-          if (tas.getMaterialCode().equals(produit)) {
-            this.tasCourant = tas;
-          }
-        });
+    Tas leTas = null;
 
-    return this.tasCourant;
+    for (Tas tas : tasList) {
+      if (tas.getMaterialCode().equals(produit)) {
+        leTas = tas;
+        break;
+      }
+    }
+    return leTas;
   }
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {

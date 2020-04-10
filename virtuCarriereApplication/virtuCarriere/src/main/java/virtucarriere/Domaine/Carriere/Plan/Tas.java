@@ -8,6 +8,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Tas extends Equipement {
@@ -27,6 +28,7 @@ public class Tas extends Equipement {
     this.dimension = dimension;
     this.color = Color.DARK_GRAY;
     this.name = "Tas";
+    this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
   }
 

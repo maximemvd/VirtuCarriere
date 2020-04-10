@@ -47,8 +47,8 @@ public class ElementContainer implements Serializable {
     return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
   }
 
-  public Tas trouverTasCorrespondant(String produit) {
-    return simulation.trouverTas(produit);
+  public Tas trouverTasCorrespondant(List<Tas> tas, String produit) {
+    return simulation.trouverTas(tas, produit);
   }
 
   public void noeudSelection(double x, double y) {
