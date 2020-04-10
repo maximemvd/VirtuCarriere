@@ -83,6 +83,7 @@ public class CarriereDrawer {
 
   // draw Camion is good
   public void drawCamion(Graphics2D g2d, double zoom) {
+    g2d.scale(zoom, zoom);
     List<Camion> camions = controller.getCamionList();
     int numberOfCLient = camions.size();
     System.out.println(numberOfCLient);
@@ -112,7 +113,7 @@ public class CarriereDrawer {
           camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
       index++;
     }
-    ;
+    g2d.scale(1 / zoom, 1 / zoom);
   }
 
   public void startSimulation(Graphics2D g2d, double zoom) {
