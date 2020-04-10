@@ -18,18 +18,33 @@ public class Tas extends Equipement {
   private Color color;
   private String name;
   private double quantite;
+  private Point point;
+
+  private PointChargement pointChargement;
 
   private List<String> listMateriau;
 
   // TODO add attribut point de chargement;
   public Tas(Point point, int p_width, int p_length, String materialCode, double dimension) {
     super(point, p_width, p_length, 0, Collections.emptyList());
+    this.point = point;
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.DARK_GRAY;
     this.name = "Tas";
     this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
+    this.pointChargement = new PointChargement(new Point(point.x - 25, point.y + 15));
+  }
+
+  @Override
+  public void setPoint(int p_x, int p_y) {
+    point = new Point(p_x, p_y);
+    this.pointChargement = new PointChargement(new Point(p_x - 25, p_y + 15));
+  }
+
+  public PointChargement getPointChargement() {
+    return pointChargement;
   }
 
   private void setlistMateriau() {
@@ -60,15 +75,22 @@ public class Tas extends Equipement {
     return color;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getMaterialCode() {
     return materialCode;
   }
 
   public double getQuantite() {
     return quantite;
+  }
+
+  @Override
+  public void setMaterialCode(String newCode) {
+    this.materialCode = newCode;
   }
 }

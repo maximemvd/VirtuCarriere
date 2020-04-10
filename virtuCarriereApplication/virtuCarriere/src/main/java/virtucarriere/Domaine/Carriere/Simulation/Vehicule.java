@@ -36,6 +36,10 @@ public abstract class Vehicule implements Serializable {
     return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
   }
 
+  public void setPoint(Point newPoint) {
+    this.point = newPoint;
+  }
+
   private boolean xIsInsideElementWidth(double p_x) {
     return ((p_x < point.getX() + radius) && (p_x > point.getX() - radius));
   }

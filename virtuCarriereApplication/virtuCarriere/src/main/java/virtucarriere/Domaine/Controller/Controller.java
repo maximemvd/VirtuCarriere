@@ -100,11 +100,11 @@ public class Controller implements Serializable {
 
   public void addChargeur(Point point) {
     elementContainer.addChargeur(point);
-  };
+  }
 
   public void addCamion(Point point, String client, String produit, double qte) {
     elementContainer.addCamion(point, client, produit, qte);
-  };
+  }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
     return elementContainer.cheminDuCamionRetour(tas);
@@ -141,7 +141,7 @@ public class Controller implements Serializable {
   public ArrayList<List<Arc>> getArcList() {
     return elementContainer.getArcList();
   }
-  
+
   public ArrayList<List<Convoyeur>> getConvoyeurList() {
     return elementContainer.getConvoyeurList();
   }
@@ -219,7 +219,7 @@ public class Controller implements Serializable {
   public void removeArc(Arc arc) {
     elementContainer.removeArc(arc);
   }
-  
+
   public void removeConvoyeur(Convoyeur convoyeur) {
     elementContainer.removeConvoyeur(convoyeur);
   }

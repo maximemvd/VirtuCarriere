@@ -129,11 +129,6 @@ public class Simulation implements Serializable {
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
-    for (Camion item : getCamionList()) {
-      if (item.isSelected()) {
-        item.translate(deltaX, deltaY);
-      }
-    }
 
     for (Chargeur item : getChargeurList()) {
       if (item.isSelected()) {

@@ -29,4 +29,7 @@ public class Concasseur extends Equipement {
   public String getMaterialCode() {
     return null;
   }
+
+  @Override
+  public void setMaterialCode(String newCode) {}
 }
