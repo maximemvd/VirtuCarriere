@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
+import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -1177,7 +1178,15 @@ public class MainWindow extends JFrame {
 
     String laQuantite = String.format("%d", 50);
 
-    controller.addCamion(point, nomCLient, materiau, quantite);
+    int index = 0;
+    // mettre la camion dans la file d'attente
+    for (Camion camion : controller.getCamionList()) {
+      index++;
+    }
+
+    Point newPoint = new Point(point.x - (75 * index), point.y);
+
+    controller.addCamion(newPoint, nomCLient, materiau, quantite);
     TextSimulation.append("Ajout d'un nouveau camion");
     TextSimulation.append(nomCLient);
     TextSimulation.append(materiau);

@@ -17,6 +17,7 @@ import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
@@ -87,14 +88,9 @@ public class CarriereDrawer {
     List<Camion> camions = controller.getCamionList();
     int numberOfCLient = camions.size();
     System.out.println(numberOfCLient);
-    int index = 0;
     for (Camion camion : camions) {
-      System.out.println(camion.getJeton().getRefClient());
-      System.out.println(camion.getJeton().getEtat());
-      System.out.println(camion.getJeton().getQuantite());
-      System.out.println(camion.getJeton().getCodeProduit());
       Point pointEntree = camion.getPoint();
-      int camionPointX = pointEntree.x - (100 * index);
+      int camionPointX = pointEntree.x;
       int camionPointY = pointEntree.y;
       if (camion.isSelected()) {
         g2d.setColor(new Color(255, 0, 0));
@@ -111,7 +107,6 @@ public class CarriereDrawer {
       g2d.setColor(couleurCamion);
       g2d.fillRoundRect(
           camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
-      index++;
     }
     g2d.scale(1 / zoom, 1 / zoom);
   }
@@ -128,11 +123,12 @@ public class CarriereDrawer {
 
     List<Equipement> EquipementList = controller.getEquipementList();
 
-    List<Equipement> listeTas = new LinkedList<Equipement>();
+    List<Tas> listeTas = new LinkedList<Tas>();
 
     for (Equipement equipement : EquipementList) {
       if (equipement.getName().equals("Tas")) {
-        listeTas.add(equipement);
+        Tas tas = (Tas) equipement;
+        listeTas.add(tas);
       }
     }
 
@@ -141,7 +137,17 @@ public class CarriereDrawer {
     List<Chargeur> listeChargeur = controller.getChargeurList();
 
     for (Camion camionCourant : listeDesCamion) {
-      System.out.println("hello");
+      // début simulation pour le camion 1
+      camionCourant.changeEtat("ENCOURS");
+
+      Jeton jetonCamionCourant = camionCourant.getJeton();
+
+      Tas tasSimulation =
+          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+
+      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+
+      courantChargeur.setJeton(jetonCamionCourant);
     }
   }
 
