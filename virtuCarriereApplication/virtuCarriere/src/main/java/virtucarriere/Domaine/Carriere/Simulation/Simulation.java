@@ -152,6 +152,19 @@ public class Simulation implements Serializable {
     }
   }
 
+  public void changementSelectionStatus(double x, double y) {
+    for (Camion item : camionList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+    for (Chargeur item : this.chargeurList) {
+      if (item.contains(x, y)) {
+        item.switchSelectionStatus();
+      }
+    }
+  }
+
   public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);

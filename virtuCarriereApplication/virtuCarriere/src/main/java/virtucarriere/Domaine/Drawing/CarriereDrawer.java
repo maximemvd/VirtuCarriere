@@ -95,11 +95,13 @@ public class CarriereDrawer {
       if (camion.isSelected()) {
         g2d.setColor(new Color(255, 0, 0));
         int offsetRadius = radius + 2;
-        g2d.fillOval(
-            (int) camionPointX - offsetRadius,
-            (int) camionPointY - offsetRadius,
+        g2d.fillRoundRect(
+            camionPointX - offsetRadius,
+            camionPointY - offsetRadius,
             offsetRadius * 2,
-            offsetRadius * 2);
+            offsetRadius * 2,
+            offsetRadius,
+            offsetRadius);
       }
       Color couleurCamion = Color.YELLOW;
       System.out.println(camionPointX);
