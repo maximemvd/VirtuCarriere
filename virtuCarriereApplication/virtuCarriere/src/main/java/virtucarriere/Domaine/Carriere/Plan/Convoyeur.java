@@ -21,7 +21,7 @@ public class Convoyeur extends AbstractLien<Equipement> {
 
     this.starting = starting;
     this.arrival = arrival;
-    this.color = Color.RED;
+    this.color = Color.YELLOW;
     this.name = "Convoyeur";
   }
 

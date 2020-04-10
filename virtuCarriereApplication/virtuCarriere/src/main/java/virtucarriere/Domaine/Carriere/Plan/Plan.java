@@ -122,8 +122,6 @@ public class Plan implements Serializable {
                   break;
               }
         }
-        //equipementForConvList.add((Equipement) equipement);
-        //equipement.setSelectionStatus(true);
       }
     }
     
