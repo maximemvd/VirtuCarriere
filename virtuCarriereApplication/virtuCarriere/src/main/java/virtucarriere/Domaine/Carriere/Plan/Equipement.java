@@ -36,6 +36,8 @@ public abstract class Equipement extends Element {
 
   public abstract String getMaterialCode();
 
+  public abstract void setMaterialCode(String newCode);
+
   public void setAngle(double p_angle) {
     angle.set(p_angle);
   }

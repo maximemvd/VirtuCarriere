@@ -14,6 +14,7 @@ public class Camion extends Vehicule {
   private Jeton jeton;
   private Point point;
   private String name;
+  private Facture factureCamion;
 
   public Camion(Jeton jeton, Point point) {
     super(point);
@@ -21,6 +22,14 @@ public class Camion extends Vehicule {
     this.name = "Camion";
     this.color = Color.MAGENTA;
     // createCamion(jeton, start, coordonnees);
+  }
+
+  public void setFacture(Facture p_facture) {
+    this.factureCamion = p_facture;
+  }
+
+  public Facture getFacture() {
+    return factureCamion;
   }
 
   public void changeEtat(String etat) {

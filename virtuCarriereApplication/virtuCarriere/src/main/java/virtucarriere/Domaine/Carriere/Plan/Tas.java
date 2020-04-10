@@ -60,15 +60,22 @@ public class Tas extends Equipement {
     return color;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getMaterialCode() {
     return materialCode;
   }
 
   public double getQuantite() {
     return quantite;
+  }
+
+  @Override
+  public void setMaterialCode(String newCode) {
+    this.materialCode = newCode;
   }
 }

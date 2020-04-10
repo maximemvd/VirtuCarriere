@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
@@ -124,6 +125,10 @@ public class CarriereDrawer {
 
     System.out.println("la simulation commence");
 
+    Color couleurCamion = Color.YELLOW;
+
+    Color chargeurColor = Color.orange;
+
     Entree entreeCarriere = controller.getEntree();
 
     controller.setEntreSimulation(entreeCarriere);
@@ -150,47 +155,108 @@ public class CarriereDrawer {
       if (cheminPlan != null && listeChargeur.size() > 0) {
 
         controller.setGraphCheminSimulation(cheminPlan);
+
         System.out.print(cheminPlan);
         // début simulation pour les camions
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         Jeton jetonCamionCourant = camionCourant.getJeton();
         System.out.print(jetonCamionCourant);
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         Tas tasSimulation =
             controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
         System.out.print(tasSimulation);
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
 
         System.out.print(courantChargeur);
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         courantChargeur.setJeton(jetonCamionCourant);
         System.out.print("hey");
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         camionCourant.changeEtat("ENCOURS");
 
-        Thread.sleep(1000);
-
         Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+
+        for (AbstractPointChemin chemin : cheminCamionAller) {
+          Point pointChemin = chemin.getPoint();
+          g2d.setColor(couleurCamion);
+          g2d.fillRoundRect(
+              pointChemin.x - radius,
+              pointChemin.y - radius,
+              radius * 2,
+              radius * 2,
+              radius,
+              radius);
+          Thread.sleep(1000);
+        }
 
         System.out.print(cheminCamionAller);
 
+        Thread.sleep(1000);
+
         Vector<AbstractPointChemin> cheminChargeur =
             controller.ChargeurCheminToPath(courantChargeur, tasSimulation);
+
+        for (AbstractPointChemin chemin : cheminChargeur) {
+          Point pointChemin = chemin.getPoint();
+
+          g2d.setColor(chargeurColor);
+          g2d.fillOval(
+              (int) pointChemin.getX() - radius,
+              (int) pointChemin.getY() - radius,
+              radius * 2,
+              radius * 2);
+          Thread.sleep(1000);
+        }
 
         System.out.print(cheminChargeur);
 
         Thread.sleep(1000);
 
         if (!controller.verificationJeton(camionCourant, courantChargeur)) {
-          return;
+          break;
         }
+
+        camionCourant.changeEtat("LIVRER");
+
+        Thread.sleep(1000);
+
+        Vector<AbstractPointChemin> cheminCamionRetour =
+            controller.cheminDuCamionRetour(tasSimulation);
+
+        for (AbstractPointChemin chemin : cheminCamionRetour) {
+          Point pointChemin = chemin.getPoint();
+          g2d.setColor(couleurCamion);
+          g2d.fillRoundRect(
+              pointChemin.x - radius,
+              pointChemin.y - radius,
+              radius * 2,
+              radius * 2,
+              radius,
+              radius);
+          Thread.sleep(1000);
+        }
+
+        Thread.sleep(1000);
+
+        camionCourant.changeEtat("FACTURE");
+
+        Facture factureCamion =
+            new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
+
+        camionCourant.setFacture(factureCamion);
+
+        Thread.sleep(1000);
+
+        double prixFacture = camionCourant.getFacture().getPrice();
+
+        camionCourant.changeEtat("PAYER");
       }
     }
   }
