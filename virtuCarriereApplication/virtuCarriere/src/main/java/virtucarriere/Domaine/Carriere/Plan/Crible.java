@@ -37,4 +37,7 @@ public class Crible extends Equipement {
   public String getMaterialCode() {
     return null;
   }
+
+  @Override
+  public void setMaterialCode(String newCode) {}
 }
