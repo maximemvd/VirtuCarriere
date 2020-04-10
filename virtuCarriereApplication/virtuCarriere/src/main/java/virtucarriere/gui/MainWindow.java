@@ -1392,6 +1392,13 @@ public class MainWindow extends JFrame {
         String nombreTotal = String.format("%d", numTotal);
         jTextArea1.append(nom + xCoord + yCoord);
         jTextField2.setText(nombreTotal);
+
+        if (equipement.getName().equals("Tas")) {
+          String x = String.format("%d", (int) equipement.getX());
+          String y = String.format("%d", (int) equipement.getY());
+          textFieldCoordonneeX.setText(x);
+          textFieldCoordonneeY.setText(y);
+        }
       }
     }
 
