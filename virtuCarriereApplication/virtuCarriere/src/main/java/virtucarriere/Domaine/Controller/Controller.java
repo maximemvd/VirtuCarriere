@@ -26,8 +26,6 @@ import virtucarriere.Domaine.Carriere.Simulation.Facture;
 
 public class Controller implements Serializable {
 
-  private ArrayList<ElementContainer> elementContainerList;
-
   private ElementContainer elementContainer;
 
   public enum EquipementModes {
@@ -97,10 +95,6 @@ public class Controller implements Serializable {
   public void addCamion(Point point, String client, String produit, double qte) {
     elementContainer.addCamion(point, client, produit, qte);
   };
-
-  public void generateFacture(Camion p_camion) {
-    elementContainer.generateFacture(p_camion);
-  }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
     return elementContainer.cheminDuCamionRetour(tas);
@@ -220,12 +214,6 @@ public class Controller implements Serializable {
 
   public void updateSelectedItemsPositions(double deltaX, double deltaY) {
     elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
-  }
-
-  private void deleteElementsAfterPointer(int undoRedoPointerState) {
-    if (elementContainerList.isEmpty()) {
-      return;
-    }
   }
 
   public void openFile() {

@@ -1133,11 +1133,11 @@ public class MainWindow extends JFrame {
     Point point = controller.getEntree().getPoint();
     String nomCLient = NomClient.getText();
     String materiau = (String) materiauxComboBox.getSelectedItem();
-    double quantite = (double) quantiteSpinner.getValue();
+    // double quantite = (double) quantiteSpinner.getValue();
 
-    String laQuantite = String.format("%d", quantite);
+    String laQuantite = String.format("%d", 50);
 
-    controller.addCamion(point, nomCLient, materiau, quantite);
+    controller.addCamion(point, nomCLient, materiau, 50);
     TextSimulation.append("Ajout d'un nouveau camion");
     TextSimulation.append(nomCLient);
     TextSimulation.append(materiau);
