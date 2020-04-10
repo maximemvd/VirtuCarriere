@@ -1378,24 +1378,31 @@ public class MainWindow extends JFrame {
 
   private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
     Point point = controller.getEntree().getPoint();
-    String nomCLient = NomClient.getText();
+    String nomClient = NomClient.getText();
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
-    System.out.println(quantite);
 
-    String laQuantite = String.format("%d", 50);
+    if (nomClient.isBlank()) {
+      JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
+    } else {
+      for (Camion camion : controller.getCamionList()) {
+        if (camion.isSelected()) {
+          controller.removeCamion(camion);
+        }
+      }
 
-    int index = 0;
-    // mettre la camion dans la file d'attente
-    for (Camion camion : controller.getCamionList()) {
-      index++;
+      int index = 0;
+      // mettre la camion dans la file d'attente
+      for (Camion camion : controller.getCamionList()) {
+        index++;
+      }
+
+      Point newPoint = new Point(point.x - (75 * index), point.y);
+
+      controller.addCamion(newPoint, nomClient, materiau, quantite);
+      drawingPanel.repaint();
+      simulationTextField();
     }
-
-    Point newPoint = new Point(point.x - (75 * index), point.y);
-
-    controller.addCamion(newPoint, nomCLient, materiau, quantite);
-    drawingPanel.repaint();
-    simulationTextField();
   }
 
   public void simulationTextField() {
