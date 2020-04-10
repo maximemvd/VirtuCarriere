@@ -62,6 +62,10 @@ public class Controller implements Serializable {
     this.elementContainer = elementContainer;
   }
 
+  public void addConvoyeur(Point mousePoint, EquipementModes modes) {
+    elementContainer.addElement(mousePoint, modes);
+  }
+  
   public void addCrible(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
@@ -161,6 +165,9 @@ public class Controller implements Serializable {
   public void addEquipement(EquipementModes mode, Point mousePoint) {
     if (null != mode)
       switch (mode) {
+        case CONVOYEUR:
+          addConvoyeur(mousePoint, mode);
+          break;
         case CONCASSEUR:
           addConcasseur(mousePoint, mode);
           break;

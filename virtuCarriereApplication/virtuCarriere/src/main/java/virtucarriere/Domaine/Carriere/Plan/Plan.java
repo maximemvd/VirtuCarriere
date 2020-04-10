@@ -12,6 +12,7 @@ public class Plan implements Serializable {
   GraphConvoyeur equipments;
   GraphChemins chemins;
   List<Noeud> noeudsForArcList;
+  List<Equipement> equipementForConvList;
 
   private Entree entree;
 
@@ -20,6 +21,7 @@ public class Plan implements Serializable {
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
+    equipementForConvList = new LinkedList<Equipement>();
   }
 
   public void addArc(Arc arc) {
@@ -56,8 +58,16 @@ public class Plan implements Serializable {
   }
 
   public void addConvoyeur(Point mousePoint) {
-    // Convoyeur convoyeur = new Convoyeur(mousePoint, 1, 4, );
-    // equipments.addLink(convoyeur);
+    for (Element equipement : getEquipements()) {
+      if (equipement.contains(mousePoint.getX(), mousePoint.getY())) {
+        equipementForConvList.add((Equipement) equipement);
+        equipement.setSelectionStatus(true);
+      }
+    }
+    if (equipementForConvList.size() == 2){
+        Convoyeur convoyeur = new Convoyeur(mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
+        equipments.addLink(convoyeur);
+    }
   }
 
   public void addEntree(Point mousePoint) {

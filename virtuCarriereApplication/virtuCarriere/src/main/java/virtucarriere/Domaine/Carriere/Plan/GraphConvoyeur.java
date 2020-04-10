@@ -1,6 +1,7 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> implements Serializable {
   private boolean hasDependencies() {
@@ -13,6 +14,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
       throw new RuntimeException("Le Point existe déja");
     }
     ends.add(end);
+    links.add(new ArrayList<Convoyeur>());
   }
 
   @Override
@@ -34,5 +36,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     if (linkExist(link)) {
       throw new RuntimeException("Cet arc existe déjà");
     }
+    int index = ends.indexOf(link.getStarting());
+    links.elementAt(index).add(link);
   }
 }

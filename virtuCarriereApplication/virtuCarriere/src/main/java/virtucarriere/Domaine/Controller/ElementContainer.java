@@ -84,6 +84,9 @@ public class ElementContainer implements Serializable {
   public void addElement(Point mousePoint, EquipementModes mode) {
     if (null != mode)
       switch (mode) {
+        case CONVOYEUR:
+          plan.addConvoyeur(mousePoint);
+          break;
         case CONCASSEUR:
           plan.addConcasseur(mousePoint);
           break;
@@ -192,7 +195,7 @@ public class ElementContainer implements Serializable {
   }
   
   public ArrayList<List<Convoyeur>> getConvoyeurList() {
-    return plan.getConvoyeur();
+    return plan.getConvoyeurs();
   }
 
   public void removeEquipement(Equipement equipement) {
