@@ -1,12 +1,13 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Plan {
+public class Plan implements Serializable {
 
   GraphConvoyeur equipments;
   GraphChemins chemins;

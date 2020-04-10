@@ -7,10 +7,11 @@ package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
-public abstract class Vehicule {
+public abstract class Vehicule implements Serializable {
 
   private Color color;
 
