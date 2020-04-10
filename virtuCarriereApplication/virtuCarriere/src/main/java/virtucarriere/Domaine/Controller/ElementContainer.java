@@ -210,6 +210,18 @@ public class ElementContainer implements Serializable {
     simulation.closeSimulation();
   }
 
+  public void setEntreSimulation(Entree p_entree) {
+    simulation.setEntreCarriere(p_entree);
+  }
+
+  public double getSimulationSpeed() {
+    return simulation.getSimulationSpeed();
+  }
+
+  public void setSimulationSpeed(double newSpeed) {
+    simulation.setSimulationSpeed(newSpeed);
+  }
+
   private void snapElementToGrid(Element element, double gridGap) {
     int horizontal = (int) (element.getX() / gridGap);
     int vertical = (int) (element.getY() / gridGap);

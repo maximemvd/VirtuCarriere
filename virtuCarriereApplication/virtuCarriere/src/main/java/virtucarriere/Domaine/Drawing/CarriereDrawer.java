@@ -115,7 +115,23 @@ public class CarriereDrawer {
   }
 
   public void startSimulation(Graphics2D g2d, double zoom) {
-    System.out.println("la simulation commence");
+
+    if (controller.getSimulationAnimation()) {
+
+      System.out.println("la simulation commence");
+
+      Entree entreeCarriere = controller.getEntree();
+
+      controller.setEntreSimulation(entreeCarriere);
+
+      List<AbstractPointChemin> listeDesNoeuds = controller.getNoeudList();
+
+      List<Equipement> getEquipementList = controller.getEquipementList();
+
+      List<Camion> listeDesCamion = controller.getCamionList();
+
+      List<Chargeur> listeChargeur = controller.getChargeurList();
+    }
   }
 
   public void drawEquipement(Graphics2D g, double zoom) {

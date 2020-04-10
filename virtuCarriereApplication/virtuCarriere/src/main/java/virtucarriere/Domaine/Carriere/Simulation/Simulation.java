@@ -34,10 +34,21 @@ public class Simulation {
 
   private boolean simulationAnimation;
 
+  private double simulationSpeed;
+
   public Simulation() {
+    simulationSpeed = 2;
     simulationAnimation = false;
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
+  }
+
+  public double getSimulationSpeed() {
+    return simulationSpeed;
+  }
+
+  public void setSimulationSpeed(double newSpeed) {
+    this.simulationSpeed = newSpeed;
   }
 
   public boolean getSimulationAnimation() {
@@ -112,12 +123,12 @@ public class Simulation {
   }
 
   public void switchSelectionStatus(double x, double y) {
-    for (Vehicule item : this.camionList) {
+    for (Camion item : camionList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
       }
     }
-    for (Vehicule item : this.chargeurList) {
+    for (Chargeur item : this.chargeurList) {
       if (item.contains(x, y)) {
         item.switchSelectionStatus();
       }
@@ -125,13 +136,13 @@ public class Simulation {
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
-    for (Vehicule item : getCamionList()) {
+    for (Camion item : getCamionList()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
       }
     }
 
-    for (Vehicule item : getChargeurList()) {
+    for (Chargeur item : getChargeurList()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
       }
@@ -147,7 +158,7 @@ public class Simulation {
     }
   }
 
-  public void removeChargeur(Vehicule p_chargeur) {
+  public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
     } catch (Exception error) {
@@ -168,8 +179,7 @@ public class Simulation {
   }
 
   public Jeton createToken(String client, String produit, double quantite) {
-    Jeton newJeton = new Jeton(client, produit, quantite);
-    return newJeton;
+    return new Jeton(client, produit, quantite);
   }
 
   public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
