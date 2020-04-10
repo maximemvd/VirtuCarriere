@@ -1,6 +1,8 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
-public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> {
+import java.io.Serializable;
+
+public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> implements Serializable {
   private boolean hasDependencies() {
     return false;
   }

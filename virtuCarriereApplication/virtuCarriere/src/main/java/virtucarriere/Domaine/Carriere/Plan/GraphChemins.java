@@ -1,9 +1,10 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> {
+public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implements Serializable {
 
   public double getCost(Arc arc) {
     return arc.getCost();

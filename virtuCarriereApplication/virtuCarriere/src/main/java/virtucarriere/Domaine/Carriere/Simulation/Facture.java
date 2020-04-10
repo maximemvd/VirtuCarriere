@@ -5,8 +5,10 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.io.Serializable;
+
 /** @author philippevincent */
-public class Facture {
+public class Facture implements Serializable {
 
   private final String codeMateriau;
 

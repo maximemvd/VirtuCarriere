@@ -1,6 +1,7 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,7 +15,7 @@ import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 
-public class Simulation {
+public class Simulation implements Serializable {
 
   private Entree entreeCarriere;
 

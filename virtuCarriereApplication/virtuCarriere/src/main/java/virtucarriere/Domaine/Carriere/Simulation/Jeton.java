@@ -5,7 +5,9 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
-public class Jeton {
+import java.io.Serializable;
+
+public class Jeton implements Serializable {
   private String codeProduit;
   private String etat;
   private double quantite;

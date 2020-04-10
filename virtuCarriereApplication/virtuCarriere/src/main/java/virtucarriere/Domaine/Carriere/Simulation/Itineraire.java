@@ -5,10 +5,11 @@
  */
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.io.Serializable;
 import java.util.List;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
-public class Itineraire {
+public class Itineraire implements Serializable {
   private List<Noeud> stops;
 
   Itineraire(List<Noeud> stops) {
