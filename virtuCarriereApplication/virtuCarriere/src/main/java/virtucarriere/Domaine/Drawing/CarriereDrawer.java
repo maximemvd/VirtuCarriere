@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -51,7 +53,11 @@ public class CarriereDrawer {
     drawCamion(g2d, zoom);
 
     if (controller.getSimulationAnimation()) {
-      startSimulation(g2d, zoom);
+      try {
+        startSimulation(g2d, zoom);
+      } catch (InterruptedException ex) {
+        Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
   }
 
@@ -113,7 +119,7 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  public void startSimulation(Graphics2D g2d, double zoom) {
+  public void startSimulation(Graphics2D g2d, double zoom) throws InterruptedException {
 
     System.out.println("la simulation commence");
 
@@ -123,7 +129,7 @@ public class CarriereDrawer {
 
     List<Equipement> EquipementList = controller.getEquipementList();
 
-    List<Tas> listeTas = new LinkedList<Tas>();
+    List<Tas> listeTas = new LinkedList<>();
 
     for (Equipement equipement : EquipementList) {
       if (equipement.getName().equals("Tas")) {
@@ -146,7 +152,9 @@ public class CarriereDrawer {
 
         // début simulation pour les camions
         System.out.print("avant");
+        Thread.sleep(2000);
         System.out.print(cheminPlan);
+        Thread.sleep(2000);
         System.out.print("apres");
 
         camionCourant.changeEtat("ENCOURS");
