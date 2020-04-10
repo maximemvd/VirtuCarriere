@@ -43,6 +43,11 @@ public class Simulation {
     chargeurList = new LinkedList<Chargeur>();
   }
 
+  public void EditCamion(Camion p_camion, String nom, String produit, double qte) {
+    Jeton jeton = new Jeton(nom, produit, qte);
+    p_camion.editerParams(jeton);
+  }
+
   public double getSimulationSpeed() {
     return simulationSpeed;
   }

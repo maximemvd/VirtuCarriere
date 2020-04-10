@@ -49,8 +49,7 @@ public class Camion extends Vehicule {
     return name;
   }
 
-  public void editerParams(Jeton jeton, Point point) {
+  public void editerParams(Jeton jeton) {
     this.jeton = jeton;
-    this.point = point;
   }
 }

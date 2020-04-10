@@ -130,6 +130,10 @@ public class ElementContainer implements Serializable {
     return simulation.getCamionList();
   }
 
+  public void EditCamion(Camion p_camion, String nom, String produit, double qte) {
+    simulation.EditCamion(p_camion, nom, produit, qte);
+  }
+
   public void generateFacture(Camion p_camion) {
     simulation.genererFacture(p_camion);
   }

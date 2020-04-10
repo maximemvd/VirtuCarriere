@@ -76,6 +76,10 @@ public class Controller implements Serializable {
     return elementContainer.trouverTasCorrespondant(produit);
   }
 
+  public void EditCamion(Camion p_camion, String nom, String produit, double qte) {
+    elementContainer.EditCamion(p_camion, nom, produit, qte);
+  }
+
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
     return elementContainer.cheminDuCamion(tas);
   }

@@ -15,7 +15,7 @@ public class Jeton {
     this.referenceClient = referenceClient;
     this.codeProduit = codeProduit;
     this.quantite = quantite;
-    this.etat = "ENCOURS";
+    this.etat = "ATTENTE";
   }
 
   public String getRefClient() {
@@ -35,7 +35,10 @@ public class Jeton {
   }
 
   public void setEtat(String p_etat) {
-    if (!"LIVRER".equals(p_etat) && !"ENCOURS".equals(p_etat) && !"PAYER".equals(p_etat)) {
+    if (!"ATTENTE".equals(p_etat)
+        && !"LIVRER".equals(p_etat)
+        && !"ENCOURS".equals(p_etat)
+        && !"PAYER".equals(p_etat)) {
       return;
     }
 
