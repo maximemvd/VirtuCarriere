@@ -17,12 +17,12 @@ public abstract class AbstractGraph<End extends Element, Link extends AbstractLi
   public void removeLink(Link link) {
     if (linkExist(link)) {
       int index = ends.indexOf(link.getStarting());
-        Optional<Link> result =
-            (Optional<Link>)
-                links.elementAt(index).stream()
-                    .filter(endAbstractLien -> endAbstractLien.getArrival().equals(link.getArrival()))
-                    .findFirst();
-        links.elementAt(index).remove(result.get());
+      Optional<Link> result =
+          (Optional<Link>)
+              links.elementAt(index).stream()
+                  .filter(endAbstractLien -> endAbstractLien.getArrival().equals(link.getArrival()))
+                  .findFirst();
+      links.elementAt(index).remove(result.get());
     } else {
       throw new RuntimeException("Cet arc n'existe pas");
     }
