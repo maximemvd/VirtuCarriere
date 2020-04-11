@@ -61,4 +61,9 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     int index = ends.indexOf(link.getStarting());
     links.elementAt(index).add(link);
   }
+
+  public boolean validateDependencies() {
+    // TODO
+    return true;
+  }
 }
