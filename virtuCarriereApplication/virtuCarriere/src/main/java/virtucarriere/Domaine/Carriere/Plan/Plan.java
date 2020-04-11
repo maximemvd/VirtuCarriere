@@ -1,5 +1,6 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
+
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,23 +46,37 @@ public class Plan implements Serializable {
 
   public void addBroyeur(Point mousePoint) {
     Broyeur broyeur = new Broyeur(mousePoint, 1, 1, 0);
-    addEquipment(broyeur);
+    if (isElementPresent(broyeur)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      addEquipment(broyeur);
+    }
   }
 
   public void addConcasseur(Point mousePoint) {
     Concasseur concasseur = new Concasseur(mousePoint, 1, 1, 0);
-    addEquipment(concasseur);
+    if (isElementPresent(concasseur)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      addEquipment(concasseur);
+    }
   }
 
   public void addCrible(Point mousePoint) {
     Crible crible = new Crible(mousePoint, 1, 1, 0);
-    addEquipment(crible);
+    if (isElementPresent(crible)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      addEquipment(crible);
+    }
   }
 
   public void addTas(Point mousePoint, String code) {
     Tas tas = new Tas(mousePoint, 1, 1, code, 1);
     Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
-
     chemins.addEnd(noeud);
     addEquipment(tas);
     PointChargement pointChargement = tas.getPointChargement();
@@ -155,7 +170,12 @@ public class Plan implements Serializable {
 
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 3, 3);
-    chemins.addEnd(noeud);
+    if (isElementPresent(noeud)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      chemins.addEnd(noeud);
+    }
   }
 
   public Element getElement(Element element) {
