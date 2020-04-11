@@ -61,7 +61,8 @@ public class Plan implements Serializable {
   public void addTas(Point mousePoint, String code) {
     Tas tas = new Tas(mousePoint, 1, 1, code, 1);
     addEquipment(tas);
-    // TODO add noeudChargement;
+    PointChargement pointChargement = tas.getPointChargement();
+    chemins.addEnd(pointChargement);
   }
 
   public void clearEquipementConv() {
@@ -277,7 +278,6 @@ public class Plan implements Serializable {
   public void noeudSelection(double x, double y) {
     for (AbstractPointChemin noeud : getNoeuds()) {
       if (noeud.contains(x, y)) {
-        noeudsForArcList.add((Noeud) noeud);
         pointsForArcList.add(noeud);
         noeud.setSelectionStatus(true);
       }
