@@ -7,12 +7,14 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Concasseur extends Equipement {
 
   private String name;
-  private static List<? extends Equipement> dependency = new ArrayList<Broyeur>();
+  private static List<Class<? extends Equipement>> dependency =
+      new ArrayList<Class<? extends Equipement>>(Collections.singleton(Broyeur.class));
 
   public Concasseur(Point point, int p_width, int p_length, double p_angle) {
 
