@@ -34,7 +34,7 @@ public class Tas extends Equipement {
     this.name = "Tas";
     this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
-    Point newPoint = new Point(point.x - 45, point.y + 15);
+    Point newPoint = new Point(point.x - 55, point.y + 6);
     this.pointChargement = new PointChargement(newPoint, 3, 3);
   }
 
