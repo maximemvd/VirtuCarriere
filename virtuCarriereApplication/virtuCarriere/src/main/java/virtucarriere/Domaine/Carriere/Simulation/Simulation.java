@@ -207,7 +207,7 @@ public class Simulation implements Serializable {
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
 
-    Noeud noeudDuTas = new Noeud(tas.getPointChargement().getPoint(), 10, 10);
+    Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
 
     Vector<AbstractPointChemin> cheminCamion = getShortestPathToGo(noeudDuTas);
 
@@ -216,7 +216,7 @@ public class Simulation implements Serializable {
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
 
-    AbstractPointChemin noeudDuTas = new Noeud(tas.getPointChargement().getPoint(), 10, 10);
+    AbstractPointChemin noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
 
     Vector<AbstractPointChemin> cheminCamion = getShortestPathToComeBack(noeudDuTas);
 
@@ -225,21 +225,21 @@ public class Simulation implements Serializable {
 
   public Chargeur choisirChargeurIdeal(Tas tas) {
 
-    Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
+    //  Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
 
     Chargeur chargeurSimulation = chargeurList.get(0);
+    /*
+        for (Chargeur chargeurCourant : chargeurList) {
 
-    for (Chargeur chargeurCourant : chargeurList) {
+          Vector<AbstractPointChemin> cheminChargeurCourant = ChargeurCheminToPath(chargeurCourant, tas);
 
-      Vector<AbstractPointChemin> cheminChargeurCourant =
-          ChargeurCheminToPath(chargeurCourant, tas);
-
-      if (cheminMinimal.size() > cheminChargeurCourant.size()) {
-        chargeurSimulation = chargeurCourant;
-        cheminMinimal = cheminChargeurCourant;
-      }
-    }
-    ;
+          if (cheminMinimal.size() > cheminChargeurCourant.size()) {
+            chargeurSimulation = chargeurCourant;
+            cheminMinimal = cheminChargeurCourant;
+          }
+        }
+        ;
+    */
     return chargeurSimulation;
   }
 
