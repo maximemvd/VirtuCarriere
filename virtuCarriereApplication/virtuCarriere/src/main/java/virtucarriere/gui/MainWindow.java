@@ -1841,7 +1841,7 @@ public class MainWindow extends JFrame {
       if (this.currentApplicationMode != ApplicationMode.ADD_PLAN) {
         setAppMode(ApplicationMode.ADD_PLAN);
       }
-    } else if (jTabbedPane.getSelectedIndex() == 1) {
+    } else {
       if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
         setAppMode(ApplicationMode.ADD_SIMULATION);
       }
@@ -2134,16 +2134,7 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
 
-      this.controller.noeudSelection(point.getX(), point.getY());
-      if (this.controller.getPointsForArcList().size() == 2) {
-        AbstractPointChemin starting = this.controller.getPointsForArcList().get(0);
-        AbstractPointChemin arrival = this.controller.getPointsForArcList().get(1);
-        this.controller.addArc(mousePoint, starting, arrival);
-        for (AbstractPointChemin noeud : this.controller.getPointsForArcList()) {
-          noeud.switchSelectionStatus();
-        }
-        this.controller.getPointsForArcList().clear();
-      }
+      this.controller.addArc(point, point.getX(), point.getY());
 
       drawingPanel.repaint();
     } else if (this.currentApplicationMode == ApplicationMode.SELECT_SIMUL

@@ -27,8 +27,26 @@ public class Plan implements Serializable {
     pointsForArcList = new LinkedList<>();
   }
 
-  public void addArc(Arc arc) {
-    chemins.addLink(arc);
+  public void addArc(Point mousePoint, double x, double y) {
+    for (Element noeud : getNoeuds()) {
+      if (noeud.contains(x, y)) {
+        noeudsForArcList.add((Noeud) noeud);
+        noeud.setSelectionStatus(true);
+      }
+    }
+    if (noeudsForArcList.size() == 2) {
+      try {
+        Arc arc = new Arc(mousePoint, 5, 5, noeudsForArcList.get(0), noeudsForArcList.get(1));
+        chemins.addLink(arc);
+      } catch (RuntimeException e) {
+        JOptionPane.showMessageDialog(
+            null, "Un arc est déjà placé à cet endroit.", "Attention", JOptionPane.WARNING_MESSAGE);
+      }
+      for (Noeud noeud : noeudsForArcList) {
+        noeud.switchSelectionStatus();
+      }
+      noeudsForArcList.clear();
+    }
   }
 
   public void removeArc(Arc arc) {
@@ -154,7 +172,26 @@ public class Plan implements Serializable {
       Convoyeur convoyeur =
           new Convoyeur(
               mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
-      equipments.addLink(convoyeur);
+      try {
+        equipments.getLink(convoyeur.getArrival(), convoyeur.getStarting());
+        JOptionPane.showMessageDialog(
+            null,
+            "Un convoyeur est déjà à cet emplacement.",
+            "Attention",
+            JOptionPane.WARNING_MESSAGE);
+      } catch (RuntimeException e) {
+        try {
+          equipments.getLink(convoyeur.getStarting(), convoyeur.getArrival());
+          JOptionPane.showMessageDialog(
+              null,
+              "Un convoyeur est déjà à cet emplacement.",
+              "Attention",
+              JOptionPane.WARNING_MESSAGE);
+        } catch (RuntimeException er) {
+          equipments.addLink(convoyeur);
+        }
+      }
+
       for (Equipement equipement : equipementForConvList) {
         equipement.switchSelectionStatus();
       }
@@ -293,15 +330,6 @@ public class Plan implements Serializable {
 
   public void removePlan(Element element) {
     // TODO implement remove element;
-  }
-
-  public void noeudSelection(double x, double y) {
-    for (AbstractPointChemin noeud : getNoeuds()) {
-      if (noeud.contains(x, y)) {
-        pointsForArcList.add(noeud);
-        noeud.setSelectionStatus(true);
-      }
-    }
   }
 
   public void removeElement(Element element) {}

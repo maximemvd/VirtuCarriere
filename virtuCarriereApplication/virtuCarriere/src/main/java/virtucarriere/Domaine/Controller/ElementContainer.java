@@ -52,11 +52,6 @@ public class ElementContainer implements Serializable {
     return simulation.trouverTas(tas, produit);
   }
 
-  public void noeudSelection(double x, double y) {
-
-    plan.noeudSelection(x, y);
-  }
-
   public void setFile(File p_file) {
     this.file = p_file;
   }
@@ -77,8 +72,8 @@ public class ElementContainer implements Serializable {
     plan.isEquipementPresent(equipement);
   }
 
-  public void addArc(Arc arc) {
-    plan.addArc(arc);
+  public void addArc(Point mousePoint, double x, double y) {
+    plan.addArc(mousePoint, x, y);
   }
 
   public void clearEquipementConv() {
