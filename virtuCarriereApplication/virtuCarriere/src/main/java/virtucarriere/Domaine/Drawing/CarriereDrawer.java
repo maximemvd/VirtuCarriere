@@ -209,13 +209,14 @@ public class CarriereDrawer {
         Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
         for (AbstractPointChemin chemin : cheminCamionAller) {
+          System.out.print("allo max");
           Point pointCamionAller = chemin.getPoint();
           camionCourant.setPoint(pointCamionAller);
           Thread.sleep(1000);
         }
 
         System.out.print(cheminCamionAller);
-
+        System.out.print("allo max");
         Thread.sleep(1000);
 
         Vector<AbstractPointChemin> cheminChargeur =
@@ -223,6 +224,10 @@ public class CarriereDrawer {
 
         for (AbstractPointChemin chemin : cheminChargeur) {
           Point pointChemin = chemin.getPoint();
+          Color equipementColor = Color.CYAN;
+          g2d.setColor(equipementColor);
+          g2d.fillOval(
+              (int) pointChemin.x + 100, (int) pointChemin.y + 100, radius * 2, radius * 2);
           courantChargeur.setPoint(pointChemin);
           Thread.sleep(1000);
         }

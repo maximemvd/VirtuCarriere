@@ -306,11 +306,13 @@ public class Simulation implements Serializable {
       System.out.print("testing");
       List<AbstractPointChemin> adj = graphChemin.getAdjacentsOut(treating.getEnd());
       DataDijkstra finalTreating = treating;
+      System.out.print("allo algo");
       data.stream()
           .filter(dataDijkstra -> adj.contains(dataDijkstra.getEnd()))
           .findFirst()
           .ifPresent(
               dataDijkstra -> {
+                System.out.print("allo algo wow pour vrai");
                 linkCost[0] =
                     graphChemin.getLink(finalTreating.getEnd(), dataDijkstra.getEnd()).getCost();
                 oldCost[0] = dataDijkstra.getTotalCost();
@@ -325,7 +327,7 @@ public class Simulation implements Serializable {
 
     DataDijkstra endOfPath =
         result.stream().filter(dataDijkstra -> dataDijkstra.getEnd() == end).findFirst().get();
-
+    System.out.print("allo algo wow");
     if (endOfPath.getTotalCost() == Double.MAX_VALUE)
       throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");
 
