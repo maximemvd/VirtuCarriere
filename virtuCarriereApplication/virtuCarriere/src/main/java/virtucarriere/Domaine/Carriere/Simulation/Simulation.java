@@ -280,6 +280,8 @@ public class Simulation implements Serializable {
     Vector<DataDijkstra> result = new Vector<DataDijkstra>();
     List<DataDijkstra> data = new java.util.ArrayList<>(Collections.emptyList());
 
+    System.out.print(graphChemin);
+
     graphChemin
         .getEnds()
         .forEach(
