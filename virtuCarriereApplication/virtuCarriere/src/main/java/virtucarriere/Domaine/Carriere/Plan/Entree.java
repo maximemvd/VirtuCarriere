@@ -31,7 +31,4 @@ public class Entree extends AbstractPointChemin {
   public String getName() {
     return name;
   }
-
-  @Override
-  public void setPointChargement(int p_x, int p_y) {}
 }

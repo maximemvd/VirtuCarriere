@@ -82,7 +82,4 @@ public class Convoyeur extends AbstractLien<Equipement> {
   public String getName() {
     return name;
   }
-
-  @Override
-  public void setPointChargement(int p_x, int p_y) {}
 }

@@ -92,9 +92,6 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
   }
 
   @Override
-  public void setPointChargement(int p_x, int p_y) {}
-
-  @Override
   public int hashCode() {
     return Objects.hash(starting, arrival);
   }

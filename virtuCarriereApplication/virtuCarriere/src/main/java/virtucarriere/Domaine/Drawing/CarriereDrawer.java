@@ -77,12 +77,12 @@ public class CarriereDrawer {
         listePointChargement.add(tas.getPointChargement());
       }
     }
-
+    /*
     for (PointChargement point : listePointChargement) {
       g2d.setColor(point.getColor());
       Point pointCharge = point.getPoint();
       g2d.fillOval((int) pointCharge.x - radius, (int) pointCharge.y - radius, radius, radius);
-    }
+    }*/
     g2d.scale(1 / zoom, 1 / zoom);
   }
 

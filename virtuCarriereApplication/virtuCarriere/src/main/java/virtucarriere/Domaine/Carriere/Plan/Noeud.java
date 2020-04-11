@@ -23,9 +23,6 @@ public class Noeud extends AbstractPointChemin {
     return color;
   }
 
-  @Override
-  public void setPointChargement(int p_x, int p_y) {}
-
   public String getName() {
     return name;
   }
