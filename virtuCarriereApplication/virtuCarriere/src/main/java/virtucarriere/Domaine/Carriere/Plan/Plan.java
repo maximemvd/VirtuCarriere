@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Plan implements Serializable {
@@ -29,28 +28,25 @@ public class Plan implements Serializable {
   }
 
   public void addArc(Point mousePoint, double x, double y) {
-      for (Element noeud : getNoeuds()) {
-        if (noeud.contains(x, y)) {
-          noeudsForArcList.add((Noeud) noeud);
-          noeud.setSelectionStatus(true);
-        }
+    for (Element noeud : getNoeuds()) {
+      if (noeud.contains(x, y)) {
+        noeudsForArcList.add((Noeud) noeud);
+        noeud.setSelectionStatus(true);
       }
-      if (noeudsForArcList.size() == 2){
-        try {
-            Arc arc = new Arc(mousePoint, 5, 5, noeudsForArcList.get(0), noeudsForArcList.get(1));
-            chemins.addLink(arc);
-        } catch(RuntimeException e){
-            JOptionPane.showMessageDialog(null, 
-                              "Un arc est déjà placé à cet endroit.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-        }
-        for (Noeud noeud : noeudsForArcList) {
-          noeud.switchSelectionStatus();
-        }
-        noeudsForArcList.clear();
-        
+    }
+    if (noeudsForArcList.size() == 2) {
+      try {
+        Arc arc = new Arc(mousePoint, 5, 5, noeudsForArcList.get(0), noeudsForArcList.get(1));
+        chemins.addLink(arc);
+      } catch (RuntimeException e) {
+        JOptionPane.showMessageDialog(
+            null, "Un arc est déjà placé à cet endroit.", "Attention", JOptionPane.WARNING_MESSAGE);
       }
+      for (Noeud noeud : noeudsForArcList) {
+        noeud.switchSelectionStatus();
+      }
+      noeudsForArcList.clear();
+    }
   }
 
   public void removeArc(Arc arc) {
@@ -184,36 +180,37 @@ public class Plan implements Serializable {
         }
       }
     }
-    
-    if (equipementForConvList.size() == 2){
-        Convoyeur convoyeur = new Convoyeur(mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
+
+    if (equipementForConvList.size() == 2) {
+      Convoyeur convoyeur =
+          new Convoyeur(
+              mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
+      try {
+        equipments.getLink(convoyeur.getArrival(), convoyeur.getStarting());
+        JOptionPane.showMessageDialog(
+            null,
+            "Un convoyeur est déjà à cet emplacement.",
+            "Attention",
+            JOptionPane.WARNING_MESSAGE);
+      } catch (RuntimeException e) {
         try {
-          equipments.getLink(convoyeur.getArrival(), convoyeur.getStarting());
-          JOptionPane.showMessageDialog(null,
-                            "Un convoyeur est déjà à cet emplacement.",
-                            "Attention",
-                            JOptionPane.WARNING_MESSAGE);
+          equipments.getLink(convoyeur.getStarting(), convoyeur.getArrival());
+          JOptionPane.showMessageDialog(
+              null,
+              "Un convoyeur est déjà à cet emplacement.",
+              "Attention",
+              JOptionPane.WARNING_MESSAGE);
+        } catch (RuntimeException er) {
+          equipments.addLink(convoyeur);
         }
-        catch (RuntimeException e) {
-            try {
-                equipments.getLink(convoyeur.getStarting(), convoyeur.getArrival());
-                JOptionPane.showMessageDialog(null,
-                            "Un convoyeur est déjà à cet emplacement.",
-                            "Attention",
-                            JOptionPane.WARNING_MESSAGE);
-                }
-            catch (RuntimeException er) {
-                equipments.addLink(convoyeur);
-            }
-        }
-        
-        for (Equipement equipement : equipementForConvList) {
-          equipement.switchSelectionStatus();
-        }
-        equipementForConvList.clear();
-        
       }
+
+      for (Equipement equipement : equipementForConvList) {
+        equipement.switchSelectionStatus();
+      }
+      equipementForConvList.clear();
     }
+  }
 
   public void addEntree(Point mousePoint) {
     entree = new Entree(mousePoint, 100, 100, 0);

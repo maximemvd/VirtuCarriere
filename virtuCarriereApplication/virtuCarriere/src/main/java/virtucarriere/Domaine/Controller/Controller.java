@@ -146,7 +146,7 @@ public class Controller implements Serializable {
     return elementContainer.getConvoyeurList();
   }
 
-  public void clearEquipementConv(){
+  public void clearEquipementConv() {
     elementContainer.clearEquipementConv();
   }
 
