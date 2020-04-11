@@ -9,13 +9,15 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Crible extends Equipement {
 
   private Color color;
   private String name;
-  private static List<? extends Equipement> dependency = new ArrayList<Tas>();
+  private static List<Class<? extends Equipement>> dependency =
+      new ArrayList<Class<? extends Equipement>>(Collections.singleton(Tas.class));
 
   public Crible(Point point, int p_width, int p_length, double p_angle) {
 
@@ -35,6 +37,11 @@ public class Crible extends Equipement {
 
   @Override
   public String getMaterialCode() {
+    return null;
+  }
+
+  @Override
+  public PointChargement getPointChargement() {
     return null;
   }
 

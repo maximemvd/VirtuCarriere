@@ -9,38 +9,24 @@ import java.awt.Color;
 import java.awt.Point;
 
 /** @author philippevincent */
-public class PointChargement {
-
-  private Point point;
-
-  private int width;
-
-  private int length;
+public class PointChargement extends AbstractPointChemin {
 
   private Color color;
 
   private Noeud noeud;
+  private String name;
 
-  public PointChargement(Point p_point) {
-    this.point = p_point;
-    this.width = 30;
-    this.length = 30;
+  public PointChargement(Point p_point, int p_width, int p_length) {
+    super(p_point, p_width, p_length);
     this.color = Color.PINK;
+    this.name = "Point de chargement";
   }
 
   public Color getColor() {
     return color;
   }
 
-  public Point getPoint() {
-    return point;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public int getLenght() {
-    return length;
+  public String getName() {
+    return name;
   }
 }

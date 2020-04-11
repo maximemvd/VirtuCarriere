@@ -15,6 +15,7 @@ public class Plan implements Serializable {
   GraphChemins chemins;
   List<Noeud> noeudsForArcList;
   List<Equipement> equipementForConvList;
+  List<AbstractPointChemin> pointsForArcList;
 
   private Entree entree;
 
@@ -24,6 +25,7 @@ public class Plan implements Serializable {
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
     equipementForConvList = new LinkedList<Equipement>();
+    pointsForArcList = new LinkedList<>();
   }
 
   public void addArc(Point mousePoint, double x, double y) {
@@ -54,7 +56,7 @@ public class Plan implements Serializable {
   public void removeArc(Arc arc) {
     chemins.removeLink(arc);
   }
-  
+
   public void removeConvoyeur(Convoyeur convoyeur) {
     equipments.removeLink(convoyeur);
   }
@@ -65,87 +67,107 @@ public class Plan implements Serializable {
 
   public void addBroyeur(Point mousePoint) {
     Broyeur broyeur = new Broyeur(mousePoint, 1, 1, 0);
-    addEquipment(broyeur);
+    if (isElementPresent(broyeur)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      addEquipment(broyeur);
+    }
   }
 
   public void addConcasseur(Point mousePoint) {
     Concasseur concasseur = new Concasseur(mousePoint, 1, 1, 0);
-    addEquipment(concasseur);
+    if (isElementPresent(concasseur)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      addEquipment(concasseur);
+    }
   }
 
   public void addCrible(Point mousePoint) {
     Crible crible = new Crible(mousePoint, 1, 1, 0);
-    addEquipment(crible);
+    if (isElementPresent(crible)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      addEquipment(crible);
+    }
   }
 
   public void addTas(Point mousePoint, String code) {
     Tas tas = new Tas(mousePoint, 1, 1, code, 1);
+    Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
+    chemins.addEnd(noeud);
     addEquipment(tas);
-    // TODO add noeudChargement;
+    PointChargement pointChargement = tas.getPointChargement();
+    chemins.addEnd(pointChargement);
+
+    Arc arc = new Arc(mousePoint, 3, 3, pointChargement, noeud);
+    chemins.addLink(arc);
   }
-  
-  public void clearEquipementConv(){
-      this.equipementForConvList.clear();
+
+  public void clearEquipementConv() {
+    this.equipementForConvList.clear();
   }
 
   public void addConvoyeur(Point mousePoint) {
     for (Element equipement : getEquipements()) {
       if (equipement.contains(mousePoint.getX(), mousePoint.getY())) {
-          
-        //Si la liste est vide, on ajoute simplement element
-        if (equipementForConvList.isEmpty()){
+
+        // Si la liste est vide, on ajoute simplement element
+        if (equipementForConvList.isEmpty()) {
           equipementForConvList.add((Equipement) equipement);
           equipement.setSelectionStatus(true);
         }
-        
-        //Sil y a deja un element, on verifie si on peut ajouter un convoyeur a celui ci
-        else if (equipementForConvList.size() == 1){
-            
-            String actualEquipement = equipementForConvList.get(0).getName();
-            
-            switch (actualEquipement) {
-                
-                case "Crible" :
-                  if (((Equipement) equipement).getName().equals("Broyeur")){
-                      equipementForConvList.add((Equipement) equipement);
-                      equipement.setSelectionStatus(true);
-                  }
-                  else {
-                      JOptionPane.showMessageDialog(null, 
-                              "Une crible doit être reliée à un broyeur.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-                  }
-                  break;
-                  
-                case "Broyeur" :
-                  if ((((Equipement) equipement).getName().equals("Crible"))
-                        || (((Equipement) equipement).getName().equals("Concasseur"))){
-                      equipementForConvList.add((Equipement) equipement);
-                      equipement.setSelectionStatus(true);
-                  }
-                  else {
-                      JOptionPane.showMessageDialog(null,
-                              "Un broyeur doit être relié à une crible ou un concasseur.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-                  }
-                  break;
-                  
-                case "Concasseur" :
-                  if (((Equipement) equipement).getName().equals("Broyeur")){
-                      equipementForConvList.add((Equipement) equipement);
-                      equipement.setSelectionStatus(true);
-                  }
-                  else {
-                      JOptionPane.showMessageDialog(null,
-                              "Un concasseur doit être relié à un broyeur.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-                  }
-                default:
-                  break;
+
+        // Sil y a deja un element, on verifie si on peut ajouter un convoyeur a celui ci
+        else if (equipementForConvList.size() == 1) {
+
+          String actualEquipement = equipementForConvList.get(0).getName();
+
+          switch (actualEquipement) {
+            case "Crible":
+              if (((Equipement) equipement).getName().equals("Broyeur")) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Un crible doit être reliée à un broyeur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
               }
+              break;
+
+            case "Broyeur":
+              if ((((Equipement) equipement).getName().equals("Crible"))
+                  || (((Equipement) equipement).getName().equals("Concasseur"))) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Un broyeur doit être relié à un crible ou un concasseur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
+              }
+              break;
+
+            case "Concasseur":
+              if (((Equipement) equipement).getName().equals("Broyeur")) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Un concasseur doit être relié à un broyeur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
+              }
+            default:
+              break;
+          }
         }
       }
     }
@@ -177,22 +199,22 @@ public class Plan implements Serializable {
         }
         equipementForConvList.clear();
         
+      }
     }
-  }
 
   public void addEntree(Point mousePoint) {
     entree = new Entree(mousePoint, 100, 100, 0);
-    Noeud noeud = new Noeud(mousePoint, 3, 3);
-    chemins.addEnd(noeud);
-  }
-
-  public boolean validateElementPresent(Point point) {
-    return false;
+    chemins.addEnd(entree);
   }
 
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 3, 3);
-    chemins.addEnd(noeud);
+    if (isElementPresent(noeud)) {
+      JOptionPane.showMessageDialog(
+          null, "Attention, un élément est déjà présent à cette position");
+    } else {
+      chemins.addEnd(noeud);
+    }
   }
 
   public Element getElement(Element element) {
@@ -217,9 +239,13 @@ public class Plan implements Serializable {
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
 
-    for (Element item : getEquipements()) {
+    for (Equipement item : getEquipements()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
+        if (item.getName().equals("Tas")) {
+          PointChargement pointChargement = item.getPointChargement();
+          pointChargement.translate(deltaX, deltaY);
+        }
       }
     }
     for (Element item : getNoeuds()) {
@@ -274,8 +300,8 @@ public class Plan implements Serializable {
 
     for (List<Arc> listOfArc : getArcs()) {
       for (Arc item : listOfArc) {
-        Noeud starting = item.getStarting();
-        Noeud arrival = item.getArrival();
+        AbstractPointChemin starting = item.getStarting();
+        AbstractPointChemin arrival = item.getArrival();
 
         double xPosStarting = starting.getX();
         double yPosStarting = starting.getY();
@@ -287,7 +313,7 @@ public class Plan implements Serializable {
         }
       }
     }
-    
+
     for (List<Convoyeur> listOfConvoyeur : getConvoyeurs()) {
       for (Convoyeur item : listOfConvoyeur) {
         Equipement starting = item.getStarting();
@@ -335,6 +361,10 @@ public class Plan implements Serializable {
     return this.noeudsForArcList;
   }
 
+  public List<AbstractPointChemin> getPointsForArcList() {
+    return this.pointsForArcList;
+  }
+
   public Entree getEntree() {
     return entree;
   }
@@ -376,5 +406,15 @@ public class Plan implements Serializable {
 
   public GraphChemins GetGraphChemins() {
     return chemins;
+  }
+
+  public boolean validateDependencies() {
+    return equipments.validateDependencies();
+  }
+
+  public boolean isElementPresent(Element element) {
+    List<Element> allElements = getAllElements();
+    return allElements.stream()
+        .anyMatch(element1 -> element.contains(element1.getX(), element1.getY()));
   }
 }

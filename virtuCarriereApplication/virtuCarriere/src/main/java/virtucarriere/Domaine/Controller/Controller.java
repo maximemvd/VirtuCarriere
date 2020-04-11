@@ -65,7 +65,7 @@ public class Controller implements Serializable {
   public void addConvoyeur(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
-  
+
   public void addCrible(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
@@ -145,9 +145,9 @@ public class Controller implements Serializable {
   public ArrayList<List<Convoyeur>> getConvoyeurList() {
     return elementContainer.getConvoyeurList();
   }
-  
+
   public void clearEquipementConv(){
-      elementContainer.clearEquipementConv();
+    elementContainer.clearEquipementConv();
   }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
@@ -348,6 +348,10 @@ public class Controller implements Serializable {
 
   public GraphChemins getGraphChemin() {
     return elementContainer.getGraphChemin();
+  }
+
+  public boolean validateDependencies() {
+    return elementContainer.validateDependencies();
   }
 
   public void setGraphCheminSimulation(GraphChemins p_chemin) {

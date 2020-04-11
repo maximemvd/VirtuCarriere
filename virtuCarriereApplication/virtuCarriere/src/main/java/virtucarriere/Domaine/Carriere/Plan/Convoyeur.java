@@ -16,7 +16,8 @@ public class Convoyeur extends AbstractLien<Equipement> {
   private Color color;
   private String name;
 
-  public Convoyeur(Point point, int p_width, int p_length, Equipement starting, Equipement arrival) {
+  public Convoyeur(
+      Point point, int p_width, int p_length, Equipement starting, Equipement arrival) {
     super(point, p_width, p_length);
 
     this.starting = starting;
@@ -33,7 +34,7 @@ public class Convoyeur extends AbstractLien<Equipement> {
   public Equipement getStarting() {
     return this.starting;
   }
-  
+
   public void setArrival(Equipement arrival) {
     this.arrival = arrival;
   }
@@ -42,7 +43,7 @@ public class Convoyeur extends AbstractLien<Equipement> {
   public Equipement getArrival() {
     return this.arrival;
   }
-  
+
   // Code pour savoir si la position de la souris est sur le convoyeur inspiré de
   // https://stackoverflow.com/questions/19730302/determining-if-a-coordinate-is-on-a-line
   public boolean containsConvoyeur(double x, double y, double x1, double y1, double x2, double y2) {
@@ -63,7 +64,7 @@ public class Convoyeur extends AbstractLien<Equipement> {
     }
     return false;
   }
-  
+
   public Point middlePointOfConvoyeur(int x1, int y1, int x2, int y2) {
     return new Point((x1 + x2) / 2, (y1 + y2) / 2);
   }
@@ -72,14 +73,13 @@ public class Convoyeur extends AbstractLien<Equipement> {
   public int hashCode() {
     return Objects.hash(starting, arrival);
   }
-  
-  public Color getColor(){
-      return this.color;
+
+  public Color getColor() {
+    return this.color;
   }
-  
+
+  @Override
   public String getName() {
     return name;
   }
 }
-
-

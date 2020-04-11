@@ -86,6 +86,8 @@ public abstract class Element implements Serializable {
     return length;
   }
 
+  public abstract String getName();
+
   public void setLength(int length) {
     this.length = length;
   }

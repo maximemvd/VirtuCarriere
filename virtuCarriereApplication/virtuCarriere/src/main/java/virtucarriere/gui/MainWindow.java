@@ -1445,7 +1445,7 @@ public class MainWindow extends JFrame {
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
 
-    if (nomClient.isBlank()) {
+    if (nomClient.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
     } else if (quantite <= 0) {
       JOptionPane.showMessageDialog(
@@ -1566,7 +1566,7 @@ public class MainWindow extends JFrame {
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
 
-    if (nomClient.isBlank()) {
+    if (nomClient.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
     } else if (quantite <= 0) {
       JOptionPane.showMessageDialog(
@@ -1654,16 +1654,16 @@ public class MainWindow extends JFrame {
         }
       }
     }
-      
+
     for (List<Convoyeur> convoyeurList : convoyeurs) {
-     for (Convoyeur convoyeur : convoyeurList) {
+      for (Convoyeur convoyeur : convoyeurList) {
         if (convoyeur.isSelected()) {
           controller.removeConvoyeur(convoyeur);
           drawingPanel.repaint();
         }
-     }
+      }
     }
-    
+
     rafraichissementTextField();
     drawingPanel.repaint();
   } // GEN-LAST:event_deleteButtonActionPerformed
@@ -1696,13 +1696,13 @@ public class MainWindow extends JFrame {
 
       for (List<Convoyeur> convoyeurList : convoyeurs) {
         for (Convoyeur convoyeur : convoyeurList) {
-            if (convoyeur.isSelected()) {
-                controller.removeConvoyeur(convoyeur);
-                drawingPanel.repaint();
-            }
+          if (convoyeur.isSelected()) {
+            controller.removeConvoyeur(convoyeur);
+            drawingPanel.repaint();
+          }
         }
       }
-      
+
       for (Equipement equipement : equipements) {
         if (equipement.isSelected()) {
           controller.removeEquipement(equipement);
@@ -1830,6 +1830,16 @@ public class MainWindow extends JFrame {
     } else {
       if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
         setAppMode(ApplicationMode.ADD_SIMULATION);
+      }
+      if (!controller.validateDependencies()) {
+        jTabbedPane.setSelectedIndex(0);
+        JOptionPane.showMessageDialog(
+            null,
+            "Attention, il y a des erreurs dans votre Plan concernant les équipements.\n"
+                + "Veuillez les corriger.\nRappel :\n"
+                + "Un crible doit être reliée à un broyeur\n"
+                + "Un broyeur doit être relié à une crible ou un concasseur\n"
+                + "Un concasseur doit être relié à un broyeur");
       }
     }
   } // GEN-LAST:event_jTabbedPaneStateChanged
@@ -2004,6 +2014,7 @@ public class MainWindow extends JFrame {
               (int) (evt.getY() / drawingPanel.getZoom()));
       drawingPanel.repaint();
       rafraichissementTextField();
+      simulationTextField();
     }
   } // GEN-LAST:event_drawingPanelMouseDragged
 
@@ -2054,28 +2065,6 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT);
   }
 
-  private void AddBroyeurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_AddBroyeurActionPerformed
-
-    this.setMode(EquipementModes.BROYEUR);
-  } // GEN-LAST:event_AddBroyeurActionPerformed
-
-  private void addConcasseurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addConcasseurActionPerformed
-    this.setMode(EquipementModes.CONCASSEUR);
-  } // GEN-LAST:event_addConcasseurActionPerformed
-
-  private void addCribleActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addCribleActionPerformed
-    this.setMode(EquipementModes.CRIBLE);
-  } // GEN-LAST:event_addCribleActionPerformed
-
-  private void addConvoyeurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addConvoyeurActionPerformed
-    // TODO add your handling code here:
-    this.setMode(EquipementModes.CONVOYEUR);
-  } // GEN-LAST:event_addConvoyeurActionPerformed
-
   private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
     Point mousePoint = evt.getPoint();
     this.initMousePoint =
@@ -2112,7 +2101,6 @@ public class MainWindow extends JFrame {
         Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
         if (this.selectedEquipementMode == EquipementModes.TAS) {
           String code = (String) comboBoxMateriaux.getSelectedItem();
-
           this.controller.addTas(point, code);
         }
         Controller.EquipementModes actualEquipement = this.selectedEquipementMode;

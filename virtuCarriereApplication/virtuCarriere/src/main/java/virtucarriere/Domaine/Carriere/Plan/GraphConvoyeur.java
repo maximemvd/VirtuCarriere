@@ -61,4 +61,19 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     int index = ends.indexOf(link.getStarting());
     links.elementAt(index).add(link);
   }
+
+  private boolean isValidLink(Equipement start, List<Equipement> end) {
+    boolean result;
+    result =
+        end.stream().allMatch(equipement -> start.getDependency().contains(equipement.getClass()));
+    if (!(start.getClass() == Crible.class)) {
+      result = result && (end.size() == 1);
+    }
+    return result;
+  }
+
+  public boolean validateDependencies() {
+    return ends.stream()
+        .allMatch(equipement -> isValidLink(equipement, getAdjacentsOut(equipement)));
+  }
 }

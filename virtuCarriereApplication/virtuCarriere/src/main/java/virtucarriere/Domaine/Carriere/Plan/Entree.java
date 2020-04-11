@@ -22,10 +22,12 @@ public class Entree extends AbstractPointChemin {
     this.name = "Entrée";
   }
 
+  @Override
   public Color getColor() {
     return color;
   }
 
+  @Override
   public String getName() {
     return name;
   }
