@@ -60,9 +60,15 @@ public class Plan implements Serializable {
 
   public void addTas(Point mousePoint, String code) {
     Tas tas = new Tas(mousePoint, 1, 1, code, 1);
+    Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
+
+    chemins.addEnd(noeud);
     addEquipment(tas);
     PointChargement pointChargement = tas.getPointChargement();
     chemins.addEnd(pointChargement);
+
+    Arc arc = new Arc(mousePoint, 3, 3, pointChargement, noeud);
+    chemins.addLink(arc);
   }
 
   public void clearEquipementConv() {
