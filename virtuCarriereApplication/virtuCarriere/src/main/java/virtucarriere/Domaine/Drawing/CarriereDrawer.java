@@ -184,17 +184,19 @@ public class CarriereDrawer {
         Thread.sleep(500);
 
         Jeton jetonCamionCourant = camionCourant.getJeton();
+        System.out.print("Jeton correspondant");
         System.out.print(jetonCamionCourant);
         Thread.sleep(500);
 
         Tas tasSimulation =
             controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
+        System.out.print("tas correspondant");
         System.out.print(tasSimulation);
         Thread.sleep(500);
 
         Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
-
+        System.out.print("Chargeur correspondant");
         System.out.print(courantChargeur);
         Thread.sleep(500);
 
