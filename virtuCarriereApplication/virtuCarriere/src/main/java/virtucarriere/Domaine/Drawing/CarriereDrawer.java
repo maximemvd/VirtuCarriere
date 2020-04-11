@@ -279,7 +279,7 @@ public class CarriereDrawer {
 
         double prixFacture = camionCourant.getFacture().getPrice();
 
-        camionCourant.changeEtat("PAYER");
+        camionCourant.changeEtat("PAYÉ");
       }
     }
   }

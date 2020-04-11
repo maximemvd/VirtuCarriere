@@ -2138,10 +2138,10 @@ public class MainWindow extends JFrame {
         AbstractPointChemin starting = this.controller.getPointsForArcList().get(0);
         AbstractPointChemin arrival = this.controller.getPointsForArcList().get(1);
         this.controller.addArc(mousePoint, starting, arrival);
-        for (Noeud noeud : this.controller.getNoeudForArcList()) {
+        for (AbstractPointChemin noeud : this.controller.getPointsForArcList()) {
           noeud.switchSelectionStatus();
         }
-        this.controller.getNoeudForArcList().clear();
+        this.controller.getPointsForArcList().clear();
       }
 
       drawingPanel.repaint();
