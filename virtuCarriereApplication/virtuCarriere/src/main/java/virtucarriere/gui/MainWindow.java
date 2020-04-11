@@ -1827,9 +1827,16 @@ public class MainWindow extends JFrame {
       if (this.currentApplicationMode != ApplicationMode.ADD_PLAN) {
         setAppMode(ApplicationMode.ADD_PLAN);
       }
-    } else {
+    } else if (jTabbedPane.getSelectedIndex() == 1) {
       if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
         setAppMode(ApplicationMode.ADD_SIMULATION);
+      }
+      if (!controller.validateDependencies()) {
+        jTabbedPane.setSelectedIndex(0);
+        JOptionPane.showMessageDialog(
+            null,
+            "Attention, il y a des erreurs dans votre Plan concernant les équipements. \n "
+                + "Veuillez les corriger. Rappel : ...");
       }
     }
   } // GEN-LAST:event_jTabbedPaneStateChanged

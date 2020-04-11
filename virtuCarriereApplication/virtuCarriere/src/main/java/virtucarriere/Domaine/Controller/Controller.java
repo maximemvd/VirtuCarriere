@@ -359,6 +359,10 @@ public class Controller implements Serializable {
     return elementContainer.getGraphChemin();
   }
 
+  public boolean validateDependencies() {
+    return elementContainer.validateDependencies();
+  }
+
   public void setGraphCheminSimulation(GraphChemins p_chemin) {
     elementContainer.setGraphCheminSimulation(p_chemin);
   }

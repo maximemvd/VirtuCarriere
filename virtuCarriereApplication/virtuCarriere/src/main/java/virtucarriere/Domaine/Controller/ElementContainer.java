@@ -282,6 +282,10 @@ public class ElementContainer implements Serializable {
     return plan.getElement(point);
   }
 
+  public boolean validateDependencies() {
+    return plan.validateDependencies();
+  }
+
   public GraphChemins getGraphChemin() {
     return plan.GetGraphChemins();
   }
