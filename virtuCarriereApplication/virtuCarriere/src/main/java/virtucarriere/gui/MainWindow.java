@@ -1445,7 +1445,7 @@ public class MainWindow extends JFrame {
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
 
-    if (nomClient.isBlank()) {
+    if (nomClient.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
     } else if (quantite <= 0) {
       JOptionPane.showMessageDialog(
@@ -1566,7 +1566,7 @@ public class MainWindow extends JFrame {
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
 
-    if (nomClient.isBlank()) {
+    if (nomClient.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
     } else if (quantite <= 0) {
       JOptionPane.showMessageDialog(
@@ -1654,16 +1654,16 @@ public class MainWindow extends JFrame {
         }
       }
     }
-      
+
     for (List<Convoyeur> convoyeurList : convoyeurs) {
-     for (Convoyeur convoyeur : convoyeurList) {
+      for (Convoyeur convoyeur : convoyeurList) {
         if (convoyeur.isSelected()) {
           controller.removeConvoyeur(convoyeur);
           drawingPanel.repaint();
         }
-     }
+      }
     }
-    
+
     rafraichissementTextField();
     drawingPanel.repaint();
   } // GEN-LAST:event_deleteButtonActionPerformed
@@ -1696,13 +1696,13 @@ public class MainWindow extends JFrame {
 
       for (List<Convoyeur> convoyeurList : convoyeurs) {
         for (Convoyeur convoyeur : convoyeurList) {
-            if (convoyeur.isSelected()) {
-                controller.removeConvoyeur(convoyeur);
-                drawingPanel.repaint();
-            }
+          if (convoyeur.isSelected()) {
+            controller.removeConvoyeur(convoyeur);
+            drawingPanel.repaint();
+          }
         }
       }
-      
+
       for (Equipement equipement : equipements) {
         if (equipement.isSelected()) {
           controller.removeEquipement(equipement);
@@ -2004,6 +2004,7 @@ public class MainWindow extends JFrame {
               (int) (evt.getY() / drawingPanel.getZoom()));
       drawingPanel.repaint();
       rafraichissementTextField();
+      simulationTextField();
     }
   } // GEN-LAST:event_drawingPanelMouseDragged
 
