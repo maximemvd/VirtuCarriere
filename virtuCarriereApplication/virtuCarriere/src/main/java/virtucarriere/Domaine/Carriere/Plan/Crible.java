@@ -39,5 +39,13 @@ public class Crible extends Equipement {
   }
 
   @Override
+  public void setPointChargement(int p_x, int p_y) {}
+
+  @Override
+  public PointChargement getPointChargement() {
+    return null;
+  }
+
+  @Override
   public void setMaterialCode(String newCode) {}
 }

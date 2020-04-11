@@ -86,6 +86,10 @@ public abstract class Element implements Serializable {
     return length;
   }
 
+  public abstract String getName();
+
+  public abstract void setPointChargement(int p_x, int p_y);
+
   public void setLength(int length) {
     this.length = length;
   }

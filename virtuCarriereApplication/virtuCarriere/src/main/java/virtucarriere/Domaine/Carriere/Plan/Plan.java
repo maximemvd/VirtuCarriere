@@ -178,9 +178,13 @@ public class Plan implements Serializable {
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
 
-    for (Element item : getEquipements()) {
+    for (Equipement item : getEquipements()) {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
+        if (item.getName().equals("Tas")) {
+          PointChargement pointChargement = item.getPointChargement();
+          pointChargement.translate(deltaX, deltaY);
+        }
       }
     }
     for (Element item : getNoeuds()) {

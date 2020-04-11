@@ -43,4 +43,6 @@ public abstract class Equipement extends Element {
   }
 
   public abstract String getName();
+
+  public abstract PointChargement getPointChargement();
 }

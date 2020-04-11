@@ -22,11 +22,16 @@ public class Entree extends AbstractPointChemin {
     this.name = "Entrée";
   }
 
+  @Override
   public Color getColor() {
     return color;
   }
 
+  @Override
   public String getName() {
     return name;
   }
+
+  @Override
+  public void setPointChargement(int p_x, int p_y) {}
 }

@@ -34,13 +34,21 @@ public class Tas extends Equipement {
     this.name = "Tas";
     this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
-    this.pointChargement = new PointChargement(new Point(point.x - 25, point.y + 15));
+    Point newPoint = new Point(point.x - 25, point.y + 15);
+    this.pointChargement = new PointChargement(newPoint, 3, 3);
   }
 
   @Override
   public void setPoint(int p_x, int p_y) {
     point = new Point(p_x, p_y);
-    this.pointChargement = new PointChargement(new Point(p_x - 25, p_y + 15));
+    Point newPoint = new Point(p_x - 25, p_y + 15);
+    this.pointChargement = new PointChargement(newPoint, 3, 3);
+  }
+
+  @Override
+  public void setPointChargement(int p_x, int p_y) {
+    Point newPoint = new Point(p_x - 25, p_y + 15);
+    this.pointChargement = new PointChargement(newPoint, 3, 3);
   }
 
   public PointChargement getPointChargement() {
