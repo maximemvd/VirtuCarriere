@@ -208,14 +208,7 @@ public class CarriereDrawer {
 
         for (AbstractPointChemin chemin : cheminCamionAller) {
           Point pointChemin = chemin.getPoint();
-          g2d.setColor(couleurCamion);
-          g2d.fillRoundRect(
-              pointChemin.x - radius,
-              pointChemin.y - radius,
-              radius * 2,
-              radius * 2,
-              radius,
-              radius);
+          camionCourant.setPoint(pointChemin);
           Thread.sleep(1000);
         }
 
@@ -228,13 +221,7 @@ public class CarriereDrawer {
 
         for (AbstractPointChemin chemin : cheminChargeur) {
           Point pointChemin = chemin.getPoint();
-
-          g2d.setColor(chargeurColor);
-          g2d.fillOval(
-              (int) pointChemin.getX() - radius,
-              (int) pointChemin.getY() - radius,
-              radius * 2,
-              radius * 2);
+          courantChargeur.setPoint(pointChemin);
           Thread.sleep(1000);
         }
 
@@ -255,14 +242,7 @@ public class CarriereDrawer {
 
         for (AbstractPointChemin chemin : cheminCamionRetour) {
           Point pointChemin = chemin.getPoint();
-          g2d.setColor(couleurCamion);
-          g2d.fillRoundRect(
-              pointChemin.x - radius,
-              pointChemin.y - radius,
-              radius * 2,
-              radius * 2,
-              radius,
-              radius);
+          camionCourant.setPoint(pointChemin);
           Thread.sleep(1000);
         }
 

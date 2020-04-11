@@ -208,7 +208,7 @@ public class Simulation implements Serializable {
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
 
-    Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
+    Noeud noeudDuTas = new Noeud(tas.getPointChargement().getPoint(), 10, 10);
 
     Vector<AbstractPointChemin> cheminCamion = getShortestPathToGo(noeudDuTas);
 
@@ -217,7 +217,7 @@ public class Simulation implements Serializable {
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
 
-    AbstractPointChemin noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
+    AbstractPointChemin noeudDuTas = new Noeud(tas.getPointChargement().getPoint(), 10, 10);
 
     Vector<AbstractPointChemin> cheminCamion = getShortestPathToComeBack(noeudDuTas);
 
