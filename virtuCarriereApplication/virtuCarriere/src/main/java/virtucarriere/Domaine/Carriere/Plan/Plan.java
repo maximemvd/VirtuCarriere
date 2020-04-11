@@ -128,13 +128,14 @@ public class Plan implements Serializable {
 
           switch (actualEquipement) {
             case "Crible":
-              if (((Equipement) equipement).getName().equals("Broyeur")) {
+              if ((((Equipement) equipement).getName().equals("Broyeur"))
+                  || (((Equipement) equipement).getName().equals("Tas"))) {
                 equipementForConvList.add((Equipement) equipement);
                 equipement.setSelectionStatus(true);
               } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Un crible doit être reliée à un broyeur.",
+                    "Un crible doit être reliée à un broyeur ou un tas.",
                     "Attention",
                     JOptionPane.WARNING_MESSAGE);
               }
@@ -162,6 +163,18 @@ public class Plan implements Serializable {
                 JOptionPane.showMessageDialog(
                     null,
                     "Un concasseur doit être relié à un broyeur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
+              }
+              break;
+            case "Tas":
+              if (((Equipement) equipement).getName().equals("Crible")) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Un tas doit être relié à un crible.",
                     "Attention",
                     JOptionPane.WARNING_MESSAGE);
               }
