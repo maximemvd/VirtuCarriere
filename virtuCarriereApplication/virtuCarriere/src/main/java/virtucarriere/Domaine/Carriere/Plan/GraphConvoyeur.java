@@ -62,8 +62,13 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     links.elementAt(index).add(link);
   }
 
+  private boolean isValidLink(Equipement start, List<Equipement> end) {
+    return end.stream()
+        .allMatch(equipement -> start.getDependency().contains(equipement.getClass()));
+  }
+
   public boolean validateDependencies() {
-    // TODO
-    return true;
+    return ends.stream()
+        .allMatch(equipement -> isValidLink(equipement, getAdjacentsOut(equipement)));
   }
 }
