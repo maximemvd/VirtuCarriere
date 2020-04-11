@@ -65,7 +65,9 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
 
   private boolean isValidLink(Equipement start, List<Equipement> end) {
     boolean result;
-    if (!(start.getClass() == Crible.class)) {
+    if (start.getClass() == Tas.class) {
+      result = (end.size() == 0);
+    } else if (!(start.getClass() == Crible.class)) {
       result =
           end.stream().allMatch(equipement -> start.getDependency().contains(equipement.getClass()))
               && (end.size() == 1);
