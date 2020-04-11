@@ -1835,8 +1835,11 @@ public class MainWindow extends JFrame {
         jTabbedPane.setSelectedIndex(0);
         JOptionPane.showMessageDialog(
             null,
-            "Attention, il y a des erreurs dans votre Plan concernant les équipements. \n "
-                + "Veuillez les corriger. Rappel : ...");
+            "Attention, il y a des erreurs dans votre Plan concernant les équipements.\n"
+                + "Veuillez les corriger.\nRappel :\n"
+                + "Un crible doit être reliée à un broyeur\n"
+                + "Un broyeur doit être relié à une crible ou un concasseur\n"
+                + "Un concasseur doit être relié à un broyeur");
       }
     }
   } // GEN-LAST:event_jTabbedPaneStateChanged

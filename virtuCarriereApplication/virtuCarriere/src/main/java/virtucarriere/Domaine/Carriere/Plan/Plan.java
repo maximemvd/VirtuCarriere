@@ -1,6 +1,5 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
-
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -113,7 +112,7 @@ public class Plan implements Serializable {
               } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Une crible doit être reliée à un broyeur.",
+                    "Un crible doit être reliée à un broyeur.",
                     "Attention",
                     JOptionPane.WARNING_MESSAGE);
               }
@@ -127,7 +126,7 @@ public class Plan implements Serializable {
               } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    "Un broyeur doit être relié à une crible ou un concasseur.",
+                    "Un broyeur doit être relié à un crible ou un concasseur.",
                     "Attention",
                     JOptionPane.WARNING_MESSAGE);
               }
