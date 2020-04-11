@@ -11,13 +11,18 @@ import java.util.Objects;
 
 public class Arc extends AbstractLien<AbstractPointChemin> {
 
-  private Noeud starting;
-  private Noeud arrival;
+  private AbstractPointChemin starting;
+  private AbstractPointChemin arrival;
   private double cout;
   private Color color;
   private String name;
 
-  public Arc(Point point, int p_width, int p_length, Noeud starting, Noeud arrival) {
+  public Arc(
+      Point point,
+      int p_width,
+      int p_length,
+      AbstractPointChemin starting,
+      AbstractPointChemin arrival) {
     // TODO Valider comment intégrer element
     super(point, p_width, p_length);
 
@@ -28,7 +33,7 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
   }
 
   @Override
-  public Noeud getArrival() {
+  public AbstractPointChemin getArrival() {
     return arrival;
   }
 
@@ -37,7 +42,7 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
   }
 
   @Override
-  public Noeud getStarting() {
+  public AbstractPointChemin getStarting() {
     return starting;
   }
 

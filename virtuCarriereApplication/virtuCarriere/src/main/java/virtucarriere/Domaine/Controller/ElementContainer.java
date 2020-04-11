@@ -80,9 +80,9 @@ public class ElementContainer implements Serializable {
   public void addArc(Arc arc) {
     plan.addArc(arc);
   }
-  
-  public void clearEquipementConv(){
-      plan.clearEquipementConv();
+
+  public void clearEquipementConv() {
+    plan.clearEquipementConv();
   }
 
   public void addElement(Point mousePoint, EquipementModes mode) {
@@ -137,7 +137,7 @@ public class ElementContainer implements Serializable {
   public void removeArc(Arc p_arc) {
     plan.removeArc(p_arc);
   }
-  
+
   public void removeConvoyeur(Convoyeur convoyeur) {
     plan.removeConvoyeur(convoyeur);
   }
@@ -186,6 +186,10 @@ public class ElementContainer implements Serializable {
     return plan.getNoeudForArcList();
   }
 
+  public List<AbstractPointChemin> getPointsForArcList() {
+    return plan.getPointsForArcList();
+  }
+
   public List<Equipement> getEquipementList() {
     return plan.getEquipements();
   }
@@ -201,7 +205,7 @@ public class ElementContainer implements Serializable {
   public ArrayList<List<Arc>> getArcList() {
     return plan.getArcs();
   }
-  
+
   public ArrayList<List<Convoyeur>> getConvoyeurList() {
     return plan.getConvoyeurs();
   }

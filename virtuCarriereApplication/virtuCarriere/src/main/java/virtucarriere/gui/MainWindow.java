@@ -2134,9 +2134,9 @@ public class MainWindow extends JFrame {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
 
       this.controller.noeudSelection(point.getX(), point.getY());
-      if (this.controller.getNoeudForArcList().size() == 2) {
-        Noeud starting = this.controller.getNoeudForArcList().get(0);
-        Noeud arrival = this.controller.getNoeudForArcList().get(1);
+      if (this.controller.getPointsForArcList().size() == 2) {
+        AbstractPointChemin starting = this.controller.getPointsForArcList().get(0);
+        AbstractPointChemin arrival = this.controller.getPointsForArcList().get(1);
         this.controller.addArc(mousePoint, starting, arrival);
         for (Noeud noeud : this.controller.getNoeudForArcList()) {
           noeud.switchSelectionStatus();

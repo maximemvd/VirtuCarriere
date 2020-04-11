@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Plan implements Serializable {
@@ -15,6 +14,7 @@ public class Plan implements Serializable {
   GraphChemins chemins;
   List<Noeud> noeudsForArcList;
   List<Equipement> equipementForConvList;
+  List<AbstractPointChemin> pointsForArcList;
 
   private Entree entree;
 
@@ -24,6 +24,7 @@ public class Plan implements Serializable {
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
     equipementForConvList = new LinkedList<Equipement>();
+    pointsForArcList = new LinkedList<>();
   }
 
   public void addArc(Arc arc) {
@@ -33,7 +34,7 @@ public class Plan implements Serializable {
   public void removeArc(Arc arc) {
     chemins.removeLink(arc);
   }
-  
+
   public void removeConvoyeur(Convoyeur convoyeur) {
     equipments.removeLink(convoyeur);
   }
@@ -62,81 +63,81 @@ public class Plan implements Serializable {
     addEquipment(tas);
     // TODO add noeudChargement;
   }
-  
-  public void clearEquipementConv(){
-      this.equipementForConvList.clear();
+
+  public void clearEquipementConv() {
+    this.equipementForConvList.clear();
   }
 
   public void addConvoyeur(Point mousePoint) {
     for (Element equipement : getEquipements()) {
       if (equipement.contains(mousePoint.getX(), mousePoint.getY())) {
-          
-        //Si la liste est vide, on ajoute simplement element
-        if (equipementForConvList.isEmpty()){
+
+        // Si la liste est vide, on ajoute simplement element
+        if (equipementForConvList.isEmpty()) {
           equipementForConvList.add((Equipement) equipement);
           equipement.setSelectionStatus(true);
         }
-        
-        //Sil y a deja un element, on verifie si on peut ajouter un convoyeur a celui ci
-        else if (equipementForConvList.size() == 1){
-            
-            String actualEquipement = equipementForConvList.get(0).getName();
-            
-            switch (actualEquipement) {
-                
-                case "Crible" :
-                  if (((Equipement) equipement).getName().equals("Broyeur")){
-                      equipementForConvList.add((Equipement) equipement);
-                      equipement.setSelectionStatus(true);
-                  }
-                  else {
-                      JOptionPane.showMessageDialog(null, 
-                              "Une crible doit être reliée à un broyeur.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-                  }
-                  break;
-                  
-                case "Broyeur" :
-                  if ((((Equipement) equipement).getName().equals("Crible"))
-                        || (((Equipement) equipement).getName().equals("Concasseur"))){
-                      equipementForConvList.add((Equipement) equipement);
-                      equipement.setSelectionStatus(true);
-                  }
-                  else {
-                      JOptionPane.showMessageDialog(null,
-                              "Un broyeur doit être relié à une crible ou un concasseur.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-                  }
-                  break;
-                  
-                case "Concasseur" :
-                  if (((Equipement) equipement).getName().equals("Broyeur")){
-                      equipementForConvList.add((Equipement) equipement);
-                      equipement.setSelectionStatus(true);
-                  }
-                  else {
-                      JOptionPane.showMessageDialog(null,
-                              "Un concasseur doit être relié à un broyeur.",
-                              "Attention",
-                              JOptionPane.WARNING_MESSAGE);
-                  }
-                default:
-                  break;
+
+        // Sil y a deja un element, on verifie si on peut ajouter un convoyeur a celui ci
+        else if (equipementForConvList.size() == 1) {
+
+          String actualEquipement = equipementForConvList.get(0).getName();
+
+          switch (actualEquipement) {
+            case "Crible":
+              if (((Equipement) equipement).getName().equals("Broyeur")) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Une crible doit être reliée à un broyeur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
               }
+              break;
+
+            case "Broyeur":
+              if ((((Equipement) equipement).getName().equals("Crible"))
+                  || (((Equipement) equipement).getName().equals("Concasseur"))) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Un broyeur doit être relié à une crible ou un concasseur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
+              }
+              break;
+
+            case "Concasseur":
+              if (((Equipement) equipement).getName().equals("Broyeur")) {
+                equipementForConvList.add((Equipement) equipement);
+                equipement.setSelectionStatus(true);
+              } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Un concasseur doit être relié à un broyeur.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
+              }
+            default:
+              break;
+          }
         }
       }
     }
-    
-    if (equipementForConvList.size() == 2){
-        Convoyeur convoyeur = new Convoyeur(mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
-        equipments.addLink(convoyeur);
-        for (Equipement equipement : equipementForConvList) {
-          equipement.switchSelectionStatus();
-        }
-        equipementForConvList.clear();
-        
+
+    if (equipementForConvList.size() == 2) {
+      Convoyeur convoyeur =
+          new Convoyeur(
+              mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
+      equipments.addLink(convoyeur);
+      for (Equipement equipement : equipementForConvList) {
+        equipement.switchSelectionStatus();
+      }
+      equipementForConvList.clear();
     }
   }
 
@@ -234,8 +235,8 @@ public class Plan implements Serializable {
 
     for (List<Arc> listOfArc : getArcs()) {
       for (Arc item : listOfArc) {
-        Noeud starting = item.getStarting();
-        Noeud arrival = item.getArrival();
+        AbstractPointChemin starting = item.getStarting();
+        AbstractPointChemin arrival = item.getArrival();
 
         double xPosStarting = starting.getX();
         double yPosStarting = starting.getY();
@@ -247,7 +248,7 @@ public class Plan implements Serializable {
         }
       }
     }
-    
+
     for (List<Convoyeur> listOfConvoyeur : getConvoyeurs()) {
       for (Convoyeur item : listOfConvoyeur) {
         Equipement starting = item.getStarting();
@@ -270,9 +271,10 @@ public class Plan implements Serializable {
   }
 
   public void noeudSelection(double x, double y) {
-    for (Element noeud : getNoeuds()) {
+    for (AbstractPointChemin noeud : getNoeuds()) {
       if (noeud.contains(x, y)) {
         noeudsForArcList.add((Noeud) noeud);
+        pointsForArcList.add(noeud);
         noeud.setSelectionStatus(true);
       }
     }
@@ -302,6 +304,10 @@ public class Plan implements Serializable {
 
   public List<Noeud> getNoeudForArcList() {
     return this.noeudsForArcList;
+  }
+
+  public List<AbstractPointChemin> getPointsForArcList() {
+    return this.pointsForArcList;
   }
 
   public Entree getEntree() {

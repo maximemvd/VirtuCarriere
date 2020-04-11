@@ -65,7 +65,7 @@ public class Controller implements Serializable {
   public void addConvoyeur(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
-  
+
   public void addCrible(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }
@@ -145,9 +145,9 @@ public class Controller implements Serializable {
   public ArrayList<List<Convoyeur>> getConvoyeurList() {
     return elementContainer.getConvoyeurList();
   }
-  
-  public void clearEquipementConv(){
-      elementContainer.clearEquipementConv();
+
+  public void clearEquipementConv() {
+    elementContainer.clearEquipementConv();
   }
 
   public Chargeur choisirChargeurCorrespondant(Tas tas) {
@@ -156,6 +156,10 @@ public class Controller implements Serializable {
 
   public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
     return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas);
+  }
+
+  public List<AbstractPointChemin> getPointsForArcList() {
+    return elementContainer.getPointsForArcList();
   }
 
   public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
@@ -207,7 +211,7 @@ public class Controller implements Serializable {
     this.elementContainer.changementSelectionStatus(x, y);
   }
 
-  public void addArc(Point mousePoint, Noeud starting, Noeud arrival) {
+  public void addArc(Point mousePoint, AbstractPointChemin starting, AbstractPointChemin arrival) {
     Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
     elementContainer.addArc(arc);
   }
