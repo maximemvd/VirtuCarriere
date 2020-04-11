@@ -40,10 +40,6 @@ public class Camion extends Vehicule {
     return jeton.getEtat();
   }
 
-  public void goTO(Point new_point) {
-    this.point = new_point;
-  }
-
   @Override
   public Color getColor() {
     return color;

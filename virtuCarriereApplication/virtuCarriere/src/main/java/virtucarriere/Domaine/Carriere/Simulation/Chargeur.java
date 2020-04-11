@@ -41,10 +41,6 @@ public class Chargeur extends Vehicule {
     return name;
   }
 
-  public void changeDestination(Point p_point) {
-    this.point = p_point;
-  }
-
   public boolean isSelected() {
     return selectionStatus;
   }
