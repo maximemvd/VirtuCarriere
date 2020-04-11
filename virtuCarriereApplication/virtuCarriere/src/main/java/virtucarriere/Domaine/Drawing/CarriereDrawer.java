@@ -207,8 +207,8 @@ public class CarriereDrawer {
         Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
         for (AbstractPointChemin chemin : cheminCamionAller) {
-          Point pointChemin = chemin.getPoint();
-          camionCourant.setPoint(pointChemin);
+          Point pointCamionAller = chemin.getPoint();
+          camionCourant.setPoint(pointCamionAller);
           Thread.sleep(1000);
         }
 
@@ -241,8 +241,8 @@ public class CarriereDrawer {
             controller.cheminDuCamionRetour(tasSimulation);
 
         for (AbstractPointChemin chemin : cheminCamionRetour) {
-          Point pointChemin = chemin.getPoint();
-          camionCourant.setPoint(pointChemin);
+          Point pointCamionRetour = chemin.getPoint();
+          camionCourant.setPoint(pointCamionRetour);
           Thread.sleep(1000);
         }
 

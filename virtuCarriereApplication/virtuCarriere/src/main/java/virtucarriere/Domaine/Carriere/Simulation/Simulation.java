@@ -225,21 +225,22 @@ public class Simulation implements Serializable {
 
   public Chargeur choisirChargeurIdeal(Tas tas) {
 
-    //  Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
-
+    Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
+    System.out.print(cheminMinimal);
+    System.out.print("Alloo");
     Chargeur chargeurSimulation = chargeurList.get(0);
-    /*
-        for (Chargeur chargeurCourant : chargeurList) {
+    for (Chargeur chargeurCourant : chargeurList) {
 
-          Vector<AbstractPointChemin> cheminChargeurCourant = ChargeurCheminToPath(chargeurCourant, tas);
-
-          if (cheminMinimal.size() > cheminChargeurCourant.size()) {
-            chargeurSimulation = chargeurCourant;
-            cheminMinimal = cheminChargeurCourant;
-          }
-        }
-        ;
-    */
+      Vector<AbstractPointChemin> cheminChargeurCourant =
+          ChargeurCheminToPath(chargeurCourant, tas);
+      System.out.print(cheminChargeurCourant);
+      System.out.print("Test");
+      if (cheminMinimal.size() > cheminChargeurCourant.size()) {
+        chargeurSimulation = chargeurCourant;
+        System.out.print(chargeurSimulation);
+        cheminMinimal = cheminChargeurCourant;
+      }
+    }
     return chargeurSimulation;
   }
 
