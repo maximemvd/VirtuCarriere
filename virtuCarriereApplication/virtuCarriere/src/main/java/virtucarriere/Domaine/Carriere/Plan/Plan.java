@@ -361,4 +361,8 @@ public class Plan implements Serializable {
   public GraphChemins GetGraphChemins() {
     return chemins;
   }
+
+  public boolean validateDependencies() {
+    return equipments.validateDependencies();
+  }
 }

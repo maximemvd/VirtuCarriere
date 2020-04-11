@@ -8,13 +8,15 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Broyeur extends Equipement {
 
   private String name;
 
-  private static List<? extends Equipement> dependency = new ArrayList<Crible>();
+  private static List<Class<? extends Equipement>> dependency =
+      new ArrayList<Class<? extends Equipement>>(Collections.singleton(Crible.class));
 
   public Broyeur(Point point, int p_width, int p_length, double p_angle) {
     super(point, p_width = 2, p_length = 2, p_angle, dependency);
