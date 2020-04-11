@@ -2055,28 +2055,6 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT);
   }
 
-  private void AddBroyeurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_AddBroyeurActionPerformed
-
-    this.setMode(EquipementModes.BROYEUR);
-  } // GEN-LAST:event_AddBroyeurActionPerformed
-
-  private void addConcasseurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addConcasseurActionPerformed
-    this.setMode(EquipementModes.CONCASSEUR);
-  } // GEN-LAST:event_addConcasseurActionPerformed
-
-  private void addCribleActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addCribleActionPerformed
-    this.setMode(EquipementModes.CRIBLE);
-  } // GEN-LAST:event_addCribleActionPerformed
-
-  private void addConvoyeurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addConvoyeurActionPerformed
-    // TODO add your handling code here:
-    this.setMode(EquipementModes.CONVOYEUR);
-  } // GEN-LAST:event_addConvoyeurActionPerformed
-
   private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
     Point mousePoint = evt.getPoint();
     this.initMousePoint =
@@ -2113,7 +2091,6 @@ public class MainWindow extends JFrame {
         Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
         if (this.selectedEquipementMode == EquipementModes.TAS) {
           String code = (String) comboBoxMateriaux.getSelectedItem();
-
           this.controller.addTas(point, code);
         }
         Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
