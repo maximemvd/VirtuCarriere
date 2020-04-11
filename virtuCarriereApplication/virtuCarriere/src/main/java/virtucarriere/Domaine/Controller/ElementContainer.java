@@ -48,6 +48,10 @@ public class ElementContainer implements Serializable {
     return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
   }
 
+  public void noeudSelection(double x, double y) {
+    this.plan.noeudSelection(x, y);
+  }
+
   public Tas trouverTasCorrespondant(List<Tas> tas, String produit) {
     return simulation.trouverTas(tas, produit);
   }
@@ -72,8 +76,8 @@ public class ElementContainer implements Serializable {
     plan.isEquipementPresent(equipement);
   }
 
-  public void addArc(Point mousePoint, double x, double y) {
-    plan.addArc(mousePoint, x, y);
+  public void addArc(Arc arc) {
+    plan.addArc(arc);
   }
 
   public void clearEquipementConv() {

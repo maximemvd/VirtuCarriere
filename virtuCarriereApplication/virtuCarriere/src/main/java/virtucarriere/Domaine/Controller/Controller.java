@@ -207,8 +207,9 @@ public class Controller implements Serializable {
     this.elementContainer.changementSelectionStatus(x, y);
   }
 
-  public void addArc(Point mousePoint, double x, double y) {
-    elementContainer.addArc(mousePoint, x, y);
+  public void addArc(Point mousePoint, AbstractPointChemin starting, AbstractPointChemin arrival) {
+    Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
+    elementContainer.addArc(arc);
   }
 
   public void removeNoeud(AbstractPointChemin noeud) {
@@ -234,6 +235,14 @@ public class Controller implements Serializable {
 
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
     this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
+  }
+
+  public void noeudSelection(double x, double y) {
+    this.elementContainer.noeudSelection(x, y);
+  }
+
+  public List<AbstractPointChemin> getPointsForArcList() {
+    return elementContainer.getPointsForArcList();
   }
 
   public void updateSelectedItemsPositions(double deltaX, double deltaY) {

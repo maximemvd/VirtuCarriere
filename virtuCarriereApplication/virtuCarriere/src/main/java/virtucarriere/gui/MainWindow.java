@@ -2134,9 +2134,19 @@ public class MainWindow extends JFrame {
         && SwingUtilities.isLeftMouseButton(evt)) {
       Point point = new Point((int) this.initMousePoint.getX(), (int) this.initMousePoint.getY());
 
-      this.controller.addArc(point, point.getX(), point.getY());
+      this.controller.noeudSelection(point.getX(), point.getY());
+      if (this.controller.getPointsForArcList().size() == 2) {
+        AbstractPointChemin starting = this.controller.getPointsForArcList().get(0);
+        AbstractPointChemin arrival = this.controller.getPointsForArcList().get(1);
+        this.controller.addArc(mousePoint, starting, arrival);
+        for (AbstractPointChemin noeud : this.controller.getPointsForArcList()) {
+          noeud.switchSelectionStatus();
+        }
+        this.controller.getPointsForArcList().clear();
+      }
 
       drawingPanel.repaint();
+
     } else if (this.currentApplicationMode == ApplicationMode.SELECT_SIMUL
         && SwingUtilities.isLeftMouseButton(evt)) {
       double xPos = this.currentMousePoint.getX();
