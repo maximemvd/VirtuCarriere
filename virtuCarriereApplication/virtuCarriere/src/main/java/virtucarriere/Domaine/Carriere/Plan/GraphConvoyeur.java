@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> implements Serializable {
+
   private boolean hasDependencies() {
     return false;
   }
@@ -64,10 +65,18 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
 
   private boolean isValidLink(Equipement start, List<Equipement> end) {
     boolean result;
-    result =
-        end.stream().allMatch(equipement -> start.getDependency().contains(equipement.getClass()));
     if (!(start.getClass() == Crible.class)) {
-      result = result && (end.size() == 1);
+      result =
+          end.stream().allMatch(equipement -> start.getDependency().contains(equipement.getClass()))
+              && (end.size() == 1);
+    } else {
+      if (end.size() == 0) {
+        result = true;
+      } else {
+        result =
+            end.stream()
+                .allMatch(equipement -> start.getDependency().contains(equipement.getClass()));
+      }
     }
     return result;
   }
