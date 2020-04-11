@@ -2,7 +2,6 @@ package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 import java.awt.Point;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -225,16 +224,23 @@ public class Simulation implements Serializable {
   };
 
   public Chargeur choisirChargeurIdeal(Tas tas) {
-    Point pointTas = tas.getPoint();
-    List<Integer> list = new ArrayList<Integer>();
-    chargeurList.forEach(
-        (chargeur) -> {
-          int distance =
-              ((chargeur.getPoint().x - pointTas.x) + (chargeur.getPoint().y - pointTas.y));
-          list.add(distance);
-        });
 
-    return chargeurList.get(0);
+    Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
+
+    Chargeur chargeurSimulation = chargeurList.get(0);
+
+    for (Chargeur chargeurCourant : chargeurList) {
+
+      Vector<AbstractPointChemin> cheminChargeurCourant =
+          ChargeurCheminToPath(chargeurCourant, tas);
+
+      if (cheminMinimal.size() > cheminChargeurCourant.size()) {
+        chargeurSimulation = chargeurCourant;
+        cheminMinimal = cheminChargeurCourant;
+      }
+    }
+    ;
+    return chargeurSimulation;
   }
 
   public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
