@@ -153,10 +153,6 @@ public class Plan implements Serializable {
     chemins.addEnd(entree);
   }
 
-  public boolean validateElementPresent(Point point) {
-    return false;
-  }
-
   public void addNoeud(Point mousePoint) {
     Noeud noeud = new Noeud(mousePoint, 3, 3);
     chemins.addEnd(noeud);
@@ -364,5 +360,11 @@ public class Plan implements Serializable {
 
   public boolean validateDependencies() {
     return equipments.validateDependencies();
+  }
+
+  public boolean isElementPresent(Element element) {
+    List<Element> allElements = getAllElements();
+    return allElements.stream()
+        .anyMatch(element1 -> element.contains(element1.getX(), element1.getY()));
   }
 }
