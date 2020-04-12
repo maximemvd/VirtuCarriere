@@ -153,18 +153,14 @@ public class CarriereDrawer {
 
       controller.setEntreSimulation(controller.getEntree());
 
-      Thread.sleep(500);
-
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
       // début simulation pour les camions
-      Thread.sleep(2000);
+      Thread.sleep(500);
 
       Jeton jetonCamionCourant = camionCourant.getJeton();
 
       System.out.print(jetonCamionCourant);
-
-      Thread.sleep(500);
 
       Tas tasSimulation =
           controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
@@ -193,7 +189,6 @@ public class CarriereDrawer {
 
       for (AbstractPointChemin chemin : cheminCamionAller) {
         camionCourant.setPoint(chemin.getPoint());
-        Thread.sleep(1000);
       }
 
       System.out.print(cheminCamionAller);
@@ -208,7 +203,6 @@ public class CarriereDrawer {
 
       for (AbstractPointChemin chemin : cheminChargeur) {
         courantChargeur.setPoint(chemin.getPoint());
-        Thread.sleep(1000);
       }
 
       System.out.print(cheminChargeur);
@@ -228,7 +222,6 @@ public class CarriereDrawer {
 
       for (AbstractPointChemin chemin : cheminCamionRetour) {
         camionCourant.setPoint(chemin.getPoint());
-        Thread.sleep(1000);
       }
 
       Thread.sleep(1000);
