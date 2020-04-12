@@ -203,6 +203,10 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, mode);
   }
 
+  public List<Noeud> getAllNoeuds() {
+    return elementContainer.getAllNoeuds();
+  }
+
   public void changementSelectionStatus(double x, double y) {
     this.elementContainer.changementSelectionStatus(x, y);
   }

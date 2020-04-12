@@ -401,6 +401,16 @@ public class Plan implements Serializable {
     return chemins.getEnds();
   }
 
+  public List<Noeud> getAllNoeuds() {
+    List<Noeud> noeudList = new LinkedList<>();
+    for (AbstractPointChemin points : getAllAbstractPointChemin()) {
+      if (points.getName().equals("Noeud")) {
+        noeudList.add((Noeud) points);
+      }
+    }
+    return noeudList;
+  }
+
   public List<Arc> getAllArcs() {
     return chemins.getLinks().stream().flatMap(List::stream).collect(Collectors.toList());
   }
