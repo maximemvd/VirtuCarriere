@@ -193,22 +193,23 @@ public class CarriereDrawer {
 
       System.out.print(cheminCamionAller);
 
+      Thread.sleep(4000);
+
       System.out.print("allo max");
 
-      Vector<AbstractPointChemin> cheminChargeur =
-          controller.ChargeurCheminToPath(
-              courantChargeur, tasSimulation, controller.getAllNoeuds());
+      /*    Vector<AbstractPointChemin> cheminChargeur =
+                controller.ChargeurCheminToPath(
+                    courantChargeur, tasSimulation, controller.getAllNoeuds());
 
-      for (AbstractPointChemin chemin : cheminChargeur) {
-        courantChargeur.setPoint(chemin.getPoint());
-      }
+            for (AbstractPointChemin chemin : cheminChargeur) {
+              courantChargeur.setPoint(chemin.getPoint());
+            }
 
-      System.out.print(cheminChargeur);
-
-      Thread.sleep(1000);
+            System.out.print(cheminChargeur);
+      */
 
       if (!controller.verificationJeton(camionCourant, courantChargeur)) {
-        break;
+        System.out.print("marche pas");
       }
 
       camionCourant.changeEtat("LIVRER");
