@@ -238,8 +238,8 @@ public class Simulation implements Serializable {
     System.out.print(listeNoeud.size());
 
     for (Noeud noeud : listeNoeud) {
-      if (noeud.getPoint() == p_chargeur.getPoint()) {
-        chemin = getShortestPathBetweenTwoNoeuds(noeud, p_tas.getNoeud());
+      if (noeud.contains(p_chargeur.getX(), p_chargeur.getY())) {
+        chemin = getShortestPathBetweenTwoNoeuds(noeud, p_tas.getPointChargement());
       }
     }
     //  Point pointChargeur = p_chargeur.getPoint();

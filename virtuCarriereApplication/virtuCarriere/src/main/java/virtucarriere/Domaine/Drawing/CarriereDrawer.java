@@ -200,7 +200,7 @@ public class CarriereDrawer {
 
       System.out.print("allo max");
 
-      Thread.sleep(1000);
+      Thread.sleep(5000);
 
       Vector<AbstractPointChemin> cheminChargeur =
           controller.ChargeurCheminToPath(
