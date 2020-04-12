@@ -92,7 +92,7 @@ public class CarriereDrawer {
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
-          Color vehiculeColor = Color.PINK;
+          Color vehiculeColor = Color.MAGENTA;
           g2d.setColor(vehiculeColor);
           g2d.fillOval(
               (int) vehiculePoint.getX() - radius / 2,
@@ -219,14 +219,14 @@ public class CarriereDrawer {
 
       Thread.sleep(1000);
 
-      /*   Vector<AbstractPointChemin> cheminCamionRetour =
-                controller.cheminDuCamionRetour(tasSimulation);
+      Vector<AbstractPointChemin> cheminCamionRetour =
+          controller.cheminDuCamionRetour(tasSimulation);
 
-            for (AbstractPointChemin chemin : cheminCamionRetour) {
-              camionCourant.setPoint(chemin.getPoint());
-            }
-            Thread.sleep(1000);
-      */
+      for (AbstractPointChemin chemin : cheminCamionRetour) {
+        camionCourant.setPoint(chemin.getPoint());
+      }
+      Thread.sleep(1000);
+
       camionCourant.changeEtat("FACTURE");
 
       Facture factureCamion =
