@@ -26,7 +26,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
   private CarriereDrawer carriereDrawer;
 
-  private Graphics graphics;
+  public Graphics graphics;
 
   private double mouseX;
   private double mouseY;

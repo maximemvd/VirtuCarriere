@@ -10,11 +10,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.*;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -147,13 +150,11 @@ public class CarriereDrawer {
     for (Camion camionCourant : controller.getCamionList()) {
 
       System.out.println("la simulation commence");
-
       controller.setEntreSimulation(controller.getEntree());
 
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
       // début simulation pour les camions
-      Thread.sleep(500);
       draw(g2d, zoom);
 
       Jeton jetonCamionCourant = camionCourant.getJeton();
@@ -163,10 +164,6 @@ public class CarriereDrawer {
       Tas tasSimulation =
           controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
-      System.out.print(tasSimulation);
-
-      Thread.sleep(500);
-
       Chargeur courantChargeur =
           controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
 
@@ -174,31 +171,34 @@ public class CarriereDrawer {
 
       System.out.print(courantChargeur);
 
-      Thread.sleep(500);
-
       courantChargeur.setJeton(jetonCamionCourant);
 
       System.out.print("hey");
-
-      Thread.sleep(500);
 
       camionCourant.changeEtat("ENCOURS");
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
-      for (AbstractPointChemin chemin : cheminCamionAller) {
-        try {
-          Thread.sleep(3000);
-          camionCourant.setPoint(chemin.getPoint());
-          drawCamion(g2d, zoom);
-          draw(g2d, zoom);
-        } catch (InterruptedException ex) {
-        }
-      }
+      int delayTime = 2000;
+      final int maxSize = cheminCamionAller.size();
+      new Timer(
+              delayTime,
+              new ActionListener() {
+                private int count = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count < maxSize) {
+                    camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
+                    count++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
 
       System.out.print(cheminCamionAller);
-
-      Thread.sleep(2000);
 
       System.out.print("allo max");
 
@@ -219,7 +219,7 @@ public class CarriereDrawer {
 
       camionCourant.changeEtat("LIVRER");
 
-      Thread.sleep(1000);
+      // Thread.sleep(1000);
 
       Vector<AbstractPointChemin> cheminCamionRetour =
           controller.cheminDuCamionRetour(tasSimulation);
@@ -228,7 +228,7 @@ public class CarriereDrawer {
         camionCourant.setPoint(chemin.getPoint());
         draw(g2d, zoom);
       }
-      Thread.sleep(1000);
+      // Thread.sleep(1000);
 
       camionCourant.changeEtat("FACTURE");
 
@@ -237,7 +237,7 @@ public class CarriereDrawer {
 
       camionCourant.setFacture(factureCamion);
 
-      Thread.sleep(1000);
+      // Thread.sleep(1000);
 
       double prixFacture = camionCourant.getFacture().getPrice();
 
