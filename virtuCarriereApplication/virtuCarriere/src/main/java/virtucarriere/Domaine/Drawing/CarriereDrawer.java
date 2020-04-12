@@ -193,7 +193,7 @@ public class CarriereDrawer {
 
       System.out.print(cheminCamionAller);
 
-      Thread.sleep(4000);
+      Thread.sleep(2000);
 
       System.out.print("allo max");
 
