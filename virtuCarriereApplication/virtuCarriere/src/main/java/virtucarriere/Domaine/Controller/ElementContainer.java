@@ -60,6 +60,10 @@ public class ElementContainer implements Serializable {
     this.file = p_file;
   }
 
+  public List<Noeud> getAllNoeuds() {
+    return plan.getAllNoeuds();
+  }
+
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
     return simulation.cheminDuCamion(tas);
   }
