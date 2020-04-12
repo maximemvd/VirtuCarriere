@@ -338,6 +338,7 @@ public class Simulation implements Serializable {
     Vector<AbstractPointChemin> path = new Vector<>();
 
     final AbstractPointChemin[] now = {end};
+    path.add(end);
     Optional<DataDijkstra> treating =
         afterAlgo.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(now[0])).findFirst();
     do {
