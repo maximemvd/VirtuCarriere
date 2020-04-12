@@ -224,10 +224,6 @@ public class Simulation implements Serializable {
       Vector<AbstractPointChemin> cheminChargeurCourant =
           ChargeurCheminToPath(chargeurCourant, tas, listeDeNoeud);
 
-      System.out.print(cheminChargeurCourant);
-
-      System.out.print("Test");
-
       if (cheminMinimal.size() > cheminChargeurCourant.size()) {
         chargeurSimulation = chargeurCourant;
         cheminMinimal = cheminChargeurCourant;
@@ -250,8 +246,6 @@ public class Simulation implements Serializable {
       }
     }
 
-    System.out.print("Bon chemin de chargeur jusqu'au tas");
-    System.out.print(chemin);
     return chemin;
   }
 
@@ -268,12 +262,10 @@ public class Simulation implements Serializable {
             treatingEnd -> {
               data.add(new DataDijkstra(treatingEnd, Double.MAX_VALUE));
             });
-    System.out.print("hello world");
     data.stream()
         .filter(dataDijkstra -> dataDijkstra.getEnd().equals(start))
         .findFirst()
         .ifPresent(dataDijkstra -> dataDijkstra.setTotalCost(0));
-    System.out.print("allo");
     DataDijkstra treating;
     do {
       treating = data.stream().min(Comparator.comparing(DataDijkstra::getTotalCost)).get();
@@ -282,16 +274,13 @@ public class Simulation implements Serializable {
       final double[] newCost = new double[1];
       final double[] oldCost = new double[1];
       final double[] linkCost = new double[1];
-      System.out.print("testing");
       List<AbstractPointChemin> adj = graphChemin.getAdjacentsOut(treating.getEnd());
       DataDijkstra finalTreating = treating;
-      System.out.print("allo algo");
       data.stream()
           .filter(dataDijkstra -> adj.contains(dataDijkstra.getEnd()))
           .findFirst()
           .ifPresent(
               dataDijkstra -> {
-                System.out.print("allo algo wow pour vrai");
                 linkCost[0] =
                     graphChemin.getLink(finalTreating.getEnd(), dataDijkstra.getEnd()).getCost();
                 oldCost[0] = dataDijkstra.getTotalCost();
