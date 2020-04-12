@@ -206,12 +206,12 @@ public class Simulation implements Serializable {
   }
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
-    return getShortestPathToGo(tas.getNoeud());
-  };
+    return getShortestPathToGo(tas.getPointChargement());
+  }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
     return getShortestPathToComeBack(tas.getPointChargement());
-  };
+  }
 
   public Chargeur choisirChargeurIdeal(Tas tas, List<Noeud> listeDeNoeud) {
 
