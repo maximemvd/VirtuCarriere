@@ -189,8 +189,9 @@ public class CarriereDrawer {
 
       for (AbstractPointChemin chemin : cheminCamionAller) {
         try {
-          Thread.sleep(1000);
+          Thread.sleep(3000);
           camionCourant.setPoint(chemin.getPoint());
+          drawCamion(g2d, zoom);
         } catch (InterruptedException ex) {
         }
       }
