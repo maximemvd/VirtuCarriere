@@ -12,6 +12,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import virtucarriere.Domaine.Drawing.CarriereDrawer;
@@ -21,6 +23,10 @@ public class DrawingPanel extends JPanel implements Serializable {
 
   public Dimension initialDimension;
   private MainWindow mainWindow;
+
+  private CarriereDrawer carriereDrawer;
+
+  private Graphics graphics;
 
   private double mouseX;
   private double mouseY;
@@ -45,13 +51,23 @@ public class DrawingPanel extends JPanel implements Serializable {
     setBackground(Color.WHITE);
   }
 
+  public void startSimulation() {
+    Graphics2D g2d = (Graphics2D) graphics;
+    try {
+      carriereDrawer.startSimulation(g2d, zoom);
+    } catch (InterruptedException ex) {
+      Logger.getLogger(DrawingPanel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
   @Override
   protected void paintComponent(Graphics g) {
 
     if (mainWindow != null) {
 
       super.paintComponent(g);
-      CarriereDrawer carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
+      graphics = g;
+      carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
 
       // draw mouse coordinates
       g.setColor(Color.black);

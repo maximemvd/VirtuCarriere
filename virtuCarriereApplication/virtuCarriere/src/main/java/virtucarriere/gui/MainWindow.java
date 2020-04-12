@@ -1537,7 +1537,7 @@ public class MainWindow extends JFrame {
 
   private void StartSimulationActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_StartSimulationActionPerformed
-    controller.startSimulation();
+    drawingPanel.startSimulation();
   } // GEN-LAST:event_StartSimulationActionPerformed
 
   private void jButton6ActionPerformed(
