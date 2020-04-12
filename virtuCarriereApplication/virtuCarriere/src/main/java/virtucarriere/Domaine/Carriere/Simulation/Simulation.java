@@ -206,11 +206,11 @@ public class Simulation implements Serializable {
   }
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
-    return getShortestPathToGo(tas.getPointChargement());
+    return getShortestPathBetweenTwoNoeuds(entreeCarriere, tas.getPointChargement());
   }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
-    return getShortestPathToComeBack(tas.getPointChargement());
+    return getShortestPathBetweenTwoNoeuds(tas.getPointChargement(), entreeCarriere);
   }
 
   public Chargeur choisirChargeurIdeal(Tas tas, List<Noeud> listeDeNoeud) {
@@ -253,25 +253,6 @@ public class Simulation implements Serializable {
     System.out.print("Bon chemin de chargeur jusqu'au tas");
     System.out.print(chemin);
     return chemin;
-  }
-
-  public Vector<AbstractPointChemin> getShortestPathToGo(AbstractPointChemin stop) {
-    Vector<AbstractPointChemin> results = new Vector<>();
-    System.out.print(entreeCarriere);
-
-    results.addAll(getShortestPathBetweenTwoNoeuds(entreeCarriere, stop));
-
-    return results;
-  }
-
-  public Vector<AbstractPointChemin> getShortestPathToComeBack(AbstractPointChemin stop) {
-    Vector<AbstractPointChemin> results = new Vector<>();
-
-    AbstractPointChemin entree = entreeCarriere;
-
-    results.addAll(getShortestPathBetweenTwoNoeuds(stop, entreeCarriere));
-
-    return results;
   }
 
   public Vector<AbstractPointChemin> getShortestPathBetweenTwoNoeuds(
