@@ -179,7 +179,7 @@ public class CarriereDrawer {
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
-      int delayTime = 2000;
+      int delayTime = 3000;
       final int maxSize = cheminCamionAller.size();
       new Timer(
               delayTime,
@@ -198,37 +198,58 @@ public class CarriereDrawer {
               })
           .start();
 
-      System.out.print(cheminCamionAller);
-
-      System.out.print("allo max");
-
       Vector<AbstractPointChemin> cheminChargeur =
           controller.ChargeurCheminToPath(
               courantChargeur, tasSimulation, controller.getAllNoeuds());
 
-      for (AbstractPointChemin chemin : cheminChargeur) {
-        courantChargeur.setPoint(chemin.getPoint());
-        draw(g2d, zoom);
-      }
+      int delayTime3 = 3000;
+      final int maxSize3 = cheminChargeur.size();
+      new Timer(
+              delayTime3,
+              new ActionListener() {
+                private int count2 = 0;
 
-      System.out.print(cheminChargeur);
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count2 < maxSize3) {
+                    courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
+                    count2++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
 
       if (!controller.verificationJeton(camionCourant, courantChargeur)) {
         System.out.print("marche pas");
+        break;
       }
 
       camionCourant.changeEtat("LIVRER");
 
-      // Thread.sleep(1000);
-
       Vector<AbstractPointChemin> cheminCamionRetour =
           controller.cheminDuCamionRetour(tasSimulation);
 
-      for (AbstractPointChemin chemin : cheminCamionRetour) {
-        camionCourant.setPoint(chemin.getPoint());
-        draw(g2d, zoom);
-      }
-      // Thread.sleep(1000);
+      int delayTime2 = 3000;
+      final int maxSize2 = cheminCamionRetour.size();
+      new Timer(
+              delayTime2,
+              new ActionListener() {
+                private int count3 = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count3 < maxSize2) {
+                    camionCourant.setPoint(cheminCamionRetour.get(count3).getPoint());
+
+                    count3++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
 
       camionCourant.changeEtat("FACTURE");
 
@@ -236,8 +257,6 @@ public class CarriereDrawer {
           new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
 
       camionCourant.setFacture(factureCamion);
-
-      // Thread.sleep(1000);
 
       double prixFacture = camionCourant.getFacture().getPrice();
 
