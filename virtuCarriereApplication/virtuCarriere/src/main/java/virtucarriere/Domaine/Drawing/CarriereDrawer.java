@@ -85,18 +85,18 @@ public class CarriereDrawer {
           Point vehiculePoint = chargeur.getPoint();
           if (chargeur.isSelected()) {
             g2d.setColor(new Color(255, 0, 0));
-            int offsetRadius = radius + 2;
+            int offsetRadius = radius / 2 + 2;
             g2d.fillOval(
                 (int) vehiculePoint.getX() - offsetRadius,
                 (int) vehiculePoint.getY() - offsetRadius,
                 offsetRadius * 2,
                 offsetRadius * 2);
           }
-          Color vehiculeColor = Color.orange;
+          Color vehiculeColor = Color.PINK;
           g2d.setColor(vehiculeColor);
           g2d.fillOval(
-              (int) vehiculePoint.getX() - radius,
-              (int) vehiculePoint.getY() - radius,
+              (int) vehiculePoint.getX() - radius / 2,
+              (int) vehiculePoint.getY() - radius / 2,
               radius,
               radius);
         });
