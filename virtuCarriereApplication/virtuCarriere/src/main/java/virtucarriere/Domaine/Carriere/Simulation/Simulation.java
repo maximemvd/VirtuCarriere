@@ -317,7 +317,7 @@ public class Simulation implements Serializable {
     } while (!data.isEmpty());
 
     DataDijkstra endOfPath =
-        result.stream().filter(dataDijkstra -> dataDijkstra.getEnd() == end).findFirst().get();
+        result.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(end)).findFirst().get();
     System.out.print("allo algo wow");
     if (endOfPath.getTotalCost() == Double.MAX_VALUE)
       throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");

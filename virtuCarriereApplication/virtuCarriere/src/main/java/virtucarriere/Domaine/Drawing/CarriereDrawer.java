@@ -185,14 +185,14 @@ public class CarriereDrawer {
 
       camionCourant.changeEtat("ENCOURS");
 
-      /*  Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
-            for (AbstractPointChemin chemin : cheminCamionAller) {
-              camionCourant.setPoint(chemin.getPoint());
-            }
+      for (AbstractPointChemin chemin : cheminCamionAller) {
+        camionCourant.setPoint(chemin.getPoint());
+      }
 
-            System.out.print(cheminCamionAller);
-      */
+      System.out.print(cheminCamionAller);
+
       Thread.sleep(4000);
 
       System.out.print("allo max");
@@ -214,14 +214,13 @@ public class CarriereDrawer {
       camionCourant.changeEtat("LIVRER");
 
       Thread.sleep(1000);
-      /*
-            Vector<AbstractPointChemin> cheminCamionRetour =
-                controller.cheminDuCamionRetour(tasSimulation);
 
-            for (AbstractPointChemin chemin : cheminCamionRetour) {
-              camionCourant.setPoint(chemin.getPoint());
-            }
-      */
+      Vector<AbstractPointChemin> cheminCamionRetour =
+          controller.cheminDuCamionRetour(tasSimulation);
+
+      for (AbstractPointChemin chemin : cheminCamionRetour) {
+        camionCourant.setPoint(chemin.getPoint());
+      }
       Thread.sleep(1000);
 
       camionCourant.changeEtat("FACTURE");
