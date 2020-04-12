@@ -108,7 +108,6 @@ public class CarriereDrawer {
     g2d.scale(zoom, zoom);
     List<Camion> camions = controller.getCamionList();
     int numberOfCLient = camions.size();
-    System.out.println(numberOfCLient);
     for (Camion camion : camions) {
       Point pointEntree = camion.getPoint();
       int camionPointX = pointEntree.x;
@@ -125,8 +124,6 @@ public class CarriereDrawer {
             offsetRadius);
       }
       Color couleurCamion = Color.YELLOW;
-      System.out.println(camionPointX);
-      System.out.println(camionPointY);
       g2d.setColor(couleurCamion);
       g2d.fillRoundRect(
           camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
@@ -157,6 +154,7 @@ public class CarriereDrawer {
 
       // début simulation pour les camions
       Thread.sleep(500);
+      draw(g2d, zoom);
 
       Jeton jetonCamionCourant = camionCourant.getJeton();
 
@@ -169,7 +167,8 @@ public class CarriereDrawer {
 
       Thread.sleep(500);
 
-      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+      Chargeur courantChargeur =
+          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
 
       System.out.print("Chargeur correspondant");
 
@@ -192,6 +191,7 @@ public class CarriereDrawer {
           Thread.sleep(3000);
           camionCourant.setPoint(chemin.getPoint());
           drawCamion(g2d, zoom);
+          draw(g2d, zoom);
         } catch (InterruptedException ex) {
         }
       }
@@ -208,6 +208,7 @@ public class CarriereDrawer {
 
       for (AbstractPointChemin chemin : cheminChargeur) {
         courantChargeur.setPoint(chemin.getPoint());
+        draw(g2d, zoom);
       }
 
       System.out.print(cheminChargeur);
@@ -225,6 +226,7 @@ public class CarriereDrawer {
 
       for (AbstractPointChemin chemin : cheminCamionRetour) {
         camionCourant.setPoint(chemin.getPoint());
+        draw(g2d, zoom);
       }
       Thread.sleep(1000);
 

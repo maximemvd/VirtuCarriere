@@ -2030,7 +2030,6 @@ public class MainWindow extends JFrame {
           jTextField2.setText(nombreTotal);
         }
     }
-    System.out.println(controller.getAllNoeuds());
   }
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {

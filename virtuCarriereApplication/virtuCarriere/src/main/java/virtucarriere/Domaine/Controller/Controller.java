@@ -150,8 +150,8 @@ public class Controller implements Serializable {
     elementContainer.clearEquipementConv();
   }
 
-  public Chargeur choisirChargeurCorrespondant(Tas tas) {
-    return elementContainer.trouverChargeurCorrespondant(tas);
+  public Chargeur choisirChargeurCorrespondant(Tas tas, List<Noeud> noeudList) {
+    return elementContainer.trouverChargeurCorrespondant(tas, noeudList);
   }
 
   public Vector<AbstractPointChemin> ChargeurCheminToPath(

@@ -213,21 +213,28 @@ public class Simulation implements Serializable {
     return getShortestPathToComeBack(tas.getPointChargement());
   };
 
-  public Chargeur choisirChargeurIdeal(Tas tas) {
+  public Chargeur choisirChargeurIdeal(Tas tas, List<Noeud> listeDeNoeud) {
 
-    // Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
+    Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
+
     Chargeur chargeurSimulation = chargeurList.get(0);
-    //  for (Chargeur chargeurCourant : chargeurList) {
 
-    //  Vector<AbstractPointChemin> cheminChargeurCourant =
-    //    ChargeurCheminToPath(chargeurCourant, tas);
-    // System.out.print(cheminChargeurCourant);
-    // System.out.print("Test");
-    // if (cheminMinimal.size() > cheminChargeurCourant.size()) {
-    // chargeurSimulation = chargeurCourant;
-    // System.out.print(chargeurSimulation);
-    // cheminMinimal = cheminChargeurCourant;
-    System.out.print(chargeurSimulation);
+    for (Chargeur chargeurCourant : chargeurList) {
+
+      Vector<AbstractPointChemin> cheminChargeurCourant =
+          ChargeurCheminToPath(chargeurCourant, tas, listeDeNoeud);
+
+      System.out.print(cheminChargeurCourant);
+
+      System.out.print("Test");
+
+      if (cheminMinimal.size() > cheminChargeurCourant.size()) {
+        chargeurSimulation = chargeurCourant;
+        cheminMinimal = cheminChargeurCourant;
+      }
+
+      System.out.print(chargeurSimulation);
+    }
     return chargeurSimulation;
   }
 
@@ -260,7 +267,7 @@ public class Simulation implements Serializable {
   public Vector<AbstractPointChemin> getShortestPathToComeBack(AbstractPointChemin stop) {
     Vector<AbstractPointChemin> results = new Vector<>();
 
-    // AbstractPointChemin entree = entreeCarriere;
+    AbstractPointChemin entree = entreeCarriere;
 
     results.addAll(getShortestPathBetweenTwoNoeuds(stop, entreeCarriere));
 
@@ -319,8 +326,9 @@ public class Simulation implements Serializable {
     DataDijkstra endOfPath =
         result.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(end)).findFirst().get();
     System.out.print("allo algo wow");
-    if (endOfPath.getTotalCost() == Double.MAX_VALUE)
+    if (endOfPath.getTotalCost() == Double.MAX_VALUE) {
       throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");
+    }
 
     return buildPath(start, end, result);
   }
