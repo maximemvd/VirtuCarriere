@@ -20,6 +20,8 @@ public class Tas extends Equipement {
   private double quantite;
   private Point point;
 
+  private Noeud noeudTas;
+
   private PointChargement pointChargement;
 
   private List<String> listMateriau;
@@ -36,6 +38,14 @@ public class Tas extends Equipement {
     this.setlistMateriau();
     Point newPoint = new Point(point.x - 55, point.y + 6);
     this.pointChargement = new PointChargement(newPoint, 3, 3);
+  }
+
+  public void setNoeudTas(Noeud new_noeud) {
+    this.noeudTas = new_noeud;
+  }
+
+  public Noeud getNoeud() {
+    return noeudTas;
   }
 
   @Override
