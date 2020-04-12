@@ -50,8 +50,8 @@ public class CarriereDrawer {
     drawEntree(g2d, zoom);
     drawArc(g2d, zoom);
     drawConvoyeur(g2d, zoom);
-    drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);
+    drawChargeur(g2d, zoom);
     drawPointChargement(g2d, zoom);
   }
 
@@ -97,8 +97,8 @@ public class CarriereDrawer {
           g2d.fillOval(
               (int) vehiculePoint.getX() - radius,
               (int) vehiculePoint.getY() - radius,
-              radius * 2,
-              radius * 2);
+              radius,
+              radius);
         });
     g2d.scale(1 / zoom, 1 / zoom);
   }
@@ -219,14 +219,14 @@ public class CarriereDrawer {
 
       Thread.sleep(1000);
 
-      Vector<AbstractPointChemin> cheminCamionRetour =
-          controller.cheminDuCamionRetour(tasSimulation);
+      /*   Vector<AbstractPointChemin> cheminCamionRetour =
+                controller.cheminDuCamionRetour(tasSimulation);
 
-      for (AbstractPointChemin chemin : cheminCamionRetour) {
-        camionCourant.setPoint(chemin.getPoint());
-      }
-      Thread.sleep(1000);
-
+            for (AbstractPointChemin chemin : cheminCamionRetour) {
+              camionCourant.setPoint(chemin.getPoint());
+            }
+            Thread.sleep(1000);
+      */
       camionCourant.changeEtat("FACTURE");
 
       Facture factureCamion =
