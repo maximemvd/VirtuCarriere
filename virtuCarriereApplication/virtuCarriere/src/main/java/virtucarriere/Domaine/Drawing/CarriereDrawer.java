@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -55,14 +53,6 @@ public class CarriereDrawer {
     drawChargeur(g2d, zoom);
     drawCamion(g2d, zoom);
     drawPointChargement(g2d, zoom);
-
-    if (controller.getSimulationAnimation()) {
-      try {
-        startSimulation(g2d, zoom);
-      } catch (InterruptedException ex) {
-        Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
   }
 
   public void drawPointChargement(Graphics2D g2d, double zoom) {
@@ -328,26 +318,28 @@ public class CarriereDrawer {
   }
 
   public void drawEntree(Graphics2D g2d, double zoom) {
-    g2d.scale(zoom, zoom);
-    Entree entrees = controller.getEntree();
-    Point entreePoint = entrees.getPoint();
-    if (entrees.isSelected()) {
-      g2d.setColor(new Color(255, 0, 0));
-      int offsetRadius = radius + 2;
+    if (controller.getEntree() != null) {
+      g2d.scale(zoom, zoom);
+      Entree entrees = controller.getEntree();
+      Point entreePoint = entrees.getPoint();
+      if (entrees.isSelected()) {
+        g2d.setColor(new Color(255, 0, 0));
+        int offsetRadius = radius + 2;
+        g2d.fillRect(
+            (int) entrees.getPoint().x - offsetRadius,
+            (int) entrees.getPoint().y - offsetRadius,
+            offsetRadius * 2,
+            offsetRadius * 2);
+      }
+      Color entreeColor = entrees.getColor();
+      g2d.setColor(entreeColor);
       g2d.fillRect(
-          (int) entrees.getPoint().x - offsetRadius,
-          (int) entrees.getPoint().y - offsetRadius,
-          offsetRadius * 2,
-          offsetRadius * 2);
+          (int) entreePoint.getX() - radius,
+          (int) entreePoint.getY() - radius,
+          radius * 2,
+          radius * 2);
+      g2d.scale(1 / zoom, 1 / zoom);
     }
-    Color entreeColor = entrees.getColor();
-    g2d.setColor(entreeColor);
-    g2d.fillRect(
-        (int) entreePoint.getX() - radius,
-        (int) entreePoint.getY() - radius,
-        radius * 2,
-        radius * 2);
-    g2d.scale(1 / zoom, 1 / zoom);
   }
 
   public void drawArc(Graphics2D g2d, double zoom) {
