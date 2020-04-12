@@ -136,16 +136,6 @@ public class CarriereDrawer {
 
   public void startSimulation(Graphics2D g2d, double zoom) throws InterruptedException {
 
-    System.out.println("la simulation commence");
-
-    Color couleurCamion = Color.YELLOW;
-
-    Color chargeurColor = Color.orange;
-
-    Entree entreeCarriere = controller.getEntree();
-
-    controller.setEntreSimulation(entreeCarriere);
-
     List<Equipement> EquipementList = controller.getEquipementList();
 
     List<Tas> listeTas = new LinkedList<>();
@@ -163,101 +153,106 @@ public class CarriereDrawer {
 
     for (Camion camionCourant : listeDesCamion) {
 
+      System.out.println("la simulation commence");
+
+      Entree entreeCarriere = controller.getEntree();
+
+      controller.setEntreSimulation(entreeCarriere);
+
+      Thread.sleep(500);
+
       GraphChemins cheminPlan = controller.getGraphChemin();
 
-      if (cheminPlan != null && listeChargeur.size() > 0) {
+      controller.setGraphCheminSimulation(cheminPlan);
 
-        controller.setGraphCheminSimulation(cheminPlan);
+      System.out.print(cheminPlan);
+      // début simulation pour les camions
+      Thread.sleep(2000);
 
-        System.out.print(cheminPlan);
-        // début simulation pour les camions
-        Thread.sleep(500);
+      Jeton jetonCamionCourant = camionCourant.getJeton();
 
-        Jeton jetonCamionCourant = camionCourant.getJeton();
-        System.out.print("Jeton correspondant");
-        System.out.print(jetonCamionCourant);
-        Thread.sleep(500);
+      System.out.print(jetonCamionCourant);
 
-        Tas tasSimulation =
-            controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+      Thread.sleep(500);
 
-        System.out.print("tas correspondant");
-        System.out.print(tasSimulation);
-        Thread.sleep(500);
+      Tas tasSimulation =
+          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
-        Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
-        System.out.print("Chargeur correspondant");
-        System.out.print(courantChargeur);
-        Thread.sleep(500);
+      System.out.print(tasSimulation);
 
-        courantChargeur.setJeton(jetonCamionCourant);
-        System.out.print("hey");
-        Thread.sleep(500);
+      Thread.sleep(500);
 
-        camionCourant.changeEtat("ENCOURS");
+      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
 
-        Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+      System.out.print("Chargeur correspondant");
 
-        for (AbstractPointChemin chemin : cheminCamionAller) {
-          System.out.print("allo max");
-          Point pointCamionAller = chemin.getPoint();
-          camionCourant.setPoint(pointCamionAller);
-          Thread.sleep(1000);
-        }
+      System.out.print(courantChargeur);
 
-        System.out.print(cheminCamionAller);
-        System.out.print("allo max");
+      Thread.sleep(500);
+
+      courantChargeur.setJeton(jetonCamionCourant);
+
+      System.out.print("hey");
+
+      Thread.sleep(500);
+
+      camionCourant.changeEtat("ENCOURS");
+
+      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+
+      for (AbstractPointChemin chemin : cheminCamionAller) {
+        camionCourant.setPoint(chemin.getPoint());
         Thread.sleep(1000);
-
-        Vector<AbstractPointChemin> cheminChargeur =
-            controller.ChargeurCheminToPath(courantChargeur, tasSimulation);
-
-        for (AbstractPointChemin chemin : cheminChargeur) {
-          Point pointChemin = chemin.getPoint();
-          Color equipementColor = Color.CYAN;
-          g2d.setColor(equipementColor);
-          g2d.fillOval(
-              (int) pointChemin.x + 100, (int) pointChemin.y + 100, radius * 2, radius * 2);
-          courantChargeur.setPoint(pointChemin);
-          Thread.sleep(1000);
-        }
-
-        System.out.print(cheminChargeur);
-
-        Thread.sleep(1000);
-
-        if (!controller.verificationJeton(camionCourant, courantChargeur)) {
-          break;
-        }
-
-        camionCourant.changeEtat("LIVRER");
-
-        Thread.sleep(1000);
-
-        Vector<AbstractPointChemin> cheminCamionRetour =
-            controller.cheminDuCamionRetour(tasSimulation);
-
-        for (AbstractPointChemin chemin : cheminCamionRetour) {
-          Point pointCamionRetour = chemin.getPoint();
-          camionCourant.setPoint(pointCamionRetour);
-          Thread.sleep(1000);
-        }
-
-        Thread.sleep(1000);
-
-        camionCourant.changeEtat("FACTURE");
-
-        Facture factureCamion =
-            new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
-
-        camionCourant.setFacture(factureCamion);
-
-        Thread.sleep(1000);
-
-        double prixFacture = camionCourant.getFacture().getPrice();
-
-        camionCourant.changeEtat("PAYÉ");
       }
+
+      System.out.print(cheminCamionAller);
+
+      System.out.print("allo max");
+
+      Thread.sleep(1000);
+
+      Vector<AbstractPointChemin> cheminChargeur =
+          controller.ChargeurCheminToPath(courantChargeur, tasSimulation);
+
+      for (AbstractPointChemin chemin : cheminChargeur) {
+        courantChargeur.setPoint(chemin.getPoint());
+        Thread.sleep(1000);
+      }
+
+      System.out.print(cheminChargeur);
+
+      Thread.sleep(1000);
+
+      if (!controller.verificationJeton(camionCourant, courantChargeur)) {
+        break;
+      }
+
+      camionCourant.changeEtat("LIVRER");
+
+      Thread.sleep(1000);
+
+      Vector<AbstractPointChemin> cheminCamionRetour =
+          controller.cheminDuCamionRetour(tasSimulation);
+
+      for (AbstractPointChemin chemin : cheminCamionRetour) {
+        camionCourant.setPoint(chemin.getPoint());
+        Thread.sleep(1000);
+      }
+
+      Thread.sleep(1000);
+
+      camionCourant.changeEtat("FACTURE");
+
+      Facture factureCamion =
+          new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
+
+      camionCourant.setFacture(factureCamion);
+
+      Thread.sleep(1000);
+
+      double prixFacture = camionCourant.getFacture().getPrice();
+
+      camionCourant.changeEtat("PAYÉ");
     }
   }
 

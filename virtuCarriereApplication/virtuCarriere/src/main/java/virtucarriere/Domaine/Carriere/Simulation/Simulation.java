@@ -238,7 +238,7 @@ public class Simulation implements Serializable {
     // Noeud tas = new Noeud(pointTas, 10, 10);
 
     Vector<AbstractPointChemin> chemin =
-        getShortestPathBetweenTwoNoeuds(chargeur, p_tas.getNoeud());
+        getShortestPathBetweenTwoNoeuds(p_tas.getPointChargement(), p_tas.getNoeud());
 
     return chemin;
   }
