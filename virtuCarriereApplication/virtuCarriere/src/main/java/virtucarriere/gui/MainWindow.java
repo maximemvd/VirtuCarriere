@@ -1923,8 +1923,10 @@ public class MainWindow extends JFrame {
     int numNoeud = 0;
     int numTas = 0;
     int numArc = 0;
+    int numConvoyeur = 0;
     List<Equipement> equipements = controller.getEquipementList();
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
+    ArrayList<List<Convoyeur>> convoyeurs = controller.getConvoyeurList();
 
     ArrayList<List<Arc>> arcs = controller.getArcList();
     Entree entree = controller.getEntree();
@@ -1981,6 +1983,29 @@ public class MainWindow extends JFrame {
         String y = String.format("%d", (int) noeud.getY());
         textFieldCoordonneeX.setText(x);
         textFieldCoordonneeY.setText(y);
+      }
+    }
+
+    for (List<Convoyeur> listConvoyeur : convoyeurs) {
+      for (Convoyeur convoyeur : listConvoyeur) {
+        if (convoyeur.isSelected()) {
+          numTotal++;
+          numConvoyeur++;
+          Point middlePoint =
+              new Point(
+                  convoyeur.middlePointOfConvoyeur(
+                      (int) convoyeur.getStarting().getX(),
+                      (int) convoyeur.getStarting().getY(),
+                      (int) convoyeur.getArrival().getX(),
+                      (int) convoyeur.getArrival().getY()));
+          String nom = String.format("\nCoordonnées du point milieu du %s", convoyeur.getName());
+          String num = String.format(" #%d", numConvoyeur);
+          String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
+          String yCoord = String.format(", y : %d", (int) middlePoint.getY());
+          String nombreTotal = String.format("%d", numTotal);
+          jTextArea1.append(nom + num + xCoord + yCoord);
+          jTextField2.setText(nombreTotal);
+        }
       }
     }
 
