@@ -227,19 +227,28 @@ public class Simulation implements Serializable {
     // chargeurSimulation = chargeurCourant;
     // System.out.print(chargeurSimulation);
     // cheminMinimal = cheminChargeurCourant;
+    System.out.print(chargeurSimulation);
     return chargeurSimulation;
   }
 
-  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(
+      Chargeur p_chargeur, Tas p_tas, List<Noeud> listeNoeud) {
 
-    Point pointChargeur = p_chargeur.getPoint();
-    Noeud chargeur = new Noeud(pointChargeur, 10, 10);
+    Vector<AbstractPointChemin> chemin = null;
+
+    for (Noeud noeud : listeNoeud) {
+      if (noeud.getPoint() == p_chargeur.getPoint()) {
+        chemin = getShortestPathBetweenTwoNoeuds(noeud, p_tas.getNoeud());
+        break;
+      }
+    }
+    //  Point pointChargeur = p_chargeur.getPoint();
+    // Noeud chargeur = new Noeud(pointChargeur, 10, 10);
     //  Point pointTas = p_tas.getPoint();
     // Noeud tas = new Noeud(pointTas, 10, 10);
 
-    Vector<AbstractPointChemin> chemin =
-        getShortestPathBetweenTwoNoeuds(p_tas.getPointChargement(), p_tas.getNoeud());
-
+    System.out.print("Bon chemin de chargeur jusqu'au tas");
+    System.out.print(chemin);
     return chemin;
   }
 

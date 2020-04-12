@@ -154,8 +154,9 @@ public class Controller implements Serializable {
     return elementContainer.trouverChargeurCorrespondant(tas);
   }
 
-  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
-    return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas);
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(
+      Chargeur p_chargeur, Tas p_tas, List<Noeud> listeNoeud) {
+    return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas, listeNoeud);
   }
 
   public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {

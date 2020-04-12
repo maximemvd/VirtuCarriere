@@ -147,25 +147,16 @@ public class CarriereDrawer {
       }
     }
 
-    List<Camion> listeDesCamion = controller.getCamionList();
-
-    List<Chargeur> listeChargeur = controller.getChargeurList();
-
-    for (Camion camionCourant : listeDesCamion) {
+    for (Camion camionCourant : controller.getCamionList()) {
 
       System.out.println("la simulation commence");
 
-      Entree entreeCarriere = controller.getEntree();
-
-      controller.setEntreSimulation(entreeCarriere);
+      controller.setEntreSimulation(controller.getEntree());
 
       Thread.sleep(500);
 
-      GraphChemins cheminPlan = controller.getGraphChemin();
+      controller.setGraphCheminSimulation(controller.getGraphChemin());
 
-      controller.setGraphCheminSimulation(cheminPlan);
-
-      System.out.print(cheminPlan);
       // début simulation pour les camions
       Thread.sleep(2000);
 
@@ -212,7 +203,8 @@ public class CarriereDrawer {
       Thread.sleep(1000);
 
       Vector<AbstractPointChemin> cheminChargeur =
-          controller.ChargeurCheminToPath(courantChargeur, tasSimulation);
+          controller.ChargeurCheminToPath(
+              courantChargeur, tasSimulation, controller.getAllNoeuds());
 
       for (AbstractPointChemin chemin : cheminChargeur) {
         courantChargeur.setPoint(chemin.getPoint());
