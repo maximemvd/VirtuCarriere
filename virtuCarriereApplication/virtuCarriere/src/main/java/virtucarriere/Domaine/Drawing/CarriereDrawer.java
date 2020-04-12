@@ -188,7 +188,11 @@ public class CarriereDrawer {
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
       for (AbstractPointChemin chemin : cheminCamionAller) {
-        camionCourant.setPoint(chemin.getPoint());
+        try {
+          Thread.sleep(1000);
+          camionCourant.setPoint(chemin.getPoint());
+        } catch (InterruptedException ex) {
+        }
       }
 
       System.out.print(cheminCamionAller);
