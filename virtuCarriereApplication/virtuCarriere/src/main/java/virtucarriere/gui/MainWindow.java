@@ -22,6 +22,8 @@ public class MainWindow extends JFrame {
 
   public Controller controller;
 
+  public int async = 0;
+
   public EquipementModes selectedEquipementMode;
 
   public VehiculeModes selectedVehicules;
@@ -1535,10 +1537,153 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
   } // GEN-LAST:event_selectionSimulActionPerformed
 
-  private void StartSimulationActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_StartSimulationActionPerformed
-    controller.startSimulation();
-  } // GEN-LAST:event_StartSimulationActionPerformed
+  private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
+
+    List<Equipement> EquipementList = controller.getEquipementList();
+
+    List<Tas> listeTas = new LinkedList<>();
+
+    for (Equipement equipement : EquipementList) {
+      if (equipement.getName().equals("Tas")) {
+        Tas tas = (Tas) equipement;
+        listeTas.add(tas);
+      }
+    }
+
+    for (Camion camionCourant : controller.getCamionList()) {
+
+      TextSimulation.append("\n\nLa simulation commence");
+
+      controller.setEntreSimulation(controller.getEntree());
+
+      controller.setGraphCheminSimulation(controller.getGraphChemin());
+
+      Jeton jetonCamionCourant = camionCourant.getJeton();
+
+      TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
+      TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
+      TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
+      TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
+      TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
+
+      Tas tasSimulation =
+          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+
+      Chargeur courantChargeur =
+          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
+
+      TextSimulation.append(
+          "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
+
+      courantChargeur.setJeton(jetonCamionCourant);
+
+      camionCourant.changeEtat("ENCOURS");
+
+      TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
+
+      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+      int delayTime = 1000;
+      final int maxSize = cheminCamionAller.size();
+      new Timer(
+              delayTime,
+              new ActionListener() {
+                private int count = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count < maxSize) {
+
+                    camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
+                    drawingPanel.repaint();
+                    count++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      Vector<AbstractPointChemin> cheminChargeur =
+          controller.ChargeurCheminToPath(
+              courantChargeur, tasSimulation, controller.getAllNoeuds());
+
+      int delayTime3 = 1000;
+      final int maxSize3 = cheminChargeur.size();
+      new Timer(
+              delayTime3,
+              new ActionListener() {
+                private int count2 = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count2 < maxSize3) {
+                    courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
+                    ++count2;
+                    drawingPanel.repaint();
+                    if (count2 == maxSize3) {
+                      Vector<AbstractPointChemin> cheminCamionRetour =
+                          controller.cheminDuCamionRetour(tasSimulation);
+                      int delayTime2 = 1000;
+                      final int maxSize2 = cheminCamionRetour.size();
+                      new Timer(
+                              delayTime2,
+                              new ActionListener() {
+                                private int index = 0;
+
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+                                  if (index < maxSize2) {
+                                    camionCourant.setPoint(
+                                        cheminCamionRetour.get(index).getPoint());
+                                    drawingPanel.repaint();
+                                    index++;
+                                  } else {
+                                    ((Timer) evt.getSource()).stop();
+                                  }
+                                }
+                              })
+                          .start();
+                    }
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      if (!controller.verificationJeton(camionCourant, courantChargeur)) {
+        TextSimulation.append("\n\nLes jetons ne sont pas identiques");
+        break;
+      }
+
+      TextSimulation.append("\n\nJeton du camion et du chargeur sont identiques ! ");
+
+      camionCourant.changeEtat("LIVRER");
+
+      TextSimulation.append("\n\nNouvelle était du camion : " + camionCourant.getEtat());
+
+      TextSimulation.append("\n\nLe camion retourne a l'entrée");
+
+      camionCourant.changeEtat("FACTURE");
+
+      Facture factureCamion =
+          new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
+
+      camionCourant.setFacture(factureCamion);
+
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+      double prixFacture = camionCourant.getFacture().getPrice();
+
+      TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture);
+
+      camionCourant.changeEtat("PAYÉ");
+
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+      TextSimulation.append("\n\nFin de la simulation pour ce camion");
+    }
+  }
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed
