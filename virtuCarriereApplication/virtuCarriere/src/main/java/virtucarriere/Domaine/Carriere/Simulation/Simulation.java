@@ -210,16 +210,19 @@ public class Simulation implements Serializable {
 
   public Chargeur choisirChargeurIdeal(Tas tas, List<Noeud> listeDeNoeud) {
 
-    Vector<AbstractPointChemin> cheminMinimal = new Vector<>(graphChemin.getEnds());
+    Vector<AbstractPointChemin> cheminMinimal = null;
 
-    Chargeur chargeurSimulation = chargeurList.get(0);
+    Chargeur chargeurSimulation = null;
 
     for (Chargeur chargeurCourant : chargeurList) {
 
       Vector<AbstractPointChemin> cheminChargeurCourant =
           ChargeurCheminToPath(chargeurCourant, tas, listeDeNoeud);
 
-      if (cheminMinimal.size() > cheminChargeurCourant.size()) {
+      if (cheminMinimal == null && chargeurSimulation == null) {
+        chargeurSimulation = chargeurCourant;
+        cheminMinimal = cheminChargeurCourant;
+      } else if (cheminMinimal.size() > cheminChargeurCourant.size()) {
         chargeurSimulation = chargeurCourant;
         cheminMinimal = cheminChargeurCourant;
       }
@@ -240,7 +243,6 @@ public class Simulation implements Serializable {
         chemin = getShortestPathBetweenTwoNoeuds(noeud, p_tas.getNoeud());
       }
     }
-
     return chemin;
   }
 
