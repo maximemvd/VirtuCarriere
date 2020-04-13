@@ -1617,7 +1617,8 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_NomClientActionPerformed
 
   private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
-    Point point = controller.getEntree().getPoint();
+    Entree entrees = controller.getEntree();
+    Point point = entrees.getPoint();
     String nomClient = NomClient.getText();
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
