@@ -279,9 +279,8 @@ public class Simulation implements Serializable {
       DataDijkstra finalTreating = treating;
       data.stream()
           .filter(dataDijkstra -> adj.contains(dataDijkstra.getEnd()))
-          .findFirst()
-          .ifPresent(
-              dataDijkstra -> {
+          .forEach(
+              (dataDijkstra -> {
                 linkCost[0] =
                     graphChemin.getLink(finalTreating.getEnd(), dataDijkstra.getEnd()).getCost();
                 oldCost[0] = dataDijkstra.getTotalCost();
@@ -290,7 +289,7 @@ public class Simulation implements Serializable {
                   dataDijkstra.setTotalCost(newCost[0]);
                   dataDijkstra.setPredecessor(finalTreating.getEnd());
                 }
-              });
+              }));
 
     } while (!data.isEmpty());
 

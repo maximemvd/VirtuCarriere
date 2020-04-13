@@ -65,12 +65,7 @@ public class CarriereDrawer {
         listePointChargement.add(tas.getPointChargement());
       }
     }
-    /*
-    for (PointChargement point : listePointChargement) {
-      g2d.setColor(point.getColor());
-      Point pointCharge = point.getPoint();
-      g2d.fillOval((int) pointCharge.x - radius, (int) pointCharge.y - radius, radius, radius);
-    }*/
+
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
@@ -187,6 +182,7 @@ public class CarriereDrawer {
 
   public void drawEntree(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
+
     Entree entrees = controller.getEntree();
     Point entreePoint = entrees.getPoint();
     if (entrees.isSelected()) {
@@ -205,6 +201,7 @@ public class CarriereDrawer {
         (int) entreePoint.getY() - radius,
         radius * 2,
         radius * 2);
+
     g2d.scale(1 / zoom, 1 / zoom);
   }
 

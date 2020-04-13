@@ -19,7 +19,7 @@ public class Plan implements Serializable {
   private Entree entree;
 
   public Plan() {
-    entree = new Entree(new Point(300, 300), 100, 100, 0);
+    entree = new Entree(new Point(2000, 2000), 100, 100, 0);
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
