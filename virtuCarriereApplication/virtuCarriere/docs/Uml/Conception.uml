@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>virtucarriere.Domaine.AffichageUtil.UnitConverter</OriginalElement>
+  <nodes>
+    <node x="2151.8458333333338" y="2534.0">virtucarriere.Domaine.Carriere.Plan.AbstractGraph</node>
+    <node x="4317.95754008501" y="2438.0">virtucarriere.Domaine.Carriere.Simulation.Vehicule</node>
+    <node x="0.0" y="8024.0">virtucarriere.gui.AjoutClientJFrame</node>
+    <node x="2409.369456811463" y="7892.0">virtucarriere.gui.DrawingPanel</node>
+    <node x="3721.3504041159067" y="846.0">virtucarriere.Domaine.Carriere.Plan.Noeud</node>
+    <node x="1092.6875" y="2090.0">virtucarriere.Domaine.Carriere.Plan.Crible</node>
+    <node x="4396.396001397915" y="3550.0">virtucarriere.Domaine.Carriere.Simulation.Simulation</node>
+    <node x="5380.894860927369" y="2992.0">virtucarriere.Domaine.Carriere.Plan.Entree</node>
+    <node x="5678.894860927369" y="8048.0">virtucarriere.Domaine.AffichageUtil.UnitConverter</node>
+    <node x="816.4601845155757" y="1046.0">virtucarriere.Domaine.Carriere.Plan.Angle</node>
+    <node x="1889.125691472229" y="0.0">virtucarriere.Domaine.Carriere.Plan.Element</node>
+    <node x="5267.526984529455" y="2582.0">virtucarriere.Domaine.Carriere.Simulation.Facture</node>
+    <node x="714.7851845155756" y="1206.0">virtucarriere.Domaine.Carriere.Plan.Equipement</node>
+    <node x="3694.14486092737" y="4594.0">virtucarriere.Domaine.Controller.ElementContainer</node>
+    <node x="2185.5125" y="2054.0">virtucarriere.Domaine.Carriere.Plan.Graph</node>
+    <node x="2616.7625" y="3454.0">virtucarriere.Domaine.Carriere.Plan.Plan</node>
+    <node x="4226.278125" y="2932.0">virtucarriere.Domaine.Carriere.Simulation.Chargeur</node>
+    <node x="3139.2236234781294" y="8424.0">virtucarriere.gui.MainWindow</node>
+    <node x="5038.755972038481" y="2920.0">virtucarriere.Domaine.Carriere.Simulation.Camion</node>
+    <node x="2069.5125" y="1742.0">virtucarriere.Domaine.Carriere.Plan.AbstractLien</node>
+    <node x="3463.130376397915" y="6022.0">virtucarriere.Domaine.Controller.Controller</node>
+    <node x="3248.625942862788" y="1610.0">virtucarriere.Domaine.Carriere.Plan.Tas</node>
+    <node x="720.6875" y="2968.0">virtucarriere.Domaine.Carriere.Plan.Concasseur</node>
+    <node x="484.0" y="2570.0">virtucarriere.Domaine.Carriere.Plan.Broyeur</node>
+    <node x="2524.588709731249" y="1046.0">virtucarriere.Domaine.Carriere.Plan.PointChargement</node>
+    <node x="4111.725404115907" y="636.0">virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin</node>
+    <node x="4880.060473560352" y="2066.0">virtucarriere.Domaine.Carriere.Simulation.Jeton</node>
+    <node x="3823.808234529455" y="1059.0">virtucarriere.Domaine.Carriere.Simulation.Itineraire</node>
+    <node x="5972.894860927369" y="0.0">virtucarriere.Domaine.Carriere.Plan.Catalogue</node>
+    <node x="2656.0361234781294" y="2956.0">virtucarriere.Domaine.Carriere.Plan.GraphChemins</node>
+    <node x="2834.4781942607033" y="2510.0">virtucarriere.Domaine.Carriere.Plan.Arc</node>
+    <node x="2337.369456811463" y="7546.0">virtucarriere.Domaine.Drawing.CarriereDrawer</node>
+    <node x="1474.5125000000003" y="2486.0">virtucarriere.Domaine.Carriere.Plan.Convoyeur</node>
+    <node x="1879.6701482836916" y="2932.0">virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur</node>
+    <node x="3296.2236234781294" y="10210.0">virtucarriere.Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Chargeur" target="virtucarriere.Domaine.Carriere.Simulation.Vehicule">
+      <point x="30.5" y="-100.0" />
+      <point x="4378.778125" y="2900.0" />
+      <point x="4417.257540085011" y="2900.0" />
+      <point x="-66.19999999999982" y="196.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Convoyeur">
+      <point x="-58.5333333333333" y="-148.0" />
+      <point x="2498.3361234781296" y="7476.0" />
+      <point x="1538.190981617025" y="7476.0" />
+      <point x="1538.190981617025" y="2860.0" />
+      <point x="1597.5125000000003" y="2860.0" />
+      <point x="-164.0" y="148.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="29.26666666666665" y="-148.0" />
+      <point x="2586.13612347813" y="7526.0" />
+      <point x="2584.2625" y="7526.0" />
+      <point x="2584.2625" y="2034.0" />
+      <point x="3340.0148317516773" y="2034.0" />
+      <point x="-73.11111111111109" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Concasseur">
+      <point x="-117.0666666666666" y="-148.0" />
+      <point x="2439.8027901447963" y="7496.0" />
+      <point x="890.8564385524433" y="7496.0" />
+      <point x="890.8564385524433" y="3434.0" />
+      <point x="775.5208333333335" y="3434.0" />
+      <point x="-109.66666666666652" y="64.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Crible" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="82.25" y="-76.0" />
+      <point x="1339.4375" y="1994.0" />
+      <point x="2504.0125" y="1994.0" />
+      <point x="2504.0125" y="1156.0" />
+      <point x="2552.588709731249" y="1156.0" />
+      <point x="-56.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Graph" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="68.75" y="-112.0" />
+      <point x="2391.7625" y="596.0" />
+      <point x="2084.716600563138" y="596.0" />
+      <point x="30.09090909090901" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Entree">
+      <point x="197.24137931034466" y="-520.0" />
+      <point x="3034.003879310345" y="3364.0" />
+      <point x="5408.728194260702" y="3364.0" />
+      <point x="-55.666666666666515" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Simulation.Vehicule">
+      <point x="-69.33333333333303" y="-424.0" />
+      <point x="4743.062668064582" y="3164.0" />
+      <point x="4637.417013888889" y="3164.0" />
+      <point x="4637.417013888889" y="2890.0" />
+      <point x="4483.45754008501" y="2890.0" />
+      <point x="0.0" y="196.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.Convoyeur">
+      <point x="-102.25" y="-100.0" />
+      <point x="1981.9201482836916" y="2900.0" />
+      <point x="2007.5125000000003" y="2900.0" />
+      <point x="246.0" y="148.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.Arc">
+      <point x="-125.0" y="-712.0" />
+      <point x="3650.630376397915" y="5962.0" />
+      <point x="3389.9781942607033" y="5962.0" />
+      <point x="3389.9781942607033" y="2880.0" />
+      <point x="3259.4156942607033" y="2880.0" />
+      <point x="163.4375" y="124.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="-212.41379310344837" y="-520.0" />
+      <point x="2624.3487068965514" y="3414.0" />
+      <point x="429.5" y="3414.0" />
+      <point x="429.5" y="596.0" />
+      <point x="1934.262055108593" y="596.0" />
+      <point x="-120.36363636363603" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="-300.44444444444434" y="-424.0" />
+      <point x="4511.951556953471" y="3214.0" />
+      <point x="3719.348325115864" y="3214.0" />
+      <point x="3719.348325115864" y="2318.0" />
+      <point x="3568.2370539738995" y="2318.0" />
+      <point x="3568.2370539738995" y="2034.0" />
+      <point x="3559.3481650850104" y="2034.0" />
+      <point x="146.22222222222217" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-121.37931034482745" y="-520.0" />
+      <point x="2715.383189655173" y="3354.0" />
+      <point x="1082.1875" y="3354.0" />
+      <point x="1082.1875" y="1540.0" />
+      <point x="957.1982279938366" y="1540.0" />
+      <point x="35.91304347826099" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.AbstractGraph">
+      <point x="102.25" y="-100.0" />
+      <point x="2186.4201482836916" y="2890.0" />
+      <point x="2254.9708333333338" y="2890.0" />
+      <point x="-34.375" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Camion" target="virtucarriere.Domaine.Carriere.Simulation.Vehicule">
+      <point x="-93.33333333333303" y="-112.0" />
+      <point x="5057.422638705148" y="2860.0" />
+      <point x="4549.657540085011" y="2860.0" />
+      <point x="66.19999999999982" y="196.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="170.41666666666674" y="-100.0" />
+      <point x="2254.5868149503585" y="2900.0" />
+      <point x="2515.0125" y="2900.0" />
+      <point x="2515.0125" y="2348.0" />
+      <point x="2573.2625" y="2348.0" />
+      <point x="2573.2625" y="2024.0" />
+      <point x="3303.4592761961217" y="2024.0" />
+      <point x="-109.66666666666674" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-291.66666666666697" y="-712.0" />
+      <point x="3483.963709731248" y="6002.0" />
+      <point x="462.5" y="6002.0" />
+      <point x="462.5" y="1540.0" />
+      <point x="759.6764888634016" y="1540.0" />
+      <point x="-161.608695652174" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Convoyeur" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="143.5" y="-148.0" />
+      <point x="1905.0125000000003" y="2358.0" />
+      <point x="3661.542609529455" y="2358.0" />
+      <point x="3661.542609529455" y="976.0" />
+      <point x="3766.3119425774457" y="976.0" />
+      <point x="-38.53846153846143" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Main" target="virtucarriere.gui.MainWindow">
+      <point x="-44.5" y="-28.0" />
+      <point x="3340.7236234781294" y="10185.0" />
+      <point x="3262.2236234781294" y="10185.0" />
+      <point x="-123.0" y="868.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Simulation.Camion">
+      <point x="175.5999999999999" y="-148.0" />
+      <point x="2732.469456811463" y="7516.0" />
+      <point x="5394.396001397915" y="7516.0" />
+      <point x="5394.396001397915" y="3314.0" />
+      <point x="5214.755972038481" y="3314.0" />
+      <point x="64.0" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Plan">
+      <point x="-136.71874999999955" y="-664.0" />
+      <point x="3869.9261109273702" y="4534.0" />
+      <point x="2946.7625" y="4534.0" />
+      <point x="110.0" y="520.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="91.03448275862092" y="-520.0" />
+      <point x="2927.796982758621" y="3284.0" />
+      <point x="3465.429166666667" y="3284.0" />
+      <point x="3465.429166666667" y="2900.0" />
+      <point x="3575.7769845294547" y="2900.0" />
+      <point x="3575.7769845294547" y="2328.0" />
+      <point x="3588.125942862788" y="2328.0" />
+      <point x="3588.125942862788" y="1156.0" />
+      <point x="2683.2553763979154" y="1156.0" />
+      <point x="74.66666666666674" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Arc">
+      <point x="30.344827586206975" y="-520.0" />
+      <point x="2867.1073275862072" y="3244.0" />
+      <point x="3010.0361234781294" y="3244.0" />
+      <point x="3010.0361234781294" y="2890.0" />
+      <point x="2932.5406942607033" y="2890.0" />
+      <point x="-163.4375" y="124.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.gui.DrawingPanel">
+      <point x="-140.57142857142844" y="-868.0" />
+      <point x="3244.652194906701" y="8364.0" />
+      <point x="2438.869456811463" y="8364.0" />
+      <point x="-118.0" y="196.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Plan.Entree">
+      <point x="117.14285714285734" y="-868.0" />
+      <point x="3502.3664806209867" y="8354.0" />
+      <point x="5569.394860927369" y="8354.0" />
+      <point x="5569.394860927369" y="3424.0" />
+      <point x="5538.617083149591" y="3424.0" />
+      <point x="74.22222222222217" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Graph" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="-68.75" y="-112.0" />
+      <point x="2254.2625" y="1984.0" />
+      <point x="2219.5125" y="1984.0" />
+      <point x="50.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Simulation.Facture">
+      <point x="164.0" y="-868.0" />
+      <point x="3549.2236234781294" y="8374.0" />
+      <point x="5591.394860927369" y="8374.0" />
+      <point x="5591.394860927369" y="2860.0" />
+      <point x="5468.151984529455" y="2860.0" />
+      <point x="93.625" y="52.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="-19.531249999999545" y="-664.0" />
+      <point x="3987.1136109273702" y="4574.0" />
+      <point x="4001.1448609273702" y="4574.0" />
+      <point x="4001.1448609273702" y="1006.0" />
+      <point x="3869.081173346676" y="1006.0" />
+      <point x="64.23076923076906" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Crible" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-27.416666666666742" y="-76.0" />
+      <point x="1229.7708333333333" y="2034.0" />
+      <point x="1252.1064385524433" y="2034.0" />
+      <point x="1252.1064385524433" y="1510.0" />
+      <point x="1011.0677932112276" y="1510.0" />
+      <point x="89.78260869565202" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Vehicule" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="41.375" y="-196.0" />
+      <point x="4524.83254008501" y="2348.0" />
+      <point x="4078.1759615384617" y="2348.0" />
+      <point x="4078.1759615384617" y="996.0" />
+      <point x="3881.9273271928296" y="996.0" />
+      <point x="77.07692307692287" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Tas" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-94.0" y="-172.0" />
+      <point x="3319.125942862788" y="1450.0" />
+      <point x="1118.8069236460105" y="1450.0" />
+      <point x="197.52173913043475" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractLien" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="50.0" y="-40.0" />
+      <point x="2219.5125" y="1590.0" />
+      <point x="2175.0125" y="1590.0" />
+      <point x="2175.0125" y="606.0" />
+      <point x="2054.625691472229" y="606.0" />
+      <point x="0.0" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="-83.33333333333348" y="-712.0" />
+      <point x="3692.297043064582" y="5952.0" />
+      <point x="3501.2769845294547" y="5952.0" />
+      <point x="3501.2769845294547" y="2034.0" />
+      <point x="3486.2370539738995" y="2034.0" />
+      <point x="73.11111111111109" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Equipement" target="virtucarriere.Domaine.Carriere.Plan.Angle">
+      <point x="-82.60000000000002" y="-112.0" />
+      <point x="838.6851845155757" y="1186.0" />
+      <point x="856.7101845155757" y="1186.0" />
+      <point x="-40.25" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Broyeur">
+      <point x="-146.33333333333326" y="-148.0" />
+      <point x="2410.5361234781294" y="7506.0" />
+      <point x="666.6897718857763" y="7506.0" />
+      <point x="666.6897718857763" y="2900.0" />
+      <point x="525.125" y="2900.0" />
+      <point x="-123.375" y="64.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Tas" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="141.0" y="-172.0" />
+      <point x="3554.125942862788" y="1590.0" />
+      <point x="3650.542609529455" y="1590.0" />
+      <point x="3650.542609529455" y="966.0" />
+      <point x="3753.4657887312915" y="966.0" />
+      <point x="-51.384615384615245" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Arc" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="65.375" y="-124.0" />
+      <point x="3161.3531942607033" y="2338.0" />
+      <point x="3603.542609529455" y="2338.0" />
+      <point x="3603.542609529455" y="766.0" />
+      <point x="4155.475404115907" y="766.0" />
+      <point x="-56.25" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Plan.Arc">
+      <point x="-23.42857142857156" y="-868.0" />
+      <point x="3361.795052049558" y="8314.0" />
+      <point x="3116.0170707825737" y="8314.0" />
+      <point x="3116.0170707825737" y="2890.0" />
+      <point x="3128.6656942607033" y="2890.0" />
+      <point x="32.6875" y="124.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Broyeur" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="137.08333333333348" y="-64.0" />
+      <point x="785.5833333333335" y="2318.0" />
+      <point x="2471.0125" y="2318.0" />
+      <point x="2471.0125" y="2004.0" />
+      <point x="2515.0125" y="2004.0" />
+      <point x="2515.0125" y="1166.0" />
+      <point x="2571.2553763979154" y="1166.0" />
+      <point x="-37.33333333333326" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.GraphChemins">
+      <point x="-214.84374999999955" y="-664.0" />
+      <point x="3791.8011109273702" y="4554.0" />
+      <point x="2606.2625" y="4554.0" />
+      <point x="2606.2625" y="3434.0" />
+      <point x="2725.8932663352725" y="3434.0" />
+      <point x="-93.14285714285688" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Crible">
+      <point x="-87.79999999999995" y="-148.0" />
+      <point x="2469.069456811463" y="7486.0" />
+      <point x="1060.1875" y="7486.0" />
+      <point x="1060.1875" y="2308.0" />
+      <point x="1191.3875" y="2308.0" />
+      <point x="-65.79999999999995" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="292.96875000000045" y="-664.0" />
+      <point x="4299.61361092737" y="4574.0" />
+      <point x="5679.394860927369" y="4574.0" />
+      <point x="5679.394860927369" y="556.0" />
+      <point x="2205.080236926774" y="556.0" />
+      <point x="150.45454545454504" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Arc">
+      <point x="58.5333333333333" y="-148.0" />
+      <point x="2615.402790144796" y="7476.0" />
+      <point x="3067.2625" y="7476.0" />
+      <point x="3067.2625" y="2890.0" />
+      <point x="3063.2906942607033" y="2890.0" />
+      <point x="-32.6875" y="124.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.gui.DrawingPanel">
+      <point x="146.33333333333326" y="148.0" />
+      <point x="2703.2027901447964" y="7867.0" />
+      <point x="2655.2027901447964" y="7867.0" />
+      <point x="98.33333333333326" y="-196.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Concasseur" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="137.08333333333348" y="-64.0" />
+      <point x="1022.2708333333335" y="2900.0" />
+      <point x="1014.2314385524433" y="2900.0" />
+      <point x="1014.2314385524433" y="2338.0" />
+      <point x="2526.0125" y="2338.0" />
+      <point x="2526.0125" y="1176.0" />
+      <point x="2589.922043064582" y="1176.0" />
+      <point x="-18.666666666666742" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="-91.66666666666697" y="-100.0" />
+      <point x="2197.679166666667" y="2308.0" />
+      <point x="2164.0125" y="2308.0" />
+      <point x="2164.0125" y="1984.0" />
+      <point x="2152.845833333333" y="1984.0" />
+      <point x="-16.66666666666697" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Simulation.Chargeur">
+      <point x="19.531250000000455" y="-664.0" />
+      <point x="4026.1761109273702" y="4574.0" />
+      <point x="4041.5198609273702" y="4574.0" />
+      <point x="4041.5198609273702" y="3344.0" />
+      <point x="4241.528125" y="3344.0" />
+      <point x="-106.75" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Controller.ElementContainer">
+      <point x="41.666666666666515" y="-712.0" />
+      <point x="3817.297043064582" y="5942.0" />
+      <point x="4006.64486092737" y="5942.0" />
+      <point x="0.0" y="664.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="60.68965517241395" y="-520.0" />
+      <point x="2897.4521551724138" y="3264.0" />
+      <point x="3367.9781942607033" y="3264.0" />
+      <point x="3367.9781942607033" y="2034.0" />
+      <point x="3376.5703873072325" y="2034.0" />
+      <point x="-36.55555555555566" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Equipement" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="165.20000000000005" y="-112.0" />
+      <point x="1086.4851845155754" y="1146.0" />
+      <point x="2533.922043064582" y="1146.0" />
+      <point x="-74.66666666666674" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="91.66666666666697" y="-100.0" />
+      <point x="2381.0125000000007" y="2328.0" />
+      <point x="2482.0125" y="2328.0" />
+      <point x="2482.0125" y="586.0" />
+      <point x="2114.807509654047" y="586.0" />
+      <point x="60.18181818181802" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Broyeur" target="virtucarriere.Domaine.Carriere.Plan.Crible">
+      <point x="82.25" y="-64.0" />
+      <point x="730.75" y="2298.0" />
+      <point x="1125.5875" y="2298.0" />
+      <point x="-131.60000000000002" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-292.96874999999955" y="-664.0" />
+      <point x="3713.6761109273702" y="4574.0" />
+      <point x="473.5" y="4574.0" />
+      <point x="473.5" y="1550.0" />
+      <point x="777.6330106025321" y="1550.0" />
+      <point x="-143.6521739130435" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphChemins" target="virtucarriere.Domaine.Carriere.Plan.Arc">
+      <point x="40.75" y="-76.0" />
+      <point x="2859.7861234781294" y="2900.0" />
+      <point x="2867.1656942607033" y="2900.0" />
+      <point x="-228.8125" y="124.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="50.0" y="-40.0" />
+      <point x="4261.725404115907" y="566.0" />
+      <point x="2174.989327835865" y="566.0" />
+      <point x="120.36363636363603" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.PointChargement" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="0.0" y="-40.0" />
+      <point x="2608.588709731249" y="1026.0" />
+      <point x="2586.088709731249" y="1026.0" />
+      <point x="2586.088709731249" y="756.0" />
+      <point x="4142.975404115907" y="756.0" />
+      <point x="-68.75" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.GraphChemins">
+      <point x="0.0" y="-520.0" />
+      <point x="2836.7625" y="3274.0" />
+      <point x="2819.0361234781294" y="3274.0" />
+      <point x="0.0" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Controller.Controller">
+      <point x="23.42857142857156" y="-868.0" />
+      <point x="3408.652194906701" y="8314.0" />
+      <point x="3873.5125" y="8314.0" />
+      <point x="3873.5125" y="7496.0" />
+      <point x="3853.755376397915" y="7496.0" />
+      <point x="78.125" y="712.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="-58.593749999999545" y="-664.0" />
+      <point x="3948.0511109273702" y="4514.0" />
+      <point x="3512.2769845294547" y="4514.0" />
+      <point x="3512.2769845294547" y="2034.0" />
+      <point x="3522.7926095294547" y="2034.0" />
+      <point x="109.66666666666652" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="136.55172413793116" y="-520.0" />
+      <point x="2973.314224137931" y="3314.0" />
+      <point x="3654.8628096453185" y="3314.0" />
+      <point x="3654.8628096453185" y="2398.0" />
+      <point x="3705.542609529455" y="2398.0" />
+      <point x="3705.542609529455" y="1016.0" />
+      <point x="3817.696557962061" y="1016.0" />
+      <point x="12.846153846153811" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Equipement" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="82.59999999999991" y="-112.0" />
+      <point x="1003.8851845155755" y="1186.0" />
+      <point x="987.9601845155757" y="1186.0" />
+      <point x="987.9601845155757" y="616.0" />
+      <point x="1994.443873290411" y="616.0" />
+      <point x="-60.18181818181802" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Camion" target="virtucarriere.Domaine.Carriere.Simulation.Jeton">
+      <point x="-18.66666666666697" y="-112.0" />
+      <point x="5132.089305371814" y="2860.0" />
+      <point x="5105.5547623072325" y="2860.0" />
+      <point x="5105.5547623072325" y="2418.0" />
+      <point x="5046.435473560352" y="2418.0" />
+      <point x="45.375" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.GraphChemins">
+      <point x="-208.33333333333348" y="-712.0" />
+      <point x="3567.297043064582" y="5982.0" />
+      <point x="2595.2625" y="5982.0" />
+      <point x="2595.2625" y="3424.0" />
+      <point x="2679.321837763844" y="3424.0" />
+      <point x="-139.71428571428532" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Entree" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="41.75" y="-40.0" />
+      <point x="5506.144860927369" y="2900.0" />
+      <point x="5624.394860927369" y="2900.0" />
+      <point x="5624.394860927369" y="816.0" />
+      <point x="4255.475404115907" y="816.0" />
+      <point x="43.75" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="291.6666666666665" y="-712.0" />
+      <point x="4067.297043064582" y="6002.0" />
+      <point x="5657.394860927369" y="6002.0" />
+      <point x="5657.394860927369" y="786.0" />
+      <point x="4292.975404115907" y="786.0" />
+      <point x="81.25" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Controller.Controller">
+      <point x="87.79999999999995" y="-148.0" />
+      <point x="2644.6694568114626" y="7486.0" />
+      <point x="3541.255376397915" y="7486.0" />
+      <point x="-234.375" y="712.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="-204.86666666666656" y="-148.0" />
+      <point x="2352.0027901447966" y="7526.0" />
+      <point x="418.5" y="7526.0" />
+      <point x="418.5" y="586.0" />
+      <point x="1904.171146017684" y="586.0" />
+      <point x="-150.45454545454504" y="268.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Plan.Convoyeur">
+      <point x="-164.0" y="-868.0" />
+      <point x="3221.2236234781294" y="8374.0" />
+      <point x="1527.190981617025" y="8374.0" />
+      <point x="1527.190981617025" y="2900.0" />
+      <point x="1515.5125000000003" y="2900.0" />
+      <point x="-246.0" y="148.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.PointChargement" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="56.0" y="-40.0" />
+      <point x="2664.588709731249" y="946.0" />
+      <point x="3727.773481038984" y="946.0" />
+      <point x="-77.07692307692287" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="0.0" y="-868.0" />
+      <point x="3385.2236234781294" y="8304.0" />
+      <point x="3452.630376397915" y="8304.0" />
+      <point x="3452.630376397915" y="2034.0" />
+      <point x="3449.681498418344" y="2034.0" />
+      <point x="36.55555555555566" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Concasseur" target="virtucarriere.Domaine.Carriere.Plan.Broyeur">
+      <point x="-137.08333333333337" y="-64.0" />
+      <point x="748.1041666666665" y="2900.0" />
+      <point x="771.875" y="2900.0" />
+      <point x="123.375" y="64.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="253.90625000000045" y="-664.0" />
+      <point x="4260.55111092737" y="4564.0" />
+      <point x="5646.394860927369" y="4564.0" />
+      <point x="5646.394860927369" y="796.0" />
+      <point x="4280.475404115907" y="796.0" />
+      <point x="68.75" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Simulation.Facture">
+      <point x="175.78125000000045" y="-664.0" />
+      <point x="4182.42611092737" y="4544.0" />
+      <point x="5370.394860927369" y="4544.0" />
+      <point x="5370.394860927369" y="2900.0" />
+      <point x="5387.901984529455" y="2900.0" />
+      <point x="13.375" y="52.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.AffichageUtil.UnitConverter">
+      <point x="234.28571428571422" y="-868.0" />
+      <point x="3619.5093377638436" y="8404.0" />
+      <point x="5803.394860927369" y="8404.0" />
+      <point x="0.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Entree">
+      <point x="204.86666666666656" y="-148.0" />
+      <point x="2761.7361234781292" y="7526.0" />
+      <point x="5472.673779175692" y="7526.0" />
+      <point x="5472.673779175692" y="3424.0" />
+      <point x="5520.061527594036" y="3424.0" />
+      <point x="55.666666666666515" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Simulation.Facture">
+      <point x="254.22222222222263" y="-424.0" />
+      <point x="5066.6182236201375" y="3344.0" />
+      <point x="5273.255972038481" y="3344.0" />
+      <point x="5273.255972038481" y="2900.0" />
+      <point x="5361.151984529455" y="2900.0" />
+      <point x="-13.375" y="52.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Vehicule" target="virtucarriere.Domaine.Carriere.Simulation.Jeton">
+      <point x="124.125" y="-196.0" />
+      <point x="4607.58254008501" y="2388.0" />
+      <point x="4925.435473560352" y="2388.0" />
+      <point x="-75.625" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.Graph">
+      <point x="0.0" y="-100.0" />
+      <point x="2289.3458333333338" y="2308.0" />
+      <point x="2323.0125" y="2308.0" />
+      <point x="0.0" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Itineraire" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="32.0" y="-27.0" />
+      <point x="3919.808234529455" y="1016.0" />
+      <point x="3856.235019500522" y="1016.0" />
+      <point x="51.384615384615245" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Simulation.Chargeur">
+      <point x="125.0" y="-712.0" />
+      <point x="3900.630376397915" y="5962.0" />
+      <point x="4329.64486092737" y="5962.0" />
+      <point x="4329.64486092737" y="3344.0" />
+      <point x="4272.028125" y="3344.0" />
+      <point x="-76.25" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Noeud" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="41.75" y="-40.0" />
+      <point x="3846.6004041159067" y="796.0" />
+      <point x="4192.975404115907" y="796.0" />
+      <point x="-18.75" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Plan.GraphChemins">
+      <point x="-392.8888888888887" y="-424.0" />
+      <point x="4419.507112509026" y="3234.0" />
+      <point x="2912.1789806209863" y="3234.0" />
+      <point x="93.14285714285688" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Crible" target="virtucarriere.Domaine.Carriere.Plan.Tas">
+      <point x="137.08333333333337" y="-76.0" />
+      <point x="1394.2708333333335" y="2014.0" />
+      <point x="3266.903720640566" y="2014.0" />
+      <point x="-146.22222222222217" y="172.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="151.72413793103442" y="-520.0" />
+      <point x="2988.4866379310342" y="3324.0" />
+      <point x="3665.8628096453185" y="3324.0" />
+      <point x="3665.8628096453185" y="2900.0" />
+      <point x="4103.1375" y="2900.0" />
+      <point x="4103.1375" y="816.0" />
+      <point x="4217.975404115907" y="816.0" />
+      <point x="6.25" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="0.0" y="-148.0" />
+      <point x="2556.869456811463" y="1186.0" />
+      <point x="2608.588709731249" y="1186.0" />
+      <point x="0.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Simulation.Camion">
+      <point x="93.71428571428578" y="-868.0" />
+      <point x="3478.937909192415" y="8344.0" />
+      <point x="5405.396001397915" y="8344.0" />
+      <point x="5405.396001397915" y="3304.0" />
+      <point x="5246.755972038481" y="3304.0" />
+      <point x="95.99999999999977" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-34.08333333333326" y="-100.0" />
+      <point x="2050.0868149503585" y="2900.0" />
+      <point x="2059.0125000000003" y="2900.0" />
+      <point x="2059.0125000000003" y="1470.0" />
+      <point x="1082.8938801677496" y="1470.0" />
+      <point x="161.608695652174" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Entree">
+      <point x="214.84375000000045" y="-664.0" />
+      <point x="4221.48861092737" y="4554.0" />
+      <point x="5450.673779175692" y="4554.0" />
+      <point x="5450.673779175692" y="3404.0" />
+      <point x="5482.950416482925" y="3404.0" />
+      <point x="18.555555555555657" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Plan.Entree">
+      <point x="346.66666666666697" y="-424.0" />
+      <point x="5159.062668064582" y="3394.0" />
+      <point x="5464.394860927369" y="3394.0" />
+      <point x="0.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Arc">
+      <point x="-97.65624999999955" y="-664.0" />
+      <point x="3908.9886109273702" y="4524.0" />
+      <point x="3400.9781942607033" y="4524.0" />
+      <point x="3400.9781942607033" y="2870.0" />
+      <point x="3324.7906942607033" y="2870.0" />
+      <point x="228.8125" y="124.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Simulation.Jeton">
+      <point x="187.42857142857156" y="-868.0" />
+      <point x="3572.652194906701" y="8384.0" />
+      <point x="5602.394860927369" y="8384.0" />
+      <point x="5602.394860927369" y="2398.0" />
+      <point x="5106.935473560352" y="2398.0" />
+      <point x="105.875" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Concasseur" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="27.416666666666515" y="-64.0" />
+      <point x="912.6041666666665" y="2900.0" />
+      <point x="934.9397718857763" y="2900.0" />
+      <point x="934.9397718857763" y="1570.0" />
+      <point x="903.3286627764451" y="1570.0" />
+      <point x="-17.956521739130494" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Crible">
+      <point x="-91.03448275862047" y="-520.0" />
+      <point x="2745.7280172413793" y="3334.0" />
+      <point x="1322.9875000000002" y="3334.0" />
+      <point x="65.80000000000018" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.Crible">
+      <point x="-170.41666666666674" y="-100.0" />
+      <point x="1913.7534816170248" y="2850.0" />
+      <point x="1464.0125000000003" y="2850.0" />
+      <point x="1464.0125000000003" y="2308.0" />
+      <point x="1388.7875" y="2308.0" />
+      <point x="131.5999999999999" y="76.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Simulation.Chargeur">
+      <point x="146.33333333333326" y="-148.0" />
+      <point x="2703.2027901447964" y="7506.0" />
+      <point x="4374.896001397915" y="7506.0" />
+      <point x="4374.896001397915" y="3334.0" />
+      <point x="4302.528125" y="3334.0" />
+      <point x="-45.75" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Arc" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="-65.375" y="-124.0" />
+      <point x="3030.6031942607033" y="1974.0" />
+      <point x="2252.845833333333" y="1974.0" />
+      <point x="83.33333333333303" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Simulation.Camion">
+      <point x="161.77777777777737" y="-424.0" />
+      <point x="4974.173779175692" y="3324.0" />
+      <point x="5086.755972038481" y="3324.0" />
+      <point x="-64.0" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Simulation.Camion">
+      <point x="136.71875000000045" y="-664.0" />
+      <point x="4143.36361092737" y="4534.0" />
+      <point x="5238.896001397915" y="4534.0" />
+      <point x="5238.896001397915" y="3334.0" />
+      <point x="5150.755972038481" y="3334.0" />
+      <point x="0.0" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Chargeur" target="virtucarriere.Domaine.Carriere.Simulation.Jeton">
+      <point x="91.5" y="-100.0" />
+      <point x="4439.778125" y="2900.0" />
+      <point x="4659.45754008501" y="2900.0" />
+      <point x="4659.45754008501" y="2398.0" />
+      <point x="4955.685473560352" y="2398.0" />
+      <point x="-45.375" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Camion" target="virtucarriere.Domaine.Carriere.Simulation.Facture">
+      <point x="93.33333333333303" y="-112.0" />
+      <point x="5244.089305371814" y="2890.0" />
+      <point x="5334.401984529455" y="2890.0" />
+      <point x="-40.125" y="52.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.gui.AjoutClientJFrame">
+      <point x="-210.85714285714312" y="-868.0" />
+      <point x="3174.3664806209863" y="8394.0" />
+      <point x="322.5" y="8394.0" />
+      <point x="107.5" y="64.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.Convoyeur">
+      <point x="-250.0" y="-712.0" />
+      <point x="3525.630376397915" y="5992.0" />
+      <point x="1549.190981617025" y="5992.0" />
+      <point x="1549.190981617025" y="2870.0" />
+      <point x="1679.5125000000003" y="2870.0" />
+      <point x="-82.0" y="148.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Simulation.Simulation">
+      <point x="58.593750000000455" y="-664.0" />
+      <point x="4065.2386109273702" y="4514.0" />
+      <point x="4604.396001397915" y="4514.0" />
+      <point x="-208.0" y="424.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="-29.26666666666665" y="-148.0" />
+      <point x="2527.602790144796" y="7466.0" />
+      <point x="2493.0125" y="7466.0" />
+      <point x="2493.0125" y="736.0" />
+      <point x="4117.975404115907" y="736.0" />
+      <point x="-93.75" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.Noeud">
+      <point x="-41.66666666666697" y="-712.0" />
+      <point x="3733.963709731248" y="5942.0" />
+      <point x="3676.8628096453185" y="5942.0" />
+      <point x="3676.8628096453185" y="2408.0" />
+      <point x="3722.042609529455" y="2408.0" />
+      <point x="3722.042609529455" y="1026.0" />
+      <point x="3830.5427118082143" y="1026.0" />
+      <point x="25.692307692307622" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Simulation.Camion">
+      <point x="166.66666666666652" y="-712.0" />
+      <point x="3942.297043064582" y="5972.0" />
+      <point x="5383.396001397915" y="5972.0" />
+      <point x="5383.396001397915" y="3324.0" />
+      <point x="5182.755972038481" y="3324.0" />
+      <point x="32.0" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="392.8888888888887" y="-424.0" />
+      <point x="5205.284890286804" y="3434.0" />
+      <point x="5635.394860927369" y="3434.0" />
+      <point x="5635.394860927369" y="806.0" />
+      <point x="4267.975404115907" y="806.0" />
+      <point x="56.25" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Convoyeur" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-143.5" y="-148.0" />
+      <point x="1618.0125000000003" y="2308.0" />
+      <point x="1632.3803763979154" y="2308.0" />
+      <point x="1632.3803763979154" y="1480.0" />
+      <point x="1064.937358428619" y="1480.0" />
+      <point x="143.6521739130435" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphChemins" target="virtucarriere.Domaine.Carriere.Plan.AbstractGraph">
+      <point x="-122.25" y="-76.0" />
+      <point x="2696.7861234781294" y="2890.0" />
+      <point x="2323.7208333333338" y="2890.0" />
+      <point x="34.375" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Tas" target="virtucarriere.Domaine.Carriere.Plan.PointChargement">
+      <point x="47.0" y="-172.0" />
+      <point x="3460.125942862788" y="1590.0" />
+      <point x="3437.5170707825737" y="1590.0" />
+      <point x="3437.5170707825737" y="1166.0" />
+      <point x="2664.588709731249" y="1166.0" />
+      <point x="56.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Vehicule" target="virtucarriere.Domaine.Carriere.Simulation.Itineraire">
+      <point x="-124.125" y="-196.0" />
+      <point x="4359.33254008501" y="2368.0" />
+      <point x="3902.5281250000003" y="2368.0" />
+      <point x="3902.5281250000003" y="1186.0" />
+      <point x="3855.808234529455" y="1186.0" />
+      <point x="-32.0" y="27.0" />
+    </edge>
+    <edge source="virtucarriere.gui.DrawingPanel" target="virtucarriere.Domaine.Drawing.CarriereDrawer">
+      <point x="0.0" y="-196.0" />
+      <point x="0.0" y="148.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Broyeur" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="27.416666666666515" y="-64.0" />
+      <point x="674.9814385524433" y="1590.0" />
+      <point x="849.4590975590536" y="1590.0" />
+      <point x="-71.82608695652198" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="210.85714285714266" y="-868.0" />
+      <point x="3596.080766335272" y="8394.0" />
+      <point x="5668.394860927369" y="8394.0" />
+      <point x="5668.394860927369" y="776.0" />
+      <point x="4305.475404115907" y="776.0" />
+      <point x="93.75" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Simulation.Chargeur">
+      <point x="-208.0" y="-424.0" />
+      <point x="4604.396001397915" y="3194.0" />
+      <point x="4394.028125" y="3194.0" />
+      <point x="45.75" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Concasseur">
+      <point x="-166.89655172413768" y="-520.0" />
+      <point x="2669.865948275862" y="3384.0" />
+      <point x="885.1875" y="3384.0" />
+      <point x="0.0" y="64.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.ElementContainer" target="virtucarriere.Domaine.Carriere.Plan.Convoyeur">
+      <point x="-253.90624999999955" y="-664.0" />
+      <point x="3752.7386109273702" y="4564.0" />
+      <point x="1560.190981617025" y="4564.0" />
+      <point x="1560.190981617025" y="2880.0" />
+      <point x="1761.5125000000003" y="2880.0" />
+      <point x="0.0" y="148.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Broyeur">
+      <point x="-197.24137931034466" y="-520.0" />
+      <point x="2639.5211206896556" y="3404.0" />
+      <point x="677.6897718857763" y="3404.0" />
+      <point x="677.6897718857763" y="2890.0" />
+      <point x="607.375" y="2890.0" />
+      <point x="-41.125" y="64.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-187.42857142857156" y="-868.0" />
+      <point x="3197.795052049558" y="8384.0" />
+      <point x="440.5" y="8384.0" />
+      <point x="440.5" y="1520.0" />
+      <point x="723.7634453851406" y="1520.0" />
+      <point x="-197.52173913043498" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Drawing.CarriereDrawer" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="-175.5999999999999" y="-148.0" />
+      <point x="2381.269456811463" y="7516.0" />
+      <point x="451.5" y="7516.0" />
+      <point x="451.5" y="1530.0" />
+      <point x="741.7199671242711" y="1530.0" />
+      <point x="-179.5652173913045" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Simulation.Facture">
+      <point x="250.0" y="-712.0" />
+      <point x="4025.630376397915" y="5992.0" />
+      <point x="5558.394860927369" y="5992.0" />
+      <point x="5558.394860927369" y="2880.0" />
+      <point x="5414.651984529455" y="2880.0" />
+      <point x="40.125" y="52.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Convoyeur" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="47.833333333333485" y="-148.0" />
+      <point x="1809.3458333333338" y="2308.0" />
+      <point x="2122.5958333333338" y="2308.0" />
+      <point x="2122.5958333333338" y="1984.0" />
+      <point x="2119.5125" y="1984.0" />
+      <point x="-50.0" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphChemins" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="122.25" y="-76.0" />
+      <point x="2941.2861234781294" y="2900.0" />
+      <point x="3389.9781942607033" y="2900.0" />
+      <point x="3389.9781942607033" y="2418.0" />
+      <point x="4092.1375" y="2418.0" />
+      <point x="4092.1375" y="806.0" />
+      <point x="4205.475404115907" y="806.0" />
+      <point x="-6.25" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Controller.Controller" target="virtucarriere.Domaine.Carriere.Plan.Entree">
+      <point x="208.33333333333348" y="-712.0" />
+      <point x="3983.963709731249" y="5982.0" />
+      <point x="5461.673779175692" y="5982.0" />
+      <point x="5461.673779175692" y="3414.0" />
+      <point x="5501.505972038481" y="3414.0" />
+      <point x="37.11111111111131" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.Domaine.Carriere.Simulation.Chargeur">
+      <point x="70.28571428571422" y="-868.0" />
+      <point x="3455.5093377638436" y="8334.0" />
+      <point x="4385.896001397915" y="8334.0" />
+      <point x="4385.896001397915" y="3324.0" />
+      <point x="4333.028125" y="3324.0" />
+      <point x="-15.25" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur">
+      <point x="-30.344827586206975" y="-520.0" />
+      <point x="2806.4176724137933" y="3294.0" />
+      <point x="2186.4201482836916" y="3294.0" />
+      <point x="102.25" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.gui.DrawingPanel" target="virtucarriere.gui.MainWindow">
+      <point x="118.0" y="196.0" />
+      <point x="2674.869456811463" y="8324.0" />
+      <point x="3338.3664806209867" y="8324.0" />
+      <point x="-46.85714285714266" y="-868.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Simulation" target="virtucarriere.Domaine.Carriere.Simulation.Jeton">
+      <point x="23.111111111111313" y="-424.0" />
+      <point x="4835.507112509026" y="3344.0" />
+      <point x="4864.700416482925" y="3344.0" />
+      <point x="4864.700416482925" y="2418.0" />
+      <point x="5016.185473560352" y="2418.0" />
+      <point x="15.125" y="100.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Plan" target="virtucarriere.Domaine.Carriere.Plan.Convoyeur">
+      <point x="-75.86206896551721" y="-520.0" />
+      <point x="2760.9004310344826" y="3324.0" />
+      <point x="1704.3784816170248" y="3324.0" />
+      <point x="1704.3784816170248" y="2890.0" />
+      <point x="1843.5125000000003" y="2890.0" />
+      <point x="82.0" y="148.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="2481.0" y="2439.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
