@@ -1467,8 +1467,7 @@ public class MainWindow extends JFrame {
       Tas tasSimulation =
           controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
-      Chargeur courantChargeur =
-          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
+      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
 
       TextSimulation.append(
           "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());

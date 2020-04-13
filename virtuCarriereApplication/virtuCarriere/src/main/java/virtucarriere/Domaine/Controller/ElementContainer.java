@@ -40,13 +40,13 @@ public class ElementContainer implements Serializable {
     simulation.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
-  public Chargeur trouverChargeurCorrespondant(Tas tas, List<Noeud> noeudList) {
-    return simulation.choisirChargeurIdeal(tas, noeudList);
+  public Chargeur trouverChargeurCorrespondant(Tas tas) {
+    return simulation.choisirChargeurIdeal(tas);
   }
 
   public Vector<AbstractPointChemin> ChargeurCheminToPath(
       Chargeur p_chargeur, Tas p_tas, List<Noeud> noeudList) {
-    return simulation.ChargeurCheminToPath(p_chargeur, p_tas, noeudList);
+    return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
   }
 
   public void noeudSelection(double x, double y) {

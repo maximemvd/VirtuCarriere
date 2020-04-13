@@ -9,10 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicReference;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 
 public class Simulation implements Serializable {
@@ -208,7 +208,7 @@ public class Simulation implements Serializable {
     return getShortestPathBetweenTwoNoeuds(tas.getPointChargement(), entreeCarriere);
   }
 
-  public Chargeur choisirChargeurIdeal(Tas tas, List<Noeud> listeDeNoeud) {
+  public Chargeur choisirChargeurIdeal(Tas tas) {
 
     Vector<AbstractPointChemin> cheminMinimal = new Vector<>(graphChemin.getEnds());
 
@@ -217,7 +217,7 @@ public class Simulation implements Serializable {
     for (Chargeur chargeurCourant : chargeurList) {
 
       Vector<AbstractPointChemin> cheminChargeurCourant =
-          ChargeurCheminToPath(chargeurCourant, tas, listeDeNoeud);
+          ChargeurCheminToPath(chargeurCourant, tas);
 
       if (cheminMinimal.size() > cheminChargeurCourant.size()) {
         chargeurSimulation = chargeurCourant;
@@ -229,19 +229,20 @@ public class Simulation implements Serializable {
     return chargeurSimulation;
   }
 
-  public Vector<AbstractPointChemin> ChargeurCheminToPath(
-      Chargeur p_chargeur, Tas p_tas, List<Noeud> listeNoeud) {
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
 
-    Vector<AbstractPointChemin> chemin = null;
-    System.out.print(listeNoeud.size());
+    AtomicReference<Vector<AbstractPointChemin>> chemin = new AtomicReference<>();
 
-    for (Noeud noeud : listeNoeud) {
-      if (noeud.contains(p_chargeur.getX(), p_chargeur.getY())) {
-        chemin = getShortestPathBetweenTwoNoeuds(noeud, p_tas.getNoeud());
-      }
-    }
+    graphChemin.getEnds().stream()
+        .filter(
+            abstractPointChemin ->
+                abstractPointChemin.contains(p_chargeur.getX(), p_chargeur.getY()))
+        .findFirst()
+        .ifPresent(
+            abstractPointChemin ->
+                chemin.set(getShortestPathBetweenTwoNoeuds(abstractPointChemin, p_tas.getNoeud())));
 
-    return chemin;
+    return chemin.get();
   }
 
   public Vector<AbstractPointChemin> getShortestPathBetweenTwoNoeuds(
@@ -289,7 +290,6 @@ public class Simulation implements Serializable {
 
     DataDijkstra endOfPath =
         result.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(end)).findFirst().get();
-    System.out.print("allo algo wow");
     if (endOfPath.getTotalCost() == Double.MAX_VALUE) {
       throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");
     }
