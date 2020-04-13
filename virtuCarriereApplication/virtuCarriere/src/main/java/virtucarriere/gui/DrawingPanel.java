@@ -22,6 +22,10 @@ public class DrawingPanel extends JPanel implements Serializable {
   public Dimension initialDimension;
   private MainWindow mainWindow;
 
+  private CarriereDrawer carriereDrawer;
+
+  public Graphics graphics;
+
   private double mouseX;
   private double mouseY;
 
@@ -51,7 +55,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     if (mainWindow != null) {
 
       super.paintComponent(g);
-      CarriereDrawer carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
+      graphics = g;
+      carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
 
       // draw mouse coordinates
       g.setColor(Color.black);

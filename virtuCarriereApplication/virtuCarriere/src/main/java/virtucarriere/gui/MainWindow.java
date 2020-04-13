@@ -6,14 +6,20 @@
 package virtucarriere.gui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
@@ -41,7 +47,7 @@ public class MainWindow extends JFrame {
   public MainWindow() {
     controller = new Controller();
     initComponents();
-    // setFocusable(true);
+    setFocusable(true);
   }
 
   public void setAppMode(ApplicationMode newMode) {
@@ -57,8 +63,7 @@ public class MainWindow extends JFrame {
   }
 
   public enum MeasurementUnitMode {
-    METRIC,
-    IMPERIAL
+    METRIC
   }
 
   public enum ApplicationMode {
@@ -132,8 +137,6 @@ public class MainWindow extends JFrame {
     jLabel12 = new javax.swing.JLabel();
     jLabel13 = new javax.swing.JLabel();
     StartSimulation = new javax.swing.JButton();
-    jButton6 = new javax.swing.JButton();
-    jButton7 = new javax.swing.JButton();
     jScrollPane2 = new javax.swing.JScrollPane();
     TextSimulation = new javax.swing.JTextArea();
     jLabel14 = new javax.swing.JLabel();
@@ -767,25 +770,13 @@ public class MainWindow extends JFrame {
     jLabel13.setText("Visuel");
 
     StartSimulation.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-    StartSimulation.setText("▶");
+    StartSimulation.setText("Play");
     StartSimulation.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
             StartSimulationActionPerformed(evt);
           }
         });
-
-    jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-    jButton6.setText("▶▶");
-    jButton6.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton6ActionPerformed(evt);
-          }
-        });
-
-    jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
-    jButton7.setText("◄◄");
 
     TextSimulation.setEditable(false);
     TextSimulation.setColumns(20);
@@ -819,7 +810,7 @@ public class MainWindow extends JFrame {
 
     jLabel18.setText("Quantité :");
 
-    jButton1.setText("  ▎▎");
+    jButton1.setText("Pause");
     jButton1.addActionListener(
         new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -879,241 +870,160 @@ public class MainWindow extends JFrame {
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(
+                jPanel3Layout.createSequentialGroup().addContainerGap().addComponent(jLabel12))
+            .addGroup(
+                jPanel3Layout.createSequentialGroup().addGap(11, 11, 11).addComponent(jLabel14))
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
                 jPanel3Layout
                     .createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(
                         jPanel3Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel12))
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addComponent(jLabel14)))
-                    .addGap(0, 0, Short.MAX_VALUE))
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel22))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(
+                                xCoordSimul,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                52,
+                                Short.MAX_VALUE)
+                            .addComponent(yCoordSimul))
+                    .addGap(29, 29, 29)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(
+                                ajoutChargeurCoord,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                            .addComponent(
+                                ajoutModifChargeur,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                1,
+                                Short.MAX_VALUE))
+                    .addGap(36, 36, 36))
             .addGroup(
                 jPanel3Layout
-                    .createSequentialGroup()
+                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(
                         jPanel3Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .createSequentialGroup()
+                            .addGap(87, 87, 87)
+                            .addComponent(ajoutChargeur))
+                    .addGroup(
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel18)
+                            .addGap(18, 18, 18)
+                            .addComponent(
+                                quantiteSpinner,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                72,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(
+                                selectionSimul,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                101,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(
+                                deleteSimul,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                95,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addContainerGap()
                             .addGroup(
-                                javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addContainerGap(
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .createParallelGroup(
+                                        javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(
+                                        javax.swing.GroupLayout.Alignment.LEADING,
                                         jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel20)
-                                            .addComponent(jLabel22))
-                                    .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(
-                                                xCoordSimul,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                52,
-                                                Short.MAX_VALUE)
-                                            .addComponent(yCoordSimul))
-                                    .addGap(29, 29, 29)
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(
-                                                ajoutChargeurCoord,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                            .createSequentialGroup()
+                                            .addComponent(jLabel16)
+                                            .addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 Short.MAX_VALUE)
                                             .addComponent(
-                                                ajoutModifChargeur,
+                                                NomClient,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                1,
-                                                Short.MAX_VALUE))
-                                    .addGap(30, 30, 30))
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
+                                                153,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(
+                                        javax.swing.GroupLayout.Alignment.LEADING,
                                         jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addGap(97, 97, 97)
-                                                    .addComponent(jLabel6))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addGap(87, 87, 87)
-                                                    .addComponent(ajoutChargeur))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addContainerGap()
-                                                    .addComponent(jLabel18)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(
-                                                        quantiteSpinner,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        72,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addGap(40, 40, 40)
-                                                    .addComponent(
-                                                        selectionSimul,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        101,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addComponent(
-                                                        deleteSimul,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        95,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addContainerGap()
-                                                    .addGroup(
-                                                        jPanel3Layout
-                                                            .createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment
-                                                                    .TRAILING,
-                                                                false)
-                                                            .addGroup(
-                                                                javax.swing.GroupLayout.Alignment
-                                                                    .LEADING,
-                                                                jPanel3Layout
-                                                                    .createSequentialGroup()
-                                                                    .addComponent(jLabel16)
-                                                                    .addPreferredGap(
-                                                                        javax.swing.LayoutStyle
-                                                                            .ComponentPlacement
-                                                                            .RELATED,
-                                                                        javax.swing.GroupLayout
-                                                                            .DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                    .addComponent(
-                                                                        NomClient,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE,
-                                                                        153,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE))
-                                                            .addGroup(
-                                                                javax.swing.GroupLayout.Alignment
-                                                                    .LEADING,
-                                                                jPanel3Layout
-                                                                    .createSequentialGroup()
-                                                                    .addComponent(jLabel17)
-                                                                    .addPreferredGap(
-                                                                        javax.swing.LayoutStyle
-                                                                            .ComponentPlacement
-                                                                            .RELATED)
-                                                                    .addComponent(
-                                                                        materiauxComboBox,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE,
-                                                                        153,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE))))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addContainerGap()
-                                                    .addComponent(jLabel21))
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addGap(57, 57, 57)
-                                                    .addComponent(
-                                                        jButton7,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        46,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(
-                                                        javax.swing.LayoutStyle.ComponentPlacement
-                                                            .RELATED)
-                                                    .addGroup(
-                                                        jPanel3Layout
-                                                            .createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment
-                                                                    .LEADING)
-                                                            .addComponent(jLabel13)
-                                                            .addGroup(
-                                                                jPanel3Layout
-                                                                    .createSequentialGroup()
-                                                                    .addComponent(
-                                                                        StartSimulation,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE,
-                                                                        40,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE)
-                                                                    .addPreferredGap(
-                                                                        javax.swing.LayoutStyle
-                                                                            .ComponentPlacement
-                                                                            .RELATED)
-                                                                    .addComponent(
-                                                                        jButton1,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE,
-                                                                        44,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE)
-                                                                    .addPreferredGap(
-                                                                        javax.swing.LayoutStyle
-                                                                            .ComponentPlacement
-                                                                            .RELATED)
-                                                                    .addComponent(
-                                                                        jButton6,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE,
-                                                                        44,
-                                                                        javax.swing.GroupLayout
-                                                                            .PREFERRED_SIZE))))
-                                            .addGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addContainerGap()
-                                                    .addComponent(addCamion)
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(modifierCamion)))
-                                    .addGap(0, 16, Short.MAX_VALUE))
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(
-                                                jPanel3Layout
-                                                    .createSequentialGroup()
-                                                    .addComponent(jLabel11)
-                                                    .addGap(0, 0, Short.MAX_VALUE))
+                                            .createSequentialGroup()
+                                            .addComponent(jLabel17)
+                                            .addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(
-                                                jScrollPane2,
-                                                javax.swing.GroupLayout.Alignment.TRAILING))))
-                    .addContainerGap()));
+                                                materiauxComboBox,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                153,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel21))
+                    .addGroup(
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addGap(109, 109, 109)
+                            .addComponent(jLabel13))
+                    .addGroup(
+                        javax.swing.GroupLayout.Alignment.TRAILING,
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(addCamion)
+                            .addGap(27, 27, 27)
+                            .addComponent(modifierCamion))
+                    .addGroup(
+                        jPanel3Layout
+                            .createSequentialGroup()
+                            .addGap(97, 97, 97)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createSequentialGroup()
+                                            .addComponent(
+                                                StartSimulation,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                52,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(
+                                                jButton1,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                51,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6))))
+            .addGroup(
+                jPanel3Layout.createSequentialGroup().addContainerGap().addComponent(jLabel11))
+            .addComponent(
+                jScrollPane2,
+                javax.swing.GroupLayout.PREFERRED_SIZE,
+                289,
+                javax.swing.GroupLayout.PREFERRED_SIZE));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1207,11 +1117,6 @@ public class MainWindow extends JFrame {
                         jPanel3Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(
-                                jButton6,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                37,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(
                                 jButton1,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 38,
@@ -1220,11 +1125,6 @@ public class MainWindow extends JFrame {
                                 StartSimulation,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 38,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(
-                                jButton7,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                39,
                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel14)
@@ -1535,10 +1435,151 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
   } // GEN-LAST:event_selectionSimulActionPerformed
 
-  private void StartSimulationActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_StartSimulationActionPerformed
-    controller.startSimulation();
-  } // GEN-LAST:event_StartSimulationActionPerformed
+  private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
+
+    List<Equipement> EquipementList = controller.getEquipementList();
+
+    List<Tas> listeTas = new LinkedList<>();
+
+    for (Equipement equipement : EquipementList) {
+      if (equipement.getName().equals("Tas")) {
+        Tas tas = (Tas) equipement;
+        listeTas.add(tas);
+      }
+    }
+
+    for (Camion camionCourant : controller.getCamionList()) {
+
+      TextSimulation.append("\n\nLa simulation commence");
+
+      controller.setEntreSimulation(controller.getEntree());
+
+      controller.setGraphCheminSimulation(controller.getGraphChemin());
+
+      Jeton jetonCamionCourant = camionCourant.getJeton();
+
+      TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
+      TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
+      TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
+      TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
+      TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
+
+      Tas tasSimulation =
+          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+
+      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+
+      TextSimulation.append(
+          "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
+
+      courantChargeur.setJeton(jetonCamionCourant);
+
+      camionCourant.changeEtat("ENCOURS");
+
+      TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
+
+      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+
+      int delayTime = 500;
+      final int maxSize = cheminCamionAller.size();
+      new Timer(
+              delayTime,
+              new ActionListener() {
+                private int count = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count < maxSize) {
+                    camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
+                    drawingPanel.repaint();
+                    count++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      Vector<AbstractPointChemin> cheminChargeur =
+          controller.ChargeurCheminToPath(
+              courantChargeur, tasSimulation, controller.getAllNoeuds());
+
+      int delayTime3 = 2000;
+      final int maxSize3 = cheminChargeur.size();
+      new Timer(
+              delayTime3,
+              new ActionListener() {
+                private int count2 = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count2 < maxSize3) {
+                    courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
+                    drawingPanel.repaint();
+                    count2++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      if (!controller.verificationJeton(camionCourant, courantChargeur)) {
+        TextSimulation.append("\n\nLes jetons ne sont pas identiques");
+        break;
+      }
+
+      TextSimulation.append("\n\nJeton du camion et du chargeur sont identiques ! ");
+
+      camionCourant.changeEtat("LIVRER");
+
+      TextSimulation.append("\n\nNouvelle était du camion : " + camionCourant.getEtat());
+
+      TextSimulation.append("\n\nLe camion retourne a l'entrée");
+
+      Vector<AbstractPointChemin> cheminCamionRetour =
+          controller.cheminDuCamionRetour(tasSimulation);
+
+      int delayTime2 = 1000;
+      final int maxSize2 = cheminCamionRetour.size();
+      new Timer(
+              delayTime2,
+              new ActionListener() {
+                private int index = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (index < maxSize2) {
+                    camionCourant.setPoint(cheminCamionRetour.get(index).getPoint());
+                    drawingPanel.repaint();
+                    index++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      camionCourant.changeEtat("FACTURE");
+
+      Facture factureCamion =
+          new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
+
+      camionCourant.setFacture(factureCamion);
+
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+      double prixFacture = camionCourant.getFacture().getPrice();
+
+      TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture);
+
+      camionCourant.changeEtat("PAYÉ");
+
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+      TextSimulation.append("\n\nFin de la simulation pour ce camion");
+    }
+  }
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed
@@ -1575,7 +1616,8 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_NomClientActionPerformed
 
   private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
-    Point point = controller.getEntree().getPoint();
+    Entree entrees = controller.getEntree();
+    Point point = entrees.getPoint();
     String nomClient = NomClient.getText();
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
@@ -2330,8 +2372,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem importerSimulationMenu;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
-  private javax.swing.JButton jButton6;
-  private javax.swing.JButton jButton7;
   private javax.swing.JComboBox<String> jComboBox1;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel10;

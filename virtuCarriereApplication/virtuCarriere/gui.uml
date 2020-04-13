@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>virtucarriere.gui</OriginalElement>
+  <nodes>
+    <node x="313.40000000000003" y="133.0">virtucarriere.gui.AjoutClientJFrame</node>
+    <node x="2.400000000000034" y="0.0">virtucarriere.gui.DrawingPanel</node>
+    <node x="0.0" y="372.0">virtucarriere.gui.MainWindow</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.gui.DrawingPanel">
+      <point x="-59.0" y="-209.0" />
+      <point x="-2.8421709430404007E-14" y="161.0" />
+    </edge>
+    <edge source="virtucarriere.gui.MainWindow" target="virtucarriere.gui.AjoutClientJFrame">
+      <point x="177.0" y="-209.0" />
+      <point x="383.5" y="347.0" />
+      <point x="451.40000000000003" y="347.0" />
+      <point x="46.0" y="28.0" />
+    </edge>
+    <edge source="virtucarriere.gui.DrawingPanel" target="virtucarriere.gui.MainWindow">
+      <point x="116.39999999999998" y="161.0" />
+      <point x="264.3" y="347.0" />
+      <point x="265.5" y="347.0" />
+      <point x="59.0" y="-209.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="92.0" y="306.0" />
+  <SelectedNodes>
+    <node>virtucarriere.gui.AjoutClientJFrame</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

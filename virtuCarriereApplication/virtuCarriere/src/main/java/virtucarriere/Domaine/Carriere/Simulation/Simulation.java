@@ -2,16 +2,17 @@ package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicReference;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
 
 public class Simulation implements Serializable {
@@ -146,16 +147,11 @@ public class Simulation implements Serializable {
   }
 
   public void changementSelectionStatus(double x, double y) {
-    for (Camion item : camionList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-    for (Chargeur item : this.chargeurList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
+    List<Vehicule> vehicules = new ArrayList<>(camionList);
+    vehicules.addAll(chargeurList);
+    vehicules.stream()
+        .filter(vehicule -> vehicule.contains(x, y))
+        .forEach(Vehicule::switchSelectionStatus);
   }
 
   public void removeChargeur(Chargeur p_chargeur) {
@@ -199,81 +195,54 @@ public class Simulation implements Serializable {
     for (Tas tas : tasList) {
       if (tas.getMaterialCode().equals(produit)) {
         leTas = tas;
-        break;
       }
     }
     return leTas;
   }
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
-
-    Noeud noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
-
-    Vector<AbstractPointChemin> cheminCamion = getShortestPathToGo(noeudDuTas);
-
-    return cheminCamion;
-  };
+    return getShortestPathBetweenTwoNoeuds(entreeCarriere, tas.getPointChargement());
+  }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
-
-    AbstractPointChemin noeudDuTas = new Noeud(tas.getPoint(), 10, 10);
-
-    Vector<AbstractPointChemin> cheminCamion = getShortestPathToComeBack(noeudDuTas);
-
-    return cheminCamion;
-  };
+    return getShortestPathBetweenTwoNoeuds(tas.getPointChargement(), entreeCarriere);
+  }
 
   public Chargeur choisirChargeurIdeal(Tas tas) {
 
-    Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
-    System.out.print(cheminMinimal);
-    System.out.print("Alloo");
+    Vector<AbstractPointChemin> cheminMinimal = new Vector<>(graphChemin.getEnds());
+
     Chargeur chargeurSimulation = chargeurList.get(0);
+
     for (Chargeur chargeurCourant : chargeurList) {
 
       Vector<AbstractPointChemin> cheminChargeurCourant =
           ChargeurCheminToPath(chargeurCourant, tas);
-      System.out.print(cheminChargeurCourant);
-      System.out.print("Test");
+
       if (cheminMinimal.size() > cheminChargeurCourant.size()) {
         chargeurSimulation = chargeurCourant;
-        System.out.print(chargeurSimulation);
         cheminMinimal = cheminChargeurCourant;
       }
+
+      System.out.print(chargeurSimulation);
     }
     return chargeurSimulation;
   }
 
   public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
 
-    Point pointChargeur = p_chargeur.getPoint();
-    Noeud chargeur = new Noeud(pointChargeur, 10, 10);
-    Point pointTas = p_tas.getPoint();
-    Noeud tas = new Noeud(pointTas, 10, 10);
+    AtomicReference<Vector<AbstractPointChemin>> chemin = new AtomicReference<>();
 
-    Vector<AbstractPointChemin> chemin = getShortestPathBetweenTwoNoeuds(chargeur, tas);
+    graphChemin.getEnds().stream()
+        .filter(
+            abstractPointChemin ->
+                abstractPointChemin.contains(p_chargeur.getX(), p_chargeur.getY()))
+        .findFirst()
+        .ifPresent(
+            abstractPointChemin ->
+                chemin.set(getShortestPathBetweenTwoNoeuds(abstractPointChemin, p_tas.getNoeud())));
 
-    return chemin;
-  }
-
-  public Vector<AbstractPointChemin> getShortestPathToGo(AbstractPointChemin stop) {
-    Vector<AbstractPointChemin> results = new Vector<>();
-    System.out.print(entreeCarriere);
-    AbstractPointChemin entree = entreeCarriere;
-
-    results.addAll(getShortestPathBetweenTwoNoeuds(entree, stop));
-
-    return results;
-  }
-
-  public Vector<AbstractPointChemin> getShortestPathToComeBack(AbstractPointChemin stop) {
-    Vector<AbstractPointChemin> results = new Vector<>();
-
-    AbstractPointChemin entree = entreeCarriere;
-
-    results.addAll(getShortestPathBetweenTwoNoeuds(stop, entree));
-
-    return results;
+    return chemin.get();
   }
 
   public Vector<AbstractPointChemin> getShortestPathBetweenTwoNoeuds(
@@ -289,12 +258,10 @@ public class Simulation implements Serializable {
             treatingEnd -> {
               data.add(new DataDijkstra(treatingEnd, Double.MAX_VALUE));
             });
-    System.out.print("hello world");
     data.stream()
         .filter(dataDijkstra -> dataDijkstra.getEnd().equals(start))
         .findFirst()
         .ifPresent(dataDijkstra -> dataDijkstra.setTotalCost(0));
-    System.out.print("allo");
     DataDijkstra treating;
     do {
       treating = data.stream().min(Comparator.comparing(DataDijkstra::getTotalCost)).get();
@@ -303,16 +270,12 @@ public class Simulation implements Serializable {
       final double[] newCost = new double[1];
       final double[] oldCost = new double[1];
       final double[] linkCost = new double[1];
-      System.out.print("testing");
       List<AbstractPointChemin> adj = graphChemin.getAdjacentsOut(treating.getEnd());
       DataDijkstra finalTreating = treating;
-      System.out.print("allo algo");
       data.stream()
           .filter(dataDijkstra -> adj.contains(dataDijkstra.getEnd()))
-          .findFirst()
-          .ifPresent(
-              dataDijkstra -> {
-                System.out.print("allo algo wow pour vrai");
+          .forEach(
+              (dataDijkstra -> {
                 linkCost[0] =
                     graphChemin.getLink(finalTreating.getEnd(), dataDijkstra.getEnd()).getCost();
                 oldCost[0] = dataDijkstra.getTotalCost();
@@ -321,15 +284,15 @@ public class Simulation implements Serializable {
                   dataDijkstra.setTotalCost(newCost[0]);
                   dataDijkstra.setPredecessor(finalTreating.getEnd());
                 }
-              });
+              }));
 
     } while (!data.isEmpty());
 
     DataDijkstra endOfPath =
-        result.stream().filter(dataDijkstra -> dataDijkstra.getEnd() == end).findFirst().get();
-    System.out.print("allo algo wow");
-    if (endOfPath.getTotalCost() == Double.MAX_VALUE)
+        result.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(end)).findFirst().get();
+    if (endOfPath.getTotalCost() == Double.MAX_VALUE) {
       throw new RuntimeException("Aucun chemin n'existe entre ces deux noeuds");
+    }
 
     return buildPath(start, end, result);
   }
@@ -339,6 +302,7 @@ public class Simulation implements Serializable {
     Vector<AbstractPointChemin> path = new Vector<>();
 
     final AbstractPointChemin[] now = {end};
+    path.add(end);
     Optional<DataDijkstra> treating =
         afterAlgo.stream().filter(dataDijkstra -> dataDijkstra.getEnd().equals(now[0])).findFirst();
     do {

@@ -19,7 +19,7 @@ public class Plan implements Serializable {
   private Entree entree;
 
   public Plan() {
-    entree = new Entree(new Point(300, 300), 100, 100, 0);
+    entree = new Entree(new Point(2000, 2000), 100, 100, 0);
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
@@ -85,6 +85,7 @@ public class Plan implements Serializable {
   public void addTas(Point mousePoint, String code) {
     Tas tas = new Tas(mousePoint, 1, 1, code, 1);
     Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
+    tas.setNoeudTas(noeud);
     chemins.addEnd(noeud);
     addEquipment(tas);
     PointChargement pointChargement = tas.getPointChargement();
@@ -399,6 +400,16 @@ public class Plan implements Serializable {
 
   public List<AbstractPointChemin> getAllAbstractPointChemin() {
     return chemins.getEnds();
+  }
+
+  public List<Noeud> getAllNoeuds() {
+    List<Noeud> noeudList = new LinkedList<>();
+    for (AbstractPointChemin points : getAllAbstractPointChemin()) {
+      if (points.getName().equals("Noeud")) {
+        noeudList.add((Noeud) points);
+      }
+    }
+    return noeudList;
   }
 
   public List<Arc> getAllArcs() {
