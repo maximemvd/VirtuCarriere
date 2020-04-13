@@ -214,7 +214,7 @@ public class Simulation implements Serializable {
 
   public Chargeur choisirChargeurIdeal(Tas tas, List<Noeud> listeDeNoeud) {
 
-    Vector<AbstractPointChemin> cheminMinimal = cheminDuCamion(tas);
+    Vector<AbstractPointChemin> cheminMinimal = new Vector<>(graphChemin.getEnds());
 
     Chargeur chargeurSimulation = chargeurList.get(0);
 
