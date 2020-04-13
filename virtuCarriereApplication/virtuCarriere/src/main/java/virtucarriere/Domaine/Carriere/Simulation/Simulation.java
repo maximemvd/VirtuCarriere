@@ -199,7 +199,6 @@ public class Simulation implements Serializable {
     for (Tas tas : tasList) {
       if (tas.getMaterialCode().equals(produit)) {
         leTas = tas;
-        break;
       }
     }
     return leTas;

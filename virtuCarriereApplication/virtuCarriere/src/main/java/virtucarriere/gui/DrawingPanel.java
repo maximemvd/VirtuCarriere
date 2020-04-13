@@ -12,8 +12,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import virtucarriere.Domaine.Drawing.CarriereDrawer;
@@ -49,15 +47,6 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     this.initialDimension = new Dimension(2400, 1800);
     setBackground(Color.WHITE);
-  }
-
-  public void startSimulation() {
-    Graphics2D g2d = (Graphics2D) graphics;
-    try {
-      carriereDrawer.startSimulation(g2d, zoom);
-    } catch (InterruptedException ex) {
-      Logger.getLogger(DrawingPanel.class.getName()).log(Level.SEVERE, null, ex);
-    }
   }
 
   @Override

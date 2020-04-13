@@ -10,19 +10,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.*;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Facture;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
@@ -132,135 +127,6 @@ public class CarriereDrawer {
           camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
     }
     g2d.scale(1 / zoom, 1 / zoom);
-  }
-
-  public void startSimulation(Graphics2D g2d, double zoom) throws InterruptedException {
-
-    List<Equipement> EquipementList = controller.getEquipementList();
-
-    List<Tas> listeTas = new LinkedList<>();
-
-    for (Equipement equipement : EquipementList) {
-      if (equipement.getName().equals("Tas")) {
-        Tas tas = (Tas) equipement;
-        listeTas.add(tas);
-      }
-    }
-
-    for (Camion camionCourant : controller.getCamionList()) {
-
-      System.out.println("la simulation commence");
-      controller.setEntreSimulation(controller.getEntree());
-
-      controller.setGraphCheminSimulation(controller.getGraphChemin());
-
-      // début simulation pour les camions
-      draw(g2d, zoom);
-
-      Jeton jetonCamionCourant = camionCourant.getJeton();
-
-      System.out.print(jetonCamionCourant);
-
-      Tas tasSimulation =
-          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
-
-      Chargeur courantChargeur =
-          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
-
-      System.out.print("Chargeur correspondant");
-
-      System.out.print(courantChargeur);
-
-      courantChargeur.setJeton(jetonCamionCourant);
-
-      System.out.print("hey");
-
-      camionCourant.changeEtat("ENCOURS");
-
-      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
-
-      int delayTime = 2000;
-      final int maxSize = cheminCamionAller.size();
-      new Timer(
-              delayTime,
-              new ActionListener() {
-                private int count = 0;
-
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                  if (count < maxSize) {
-                    camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
-                    count++;
-                  } else {
-                    ((Timer) evt.getSource()).stop();
-                  }
-                }
-              })
-          .start();
-
-      Vector<AbstractPointChemin> cheminChargeur =
-          controller.ChargeurCheminToPath(
-              courantChargeur, tasSimulation, controller.getAllNoeuds());
-
-      int delayTime3 = 2000;
-      final int maxSize3 = cheminChargeur.size();
-      new Timer(
-              delayTime3,
-              new ActionListener() {
-                private int count2 = 0;
-
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                  if (count2 < maxSize3) {
-                    courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
-                    count2++;
-                  } else {
-                    ((Timer) evt.getSource()).stop();
-                  }
-                }
-              })
-          .start();
-
-      if (!controller.verificationJeton(camionCourant, courantChargeur)) {
-        System.out.print("marche pas");
-        break;
-      }
-
-      camionCourant.changeEtat("LIVRER");
-
-      Vector<AbstractPointChemin> cheminCamionRetour =
-          controller.cheminDuCamionRetour(tasSimulation);
-
-      int delayTime2 = 2000;
-      final int maxSize2 = cheminCamionRetour.size();
-      new Timer(
-              delayTime2,
-              new ActionListener() {
-                private int count3 = 0;
-
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                  if (count3 < maxSize2) {
-                    camionCourant.setPoint(cheminCamionRetour.get(count3).getPoint());
-                    count3++;
-                  } else {
-                    ((Timer) evt.getSource()).stop();
-                  }
-                }
-              })
-          .start();
-
-      camionCourant.changeEtat("FACTURE");
-
-      Facture factureCamion =
-          new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
-
-      camionCourant.setFacture(factureCamion);
-
-      double prixFacture = camionCourant.getFacture().getPrice();
-
-      camionCourant.changeEtat("PAYÉ");
-    }
   }
 
   public void drawEquipement(Graphics2D g, double zoom) {
