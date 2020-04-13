@@ -30,6 +30,10 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
     this.arrival = arrival;
     this.color = Color.BLACK;
     this.name = "Arc";
+
+    double dy = starting.getY() - arrival.getY();
+    double dx = starting.getX() - starting.getX();
+    cout = Math.sqrt(dx * dx + dy * dy);
   }
 
   @Override
