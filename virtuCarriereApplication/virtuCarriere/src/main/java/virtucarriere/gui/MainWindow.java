@@ -1496,6 +1496,7 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_selectionSimulActionPerformed
 
   private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
+
     List<Equipement> EquipementList = controller.getEquipementList();
 
     List<Tas> listeTas = new LinkedList<>();
@@ -1509,16 +1510,19 @@ public class MainWindow extends JFrame {
 
     for (Camion camionCourant : controller.getCamionList()) {
 
-      System.out.println("la simulation commence");
+      TextSimulation.append("\n\nLa simulation commence");
+
       controller.setEntreSimulation(controller.getEntree());
 
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
-      // début simulation pour les camions
-
       Jeton jetonCamionCourant = camionCourant.getJeton();
 
-      System.out.print(jetonCamionCourant);
+      TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
+      TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
+      TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
+      TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
+      TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
 
       Tas tasSimulation =
           controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
