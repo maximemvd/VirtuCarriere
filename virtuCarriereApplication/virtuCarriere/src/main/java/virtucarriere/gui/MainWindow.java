@@ -1617,29 +1617,32 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_NomClientActionPerformed
 
   private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
-    Point point = controller.getEntree().getPoint();
-    String nomClient = NomClient.getText();
-    String materiau = (String) materiauxComboBox.getSelectedItem();
-    double quantite = (Integer) quantiteSpinner.getValue();
+    List<Entree> entrees = controller.getEntreeList();
+    if (entrees.size() > 0) {
+      Point point = entrees.get(0).getPoint();
+      String nomClient = NomClient.getText();
+      String materiau = (String) materiauxComboBox.getSelectedItem();
+      double quantite = (Integer) quantiteSpinner.getValue();
 
-    if (nomClient.isEmpty()) {
-      JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
-    } else if (quantite <= 0) {
-      JOptionPane.showMessageDialog(
-          null, "Attention, vous devez entrer un chiffre plus grand que zéro");
-    } else {
+      if (nomClient.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
+      } else if (quantite <= 0) {
+        JOptionPane.showMessageDialog(
+            null, "Attention, vous devez entrer un chiffre plus grand que zéro");
+      } else {
 
-      int index = 0;
-      // mettre la camion dans la file d'attente
-      for (Camion camion : controller.getCamionList()) {
-        index++;
+        int index = 0;
+        // mettre la camion dans la file d'attente
+        for (Camion camion : controller.getCamionList()) {
+          index++;
+        }
+
+        Point newPoint = new Point(point.x - (75 * index), point.y);
+
+        controller.addCamion(newPoint, nomClient, materiau, quantite);
+        drawingPanel.repaint();
+        simulationTextField();
       }
-
-      Point newPoint = new Point(point.x - (75 * index), point.y);
-
-      controller.addCamion(newPoint, nomClient, materiau, quantite);
-      drawingPanel.repaint();
-      simulationTextField();
     }
   }
 
