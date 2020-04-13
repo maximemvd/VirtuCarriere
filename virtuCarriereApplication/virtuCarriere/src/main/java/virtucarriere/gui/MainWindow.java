@@ -1530,19 +1530,18 @@ public class MainWindow extends JFrame {
       Chargeur courantChargeur =
           controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
 
-      System.out.print("Chargeur correspondant");
-
-      System.out.print(courantChargeur);
+      TextSimulation.append(
+          "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
 
       courantChargeur.setJeton(jetonCamionCourant);
 
-      System.out.print("hey");
-
       camionCourant.changeEtat("ENCOURS");
+
+      TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
-      int delayTime = 2000;
+      int delayTime = 500;
       final int maxSize = cheminCamionAller.size();
       new Timer(
               delayTime,
@@ -1587,28 +1586,34 @@ public class MainWindow extends JFrame {
           .start();
 
       if (!controller.verificationJeton(camionCourant, courantChargeur)) {
-        System.out.print("marche pas");
+        TextSimulation.append("\n\nLes jetons ne sont pas identiques");
         break;
       }
 
+      TextSimulation.append("\n\nJeton du camion et du chargeur sont identiques ! ");
+
       camionCourant.changeEtat("LIVRER");
+
+      TextSimulation.append("\n\nNouvelle était du camion : " + camionCourant.getEtat());
+
+      TextSimulation.append("\n\nLe camion retourne a l'entrée");
 
       Vector<AbstractPointChemin> cheminCamionRetour =
           controller.cheminDuCamionRetour(tasSimulation);
 
-      int delayTime2 = 2000;
+      int delayTime2 = 1000;
       final int maxSize2 = cheminCamionRetour.size();
       new Timer(
               delayTime2,
               new ActionListener() {
-                private int count3 = 0;
+                private int index = 0;
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-                  if (count3 < maxSize2) {
-                    camionCourant.setPoint(cheminCamionRetour.get(count3).getPoint());
+                  if (index < maxSize2) {
+                    camionCourant.setPoint(cheminCamionRetour.get(index).getPoint());
                     drawingPanel.repaint();
-                    count3++;
+                    index++;
                   } else {
                     ((Timer) evt.getSource()).stop();
                   }
@@ -1623,11 +1628,18 @@ public class MainWindow extends JFrame {
 
       camionCourant.setFacture(factureCamion);
 
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
       double prixFacture = camionCourant.getFacture().getPrice();
 
+      TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture);
+
       camionCourant.changeEtat("PAYÉ");
+
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+      TextSimulation.append("\n\nFin de la simulation pour ce camion");
     }
-    drawingPanel.repaint();
   }
 
   private void jButton6ActionPerformed(
