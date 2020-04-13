@@ -2,6 +2,7 @@ package virtucarriere.Domaine.Carriere.Simulation;
 /** @author philippevincent */
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -146,16 +147,11 @@ public class Simulation implements Serializable {
   }
 
   public void changementSelectionStatus(double x, double y) {
-    for (Camion item : camionList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-    for (Chargeur item : this.chargeurList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
+    List<Vehicule> vehicules = new ArrayList<>(camionList);
+    vehicules.addAll(chargeurList);
+    vehicules.stream()
+        .filter(vehicule -> vehicule.contains(x, y))
+        .forEach(Vehicule::switchSelectionStatus);
   }
 
   public void removeChargeur(Chargeur p_chargeur) {
