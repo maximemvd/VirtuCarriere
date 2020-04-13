@@ -15,7 +15,6 @@ public class Plan implements Serializable {
   List<Noeud> noeudsForArcList;
   List<Equipement> equipementForConvList;
   List<AbstractPointChemin> pointsForArcList;
-  List<Entree> entreeList;
 
   private Entree entree;
 
@@ -26,7 +25,6 @@ public class Plan implements Serializable {
     noeudsForArcList = new LinkedList<Noeud>();
     equipementForConvList = new LinkedList<Equipement>();
     pointsForArcList = new LinkedList<>();
-    entreeList = new LinkedList<>();
   }
 
   public void addArc(Arc arc) {
@@ -208,12 +206,7 @@ public class Plan implements Serializable {
 
   public void addEntree(Point mousePoint) {
     entree = new Entree(mousePoint, 100, 100, 0);
-    if (entreeList.size() < 1) {
-      chemins.addEnd(entree);
-      entreeList.add(entree);
-    } else {
-      JOptionPane.showMessageDialog(null, "Attention, il ne peut seulement avoir qu'une entrée");
-    }
+    chemins.addEnd(entree);
   }
 
   public void addNoeud(Point mousePoint) {
@@ -364,10 +357,6 @@ public class Plan implements Serializable {
 
   public ArrayList<List<Arc>> getArcs() {
     return chemins.getLinks();
-  }
-
-  public List<Entree> getEntreeList() {
-    return entreeList;
   }
 
   public List<Noeud> getNoeudForArcList() {

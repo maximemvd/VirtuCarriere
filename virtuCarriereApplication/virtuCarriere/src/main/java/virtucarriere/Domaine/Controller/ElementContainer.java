@@ -238,10 +238,6 @@ public class ElementContainer implements Serializable {
     return simulation.getSimulationAnimation();
   }
 
-  public List<Entree> getEntreeList() {
-    return plan.getEntreeList();
-  }
-
   public void startSimulation() {
     simulation.startSimulation();
   }
