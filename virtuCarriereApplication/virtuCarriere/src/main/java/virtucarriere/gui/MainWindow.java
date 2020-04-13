@@ -6,14 +6,20 @@
 package virtucarriere.gui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.*;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
+import virtucarriere.Domaine.Carriere.Simulation.Facture;
+import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
 import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
@@ -1490,7 +1496,133 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_selectionSimulActionPerformed
 
   private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
-    drawingPanel.startSimulation();
+    List<Equipement> EquipementList = controller.getEquipementList();
+
+    List<Tas> listeTas = new LinkedList<>();
+
+    for (Equipement equipement : EquipementList) {
+      if (equipement.getName().equals("Tas")) {
+        Tas tas = (Tas) equipement;
+        listeTas.add(tas);
+      }
+    }
+
+    for (Camion camionCourant : controller.getCamionList()) {
+
+      System.out.println("la simulation commence");
+      controller.setEntreSimulation(controller.getEntree());
+
+      controller.setGraphCheminSimulation(controller.getGraphChemin());
+
+      // début simulation pour les camions
+
+      Jeton jetonCamionCourant = camionCourant.getJeton();
+
+      System.out.print(jetonCamionCourant);
+
+      Tas tasSimulation =
+          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+
+      Chargeur courantChargeur =
+          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
+
+      System.out.print("Chargeur correspondant");
+
+      System.out.print(courantChargeur);
+
+      courantChargeur.setJeton(jetonCamionCourant);
+
+      System.out.print("hey");
+
+      camionCourant.changeEtat("ENCOURS");
+
+      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+
+      int delayTime = 2000;
+      final int maxSize = cheminCamionAller.size();
+      new Timer(
+              delayTime,
+              new ActionListener() {
+                private int count = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count < maxSize) {
+                    camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
+                    drawingPanel.repaint();
+                    count++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      Vector<AbstractPointChemin> cheminChargeur =
+          controller.ChargeurCheminToPath(
+              courantChargeur, tasSimulation, controller.getAllNoeuds());
+
+      int delayTime3 = 2000;
+      final int maxSize3 = cheminChargeur.size();
+      new Timer(
+              delayTime3,
+              new ActionListener() {
+                private int count2 = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count2 < maxSize3) {
+                    courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
+                    drawingPanel.repaint();
+                    count2++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      if (!controller.verificationJeton(camionCourant, courantChargeur)) {
+        System.out.print("marche pas");
+        break;
+      }
+
+      camionCourant.changeEtat("LIVRER");
+
+      Vector<AbstractPointChemin> cheminCamionRetour =
+          controller.cheminDuCamionRetour(tasSimulation);
+
+      int delayTime2 = 2000;
+      final int maxSize2 = cheminCamionRetour.size();
+      new Timer(
+              delayTime2,
+              new ActionListener() {
+                private int count3 = 0;
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (count3 < maxSize2) {
+                    camionCourant.setPoint(cheminCamionRetour.get(count3).getPoint());
+                    drawingPanel.repaint();
+                    count3++;
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                  }
+                }
+              })
+          .start();
+
+      camionCourant.changeEtat("FACTURE");
+
+      Facture factureCamion =
+          new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
+
+      camionCourant.setFacture(factureCamion);
+
+      double prixFacture = camionCourant.getFacture().getPrice();
+
+      camionCourant.changeEtat("PAYÉ");
+    }
     drawingPanel.repaint();
   }
 

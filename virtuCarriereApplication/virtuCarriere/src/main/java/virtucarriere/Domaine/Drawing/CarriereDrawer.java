@@ -179,7 +179,7 @@ public class CarriereDrawer {
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
-      int delayTime = 3000;
+      int delayTime = 2000;
       final int maxSize = cheminCamionAller.size();
       new Timer(
               delayTime,
@@ -202,7 +202,7 @@ public class CarriereDrawer {
           controller.ChargeurCheminToPath(
               courantChargeur, tasSimulation, controller.getAllNoeuds());
 
-      int delayTime3 = 3000;
+      int delayTime3 = 2000;
       final int maxSize3 = cheminChargeur.size();
       new Timer(
               delayTime3,
@@ -231,7 +231,7 @@ public class CarriereDrawer {
       Vector<AbstractPointChemin> cheminCamionRetour =
           controller.cheminDuCamionRetour(tasSimulation);
 
-      int delayTime2 = 3000;
+      int delayTime2 = 2000;
       final int maxSize2 = cheminCamionRetour.size();
       new Timer(
               delayTime2,
@@ -242,7 +242,6 @@ public class CarriereDrawer {
                 public void actionPerformed(ActionEvent evt) {
                   if (count3 < maxSize2) {
                     camionCourant.setPoint(cheminCamionRetour.get(count3).getPoint());
-
                     count3++;
                   } else {
                     ((Timer) evt.getSource()).stop();
