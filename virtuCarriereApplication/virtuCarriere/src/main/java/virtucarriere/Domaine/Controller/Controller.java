@@ -337,6 +337,10 @@ public class Controller implements Serializable {
 
     if (choix == 0) {
       save();
+      this.elementContainer = new ElementContainer();
+    }
+    if (choix == 1) {
+      this.elementContainer = new ElementContainer();
     }
   }
 
