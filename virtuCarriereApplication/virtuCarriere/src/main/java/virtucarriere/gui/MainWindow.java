@@ -1435,7 +1435,7 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
   } // GEN-LAST:event_selectionSimulActionPerformed
 
-  private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
+ private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
 
     List<Equipement> EquipementList = controller.getEquipementList();
 
@@ -1467,7 +1467,8 @@ public class MainWindow extends JFrame {
       Tas tasSimulation =
           controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
-      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+      Chargeur courantChargeur =
+          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
 
       TextSimulation.append(
           "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
@@ -1479,8 +1480,7 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
-
-      int delayTime = 500;
+      int delayTime = 1000;
       final int maxSize = cheminCamionAller.size();
       new Timer(
               delayTime,
@@ -1490,6 +1490,7 @@ public class MainWindow extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                   if (count < maxSize) {
+
                     camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
                     drawingPanel.repaint();
                     count++;
@@ -1504,7 +1505,7 @@ public class MainWindow extends JFrame {
           controller.ChargeurCheminToPath(
               courantChargeur, tasSimulation, controller.getAllNoeuds());
 
-      int delayTime3 = 2000;
+      int delayTime3 = 1000;
       final int maxSize3 = cheminChargeur.size();
       new Timer(
               delayTime3,
@@ -1515,8 +1516,32 @@ public class MainWindow extends JFrame {
                 public void actionPerformed(ActionEvent evt) {
                   if (count2 < maxSize3) {
                     courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
+                    ++count2;
                     drawingPanel.repaint();
-                    count2++;
+                    if (count2 == maxSize3) {
+                      Vector<AbstractPointChemin> cheminCamionRetour =
+                          controller.cheminDuCamionRetour(tasSimulation);
+                      int delayTime2 = 1000;
+                      final int maxSize2 = cheminCamionRetour.size();
+                      new Timer(
+                              delayTime2,
+                              new ActionListener() {
+                                private int index = 0;
+
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+                                  if (index < maxSize2) {
+                                    camionCourant.setPoint(
+                                        cheminCamionRetour.get(index).getPoint());
+                                    drawingPanel.repaint();
+                                    index++;
+                                  } else {
+                                    ((Timer) evt.getSource()).stop();
+                                  }
+                                }
+                              })
+                          .start();
+                    }
                   } else {
                     ((Timer) evt.getSource()).stop();
                   }
@@ -1536,29 +1561,6 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nNouvelle était du camion : " + camionCourant.getEtat());
 
       TextSimulation.append("\n\nLe camion retourne a l'entrée");
-
-      Vector<AbstractPointChemin> cheminCamionRetour =
-          controller.cheminDuCamionRetour(tasSimulation);
-
-      int delayTime2 = 1000;
-      final int maxSize2 = cheminCamionRetour.size();
-      new Timer(
-              delayTime2,
-              new ActionListener() {
-                private int index = 0;
-
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                  if (index < maxSize2) {
-                    camionCourant.setPoint(cheminCamionRetour.get(index).getPoint());
-                    drawingPanel.repaint();
-                    index++;
-                  } else {
-                    ((Timer) evt.getSource()).stop();
-                  }
-                }
-              })
-          .start();
 
       camionCourant.changeEtat("FACTURE");
 
@@ -1580,6 +1582,7 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nFin de la simulation pour ce camion");
     }
   }
+
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed
