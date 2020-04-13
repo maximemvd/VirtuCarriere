@@ -65,12 +65,7 @@ public class CarriereDrawer {
         listePointChargement.add(tas.getPointChargement());
       }
     }
-    /*
-    for (PointChargement point : listePointChargement) {
-      g2d.setColor(point.getColor());
-      Point pointCharge = point.getPoint();
-      g2d.fillOval((int) pointCharge.x - radius, (int) pointCharge.y - radius, radius, radius);
-    }*/
+
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
@@ -187,24 +182,29 @@ public class CarriereDrawer {
 
   public void drawEntree(Graphics2D g2d, double zoom) {
     g2d.scale(zoom, zoom);
-    Entree entrees = controller.getEntree();
-    Point entreePoint = entrees.getPoint();
-    if (entrees.isSelected()) {
-      g2d.setColor(new Color(255, 0, 0));
-      int offsetRadius = radius + 2;
-      g2d.fillRect(
-          (int) entrees.getPoint().x - offsetRadius,
-          (int) entrees.getPoint().y - offsetRadius,
-          offsetRadius * 2,
-          offsetRadius * 2);
-    }
-    Color entreeColor = entrees.getColor();
-    g2d.setColor(entreeColor);
-    g2d.fillRect(
-        (int) entreePoint.getX() - radius,
-        (int) entreePoint.getY() - radius,
-        radius * 2,
-        radius * 2);
+    // Entree entrees = controller.getEntree();
+    // Point entreePoint = entrees.getPoint();
+    List<Entree> entree = controller.getEntreeList();
+    entree.forEach(
+        (entree1) -> {
+          Point entreePoint = entree1.getPoint();
+          if (entree1.isSelected()) {
+            g2d.setColor(new Color(255, 0, 0));
+            int offsetRadius = radius + 2;
+            g2d.fillRect(
+                (int) entree1.getPoint().x - offsetRadius,
+                (int) entree1.getPoint().y - offsetRadius,
+                offsetRadius * 2,
+                offsetRadius * 2);
+          }
+          Color entreeColor = entree1.getColor();
+          g2d.setColor(entreeColor);
+          g2d.fillRect(
+              (int) entree1.getPoint().x - radius,
+              (int) entree1.getPoint().y - radius,
+              radius * 2,
+              radius * 2);
+        });
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
