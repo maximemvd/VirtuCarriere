@@ -1435,7 +1435,7 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
   } // GEN-LAST:event_selectionSimulActionPerformed
 
- private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
+  private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
 
     List<Equipement> EquipementList = controller.getEquipementList();
 
@@ -1467,8 +1467,7 @@ public class MainWindow extends JFrame {
       Tas tasSimulation =
           controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
-      Chargeur courantChargeur =
-          controller.choisirChargeurCorrespondant(tasSimulation, controller.getAllNoeuds());
+      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
 
       TextSimulation.append(
           "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
@@ -1582,7 +1581,6 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nFin de la simulation pour ce camion");
     }
   }
-
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed
