@@ -37,29 +37,7 @@ public class Plan implements Serializable {
     }
  
     if (getPointsForArcList().size() == 2) {
-      AbstractPointChemin starting = getPointsForArcList().get(0);
-      AbstractPointChemin arrival = getPointsForArcList().get(1);
-      if (starting != arrival){
-        try {
-          Arc arc = new Arc(point, 5, 5, starting, arrival);
-          chemins.addLink(arc);
-
-        } catch (RuntimeException e){
-            JOptionPane.showMessageDialog(
-                      null,
-                      "Cet arc existe déjà.",
-                      "Attention",
-                      JOptionPane.WARNING_MESSAGE);
-        }
-      
-      } else {
-          JOptionPane.showMessageDialog(
-                    null,
-                    "Un arc doit être relié à deux noeuds différents",
-                    "Attention",
-                    JOptionPane.WARNING_MESSAGE);
-        }
-      
+      verifieArc(point);
       for (AbstractPointChemin noeud : getPointsForArcList()) {
         noeud.setSelectionStatus(false);
       }
@@ -67,16 +45,54 @@ public class Plan implements Serializable {
     }
   }
   
-  public void addChemin(Point point){
-    if (getPointsForArcList().size() == 2) {
-      AbstractPointChemin starting = getPointsForArcList().get(0);
-      AbstractPointChemin arrival = getPointsForArcList().get(1);
-      Arc arc = new Arc(point, 5, 5, starting, arrival);
-      chemins.addLink(arc);
-      for (AbstractPointChemin noeud : getPointsForArcList()) {
-        noeud.switchSelectionStatus();
+  public void verifieArc(Point point){
+    AbstractPointChemin starting = getPointsForArcList().get(0);
+    AbstractPointChemin arrival = getPointsForArcList().get(1);
+    if (starting != arrival){
+      try {
+        Arc arc = new Arc(point, 5, 5, starting, arrival);
+        chemins.addLink(arc);
+
+      } catch (RuntimeException e){
+          JOptionPane.showMessageDialog(
+                    null,
+                    "Cet arc existe déjà.",
+                    "Attention",
+                    JOptionPane.WARNING_MESSAGE);
       }
-      getPointsForArcList().clear();
+
+    } else {
+        JOptionPane.showMessageDialog(
+                  null,
+                  "Un arc doit être relié à deux noeuds différents",
+                  "Attention",
+                  JOptionPane.WARNING_MESSAGE);
+      }
+  }
+  
+  public void addChemin(Point point){
+    boolean noeudExiste = false;
+    for (AbstractPointChemin noeud : getNoeuds()) {
+      if (noeud.contains(point.getX(), point.getY())) {
+        noeudExiste = true;
+      }
+    }
+    if (!noeudExiste){
+      addNoeud(point);
+    }
+    
+    for (AbstractPointChemin noeud : getNoeuds()) {
+      if (noeud.contains(point.getX(), point.getY())) {
+        pointsForArcList.add(noeud);
+        noeud.setSelectionStatus(true);
+      }
+    }
+    
+    if (getPointsForArcList().size() == 2) {
+      verifieArc(point);
+      getPointsForArcList().get(0).setSelectionStatus(false);
+      getPointsForArcList().get(1).setSelectionStatus(true);
+      getPointsForArcList().remove(0);
     }
   }
 
