@@ -129,23 +129,43 @@ public class CarriereDrawer {
     List<Equipement> equipements = controller.getEquipementList();
     equipements.forEach(
         (equipement) -> {
-          Point equipementPoint = equipement.getPoint();
-          if (equipement.isSelected()) {
-            g.setColor(new Color(255, 0, 0));
-            int offsetRadius = radius + 2;
+          if (equipement.getName().equals("Tas")) {
+            Point equipementPoint = equipement.getPoint();
+            if (equipement.isSelected()) {
+              g.setColor(new Color(255, 0, 0));
+              int offsetRadius = equipement.getDimension() + 2;
+              g.fillOval(
+                  (int) equipementPoint.getX() - offsetRadius,
+                  (int) equipementPoint.getY() - offsetRadius,
+                  offsetRadius * 2,
+                  offsetRadius * 2);
+            }
+            Color equipementColor = getColor(equipement);
+            g.setColor(equipementColor);
             g.fillOval(
-                (int) equipementPoint.getX() - offsetRadius,
-                (int) equipementPoint.getY() - offsetRadius,
-                offsetRadius * 2,
-                offsetRadius * 2);
+                (int) equipementPoint.getX() - equipement.getDimension(),
+                (int) equipementPoint.getY() - equipement.getDimension(),
+                equipement.getDimension() * 2,
+                equipement.getDimension() * 2);
+          } else {
+            Point equipementPoint = equipement.getPoint();
+            if (equipement.isSelected()) {
+              g.setColor(new Color(255, 0, 0));
+              int offsetRadius = radius + 2;
+              g.fillOval(
+                  (int) equipementPoint.getX() - offsetRadius,
+                  (int) equipementPoint.getY() - offsetRadius,
+                  offsetRadius * 2,
+                  offsetRadius * 2);
+            }
+            Color equipementColor = getColor(equipement);
+            g.setColor(equipementColor);
+            g.fillOval(
+                (int) equipementPoint.getX() - radius,
+                (int) equipementPoint.getY() - radius,
+                radius * 2,
+                radius * 2);
           }
-          Color equipementColor = getColor(equipement);
-          g.setColor(equipementColor);
-          g.fillOval(
-              (int) equipementPoint.getX() - radius,
-              (int) equipementPoint.getY() - radius,
-              radius * 2,
-              radius * 2);
         });
     g.scale(1 / zoom, 1 / zoom);
   }
