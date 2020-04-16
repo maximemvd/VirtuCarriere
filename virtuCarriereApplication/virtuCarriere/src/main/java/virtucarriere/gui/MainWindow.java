@@ -9,11 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -180,8 +182,7 @@ public class MainWindow extends JFrame {
     modifierGrille = new javax.swing.JMenuItem();
     resetGrille = new javax.swing.JMenuItem();
     importerMenu = new javax.swing.JMenu();
-    importerCarriereMenu = new javax.swing.JMenuItem();
-    importerSimulationMenu = new javax.swing.JMenuItem();
+    importImage = new javax.swing.JMenuItem();
     fenetreMenu = new javax.swing.JMenu();
 
     buttonGroup1.add(selectionSimul);
@@ -228,6 +229,10 @@ public class MainWindow extends JFrame {
 
           public void mousePressed(java.awt.event.MouseEvent evt) {
             drawingPanelMousePressed(evt);
+          }
+
+          public void mouseReleased(java.awt.event.MouseEvent evt) {
+            drawingPanelMouseReleased(evt);
           }
         });
     drawingPanel.addKeyListener(
@@ -1362,11 +1367,14 @@ public class MainWindow extends JFrame {
     importerMenu.setText("Importer");
     importerMenu.setToolTipText("");
 
-    importerCarriereMenu.setText("Importer une carrière");
-    importerMenu.add(importerCarriereMenu);
-
-    importerSimulationMenu.setText("Importer une simulation");
-    importerMenu.add(importerSimulationMenu);
+    importImage.setText("Importer image");
+    importImage.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            importImageActionPerformed(evt);
+          }
+        });
+    importerMenu.add(importImage);
 
     jMenuBar1.add(importerMenu);
 
@@ -1392,6 +1400,42 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void importImageActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_importImageActionPerformed
+
+    JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+    chooser.setDialogTitle("Open");
+    int returnValue = chooser.showDialog(null, "Open");
+
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = chooser.getSelectedFile();
+    }
+  } // GEN-LAST:event_importImageActionPerformed
+
+  private void drawingPanelMouseReleased(java.awt.event.MouseEvent evt) {
+    List<AbstractPointChemin> noeuds = controller.getNoeudList();
+    Point point = evt.getPoint();
+    JPopupMenu popup = new JPopupMenu();
+    popup.add(new JMenuItem("Copier"));
+    popup.add(new JMenuItem("Coller"));
+    popup.addSeparator();
+    popup.add(new JMenuItem("Tout sélectionner"));
+
+    if (SwingUtilities.isRightMouseButton(evt)) {
+      popup.show(evt.getComponent(), evt.getX(), evt.getY());
+
+      for (AbstractPointChemin aPoint : noeuds) {
+        if (aPoint.contains(point.getX(), point.getY())) {
+          aPoint.switchSelectionStatus();
+
+          popup.add(new JMenuItem("Modifier cet élément"));
+          popup.show(evt.getComponent(), evt.getX(), evt.getY());
+          drawingPanel.repaint();
+        }
+      }
+    }
+  }
 
   private void boutonCheminActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_boutonCheminActionPerformed
@@ -2040,10 +2084,7 @@ public class MainWindow extends JFrame {
     // TODO add your handling code here:
   } // GEN-LAST:event_entreeButtonMousePressed
 
-  private void drawingPanelMouseClicked(
-      java.awt.event.MouseEvent evt) { // GEN-FIRST:event_drawingPanelMouseClicked
-    // TODO add your handling code here:
-  } // GEN-LAST:event_drawingPanelMouseClicked
+  private void drawingPanelMouseClicked(java.awt.event.MouseEvent evt) {}
 
   private void arcButtonActionPerformed(java.awt.event.ActionEvent evt) {
     setAppMode(ApplicationMode.ADD_ARC);
@@ -2188,8 +2229,10 @@ public class MainWindow extends JFrame {
     // Serait intéressant de dessiner l'arc au fur et à mesure :
     // https://stackoverflow.com/questions/9711938/java-draw-line-as-the-mouse-is-moved
     Point mousePoint = evt.getPoint();
-    drawingPanel.setMouseX(mousePoint.getX());
-    drawingPanel.setMouseY(mousePoint.getY());
+    double xCoord = UnitConverter.pixelToMeter(mousePoint.getX());
+    double yCoord = UnitConverter.pixelToMeter(mousePoint.getY());
+    drawingPanel.setMouseX(xCoord);
+    drawingPanel.setMouseY(yCoord);
     drawingPanel.repaint();
 
     if (SwingUtilities.isRightMouseButton(evt)) {
@@ -2207,7 +2250,7 @@ public class MainWindow extends JFrame {
       rafraichissementTextField();
       simulationTextField();
     }
-  } // GEN-LAST:event_drawingPanelMouseDragged
+  }
 
   private void ajoutSimulationActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutSimulationActionPerformed
@@ -2478,9 +2521,8 @@ public class MainWindow extends JFrame {
   private javax.swing.JButton entreeButton;
   private javax.swing.JMenu fenetreMenu;
   private javax.swing.JMenu fichierMenu;
-  private javax.swing.JMenuItem importerCarriereMenu;
+  private javax.swing.JMenuItem importImage;
   private javax.swing.JMenu importerMenu;
-  private javax.swing.JMenuItem importerSimulationMenu;
   private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JComboBox<String> jComboBox1;

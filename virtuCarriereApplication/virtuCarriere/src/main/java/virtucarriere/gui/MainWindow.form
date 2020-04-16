@@ -129,15 +129,13 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="importerCarriereMenu">
+            <MenuItem class="javax.swing.JMenuItem" name="importImage">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Importer une carri&#xe8;re"/>
+                <Property name="text" type="java.lang.String" value="Importer image"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="importerSimulationMenu">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Importer une simulation"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importImageActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -212,6 +210,7 @@
                 <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="drawingPanelMouseWheelMoved"/>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="drawingPanelMouseClicked"/>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="drawingPanelMousePressed"/>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="drawingPanelMouseReleased"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="drawingPanelKeyPressed"/>
               </Events>
               <AuxValues>
