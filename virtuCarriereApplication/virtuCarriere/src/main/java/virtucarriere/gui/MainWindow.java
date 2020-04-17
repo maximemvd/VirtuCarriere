@@ -188,6 +188,7 @@ public class MainWindow extends JFrame {
     resetGrille = new javax.swing.JMenuItem();
     importerMenu = new javax.swing.JMenu();
     importImage = new javax.swing.JMenuItem();
+    resetImage = new javax.swing.JMenuItem();
     fenetreMenu = new javax.swing.JMenu();
 
     buttonGroup1.add(selectionSimul);
@@ -1381,6 +1382,15 @@ public class MainWindow extends JFrame {
         });
     importerMenu.add(importImage);
 
+    resetImage.setText("Réinitialiser image");
+    resetImage.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            resetImageActionPerformed(evt);
+          }
+        });
+    importerMenu.add(resetImage);
+
     jMenuBar1.add(importerMenu);
 
     fenetreMenu.setText("Fenêtre");
@@ -1406,8 +1416,13 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
-  private void importImageActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_importImageActionPerformed
+  private void resetImageActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_resetImageActionPerformed
+    controller.setUrlBackground(null);
+    drawingPanel.repaint();
+  } // GEN-LAST:event_resetImageActionPerformed
+
+  private void importImageActionPerformed(java.awt.event.ActionEvent evt) {
 
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
     chooser.setDialogTitle("Open");
@@ -1422,7 +1437,7 @@ public class MainWindow extends JFrame {
       }
       drawingPanel.repaint();
     }
-  } // GEN-LAST:event_importImageActionPerformed
+  }
 
   private void drawingPanelMouseReleased(java.awt.event.MouseEvent evt) {
     List<AbstractPointChemin> noeuds = controller.getNoeudList();
@@ -2588,6 +2603,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenuItem modifierGrille;
   private javax.swing.JSpinner quantiteSpinner;
   private javax.swing.JMenuItem resetGrille;
+  private javax.swing.JMenuItem resetImage;
   private javax.swing.JToggleButton selectionSimul;
   private javax.swing.JTextField textFieldCoordonneeX;
   private javax.swing.JTextField textFieldCoordonneeY;
