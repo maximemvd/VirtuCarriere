@@ -50,11 +50,22 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
+  public int simulationSpeed;
+
   /** Creates new form MainWindow */
   public MainWindow() {
+    simulationSpeed = 1000;
     controller = new Controller();
     initComponents();
     setFocusable(true);
+  }
+
+  public void accelereSimulation() {
+    simulationSpeed = simulationSpeed / 2;
+  }
+
+  public void slowDownSimulation() {
+    simulationSpeed = simulationSpeed * 2;
   }
 
   public void setAppMode(ApplicationMode newMode) {
@@ -169,6 +180,8 @@ public class MainWindow extends JFrame {
     ajoutModifChargeur = new javax.swing.JButton();
     modifierCamion = new javax.swing.JButton();
     ajoutChargeurCoord = new javax.swing.JButton();
+    slowSimulationSpeed = new javax.swing.JButton();
+    fasterSimulationSpeed = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -950,27 +963,85 @@ public class MainWindow extends JFrame {
           }
         });
 
+    slowSimulationSpeed.setText("Slower");
+    slowSimulationSpeed.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            slowSimulationSpeedActionPerformed(evt);
+          }
+        });
+
+    fasterSimulationSpeed.setText("Faster");
+    fasterSimulationSpeed.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            fasterSimulationSpeedActionPerformed(evt);
+          }
+        });
+
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel22))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(
+                                                xCoordSimul,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                52,
+                                                Short.MAX_VALUE)
+                                            .addComponent(yCoordSimul))
+                                    .addGap(29, 29, 29)
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(
+                                                ajoutChargeurCoord,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                Short.MAX_VALUE)
+                                            .addComponent(
+                                                ajoutModifChargeur,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                1,
+                                                Short.MAX_VALUE))
+                                    .addGap(36, 36, 36))
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(99, 99, 99))))
+            .addGroup(
                 jPanel3Layout
                     .createSequentialGroup()
                     .addGroup(
                         jPanel3Layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel12))
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addComponent(jLabel14))
                             .addGroup(
                                 jPanel3Layout
                                     .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1052,23 +1123,17 @@ public class MainWindow extends JFrame {
                                             .addContainerGap()
                                             .addComponent(addCamion)
                                             .addGap(27, 27, 27)
-                                            .addComponent(modifierCamion))
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createSequentialGroup()
-                                            .addGap(89, 89, 89)
-                                            .addComponent(
-                                                StartSimulation,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                60,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(
-                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(
-                                                jButton1,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                59,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(modifierCamion)))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel12))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(jLabel14))
                             .addGroup(
                                 jPanel3Layout
                                     .createSequentialGroup()
@@ -1078,60 +1143,37 @@ public class MainWindow extends JFrame {
                                 jScrollPane2,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 289,
-                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(
-                javax.swing.GroupLayout.Alignment.TRAILING,
-                jPanel3Layout
-                    .createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(
-                        jPanel3Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(
-                                javax.swing.GroupLayout.Alignment.TRAILING,
                                 jPanel3Layout
                                     .createSequentialGroup()
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel20)
-                                            .addComponent(jLabel22))
+                                    .addGap(23, 23, 23)
+                                    .addComponent(
+                                        slowSimulationSpeed,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        62,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(
                                         javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(
-                                                xCoordSimul,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                52,
-                                                Short.MAX_VALUE)
-                                            .addComponent(yCoordSimul))
-                                    .addGap(29, 29, 29)
-                                    .addGroup(
-                                        jPanel3Layout
-                                            .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(
-                                                ajoutChargeurCoord,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                            .addComponent(
-                                                ajoutModifChargeur,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                1,
-                                                Short.MAX_VALUE))
-                                    .addGap(36, 36, 36))
-                            .addGroup(
-                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(99, 99, 99)))));
+                                    .addComponent(
+                                        StartSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(
+                                        jButton1,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        59,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(
+                                        fasterSimulationSpeed,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        67,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 30, Short.MAX_VALUE)));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
             .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1214,7 +1256,7 @@ public class MainWindow extends JFrame {
                             .addComponent(modifierCamion)
                             .addComponent(addCamion))
                     .addPreferredGap(
-                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(
@@ -1229,6 +1271,16 @@ public class MainWindow extends JFrame {
                                 StartSimulation,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 38,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(
+                                slowSimulationSpeed,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                39,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(
+                                fasterSimulationSpeed,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                39,
                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel14)
@@ -1405,6 +1457,17 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void fasterSimulationSpeedActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_fasterSimulationSpeedActionPerformed
+    this.accelereSimulation();
+  } // GEN-LAST:event_fasterSimulationSpeedActionPerformed
+
+  private void slowSimulationSpeedActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_slowSimulationSpeedActionPerformed
+    // TODO add your handling code here:
+    this.slowDownSimulation();
+  } // GEN-LAST:event_slowSimulationSpeedActionPerformed
 
   private void importImageActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_importImageActionPerformed
@@ -1639,20 +1702,40 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
-      int delayTime = 1000;
       final int maxSize = cheminCamionAller.size();
       new Timer(
-              delayTime,
+              150,
               new ActionListener() {
                 private int count = 0;
+
+                Point entreeCarriere = controller.getEntree().getPoint();
+                int x = entreeCarriere.x;
+                int y = entreeCarriere.y;
+                Point newPoint;
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                   if (count < maxSize) {
-
-                    camionCourant.setPoint(cheminCamionAller.get(count).getPoint());
+                    if (count == 0) {
+                      newPoint =
+                          new Point(
+                              cheminCamionAller.get(count).getPoint().x - entreeCarriere.x,
+                              cheminCamionAller.get(count).getPoint().y - entreeCarriere.y);
+                    } else {
+                      newPoint =
+                          new Point(
+                              cheminCamionAller.get(count).getPoint().x
+                                  - cheminCamionAller.get(count - 1).getPoint().x,
+                              cheminCamionAller.get(count).getPoint().y
+                                  - cheminCamionAller.get(count - 1).getPoint().y);
+                    }
+                    x = x + newPoint.x / 10;
+                    y = y + newPoint.y / 10;
+                    camionCourant.setPoint(new Point(x, y));
                     drawingPanel.repaint();
-                    count++;
+                    if (x >= cheminCamionAller.get(count).getPoint().x) {
+                      count++;
+                    }
                   } else {
                     ((Timer) evt.getSource()).stop();
                   }
@@ -1664,50 +1747,48 @@ public class MainWindow extends JFrame {
           controller.ChargeurCheminToPath(
               courantChargeur, tasSimulation, controller.getAllNoeuds());
 
-      int delayTime3 = 1000;
-      final int maxSize3 = cheminChargeur.size();
-      new Timer(
-              delayTime3,
-              new ActionListener() {
-                private int count2 = 0;
+      /*  final int maxSize3 = cheminChargeur.size();
+            new Timer(
+                    simulationSpeed,
+                    new ActionListener() {
+                      private int count2 = 0;
 
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                  if (count2 < maxSize3) {
-                    courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
-                    ++count2;
-                    drawingPanel.repaint();
-                    if (count2 == maxSize3) {
-                      Vector<AbstractPointChemin> cheminCamionRetour =
-                          controller.cheminDuCamionRetour(tasSimulation);
-                      int delayTime2 = 1000;
-                      final int maxSize2 = cheminCamionRetour.size();
-                      new Timer(
-                              delayTime2,
-                              new ActionListener() {
-                                private int index = 0;
+                      @Override
+                      public void actionPerformed(ActionEvent evt) {
+                        if (count2 < maxSize3) {
+                          courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
+                          ++count2;
+                          drawingPanel.repaint();
+                          if (count2 == maxSize3) {
+                            Vector<AbstractPointChemin> cheminCamionRetour =
+                                controller.cheminDuCamionRetour(tasSimulation);
+                            final int maxSize2 = cheminCamionRetour.size();
+                            new Timer(
+                                    simulationSpeed,
+                                    new ActionListener() {
+                                      private int index = 0;
 
-                                @Override
-                                public void actionPerformed(ActionEvent evt) {
-                                  if (index < maxSize2) {
-                                    camionCourant.setPoint(
-                                        cheminCamionRetour.get(index).getPoint());
-                                    drawingPanel.repaint();
-                                    index++;
-                                  } else {
-                                    ((Timer) evt.getSource()).stop();
-                                  }
-                                }
-                              })
-                          .start();
-                    }
-                  } else {
-                    ((Timer) evt.getSource()).stop();
-                  }
-                }
-              })
-          .start();
-
+                                      @Override
+                                      public void actionPerformed(ActionEvent evt) {
+                                        if (index < maxSize2) {
+                                          camionCourant.setPoint(
+                                              cheminCamionRetour.get(index).getPoint());
+                                          drawingPanel.repaint();
+                                          index++;
+                                        } else {
+                                          ((Timer) evt.getSource()).stop();
+                                        }
+                                      }
+                                    })
+                                .start();
+                          }
+                        } else {
+                          ((Timer) evt.getSource()).stop();
+                        }
+                      }
+                    })
+                .start();
+      */
       if (!controller.verificationJeton(camionCourant, courantChargeur)) {
         TextSimulation.append("\n\nLes jetons ne sont pas identiques");
         break;
@@ -2530,6 +2611,7 @@ public class MainWindow extends JFrame {
   private virtucarriere.gui.DrawingPanel drawingPanel;
   private javax.swing.JMenu editionMenu;
   private javax.swing.JButton entreeButton;
+  private javax.swing.JButton fasterSimulationSpeed;
   private javax.swing.JMenu fenetreMenu;
   private javax.swing.JMenu fichierMenu;
   private javax.swing.JMenuItem importImage;
@@ -2589,6 +2671,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JSpinner quantiteSpinner;
   private javax.swing.JMenuItem resetGrille;
   private javax.swing.JToggleButton selectionSimul;
+  private javax.swing.JButton slowSimulationSpeed;
   private javax.swing.JTextField textFieldCoordonneeX;
   private javax.swing.JTextField textFieldCoordonneeY;
   private javax.swing.JTextField xCoordSimul;
