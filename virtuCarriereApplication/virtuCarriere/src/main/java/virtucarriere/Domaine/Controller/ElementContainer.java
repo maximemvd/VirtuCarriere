@@ -8,6 +8,7 @@ package virtucarriere.Domaine.Controller;
 import java.awt.Point;
 import java.io.File;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -29,6 +30,15 @@ public class ElementContainer implements Serializable {
   private Plan plan = new Plan();
   private Simulation simulation = new Simulation();
   static File file;
+  private URL url = null;
+
+  public URL getBackGroundUrl() {
+    return url;
+  }
+
+  public void setUrlBackGround(URL newUrl) {
+    this.url = newUrl;
+  }
 
   // TODO add function to get element with argument point
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {

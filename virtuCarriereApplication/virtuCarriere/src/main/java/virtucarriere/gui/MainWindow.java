@@ -10,10 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
@@ -1412,6 +1415,12 @@ public class MainWindow extends JFrame {
 
     if (returnValue == JFileChooser.APPROVE_OPTION) {
       File selectedFile = chooser.getSelectedFile();
+      try {
+        controller.setUrlBackground(selectedFile.toURI().toURL());
+      } catch (MalformedURLException ex) {
+        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      drawingPanel.repaint();
     }
   } // GEN-LAST:event_importImageActionPerformed
 

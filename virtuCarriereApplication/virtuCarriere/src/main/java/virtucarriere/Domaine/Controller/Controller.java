@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.io.*;
 import java.io.FileInputStream;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -52,6 +53,14 @@ public class Controller implements Serializable {
 
   public Controller() {
     elementContainer = new ElementContainer();
+  }
+
+  public URL getUrlBackground() {
+    return elementContainer.getBackGroundUrl();
+  }
+
+  public void setUrlBackground(URL p_url) {
+    elementContainer.setUrlBackGround(p_url);
   }
 
   public List<Noeud> getNoeudForArcList() {
