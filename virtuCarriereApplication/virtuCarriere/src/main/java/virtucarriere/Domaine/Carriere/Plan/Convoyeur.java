@@ -15,6 +15,7 @@ public class Convoyeur extends AbstractLien<Equipement> {
   private Equipement starting;
   private Color color;
   private String name;
+  private Noeud noeud;
 
   public Convoyeur(
       Point point, int p_width, int p_length, Equipement starting, Equipement arrival) {
@@ -37,6 +38,14 @@ public class Convoyeur extends AbstractLien<Equipement> {
 
   public void setArrival(Equipement arrival) {
     this.arrival = arrival;
+  }
+
+  public Noeud getNoeud() {
+    return noeud;
+  }
+
+  public void setNoeud(Noeud newNoeud) {
+    this.noeud = newNoeud;
   }
 
   @Override

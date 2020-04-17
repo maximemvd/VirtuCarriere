@@ -19,7 +19,7 @@ public class Plan implements Serializable {
   private Entree entree;
 
   public Plan() {
-    entree = new Entree(new Point(300, 300), 100, 100, 0);
+    entree = new Entree(new Point(2000, 2000), 100, 100, 0);
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
@@ -27,8 +27,70 @@ public class Plan implements Serializable {
     pointsForArcList = new LinkedList<>();
   }
 
-  public void addArc(Arc arc) {
-    chemins.addLink(arc);
+  public void addArc(Point point) {
+
+    for (AbstractPointChemin noeud : getNoeuds()) {
+      if (noeud.contains(point.getX(), point.getY())) {
+        pointsForArcList.add(noeud);
+        noeud.setSelectionStatus(true);
+      }
+    }
+
+    if (getPointsForArcList().size() == 2) {
+      verifieArc(point);
+      for (AbstractPointChemin noeud : getPointsForArcList()) {
+        noeud.setSelectionStatus(false);
+      }
+      getPointsForArcList().clear();
+    }
+  }
+
+  public void verifieArc(Point point) {
+    AbstractPointChemin starting = getPointsForArcList().get(0);
+    AbstractPointChemin arrival = getPointsForArcList().get(1);
+    if (starting != arrival) {
+      try {
+        Arc arc = new Arc(point, 5, 5, starting, arrival);
+        chemins.addLink(arc);
+
+      } catch (RuntimeException e) {
+        JOptionPane.showMessageDialog(
+            null, "Cet arc existe déjà.", "Attention", JOptionPane.WARNING_MESSAGE);
+      }
+
+    } else {
+      JOptionPane.showMessageDialog(
+          null,
+          "Un arc doit être relié à deux noeuds différents",
+          "Attention",
+          JOptionPane.WARNING_MESSAGE);
+    }
+  }
+
+  public void addChemin(Point point) {
+    boolean noeudExiste = false;
+    for (AbstractPointChemin noeud : getNoeuds()) {
+      if (noeud.contains(point.getX(), point.getY())) {
+        noeudExiste = true;
+      }
+    }
+    if (!noeudExiste) {
+      addNoeud(point);
+    }
+
+    for (AbstractPointChemin noeud : getNoeuds()) {
+      if (noeud.contains(point.getX(), point.getY())) {
+        pointsForArcList.add(noeud);
+        noeud.setSelectionStatus(true);
+      }
+    }
+
+    if (getPointsForArcList().size() == 2) {
+      verifieArc(point);
+      getPointsForArcList().get(0).setSelectionStatus(false);
+      getPointsForArcList().get(1).setSelectionStatus(true);
+      getPointsForArcList().remove(0);
+    }
   }
 
   public void removeArc(Arc arc) {
@@ -37,15 +99,6 @@ public class Plan implements Serializable {
 
   public void removeConvoyeur(Convoyeur convoyeur) {
     equipments.removeLink(convoyeur);
-  }
-
-  public void noeudSelection(double x, double y) {
-    for (AbstractPointChemin noeud : getNoeuds()) {
-      if (noeud.contains(x, y)) {
-        pointsForArcList.add(noeud);
-        noeud.setSelectionStatus(true);
-      }
-    }
   }
 
   public void addEquipment(Equipement equipement) {
@@ -83,8 +136,9 @@ public class Plan implements Serializable {
   }
 
   public void addTas(Point mousePoint, String code) {
-    Tas tas = new Tas(mousePoint, 1, 1, code, 1);
+    Tas tas = new Tas(mousePoint, 1, 1, code, 25);
     Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
+    tas.setNoeudTas(noeud);
     chemins.addEnd(noeud);
     addEquipment(tas);
     PointChargement pointChargement = tas.getPointChargement();
@@ -399,6 +453,16 @@ public class Plan implements Serializable {
 
   public List<AbstractPointChemin> getAllAbstractPointChemin() {
     return chemins.getEnds();
+  }
+
+  public List<Noeud> getAllNoeuds() {
+    List<Noeud> noeudList = new LinkedList<>();
+    for (AbstractPointChemin points : getAllAbstractPointChemin()) {
+      if (points.getName().equals("Noeud")) {
+        noeudList.add((Noeud) points);
+      }
+    }
+    return noeudList;
   }
 
   public List<Arc> getAllArcs() {

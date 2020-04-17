@@ -8,7 +8,7 @@ package virtucarriere.Domaine.AffichageUtil;
 /** @author vincentmasse */
 public class UnitConverter {
 
-  private static float PixelToMeter = (float) 0.005;
+  private static float PixelToMeter = (float) 0.1;
 
   public static double pixelToMeter(double pixel) {
     // TODO calcul à faire selon la dimension de notre fenêtre

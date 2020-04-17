@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>virtucarriere.Domaine.Carriere.Simulation</OriginalElement>
+  <nodes>
+    <node x="242.45618386243385" y="198.0">virtucarriere.Domaine.Carriere.Simulation.Vehicule</node>
+    <node x="38.07820767195767" y="306.5">virtucarriere.Domaine.Carriere.Simulation.Facture</node>
+    <node x="482.68964947089944" y="0.0">virtucarriere.Domaine.Carriere.Simulation.Jeton</node>
+    <node x="268.95155423280426" y="37.0">virtucarriere.Domaine.Carriere.Simulation.Itineraire</node>
+    <node x="0.0" y="830.0">virtucarriere.Domaine.Carriere.Simulation.Simulation</node>
+    <node x="392.9561838624338" y="581.0">virtucarriere.Domaine.Carriere.Simulation.Chargeur</node>
+    <node x="113.97404100529104" y="569.0">virtucarriere.Domaine.Carriere.Simulation.Camion</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Chargeur" target="virtucarriere.Domaine.Carriere.Simulation.Vehicule">
+      <point x="-30.5" y="-88.5" />
+      <point x="484.4561838624338" y="544.0" />
+      <point x="494.4561838624338" y="544.0" />
+      <point x="112.0" y="160.5" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Simulation.Camion" target="virtucarriere.Domaine.Carriere.Simulation.Vehicule">
+      <point x="55.99999999999994" y="-100.5" />
+      <point x="281.974041005291" y="544.0" />
+      <point x="270.4561838624338" y="544.0" />
+      <point x="-112.0" y="160.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.28703134603564845" x="416.0" y="803.5" />
+  <SelectedNodes>
+    <node>virtucarriere.Domaine.Carriere.Simulation.Facture</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

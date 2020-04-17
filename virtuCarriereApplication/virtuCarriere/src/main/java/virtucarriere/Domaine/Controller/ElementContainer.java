@@ -44,12 +44,9 @@ public class ElementContainer implements Serializable {
     return simulation.choisirChargeurIdeal(tas);
   }
 
-  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(
+      Chargeur p_chargeur, Tas p_tas, List<Noeud> noeudList) {
     return simulation.ChargeurCheminToPath(p_chargeur, p_tas);
-  }
-
-  public void noeudSelection(double x, double y) {
-    this.plan.noeudSelection(x, y);
   }
 
   public Tas trouverTasCorrespondant(List<Tas> tas, String produit) {
@@ -58,6 +55,10 @@ public class ElementContainer implements Serializable {
 
   public void setFile(File p_file) {
     this.file = p_file;
+  }
+
+  public List<Noeud> getAllNoeuds() {
+    return plan.getAllNoeuds();
   }
 
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
@@ -76,8 +77,12 @@ public class ElementContainer implements Serializable {
     plan.isEquipementPresent(equipement);
   }
 
-  public void addArc(Arc arc) {
-    plan.addArc(arc);
+  public void addArc(Point point) {
+    plan.addArc(point);
+  }
+
+  public void addChemin(Point point) {
+    plan.addChemin(point);
   }
 
   public void clearEquipementConv() {

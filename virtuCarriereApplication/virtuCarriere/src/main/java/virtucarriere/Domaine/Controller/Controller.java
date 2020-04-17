@@ -154,8 +154,9 @@ public class Controller implements Serializable {
     return elementContainer.trouverChargeurCorrespondant(tas);
   }
 
-  public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
-    return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas);
+  public Vector<AbstractPointChemin> ChargeurCheminToPath(
+      Chargeur p_chargeur, Tas p_tas, List<Noeud> listeNoeud) {
+    return elementContainer.ChargeurCheminToPath(p_chargeur, p_tas, listeNoeud);
   }
 
   public boolean verificationJeton(Camion p_camion, Chargeur p_chargeur) {
@@ -203,13 +204,16 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, mode);
   }
 
+  public List<Noeud> getAllNoeuds() {
+    return elementContainer.getAllNoeuds();
+  }
+
   public void changementSelectionStatus(double x, double y) {
     this.elementContainer.changementSelectionStatus(x, y);
   }
 
-  public void addArc(Point mousePoint, AbstractPointChemin starting, AbstractPointChemin arrival) {
-    Arc arc = new Arc(mousePoint, 5, 5, starting, arrival);
-    elementContainer.addArc(arc);
+  public void addChemin(Point point) {
+    elementContainer.addChemin(point);
   }
 
   public void removeNoeud(AbstractPointChemin noeud) {
@@ -237,8 +241,8 @@ public class Controller implements Serializable {
     this.elementContainer.switchSelectionStatus(x, y, isShiftDown);
   }
 
-  public void noeudSelection(double x, double y) {
-    this.elementContainer.noeudSelection(x, y);
+  public void addArc(Point point) {
+    this.elementContainer.addArc(point);
   }
 
   public List<AbstractPointChemin> getPointsForArcList() {

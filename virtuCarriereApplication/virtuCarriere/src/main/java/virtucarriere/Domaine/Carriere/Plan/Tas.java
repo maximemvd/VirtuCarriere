@@ -14,18 +14,20 @@ import java.util.List;
 public class Tas extends Equipement {
 
   private String materialCode;
-  private double dimension;
+  private int dimension;
   private Color color;
   private String name;
   private double quantite;
   private Point point;
+
+  private Noeud noeudTas;
 
   private PointChargement pointChargement;
 
   private List<String> listMateriau;
 
   // TODO add attribut point de chargement;
-  public Tas(Point point, int p_width, int p_length, String materialCode, double dimension) {
+  public Tas(Point point, int p_width, int p_length, String materialCode, int dimension) {
     super(point, p_width, p_length, 0, Collections.emptyList());
     this.point = point;
     this.materialCode = materialCode;
@@ -36,6 +38,22 @@ public class Tas extends Equipement {
     this.setlistMateriau();
     Point newPoint = new Point(point.x - 55, point.y + 6);
     this.pointChargement = new PointChargement(newPoint, 3, 3);
+  }
+
+  public void setDimension(int newDimension) {
+    this.dimension = newDimension;
+  }
+
+  public int getDimension() {
+    return dimension;
+  }
+
+  public void setNoeudTas(Noeud new_noeud) {
+    this.noeudTas = new_noeud;
+  }
+
+  public Noeud getNoeud() {
+    return noeudTas;
   }
 
   @Override

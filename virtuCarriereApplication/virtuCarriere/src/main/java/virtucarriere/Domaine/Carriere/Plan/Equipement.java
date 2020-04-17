@@ -36,6 +36,10 @@ public abstract class Equipement extends Element {
 
   public abstract String getMaterialCode();
 
+  public abstract int getDimension();
+
+  public abstract void setDimension(int newDimension);
+
   public abstract void setMaterialCode(String newCode);
 
   public void setAngle(double p_angle) {
