@@ -44,9 +44,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     int height = mainWindow.getMainScrollPaneDimension().height;
     setPreferredSize(new Dimension(width, height));
     setVisible(true);
-
-    this.initialDimension = new Dimension(2400, 1800);
-    setBackground(Color.WHITE);
+    this.initialDimension = new Dimension(1700, 1200);
   }
 
   @Override
@@ -57,13 +55,13 @@ public class DrawingPanel extends JPanel implements Serializable {
       super.paintComponent(g);
       graphics = g;
       carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
+      Graphics2D g2d = (Graphics2D) g;
 
       // draw mouse coordinates
       g.setColor(Color.black);
       String s = " \n " + " " + (int) (mouseX / zoom) + ", " + (int) (mouseY / zoom);
       g.drawString(s, (int) mouseX, (int) mouseY);
 
-      Graphics2D g2d = (Graphics2D) g;
       carriereDrawer.draw(g2d, zoom);
 
       if (grilleActivee) {

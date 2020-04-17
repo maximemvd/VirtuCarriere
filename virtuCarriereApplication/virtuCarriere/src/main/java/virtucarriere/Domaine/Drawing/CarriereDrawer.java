@@ -10,25 +10,29 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Controller.Controller;
-import virtucarriere.gui.DrawingPanel;
 import virtucarriere.gui.MainWindow;
 
 public class CarriereDrawer {
 
   private final Controller controller;
   private Dimension initialDimension;
-  private DrawingPanel drawingPanel;
   private MainWindow.MeasurementUnitMode measurementMode;
-  private Element element;
 
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
@@ -43,6 +47,7 @@ public class CarriereDrawer {
   }
 
   public void draw(Graphics2D g2d, double zoom) {
+    drawImage(g2d, zoom);
     drawEquipement(g2d, zoom);
     drawNoeud(g2d, zoom);
     drawEntree(g2d, zoom);
@@ -51,6 +56,22 @@ public class CarriereDrawer {
     drawCamion(g2d, zoom);
     drawChargeur(g2d, zoom);
     drawPointChargement(g2d, zoom);
+  }
+
+  public void drawImage(Graphics2D g2d, double zoom) {
+    try {
+      g2d.scale(zoom, zoom);
+      URL url =
+          new URL(
+              "https://www.intelligence-airbusds.com/files/pgallery/public/r20495_15_satellite_image_spot6_phalaborwa_southafrica_2013_thumbnail.jpg");
+      final BufferedImage bg = ImageIO.read(url);
+      g2d.drawImage(bg, 0, 0, 1700, 1200, null);
+      g2d.scale(1 / zoom, 1 / zoom);
+    } catch (MalformedURLException ex) {
+      Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+      Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 
   public void drawPointChargement(Graphics2D g2d, double zoom) {
