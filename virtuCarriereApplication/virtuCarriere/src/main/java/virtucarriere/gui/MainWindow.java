@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
 
   /** Creates new form MainWindow */
   public MainWindow() {
-    simulationSpeed = 1000;
+    simulationSpeed = 150;
     controller = new Controller();
     initComponents();
     setFocusable(true);
@@ -1704,7 +1704,7 @@ public class MainWindow extends JFrame {
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
       final int maxSize = cheminCamionAller.size();
       new Timer(
-              150,
+              simulationSpeed,
               new ActionListener() {
                 private int count = 0;
 
