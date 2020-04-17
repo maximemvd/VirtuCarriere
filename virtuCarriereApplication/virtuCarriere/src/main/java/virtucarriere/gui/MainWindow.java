@@ -54,18 +54,18 @@ public class MainWindow extends JFrame {
 
   /** Creates new form MainWindow */
   public MainWindow() {
-    simulationSpeed = 150;
+    simulationSpeed = 10;
     controller = new Controller();
     initComponents();
     setFocusable(true);
   }
 
   public void accelereSimulation() {
-    simulationSpeed = simulationSpeed / 2;
+    simulationSpeed = simulationSpeed - 2;
   }
 
   public void slowDownSimulation() {
-    simulationSpeed = simulationSpeed * 2;
+    simulationSpeed = simulationSpeed + 2;
   }
 
   public void setAppMode(ApplicationMode newMode) {
@@ -1704,7 +1704,7 @@ public class MainWindow extends JFrame {
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
       final int maxSize = cheminCamionAller.size();
       new Timer(
-              simulationSpeed,
+              150,
               new ActionListener() {
                 private int count = 0;
 
@@ -1729,8 +1729,8 @@ public class MainWindow extends JFrame {
                               cheminCamionAller.get(count).getPoint().y
                                   - cheminCamionAller.get(count - 1).getPoint().y);
                     }
-                    x = x + newPoint.x / 10;
-                    y = y + newPoint.y / 10;
+                    x = x + newPoint.x / simulationSpeed;
+                    y = y + newPoint.y / simulationSpeed;
                     camionCourant.setPoint(new Point(x, y));
                     drawingPanel.repaint();
                     if (x >= cheminCamionAller.get(count).getPoint().x) {
@@ -1750,7 +1750,7 @@ public class MainWindow extends JFrame {
       /*  final int maxSize3 = cheminChargeur.size();
             new Timer(
                     simulationSpeed,
-                    new ActionListener() {
+                    new ActionListener()
                       private int count2 = 0;
 
                       @Override
