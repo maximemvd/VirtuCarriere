@@ -61,6 +61,10 @@ public class MainWindow extends JFrame {
   }
 
   public void accelereSimulation() {
+    if (simulationSpeed == 2) {
+      TextSimulation.append("la simulation ne peux pas aller plus vite");
+      return;
+    }
     simulationSpeed = simulationSpeed - 2;
   }
 
