@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
 
   /** Creates new form MainWindow */
   public MainWindow() {
-    simulationSpeed = 50;
+    simulationSpeed = 20;
     controller = new Controller();
     initComponents();
     setFocusable(true);
@@ -1713,7 +1713,7 @@ public class MainWindow extends JFrame {
       final int maxSizeCamionAller = cheminCamionAller.size();
       final int maxSizeChargeur = cheminChargeur.size();
       new Timer(
-              150,
+              500,
               new ActionListener() {
                 private int count = 0;
                 private int chargeurCount = 0;
@@ -1744,9 +1744,11 @@ public class MainWindow extends JFrame {
                               cheminChargeur.get(chargeurCount).getPoint().y
                                   - cheminChargeur.get(chargeurCount - 1).getPoint().y);
                     }
+
                     chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
                     chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
                     courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
+                    drawingPanel.repaint();
                     if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
                       chargeurCount++;
                     }
