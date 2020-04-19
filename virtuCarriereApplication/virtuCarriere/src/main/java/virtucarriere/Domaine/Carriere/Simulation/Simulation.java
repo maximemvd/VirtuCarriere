@@ -32,7 +32,7 @@ public class Simulation implements Serializable {
 
   public void setGraphCheminSimulation(GraphChemins p_graphChemin) {
     this.graphChemin = p_graphChemin;
-    algoChemin.setGraph(p_graphChemin);
+    this.algoChemin = new AlgoChemin(graphChemin);
   }
 
   public void EditCamion(Camion p_camion, String nom, String produit, double qte) {

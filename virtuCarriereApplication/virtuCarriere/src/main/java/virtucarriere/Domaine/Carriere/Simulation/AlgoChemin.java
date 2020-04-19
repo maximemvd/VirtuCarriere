@@ -1,11 +1,14 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
+import java.awt.Point;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
+import java.util.stream.Collectors;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 
 public class AlgoChemin {
@@ -16,8 +19,10 @@ public class AlgoChemin {
     this.graphChemins = graphChemins;
   }
 
-  public void setGraph(GraphChemins p_graphChemin) {
-    graphChemins = p_graphChemin;
+  private List<Element> getElementContains(Point point) {
+    return graphChemins.getEnds().stream()
+        .filter(abstractPointChemin -> abstractPointChemin.contains(point.getX(), point.getY()))
+        .collect(Collectors.toList());
   }
 
   public Vector<AbstractPointChemin> getShortestPathBetweenTwoNoeuds(
