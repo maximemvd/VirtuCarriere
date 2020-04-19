@@ -60,18 +60,6 @@ public class Simulation implements Serializable {
     this.simulationAnimation = false;
   }
 
-  public void setChargeurCourant(Chargeur p_chargeur) {
-    this.chargeurCourant = p_chargeur;
-  }
-
-  public Chargeur getChargeurCourant() {
-    return chargeurCourant;
-  }
-
-  public Jeton getJetonChargeurCourant() {
-    return chargeurCourant.getJeton();
-  }
-
   // camion
   public void CamionShowUp(Point point, String client, String produit, double quantite) {
     try {
@@ -229,7 +217,9 @@ public class Simulation implements Serializable {
 
     AtomicReference<Vector<AbstractPointChemin>> chemin = new AtomicReference<>();
 
-    graphChemin.getEnds().stream()
+    return algoChemin.getShortestPathBetweenTowPoints(p_chargeur.getPoint(), p_tas.getPoint());
+
+    /*graphChemin.getEnds().stream()
         .filter(
             abstractPointChemin ->
                 abstractPointChemin.contains(p_chargeur.getX(), p_chargeur.getY()))
@@ -240,6 +230,6 @@ public class Simulation implements Serializable {
                     algoChemin.getShortestPathBetweenTwoNoeuds(
                         abstractPointChemin, p_tas.getNoeud())));
 
-    return chemin.get();
+    return chemin.get();*/
   }
 }

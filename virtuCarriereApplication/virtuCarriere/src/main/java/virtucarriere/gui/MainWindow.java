@@ -2223,17 +2223,10 @@ public class MainWindow extends JFrame {
         if (arc.isSelected()) {
           numTotal++;
           numArc++;
-          Point middlePoint =
-              new Point(
-                  arc.middlePointOfArc(
-                      (int) arc.getStarting().getX(),
-                      (int) arc.getStarting().getY(),
-                      (int) arc.getArrival().getX(),
-                      (int) arc.getArrival().getY()));
           String nom = String.format("\nCoordonnées du point milieu de l'%s", arc.getName());
           String num = String.format(" #%d", numArc);
-          String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
-          String yCoord = String.format(", y : %d", (int) middlePoint.getY());
+          String xCoord = String.format(":\n x : %d", (int) arc.getX());
+          String yCoord = String.format(", y : %d", (int) arc.getY());
           String nombreTotal = String.format("%d", numTotal);
           jTextArea1.append(nom + num + xCoord + yCoord);
           jTextField2.setText(nombreTotal);
