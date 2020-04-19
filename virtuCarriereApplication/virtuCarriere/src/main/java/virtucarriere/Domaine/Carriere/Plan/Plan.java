@@ -355,15 +355,7 @@ public class Plan implements Serializable {
 
     for (List<Arc> listOfArc : getArcs()) {
       for (Arc item : listOfArc) {
-        AbstractPointChemin starting = item.getStarting();
-        AbstractPointChemin arrival = item.getArrival();
-
-        double xPosStarting = starting.getX();
-        double yPosStarting = starting.getY();
-        double xPosArrival = arrival.getX();
-        double yPosArrival = arrival.getY();
-
-        if (item.containsArc(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
+        if (item.contains(x, y)) {
           item.switchSelectionStatus();
         }
       }

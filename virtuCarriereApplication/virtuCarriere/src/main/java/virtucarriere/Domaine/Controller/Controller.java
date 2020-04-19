@@ -348,10 +348,6 @@ public class Controller implements Serializable {
     }
   }
 
-  public void setEntreSimulation(Entree p_entree) {
-    elementContainer.setEntreSimulation(p_entree);
-  }
-
   public boolean getSimulationAnimation() {
     return elementContainer.getSimulationAnimation();
   }
