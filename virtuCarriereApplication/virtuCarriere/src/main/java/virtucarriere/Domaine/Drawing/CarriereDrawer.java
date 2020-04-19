@@ -34,6 +34,8 @@ public class CarriereDrawer {
   private BufferedImage imageCamionSelected;
   private BufferedImage imageChargeur;
   private BufferedImage imageChargeurSelected;
+  private BufferedImage imageBroyeur;
+  private BufferedImage imageBroyeurSelected;
 
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
@@ -161,6 +163,12 @@ public class CarriereDrawer {
   }
 
   public void drawEquipement(Graphics2D g, double zoom) {
+    try {
+      imageBroyeur = ImageIO.read(new File("ressources/images/broyeur.png"));
+      imageBroyeurSelected = ImageIO.read(new File("ressources/images/broyeurSelected.png"));
+    } catch (IOException e) {
+    }
+
     g.scale(zoom, zoom);
     List<Equipement> equipements = controller.getEquipementList();
     equipements.forEach(
@@ -183,6 +191,29 @@ public class CarriereDrawer {
                 (int) equipementPoint.getY() - equipement.getDimension(),
                 equipement.getDimension() * 2,
                 equipement.getDimension() * 2);
+          } else if (equipement.getName().equals("Broyeur")) {
+            Point equipementPoint = equipement.getPoint();
+
+            if (equipement.isSelected()) {
+              g.drawImage(
+                  imageBroyeurSelected,
+                  (int) (equipementPoint.getX() - 50),
+                  (int) equipementPoint.getY() - 33,
+                  100,
+                  65,
+                  null);
+
+            } else {
+
+              g.drawImage(
+                  imageBroyeur,
+                  (int) (equipementPoint.getX() - 50),
+                  (int) equipementPoint.getY() - 33,
+                  100,
+                  65,
+                  null);
+            }
+
           } else {
             Point equipementPoint = equipement.getPoint();
             if (equipement.isSelected()) {
