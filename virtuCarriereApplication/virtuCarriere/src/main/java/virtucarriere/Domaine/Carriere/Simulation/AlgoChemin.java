@@ -1,13 +1,13 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
@@ -22,28 +22,54 @@ public class AlgoChemin {
   }
 
   private List<Element> getElementContains(Point point) {
-    return graphChemins.getEnds().stream()
-        .filter(abstractPointChemin -> abstractPointChemin.contains(point.getX(), point.getY()))
-        .collect(Collectors.toList());
+    List<Element> result =
+        graphChemins.getEnds().stream()
+            .filter(abstractPointChemin -> abstractPointChemin.contains(point.getX(), point.getY()))
+            .collect(Collectors.toList());
+    result.addAll(
+        graphChemins.getLinks().stream()
+            .flatMap(List::stream)
+            .filter(arc -> arc.contains(point.getX(), point.getY()))
+            .collect(Collectors.toList()));
+    return result;
+  }
+
+  double getTotalCost(Vector<AbstractPointChemin> path) {
+    final AbstractPointChemin[] ptStart = new AbstractPointChemin[1];
+    final Double[] cost = new Double[1];
+    path.stream()
+        .forEach(
+            ptNext -> {
+              if (ptStart[0] == null) {
+                ptStart[0] = ptNext;
+              } else {
+                cost[0] = cost[0] + graphChemins.getLink(ptStart[0], ptNext).getCost();
+              }
+            });
+    return cost[0];
   }
 
   public Vector<AbstractPointChemin> getShortestPathBetweenTowPoints(Point start, Point end) {
-    Stream<Element> startElements = getElementContains(start).stream();
+    List<Element> startElements = new ArrayList<>(getElementContains(start));
     AbstractPointChemin endElement = (AbstractPointChemin) getElementContains(end).get(0);
     Vector<AbstractPointChemin> result = null;
-    if (startElements.anyMatch(element -> element instanceof AbstractPointChemin)) {
+    if (startElements.stream().anyMatch(element -> element instanceof AbstractPointChemin)) {
       AbstractPointChemin startPoint =
           (AbstractPointChemin)
-              startElements
+              startElements.stream()
                   .filter(element -> element instanceof AbstractPointChemin)
                   .findFirst()
                   .get();
       result = getShortestPathBetweenTwoNoeuds(startPoint, endElement);
     } else {
-      Stream<Element> arcsStart = startElements.filter(element -> element instanceof Arc);
-      if (arcsStart.count() > 1) {
+      List<Arc> arcsStart =
+          new ArrayList(
+              startElements.stream()
+                  .filter(element -> element instanceof Arc)
+                  .collect(Collectors.toList()));
+      if (arcsStart.size() > 1) {
         List<AbstractPointChemin> startPoints =
-            arcsStart
+            arcsStart.stream()
                 .map(element -> (Arc) element)
                 .map(Arc::getArrival)
                 .collect(Collectors.toList());
@@ -52,10 +78,12 @@ public class AlgoChemin {
                 .map(startPoint -> getShortestPathBetweenTwoNoeuds(startPoint, endElement))
                 .collect(Collectors.toList());
         if (possiblePath.size() > 1) {
-          result = null;
+          result = possiblePath.stream().min(Comparator.comparing(this::getTotalCost)).get();
         } else {
           result = possiblePath.get(0);
         }
+      } else {
+        result = getShortestPathBetweenTwoNoeuds(arcsStart.get(0).getArrival(), endElement);
       }
     }
     return result;
