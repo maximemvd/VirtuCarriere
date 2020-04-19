@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
+import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 
@@ -23,6 +25,40 @@ public class AlgoChemin {
     return graphChemins.getEnds().stream()
         .filter(abstractPointChemin -> abstractPointChemin.contains(point.getX(), point.getY()))
         .collect(Collectors.toList());
+  }
+
+  public Vector<AbstractPointChemin> getShortestPathBetweenTowPoints(Point start, Point end) {
+    Stream<Element> startElements = getElementContains(start).stream();
+    AbstractPointChemin endElement = (AbstractPointChemin) getElementContains(end).get(0);
+    Vector<AbstractPointChemin> result = null;
+    if (startElements.anyMatch(element -> element instanceof AbstractPointChemin)) {
+      AbstractPointChemin startPoint =
+          (AbstractPointChemin)
+              startElements
+                  .filter(element -> element instanceof AbstractPointChemin)
+                  .findFirst()
+                  .get();
+      result = getShortestPathBetweenTwoNoeuds(startPoint, endElement);
+    } else {
+      Stream<Element> arcsStart = startElements.filter(element -> element instanceof Arc);
+      if (arcsStart.count() > 1) {
+        List<AbstractPointChemin> startPoints =
+            arcsStart
+                .map(element -> (Arc) element)
+                .map(Arc::getArrival)
+                .collect(Collectors.toList());
+        List<Vector<AbstractPointChemin>> possiblePath =
+            startPoints.stream()
+                .map(startPoint -> getShortestPathBetweenTwoNoeuds(startPoint, endElement))
+                .collect(Collectors.toList());
+        if (possiblePath.size() > 1) {
+          result = null;
+        } else {
+          result = possiblePath.get(0);
+        }
+      }
+    }
+    return result;
   }
 
   public Vector<AbstractPointChemin> getShortestPathBetweenTwoNoeuds(
