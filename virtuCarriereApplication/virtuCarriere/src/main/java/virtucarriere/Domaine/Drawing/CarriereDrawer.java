@@ -36,6 +36,8 @@ public class CarriereDrawer {
   private BufferedImage imageChargeurSelected;
   private BufferedImage imageBroyeur;
   private BufferedImage imageBroyeurSelected;
+  private BufferedImage imageConcasseur;
+  private BufferedImage imageConcasseurSelected;
 
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
@@ -166,6 +168,8 @@ public class CarriereDrawer {
     try {
       imageBroyeur = ImageIO.read(new File("ressources/images/broyeur.png"));
       imageBroyeurSelected = ImageIO.read(new File("ressources/images/broyeurSelected.png"));
+      imageConcasseur = ImageIO.read(new File("ressources/images/concasseur.png"));
+      imageConcasseurSelected = ImageIO.read(new File("ressources/images/concasseurSelected.png"));
     } catch (IOException e) {
     }
 
@@ -214,6 +218,27 @@ public class CarriereDrawer {
                   null);
             }
 
+          } else if (equipement.getName().equals("Concasseur")) {
+            Point equipementPoint = equipement.getPoint();
+
+            if (equipement.isSelected()) {
+              g.drawImage(
+                  imageConcasseurSelected,
+                  (int) (equipementPoint.getX() - 50),
+                  (int) equipementPoint.getY() - 33,
+                  100,
+                  65,
+                  null);
+
+            } else {
+              g.drawImage(
+                  imageConcasseur,
+                  (int) (equipementPoint.getX() - 50),
+                  (int) equipementPoint.getY() - 33,
+                  100,
+                  65,
+                  null);
+            }
           } else {
             Point equipementPoint = equipement.getPoint();
             if (equipement.isSelected()) {
