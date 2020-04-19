@@ -14,20 +14,12 @@ import virtucarriere.Domaine.Carriere.Plan.Tas;
 
 public class Simulation implements Serializable {
 
-  private Entree entreeCarriere;
-
   private GraphChemins graphChemin;
-
   private AlgoChemin algoChemin;
-
   List<Camion> camionList;
-
   List<Chargeur> chargeurList;
-
   private Chargeur chargeurCourant;
-
   private boolean simulationAnimation;
-
   private double simulationSpeed;
 
   public Simulation() {
@@ -66,10 +58,6 @@ public class Simulation implements Serializable {
 
   public void closeSimulation() {
     this.simulationAnimation = false;
-  }
-
-  public void setEntreCarriere(Entree p_entree) {
-    this.entreeCarriere = p_entree;
   }
 
   public void setChargeurCourant(Chargeur p_chargeur) {
@@ -200,12 +188,20 @@ public class Simulation implements Serializable {
     return leTas;
   }
 
+  private Entree getEntree() {
+    return (Entree)
+        graphChemin.getEnds().stream()
+            .filter(abstractPointChemin -> abstractPointChemin instanceof Entree)
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("Aucune entree n'existe danms le plan"));
+  }
+
   public Vector<AbstractPointChemin> cheminDuCamion(Tas tas) {
-    return algoChemin.getShortestPathBetweenTwoNoeuds(entreeCarriere, tas.getPointChargement());
+    return algoChemin.getShortestPathBetweenTwoNoeuds(getEntree(), tas.getPointChargement());
   }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {
-    return algoChemin.getShortestPathBetweenTwoNoeuds(tas.getPointChargement(), entreeCarriere);
+    return algoChemin.getShortestPathBetweenTwoNoeuds(tas.getPointChargement(), getEntree());
   }
 
   public Chargeur choisirChargeurIdeal(Tas tas) {

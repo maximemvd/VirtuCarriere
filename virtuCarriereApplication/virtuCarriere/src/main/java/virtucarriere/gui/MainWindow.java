@@ -1625,8 +1625,6 @@ public class MainWindow extends JFrame {
 
       TextSimulation.append("\n\nLa simulation commence");
 
-      controller.setEntreSimulation(controller.getEntree());
-
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
       Jeton jetonCamionCourant = camionCourant.getJeton();

@@ -256,10 +256,6 @@ public class ElementContainer implements Serializable {
     simulation.closeSimulation();
   }
 
-  public void setEntreSimulation(Entree p_entree) {
-    simulation.setEntreCarriere(p_entree);
-  }
-
   public double getSimulationSpeed() {
     return simulation.getSimulationSpeed();
   }
