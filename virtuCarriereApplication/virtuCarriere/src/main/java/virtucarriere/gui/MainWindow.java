@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
 
   /** Creates new form MainWindow */
   public MainWindow() {
-    simulationSpeed = 10;
+    simulationSpeed = 50;
     controller = new Controller();
     initComponents();
     setFocusable(true);
@@ -1706,20 +1706,53 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
 
       Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
-      final int maxSize = cheminCamionAller.size();
+
+      Vector<AbstractPointChemin> cheminChargeur =
+          controller.ChargeurCheminToPath(
+              courantChargeur, tasSimulation, controller.getAllNoeuds());
+      final int maxSizeCamionAller = cheminCamionAller.size();
+      final int maxSizeChargeur = cheminChargeur.size();
       new Timer(
               150,
               new ActionListener() {
                 private int count = 0;
+                private int chargeurCount = 0;
 
                 Point entreeCarriere = controller.getEntree().getPoint();
                 int x = entreeCarriere.x;
                 int y = entreeCarriere.y;
+                int chargeur_x = courantChargeur.getPointInitial().x;
+                int chargeur_y = courantChargeur.getPointInitial().y;
                 Point newPoint;
+                Point newPointChargeur;
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-                  if (count < maxSize) {
+                  if (chargeurCount < maxSizeChargeur) {
+                    if (chargeurCount == 0) {
+                      newPointChargeur =
+                          new Point(
+                              cheminChargeur.get(chargeurCount).getPoint().x
+                                  - courantChargeur.getPointInitial().x,
+                              cheminChargeur.get(chargeurCount).getPoint().y
+                                  - courantChargeur.getPointInitial().y);
+                    } else {
+                      newPointChargeur =
+                          new Point(
+                              cheminChargeur.get(chargeurCount).getPoint().x
+                                  - cheminChargeur.get(chargeurCount - 1).getPoint().x,
+                              cheminChargeur.get(chargeurCount).getPoint().y
+                                  - cheminChargeur.get(chargeurCount - 1).getPoint().y);
+                    }
+                    chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
+                    chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
+                    courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
+                    if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
+                      chargeurCount++;
+                    }
+                  }
+
+                  if (count < maxSizeCamionAller) {
                     if (count == 0) {
                       newPoint =
                           new Point(
@@ -1746,10 +1779,6 @@ public class MainWindow extends JFrame {
                 }
               })
           .start();
-
-      Vector<AbstractPointChemin> cheminChargeur =
-          controller.ChargeurCheminToPath(
-              courantChargeur, tasSimulation, controller.getAllNoeuds());
 
       /*  final int maxSize3 = cheminChargeur.size();
             new Timer(

@@ -15,6 +15,8 @@ public abstract class Vehicule implements Serializable {
 
   private Color color;
 
+  private Point pointInitial;
+
   private Itineraire route;
 
   private Point point;
@@ -23,6 +25,7 @@ public abstract class Vehicule implements Serializable {
 
   public Vehicule(Point point) {
     this.point = point;
+    this.pointInitial = point;
     this.selectionStatus = false;
     this.radius = 25;
   };
@@ -38,6 +41,10 @@ public abstract class Vehicule implements Serializable {
 
   public void setPoint(Point newPoint) {
     this.point = newPoint;
+  }
+
+  public Point getPointInitial() {
+    return pointInitial;
   }
 
   private boolean xIsInsideElementWidth(double p_x) {
