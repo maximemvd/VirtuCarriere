@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -20,18 +21,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Controller.Controller;
-import virtucarriere.gui.MainWindow;
 
 public class CarriereDrawer {
 
   private final Controller controller;
   private Dimension initialDimension;
-  private MainWindow.MeasurementUnitMode measurementMode;
+  private BufferedImage imageCamion;
+  private BufferedImage imageCamionSelected;
+  private BufferedImage imageChargeur;
+  private BufferedImage imageChargeurSelected;
 
   private int radius = 25;
   private HashMap<String, Color> equipementColor = new HashMap<>();
@@ -45,7 +47,7 @@ public class CarriereDrawer {
     equipementColor.put(Tas.class.getName(), Color.DARK_GRAY);
   }
 
-  public void draw(Graphics2D g2d, double zoom) {
+  public void draw(Graphics2D g2d, double zoom) throws IOException {
     if (controller.getUrlBackground() != null) {
       drawImage(g2d, zoom);
     }
@@ -89,34 +91,51 @@ public class CarriereDrawer {
   }
 
   // drawChargeur is good
-  public void drawChargeur(Graphics2D g2d, double zoom) {
+  public void drawChargeur(Graphics2D g2d, double zoom) throws IOException {
+
+    try {
+      imageChargeur = ImageIO.read(new File("ressources/images/chargeur.png"));
+      imageChargeurSelected = ImageIO.read(new File("ressources/images/chargeurSelected.png"));
+
+    } catch (IOException e) {
+    }
+
     g2d.scale(zoom, zoom);
     List<Chargeur> chargeurs = controller.getChargeurList();
     chargeurs.forEach(
         (chargeur) -> {
           Point vehiculePoint = chargeur.getPoint();
           if (chargeur.isSelected()) {
-            g2d.setColor(new Color(255, 0, 0));
-            int offsetRadius = radius / 2 + 2;
-            g2d.fillOval(
-                (int) vehiculePoint.getX() - offsetRadius,
-                (int) vehiculePoint.getY() - offsetRadius,
-                offsetRadius * 2,
-                offsetRadius * 2);
+            g2d.drawImage(
+                imageChargeurSelected,
+                (int) vehiculePoint.getX() - 50,
+                (int) vehiculePoint.getY() - 33,
+                100,
+                65,
+                null);
+
+          } else {
+
+            g2d.drawImage(
+                imageChargeur,
+                (int) vehiculePoint.getX() - 50,
+                (int) vehiculePoint.getY() - 33,
+                100,
+                65,
+                null);
           }
-          Color vehiculeColor = Color.MAGENTA;
-          g2d.setColor(vehiculeColor);
-          g2d.fillOval(
-              (int) vehiculePoint.getX() - radius / 2,
-              (int) vehiculePoint.getY() - radius / 2,
-              radius,
-              radius);
         });
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
   // draw Camion is good
   public void drawCamion(Graphics2D g2d, double zoom) {
+    try {
+      imageCamion = ImageIO.read(new File("ressources/images/camion.png"));
+      imageCamionSelected = ImageIO.read(new File("ressources/images/camionSelected.png"));
+    } catch (IOException e) {
+    }
+
     g2d.scale(zoom, zoom);
     List<Camion> camions = controller.getCamionList();
     int numberOfCLient = camions.size();
@@ -125,20 +144,18 @@ public class CarriereDrawer {
       int camionPointX = pointEntree.x;
       int camionPointY = pointEntree.y;
       if (camion.isSelected()) {
-        g2d.setColor(new Color(255, 0, 0));
-        int offsetRadius = radius + 2;
+        g2d.drawImage(imageCamionSelected, (camionPointX - 50), camionPointY - 33, 100, 65, null);
+
+      } else {
+        g2d.drawImage(imageCamion, (camionPointX - 50), camionPointY - 33, 100, 65, null);
+        /*
+        Color couleurCamion = Color.YELLOW;
+        g2d.setColor(couleurCamion);
         g2d.fillRoundRect(
-            camionPointX - offsetRadius,
-            camionPointY - offsetRadius,
-            offsetRadius * 2,
-            offsetRadius * 2,
-            offsetRadius,
-            offsetRadius);
+            camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
+
+         */
       }
-      Color couleurCamion = Color.YELLOW;
-      g2d.setColor(couleurCamion);
-      g2d.fillRoundRect(
-          camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
     }
     g2d.scale(1 / zoom, 1 / zoom);
   }
@@ -300,9 +317,5 @@ public class CarriereDrawer {
               });
         });
     g2d.scale(1 / zoom, 1 / zoom);
-  }
-
-  public void setMeasurementUnitMode(MainWindow.MeasurementUnitMode measurementMode) {
-    this.measurementMode = measurementMode;
   }
 }

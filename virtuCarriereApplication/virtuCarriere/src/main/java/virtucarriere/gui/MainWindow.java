@@ -42,8 +42,6 @@ public class MainWindow extends JFrame {
   private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
   private ApplicationMode currentApplicationMode;
 
-  public AjoutClientJFrame ajoutClientJFrame = new AjoutClientJFrame();
-
   public Point currentMousePoint;
 
   public Point delta;
@@ -1811,7 +1809,7 @@ public class MainWindow extends JFrame {
         index++;
       }
 
-      Point newPoint = new Point(point.x - (75 * index), point.y);
+      Point newPoint = new Point(point.x - (100 * index), point.y);
 
       controller.addCamion(newPoint, nomClient, materiau, quantite);
       drawingPanel.repaint();
@@ -1903,12 +1901,6 @@ public class MainWindow extends JFrame {
   private void textFieldCoordonneeXActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textFieldCoordonneeXActionPerformed
   } // GEN-LAST:event_textFieldCoordonneeXActionPerformed
-
-  private void jButton3ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
-    ajoutClientJFrame.setVisible(true);
-    ajoutClientJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-  } // GEN-LAST:event_jButton3ActionPerformed
 
   private void ajoutChargeurActionPerformed(java.awt.event.ActionEvent evt) {
     if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {

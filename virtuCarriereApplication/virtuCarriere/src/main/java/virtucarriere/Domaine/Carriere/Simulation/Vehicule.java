@@ -24,7 +24,7 @@ public abstract class Vehicule implements Serializable {
   public Vehicule(Point point) {
     this.point = point;
     this.selectionStatus = false;
-    this.radius = 25;
+    this.radius = 45;
   };
 
   public void getShortestPath(Jeton jeton) {

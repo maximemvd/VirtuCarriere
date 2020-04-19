@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -62,7 +63,11 @@ public class DrawingPanel extends JPanel implements Serializable {
       String s = " \n " + " " + (int) (mouseX / zoom) + ", " + (int) (mouseY / zoom);
       g.drawString(s, (int) mouseX, (int) mouseY);
 
-      carriereDrawer.draw(g2d, zoom);
+      try {
+        carriereDrawer.draw(g2d, zoom);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
       if (grilleActivee) {
 
