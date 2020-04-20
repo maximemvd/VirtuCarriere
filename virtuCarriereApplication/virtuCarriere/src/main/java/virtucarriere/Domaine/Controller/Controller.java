@@ -75,6 +75,10 @@ public class Controller implements Serializable {
     elementContainer.addElement(mousePoint, modes);
   }
 
+  public void addConvoyeurForPopup(Equipement firstEquipement, Equipement secondEquipement) {
+    elementContainer.addConvoyeurForPopup(firstEquipement, secondEquipement);
+  }
+
   public void addCrible(Point mousePoint, EquipementModes modes) {
     elementContainer.addElement(mousePoint, modes);
   }

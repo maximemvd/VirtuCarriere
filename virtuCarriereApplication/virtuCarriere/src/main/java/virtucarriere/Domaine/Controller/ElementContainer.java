@@ -232,6 +232,10 @@ public class ElementContainer implements Serializable {
     plan.addEquipment(equipement);
   }
 
+  public void addConvoyeurForPopup(Equipement firstEquipement, Equipement secondEquipement) {
+    plan.addConvoyeurForPopup(firstEquipement, secondEquipement);
+  }
+
   public void removeNoeud(AbstractPointChemin noeud) {
     plan.removeNoeud(noeud);
   }
