@@ -23,7 +23,6 @@ import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Jeton;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
@@ -1710,7 +1709,9 @@ public class MainWindow extends JFrame {
       Vector<AbstractPointChemin> cheminChargeur =
           controller.ChargeurCheminToPath(
               courantChargeur, tasSimulation, controller.getAllNoeuds());
+
       final int maxSizeCamionAller = cheminCamionAller.size();
+
       final int maxSizeChargeur = cheminChargeur.size();
       new Timer(
               500,
@@ -1777,86 +1778,61 @@ public class MainWindow extends JFrame {
                     }
                   } else {
                     ((Timer) evt.getSource()).stop();
+                    chargementSimulation(camionCourant, courantChargeur);
                   }
                 }
               })
           .start();
-
-      /*  final int maxSize3 = cheminChargeur.size();
-            new Timer(
-                    simulationSpeed,
-                    new ActionListener()
-                      private int count2 = 0;
-
-                      @Override
-                      public void actionPerformed(ActionEvent evt) {
-                        if (count2 < maxSize3) {
-                          courantChargeur.setPoint(cheminChargeur.get(count2).getPoint());
-                          ++count2;
-                          drawingPanel.repaint();
-                          if (count2 == maxSize3) {
-                            Vector<AbstractPointChemin> cheminCamionRetour =
-                                controller.cheminDuCamionRetour(tasSimulation);
-                            final int maxSize2 = cheminCamionRetour.size();
-                            new Timer(
-                                    simulationSpeed,
-                                    new ActionListener() {
-                                      private int index = 0;
-
-                                      @Override
-                                      public void actionPerformed(ActionEvent evt) {
-                                        if (index < maxSize2) {
-                                          camionCourant.setPoint(
-                                              cheminCamionRetour.get(index).getPoint());
-                                          drawingPanel.repaint();
-                                          index++;
-                                        } else {
-                                          ((Timer) evt.getSource()).stop();
-                                        }
-                                      }
-                                    })
-                                .start();
-                          }
-                        } else {
-                          ((Timer) evt.getSource()).stop();
-                        }
-                      }
-                    })
-                .start();
-      */
-      if (!controller.verificationJeton(camionCourant, courantChargeur)) {
-        TextSimulation.append("\n\nLes jetons ne sont pas identiques");
-        break;
-      }
-
-      TextSimulation.append("\n\nJeton du camion et du chargeur sont identiques ! ");
-
-      camionCourant.changeEtat("LIVRER");
-
-      TextSimulation.append("\n\nNouvelle était du camion : " + camionCourant.getEtat());
-
-      TextSimulation.append("\n\nLe camion retourne a l'entrée");
-
-      camionCourant.changeEtat("FACTURE");
-
-      Facture factureCamion =
-          new Facture(jetonCamionCourant.getCodeProduit(), jetonCamionCourant.getQuantite());
-
-      camionCourant.setFacture(factureCamion);
-
-      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
-
-      double prixFacture = camionCourant.getFacture().getPrice();
-
-      TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture);
-
-      camionCourant.changeEtat("PAYÉ");
-
-      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
-
-      TextSimulation.append("\n\nFin de la simulation pour ce camion");
     }
   }
+
+  private void chargementSimulation(Camion camionCourant, Chargeur chargeurCourant) {
+    new Timer(
+            1000,
+            new ActionListener() {
+
+              private int count = 0;
+
+              @Override
+              public void actionPerformed(ActionEvent evt) {
+                if (count < 5) {
+                  if (count == 0) {
+                    if (controller.verificationJeton(camionCourant, chargeurCourant)) {
+                      TextSimulation.append(
+                          "\n\nJeton du camion et du chargeur sont identiques ! ");
+                      TextSimulation.append("\n\nChargement en cours  ! ");
+                      TextSimulation.append("\n\nVeuillez patientez  ! ");
+
+                    } else {
+                      TextSimulation.append("\n\nLes jetons ne sont pas identiques");
+                      count = 6;
+                    }
+                  }
+                  if (count == 4) {
+
+                    camionCourant.changeEtat("LIVRER");
+
+                    TextSimulation.append(
+                        "\n\nNouvelle était du camion : " + camionCourant.getEtat());
+
+                    TextSimulation.append("\n\nFin du chargement ! ");
+
+                    TextSimulation.append("\n\nLe camion retourne a l'entrée");
+                  }
+                  count++;
+                } else {
+                  ((Timer) evt.getSource()).stop();
+                }
+              }
+            })
+        .start();
+  }
+
+  public void simulationCamionRetour(Camion camionCourant) {
+    System.out.print(camionCourant);
+  }
+
+  public void genererFacture() {}
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed
