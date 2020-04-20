@@ -19,7 +19,7 @@ public class Plan implements Serializable {
   private Entree entree;
 
   public Plan() {
-    entree = new Entree(new Point(2000, 2000), 100, 100, 0);
+    entree = new Entree(new Point(4000, 4000), 100, 100, 0);
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
     noeudsForArcList = new LinkedList<Noeud>();
@@ -255,6 +255,12 @@ public class Plan implements Serializable {
       }
       equipementForConvList.clear();
     }
+  }
+
+  public void addConvoyeurForPopup(Equipement starting, Equipement arrival) {
+    Point point = new Point();
+    Convoyeur convoyeur = new Convoyeur(point, 3, 3, starting, arrival);
+    equipments.addLink(convoyeur);
   }
 
   public void addEntree(Point mousePoint) {

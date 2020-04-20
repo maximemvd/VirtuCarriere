@@ -405,6 +405,13 @@ public class MainWindow extends JFrame {
           }
         });
 
+    ajoutCriblePopup.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutCribleViaPopup(evt);
+          }
+        });
+
     ajoutNoeud.setText("Noeud");
     ajoutNoeud.addActionListener(
         new java.awt.event.ActionListener() {
@@ -1457,17 +1464,20 @@ public class MainWindow extends JFrame {
               popup.add(ajoutBroyeurPopup);
               ajoutCriblePopup.setEnabled(false);
               popup.add(ajoutCriblePopup);
+              System.out.println(equipementPopup);
               break;
             case "Broyeur":
               ajoutBroyeurPopup.setEnabled(false);
               popup.add(ajoutBroyeurPopup);
               popup.add(ajoutCriblePopup);
               popup.add(ajoutConcasseurPopup);
+              equipementPopup = equipement;
               break;
             case "Crible":
               popup.add(ajoutBroyeurPopup);
               ajoutConcasseurPopup.setEnabled(false);
               popup.add(ajoutConcasseurPopup);
+              equipementPopup = equipement;
               break;
           }
           popup.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -1804,10 +1814,22 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_NomClientActionPerformed
 
   private void ajoutBroyeurViaPopup(java.awt.event.ActionEvent evt) {
-    System.out.println("On se rend tu ici");
+    List<Equipement> equipements = controller.getEquipementList();
     Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation());
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     controller.addEquipement(EquipementModes.BROYEUR, point);
+
+    for (Equipement equipement : equipements) {
+      if (equipement.contains(point.getX(), point.getY())) ;
+      controller.addConvoyeurForPopup(equipement, equipementPopup);
+    }
+    drawingPanel.repaint();
+  }
+
+  private void ajoutCribleViaPopup(java.awt.event.ActionEvent evt) {
+    Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation());
+    Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
+    controller.addEquipement(EquipementModes.CRIBLE, point);
     drawingPanel.repaint();
   }
 
@@ -2528,6 +2550,7 @@ public class MainWindow extends JFrame {
     this.mainScrollPane.getViewport().setViewPosition(point);
   }
 
+  private Equipement equipementPopup;
   private JMenuItem ajoutBroyeurPopup = new JMenuItem("Ajouter un broyeur");
   private JMenuItem ajoutCriblePopup = new JMenuItem("Ajouter un crible");
   private JMenuItem ajoutConcasseurPopup = new JMenuItem("Ajouter un concasseur");
