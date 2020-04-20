@@ -1729,56 +1729,60 @@ public class MainWindow extends JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-                  if (chargeurCount < maxSizeChargeur) {
-                    if (chargeurCount == 0) {
-                      newPointChargeur =
-                          new Point(
-                              cheminChargeur.get(chargeurCount).getPoint().x
-                                  - courantChargeur.getPointInitial().x,
-                              cheminChargeur.get(chargeurCount).getPoint().y
-                                  - courantChargeur.getPointInitial().y);
-                    } else {
-                      newPointChargeur =
-                          new Point(
-                              cheminChargeur.get(chargeurCount).getPoint().x
-                                  - cheminChargeur.get(chargeurCount - 1).getPoint().x,
-                              cheminChargeur.get(chargeurCount).getPoint().y
-                                  - cheminChargeur.get(chargeurCount - 1).getPoint().y);
+
+                  if (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller) {
+                    if (chargeurCount < maxSizeChargeur) {
+                      if (chargeurCount == 0) {
+                        newPointChargeur =
+                            new Point(
+                                cheminChargeur.get(chargeurCount).getPoint().x
+                                    - courantChargeur.getPointInitial().x,
+                                cheminChargeur.get(chargeurCount).getPoint().y
+                                    - courantChargeur.getPointInitial().y);
+                      } else {
+                        newPointChargeur =
+                            new Point(
+                                cheminChargeur.get(chargeurCount).getPoint().x
+                                    - cheminChargeur.get(chargeurCount - 1).getPoint().x,
+                                cheminChargeur.get(chargeurCount).getPoint().y
+                                    - cheminChargeur.get(chargeurCount - 1).getPoint().y);
+                      }
+
+                      chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
+                      chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
+                      courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
+                      drawingPanel.repaint();
+                      if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
+                        chargeurCount++;
+                      }
                     }
 
-                    chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
-                    chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
-                    courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
-                    drawingPanel.repaint();
-                    if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
-                      chargeurCount++;
+                    if (count < maxSizeCamionAller) {
+                      if (count == 0) {
+                        newPoint =
+                            new Point(
+                                cheminCamionAller.get(count).getPoint().x - entreeCarriere.x,
+                                cheminCamionAller.get(count).getPoint().y - entreeCarriere.y);
+                      } else {
+                        newPoint =
+                            new Point(
+                                cheminCamionAller.get(count).getPoint().x
+                                    - cheminCamionAller.get(count - 1).getPoint().x,
+                                cheminCamionAller.get(count).getPoint().y
+                                    - cheminCamionAller.get(count - 1).getPoint().y);
+                      }
+                      x = x + newPoint.x / simulationSpeed;
+                      y = y + newPoint.y / simulationSpeed;
+                      camionCourant.setPoint(new Point(x, y));
+                      drawingPanel.repaint();
+                      if (x >= cheminCamionAller.get(count).getPoint().x) {
+                        count++;
+                      }
                     }
-                  }
 
-                  if (count < maxSizeCamionAller) {
-                    if (count == 0) {
-                      newPoint =
-                          new Point(
-                              cheminCamionAller.get(count).getPoint().x - entreeCarriere.x,
-                              cheminCamionAller.get(count).getPoint().y - entreeCarriere.y);
-                    } else {
-                      newPoint =
-                          new Point(
-                              cheminCamionAller.get(count).getPoint().x
-                                  - cheminCamionAller.get(count - 1).getPoint().x,
-                              cheminCamionAller.get(count).getPoint().y
-                                  - cheminCamionAller.get(count - 1).getPoint().y);
-                    }
-                    x = x + newPoint.x / simulationSpeed;
-                    y = y + newPoint.y / simulationSpeed;
-                    camionCourant.setPoint(new Point(x, y));
-                    drawingPanel.repaint();
-                    if (x >= cheminCamionAller.get(count).getPoint().x) {
-                      count++;
-                    }
                   } else {
                     ((Timer) evt.getSource()).stop();
-                    chargementSimulation(camionCourant, courantChargeur);
+                    chargementSimulation(camionCourant, courantChargeur, tasSimulation);
                   }
                 }
               })
@@ -1786,7 +1790,7 @@ public class MainWindow extends JFrame {
     }
   }
 
-  private void chargementSimulation(Camion camionCourant, Chargeur chargeurCourant) {
+  private void chargementSimulation(Camion camionCourant, Chargeur chargeurCourant, Tas p_tas) {
     new Timer(
             1000,
             new ActionListener() {
@@ -1822,14 +1826,60 @@ public class MainWindow extends JFrame {
                   count++;
                 } else {
                   ((Timer) evt.getSource()).stop();
+
+                  simulationCamionRetour(camionCourant, p_tas);
                 }
               }
             })
         .start();
   }
 
-  public void simulationCamionRetour(Camion camionCourant) {
-    System.out.print(camionCourant);
+  public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
+
+    Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
+    TextSimulation.append("\n\nDebut du retour");
+
+    new Timer(
+            500,
+            new ActionListener() {
+
+              private int count = 0;
+              private int maxSizeCamionRetour = cheminCamionRetour.size();
+              int x = p_tas.getPointChargement().getPoint().x;
+              int y = p_tas.getPointChargement().getPoint().y;
+              Point newPoint;
+
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                if (count < maxSizeCamionRetour) {
+                  if (count == 0) {
+                    newPoint =
+                        new Point(
+                            cheminCamionRetour.get(count).getPoint().x
+                                - p_tas.getPointChargement().getPoint().x,
+                            cheminCamionRetour.get(count).getPoint().y
+                                - p_tas.getPointChargement().getPoint().y);
+                  } else {
+                    newPoint =
+                        new Point(
+                            cheminCamionRetour.get(count).getPoint().x
+                                - cheminCamionRetour.get(count - 1).getPoint().x,
+                            cheminCamionRetour.get(count).getPoint().y
+                                - cheminCamionRetour.get(count - 1).getPoint().y);
+                  }
+                  x = x + newPoint.x / simulationSpeed;
+                  y = y + newPoint.y / simulationSpeed;
+                  p_camion.setPoint(new Point(x, y));
+                  drawingPanel.repaint();
+                  if (x <= cheminCamionRetour.get(count).getPoint().x) {
+                    count++;
+                  }
+                } else {
+                  ((Timer) e.getSource()).stop();
+                }
+              }
+            })
+        .start();
   }
 
   public void genererFacture() {}
