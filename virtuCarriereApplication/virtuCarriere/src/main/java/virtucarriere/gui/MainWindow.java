@@ -43,6 +43,10 @@ public class MainWindow extends JFrame {
 
   public int simulationSpeed = 20;
 
+  private boolean pauseSimulation = false;
+
+  private int delayTime = 0;
+
   /** Creates new form MainWindow */
   public MainWindow() {
     controller = new Controller();
@@ -68,6 +72,10 @@ public class MainWindow extends JFrame {
 
   public void ralentirSimulation() {
     simulationSpeed = simulationSpeed + 2;
+  }
+
+  public void pauseRestartSimulation() {
+    pauseSimulation = !pauseSimulation;
   }
 
   public enum MeasurementUnitMode {
