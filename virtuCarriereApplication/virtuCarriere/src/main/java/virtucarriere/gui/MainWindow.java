@@ -398,6 +398,13 @@ public class MainWindow extends JFrame {
           }
         });
 
+    ajoutBroyeurPopup.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutBroyeurViaPopup(evt);
+          }
+        });
+
     ajoutNoeud.setText("Noeud");
     ajoutNoeud.addActionListener(
         new java.awt.event.ActionListener() {
@@ -1438,22 +1445,31 @@ public class MainWindow extends JFrame {
   }
 
   private void drawingPanelMouseReleased(java.awt.event.MouseEvent evt) {
-    List<AbstractPointChemin> noeuds = controller.getNoeudList();
+    List<Equipement> equipements = controller.getEquipementList();
     Point point = evt.getPoint();
-    JPopupMenu popup = new JPopupMenu();
-    popup.add(new JMenuItem("Copier"));
-    popup.add(new JMenuItem("Coller"));
-    popup.addSeparator();
-    popup.add(new JMenuItem("Tout sélectionner"));
+    JPopupMenu popup = new JPopupMenu("Ajouter un équipement correspondant");
 
-    if (SwingUtilities.isRightMouseButton(evt)) {
-      popup.show(evt.getComponent(), evt.getX(), evt.getY());
-
-      for (AbstractPointChemin aPoint : noeuds) {
-        if (aPoint.contains(point.getX(), point.getY())) {
-          aPoint.switchSelectionStatus();
-
-          popup.add(new JMenuItem("Modifier cet élément"));
+    for (Equipement equipement : equipements) {
+      if (equipement.contains(point.getX(), point.getY())) {
+        if (SwingUtilities.isRightMouseButton(evt)) {
+          switch (equipement.getName()) {
+            case "Concasseur":
+              popup.add(ajoutBroyeurPopup);
+              ajoutCriblePopup.setEnabled(false);
+              popup.add(ajoutCriblePopup);
+              break;
+            case "Broyeur":
+              ajoutBroyeurPopup.setEnabled(false);
+              popup.add(ajoutBroyeurPopup);
+              popup.add(ajoutCriblePopup);
+              popup.add(ajoutConcasseurPopup);
+              break;
+            case "Crible":
+              popup.add(ajoutBroyeurPopup);
+              ajoutConcasseurPopup.setEnabled(false);
+              popup.add(ajoutConcasseurPopup);
+              break;
+          }
           popup.show(evt.getComponent(), evt.getX(), evt.getY());
           drawingPanel.repaint();
         }
@@ -1786,6 +1802,14 @@ public class MainWindow extends JFrame {
   private void NomClientActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_NomClientActionPerformed
   } // GEN-LAST:event_NomClientActionPerformed
+
+  private void ajoutBroyeurViaPopup(java.awt.event.ActionEvent evt) {
+    System.out.println("On se rend tu ici");
+    Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation());
+    Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
+    controller.addEquipement(EquipementModes.BROYEUR, point);
+    drawingPanel.repaint();
+  }
 
   private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
     Entree entrees = controller.getEntree();
@@ -2503,6 +2527,10 @@ public class MainWindow extends JFrame {
   public void setMainScrollPanePosition(Point point) {
     this.mainScrollPane.getViewport().setViewPosition(point);
   }
+
+  private JMenuItem ajoutBroyeurPopup = new JMenuItem("Ajouter un broyeur");
+  private JMenuItem ajoutCriblePopup = new JMenuItem("Ajouter un crible");
+  private JMenuItem ajoutConcasseurPopup = new JMenuItem("Ajouter un concasseur");
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField NomClient;
