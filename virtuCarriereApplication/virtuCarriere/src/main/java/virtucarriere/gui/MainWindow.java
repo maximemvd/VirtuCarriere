@@ -1678,7 +1678,7 @@ public class MainWindow extends JFrame {
 
       final int maxSizeChargeur = cheminChargeur.size();
       new Timer(
-              500,
+              300,
               new ActionListener() {
                 private int count = 0;
                 private int chargeurCount = 0;
@@ -1805,7 +1805,7 @@ public class MainWindow extends JFrame {
     TextSimulation.append("\n\nDebut du retour");
 
     new Timer(
-            500,
+            300,
             new ActionListener() {
 
               private int count = 0;
