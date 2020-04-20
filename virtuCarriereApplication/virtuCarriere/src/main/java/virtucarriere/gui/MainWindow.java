@@ -21,29 +21,23 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
-import virtucarriere.Domaine.Carriere.Simulation.Camion;
-import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
-import virtucarriere.Domaine.Carriere.Simulation.Jeton;
+import virtucarriere.Domaine.Carriere.Simulation.*;
 import virtucarriere.Domaine.Controller.Controller;
-import virtucarriere.Domaine.Controller.Controller.EquipementModes;
-import virtucarriere.Domaine.Controller.Controller.VehiculeModes;
+import virtucarriere.Domaine.Controller.Controller.*;
 
 public class MainWindow extends JFrame {
 
   public Controller controller;
-
-  public int async = 0;
 
   public EquipementModes selectedEquipementMode;
 
   public VehiculeModes selectedVehicules;
 
   private MeasurementUnitMode currentMeasurementUnitMode = MeasurementUnitMode.METRIC;
+
   private ApplicationMode currentApplicationMode;
 
   public Point currentMousePoint;
-
-  public Point delta;
 
   public Point initMousePoint = new Point();
 
