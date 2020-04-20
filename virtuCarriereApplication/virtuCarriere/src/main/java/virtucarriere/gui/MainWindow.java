@@ -1731,6 +1731,7 @@ public class MainWindow extends JFrame {
                 public void actionPerformed(ActionEvent evt) {
 
                   if (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller) {
+
                     if (chargeurCount < maxSizeChargeur) {
                       if (chargeurCount == 0) {
                         newPointChargeur =
