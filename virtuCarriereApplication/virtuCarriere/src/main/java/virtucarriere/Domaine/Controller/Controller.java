@@ -242,8 +242,11 @@ public class Controller implements Serializable {
   }
 
   public void addEntree(Point mousePoint, EquipementModes mode) {
-
-    elementContainer.addElement(mousePoint, mode);
+    if (elementContainer.getEntree() != null) {
+      // TODO modifier emplacement de l'entrée
+    } else {
+      elementContainer.addElement(mousePoint, mode);
+    }
   }
 
   public void removeEntree(Entree entree) {
