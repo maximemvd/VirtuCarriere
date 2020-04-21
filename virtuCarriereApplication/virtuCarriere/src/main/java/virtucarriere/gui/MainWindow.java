@@ -1482,6 +1482,7 @@ public class MainWindow extends JFrame {
               break;
           }
           popup.show(evt.getComponent(), evt.getX(), evt.getY());
+          
           drawingPanel.repaint();
         }
       }
