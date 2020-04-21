@@ -34,9 +34,19 @@ public class AlgoChemin {
     return result;
   }
 
-  double getTotalCost(Vector<AbstractPointChemin> path) {
+  double getTotalCost(Point presentPosition, Vector<AbstractPointChemin> path) {
+    Point nextPt = path.get(0).getPoint();
+    double dy = presentPosition.getY() - nextPt.getY();
+    double dx = presentPosition.getX() - nextPt.getX();
+    double result = Math.sqrt(dx * dx + dy * dy);
+    result = result + getPathCost(path);
+    return result;
+  }
+
+  double getPathCost(Vector<AbstractPointChemin> path) {
     final AbstractPointChemin[] ptStart = new AbstractPointChemin[1];
     final Double[] cost = new Double[1];
+    cost[0] = Double.valueOf(0);
     path.stream()
         .forEach(
             ptNext -> {
@@ -44,6 +54,7 @@ public class AlgoChemin {
                 ptStart[0] = ptNext;
               } else {
                 cost[0] = cost[0] + graphChemins.getLink(ptStart[0], ptNext).getCost();
+                ptStart[0] = ptNext;
               }
             });
     return cost[0];
@@ -78,7 +89,10 @@ public class AlgoChemin {
                 .map(startPoint -> getShortestPathBetweenTwoNoeuds(startPoint, endElement))
                 .collect(Collectors.toList());
         if (possiblePath.size() > 1) {
-          result = possiblePath.stream().min(Comparator.comparing(this::getTotalCost)).get();
+          result =
+              possiblePath.stream()
+                  .min(Comparator.comparing(path -> getTotalCost(start, path)))
+                  .get();
         } else {
           result = possiblePath.get(0);
         }
