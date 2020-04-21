@@ -40,7 +40,7 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
 
   public double getCost() {
     double dy = starting.getY() - arrival.getY();
-    double dx = starting.getX() - starting.getX();
+    double dx = starting.getX() - arrival.getX();
     return Math.sqrt(dx * dx + dy * dy);
   }
 
