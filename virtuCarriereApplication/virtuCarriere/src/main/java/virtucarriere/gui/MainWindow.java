@@ -41,7 +41,7 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
-  public int simulationSpeed = 5;
+  public int simulationSpeed = 6;
 
   private boolean pauseSimulation = false;
 
@@ -74,11 +74,11 @@ public class MainWindow extends JFrame {
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 2){
+    if (simulationSpeed == 2){
         TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
-        return;
+    } else {
+        simulationSpeed = simulationSpeed - 2;
     }
-      simulationSpeed = simulationSpeed - 2 ;
   }
 
   public void pauseRestartSimulation() {
@@ -1939,8 +1939,8 @@ public class MainWindow extends JFrame {
                   } else {
                       angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
                   }
-                  x = x +  (int) (Math.cos(-300) * simulationSpeed);
-                  y = y +  (int) (Math.sin(-300) * simulationSpeed);
+                  x = x +  (int) (Math.cos(angle) * simulationSpeed);
+                  y = y +  (int) (Math.sin(angle) * simulationSpeed);
                   p_camion.setPoint(new Point(x, y));
                   drawingPanel.repaint();
                   if (x <= cheminCamionRetour.get(count).getPoint().x) {
