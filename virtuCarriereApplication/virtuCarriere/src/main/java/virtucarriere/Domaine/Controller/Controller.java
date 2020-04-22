@@ -428,8 +428,4 @@ public class Controller implements Serializable {
   public void setGraphCheminSimulation(GraphChemins p_chemin) {
     elementContainer.setGraphCheminSimulation(p_chemin);
   }
-
-  public void undo() {}
-
-  public void redo() {}
 }
