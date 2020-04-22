@@ -167,9 +167,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     Point newPoint = new Point(newX, newY);
     setMouseX(newX);
     setMouseY(newY);
-    mainWindow.setMainScrollPanePosition(newPoint);
+    mainWindow.getMainScrollPane().getViewport().setViewPosition(newPoint);
     setDrawingPanelDimensions();
-
     revalidate();
     repaint();
   }
@@ -180,10 +179,12 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     int newX = (int) (point.x * (0.9f - 1f) + pos.x / ZoomFactor);
     int newY = (int) (point.y * (0.9f - 1f) + pos.y / ZoomFactor);
+
     Point newPoint = new Point(newX, newY);
+    mainWindow.getMainScrollPane().getViewport().setViewPosition(newPoint);
     setMouseX(newX);
     setMouseY(newY);
-    mainWindow.setMainScrollPanePosition(newPoint);
+   // mainWindow.setMainScrollPanePosition(newPoint);
     setDrawingPanelDimensions();
 
     revalidate();

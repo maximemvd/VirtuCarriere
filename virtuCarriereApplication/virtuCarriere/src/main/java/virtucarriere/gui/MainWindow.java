@@ -45,6 +45,8 @@ public class MainWindow extends JFrame {
 
   private boolean pauseSimulation = false;
 
+  private List<Equipement> equipementsPopup = new LinkedList<>();
+
   private int delayTime = 0;
 
   /** Creates new form MainWindow */
@@ -415,6 +417,20 @@ public class MainWindow extends JFrame {
             ajoutBroyeurViaPopup(evt);
           }
         });
+
+    ajoutCriblePopup.addActionListener(
+            new java.awt.event.ActionListener(){
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    ajoutCribleViaPopup(evt);
+                }
+            });
+
+    ajoutConcasseurPopup.addActionListener(
+            new java.awt.event.ActionListener(){
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    ajoutConcasseurViaPopup(evt);
+                }
+            });
 
     ajoutNoeud.setText("Noeud");
     ajoutNoeud.addActionListener(
@@ -1432,11 +1448,10 @@ public class MainWindow extends JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
-  private void resetImageActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_resetImageActionPerformed
+  private void resetImageActionPerformed(java.awt.event.ActionEvent evt) {
     controller.setUrlBackground(null);
     drawingPanel.repaint();
-  } // GEN-LAST:event_resetImageActionPerformed
+  }
 
   private void importImageActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -1459,52 +1474,47 @@ public class MainWindow extends JFrame {
     List<Equipement> equipements = controller.getEquipementList();
     Point point = evt.getPoint();
     JPopupMenu popup = new JPopupMenu("Ajouter un équipement correspondant");
-
+      popup.add(ajoutBroyeurPopup);
+      popup.add(ajoutCriblePopup);
+      popup.add(ajoutConcasseurPopup);
     for (Equipement equipement : equipements) {
       if (equipement.contains(point.getX(), point.getY())) {
         if (SwingUtilities.isRightMouseButton(evt)) {
           switch (equipement.getName()) {
             case "Concasseur":
-              popup.add(ajoutBroyeurPopup);
               ajoutCriblePopup.setEnabled(false);
-              popup.add(ajoutCriblePopup);
+              equipementsPopup.add(equipement);
               break;
             case "Broyeur":
               ajoutBroyeurPopup.setEnabled(false);
-              popup.add(ajoutBroyeurPopup);
-              popup.add(ajoutCriblePopup);
-              popup.add(ajoutConcasseurPopup);
+              equipementsPopup.add(equipement);
               break;
             case "Crible":
-              popup.add(ajoutBroyeurPopup);
               ajoutConcasseurPopup.setEnabled(false);
-              popup.add(ajoutConcasseurPopup);
+              equipementsPopup.add(equipement);
               break;
           }
           popup.show(evt.getComponent(), evt.getX(), evt.getY());
-          
           drawingPanel.repaint();
         }
       }
     }
   }
 
-  private void boutonCheminActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_boutonCheminActionPerformed
+  private void boutonCheminActionPerformed(java.awt.event.ActionEvent evt) {
     // TODO add your handling code here:
     setAppMode(ApplicationMode.ADD_CHEMIN);
     this.controller.getNoeudForArcList().clear();
   } // GEN-LAST:event_boutonCheminActionPerformed
 
   private void dimensionTasActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_dimensionTasActionPerformed
-  } // GEN-LAST:event_dimensionTasActionPerformed
+      java.awt.event.ActionEvent evt) {
+  }
 
-  private void jButton1ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     // TODO add your handling code here:
     controller.closeSimulation();
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
 
   private void ajoutChargeurCoordActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutChargeurCoordActionPerformed
@@ -1899,6 +1909,22 @@ public class MainWindow extends JFrame {
     controller.addEquipement(EquipementModes.BROYEUR, point);
     drawingPanel.repaint();
   }
+
+  private void ajoutCribleViaPopup(java.awt.event.ActionEvent evt){
+        Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation() );
+        Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
+        controller.addEquipement(EquipementModes.CRIBLE, point);
+        drawingPanel.repaint();
+    }
+
+    private void ajoutConcasseurViaPopup(java.awt.event.ActionEvent evt){
+        Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation() );
+        Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
+        controller.addEquipement(EquipementModes.CONCASSEUR, point);
+        drawingPanel.repaint();
+    }
+
+
 
   private void addCamionActionPerformed(java.awt.event.ActionEvent evt) {
     Entree entrees = controller.getEntree();
