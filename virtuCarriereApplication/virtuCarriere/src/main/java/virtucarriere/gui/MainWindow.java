@@ -1703,7 +1703,7 @@ public class MainWindow extends JFrame {
 
     for (Camion camionCourant : controller.getCamionList()) {
 
-      TextSimulation.append("\n\nLa simulation commence");
+      TextSimulation.append("\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
 
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
@@ -1902,13 +1902,47 @@ public class MainWindow extends JFrame {
                   }
                 } else {
                   ((Timer) e.getSource()).stop();
+                  genererFacture(p_camion, p_camion.getJeton());
                 }
               }
             })
         .start();
   }
 
-  public void genererFacture() {}
+  public void genererFacture(Camion camionCourant, Jeton jetonCamion) {
+      camionCourant.changeEtat("FACTURE");
+
+      TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+      Facture factureCamion = new Facture(jetonCamion.getCodeProduit(), jetonCamion.getQuantite());
+
+      camionCourant.setFacture(factureCamion);
+
+      double prixFacture = camionCourant.getFacture().getPrice();
+
+      TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture + "$");
+
+      camionCourant.payeFacture();
+
+      if (camionCourant.verifierFacturePayer()){
+          TextSimulation.append("\n\nLa facture a bien été payée, la simulation est fini pour le camion : " + jetonCamion.getRefClient());
+
+          camionCourant.changeEtat("PAYÉ");
+
+          TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+          TextSimulation.append("\n\nFin de la simulation pour le camion : " + jetonCamion.getRefClient());
+
+      } else {
+          TextSimulation.append("\n\nLa facture n'as pas bien été payé pour le camion  : " + jetonCamion.getRefClient());
+      }
+
+
+
+
+
+
+  }
 
   private void jButton6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton6ActionPerformed

@@ -57,4 +57,17 @@ public class Camion extends Vehicule {
   public void editerParams(Jeton jeton) {
     this.jeton = jeton;
   }
+
+  public void payeFacture(){
+    System.out.println("Le camion paye la facture");
+    this.factureCamion = null;
+  }
+
+  public boolean verifierFacturePayer() {
+    boolean returnValue = false;
+    if (factureCamion == null){
+      return true;
+    }
+    return returnValue;
+  }
 }
