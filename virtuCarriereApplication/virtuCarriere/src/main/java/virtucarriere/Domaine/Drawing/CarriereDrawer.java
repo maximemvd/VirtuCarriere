@@ -51,6 +51,22 @@ public class CarriereDrawer {
     equipementColor.put(Concasseur.class.getName(), Color.PINK);
     equipementColor.put(Crible.class.getName(), Color.RED);
     equipementColor.put(Tas.class.getName(), Color.DARK_GRAY);
+    try {
+      imageCamion = ImageIO.read(new File("ressources/images/camion.png"));
+      imageCamionSelected = ImageIO.read(new File("ressources/images/camionSelected.png"));
+      imageChargeur = ImageIO.read(new File("ressources/images/chargeur.png"));
+      ;
+      imageChargeurSelected =
+          imageChargeurSelected = ImageIO.read(new File("ressources/images/chargeurSelected.png"));
+      imageBroyeur = ImageIO.read(new File("ressources/images/broyeur.png"));
+      imageBroyeurSelected = ImageIO.read(new File("ressources/images/broyeurSelected.png"));
+      imageConcasseur = ImageIO.read(new File("ressources/images/concasseur.png"));
+      imageConcasseurSelected = ImageIO.read(new File("ressources/images/concasseurSelected.png"));
+      imageCrible = ImageIO.read(new File("ressources/images/crible.png"));
+      imageCribleSelected = ImageIO.read(new File("ressources/images/cribleSelected.png"));
+    } catch (IOException e) {
+      throw new RuntimeException("Probleme avec les images");
+    }
   }
 
   public void draw(Graphics2D g2d, double zoom) throws IOException {
@@ -96,16 +112,7 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  // drawChargeur is good
   public void drawChargeur(Graphics2D g2d, double zoom) throws IOException {
-
-    try {
-      imageChargeur = ImageIO.read(new File("ressources/images/chargeur.png"));
-      imageChargeurSelected = ImageIO.read(new File("ressources/images/chargeurSelected.png"));
-
-    } catch (IOException e) {
-    }
-
     g2d.scale(zoom, zoom);
     List<Chargeur> chargeurs = controller.getChargeurList();
     chargeurs.forEach(
@@ -136,11 +143,6 @@ public class CarriereDrawer {
 
   // draw Camion is good
   public void drawCamion(Graphics2D g2d, double zoom) {
-    try {
-      imageCamion = ImageIO.read(new File("ressources/images/camion.png"));
-      imageCamionSelected = ImageIO.read(new File("ressources/images/camionSelected.png"));
-    } catch (IOException e) {
-    }
 
     g2d.scale(zoom, zoom);
     List<Camion> camions = controller.getCamionList();
@@ -167,15 +169,6 @@ public class CarriereDrawer {
   }
 
   public void drawEquipement(Graphics2D g, double zoom) {
-    try {
-      imageBroyeur = ImageIO.read(new File("ressources/images/broyeur.png"));
-      imageBroyeurSelected = ImageIO.read(new File("ressources/images/broyeurSelected.png"));
-      imageConcasseur = ImageIO.read(new File("ressources/images/concasseur.png"));
-      imageConcasseurSelected = ImageIO.read(new File("ressources/images/concasseurSelected.png"));
-      imageCrible = ImageIO.read(new File("ressources/images/crible.png"));
-      imageCribleSelected = ImageIO.read(new File("ressources/images/cribleSelected.png"));
-    } catch (IOException e) {
-    }
 
     g.scale(zoom, zoom);
     List<Equipement> equipements = controller.getEquipementList();
