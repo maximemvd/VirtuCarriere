@@ -1826,7 +1826,9 @@ public class MainWindow extends JFrame {
 
               @Override
               public void actionPerformed(ActionEvent evt) {
-                if (count < 5) {
+                  if (pauseSimulation) {
+                      System.out.println("Simulation en pause");
+                  } else if (count < 5 && !pauseSimulation) {
                   if (count == 0) {
                     if (controller.verificationJeton(camionCourant, chargeurCourant)) {
                       TextSimulation.append(
@@ -1878,7 +1880,9 @@ public class MainWindow extends JFrame {
 
               @Override
               public void actionPerformed(ActionEvent e) {
-                if (count < maxSizeCamionRetour) {
+                  if (pauseSimulation){
+                      System.out.println("Simulation en pause");
+                  }else if (count < maxSizeCamionRetour && !pauseSimulation) {
                   if (count == 0) {
                     newPoint =
                         new Point(
