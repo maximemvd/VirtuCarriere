@@ -932,6 +932,11 @@ public class MainWindow extends JFrame {
         editionMenu.add(menuUndo);
 
         menuRedo.setText("Redo");
+        menuRedo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRedoActionPerformed(evt);
+            }
+        });
         editionMenu.add(menuRedo);
 
         menuCopier.setText("Copier");
@@ -1024,6 +1029,12 @@ public class MainWindow extends JFrame {
       this.controller.undo();
       drawingPanel.repaint();
     }//GEN-LAST:event_menuUndoActionPerformed
+
+    private void menuRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRedoActionPerformed
+        // TODO add your handling code here:
+      this.controller.redo();
+      drawingPanel.repaint();
+    }//GEN-LAST:event_menuRedoActionPerformed
 
   private void pauseRestartSimulationActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_pauseRestartSimulationActionPerformed
