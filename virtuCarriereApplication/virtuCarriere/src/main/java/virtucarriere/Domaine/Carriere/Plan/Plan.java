@@ -354,10 +354,6 @@ public class Plan implements Serializable {
       }
     }
 
-    if (entree.contains(x, y)) {
-      entree.switchSelectionStatus();
-    }
-
     for (List<Arc> listOfArc : getArcs()) {
       for (Arc item : listOfArc) {
         if (item.contains(x, y)) {
