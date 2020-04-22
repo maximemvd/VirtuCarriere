@@ -169,7 +169,6 @@ public class MainWindow extends JFrame {
     jLabel17 = new javax.swing.JLabel();
     jLabel18 = new javax.swing.JLabel();
     quantiteSpinner = new javax.swing.JSpinner();
-    jButton1 = new javax.swing.JButton();
     selectionSimul = new javax.swing.JToggleButton();
     deleteSimul = new javax.swing.JButton();
     jLabel20 = new javax.swing.JLabel();
@@ -182,6 +181,7 @@ public class MainWindow extends JFrame {
     ajoutChargeurCoord = new javax.swing.JButton();
     slowSimulation = new javax.swing.JButton();
     fasterSimulation = new javax.swing.JButton();
+    pauseRestartSimulation = new javax.swing.JButton();
     jMenuBar1 = new javax.swing.JMenuBar();
     fichierMenu = new javax.swing.JMenu();
     menuNouveauProjet = new javax.swing.JMenuItem();
@@ -910,14 +910,6 @@ public class MainWindow extends JFrame {
 
     jLabel18.setText("Quantité :");
 
-    jButton1.setText("Pause");
-    jButton1.addActionListener(
-        new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
-          }
-        });
-
     selectionSimul.setText("Sélectionner");
     selectionSimul.addActionListener(
         new java.awt.event.ActionListener() {
@@ -980,6 +972,14 @@ public class MainWindow extends JFrame {
           }
         });
 
+    pauseRestartSimulation.setText("Pause");
+    pauseRestartSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pauseRestartSimulationActionPerformed(evt);
+          }
+        });
+
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
@@ -1036,7 +1036,7 @@ public class MainWindow extends JFrame {
                                 jPanel3Layout
                                     .createSequentialGroup()
                                     .addComponent(jLabel6)
-                                    .addGap(99, 99, 99))))
+                                    .addGap(171, 171, 171))))
             .addGroup(
                 jPanel3Layout
                     .createSequentialGroup()
@@ -1059,15 +1059,14 @@ public class MainWindow extends JFrame {
                                         javax.swing.GroupLayout.PREFERRED_SIZE,
                                         60,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(7, 7, 7)
                                     .addComponent(
-                                        jButton1,
+                                        pauseRestartSimulation,
                                         javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        59,
+                                        58,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(
-                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(
                                         fasterSimulation,
                                         javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -1163,21 +1162,21 @@ public class MainWindow extends JFrame {
                                             .addComponent(addCamion)
                                             .addGap(27, 27, 27)
                                             .addComponent(modifierCamion)))
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel12))
-                            .addGroup(
-                                jPanel3Layout
-                                    .createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel11))
                             .addComponent(
                                 jScrollPane2,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 289,
-                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel11))))
                     .addGap(0, 0, Short.MAX_VALUE)));
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout
@@ -1266,26 +1265,29 @@ public class MainWindow extends JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(
                         jPanel3Layout
-                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(
+                                        StartSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        38,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(
+                                        slowSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        40,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(
+                                        fasterSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        39,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(
-                                jButton1,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                38,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(
-                                StartSimulation,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                38,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(
-                                slowSimulation,
+                                pauseRestartSimulation,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 40,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(
-                                fasterSimulation,
-                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                39,
                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel14)
@@ -1471,6 +1473,12 @@ public class MainWindow extends JFrame {
 
     pack();
   } // </editor-fold>//GEN-END:initComponents
+
+  private void pauseRestartSimulationActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_pauseRestartSimulationActionPerformed
+    // TODO add your handling code here:
+    pauseRestartSimulation();
+  } // GEN-LAST:event_pauseRestartSimulationActionPerformed
 
   private void slowSimulationActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_slowSimulationActionPerformed
@@ -2708,7 +2716,6 @@ public class MainWindow extends JFrame {
   private javax.swing.JMenu fichierMenu;
   private javax.swing.JMenuItem importImage;
   private javax.swing.JMenu importerMenu;
-  private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JComboBox<String> jComboBox1;
   private javax.swing.JLabel jLabel1;
@@ -2760,6 +2767,7 @@ public class MainWindow extends JFrame {
   private javax.swing.JToggleButton modeSelection;
   private javax.swing.JButton modifierCamion;
   private javax.swing.JMenuItem modifierGrille;
+  private javax.swing.JButton pauseRestartSimulation;
   private javax.swing.JSpinner quantiteSpinner;
   private javax.swing.JMenuItem resetGrille;
   private javax.swing.JMenuItem resetImage;
