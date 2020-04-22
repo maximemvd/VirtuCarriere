@@ -59,13 +59,16 @@ public class Controller implements Serializable {
   }
   
   public void addElementToStack() {
+    deleteElementsAfterPointer(undoRedoPointer);
     ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
     this.elementStack.add((ElementContainer) deepCopy);
     undoRedoPointer++;
   }
   
   public void deleteElementsAfterPointer(int undoRedoPointer) {
-    if(elementStack.size() < 1)return;
+    if(elementStack.size() < 0) {
+        return;
+    }
     for(int i = elementStack.size()-1; i > undoRedoPointer; i--)
     {
         elementStack.remove(i);
@@ -73,9 +76,10 @@ public class Controller implements Serializable {
   }
   
   public void undo() {
+    if (undoRedoPointer <= 0){
+      return;
+    }
     undoRedoPointer--;
-    System.out.print(undoRedoPointer);
-    System.out.print(elementStack.get(undoRedoPointer));
     setElement((ElementContainer) elementStack.get(undoRedoPointer));
   }
 
