@@ -240,24 +240,30 @@ public class Controller implements Serializable {
       switch (mode) {
         case CONVOYEUR:
           addConvoyeur(mousePoint, mode);
+          addElementToStack();
           break;
         case CONCASSEUR:
           addConcasseur(mousePoint, mode);
+          addElementToStack();
           break;
         case CRIBLE:
           addCrible(mousePoint, mode);
+          addElementToStack();
           break;
         case BROYEUR:
           addBroyeur(mousePoint, mode);
+          addElementToStack();
           break;
         case NOEUD:
           addNoeud(mousePoint, mode);
+          addElementToStack();
           break;
         case TAS:
           // addTas(mousePoint);
           break;
         case ENTREE:
           addEntree(mousePoint, mode);
+          addElementToStack();
           break;
         default:
           break;
