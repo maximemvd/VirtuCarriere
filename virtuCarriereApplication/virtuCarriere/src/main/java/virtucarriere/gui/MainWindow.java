@@ -41,7 +41,7 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
-  public int simulationSpeed = 20;
+  public int simulationSpeed = 5;
 
   private boolean pauseSimulation = false;
 
@@ -70,11 +70,11 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-    simulationSpeed = simulationSpeed - 2;
+    simulationSpeed = simulationSpeed + 2;
   }
 
   public void ralentirSimulation() {
-    simulationSpeed = simulationSpeed + 2;
+    simulationSpeed = simulationSpeed - 2 ;
   }
 
   public void pauseRestartSimulation() {
@@ -1725,6 +1725,12 @@ public class MainWindow extends JFrame {
       }
   }
 
+    public static double angleOf(Point p1, Point p2) {
+        final double deltaY = (p1.y - p2.y);
+        final double deltaX = (p2.x - p1.x);
+        return Math.atan2(deltaY, deltaX);
+    }
+
   public void cheminAllerSimulation(){
       List<Equipement> EquipementList = controller.getEquipementList();
 
@@ -1775,68 +1781,51 @@ public class MainWindow extends JFrame {
 
           final int maxSizeChargeur = cheminChargeur.size();
           new Timer(
-                  300,
+                  100,
                   new ActionListener() {
                       private int count = 0;
                       private int chargeurCount = 0;
+                      private double angle = 0;
+                      private double  angleChargeur = 0;
 
                       Point entreeCarriere = controller.getEntree().getPoint();
                       int x = entreeCarriere.x;
                       int y = entreeCarriere.y;
                       int chargeur_x = courantChargeur.getPointInitial().x;
                       int chargeur_y = courantChargeur.getPointInitial().y;
-                      Point newPoint;
-                      Point newPointChargeur;
+
 
                       @Override
                       public void actionPerformed(ActionEvent evt) {
                           if (pauseSimulation){
-                              count = count;
                           }
                           else if (!pauseSimulation && (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller)) {
 
                               if (chargeurCount < maxSizeChargeur) {
                                   if (chargeurCount == 0) {
-                                      newPointChargeur =
-                                              new Point(
-                                                      cheminChargeur.get(chargeurCount).getPoint().x
-                                                              - courantChargeur.getPointInitial().x,
-                                                      cheminChargeur.get(chargeurCount).getPoint().y
-                                                              - courantChargeur.getPointInitial().y);
+                                      angleChargeur = angleOf(courantChargeur.getPointInitial(),
+                                              cheminChargeur.get(chargeurCount).getPoint());
                                   } else {
-                                      newPointChargeur =
-                                              new Point(
-                                                      cheminChargeur.get(chargeurCount).getPoint().x
-                                                              - cheminChargeur.get(chargeurCount - 1).getPoint().x,
-                                                      cheminChargeur.get(chargeurCount).getPoint().y
-                                                              - cheminChargeur.get(chargeurCount - 1).getPoint().y);
+                                      angleChargeur = angleOf(cheminChargeur.get(chargeurCount - 1).getPoint(),
+                                              cheminChargeur.get(chargeurCount).getPoint());
                                   }
 
-                                  chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
-                                  chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
+                                  chargeur_x = chargeur_x + (int) (Math.cos(-angleChargeur) * simulationSpeed);
+                                  chargeur_y = chargeur_y + (int) (Math.sin(-angleChargeur) * simulationSpeed);
                                   courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
                                   drawingPanel.repaint();
                                   if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
                                       chargeurCount++;
                                   }
                               }
-
                               if (count < maxSizeCamionAller) {
                                   if (count == 0) {
-                                      newPoint =
-                                              new Point(
-                                                      cheminCamionAller.get(count).getPoint().x - entreeCarriere.x,
-                                                      cheminCamionAller.get(count).getPoint().y - entreeCarriere.y);
+                                      angle =  angleOf(entreeCarriere, cheminCamionAller.get(count).getPoint());
                                   } else {
-                                      newPoint =
-                                              new Point(
-                                                      cheminCamionAller.get(count).getPoint().x
-                                                              - cheminCamionAller.get(count - 1).getPoint().x,
-                                                      cheminCamionAller.get(count).getPoint().y
-                                                              - cheminCamionAller.get(count - 1).getPoint().y);
+                                      angle =  angleOf(cheminCamionAller.get(count - 1).getPoint(), cheminCamionAller.get(count).getPoint());
                                   }
-                                  x = x + newPoint.x / simulationSpeed;
-                                  y = y + newPoint.y / simulationSpeed;
+                                  x =  x +  (int) (Math.cos(-angle) * simulationSpeed);
+                                  y = y + (int) (Math.sin(-angle) * simulationSpeed);
                                   camionCourant.setPoint(new Point(x, y));
                                   drawingPanel.repaint();
                                   if (x >= cheminCamionAller.get(count).getPoint().x) {
