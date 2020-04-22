@@ -5,6 +5,8 @@
  */
 package virtucarriere.gui;
 
+import static java.lang.Math.pow;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -158,37 +160,22 @@ public class DrawingPanel extends JPanel implements Serializable {
   // zoom inspiré de
   // https://stackoverflow.com/questions/13155382/jscrollpane-zoom-relative-to-mouse-position
 
-  public void zoomIn(Point point) {
-    this.setZoom(getZoom() * ZoomFactor);
-    Point pos = mainWindow.getMainScrollPane().getViewport().getViewPosition();
+  private void zoom(boolean increase) {
+    double factor = pow(ZoomFactor, increase ? 1 : -1);
 
-    int newX = (int) (point.x * (1.1f - 1f) + ZoomFactor * pos.x);
-    int newY = (int) (point.y * (1.1f - 1f) + ZoomFactor * pos.y);
-    Point newPoint = new Point(newX, newY);
-    setMouseX(newX);
-    setMouseY(newY);
-    mainWindow.getMainScrollPane().getViewport().setViewPosition(newPoint);
+    this.setZoom(getZoom() * factor);
+
     setDrawingPanelDimensions();
     revalidate();
     repaint();
   }
 
+  public void zoomIn(Point point) {
+    zoom(true);
+  }
+
   public void zoomOut(Point point) {
-    this.setZoom(getZoom() / ZoomFactor);
-    Point pos = mainWindow.getMainScrollPane().getViewport().getViewPosition();
-
-    int newX = (int) (point.x * (0.9f - 1f) + pos.x / ZoomFactor);
-    int newY = (int) (point.y * (0.9f - 1f) + pos.y / ZoomFactor);
-
-    Point newPoint = new Point(newX, newY);
-    mainWindow.getMainScrollPane().getViewport().setViewPosition(newPoint);
-    setMouseX(newX);
-    setMouseY(newY);
-   // mainWindow.setMainScrollPanePosition(newPoint);
-    setDrawingPanelDimensions();
-
-    revalidate();
-    repaint();
+    zoom(false);
   }
 
   public void setDrawingPanelDimensions() {
