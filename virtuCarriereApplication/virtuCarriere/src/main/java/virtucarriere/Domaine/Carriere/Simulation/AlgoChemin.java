@@ -1,6 +1,7 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,7 +14,7 @@ import virtucarriere.Domaine.Carriere.Plan.Arc;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 
-public class AlgoChemin {
+public class AlgoChemin implements Serializable {
 
   private GraphChemins graphChemins;
 
