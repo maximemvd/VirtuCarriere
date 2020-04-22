@@ -41,7 +41,7 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
-  public int simulationSpeed = 6;
+  public int simulationSpeed = 12;
 
   private boolean pauseSimulation = false;
 
@@ -70,7 +70,7 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-      if (simulationSpeed >= 12){
+      if (simulationSpeed >= 20){
           TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
       } else {
           simulationSpeed = simulationSpeed + 2;
@@ -79,7 +79,7 @@ public class MainWindow extends JFrame {
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 2){
+    if (simulationSpeed <= 6){
         TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
     } else {
         simulationSpeed = simulationSpeed - 2;
@@ -1355,7 +1355,7 @@ public class MainWindow extends JFrame {
 
           final int maxSizeChargeur = cheminChargeur.size();
           new Timer(
-                  100,
+                  50,
                   new ActionListener() {
                       private int count = 0;
                       private int chargeurCount = 0;
@@ -1463,7 +1463,15 @@ public class MainWindow extends JFrame {
         .start();
   }
 
-  public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
+    public static double stack(Point p1, Point p2) {
+        final double deltaY = (p2.y - p1.y);
+        final double deltaX = (p2.x - p1.x);
+        final double result = Math.toDegrees(Math.atan2(deltaY, deltaX));
+        return (result < 0) ? (360d + result) : result;
+    }
+
+
+    public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
 
     Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
     TextSimulation.append("\n\nDebut du retour");
@@ -1473,30 +1481,44 @@ public class MainWindow extends JFrame {
             new ActionListener() {
 
               private int count = 0;
-              private double angle = 0;
+              double angle = 0;
               private int maxSizeCamionRetour = cheminCamionRetour.size();
               int x = p_tas.getPointChargement().getPoint().x;
               int y = p_tas.getPointChargement().getPoint().y;
+              Point newPoint;
 
               @Override
               public void actionPerformed(ActionEvent e) {
                   if (pauseSimulation) {
                       System.out.println("Simulation en pause");
                   }else if (count < maxSizeCamionRetour && !pauseSimulation) {
-                  if (count == 0) {
-                      angle = angleOf(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
+                      if (count == 0) {
+                         angle = stack(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
+                          newPoint =
+                                  new Point(
+                                          cheminCamionRetour.get(count).getPoint().x
+                                                  - p_tas.getPointChargement().getPoint().x,
+                                          cheminCamionRetour.get(count).getPoint().y
+                                                  - p_tas.getPointChargement().getPoint().y);
+                      } else {
+                           angle = stack(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
+                          newPoint =
+                                  new Point(
+                                          cheminCamionRetour.get(count).getPoint().x
+                                                  - cheminCamionRetour.get(count - 1).getPoint().x,
+                                          cheminCamionRetour.get(count).getPoint().y
+                                                  - cheminCamionRetour.get(count - 1).getPoint().y);
+                      }
+                      System.out.println(angle + " angle");
+                      x = x + newPoint.x / simulationSpeed;
+                      y = y + newPoint.y / simulationSpeed;
+                      p_camion.setPoint(new Point(x, y));
+                      drawingPanel.repaint();
+                      if (x <= cheminCamionRetour.get(count).getPoint().x) {
+                          count++;
+                      }
+
                   } else {
-                      angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
-                  }
-                  System.out.print("angle : " + angle);
-                  x = x +  (int) (Math.cos(angle) * simulationSpeed);
-                  y = y +  (int) (Math.sin(angle) * simulationSpeed);
-                  p_camion.setPoint(new Point(x, y));
-                  drawingPanel.repaint();
-                  if (x <= cheminCamionRetour.get(count).getPoint().x) {
-                    count++;
-                  }
-                } else {
                   ((Timer) e.getSource()).stop();
                   genererFacture(p_camion, p_camion.getJeton());
                 }
