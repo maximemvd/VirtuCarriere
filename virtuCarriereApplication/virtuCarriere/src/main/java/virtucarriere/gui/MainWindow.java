@@ -70,11 +70,16 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-    simulationSpeed = simulationSpeed + 2;
+      if (simulationSpeed >= 12){
+          TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
+      } else {
+          simulationSpeed = simulationSpeed + 2;
+
+      }
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed == 2){
+    if (simulationSpeed <= 2){
         TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
     } else {
         simulationSpeed = simulationSpeed - 2;
@@ -1939,6 +1944,7 @@ public class MainWindow extends JFrame {
                   } else {
                       angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
                   }
+                  System.out.print("angle : " + angle);
                   x = x +  (int) (Math.cos(angle) * simulationSpeed);
                   y = y +  (int) (Math.sin(angle) * simulationSpeed);
                   p_camion.setPoint(new Point(x, y));
