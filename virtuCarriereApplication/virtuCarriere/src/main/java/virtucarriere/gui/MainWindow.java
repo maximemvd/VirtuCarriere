@@ -45,9 +45,10 @@ public class MainWindow extends JFrame {
 
   private boolean pauseSimulation = false;
 
+  private int delayTime = 0;
+
   private List<Equipement> equipementsPopup = new LinkedList<>();
 
-  private int delayTime = 0;
 
   /** Creates new form MainWindow */
   public MainWindow() {
@@ -78,6 +79,14 @@ public class MainWindow extends JFrame {
 
   public void pauseRestartSimulation() {
     pauseSimulation = !pauseSimulation;
+  }
+
+  public void setDelayTime(int p_time) {
+      if (p_time < 0){
+          TextSimulation.append("\n\nLe temps de delai ne peut pas être négatif");
+          return;
+      }
+      this.delayTime = p_time;
   }
 
   public enum MeasurementUnitMode {
@@ -1688,133 +1697,161 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
   } // GEN-LAST:event_selectionSimulActionPerformed
 
+
   private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
+      if (delayTime ==  0){
+          cheminAllerSimulation();
+      } else {
+          new Timer(
+                  1000,
+                  new ActionListener() {
+                      private int count = 0;
 
-    List<Equipement> EquipementList = controller.getEquipementList();
-
-    List<Tas> listeTas = new LinkedList<>();
-
-    for (Equipement equipement : EquipementList) {
-      if (equipement.getName().equals("Tas")) {
-        Tas tas = (Tas) equipement;
-        listeTas.add(tas);
-      }
-    }
-
-    for (Camion camionCourant : controller.getCamionList()) {
-
-      TextSimulation.append("\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
-
-      controller.setGraphCheminSimulation(controller.getGraphChemin());
-
-      Jeton jetonCamionCourant = camionCourant.getJeton();
-
-      TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
-      TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
-      TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
-      TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
-      TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
-
-      Tas tasSimulation =
-          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
-
-      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
-
-      TextSimulation.append(
-          "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
-
-      courantChargeur.setJeton(jetonCamionCourant);
-
-      camionCourant.changeEtat("ENCOURS");
-
-      TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
-
-      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
-
-      Vector<AbstractPointChemin> cheminChargeur =
-          controller.ChargeurCheminToPath(
-              courantChargeur, tasSimulation, controller.getAllNoeuds());
-
-      final int maxSizeCamionAller = cheminCamionAller.size();
-
-      final int maxSizeChargeur = cheminChargeur.size();
-      new Timer(
-              300,
-              new ActionListener() {
-                private int count = 0;
-                private int chargeurCount = 0;
-
-                Point entreeCarriere = controller.getEntree().getPoint();
-                int x = entreeCarriere.x;
-                int y = entreeCarriere.y;
-                int chargeur_x = courantChargeur.getPointInitial().x;
-                int chargeur_y = courantChargeur.getPointInitial().y;
-                Point newPoint;
-                Point newPointChargeur;
-
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    if (pauseSimulation){
-                        count = count;
-                    }
-                  else if (!pauseSimulation && (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller)) {
-
-                      if (chargeurCount < maxSizeChargeur) {
-                          if (chargeurCount == 0) {
-                              newPointChargeur =
-                                      new Point(
-                                              cheminChargeur.get(chargeurCount).getPoint().x
-                                                      - courantChargeur.getPointInitial().x,
-                                              cheminChargeur.get(chargeurCount).getPoint().y
-                                                      - courantChargeur.getPointInitial().y);
-                          } else {
-                              newPointChargeur =
-                                      new Point(
-                                              cheminChargeur.get(chargeurCount).getPoint().x
-                                                      - cheminChargeur.get(chargeurCount - 1).getPoint().x,
-                                              cheminChargeur.get(chargeurCount).getPoint().y
-                                                      - cheminChargeur.get(chargeurCount - 1).getPoint().y);
-                          }
-
-                          chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
-                          chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
-                          courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
-                          drawingPanel.repaint();
-                          if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
-                              chargeurCount++;
-                          }
-                      }
-
-                      if (count < maxSizeCamionAller) {
-                          if (count == 0) {
-                              newPoint =
-                                      new Point(
-                                              cheminCamionAller.get(count).getPoint().x - entreeCarriere.x,
-                                              cheminCamionAller.get(count).getPoint().y - entreeCarriere.y);
-                          } else {
-                              newPoint =
-                                      new Point(
-                                              cheminCamionAller.get(count).getPoint().x
-                                                      - cheminCamionAller.get(count - 1).getPoint().x,
-                                              cheminCamionAller.get(count).getPoint().y
-                                                      - cheminCamionAller.get(count - 1).getPoint().y);
-                          }
-                          x = x + newPoint.x / simulationSpeed;
-                          y = y + newPoint.y / simulationSpeed;
-                          camionCourant.setPoint(new Point(x, y));
-                          drawingPanel.repaint();
-                          if (x >= cheminCamionAller.get(count).getPoint().x) {
+                      @Override
+                      public void actionPerformed(ActionEvent e) {
+                          if (count < delayTime) {
                               count++;
+                          } else {
+                              ((Timer) e.getSource()).stop();
+                              cheminAllerSimulation();
+                          }
+
+                      }
+                  }
+
+
+          ).start();
+
+      }
+  }
+
+  public void cheminAllerSimulation(){
+      List<Equipement> EquipementList = controller.getEquipementList();
+
+      List<Tas> listeTas = new LinkedList<>();
+
+      for (Equipement equipement : EquipementList) {
+          if (equipement.getName().equals("Tas")) {
+              Tas tas = (Tas) equipement;
+              listeTas.add(tas);
+          }
+      }
+
+      for (Camion camionCourant : controller.getCamionList()) {
+
+          TextSimulation.append("\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
+
+          controller.setGraphCheminSimulation(controller.getGraphChemin());
+
+          Jeton jetonCamionCourant = camionCourant.getJeton();
+
+          TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
+          TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
+          TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
+          TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
+          TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
+
+          Tas tasSimulation =
+                  controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+
+          Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+
+          TextSimulation.append(
+                  "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
+
+          courantChargeur.setJeton(jetonCamionCourant);
+
+          camionCourant.changeEtat("ENCOURS");
+
+          TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
+
+          Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
+
+          Vector<AbstractPointChemin> cheminChargeur =
+                  controller.ChargeurCheminToPath(
+                          courantChargeur, tasSimulation, controller.getAllNoeuds());
+
+          final int maxSizeCamionAller = cheminCamionAller.size();
+
+          final int maxSizeChargeur = cheminChargeur.size();
+          new Timer(
+                  300,
+                  new ActionListener() {
+                      private int count = 0;
+                      private int chargeurCount = 0;
+
+                      Point entreeCarriere = controller.getEntree().getPoint();
+                      int x = entreeCarriere.x;
+                      int y = entreeCarriere.y;
+                      int chargeur_x = courantChargeur.getPointInitial().x;
+                      int chargeur_y = courantChargeur.getPointInitial().y;
+                      Point newPoint;
+                      Point newPointChargeur;
+
+                      @Override
+                      public void actionPerformed(ActionEvent evt) {
+                          if (pauseSimulation){
+                              count = count;
+                          }
+                          else if (!pauseSimulation && (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller)) {
+
+                              if (chargeurCount < maxSizeChargeur) {
+                                  if (chargeurCount == 0) {
+                                      newPointChargeur =
+                                              new Point(
+                                                      cheminChargeur.get(chargeurCount).getPoint().x
+                                                              - courantChargeur.getPointInitial().x,
+                                                      cheminChargeur.get(chargeurCount).getPoint().y
+                                                              - courantChargeur.getPointInitial().y);
+                                  } else {
+                                      newPointChargeur =
+                                              new Point(
+                                                      cheminChargeur.get(chargeurCount).getPoint().x
+                                                              - cheminChargeur.get(chargeurCount - 1).getPoint().x,
+                                                      cheminChargeur.get(chargeurCount).getPoint().y
+                                                              - cheminChargeur.get(chargeurCount - 1).getPoint().y);
+                                  }
+
+                                  chargeur_x = chargeur_x + newPointChargeur.x / simulationSpeed;
+                                  chargeur_y = chargeur_y + newPointChargeur.y / simulationSpeed;
+                                  courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
+                                  drawingPanel.repaint();
+                                  if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
+                                      chargeurCount++;
+                                  }
+                              }
+
+                              if (count < maxSizeCamionAller) {
+                                  if (count == 0) {
+                                      newPoint =
+                                              new Point(
+                                                      cheminCamionAller.get(count).getPoint().x - entreeCarriere.x,
+                                                      cheminCamionAller.get(count).getPoint().y - entreeCarriere.y);
+                                  } else {
+                                      newPoint =
+                                              new Point(
+                                                      cheminCamionAller.get(count).getPoint().x
+                                                              - cheminCamionAller.get(count - 1).getPoint().x,
+                                                      cheminCamionAller.get(count).getPoint().y
+                                                              - cheminCamionAller.get(count - 1).getPoint().y);
+                                  }
+                                  x = x + newPoint.x / simulationSpeed;
+                                  y = y + newPoint.y / simulationSpeed;
+                                  camionCourant.setPoint(new Point(x, y));
+                                  drawingPanel.repaint();
+                                  if (x >= cheminCamionAller.get(count).getPoint().x) {
+                                      count++;
+                                  }
+                              }
+                          } else {
+                              ((Timer) evt.getSource()).stop();
+                              chargementSimulation(camionCourant, courantChargeur, tasSimulation);
                           }
                       }
-                  } else {
-                    ((Timer) evt.getSource()).stop();
-                    chargementSimulation(camionCourant, courantChargeur, tasSimulation);
-                  }
-                }
-              })
-          .start();
-    }
+                  })
+                  .start();
+      }
+
   }
 
   private void chargementSimulation(Camion camionCourant, Chargeur chargeurCourant, Tas p_tas) {
