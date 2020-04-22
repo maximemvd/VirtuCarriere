@@ -86,6 +86,7 @@ public class Controller implements Serializable {
     setElement((ElementContainer) elementStack.get(undoRedoPointer));
   }
   
+  //méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/
   public static Object copy(Object orig) {
     Object obj = null;
     try {
@@ -110,6 +111,7 @@ public class Controller implements Serializable {
     }
     return obj;
   }
+  //
 
   public URL getUrlBackground() {
     return elementContainer.getBackGroundUrl();
