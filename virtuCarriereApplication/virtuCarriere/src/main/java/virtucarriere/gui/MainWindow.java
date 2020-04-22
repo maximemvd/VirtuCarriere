@@ -1919,12 +1919,6 @@ public class MainWindow extends JFrame {
         .start();
   }
 
-    public static double stack(Point p1, Point p2) {
-        final double deltaY = (p2.y - p1.y);
-        final double deltaX = (p2.x - p1.x);
-        final double result = Math.toDegrees(Math.atan2(deltaY, deltaX));
-        return (result < 0) ? (360d + result) : result;
-    }
 
 
     public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
@@ -1933,7 +1927,7 @@ public class MainWindow extends JFrame {
     TextSimulation.append("\n\nDebut du retour");
 
     new Timer(
-            300,
+            50,
             new ActionListener() {
 
               private int count = 0;
@@ -1942,6 +1936,9 @@ public class MainWindow extends JFrame {
               int x = p_tas.getPointChargement().getPoint().x;
               int y = p_tas.getPointChargement().getPoint().y;
               Point newPoint;
+              Point point  = p_tas.getPointChargement().getPoint();
+              int moveX = point.x;
+              int moveY = point.y;
 
               @Override
               public void actionPerformed(ActionEvent e) {
@@ -1949,7 +1946,7 @@ public class MainWindow extends JFrame {
                       System.out.println("Simulation en pause");
                   }else if (count < maxSizeCamionRetour && !pauseSimulation) {
                       if (count == 0) {
-                         angle = stack(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
+                         angle = angleOf(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
                           newPoint =
                                   new Point(
                                           cheminCamionRetour.get(count).getPoint().x
@@ -1957,7 +1954,7 @@ public class MainWindow extends JFrame {
                                           cheminCamionRetour.get(count).getPoint().y
                                                   - p_tas.getPointChargement().getPoint().y);
                       } else {
-                           angle = stack(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
+                           angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
                           newPoint =
                                   new Point(
                                           cheminCamionRetour.get(count).getPoint().x
@@ -1965,10 +1962,21 @@ public class MainWindow extends JFrame {
                                           cheminCamionRetour.get(count).getPoint().y
                                                   - cheminCamionRetour.get(count - 1).getPoint().y);
                       }
+
+                      int cosinus  = (int) (-1 *  Math.cos(angle) * simulationSpeed);
+                      int sinus = (int) (-1 *  Math.sin(angle) * simulationSpeed);
                       System.out.println(angle + " angle");
+                      System.out.println(cosinus + " cos");
+                      System.out.println(sinus + " sin");
+
+                      moveX = x - cosinus;
+                      moveY = y - sinus;
+                      System.out.println(moveX + " cos");
+                      System.out.println(moveY + " sin");
+
                       x = x + newPoint.x / simulationSpeed;
                       y = y + newPoint.y / simulationSpeed;
-                      p_camion.setPoint(new Point(x, y));
+                      p_camion.setPoint(new Point(moveX, moveY));
                       drawingPanel.repaint();
                       if (x <= cheminCamionRetour.get(count).getPoint().x) {
                           count++;
