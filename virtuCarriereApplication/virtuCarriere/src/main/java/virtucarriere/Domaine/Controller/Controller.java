@@ -30,6 +30,9 @@ import virtucarriere.Domaine.Carriere.Simulation.Facture;
 public class Controller implements Serializable {
 
   private ElementContainer elementContainer;
+  
+  private int undoRedoPointer = -1;
+  private List<ElementContainer> elementStack = new ArrayList<ElementContainer>();
 
   public enum EquipementModes {
     RIEN,
@@ -53,6 +56,12 @@ public class Controller implements Serializable {
 
   public Controller() {
     elementContainer = new ElementContainer();
+  }
+  
+  public void addElementToStack() {
+    ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
+    this.elementStack.add((ElementContainer) deepCopy);
+    undoRedoPointer++;
   }
 
   public URL getUrlBackground() {
