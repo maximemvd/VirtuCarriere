@@ -30,6 +30,9 @@ import virtucarriere.Domaine.Carriere.Simulation.Facture;
 public class Controller implements Serializable {
 
   private ElementContainer elementContainer;
+  
+  private int undoRedoPointer = -1;
+  private List<ElementContainer> elementStack = new ArrayList<ElementContainer>();
 
   public enum EquipementModes {
     RIEN,
@@ -54,6 +57,65 @@ public class Controller implements Serializable {
   public Controller() {
     elementContainer = new ElementContainer();
   }
+  
+  public void addElementToStack() {
+    deleteElementsAfterPointer(undoRedoPointer);
+    ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
+    this.elementStack.add((ElementContainer) deepCopy);
+    undoRedoPointer++;
+  }
+  
+  public void deleteElementsAfterPointer(int undoRedoPointer) {
+    if(elementStack.size() < 0) {
+        return;
+    }
+    for(int i = elementStack.size()-1; i > undoRedoPointer; i--)
+    {
+        elementStack.remove(i);
+    }
+  }
+  
+  public void undo() {
+    if (undoRedoPointer <= 0){
+      return;
+    }
+    undoRedoPointer--;
+    setElement((ElementContainer) elementStack.get(undoRedoPointer));
+  }
+
+  public void redo() {
+    if (undoRedoPointer == elementStack.size() - 1)
+        return;
+    undoRedoPointer++;
+    setElement((ElementContainer) elementStack.get(undoRedoPointer));
+  }
+  
+  //méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/
+  public static Object copy(Object orig) {
+    Object obj = null;
+    try {
+        // Write the object out to a byte array
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(bos);
+        out.writeObject(orig);
+        out.flush();
+        out.close();
+
+        // Make an input stream from the byte array and read
+        // a copy of the object back in.
+        ObjectInputStream in = new ObjectInputStream(
+            new ByteArrayInputStream(bos.toByteArray()));
+        obj = in.readObject();
+    }
+    catch(IOException e) {
+        e.printStackTrace();
+    }
+    catch(ClassNotFoundException cnfe) {
+        cnfe.printStackTrace();
+    }
+    return obj;
+  }
+  //
 
   public URL getUrlBackground() {
     return elementContainer.getBackGroundUrl();
@@ -185,24 +247,30 @@ public class Controller implements Serializable {
       switch (mode) {
         case CONVOYEUR:
           addConvoyeur(mousePoint, mode);
+          addElementToStack();
           break;
         case CONCASSEUR:
           addConcasseur(mousePoint, mode);
+          addElementToStack();
           break;
         case CRIBLE:
           addCrible(mousePoint, mode);
+          addElementToStack();
           break;
         case BROYEUR:
           addBroyeur(mousePoint, mode);
+          addElementToStack();
           break;
         case NOEUD:
           addNoeud(mousePoint, mode);
+          addElementToStack();
           break;
         case TAS:
           // addTas(mousePoint);
           break;
         case ENTREE:
           addEntree(mousePoint, mode);
+          addElementToStack();
           break;
         default:
           break;
@@ -386,8 +454,4 @@ public class Controller implements Serializable {
   public void setGraphCheminSimulation(GraphChemins p_chemin) {
     elementContainer.setGraphCheminSimulation(p_chemin);
   }
-
-  public void undo() {}
-
-  public void redo() {}
 }
