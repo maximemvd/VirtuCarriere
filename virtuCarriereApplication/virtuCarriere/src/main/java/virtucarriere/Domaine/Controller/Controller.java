@@ -79,7 +79,7 @@ public class Controller implements Serializable {
     setElement((ElementContainer) elementStack.get(undoRedoPointer));
   }
 
-  private void redo() {
+  public void redo() {
     if (undoRedoPointer == elementStack.size() - 1)
         return;
     undoRedoPointer++;
