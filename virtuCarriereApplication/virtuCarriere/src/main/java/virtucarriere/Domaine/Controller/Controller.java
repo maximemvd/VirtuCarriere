@@ -83,6 +83,7 @@ public class Controller implements Serializable {
     if (undoRedoPointer == elementStack.size() - 1)
         return;
     undoRedoPointer++;
+    setElement((ElementContainer) elementStack.get(undoRedoPointer));
   }
   
   public static Object copy(Object orig) {
