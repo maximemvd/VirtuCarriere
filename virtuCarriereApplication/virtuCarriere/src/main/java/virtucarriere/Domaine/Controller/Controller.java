@@ -64,6 +64,14 @@ public class Controller implements Serializable {
     undoRedoPointer++;
   }
   
+  public void deleteElementsAfterPointer(int undoRedoPointer) {
+    if(elementStack.size() < 1)return;
+    for(int i = elementStack.size()-1; i > undoRedoPointer; i--)
+    {
+        elementStack.remove(i);
+    }
+  }
+  
   public static Object copy(Object orig) {
     Object obj = null;
     try {
@@ -87,7 +95,7 @@ public class Controller implements Serializable {
         cnfe.printStackTrace();
     }
     return obj;
-}
+  }
 
   public URL getUrlBackground() {
     return elementContainer.getBackGroundUrl();
