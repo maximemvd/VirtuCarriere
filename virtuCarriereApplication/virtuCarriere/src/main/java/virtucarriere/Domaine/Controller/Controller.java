@@ -72,6 +72,19 @@ public class Controller implements Serializable {
     }
   }
   
+  public void undo() {
+    undoRedoPointer--;
+    System.out.print(undoRedoPointer);
+    System.out.print(elementStack.get(undoRedoPointer));
+    setElement((ElementContainer) elementStack.get(undoRedoPointer));
+  }
+
+  private void redo() {
+    if (undoRedoPointer == elementStack.size() - 1)
+        return;
+    undoRedoPointer++;
+  }
+  
   public static Object copy(Object orig) {
     Object obj = null;
     try {
