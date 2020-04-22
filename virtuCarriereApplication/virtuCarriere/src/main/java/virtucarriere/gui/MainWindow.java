@@ -74,7 +74,11 @@ public class MainWindow extends JFrame {
   }
 
   public void ralentirSimulation() {
-    simulationSpeed = simulationSpeed - 2 ;
+    if (simulationSpeed <= 2){
+        TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
+        return;
+    }
+      simulationSpeed = simulationSpeed - 2 ;
   }
 
   public void pauseRestartSimulation() {
@@ -1726,10 +1730,31 @@ public class MainWindow extends JFrame {
   }
 
     public static double angleOf(Point p1, Point p2) {
-        final double deltaY = (p1.y - p2.y);
         final double deltaX = (p2.x - p1.x);
+        final double deltaY = (p2.y - p1.y);
         return Math.atan2(deltaY, deltaX);
     }
+
+
+    public boolean isVehiculeStillOnRoute(Point pointCamion, Point debutChemin, Point finChemin){
+      double dy = finChemin.y - debutChemin.y;
+      double dx = finChemin.x - debutChemin.x;
+      double distance = Math.sqrt(dx * dx + dy * dy);
+
+      double angle = Math.atan2(dy, dx);
+      double cos = Math.cos(-angle);
+      double sin = Math.sin(-angle);
+
+      double xRot = (pointCamion.x - debutChemin.x) * cos - (pointCamion.y - debutChemin.y) * sin;
+      double yRot = (pointCamion.x - debutChemin.x) * sin + (pointCamion.y - debutChemin.y) * cos;
+
+      if (0 <= xRot && xRot <= distance) {
+          double tolerance = 3;
+          return Math.abs(yRot) <= tolerance;
+      }
+      return false;
+    }
+
 
   public void cheminAllerSimulation(){
       List<Equipement> EquipementList = controller.getEquipementList();
@@ -1810,8 +1835,8 @@ public class MainWindow extends JFrame {
                                               cheminChargeur.get(chargeurCount).getPoint());
                                   }
 
-                                  chargeur_x = chargeur_x + (int) (Math.cos(-angleChargeur) * simulationSpeed);
-                                  chargeur_y = chargeur_y + (int) (Math.sin(-angleChargeur) * simulationSpeed);
+                                  chargeur_x = chargeur_x + (int) (Math.cos(angleChargeur) * simulationSpeed);
+                                  chargeur_y = chargeur_y + (int) (Math.sin(angleChargeur) * simulationSpeed);
                                   courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
                                   drawingPanel.repaint();
                                   if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
@@ -1824,8 +1849,8 @@ public class MainWindow extends JFrame {
                                   } else {
                                       angle =  angleOf(cheminCamionAller.get(count - 1).getPoint(), cheminCamionAller.get(count).getPoint());
                                   }
-                                  x =  x +  (int) (Math.cos(-angle) * simulationSpeed);
-                                  y = y + (int) (Math.sin(-angle) * simulationSpeed);
+                                  x =  x +  (int) (Math.cos(angle) * simulationSpeed);
+                                  y = y + (int) (Math.sin(angle) * simulationSpeed);
                                   camionCourant.setPoint(new Point(x, y));
                                   drawingPanel.repaint();
                                   if (x >= cheminCamionAller.get(count).getPoint().x) {
@@ -1899,33 +1924,23 @@ public class MainWindow extends JFrame {
             new ActionListener() {
 
               private int count = 0;
+              private double angle = 0;
               private int maxSizeCamionRetour = cheminCamionRetour.size();
               int x = p_tas.getPointChargement().getPoint().x;
               int y = p_tas.getPointChargement().getPoint().y;
-              Point newPoint;
 
               @Override
               public void actionPerformed(ActionEvent e) {
-                  if (pauseSimulation){
+                  if (pauseSimulation) {
                       System.out.println("Simulation en pause");
                   }else if (count < maxSizeCamionRetour && !pauseSimulation) {
                   if (count == 0) {
-                    newPoint =
-                        new Point(
-                            cheminCamionRetour.get(count).getPoint().x
-                                - p_tas.getPointChargement().getPoint().x,
-                            cheminCamionRetour.get(count).getPoint().y
-                                - p_tas.getPointChargement().getPoint().y);
+                      angle = angleOf(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
                   } else {
-                    newPoint =
-                        new Point(
-                            cheminCamionRetour.get(count).getPoint().x
-                                - cheminCamionRetour.get(count - 1).getPoint().x,
-                            cheminCamionRetour.get(count).getPoint().y
-                                - cheminCamionRetour.get(count - 1).getPoint().y);
+                      angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
                   }
-                  x = x + newPoint.x / simulationSpeed;
-                  y = y + newPoint.y / simulationSpeed;
+                  x = x +  (int) (Math.cos(-300) * simulationSpeed);
+                  y = y +  (int) (Math.sin(-300) * simulationSpeed);
                   p_camion.setPoint(new Point(x, y));
                   drawingPanel.repaint();
                   if (x <= cheminCamionRetour.get(count).getPoint().x) {
