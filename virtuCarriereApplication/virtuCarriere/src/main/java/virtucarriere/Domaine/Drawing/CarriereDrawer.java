@@ -226,7 +226,7 @@ public class CarriereDrawer {
               g.drawImage(
                   imageBroyeur,
                   (int) (equipementPoint.getX() - 20),
-                  (int) equipementPoint.getY() - 25,
+                  (int) equipementPoint.getY() - 28,
                   60,
                   45,
                   null);
@@ -234,8 +234,10 @@ public class CarriereDrawer {
 
           } else if (equipement.getName().equals("Concasseur")) {
             Point equipementPoint = equipement.getPoint();
-
+            double angle = equipement.getAngle();
+            double angleRad = Math.toRadians(angle);
             if (equipement.isSelected()) {
+              imageConcasseurSelected = rotate(imageConcasseurSelected, angleRad);
               g.drawImage(
                   imageConcasseurSelected,
                   (int) (equipementPoint.getX() - 60),
@@ -245,6 +247,7 @@ public class CarriereDrawer {
                   null);
 
             } else {
+              imageConcasseur = rotate(imageConcasseur, angleRad);
               g.drawImage(
                   imageConcasseur,
                   (int) (equipementPoint.getX() - 60),
@@ -255,8 +258,11 @@ public class CarriereDrawer {
             }
           } else if (equipement.getName().equals("Crible")) {
             Point equipementPoint = equipement.getPoint();
+            double angle = equipement.getAngle();
+            double angleRad = Math.toRadians(angle);
 
             if (equipement.isSelected()) {
+              imageCribleSelected = rotate(imageCribleSelected, angleRad);
               g.drawImage(
                   imageCribleSelected,
                   (int) (equipementPoint.getX() - 35),
@@ -266,6 +272,7 @@ public class CarriereDrawer {
                   null);
 
             } else {
+              imageCrible = rotate(imageCrible, angleRad);
               g.drawImage(
                   imageCrible,
                   (int) (equipementPoint.getX() - 35),
