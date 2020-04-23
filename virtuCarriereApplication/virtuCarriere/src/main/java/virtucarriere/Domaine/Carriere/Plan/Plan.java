@@ -28,7 +28,9 @@ public class Plan implements Serializable, Observable {
   
   @Override
   public void notifyObservers(){
-      
+    for (Observer observer : this.observerList){
+      observer.update();
+    }
   }
   
   @Override
