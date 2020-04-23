@@ -38,10 +38,6 @@ public abstract class Equipement extends Element {
     angle.set(p_angle);
   }
 
-  public abstract int getDimension();
-
-  public abstract void setDimension(int newDimension);
-
   public List<Class<? extends Equipement>> getDependency() {
     return dependency;
   }

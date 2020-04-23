@@ -18,13 +18,6 @@ public class Concasseur extends Equipement {
   public Concasseur(Point point, int p_width, int p_length, double p_angle) {
 
     super(point, p_width = 2, p_length = 2, p_angle, dependency);
-
     setName("Concasseur");
   }
-
-  public int getDimension() {
-    return 0;
-  }
-
-  public void setDimension(int newDimension) {}
 }

@@ -162,11 +162,11 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
-  //Code inspiré de https://stackoverflow.com/questions/4156518/rotate-an-image-in-java
+  // Code inspiré de https://stackoverflow.com/questions/4156518/rotate-an-image-in-java
   public static BufferedImage rotate(BufferedImage image, double angle) {
     double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
     int w = image.getWidth(), h = image.getHeight();
-    int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
+    int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
     GraphicsConfiguration gc = getDefaultConfiguration();
     BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
     Graphics2D g = result.createGraphics();
@@ -190,29 +190,30 @@ public class CarriereDrawer {
     equipements.forEach(
         (equipement) -> {
           if (equipement.getName().equals("Tas")) {
+            Tas tas = (Tas) equipement;
             Point equipementPoint = equipement.getPoint();
             if (equipement.isSelected()) {
               g.setColor(new Color(255, 0, 0));
-              int offsetRadius = equipement.getDimension() + 2;
+              int offsetRadius = tas.getDimension() + 2;
               g.fillOval(
-                  (int) equipementPoint.getX() - offsetRadius,
-                  (int) equipementPoint.getY() - offsetRadius,
+                  (int) tas.getX() - offsetRadius,
+                  (int) tas.getY() - offsetRadius,
                   offsetRadius * 2,
                   offsetRadius * 2);
             }
             Color equipementColor = getColor(equipement);
             g.setColor(equipementColor);
             g.fillOval(
-                (int) equipementPoint.getX() - equipement.getDimension(),
-                (int) equipementPoint.getY() - equipement.getDimension(),
-                equipement.getDimension() * 2,
-                equipement.getDimension() * 2);
+                (int) equipementPoint.getX() - tas.getDimension(),
+                (int) equipementPoint.getY() - tas.getDimension(),
+                tas.getDimension() * 2,
+                tas.getDimension() * 2);
           } else if (equipement.getName().equals("Broyeur")) {
             Point equipementPoint = equipement.getPoint();
             double angle = equipement.getAngle();
             double angleRad = Math.toRadians(angle);
             if (equipement.isSelected()) {
-               imageBroyeurSelected = rotate(imageBroyeurSelected, angleRad);
+              imageBroyeurSelected = rotate(imageBroyeurSelected, angleRad);
               g.drawImage(
                   imageBroyeurSelected,
                   (int) (equipementPoint.getX() - 20),
@@ -221,7 +222,7 @@ public class CarriereDrawer {
                   45,
                   null);
 
-            } else{
+            } else {
               imageBroyeur = rotate(imageBroyeur, angleRad);
               g.drawImage(
                   imageBroyeur,

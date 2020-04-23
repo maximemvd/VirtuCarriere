@@ -20,10 +20,4 @@ public class Broyeur extends Equipement {
     super(point, p_width = 2, p_length = 2, p_angle, dependency);
     setName("Broyeur");
   }
-
-  public int getDimension() {
-    return 0;
-  }
-
-  public void setDimension(int newDimension) {}
 }

@@ -29,10 +29,4 @@ public class Crible extends Equipement {
   public Color getColor() {
     return color;
   }
-
-  public int getDimension() {
-    return 0;
-  }
-
-  public void setDimension(int newDimension) {}
 }
