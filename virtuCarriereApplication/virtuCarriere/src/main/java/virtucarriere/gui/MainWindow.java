@@ -1286,16 +1286,16 @@ public class MainWindow extends JFrame {
 
 
     public boolean isVehiculeStillOnRoute(Point pointCamion, Point debutChemin, Point finChemin){
-      double dy = finChemin.y - debutChemin.y;
-      double dx = finChemin.x - debutChemin.x;
+      double dy = finChemin.getY() - debutChemin.getY();
+      double dx = finChemin.getX() - debutChemin.getX();
       double distance = Math.sqrt(dx * dx + dy * dy);
 
       double angle = Math.atan2(dy, dx);
       double cos = Math.cos(-angle);
       double sin = Math.sin(-angle);
 
-      double xRot = (pointCamion.x - debutChemin.x) * cos - (pointCamion.y - debutChemin.y) * sin;
-      double yRot = (pointCamion.x - debutChemin.x) * sin + (pointCamion.y - debutChemin.y) * cos;
+      double xRot = (pointCamion.getX() - debutChemin.getX()) * cos - (pointCamion.getY() - debutChemin.getY()) * sin;
+      double yRot = (pointCamion.getX() - debutChemin.getX()) * sin + (pointCamion.getY() - debutChemin.getY()) * cos;
 
       if (0 <= xRot && xRot <= distance) {
           double tolerance = 3;
