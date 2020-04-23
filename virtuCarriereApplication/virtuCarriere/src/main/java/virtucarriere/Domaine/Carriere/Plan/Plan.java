@@ -16,6 +16,8 @@ public class Plan implements Serializable {
   List<Equipement> equipementForConvList;
   List<AbstractPointChemin> pointsForArcList;
 
+  private Entree entree;
+
   public Plan() {
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
