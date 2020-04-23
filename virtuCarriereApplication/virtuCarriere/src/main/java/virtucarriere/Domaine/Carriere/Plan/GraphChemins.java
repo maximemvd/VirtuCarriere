@@ -3,11 +3,31 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import virtucarriere.Domaine.Controller.*;
 
-public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implements Serializable {
+public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implements Serializable, Observable {
 
+  private List<Observer> observerList = new ArrayList<>();
+    
   public double getCost(Arc arc) {
     return arc.getCost();
+  }
+  
+  @Override
+  public void notifyObservers(){
+    for (Observer observer : this.observerList){
+      observer.update();
+    }
+  }
+  
+  @Override
+  public void addObserver(Observer observer){
+    this.observerList.add(observer);
+  }
+  
+  @Override
+  public void removeObserver(Observer observer){
+    this.observerList.remove(observer);
   }
 
   @Override
