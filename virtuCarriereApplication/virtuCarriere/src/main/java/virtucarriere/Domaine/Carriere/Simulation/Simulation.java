@@ -22,7 +22,7 @@ public class Simulation implements Serializable, Observable {
   private Chargeur chargeurCourant;
   private boolean simulationAnimation;
   private double simulationSpeed;
-  List<Observer> observerList = new ArrayList<>();
+  List<Observer> observerList = new LinkedList<>();
 
   public Simulation() {
     simulationSpeed = 2;
