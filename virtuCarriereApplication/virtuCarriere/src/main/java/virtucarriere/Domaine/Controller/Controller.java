@@ -60,7 +60,6 @@ public class Controller implements Serializable, Observer {
   @Override
   public void update(){
     addElementToStack();
-    System.out.print("CAUPDATE");
   }
   
   public void addElementToStack() {
