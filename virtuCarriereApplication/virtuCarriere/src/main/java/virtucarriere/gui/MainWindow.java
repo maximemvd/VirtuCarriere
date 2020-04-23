@@ -1300,7 +1300,7 @@ public class MainWindow extends JFrame {
       double yRot = (pointCamion.getX() - debutChemin.getX()) * sin + (pointCamion.getY() - debutChemin.getY()) * cos;
 
       if (0 <= xRot && xRot <= distance) {
-          double tolerance = 8;
+          double tolerance = 5;
           return Math.abs(yRot) <= tolerance && Math.abs(xRot) <= tolerance ;
       }
       return false;

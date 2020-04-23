@@ -198,20 +198,20 @@ public class CarriereDrawer {
             if (equipement.isSelected()) {
               g.drawImage(
                   imageBroyeurSelected,
-                  (int) (equipementPoint.getX() - 50),
-                  (int) equipementPoint.getY() - 33,
-                  100,
-                  65,
+                  (int) (equipementPoint.getX() - 20),
+                  (int) equipementPoint.getY() - 28,
+                  60,
+                  45,
                   null);
 
-            } else {
+            } else{
 
               g.drawImage(
                   imageBroyeur,
-                  (int) (equipementPoint.getX() - 50),
-                  (int) equipementPoint.getY() - 33,
-                  100,
-                  65,
+                  (int) (equipementPoint.getX() - 20),
+                  (int) equipementPoint.getY() - 25,
+                  60,
+                  45,
                   null);
             }
 
@@ -221,19 +221,19 @@ public class CarriereDrawer {
             if (equipement.isSelected()) {
               g.drawImage(
                   imageConcasseurSelected,
-                  (int) (equipementPoint.getX() - 50),
-                  (int) equipementPoint.getY() - 33,
+                  (int) (equipementPoint.getX() - 60),
+                  (int) equipementPoint.getY() - 50,
+                  130,
                   100,
-                  65,
                   null);
 
             } else {
               g.drawImage(
                   imageConcasseur,
-                  (int) (equipementPoint.getX() - 50),
-                  (int) equipementPoint.getY() - 33,
+                  (int) (equipementPoint.getX() - 60),
+                  (int) equipementPoint.getY() - 50,
+                  130,
                   100,
-                  65,
                   null);
             }
           } else if (equipement.getName().equals("Crible")) {
@@ -242,19 +242,19 @@ public class CarriereDrawer {
             if (equipement.isSelected()) {
               g.drawImage(
                   imageCribleSelected,
-                  (int) (equipementPoint.getX() - 50),
-                  (int) equipementPoint.getY() - 33,
-                  100,
-                  65,
+                  (int) (equipementPoint.getX() - 35),
+                  (int) equipementPoint.getY() - 28,
+                  70,
+                  55,
                   null);
 
             } else {
               g.drawImage(
                   imageCrible,
-                  (int) (equipementPoint.getX() - 50),
-                  (int) equipementPoint.getY() - 33,
-                  100,
-                  65,
+                  (int) (equipementPoint.getX() - 35),
+                  (int) equipementPoint.getY() - 28,
+                  70,
+                  55,
                   null);
             }
           } else {
