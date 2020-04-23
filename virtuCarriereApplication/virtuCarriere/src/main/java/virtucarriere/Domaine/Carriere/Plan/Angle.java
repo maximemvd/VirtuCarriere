@@ -12,7 +12,7 @@ public class Angle implements Serializable {
 
   public Angle(double degree) {
     if (degree > 360 || degree < 0) {
-      throw new RuntimeException("L'angle en argument est invalide");
+      throw new RuntimeException("L'angle est invalide");
     }
     this.degree = degree;
   }
