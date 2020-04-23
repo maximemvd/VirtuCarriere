@@ -323,16 +323,8 @@ public class Plan implements Serializable {
   }
 
   public boolean isNoeudPresent(Noeud p_noeud) {
-
-    /*
-    for (Noeud item : this.noeudList) {
-      if (item.contains(p_noeud.getX(), p_noeud.getY())) {
-        return true;
-      }
-    }
-    return false;
-    */
-    return true;
+    return getAllNoeuds().stream()
+        .anyMatch(noeud -> noeud.contains(p_noeud.getX(), p_noeud.getY()));
   }
 
   public boolean isEquipementPresent(Equipement equipement) {
