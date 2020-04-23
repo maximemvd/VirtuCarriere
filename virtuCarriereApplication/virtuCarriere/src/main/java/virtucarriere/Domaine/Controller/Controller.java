@@ -50,16 +50,17 @@ public class Controller implements Serializable, Observer {
 
   public Controller() {
     elementContainer = new ElementContainer();
+    elementContainer.initObserver();
   }
   
-  public void addObserver(){
+  public void initObserver(){
       this.elementContainer.addObserver(this);
   }
   
   @Override
   public void update(){
-      addElementToStack();
-      System.out.print("CAUPDATE");
+    addElementToStack();
+    System.out.print("CAUPDATE");
   }
   
   public void addElementToStack() {
@@ -67,6 +68,7 @@ public class Controller implements Serializable, Observer {
     ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
     this.elementStack.add((ElementContainer) deepCopy);
     undoRedoPointer++;
+    System.out.print(elementStack.size());
   }
   
   public void deleteElementsAfterPointer(int undoRedoPointer) {
@@ -251,30 +253,24 @@ public class Controller implements Serializable, Observer {
       switch (mode) {
         case CONVOYEUR:
           addConvoyeur(mousePoint, mode, angle);
-          addElementToStack();
           break;
         case CONCASSEUR:
           addConcasseur(mousePoint, mode, angle);
-          addElementToStack();
           break;
         case CRIBLE:
           addCrible(mousePoint, mode, angle);
-          addElementToStack();
           break;
         case BROYEUR:
           addBroyeur(mousePoint, mode, angle);
-          addElementToStack();
           break;
         case NOEUD:
           addNoeud(mousePoint, mode, angle);
-          addElementToStack();
           break;
         case TAS:
           // addTas(mousePoint);
           break;
         case ENTREE:
           addEntree(mousePoint, mode, angle);
-          addElementToStack();
           break;
         default:
           break;
@@ -421,9 +417,11 @@ public class Controller implements Serializable, Observer {
     if (choix == 0) {
       save();
       this.elementContainer = new ElementContainer();
+      elementContainer.initObserver();
     }
     if (choix == 1) {
       this.elementContainer = new ElementContainer();
+      elementContainer.initObserver();
     }
   }
 

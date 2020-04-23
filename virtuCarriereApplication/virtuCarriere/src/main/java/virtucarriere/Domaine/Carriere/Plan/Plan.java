@@ -120,6 +120,7 @@ public class Plan implements Serializable, Observable {
 
   public void addEquipment(Equipement equipement) {
     equipments.addEnd(equipement);
+    notifyObservers();
   }
 
   public void addBroyeur(Point mousePoint, double angle) {

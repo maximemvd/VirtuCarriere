@@ -57,6 +57,10 @@ public class ElementContainer implements Serializable, Observer, Observable {
   public void removeObserver(Observer observer){
     this.observerList.remove(observer);
   }
+  
+  public void initObserver(){
+      this.plan.addObserver(this);
+  }
 
   public URL getBackGroundUrl() {
     return url;
@@ -130,7 +134,6 @@ public class ElementContainer implements Serializable, Observer, Observable {
       switch (mode) {
         case CONVOYEUR:
           plan.addConvoyeur(mousePoint);
-          update();
           break;
         case CONCASSEUR:
           plan.addConcasseur(mousePoint, angle);

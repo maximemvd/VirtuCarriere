@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
   /** Creates new form MainWindow */
   public MainWindow() {
     controller = new Controller();
-    controller.addObserver();
+    controller.initObserver();
     initComponents();
     setFocusable(true);
   }
