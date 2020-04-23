@@ -34,12 +34,9 @@ public class ElementContainer implements Serializable, Observer, Observable {
   private Simulation simulation = new Simulation();
   static File file;
   private URL url = null;
-  List<Observer> observerList = new ArrayList<Observer>();
+  private List<Observer> observerList = new ArrayList<>();
   
-  public ElementContainer(){
-      observerList.add((Observer) plan);
-  }
-  
+  @Override
   public void update(){
       notifyObservers();
   }
@@ -133,6 +130,7 @@ public class ElementContainer implements Serializable, Observer, Observable {
       switch (mode) {
         case CONVOYEUR:
           plan.addConvoyeur(mousePoint);
+          update();
           break;
         case CONCASSEUR:
           plan.addConcasseur(mousePoint, angle);

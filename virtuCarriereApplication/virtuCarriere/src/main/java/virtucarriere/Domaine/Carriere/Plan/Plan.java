@@ -17,6 +17,7 @@ public class Plan implements Serializable, Observable {
   List<Noeud> noeudsForArcList;
   List<Equipement> equipementForConvList;
   List<AbstractPointChemin> pointsForArcList;
+  List<Observer> observerList = new ArrayList<>();
 
   public Plan() {
     equipments = new GraphConvoyeur();

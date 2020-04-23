@@ -52,9 +52,14 @@ public class Controller implements Serializable, Observer {
     elementContainer = new ElementContainer();
   }
   
+  public void addObserver(){
+      this.elementContainer.addObserver(this);
+  }
+  
   @Override
   public void update(){
       addElementToStack();
+      System.out.print("CAUPDATE");
   }
   
   public void addElementToStack() {

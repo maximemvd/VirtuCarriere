@@ -14,8 +14,6 @@ import java.util.ArrayList;
  */
 public interface Observable {
   
-  List<Observer> observerList = new ArrayList<>();
-  
   public void addObserver(Observer observer);
   
   public void removeObserver(Observer observer);
