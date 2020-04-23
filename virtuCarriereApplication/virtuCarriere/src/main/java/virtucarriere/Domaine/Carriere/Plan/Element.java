@@ -45,8 +45,6 @@ public abstract class Element implements Serializable {
     this.point = newPoint;
   }
 
-  public void setCodeProduit(String newCode) {}
-
   public boolean contains(double p_x, double p_y) {
     return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
   }
