@@ -23,11 +23,6 @@ public class Concasseur extends Equipement {
   }
 
   @Override
-  public String getMaterialCode() {
-    return null;
-  }
-
-  @Override
   public PointChargement getPointChargement() {
     return null;
   }
@@ -37,7 +32,4 @@ public class Concasseur extends Equipement {
   }
 
   public void setDimension(int newDimension) {}
-
-  @Override
-  public void setMaterialCode(String newCode) {}
 }

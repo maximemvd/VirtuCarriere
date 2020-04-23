@@ -30,11 +30,6 @@ public class Crible extends Equipement {
     return color;
   }
 
-  @Override
-  public String getMaterialCode() {
-    return null;
-  }
-
   public int getDimension() {
     return 0;
   }
@@ -45,7 +40,4 @@ public class Crible extends Equipement {
   public PointChargement getPointChargement() {
     return null;
   }
-
-  @Override
-  public void setMaterialCode(String newCode) {}
 }

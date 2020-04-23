@@ -49,7 +49,6 @@ public class MainWindow extends JFrame {
 
   private List<Equipement> equipementsPopup = new LinkedList<>();
 
-
   /** Creates new form MainWindow */
   public MainWindow() {
     controller = new Controller();
@@ -70,19 +69,18 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-      if (simulationSpeed >= 20){
-          TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
-      } else {
-          simulationSpeed = simulationSpeed + 2;
-
-      }
+    if (simulationSpeed >= 20) {
+      TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
+    } else {
+      simulationSpeed = simulationSpeed + 2;
+    }
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 6){
-        TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
+    if (simulationSpeed <= 6) {
+      TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
     } else {
-        simulationSpeed = simulationSpeed - 2;
+      simulationSpeed = simulationSpeed - 2;
     }
   }
 
@@ -91,11 +89,11 @@ public class MainWindow extends JFrame {
   }
 
   public void setDelayTime(int p_time) {
-      if (p_time < 0){
-          TextSimulation.append("\n\nLe temps de delai ne peut pas être négatif");
-          return;
-      }
-      this.delayTime = p_time;
+    if (p_time < 0) {
+      TextSimulation.append("\n\nLe temps de delai ne peut pas être négatif");
+      return;
+    }
+    this.delayTime = p_time;
   }
 
   public enum MeasurementUnitMode {
@@ -129,955 +127,1456 @@ public class MainWindow extends JFrame {
    */
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        mainPanel = new javax.swing.JPanel();
-        mainScrollPane = new javax.swing.JScrollPane();
-        drawingPanel = new virtucarriere.gui.DrawingPanel(this);
-        jPanel1 = new javax.swing.JPanel();
-        jTabbedPane = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        entreeButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        arcButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        textFieldCoordonneeX = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        textFieldCoordonneeY = new javax.swing.JTextField();
-        ajoutNoeudCoordButton = new javax.swing.JButton();
-        ajoutTasCoordButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        deleteButton = new javax.swing.JButton();
-        modeSelection = new javax.swing.JToggleButton();
-        ajoutNoeud = new javax.swing.JToggleButton();
-        jLabel19 = new javax.swing.JLabel();
-        ajoutTas = new javax.swing.JToggleButton();
-        comboBoxMateriaux = new javax.swing.JComboBox<>();
-        ajoutNoeudCoord = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        boutonChemin = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        dimensionTas = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        modifierAngle = new javax.swing.JButton();
-        angleSpinner = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        ajoutChargeur = new javax.swing.JToggleButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        StartSimulation = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TextSimulation = new javax.swing.JTextArea();
-        jLabel14 = new javax.swing.JLabel();
-        NomClient = new javax.swing.JTextField();
-        addCamion = new javax.swing.JButton();
-        materiauxComboBox = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        quantiteSpinner = new javax.swing.JSpinner();
-        selectionSimul = new javax.swing.JToggleButton();
-        deleteSimul = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
-        xCoordSimul = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        yCoordSimul = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        ajoutModifChargeur = new javax.swing.JButton();
-        modifierCamion = new javax.swing.JButton();
-        ajoutChargeurCoord = new javax.swing.JButton();
-        slowSimulation = new javax.swing.JButton();
-        fasterSimulation = new javax.swing.JButton();
-        pauseRestartSimulation = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        fichierMenu = new javax.swing.JMenu();
-        menuNouveauProjet = new javax.swing.JMenuItem();
-        menuOuvrirProjet = new javax.swing.JMenuItem();
-        menuSauvegarderProjet = new javax.swing.JMenuItem();
-        menuSauvegarderSous = new javax.swing.JMenuItem();
-        menuQuitter = new javax.swing.JMenuItem();
-        editionMenu = new javax.swing.JMenu();
-        menuUndo = new javax.swing.JMenuItem();
-        menuRedo = new javax.swing.JMenuItem();
-        menuCopier = new javax.swing.JMenuItem();
-        menuColler = new javax.swing.JMenuItem();
-        menuCouper = new javax.swing.JMenuItem();
-        affichageMenu = new javax.swing.JMenu();
-        menuAffichageGrille = new javax.swing.JMenuItem();
-        modifierGrille = new javax.swing.JMenuItem();
-        resetGrille = new javax.swing.JMenuItem();
-        importerMenu = new javax.swing.JMenu();
-        importImage = new javax.swing.JMenuItem();
-        resetImage = new javax.swing.JMenuItem();
-        fenetreMenu = new javax.swing.JMenu();
+    buttonGroup1 = new javax.swing.ButtonGroup();
+    mainPanel = new javax.swing.JPanel();
+    mainScrollPane = new javax.swing.JScrollPane();
+    drawingPanel = new virtucarriere.gui.DrawingPanel(this);
+    jPanel1 = new javax.swing.JPanel();
+    jTabbedPane = new javax.swing.JTabbedPane();
+    jPanel2 = new javax.swing.JPanel();
+    jComboBox1 = new javax.swing.JComboBox<>();
+    jLabel2 = new javax.swing.JLabel();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    entreeButton = new javax.swing.JButton();
+    jLabel5 = new javax.swing.JLabel();
+    arcButton = new javax.swing.JButton();
+    jLabel8 = new javax.swing.JLabel();
+    textFieldCoordonneeX = new javax.swing.JTextField();
+    jLabel9 = new javax.swing.JLabel();
+    jLabel10 = new javax.swing.JLabel();
+    textFieldCoordonneeY = new javax.swing.JTextField();
+    ajoutNoeudCoordButton = new javax.swing.JButton();
+    ajoutTasCoordButton = new javax.swing.JButton();
+    jLabel1 = new javax.swing.JLabel();
+    jTextField2 = new javax.swing.JTextField();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    jTextArea1 = new javax.swing.JTextArea();
+    jLabel7 = new javax.swing.JLabel();
+    jLabel15 = new javax.swing.JLabel();
+    deleteButton = new javax.swing.JButton();
+    modeSelection = new javax.swing.JToggleButton();
+    ajoutNoeud = new javax.swing.JToggleButton();
+    jLabel19 = new javax.swing.JLabel();
+    ajoutTas = new javax.swing.JToggleButton();
+    comboBoxMateriaux = new javax.swing.JComboBox<>();
+    ajoutNoeudCoord = new javax.swing.JButton();
+    jButton2 = new javax.swing.JButton();
+    jLabel13 = new javax.swing.JLabel();
+    boutonChemin = new javax.swing.JButton();
+    jLabel23 = new javax.swing.JLabel();
+    dimensionTas = new javax.swing.JTextField();
+    jLabel24 = new javax.swing.JLabel();
+    modifierAngle = new javax.swing.JButton();
+    angleSpinner = new javax.swing.JTextField();
+    jPanel3 = new javax.swing.JPanel();
+    jLabel6 = new javax.swing.JLabel();
+    ajoutChargeur = new javax.swing.JToggleButton();
+    jLabel11 = new javax.swing.JLabel();
+    jLabel12 = new javax.swing.JLabel();
+    StartSimulation = new javax.swing.JButton();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    TextSimulation = new javax.swing.JTextArea();
+    jLabel14 = new javax.swing.JLabel();
+    NomClient = new javax.swing.JTextField();
+    addCamion = new javax.swing.JButton();
+    materiauxComboBox = new javax.swing.JComboBox<>();
+    jLabel16 = new javax.swing.JLabel();
+    jLabel17 = new javax.swing.JLabel();
+    jLabel18 = new javax.swing.JLabel();
+    quantiteSpinner = new javax.swing.JSpinner();
+    selectionSimul = new javax.swing.JToggleButton();
+    deleteSimul = new javax.swing.JButton();
+    jLabel20 = new javax.swing.JLabel();
+    xCoordSimul = new javax.swing.JTextField();
+    jLabel21 = new javax.swing.JLabel();
+    yCoordSimul = new javax.swing.JTextField();
+    jLabel22 = new javax.swing.JLabel();
+    ajoutModifChargeur = new javax.swing.JButton();
+    modifierCamion = new javax.swing.JButton();
+    ajoutChargeurCoord = new javax.swing.JButton();
+    slowSimulation = new javax.swing.JButton();
+    fasterSimulation = new javax.swing.JButton();
+    pauseRestartSimulation = new javax.swing.JButton();
+    jMenuBar1 = new javax.swing.JMenuBar();
+    fichierMenu = new javax.swing.JMenu();
+    menuNouveauProjet = new javax.swing.JMenuItem();
+    menuOuvrirProjet = new javax.swing.JMenuItem();
+    menuSauvegarderProjet = new javax.swing.JMenuItem();
+    menuSauvegarderSous = new javax.swing.JMenuItem();
+    menuQuitter = new javax.swing.JMenuItem();
+    editionMenu = new javax.swing.JMenu();
+    menuUndo = new javax.swing.JMenuItem();
+    menuRedo = new javax.swing.JMenuItem();
+    menuCopier = new javax.swing.JMenuItem();
+    menuColler = new javax.swing.JMenuItem();
+    menuCouper = new javax.swing.JMenuItem();
+    affichageMenu = new javax.swing.JMenu();
+    menuAffichageGrille = new javax.swing.JMenuItem();
+    modifierGrille = new javax.swing.JMenuItem();
+    resetGrille = new javax.swing.JMenuItem();
+    importerMenu = new javax.swing.JMenu();
+    importImage = new javax.swing.JMenuItem();
+    resetImage = new javax.swing.JMenuItem();
+    fenetreMenu = new javax.swing.JMenu();
 
-        buttonGroup1.add(selectionSimul);
-        buttonGroup1.add(modeSelection);
-        buttonGroup1.add(ajoutChargeur);
-        buttonGroup1.add(ajoutNoeud);
-        buttonGroup1.add(ajoutTas);
+    buttonGroup1.add(selectionSimul);
+    buttonGroup1.add(modeSelection);
+    buttonGroup1.add(ajoutChargeur);
+    buttonGroup1.add(ajoutNoeud);
+    buttonGroup1.add(ajoutTas);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                formMouseWheelMoved(evt);
-            }
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    addMouseWheelListener(
+        new java.awt.event.MouseWheelListener() {
+          public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+            formMouseWheelMoved(evt);
+          }
         });
 
-        mainPanel.setLayout(new java.awt.BorderLayout());
+    mainPanel.setLayout(new java.awt.BorderLayout());
 
-        mainScrollPane.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                mainScrollPaneMouseWheelMoved(evt);
-            }
+    mainScrollPane.addMouseWheelListener(
+        new java.awt.event.MouseWheelListener() {
+          public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+            mainScrollPaneMouseWheelMoved(evt);
+          }
         });
 
-        drawingPanel.setOpaque(false);
-        drawingPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                drawingPanelMouseDragged(evt);
-            }
+    drawingPanel.setOpaque(false);
+    drawingPanel.addMouseMotionListener(
+        new java.awt.event.MouseMotionAdapter() {
+          public void mouseDragged(java.awt.event.MouseEvent evt) {
+            drawingPanelMouseDragged(evt);
+          }
         });
-        drawingPanel.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                drawingPanelMouseWheelMoved(evt);
-            }
+    drawingPanel.addMouseWheelListener(
+        new java.awt.event.MouseWheelListener() {
+          public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+            drawingPanelMouseWheelMoved(evt);
+          }
         });
-        drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                drawingPanelMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                drawingPanelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                drawingPanelMouseReleased(evt);
-            }
-        });
-        drawingPanel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                drawingPanelKeyPressed(evt);
-            }
-        });
-        drawingPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                drawingPanelMouseMoved(evt);
-            }
-        });
-        drawingPanel.setLayout(new java.awt.BorderLayout());
-        mainScrollPane.setViewportView(drawingPanel);
+    drawingPanel.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mouseClicked(java.awt.event.MouseEvent evt) {
+            drawingPanelMouseClicked(evt);
+          }
 
-        mainPanel.add(mainScrollPane, java.awt.BorderLayout.CENTER);
+          public void mousePressed(java.awt.event.MouseEvent evt) {
+            drawingPanelMousePressed(evt);
+          }
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
-
-        jTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedPaneStateChanged(evt);
-            }
+          public void mouseReleased(java.awt.event.MouseEvent evt) {
+            drawingPanelMouseReleased(evt);
+          }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sélectionner", "Broyeur", "Concasseur", "Crible", "Convoyeur" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
+    drawingPanel.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyPressed(java.awt.event.KeyEvent evt) {
+            drawingPanelKeyPressed(evt);
+          }
         });
-
-        jLabel2.setText("Ajouter un équipement");
-
-        jLabel3.setText("Ajouter un noeud");
-
-        jLabel4.setText("Ajouter une entrée");
-
-        entreeButton.setText("Entrée");
-        entreeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                entreeButtonMousePressed(evt);
-            }
+    drawingPanel.addMouseMotionListener(
+        new java.awt.event.MouseMotionAdapter() {
+          public void mouseMoved(java.awt.event.MouseEvent evt) {
+            drawingPanelMouseMoved(evt);
+          }
         });
-        entreeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entreeButtonActionPerformed(evt);
-            }
-        });
-        entreeButton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                entreeButtonKeyPressed(evt);
-            }
+    drawingPanel.setLayout(new java.awt.BorderLayout());
+    mainScrollPane.setViewportView(drawingPanel);
+
+    mainPanel.add(mainScrollPane, java.awt.BorderLayout.CENTER);
+
+    jPanel1.setPreferredSize(new java.awt.Dimension(300, 765));
+
+    jTabbedPane.addChangeListener(
+        new javax.swing.event.ChangeListener() {
+          public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            jTabbedPaneStateChanged(evt);
+          }
         });
 
-        jLabel5.setText("Ajouter un Arc");
-
-        arcButton.setText("Arc");
-        arcButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                arcButtonActionPerformed(evt);
-            }
+    jComboBox1.setModel(
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {"Sélectionner", "Broyeur", "Concasseur", "Crible", "Convoyeur"}));
+    jComboBox1.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jComboBox1ActionPerformed(evt);
+          }
         });
 
-        jLabel8.setText("Ajouter/Modifier un noeud ou tas");
+    jLabel2.setText("Ajouter un équipement");
 
-        textFieldCoordonneeX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldCoordonneeXActionPerformed(evt);
-            }
+    jLabel3.setText("Ajouter un noeud");
+
+    jLabel4.setText("Ajouter une entrée");
+
+    entreeButton.setText("Entrée");
+    entreeButton.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mousePressed(java.awt.event.MouseEvent evt) {
+            entreeButtonMousePressed(evt);
+          }
+        });
+    entreeButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            entreeButtonActionPerformed(evt);
+          }
+        });
+    entreeButton.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyPressed(java.awt.event.KeyEvent evt) {
+            entreeButtonKeyPressed(evt);
+          }
         });
 
-        jLabel9.setText("x :");
+    jLabel5.setText("Ajouter un Arc");
 
-        jLabel10.setText("y :");
-
-        ajoutNoeudCoordButton.setText("Modifier");
-        ajoutNoeudCoordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutNoeudCoordButtonActionPerformed(evt);
-            }
+    arcButton.setText("Arc");
+    arcButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            arcButtonActionPerformed(evt);
+          }
         });
 
-        ajoutTasCoordButton.setText("Modifier");
-        ajoutTasCoordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutTasCoordButtonActionPerformed(evt);
-            }
+    jLabel8.setText("Ajouter/Modifier un noeud ou tas");
+
+    textFieldCoordonneeX.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            textFieldCoordonneeXActionPerformed(evt);
+          }
         });
 
-        jLabel1.setText("Élément(s) sélectionné(s) :");
+    jLabel9.setText("x :");
 
-        jTextField2.setText("0");
-        jTextField2.setEnabled(false);
+    jLabel10.setText("y :");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                jTextArea1ComponentAdded(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jLabel7.setText("Noeud");
-
-        jLabel15.setText("Tas");
-
-        deleteButton.setText("Supprimer");
-        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteButtonMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                deleteButtonMousePressed(evt);
-            }
-        });
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-        deleteButton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                deleteButtonKeyPressed(evt);
-            }
+    ajoutNoeudCoordButton.setText("Modifier");
+    ajoutNoeudCoordButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutNoeudCoordButtonActionPerformed(evt);
+          }
         });
 
-        modeSelection.setText("Sélection");
-        modeSelection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modeSelectionActionPerformed(evt);
-            }
-        });
-        modeSelection.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                modeSelectionKeyPressed(evt);
-            }
+    ajoutTasCoordButton.setText("Modifier");
+    ajoutTasCoordButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutTasCoordButtonActionPerformed(evt);
+          }
         });
 
-        ajoutNoeud.setText("Noeud");
-        ajoutNoeud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutNoeudActionPerformed(evt);
-            }
+    jLabel1.setText("Élément(s) sélectionné(s) :");
+
+    jTextField2.setText("0");
+    jTextField2.setEnabled(false);
+
+    jTextArea1.setEditable(false);
+    jTextArea1.setColumns(20);
+    jTextArea1.setRows(5);
+    jTextArea1.addContainerListener(
+        new java.awt.event.ContainerAdapter() {
+          public void componentAdded(java.awt.event.ContainerEvent evt) {
+            jTextArea1ComponentAdded(evt);
+          }
+        });
+    jScrollPane1.setViewportView(jTextArea1);
+
+    jLabel7.setText("Noeud");
+
+    jLabel15.setText("Tas");
+
+    deleteButton.setText("Supprimer");
+    deleteButton.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mouseClicked(java.awt.event.MouseEvent evt) {
+            deleteButtonMouseClicked(evt);
+          }
+
+          public void mousePressed(java.awt.event.MouseEvent evt) {
+            deleteButtonMousePressed(evt);
+          }
+        });
+    deleteButton.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteButtonActionPerformed(evt);
+          }
+        });
+    deleteButton.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyPressed(java.awt.event.KeyEvent evt) {
+            deleteButtonKeyPressed(evt);
+          }
         });
 
-        jLabel19.setText("Ajouter un tas");
-
-        ajoutTas.setText("Tas");
-        ajoutTas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutTasActionPerformed(evt);
-            }
+    modeSelection.setText("Sélection");
+    modeSelection.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modeSelectionActionPerformed(evt);
+          }
+        });
+    modeSelection.addKeyListener(
+        new java.awt.event.KeyAdapter() {
+          public void keyPressed(java.awt.event.KeyEvent evt) {
+            modeSelectionKeyPressed(evt);
+          }
         });
 
-        comboBoxMateriaux.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695" }));
-
-        ajoutNoeudCoord.setText("Ajouter");
-        ajoutNoeudCoord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutNoeudCoordActionPerformed(evt);
-            }
+    ajoutNoeud.setText("Noeud");
+    ajoutNoeud.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutNoeudActionPerformed(evt);
+          }
         });
 
-        jButton2.setText("Ajouter");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
+    jLabel19.setText("Ajouter un tas");
+
+    ajoutTas.setText("Tas");
+    ajoutTas.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutTasActionPerformed(evt);
+          }
         });
 
-        jLabel13.setText("Tracer un chemin");
+    comboBoxMateriaux.setModel(
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {"1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"}));
 
-        boutonChemin.setText("Chemin");
-        boutonChemin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonCheminActionPerformed(evt);
-            }
+    ajoutNoeudCoord.setText("Ajouter");
+    ajoutNoeudCoord.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutNoeudCoordActionPerformed(evt);
+          }
         });
 
-        jLabel23.setText("Modifier rayon du Tas");
-
-        dimensionTas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dimensionTasActionPerformed(evt);
-            }
+    jButton2.setText("Ajouter");
+    jButton2.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+          }
         });
 
-        jLabel24.setText("Angle :");
+    jLabel13.setText("Tracer un chemin");
 
-        modifierAngle.setText("Modifier");
-        modifierAngle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifierAngleActionPerformed(evt);
-            }
+    boutonChemin.setText("Chemin");
+    boutonChemin.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            boutonCheminActionPerformed(evt);
+          }
         });
 
-        angleSpinner.setText("0");
+    jLabel23.setText("Modifier rayon du Tas");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    dimensionTas.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            dimensionTasActionPerformed(evt);
+          }
+        });
+
+    jLabel24.setText("Angle :");
+
+    modifierAngle.setText("Modifier");
+    modifierAngle.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modifierAngleActionPerformed(evt);
+          }
+        });
+
+    angleSpinner.setText("0");
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+        jPanel2Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 23, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(64, 64, 64))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ajoutNoeudCoord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ajoutNoeudCoordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ajoutTasCoordButton)
-                                    .addComponent(jButton2)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(modifierAngle)))
-                                .addGap(24, 24, 24))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(modeSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteButton)
-                                .addGap(15, 15, 15))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(92, 92, 92)
-                                        .addComponent(ajoutNoeud))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(52, 52, 52)
-                                        .addComponent(ajoutTas)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboBoxMateriaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel19))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(textFieldCoordonneeX, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel10))
-                                        .addComponent(jLabel7))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(textFieldCoordonneeY, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel15))
-                                    .addGap(6, 6, 6)))
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel24)
-                                .addGap(18, 18, 18)
-                                .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(entreeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel13)
-                                        .addComponent(jLabel5))
+            .addGroup(
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(
+                                        jTextField2,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        39,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel8)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGap(0, 23, Short.MAX_VALUE)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(
+                                                        jComboBox1,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(64, 64, 64))
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addGroup(
+                                                        jPanel2Layout
+                                                            .createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment
+                                                                    .LEADING,
+                                                                false)
+                                                            .addComponent(
+                                                                ajoutNoeudCoord,
+                                                                javax.swing.GroupLayout
+                                                                    .DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout
+                                                                    .DEFAULT_SIZE,
+                                                                Short.MAX_VALUE)
+                                                            .addComponent(
+                                                                ajoutNoeudCoordButton,
+                                                                javax.swing.GroupLayout
+                                                                    .PREFERRED_SIZE,
+                                                                1,
+                                                                Short.MAX_VALUE))
+                                                    .addGap(30, 30, 30)
+                                                    .addGroup(
+                                                        jPanel2Layout
+                                                            .createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment
+                                                                    .LEADING)
+                                                            .addComponent(ajoutTasCoordButton)
+                                                            .addComponent(jButton2)
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createSequentialGroup()
+                                                                    .addGap(6, 6, 6)
+                                                                    .addComponent(modifierAngle)))
+                                                    .addGap(24, 24, 24))
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(
+                                                        modeSelection,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        110,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(deleteButton)
+                                                    .addGap(15, 15, 15))))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(
+                                                        jPanel2Layout
+                                                            .createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment
+                                                                    .LEADING)
+                                                            .addComponent(jLabel3)
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createSequentialGroup()
+                                                                    .addGap(92, 92, 92)
+                                                                    .addComponent(ajoutNoeud))
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createSequentialGroup()
+                                                                    .addGap(52, 52, 52)
+                                                                    .addComponent(ajoutTas)
+                                                                    .addPreferredGap(
+                                                                        javax.swing.LayoutStyle
+                                                                            .ComponentPlacement
+                                                                            .RELATED)
+                                                                    .addComponent(
+                                                                        comboBoxMateriaux,
+                                                                        javax.swing.GroupLayout
+                                                                            .PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout
+                                                                            .DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout
+                                                                            .PREFERRED_SIZE))
+                                                            .addComponent(jLabel19))
+                                                    .addGroup(
+                                                        jPanel2Layout
+                                                            .createSequentialGroup()
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createParallelGroup(
+                                                                        javax.swing.GroupLayout
+                                                                            .Alignment.LEADING)
+                                                                    .addGroup(
+                                                                        jPanel2Layout
+                                                                            .createSequentialGroup()
+                                                                            .addComponent(jLabel9)
+                                                                            .addPreferredGap(
+                                                                                javax.swing
+                                                                                    .LayoutStyle
+                                                                                    .ComponentPlacement
+                                                                                    .UNRELATED)
+                                                                            .addComponent(
+                                                                                textFieldCoordonneeX,
+                                                                                javax.swing
+                                                                                    .GroupLayout
+                                                                                    .PREFERRED_SIZE,
+                                                                                49,
+                                                                                javax.swing
+                                                                                    .GroupLayout
+                                                                                    .PREFERRED_SIZE)
+                                                                            .addGap(18, 18, 18)
+                                                                            .addComponent(jLabel10))
+                                                                    .addComponent(jLabel7))
+                                                            .addPreferredGap(
+                                                                javax.swing.LayoutStyle
+                                                                    .ComponentPlacement.UNRELATED)
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createParallelGroup(
+                                                                        javax.swing.GroupLayout
+                                                                            .Alignment.LEADING)
+                                                                    .addComponent(
+                                                                        textFieldCoordonneeY,
+                                                                        javax.swing.GroupLayout
+                                                                            .PREFERRED_SIZE,
+                                                                        48,
+                                                                        javax.swing.GroupLayout
+                                                                            .PREFERRED_SIZE)
+                                                                    .addComponent(jLabel15))
+                                                            .addGap(6, 6, 6)))
+                                            .addComponent(jLabel2)
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel24)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(
+                                                        angleSpinner,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        82,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        false)
+                                                    .addGroup(
+                                                        jPanel2Layout
+                                                            .createSequentialGroup()
+                                                            .addComponent(jLabel4)
+                                                            .addPreferredGap(
+                                                                javax.swing.LayoutStyle
+                                                                    .ComponentPlacement.RELATED)
+                                                            .addComponent(
+                                                                entreeButton,
+                                                                javax.swing.GroupLayout
+                                                                    .DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout
+                                                                    .DEFAULT_SIZE,
+                                                                Short.MAX_VALUE))
+                                                    .addGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                        jPanel2Layout
+                                                            .createSequentialGroup()
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createParallelGroup(
+                                                                        javax.swing.GroupLayout
+                                                                            .Alignment.LEADING)
+                                                                    .addComponent(jLabel13)
+                                                                    .addComponent(jLabel5))
+                                                            .addGap(18, 18, 18)
+                                                            .addGroup(
+                                                                jPanel2Layout
+                                                                    .createParallelGroup(
+                                                                        javax.swing.GroupLayout
+                                                                            .Alignment.LEADING,
+                                                                        false)
+                                                                    .addComponent(
+                                                                        boutonChemin,
+                                                                        javax.swing.GroupLayout
+                                                                            .DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout
+                                                                            .DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                                    .addComponent(
+                                                                        arcButton,
+                                                                        javax.swing.GroupLayout
+                                                                            .DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout
+                                                                            .DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE))))
+                                            .addGroup(
+                                                jPanel2Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel23)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
+                                                    .addComponent(
+                                                        dimensionTas,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        43,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE)))));
+    jPanel2Layout.setVerticalGroup(
+        jPanel2Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(
+                jPanel2Layout
+                    .createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(modeSelection)
+                            .addComponent(deleteButton))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel2)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(
+                        jComboBox1,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ajoutNoeud)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel19)
+                    .addGap(2, 2, 2)
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ajoutTas)
+                            .addComponent(
+                                comboBoxMateriaux,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(
+                                dimensionTas,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(7, 7, 7)
+                    .addComponent(jLabel8)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(
+                                jPanel2Layout
+                                    .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(
+                                        textFieldCoordonneeY,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(
+                                        textFieldCoordonneeX,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(
+                        jPanel2Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(ajoutNoeudCoord)
+                                            .addComponent(jButton2))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(ajoutNoeudCoordButton)
+                                            .addComponent(ajoutTasCoordButton))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel24)
+                                            .addComponent(modifierAngle)
+                                            .addComponent(
+                                                angleSpinner,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(10, 10, 10)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(arcButton)
+                                            .addComponent(jLabel5))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel13)
+                                            .addComponent(boutonChemin))
+                                    .addGap(6, 6, 6)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel4)
+                                            .addComponent(entreeButton))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
+                                    .addGroup(
+                                        jPanel2Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel1)
+                                            .addComponent(
+                                                jTextField2,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(
+                                        jScrollPane1,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        310,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(
+                                jPanel2Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel15)
+                                    .addGap(0, 0, Short.MAX_VALUE)))));
+
+    jTabbedPane.addTab("Plan", jPanel2);
+
+    jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+    jLabel6.setText("Scénario");
+
+    ajoutChargeur.setText("Chargeur");
+    ajoutChargeur.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutChargeurActionPerformed(evt);
+          }
+        });
+
+    jLabel11.setText("Ajouter un véhicule de chargement");
+
+    jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+    jLabel12.setText("Ajouter un client (camion)");
+
+    StartSimulation.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+    StartSimulation.setText("Play");
+    StartSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            StartSimulationActionPerformed(evt);
+          }
+        });
+
+    TextSimulation.setEditable(false);
+    TextSimulation.setColumns(20);
+    TextSimulation.setRows(5);
+    jScrollPane2.setViewportView(TextSimulation);
+
+    jLabel14.setText("Informations");
+
+    NomClient.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            NomClientActionPerformed(evt);
+          }
+        });
+
+    addCamion.setText("Ajouter");
+    addCamion.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            addCamionActionPerformed(evt);
+          }
+        });
+
+    materiauxComboBox.setModel(
+        new javax.swing.DefaultComboBoxModel<>(
+            new String[] {"1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695"}));
+
+    jLabel16.setText("Nom :");
+
+    jLabel17.setText("Matériaux :");
+
+    jLabel18.setText("Quantité :");
+
+    selectionSimul.setText("Sélectionner");
+    selectionSimul.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            selectionSimulActionPerformed(evt);
+          }
+        });
+
+    deleteSimul.setText("Supprimer");
+    deleteSimul.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteSimulActionPerformed(evt);
+          }
+        });
+
+    jLabel20.setText("x :");
+
+    jLabel21.setText("Ajouter chargeur/Modifier emplacement");
+
+    jLabel22.setText("y :");
+
+    ajoutModifChargeur.setText("Modifier");
+    ajoutModifChargeur.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutModifChargeurActionPerformed(evt);
+          }
+        });
+
+    modifierCamion.setText("Modifier");
+    modifierCamion.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modifierCamionActionPerformed(evt);
+          }
+        });
+
+    ajoutChargeurCoord.setText("Ajouter");
+    ajoutChargeurCoord.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ajoutChargeurCoordActionPerformed(evt);
+          }
+        });
+
+    slowSimulation.setText("Slower");
+    slowSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            slowSimulationActionPerformed(evt);
+          }
+        });
+
+    fasterSimulation.setText("Faster");
+    fasterSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            fasterSimulationActionPerformed(evt);
+          }
+        });
+
+    pauseRestartSimulation.setText("Pause");
+    pauseRestartSimulation.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pauseRestartSimulationActionPerformed(evt);
+          }
+        });
+
+    javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+    jPanel3.setLayout(jPanel3Layout);
+    jPanel3Layout.setHorizontalGroup(
+        jPanel3Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addGap(87, 87, 87)
+                                    .addComponent(ajoutChargeur))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel18)
                                     .addGap(18, 18, 18)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(boutonChemin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(arcButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dimensionTas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modeSelection)
-                    .addComponent(deleteButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ajoutNoeud)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19)
-                .addGap(2, 2, 2)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ajoutTas)
-                    .addComponent(comboBoxMateriaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(dimensionTas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10)
-                        .addComponent(textFieldCoordonneeY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textFieldCoordonneeX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ajoutNoeudCoord)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ajoutNoeudCoordButton)
-                            .addComponent(ajoutTasCoordButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(modifierAngle)
-                            .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(arcButton)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(boutonChemin))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(entreeButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-
-        jTabbedPane.addTab("Plan", jPanel2);
-
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel6.setText("Scénario");
-
-        ajoutChargeur.setText("Chargeur");
-        ajoutChargeur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutChargeurActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText("Ajouter un véhicule de chargement");
-
-        jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel12.setText("Ajouter un client (camion)");
-
-        StartSimulation.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        StartSimulation.setText("Play");
-        StartSimulation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StartSimulationActionPerformed(evt);
-            }
-        });
-
-        TextSimulation.setEditable(false);
-        TextSimulation.setColumns(20);
-        TextSimulation.setRows(5);
-        jScrollPane2.setViewportView(TextSimulation);
-
-        jLabel14.setText("Informations");
-
-        NomClient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomClientActionPerformed(evt);
-            }
-        });
-
-        addCamion.setText("Ajouter");
-        addCamion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCamionActionPerformed(evt);
-            }
-        });
-
-        materiauxComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-110", "1-214", "1-220", "1-228", "1-644", "1-630", "1-695" }));
-
-        jLabel16.setText("Nom :");
-
-        jLabel17.setText("Matériaux :");
-
-        jLabel18.setText("Quantité :");
-
-        selectionSimul.setText("Sélectionner");
-        selectionSimul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectionSimulActionPerformed(evt);
-            }
-        });
-
-        deleteSimul.setText("Supprimer");
-        deleteSimul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteSimulActionPerformed(evt);
-            }
-        });
-
-        jLabel20.setText("x :");
-
-        jLabel21.setText("Ajouter chargeur/Modifier emplacement");
-
-        jLabel22.setText("y :");
-
-        ajoutModifChargeur.setText("Modifier");
-        ajoutModifChargeur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutModifChargeurActionPerformed(evt);
-            }
-        });
-
-        modifierCamion.setText("Modifier");
-        modifierCamion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifierCamionActionPerformed(evt);
-            }
-        });
-
-        ajoutChargeurCoord.setText("Ajouter");
-        ajoutChargeurCoord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutChargeurCoordActionPerformed(evt);
-            }
-        });
-
-        slowSimulation.setText("Slower");
-        slowSimulation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                slowSimulationActionPerformed(evt);
-            }
-        });
-
-        fasterSimulation.setText("Faster");
-        fasterSimulation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fasterSimulationActionPerformed(evt);
-            }
-        });
-
-        pauseRestartSimulation.setText("Pause");
-        pauseRestartSimulation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pauseRestartSimulationActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(ajoutChargeur))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel18)
-                        .addGap(18, 18, 18)
-                        .addComponent(quantiteSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(selectionSimul)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteSimul))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(NomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(materiauxComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel21))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(xCoordSimul, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                            .addComponent(yCoordSimul))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ajoutChargeurCoord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ajoutModifChargeur, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                        .addGap(36, 36, 36))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(93, 93, 93))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(slowSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(StartSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(pauseRestartSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fasterSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(addCamion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modifierCamion)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectionSimul)
-                    .addComponent(deleteSimul))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ajoutChargeur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel21)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(xCoordSimul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20)
-                    .addComponent(ajoutChargeurCoord))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(yCoordSimul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ajoutModifChargeur))
-                    .addComponent(jLabel22))
-                .addGap(54, 54, 54)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(NomClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(materiauxComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(quantiteSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(
+                                        quantiteSpinner,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        72,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(selectionSimul)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(deleteSimul))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                jPanel3Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel16)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                                    .addComponent(
+                                                        NomClient,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        153,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                jPanel3Layout
+                                                    .createSequentialGroup()
+                                                    .addComponent(jLabel17)
+                                                    .addPreferredGap(
+                                                        javax.swing.LayoutStyle.ComponentPlacement
+                                                            .RELATED)
+                                                    .addComponent(
+                                                        materiauxComboBox,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        153,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel21))
+                            .addComponent(
+                                jScrollPane2,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                289,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel11))))
+                    .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(
+                javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel22))
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(
+                                                xCoordSimul,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                52,
+                                                Short.MAX_VALUE)
+                                            .addComponent(yCoordSimul))
+                                    .addGap(29, 29, 29)
+                                    .addGroup(
+                                        jPanel3Layout
+                                            .createParallelGroup(
+                                                javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(
+                                                ajoutChargeurCoord,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                Short.MAX_VALUE)
+                                            .addComponent(
+                                                ajoutModifChargeur,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                1,
+                                                Short.MAX_VALUE))
+                                    .addGap(36, 36, 36))
+                            .addGroup(
+                                javax.swing.GroupLayout.Alignment.TRAILING,
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(93, 93, 93))))
+            .addGroup(
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addGap(11, 11, 11)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addComponent(
+                                        slowSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        72,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(
+                                        StartSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(7, 7, 7)
+                                    .addComponent(
+                                        pauseRestartSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        58,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(
+                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(
+                                        fasterSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        1,
+                                        Short.MAX_VALUE))
+                            .addGroup(
+                                jPanel3Layout
+                                    .createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap())
+            .addGroup(
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addGap(47, 47, 47)
                     .addComponent(addCamion)
-                    .addComponent(modifierCamion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(StartSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(slowSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fasterSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pauseRestartSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-        );
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(modifierCamion)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+    jPanel3Layout.setVerticalGroup(
+        jPanel3Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(
+                jPanel3Layout
+                    .createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(selectionSimul)
+                            .addComponent(deleteSimul))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel11)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ajoutChargeur)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel21)
+                    .addGap(8, 8, 8)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(
+                                xCoordSimul,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)
+                            .addComponent(ajoutChargeurCoord))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(
+                                        yCoordSimul,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ajoutModifChargeur))
+                            .addComponent(jLabel22))
+                    .addGap(54, 54, 54)
+                    .addComponent(jLabel12)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(
+                                NomClient,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(
+                                materiauxComboBox,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(
+                                quantiteSpinner,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addCamion)
+                            .addComponent(modifierCamion))
+                    .addPreferredGap(
+                        javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(
+                        jPanel3Layout
+                            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                jPanel3Layout
+                                    .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(
+                                        StartSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        38,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(
+                                        slowSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        40,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(
+                                        fasterSimulation,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        39,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(
+                                pauseRestartSimulation,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                40,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel14)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(
+                        jScrollPane2,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        292,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(12, 12, 12)));
 
-        jTabbedPane.addTab("Simulation", jPanel3);
+    jTabbedPane.addTab("Simulation", jPanel3);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane)
-        );
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(
+                jPanel1Layout
+                    .createSequentialGroup()
+                    .addComponent(
+                        jTabbedPane,
+                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                        301,
+                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)));
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane));
 
-        mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
+    mainPanel.add(jPanel1, java.awt.BorderLayout.EAST);
 
-        fichierMenu.setText("Fichier");
+    fichierMenu.setText("Fichier");
 
-        menuNouveauProjet.setText("Nouveau projet");
-        menuNouveauProjet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuNouveauProjetActionPerformed(evt);
-            }
+    menuNouveauProjet.setText("Nouveau projet");
+    menuNouveauProjet.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuNouveauProjetActionPerformed(evt);
+          }
         });
-        fichierMenu.add(menuNouveauProjet);
+    fichierMenu.add(menuNouveauProjet);
 
-        menuOuvrirProjet.setText("Ouvrir un projet");
-        menuOuvrirProjet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuOuvrirProjetActionPerformed(evt);
-            }
+    menuOuvrirProjet.setText("Ouvrir un projet");
+    menuOuvrirProjet.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuOuvrirProjetActionPerformed(evt);
+          }
         });
-        fichierMenu.add(menuOuvrirProjet);
+    fichierMenu.add(menuOuvrirProjet);
 
-        menuSauvegarderProjet.setText("Sauvegarder");
-        menuSauvegarderProjet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSauvegarderProjetActionPerformed(evt);
-            }
+    menuSauvegarderProjet.setText("Sauvegarder");
+    menuSauvegarderProjet.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuSauvegarderProjetActionPerformed(evt);
+          }
         });
-        fichierMenu.add(menuSauvegarderProjet);
+    fichierMenu.add(menuSauvegarderProjet);
 
-        menuSauvegarderSous.setText("Sauvegarder sous...");
-        menuSauvegarderSous.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSauvegarderSousActionPerformed(evt);
-            }
+    menuSauvegarderSous.setText("Sauvegarder sous...");
+    menuSauvegarderSous.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuSauvegarderSousActionPerformed(evt);
+          }
         });
-        fichierMenu.add(menuSauvegarderSous);
+    fichierMenu.add(menuSauvegarderSous);
 
-        menuQuitter.setText("Quitter");
-        menuQuitter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuQuitterActionPerformed(evt);
-            }
+    menuQuitter.setText("Quitter");
+    menuQuitter.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuQuitterActionPerformed(evt);
+          }
         });
-        fichierMenu.add(menuQuitter);
+    fichierMenu.add(menuQuitter);
 
-        jMenuBar1.add(fichierMenu);
+    jMenuBar1.add(fichierMenu);
 
-        editionMenu.setText("Édition");
+    editionMenu.setText("Édition");
 
-        menuUndo.setText("Undo");
-        menuUndo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuUndoActionPerformed(evt);
-            }
+    menuUndo.setText("Undo");
+    menuUndo.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuUndoActionPerformed(evt);
+          }
         });
-        editionMenu.add(menuUndo);
+    editionMenu.add(menuUndo);
 
-        menuRedo.setText("Redo");
-        menuRedo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuRedoActionPerformed(evt);
-            }
+    menuRedo.setText("Redo");
+    menuRedo.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuRedoActionPerformed(evt);
+          }
         });
-        editionMenu.add(menuRedo);
+    editionMenu.add(menuRedo);
 
-        menuCopier.setText("Copier");
-        editionMenu.add(menuCopier);
+    menuCopier.setText("Copier");
+    editionMenu.add(menuCopier);
 
-        menuColler.setText("Coller");
-        editionMenu.add(menuColler);
+    menuColler.setText("Coller");
+    editionMenu.add(menuColler);
 
-        menuCouper.setText("Couper");
-        editionMenu.add(menuCouper);
+    menuCouper.setText("Couper");
+    editionMenu.add(menuCouper);
 
-        jMenuBar1.add(editionMenu);
+    jMenuBar1.add(editionMenu);
 
-        affichageMenu.setText("Affichage");
+    affichageMenu.setText("Affichage");
 
-        menuAffichageGrille.setText("Afficher/cacher la grille");
-        menuAffichageGrille.setSelected(drawingPanel.getGridlines());
-        menuAffichageGrille.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuAffichageGrilleMouseClicked(evt);
-            }
+    menuAffichageGrille.setText("Afficher/cacher la grille");
+    menuAffichageGrille.setSelected(drawingPanel.getGridlines());
+    menuAffichageGrille.addMouseListener(
+        new java.awt.event.MouseAdapter() {
+          public void mouseClicked(java.awt.event.MouseEvent evt) {
+            menuAffichageGrilleMouseClicked(evt);
+          }
         });
-        menuAffichageGrille.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAffichageGrilleActionPerformed(evt);
-            }
+    menuAffichageGrille.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            menuAffichageGrilleActionPerformed(evt);
+          }
         });
-        affichageMenu.add(menuAffichageGrille);
+    affichageMenu.add(menuAffichageGrille);
 
-        modifierGrille.setText("Modifier la grille");
-        modifierGrille.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifierGrilleActionPerformed(evt);
-            }
+    modifierGrille.setText("Modifier la grille");
+    modifierGrille.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modifierGrilleActionPerformed(evt);
+          }
         });
-        affichageMenu.add(modifierGrille);
+    affichageMenu.add(modifierGrille);
 
-        resetGrille.setText("Réinitialiser la grille");
-        resetGrille.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetGrilleActionPerformed(evt);
-            }
+    resetGrille.setText("Réinitialiser la grille");
+    resetGrille.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            resetGrilleActionPerformed(evt);
+          }
         });
-        affichageMenu.add(resetGrille);
+    affichageMenu.add(resetGrille);
 
-        jMenuBar1.add(affichageMenu);
+    jMenuBar1.add(affichageMenu);
 
-        importerMenu.setText("Importer");
-        importerMenu.setToolTipText("");
+    importerMenu.setText("Importer");
+    importerMenu.setToolTipText("");
 
-        importImage.setText("Importer image");
-        importImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                importImageActionPerformed(evt);
-            }
+    importImage.setText("Importer image");
+    importImage.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            importImageActionPerformed(evt);
+          }
         });
-        importerMenu.add(importImage);
+    importerMenu.add(importImage);
 
-        resetImage.setText("Réinitialiser image");
-        resetImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetImageActionPerformed(evt);
-            }
+    resetImage.setText("Réinitialiser image");
+    resetImage.addActionListener(
+        new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+            resetImageActionPerformed(evt);
+          }
         });
-        importerMenu.add(resetImage);
+    importerMenu.add(resetImage);
 
-        jMenuBar1.add(importerMenu);
+    jMenuBar1.add(importerMenu);
 
-        fenetreMenu.setText("Fenêtre");
-        jMenuBar1.add(fenetreMenu);
+    fenetreMenu.setText("Fenêtre");
+    jMenuBar1.add(fenetreMenu);
 
-        setJMenuBar(jMenuBar1);
+    setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1524, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1524, Short.MAX_VALUE));
+    layout.setVerticalGroup(
+        layout
+            .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(
+                mainPanel,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                Short.MAX_VALUE));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    pack();
+  } // </editor-fold>//GEN-END:initComponents
 
-    private void menuUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUndoActionPerformed
-        // TODO add your handling code here:
-      this.controller.undo();
-      drawingPanel.repaint();
-    }//GEN-LAST:event_menuUndoActionPerformed
+  private void menuUndoActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuUndoActionPerformed
+    // TODO add your handling code here:
+    this.controller.undo();
+    drawingPanel.repaint();
+  } // GEN-LAST:event_menuUndoActionPerformed
 
-    private void menuRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRedoActionPerformed
-        // TODO add your handling code here:
-      this.controller.redo();
-      drawingPanel.repaint();
-    }//GEN-LAST:event_menuRedoActionPerformed
+  private void menuRedoActionPerformed(
+      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuRedoActionPerformed
+    // TODO add your handling code here:
+    this.controller.redo();
+    drawingPanel.repaint();
+  } // GEN-LAST:event_menuRedoActionPerformed
 
-    private void modifierAngleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifierAngleActionPerformed
-        List<Equipement> equipements = controller.getEquipementList();
-        
-        double angle = Double.parseDouble(angleSpinner.getText());
-        
-        for(Equipement equipement : equipements){
-            if(equipement.isSelected()){
-                equipement.setAngle(angle);
-            }
-        }
-        drawingPanel.repaint();
-        rafraichissementTextField();
-        
-    }//GEN-LAST:event_modifierAngleActionPerformed
+  private void modifierAngleActionPerformed(
+      ActionEvent evt) { // GEN-FIRST:event_modifierAngleActionPerformed
+    List<Equipement> equipements = controller.getEquipementList();
+
+    double angle = Double.parseDouble(angleSpinner.getText());
+
+    for (Equipement equipement : equipements) {
+      if (equipement.isSelected()) {
+        equipement.setAngle(angle);
+      }
+    }
+    drawingPanel.repaint();
+    rafraichissementTextField();
+  } // GEN-LAST:event_modifierAngleActionPerformed
 
   private void pauseRestartSimulationActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_pauseRestartSimulationActionPerformed
@@ -1293,171 +1792,174 @@ public class MainWindow extends JFrame {
     this.setAppMode(ApplicationMode.SELECT_SIMUL);
   } // GEN-LAST:event_selectionSimulActionPerformed
 
-
   private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
-      if (delayTime ==  0){
-          cheminAllerSimulation();
-      } else {
-          new Timer(
-                  1000,
-                  new ActionListener() {
-                      private int count = 0;
+    if (delayTime == 0) {
+      cheminAllerSimulation();
+    } else {
+      new Timer(
+              1000,
+              new ActionListener() {
+                private int count = 0;
 
-                      @Override
-                      public void actionPerformed(ActionEvent e) {
-                          if (count < delayTime) {
-                              count++;
-                          } else {
-                              ((Timer) e.getSource()).stop();
-                              cheminAllerSimulation();
-                          }
-
-                      }
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                  if (count < delayTime) {
+                    count++;
+                  } else {
+                    ((Timer) e.getSource()).stop();
+                    cheminAllerSimulation();
                   }
-
-
-          ).start();
-
-      }
+                }
+              })
+          .start();
+    }
   }
 
-    public static double angleOf(Point p1, Point p2) {
-        final double deltaX = (p2.x - p1.x);
-        final double deltaY = (p2.y - p1.y);
-        return Math.atan2(deltaY, deltaX);
+  public static double angleOf(Point p1, Point p2) {
+    final double deltaX = (p2.x - p1.x);
+    final double deltaY = (p2.y - p1.y);
+    return Math.atan2(deltaY, deltaX);
+  }
+
+  public boolean isVehiculeStillOnRoute(Point pointCamion, Point debutChemin, Point finChemin) {
+    double dy = finChemin.getY() - debutChemin.getY();
+    double dx = finChemin.getX() - debutChemin.getX();
+    double distance = Math.sqrt(dx * dx + dy * dy);
+
+    double angle = Math.atan2(dy, dx);
+    double cos = Math.cos(-angle);
+    double sin = Math.sin(-angle);
+
+    double xRot =
+        (pointCamion.getX() - debutChemin.getX()) * cos
+            - (pointCamion.getY() - debutChemin.getY()) * sin;
+    double yRot =
+        (pointCamion.getX() - debutChemin.getX()) * sin
+            + (pointCamion.getY() - debutChemin.getY()) * cos;
+
+    if (0 <= xRot && xRot <= distance) {
+      double tolerance = 5;
+      return Math.abs(yRot) <= tolerance && Math.abs(xRot) <= tolerance;
+    }
+    return false;
+  }
+
+  public void cheminAllerSimulation() {
+    List<Equipement> EquipementList = controller.getEquipementList();
+
+    List<Tas> listeTas = new LinkedList<>();
+
+    for (Equipement equipement : EquipementList) {
+      if (equipement.getName().equals("Tas")) {
+        Tas tas = (Tas) equipement;
+        listeTas.add(tas);
+      }
     }
 
+    for (Camion camionCourant : controller.getCamionList()) {
 
-    public boolean isVehiculeStillOnRoute(Point pointCamion, Point debutChemin, Point finChemin){
-      double dy = finChemin.getY() - debutChemin.getY();
-      double dx = finChemin.getX() - debutChemin.getX();
-      double distance = Math.sqrt(dx * dx + dy * dy);
+      TextSimulation.append(
+          "\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
 
-      double angle = Math.atan2(dy, dx);
-      double cos = Math.cos(-angle);
-      double sin = Math.sin(-angle);
+      controller.setGraphCheminSimulation(controller.getGraphChemin());
 
-      double xRot = (pointCamion.getX() - debutChemin.getX()) * cos - (pointCamion.getY() - debutChemin.getY()) * sin;
-      double yRot = (pointCamion.getX() - debutChemin.getX()) * sin + (pointCamion.getY() - debutChemin.getY()) * cos;
+      Jeton jetonCamionCourant = camionCourant.getJeton();
 
-      if (0 <= xRot && xRot <= distance) {
-          double tolerance = 5;
-          return Math.abs(yRot) <= tolerance && Math.abs(xRot) <= tolerance ;
-      }
-      return false;
-    }
+      TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
+      TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
+      TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
+      TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
+      TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
 
+      Tas tasSimulation =
+          controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
 
-  public void cheminAllerSimulation(){
-      List<Equipement> EquipementList = controller.getEquipementList();
+      Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
 
-      List<Tas> listeTas = new LinkedList<>();
+      TextSimulation.append(
+          "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
 
-      for (Equipement equipement : EquipementList) {
-          if (equipement.getName().equals("Tas")) {
-              Tas tas = (Tas) equipement;
-              listeTas.add(tas);
-          }
-      }
+      courantChargeur.setJeton(jetonCamionCourant);
 
-      for (Camion camionCourant : controller.getCamionList()) {
+      camionCourant.changeEtat("ENCOURS");
 
-          TextSimulation.append("\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
+      TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
 
-          controller.setGraphCheminSimulation(controller.getGraphChemin());
+      Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
 
-          Jeton jetonCamionCourant = camionCourant.getJeton();
+      Vector<AbstractPointChemin> cheminChargeur =
+          controller.ChargeurCheminToPath(
+              courantChargeur, tasSimulation, controller.getAllNoeuds());
 
-          TextSimulation.append("\n\nInformation sur le jeton liée avec la commande");
-          TextSimulation.append("\n\nRéference Client : " + jetonCamionCourant.getRefClient());
-          TextSimulation.append("\n\nCode du produit : " + jetonCamionCourant.getCodeProduit());
-          TextSimulation.append("\n\nQuantité du produit : " + jetonCamionCourant.getQuantite());
-          TextSimulation.append("\n\nÉtat : " + jetonCamionCourant.getEtat());
+      final int maxSizeCamionAller = cheminCamionAller.size();
 
-          Tas tasSimulation =
-                  controller.TrouverTasCorrespondant(listeTas, jetonCamionCourant.getCodeProduit());
+      final int maxSizeChargeur = cheminChargeur.size();
+      new Timer(
+              50,
+              new ActionListener() {
+                private int count = 0;
+                private int chargeurCount = 0;
+                private double angle = 0;
+                private double angleChargeur = 0;
 
-          Chargeur courantChargeur = controller.choisirChargeurCorrespondant(tasSimulation);
+                Point entreeCarriere = controller.getEntree().getPoint();
+                int x = entreeCarriere.x;
+                int y = entreeCarriere.y;
+                int chargeur_x = courantChargeur.getPointInitial().x;
+                int chargeur_y = courantChargeur.getPointInitial().y;
 
-          TextSimulation.append(
-                  "\n\nPoint du chargeur correspondant : " + courantChargeur.getPoint().toString());
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                  if (pauseSimulation) {
+                  } else if (!pauseSimulation
+                      && (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller)) {
 
-          courantChargeur.setJeton(jetonCamionCourant);
-
-          camionCourant.changeEtat("ENCOURS");
-
-          TextSimulation.append("\n\nNouvelle était : " + camionCourant.getEtat());
-
-          Vector<AbstractPointChemin> cheminCamionAller = controller.cheminDuCamion(tasSimulation);
-
-          Vector<AbstractPointChemin> cheminChargeur =
-                  controller.ChargeurCheminToPath(
-                          courantChargeur, tasSimulation, controller.getAllNoeuds());
-
-          final int maxSizeCamionAller = cheminCamionAller.size();
-
-          final int maxSizeChargeur = cheminChargeur.size();
-          new Timer(
-                  50,
-                  new ActionListener() {
-                      private int count = 0;
-                      private int chargeurCount = 0;
-                      private double angle = 0;
-                      private double  angleChargeur = 0;
-
-                      Point entreeCarriere = controller.getEntree().getPoint();
-                      int x = entreeCarriere.x;
-                      int y = entreeCarriere.y;
-                      int chargeur_x = courantChargeur.getPointInitial().x;
-                      int chargeur_y = courantChargeur.getPointInitial().y;
-
-
-                      @Override
-                      public void actionPerformed(ActionEvent evt) {
-                          if (pauseSimulation){
-                          }
-                          else if (!pauseSimulation && (chargeurCount < maxSizeChargeur || count < maxSizeCamionAller)) {
-
-                              if (chargeurCount < maxSizeChargeur) {
-                                  if (chargeurCount == 0) {
-                                      angleChargeur = angleOf(courantChargeur.getPointInitial(),
-                                              cheminChargeur.get(chargeurCount).getPoint());
-                                  } else {
-                                      angleChargeur = angleOf(cheminChargeur.get(chargeurCount - 1).getPoint(),
-                                              cheminChargeur.get(chargeurCount).getPoint());
-                                  }
-
-                                  chargeur_x = chargeur_x + (int) (Math.cos(angleChargeur) * simulationSpeed);
-                                  chargeur_y = chargeur_y + (int) (Math.sin(angleChargeur) * simulationSpeed);
-                                  courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
-                                  drawingPanel.repaint();
-                                  if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
-                                      chargeurCount++;
-                                  }
-                              }
-                              if (count < maxSizeCamionAller) {
-                                  if (count == 0) {
-                                      angle =  angleOf(entreeCarriere, cheminCamionAller.get(count).getPoint());
-                                  } else {
-                                      angle =  angleOf(cheminCamionAller.get(count - 1).getPoint(), cheminCamionAller.get(count).getPoint());
-                                  }
-                                  x =  x +  (int) (Math.cos(angle) * simulationSpeed);
-                                  y = y + (int) (Math.sin(angle) * simulationSpeed);
-                                  camionCourant.setPoint(new Point(x, y));
-                                  drawingPanel.repaint();
-                                  if (x >= cheminCamionAller.get(count).getPoint().x) {
-                                      count++;
-                                  }
-                              }
-                          } else {
-                              ((Timer) evt.getSource()).stop();
-                              chargementSimulation(camionCourant, courantChargeur, tasSimulation);
-                          }
+                    if (chargeurCount < maxSizeChargeur) {
+                      if (chargeurCount == 0) {
+                        angleChargeur =
+                            angleOf(
+                                courantChargeur.getPointInitial(),
+                                cheminChargeur.get(chargeurCount).getPoint());
+                      } else {
+                        angleChargeur =
+                            angleOf(
+                                cheminChargeur.get(chargeurCount - 1).getPoint(),
+                                cheminChargeur.get(chargeurCount).getPoint());
                       }
-                  })
-                  .start();
-      }
 
+                      chargeur_x = chargeur_x + (int) (Math.cos(angleChargeur) * simulationSpeed);
+                      chargeur_y = chargeur_y + (int) (Math.sin(angleChargeur) * simulationSpeed);
+                      courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
+                      drawingPanel.repaint();
+                      if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
+                        chargeurCount++;
+                      }
+                    }
+                    if (count < maxSizeCamionAller) {
+                      if (count == 0) {
+                        angle = angleOf(entreeCarriere, cheminCamionAller.get(count).getPoint());
+                      } else {
+                        angle =
+                            angleOf(
+                                cheminCamionAller.get(count - 1).getPoint(),
+                                cheminCamionAller.get(count).getPoint());
+                      }
+                      x = x + (int) (Math.cos(angle) * simulationSpeed);
+                      y = y + (int) (Math.sin(angle) * simulationSpeed);
+                      camionCourant.setPoint(new Point(x, y));
+                      drawingPanel.repaint();
+                      if (x >= cheminCamionAller.get(count).getPoint().x) {
+                        count++;
+                      }
+                    }
+                  } else {
+                    ((Timer) evt.getSource()).stop();
+                    chargementSimulation(camionCourant, courantChargeur, tasSimulation);
+                  }
+                }
+              })
+          .start();
+    }
   }
 
   private void chargementSimulation(Camion camionCourant, Chargeur chargeurCourant, Tas p_tas) {
@@ -1469,9 +1971,9 @@ public class MainWindow extends JFrame {
 
               @Override
               public void actionPerformed(ActionEvent evt) {
-                  if (pauseSimulation) {
-                      System.out.println("Simulation en pause");
-                  } else if (count < 5 && !pauseSimulation) {
+                if (pauseSimulation) {
+                  System.out.println("Simulation en pause");
+                } else if (count < 5 && !pauseSimulation) {
                   if (count == 0) {
                     if (controller.verificationJeton(camionCourant, chargeurCourant)) {
                       TextSimulation.append(
@@ -1506,9 +2008,7 @@ public class MainWindow extends JFrame {
         .start();
   }
 
-
-
-    public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
+  public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
 
     Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
     TextSimulation.append("\n\nDebut du retour");
@@ -1523,53 +2023,59 @@ public class MainWindow extends JFrame {
               int x = p_tas.getPointChargement().getPoint().x;
               int y = p_tas.getPointChargement().getPoint().y;
               Point newPoint;
-              Point point  = p_tas.getPointChargement().getPoint();
+              Point point = p_tas.getPointChargement().getPoint();
               int moveX = point.x;
               int moveY = point.y;
 
               @Override
               public void actionPerformed(ActionEvent e) {
-                  if (pauseSimulation) {
-                      System.out.println("Simulation en pause");
-                  }else if (count < maxSizeCamionRetour && !pauseSimulation) {
-                      if (count == 0) {
-                         angle = angleOf(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
-                          newPoint =
-                                  new Point(
-                                          cheminCamionRetour.get(count).getPoint().x
-                                                  - p_tas.getPointChargement().getPoint().x,
-                                          cheminCamionRetour.get(count).getPoint().y
-                                                  - p_tas.getPointChargement().getPoint().y);
-                      } else {
-                           angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
-                          newPoint =
-                                  new Point(
-                                          cheminCamionRetour.get(count).getPoint().x
-                                                  - cheminCamionRetour.get(count - 1).getPoint().x,
-                                          cheminCamionRetour.get(count).getPoint().y
-                                                  - cheminCamionRetour.get(count - 1).getPoint().y);
-                      }
-
-                      int cosinus  = (int) (-1 *  Math.cos(angle) * simulationSpeed);
-                      int sinus = (int) (-1 *  Math.sin(angle) * simulationSpeed);
-                      System.out.println(angle + " angle");
-                      System.out.println(cosinus + " cos");
-                      System.out.println(sinus + " sin");
-
-                      moveX = x - cosinus;
-                      moveY = y - sinus;
-                      System.out.println(moveX + " cos");
-                      System.out.println(moveY + " sin");
-
-                      x = x + newPoint.x / simulationSpeed;
-                      y = y + newPoint.y / simulationSpeed;
-                      p_camion.setPoint(new Point(moveX, moveY));
-                      drawingPanel.repaint();
-                      if (x <= cheminCamionRetour.get(count).getPoint().x) {
-                          count++;
-                      }
-
+                if (pauseSimulation) {
+                  System.out.println("Simulation en pause");
+                } else if (count < maxSizeCamionRetour && !pauseSimulation) {
+                  if (count == 0) {
+                    angle =
+                        angleOf(
+                            p_tas.getPointChargement().getPoint(),
+                            cheminCamionRetour.get(count).getPoint());
+                    newPoint =
+                        new Point(
+                            cheminCamionRetour.get(count).getPoint().x
+                                - p_tas.getPointChargement().getPoint().x,
+                            cheminCamionRetour.get(count).getPoint().y
+                                - p_tas.getPointChargement().getPoint().y);
                   } else {
+                    angle =
+                        angleOf(
+                            cheminCamionRetour.get(count - 1).getPoint(),
+                            cheminCamionRetour.get(count).getPoint());
+                    newPoint =
+                        new Point(
+                            cheminCamionRetour.get(count).getPoint().x
+                                - cheminCamionRetour.get(count - 1).getPoint().x,
+                            cheminCamionRetour.get(count).getPoint().y
+                                - cheminCamionRetour.get(count - 1).getPoint().y);
+                  }
+
+                  int cosinus = (int) (-1 * Math.cos(angle) * simulationSpeed);
+                  int sinus = (int) (-1 * Math.sin(angle) * simulationSpeed);
+                  System.out.println(angle + " angle");
+                  System.out.println(cosinus + " cos");
+                  System.out.println(sinus + " sin");
+
+                  moveX = x - cosinus;
+                  moveY = y - sinus;
+                  System.out.println(moveX + " cos");
+                  System.out.println(moveY + " sin");
+
+                  x = x + newPoint.x / simulationSpeed;
+                  y = y + newPoint.y / simulationSpeed;
+                  p_camion.setPoint(new Point(moveX, moveY));
+                  drawingPanel.repaint();
+                  if (x <= cheminCamionRetour.get(count).getPoint().x) {
+                    count++;
+                  }
+
+                } else {
                   ((Timer) e.getSource()).stop();
                   genererFacture(p_camion, p_camion.getJeton());
                 }
@@ -1579,38 +2085,36 @@ public class MainWindow extends JFrame {
   }
 
   public void genererFacture(Camion camionCourant, Jeton jetonCamion) {
-      camionCourant.changeEtat("FACTURE");
+    camionCourant.changeEtat("FACTURE");
+
+    TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
+
+    Facture factureCamion = new Facture(jetonCamion.getCodeProduit(), jetonCamion.getQuantite());
+
+    camionCourant.setFacture(factureCamion);
+
+    double prixFacture = camionCourant.getFacture().getPrice();
+
+    TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture + "$");
+
+    camionCourant.payeFacture();
+
+    if (camionCourant.verifierFacturePayer()) {
+      TextSimulation.append(
+          "\n\nLa facture a bien été payée, la simulation est fini pour le camion : "
+              + jetonCamion.getRefClient());
+
+      camionCourant.changeEtat("PAYÉ");
 
       TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
 
-      Facture factureCamion = new Facture(jetonCamion.getCodeProduit(), jetonCamion.getQuantite());
+      TextSimulation.append(
+          "\n\nFin de la simulation pour le camion : " + jetonCamion.getRefClient());
 
-      camionCourant.setFacture(factureCamion);
-
-      double prixFacture = camionCourant.getFacture().getPrice();
-
-      TextSimulation.append("\n\nLa facture s'éleve à un montant de  :  " + prixFacture + "$");
-
-      camionCourant.payeFacture();
-
-      if (camionCourant.verifierFacturePayer()){
-          TextSimulation.append("\n\nLa facture a bien été payée, la simulation est fini pour le camion : " + jetonCamion.getRefClient());
-
-          camionCourant.changeEtat("PAYÉ");
-
-          TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
-
-          TextSimulation.append("\n\nFin de la simulation pour le camion : " + jetonCamion.getRefClient());
-
-      } else {
-          TextSimulation.append("\n\nLa facture n'as pas bien été payé pour le camion  : " + jetonCamion.getRefClient());
-      }
-
-
-
-
-
-
+    } else {
+      TextSimulation.append(
+          "\n\nLa facture n'as pas bien été payé pour le camion  : " + jetonCamion.getRefClient());
+    }
   }
 
   private void jButton6ActionPerformed(
@@ -1651,7 +2155,7 @@ public class MainWindow extends JFrame {
     System.out.println("On se rend tu ici");
     Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation());
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
-      double angle = Double.parseDouble(angleSpinner.getText());
+    double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.BROYEUR, point, angle);
     drawingPanel.repaint();
   }
@@ -1659,7 +2163,7 @@ public class MainWindow extends JFrame {
   private void ajoutCribleViaPopup(java.awt.event.ActionEvent evt) {
     Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation());
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
-      double angle = Double.parseDouble(angleSpinner.getText());
+    double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.CRIBLE, point, angle);
     drawingPanel.repaint();
   }
@@ -1667,8 +2171,8 @@ public class MainWindow extends JFrame {
   private void ajoutConcasseurViaPopup(java.awt.event.ActionEvent evt) {
     Point newPoint = new Point(MouseInfo.getPointerInfo().getLocation());
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
-      double angle = Double.parseDouble(angleSpinner.getText());
-    controller.addEquipement(EquipementModes.CONCASSEUR, point ,angle);
+    double angle = Double.parseDouble(angleSpinner.getText());
+    controller.addEquipement(EquipementModes.CONCASSEUR, point, angle);
     drawingPanel.repaint();
   }
 
@@ -1919,9 +2423,10 @@ public class MainWindow extends JFrame {
     for (Equipement equipement : equipements) {
       if (equipement.getName().equals("Tas")) {
         if (equipement.isSelected()) {
-          equipement.setPoint(point);
-          equipement.setMaterialCode(newCode);
-          equipement.setDimension(dimension);
+          Tas tas = (Tas) equipement;
+          tas.setPoint(point);
+          tas.setMaterialCode(newCode);
+          tas.setDimension(dimension);
         }
       }
     }
@@ -2008,7 +2513,7 @@ public class MainWindow extends JFrame {
   public void rafraichissementTextField() {
     jTextArea1.setText("");
     jTextField2.setText("0");
-      angleSpinner.setText("0");
+    angleSpinner.setText("0");
     textFieldCoordonneeX.setText("");
     textFieldCoordonneeY.setText("");
     dimensionTas.setText("");
@@ -2045,13 +2550,14 @@ public class MainWindow extends JFrame {
         String angleText = String.format("%f", equipement.getAngle());
         jTextArea1.append(nom + xCoord + yCoord + angle);
         jTextField2.setText(nombreTotal);
-          angleSpinner.setText(angleText);
+        angleSpinner.setText(angleText);
 
         if (equipement.getName().equals("Tas")) {
-          String x = String.format("%d", (int) equipement.getX());
-          String y = String.format("%d", (int) equipement.getY());
-          String code = equipement.getMaterialCode();
-          String dimension = String.format("%d", equipement.getDimension());
+          Tas tas = (Tas) equipement;
+          String x = String.format("%d", (int) tas.getX());
+          String y = String.format("%d", (int) tas.getY());
+          String code = tas.getMaterialCode();
+          String dimension = String.format("%d", tas.getDimension());
           jTextArea1.append("\n Code du matériau : " + code);
           textFieldCoordonneeX.setText(x);
           textFieldCoordonneeY.setText(y);
@@ -2225,7 +2731,7 @@ public class MainWindow extends JFrame {
             (int) (this.initMousePoint.getY() / drawingPanel.getGapGrille())
                 * (int) drawingPanel.getGapGrille();
         Point apoint = new Point(coordX, coordY);
-          double angle = Double.parseDouble(angleSpinner.getText());
+        double angle = Double.parseDouble(angleSpinner.getText());
         Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
         this.controller.addEquipement(actualEquipement, apoint, angle);
         drawingPanel.repaint();
@@ -2399,98 +2905,98 @@ public class MainWindow extends JFrame {
   private JMenuItem ajoutCriblePopup = new JMenuItem("Ajouter un crible");
   private JMenuItem ajoutConcasseurPopup = new JMenuItem("Ajouter un concasseur");
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField NomClient;
-    private javax.swing.JButton StartSimulation;
-    private javax.swing.JTextArea TextSimulation;
-    private javax.swing.JButton addCamion;
-    private javax.swing.JMenu affichageMenu;
-    private javax.swing.JToggleButton ajoutChargeur;
-    private javax.swing.JButton ajoutChargeurCoord;
-    private javax.swing.JButton ajoutModifChargeur;
-    private javax.swing.JToggleButton ajoutNoeud;
-    private javax.swing.JButton ajoutNoeudCoord;
-    private javax.swing.JButton ajoutNoeudCoordButton;
-    private javax.swing.JToggleButton ajoutTas;
-    private javax.swing.JButton ajoutTasCoordButton;
-    private javax.swing.JTextField angleSpinner;
-    private javax.swing.JButton arcButton;
-    private javax.swing.JButton boutonChemin;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> comboBoxMateriaux;
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JButton deleteSimul;
-    private javax.swing.JTextField dimensionTas;
-    private virtucarriere.gui.DrawingPanel drawingPanel;
-    private javax.swing.JMenu editionMenu;
-    private javax.swing.JButton entreeButton;
-    private javax.swing.JButton fasterSimulation;
-    private javax.swing.JMenu fenetreMenu;
-    private javax.swing.JMenu fichierMenu;
-    private javax.swing.JMenuItem importImage;
-    private javax.swing.JMenu importerMenu;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JScrollPane mainScrollPane;
-    private javax.swing.JComboBox<String> materiauxComboBox;
-    private javax.swing.JMenuItem menuAffichageGrille;
-    private javax.swing.JMenuItem menuColler;
-    private javax.swing.JMenuItem menuCopier;
-    private javax.swing.JMenuItem menuCouper;
-    private javax.swing.JMenuItem menuNouveauProjet;
-    private javax.swing.JMenuItem menuOuvrirProjet;
-    private javax.swing.JMenuItem menuQuitter;
-    private javax.swing.JMenuItem menuRedo;
-    private javax.swing.JMenuItem menuSauvegarderProjet;
-    private javax.swing.JMenuItem menuSauvegarderSous;
-    private javax.swing.JMenuItem menuUndo;
-    private javax.swing.JToggleButton modeSelection;
-    private javax.swing.JButton modifierAngle;
-    private javax.swing.JButton modifierCamion;
-    private javax.swing.JMenuItem modifierGrille;
-    private javax.swing.JButton pauseRestartSimulation;
-    private javax.swing.JSpinner quantiteSpinner;
-    private javax.swing.JMenuItem resetGrille;
-    private javax.swing.JMenuItem resetImage;
-    private javax.swing.JToggleButton selectionSimul;
-    private javax.swing.JButton slowSimulation;
-    private javax.swing.JTextField textFieldCoordonneeX;
-    private javax.swing.JTextField textFieldCoordonneeY;
-    private javax.swing.JTextField xCoordSimul;
-    private javax.swing.JTextField yCoordSimul;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTextField NomClient;
+  private javax.swing.JButton StartSimulation;
+  private javax.swing.JTextArea TextSimulation;
+  private javax.swing.JButton addCamion;
+  private javax.swing.JMenu affichageMenu;
+  private javax.swing.JToggleButton ajoutChargeur;
+  private javax.swing.JButton ajoutChargeurCoord;
+  private javax.swing.JButton ajoutModifChargeur;
+  private javax.swing.JToggleButton ajoutNoeud;
+  private javax.swing.JButton ajoutNoeudCoord;
+  private javax.swing.JButton ajoutNoeudCoordButton;
+  private javax.swing.JToggleButton ajoutTas;
+  private javax.swing.JButton ajoutTasCoordButton;
+  private javax.swing.JTextField angleSpinner;
+  private javax.swing.JButton arcButton;
+  private javax.swing.JButton boutonChemin;
+  private javax.swing.ButtonGroup buttonGroup1;
+  private javax.swing.JComboBox<String> comboBoxMateriaux;
+  private javax.swing.JButton deleteButton;
+  private javax.swing.JButton deleteSimul;
+  private javax.swing.JTextField dimensionTas;
+  private virtucarriere.gui.DrawingPanel drawingPanel;
+  private javax.swing.JMenu editionMenu;
+  private javax.swing.JButton entreeButton;
+  private javax.swing.JButton fasterSimulation;
+  private javax.swing.JMenu fenetreMenu;
+  private javax.swing.JMenu fichierMenu;
+  private javax.swing.JMenuItem importImage;
+  private javax.swing.JMenu importerMenu;
+  private javax.swing.JButton jButton2;
+  private javax.swing.JComboBox<String> jComboBox1;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel10;
+  private javax.swing.JLabel jLabel11;
+  private javax.swing.JLabel jLabel12;
+  private javax.swing.JLabel jLabel13;
+  private javax.swing.JLabel jLabel14;
+  private javax.swing.JLabel jLabel15;
+  private javax.swing.JLabel jLabel16;
+  private javax.swing.JLabel jLabel17;
+  private javax.swing.JLabel jLabel18;
+  private javax.swing.JLabel jLabel19;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel20;
+  private javax.swing.JLabel jLabel21;
+  private javax.swing.JLabel jLabel22;
+  private javax.swing.JLabel jLabel23;
+  private javax.swing.JLabel jLabel24;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
+  private javax.swing.JLabel jLabel6;
+  private javax.swing.JLabel jLabel7;
+  private javax.swing.JLabel jLabel8;
+  private javax.swing.JLabel jLabel9;
+  private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
+  private javax.swing.JPanel jPanel3;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JTabbedPane jTabbedPane;
+  private javax.swing.JTextArea jTextArea1;
+  private javax.swing.JTextField jTextField2;
+  private javax.swing.JPanel mainPanel;
+  private javax.swing.JScrollPane mainScrollPane;
+  private javax.swing.JComboBox<String> materiauxComboBox;
+  private javax.swing.JMenuItem menuAffichageGrille;
+  private javax.swing.JMenuItem menuColler;
+  private javax.swing.JMenuItem menuCopier;
+  private javax.swing.JMenuItem menuCouper;
+  private javax.swing.JMenuItem menuNouveauProjet;
+  private javax.swing.JMenuItem menuOuvrirProjet;
+  private javax.swing.JMenuItem menuQuitter;
+  private javax.swing.JMenuItem menuRedo;
+  private javax.swing.JMenuItem menuSauvegarderProjet;
+  private javax.swing.JMenuItem menuSauvegarderSous;
+  private javax.swing.JMenuItem menuUndo;
+  private javax.swing.JToggleButton modeSelection;
+  private javax.swing.JButton modifierAngle;
+  private javax.swing.JButton modifierCamion;
+  private javax.swing.JMenuItem modifierGrille;
+  private javax.swing.JButton pauseRestartSimulation;
+  private javax.swing.JSpinner quantiteSpinner;
+  private javax.swing.JMenuItem resetGrille;
+  private javax.swing.JMenuItem resetImage;
+  private javax.swing.JToggleButton selectionSimul;
+  private javax.swing.JButton slowSimulation;
+  private javax.swing.JTextField textFieldCoordonneeX;
+  private javax.swing.JTextField textFieldCoordonneeY;
+  private javax.swing.JTextField xCoordSimul;
+  private javax.swing.JTextField yCoordSimul;
+  // End of variables declaration//GEN-END:variables
 }

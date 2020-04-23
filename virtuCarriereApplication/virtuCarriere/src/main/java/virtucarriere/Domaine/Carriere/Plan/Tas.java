@@ -99,7 +99,6 @@ public class Tas extends Equipement {
     return color;
   }
 
-  @Override
   public String getMaterialCode() {
     return materialCode;
   }
@@ -108,7 +107,6 @@ public class Tas extends Equipement {
     return quantite;
   }
 
-  @Override
   public void setMaterialCode(String newCode) {
     this.materialCode = newCode;
   }
