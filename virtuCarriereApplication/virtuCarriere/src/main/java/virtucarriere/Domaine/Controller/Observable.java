@@ -14,11 +14,11 @@ import java.util.ArrayList;
  */
 public interface Observable {
   
-  List<Object> observerList = new ArrayList<Object>();
+  List<Observer> observerList = new ArrayList<Observer>();
   
-  public void addObserver(Object object);
+  public void addObserver(Observer observer);
   
-  public void removeObserver(Object object);
+  public void removeObserver(Observer observer);
   
   public void notifyObservers();
 }

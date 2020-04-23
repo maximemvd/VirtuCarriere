@@ -7,8 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
+import virtucarriere.Domaine.Controller.Observable;
+import virtucarriere.Domaine.Controller.Observer;
 
-public class Plan implements Serializable {
+public class Plan implements Serializable, Observable {
 
   GraphConvoyeur equipments;
   GraphChemins chemins;
@@ -22,6 +24,21 @@ public class Plan implements Serializable {
     noeudsForArcList = new LinkedList<>();
     equipementForConvList = new LinkedList<>();
     pointsForArcList = new LinkedList<>();
+  }
+  
+  @Override
+  public void notifyObservers(){
+      
+  }
+  
+  @Override
+  public void addObserver(Observer observer){
+      
+  }
+  
+  @Override
+  public void removeObserver(){
+      
   }
 
   public void addArc(Point point) {
