@@ -92,16 +92,12 @@ public class Simulation implements Serializable {
   }
 
   public void switchSelectionStatus(double x, double y) {
-    for (Camion item : camionList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-    for (Chargeur item : this.chargeurList) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
+    camionList.stream()
+        .filter(camion -> camion.contains(x, y))
+        .forEach(Vehicule::switchSelectionStatus);
+    chargeurList.stream()
+        .filter(chargeur -> chargeur.contains(x, y))
+        .forEach(Chargeur::switchSelectionStatus);
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
