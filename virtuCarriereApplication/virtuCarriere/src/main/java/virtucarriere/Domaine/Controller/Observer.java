@@ -12,7 +12,5 @@ package virtucarriere.Domaine.Controller;
 public interface Observer {
     
   public void update();
-  
-  public void setObervable(Observable observable);
     
 }
