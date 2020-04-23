@@ -1,0 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package virtucarriere.Domaine.Controller;
+
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Francis_Boulianne
+ */
+public interface Observable {
+  
+  List<Object> observerList = new ArrayList<Object>();
+  
+  public void addObserver(Object object);
+  
+  public void removeObserver(Object object);
+  
+  public void notifyObservers();
+}
