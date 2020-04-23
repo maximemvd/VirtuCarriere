@@ -1930,6 +1930,7 @@ public class MainWindow extends JFrame {
                       chargeur_x = chargeur_x + (int) (Math.cos(angleChargeur) * simulationSpeed);
                       chargeur_y = chargeur_y + (int) (Math.sin(angleChargeur) * simulationSpeed);
                       courantChargeur.setPoint(new Point(chargeur_x, chargeur_y));
+                      courantChargeur.setAngle(Math.toDegrees(angleChargeur));
                       drawingPanel.repaint();
                       if (chargeur_x >= cheminChargeur.get(chargeurCount).getPoint().x) {
                         chargeurCount++;
@@ -1947,6 +1948,7 @@ public class MainWindow extends JFrame {
                       x = x + (int) (Math.cos(angle) * simulationSpeed);
                       y = y + (int) (Math.sin(angle) * simulationSpeed);
                       camionCourant.setPoint(new Point(x, y));
+                      camionCourant.setAngle(Math.toDegrees(angle));
                       drawingPanel.repaint();
                       if (x >= cheminCamionAller.get(count).getPoint().x) {
                         count++;
@@ -2071,6 +2073,7 @@ public class MainWindow extends JFrame {
                   x = x + newPoint.x / simulationSpeed;
                   y = y + newPoint.y / simulationSpeed;
                   p_camion.setPoint(new Point(moveX, moveY));
+                  p_camion.setAngle(Math.toDegrees(angle));
                   drawingPanel.repaint();
                   if (x <= cheminCamionRetour.get(count).getPoint().x) {
                     count++;
@@ -2197,7 +2200,7 @@ public class MainWindow extends JFrame {
         index++;
       }
 
-      Point newPoint = new Point(point.x - (100 * index), point.y);
+      Point newPoint = new Point(point.x - (70 * index), point.y);
 
       controller.addCamion(newPoint, nomClient, materiau, quantite);
       drawingPanel.repaint();

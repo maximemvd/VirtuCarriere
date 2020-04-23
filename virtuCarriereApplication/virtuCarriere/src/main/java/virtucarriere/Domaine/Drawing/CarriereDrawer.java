@@ -116,20 +116,20 @@ public class CarriereDrawer {
           if (chargeur.isSelected()) {
             g2d.drawImage(
                 imageChargeurSelected,
-                (int) vehiculePoint.getX() - 50,
-                (int) vehiculePoint.getY() - 33,
-                100,
-                65,
+                (int) vehiculePoint.getX() - 22,
+                (int) vehiculePoint.getY() - 19,
+                50,
+                35,
                 null);
 
           } else {
 
             g2d.drawImage(
                 imageChargeur,
-                (int) vehiculePoint.getX() - 50,
-                (int) vehiculePoint.getY() - 33,
-                100,
-                65,
+                (int) vehiculePoint.getX() - 22,
+                (int) vehiculePoint.getY() - 19,
+                50,
+                35,
                 null);
           }
         });
@@ -150,11 +150,11 @@ public class CarriereDrawer {
       double angleRad = Math.toRadians(angle);
       if (camion.isSelected()) {
         imageCamionSelected = rotate(imageCamionSelected, angleRad);
-        g2d.drawImage(imageCamionSelected, (camionPointX - 50), camionPointY - 33, 100, 65, null);
+        g2d.drawImage(imageCamionSelected, (camionPointX - 26), camionPointY - 25, 60, 45, null);
 
       } else {
         imageCamion = rotate(imageCamion, angleRad);
-        g2d.drawImage(imageCamion, (camionPointX - 50), camionPointY - 33, 100, 65, null);
+        g2d.drawImage(imageCamion, (camionPointX - 26), camionPointY - 25, 60, 45, null);
 
       }
     }
@@ -163,26 +163,17 @@ public class CarriereDrawer {
 
   // Code inspiré de https://stackoverflow.com/questions/4156518/rotate-an-image-in-java
   public static BufferedImage rotate(BufferedImage image, double angle) {
-    double rads = Math.toRadians(angle);
-    double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
-    int w = image.getWidth();
-    int h = image.getHeight();
-    int newWidth = (int) Math.floor(w * cos + h * sin);
-    int newHeight = (int) Math.floor(h * cos + w * sin);
-
-    BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-    Graphics2D g2d = rotated.createGraphics();
-    AffineTransform at = new AffineTransform();
-    at.translate((newWidth - w) / 2, (newHeight - h) / 2);
-
-    int x = w / 2;
-    int y = h / 2;
-
-    at.rotate(rads, x, y);
-    g2d.setTransform(at);
-    g2d.drawImage(image, 0, 0, null);
-    g2d.dispose();
-    return rotated;
+    double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
+    int w = image.getWidth(), h = image.getHeight();
+    int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
+    GraphicsConfiguration gc = getDefaultConfiguration();
+    BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
+    Graphics2D g = result.createGraphics();
+    g.translate((neww - w) / 2, (newh - h) / 2);
+    g.rotate(angle, w / 2, h / 2);
+    g.drawRenderedImage(image, null);
+    g.dispose();
+    return result;
   }
 
   private static GraphicsConfiguration getDefaultConfiguration() {
