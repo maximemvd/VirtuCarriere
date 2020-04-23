@@ -7,8 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
-import virtucarriere.Domaine.Controller.Observable;
-import virtucarriere.Domaine.Controller.Observer;
+import virtucarriere.Domaine.Controller.*;
 
 public class Plan implements Serializable, Observable {
 
@@ -25,6 +24,10 @@ public class Plan implements Serializable, Observable {
     noeudsForArcList = new LinkedList<>();
     equipementForConvList = new LinkedList<>();
     pointsForArcList = new LinkedList<>();
+  }
+  
+  public void initObservers(Controller controller){
+      equipments.addObserver(controller);
   }
   
   @Override
@@ -120,7 +123,6 @@ public class Plan implements Serializable, Observable {
 
   public void addEquipment(Equipement equipement) {
     equipments.addEnd(equipement);
-    notifyObservers();
   }
 
   public void addBroyeur(Point mousePoint, double angle) {

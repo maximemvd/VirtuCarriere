@@ -3,11 +3,31 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import virtucarriere.Domaine.Controller.*;
 
-public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> implements Serializable {
+public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> implements Serializable, Observable {
 
+  private List<Observer> observerList = new ArrayList<>();  
+  
   private boolean hasDependencies() {
     return false;
+  }
+  
+  @Override
+  public void notifyObservers(){
+    for (Observer observer : this.observerList){
+      observer.update();
+    }
+  }
+  
+  @Override
+  public void addObserver(Observer observer){
+    this.observerList.add(observer);
+  }
+  
+  @Override
+  public void removeObserver(Observer observer){
+    this.observerList.remove(observer);
   }
 
   @Override
@@ -17,6 +37,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     }
     ends.add(end);
     links.add(new ArrayList<Convoyeur>());
+    notifyObservers();
   }
 
   @Override
@@ -43,6 +64,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
       int index = ends.indexOf(end);
       ends.remove(end);
       links.remove(links.elementAt(index));
+      notifyObservers();
 
     } else {
       throw new RuntimeException("Ce noeud n'existe pas");
@@ -61,6 +83,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     }
     int index = ends.indexOf(link.getStarting());
     links.elementAt(index).add(link);
+    notifyObservers();
   }
 
   private boolean isValidLink(Equipement start, List<Equipement> end) {

@@ -50,11 +50,11 @@ public class Controller implements Serializable, Observer {
 
   public Controller() {
     elementContainer = new ElementContainer();
-    elementContainer.initObserver();
+    //elementContainer.initObserver();
   }
   
   public void initObserver(){
-      this.elementContainer.addObserver(this);
+      this.elementContainer.initObserver(this);
   }
   
   @Override
@@ -416,11 +416,11 @@ public class Controller implements Serializable, Observer {
     if (choix == 0) {
       save();
       this.elementContainer = new ElementContainer();
-      elementContainer.initObserver();
+      //elementContainer.initObserver();
     }
     if (choix == 1) {
       this.elementContainer = new ElementContainer();
-      elementContainer.initObserver();
+      //elementContainer.initObserver();
     }
   }
 

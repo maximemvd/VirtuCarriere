@@ -36,9 +36,14 @@ public class ElementContainer implements Serializable, Observer, Observable {
   private URL url = null;
   private List<Observer> observerList = new ArrayList<>();
   
+  
+  public void initObserver(Controller controller){
+    plan.initObservers(controller);
+  }
+  
   @Override
   public void update(){
-      notifyObservers();
+    notifyObservers();
   }
   
   @Override
@@ -58,9 +63,9 @@ public class ElementContainer implements Serializable, Observer, Observable {
     this.observerList.remove(observer);
   }
   
-  public void initObserver(){
+  /*public void initObserver(){
       this.plan.addObserver(this);
-  }
+  }*/
 
   public URL getBackGroundUrl() {
     return url;
