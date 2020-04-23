@@ -16,8 +16,6 @@ public class Plan implements Serializable {
   List<Equipement> equipementForConvList;
   List<AbstractPointChemin> pointsForArcList;
 
-  private Entree entree = new Entree(new Point(4000, 4000), 4, 5, 4);
-
   public Plan() {
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
@@ -340,41 +338,9 @@ public class Plan implements Serializable {
   }
 
   public void switchSelectionStatus(double x, double y) {
-    for (Element item : getEquipements()) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-
-    for (Element item : getNoeuds()) {
-      if (item.contains(x, y)) {
-        item.switchSelectionStatus();
-      }
-    }
-
-    for (List<Arc> listOfArc : getArcs()) {
-      for (Arc item : listOfArc) {
-        if (item.contains(x, y)) {
-          item.switchSelectionStatus();
-        }
-      }
-    }
-
-    for (List<Convoyeur> listOfConvoyeur : getConvoyeurs()) {
-      for (Convoyeur item : listOfConvoyeur) {
-        Equipement starting = item.getStarting();
-        Equipement arrival = item.getArrival();
-
-        double xPosStarting = starting.getX();
-        double yPosStarting = starting.getY();
-        double xPosArrival = arrival.getX();
-        double yPosArrival = arrival.getY();
-
-        if (item.containsConvoyeur(x, y, xPosStarting, yPosStarting, xPosArrival, yPosArrival)) {
-          item.switchSelectionStatus();
-        }
-      }
-    }
+    getAllElements().stream()
+        .filter(element -> element.contains(x, y))
+        .forEach(Element::switchSelectionStatus);
   }
 
   public void removePlan(Element element) {
