@@ -11,8 +11,9 @@ import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
+import virtucarriere.Domaine.Controller.*;
 
-public class Simulation implements Serializable {
+public class Simulation implements Serializable, Observable {
 
   private GraphChemins graphChemin;
   private AlgoChemin algoChemin;
@@ -21,6 +22,7 @@ public class Simulation implements Serializable {
   private Chargeur chargeurCourant;
   private boolean simulationAnimation;
   private double simulationSpeed;
+  List<Observer> observerList = new ArrayList<>();
 
   public Simulation() {
     simulationSpeed = 2;
@@ -28,6 +30,23 @@ public class Simulation implements Serializable {
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
     algoChemin = new AlgoChemin(graphChemin);
+  }
+  
+  @Override
+  public void notifyObservers(){
+    for (Observer observer : this.observerList){
+      observer.update();
+    }
+  }
+  
+  @Override
+  public void addObserver(Observer observer){
+    this.observerList.add(observer);
+  }
+  
+  @Override
+  public void removeObserver(Observer observer){
+    this.observerList.remove(observer);
   }
 
   public void setGraphCheminSimulation(GraphChemins p_graphChemin) {
@@ -66,6 +85,7 @@ public class Simulation implements Serializable {
       Jeton jeton = new Jeton(client, produit, quantite);
       Camion camionSimulation = new Camion(jeton, point, 0); // create camion
       camionList.add(camionSimulation);
+      notifyObservers();
     } catch (Exception exception) {
       System.out.println(exception);
     }
@@ -74,6 +94,7 @@ public class Simulation implements Serializable {
   public void removeCamion(Camion p_camion) {
     try {
       camionList.remove(p_camion);
+      notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -113,6 +134,7 @@ public class Simulation implements Serializable {
     try {
       Chargeur p_chargeur = new Chargeur(p_point, 0);
       chargeurList.add(p_chargeur);
+      notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -129,6 +151,7 @@ public class Simulation implements Serializable {
   public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
+      notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }

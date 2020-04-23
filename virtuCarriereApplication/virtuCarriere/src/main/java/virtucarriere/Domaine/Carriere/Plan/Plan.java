@@ -28,6 +28,7 @@ public class Plan implements Serializable, Observable {
   
   public void initObservers(Controller controller){
       equipments.addObserver(controller);
+      chemins.addObserver(controller);
   }
   
   @Override
