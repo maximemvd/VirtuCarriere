@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public abstract class Element implements Serializable {
 
-  private Point point;
+  protected Point point;
   private int width;
   private int length;
   private boolean selectionStatus;

@@ -17,7 +17,6 @@ public class Tas extends Equipement {
   private int dimension;
   private Color color;
   private double quantite;
-  private Point point;
 
   private Noeud noeudTas;
 
@@ -28,7 +27,6 @@ public class Tas extends Equipement {
   // TODO add attribut point de chargement;
   public Tas(Point point, int p_width, int p_length, String materialCode, int dimension) {
     super(point, p_width, p_length, 0, Collections.emptyList());
-    this.point = point;
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.DARK_GRAY;
@@ -56,14 +54,13 @@ public class Tas extends Equipement {
   }
 
   @Override
-  public void setPoint(int p_x, int p_y) {
-    point = new Point(p_x, p_y);
-    Point newPoint = new Point(p_x - 25, p_y + 15);
-    this.pointChargement = new PointChargement(newPoint, 3, 3);
+  public void setPoint(Point newPoint) {
+    this.point = newPoint;
+    Point newPointChargement = new Point((int) newPoint.getX() - 25, (int) newPoint.getY() + 15);
+    setPointChargement(newPointChargement);
   }
 
-  public void setPointChargement(int p_x, int p_y) {
-    Point newPoint = new Point(p_x - 25, p_y + 15);
+  public void setPointChargement(Point newPoint) {
     this.pointChargement = new PointChargement(newPoint, 3, 3);
   }
 
@@ -91,20 +88,12 @@ public class Tas extends Equipement {
     return index == listMateriau.size();
   }
 
-  public List<String> getListMateriau() {
-    return listMateriau;
-  }
-
   public Color getColor() {
     return color;
   }
 
   public String getMaterialCode() {
     return materialCode;
-  }
-
-  public double getQuantite() {
-    return quantite;
   }
 
   public void setMaterialCode(String newCode) {
