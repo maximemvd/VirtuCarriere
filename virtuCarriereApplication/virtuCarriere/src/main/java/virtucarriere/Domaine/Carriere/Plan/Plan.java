@@ -105,7 +105,7 @@ public class Plan implements Serializable {
   }
 
   public void addBroyeur(Point mousePoint, double angle) {
-    Broyeur broyeur = new Broyeur(mousePoint, 1, 1,  angle);
+    Broyeur broyeur = new Broyeur(mousePoint, 1, 1, angle);
     if (isElementPresent(broyeur)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
@@ -263,7 +263,7 @@ public class Plan implements Serializable {
   }
 
   public void addEntree(Point mousePoint) {
-    entree = new Entree(mousePoint, 100, 100, 0);
+    Entree entree = new Entree(mousePoint, 100, 100, 0);
     chemins.addEnd(entree);
   }
 
@@ -289,7 +289,9 @@ public class Plan implements Serializable {
             .filter(element -> element.getPoint() == point)
             .findFirst()
             .orElse(null);
-    if (returnElement == null) throw new RuntimeException("Aucun element a cette position");
+    if (returnElement == null) {
+      throw new RuntimeException("Aucun element a cette position");
+    }
     return returnElement;
   }
 
@@ -312,10 +314,6 @@ public class Plan implements Serializable {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
       }
-    }
-
-    if (entree.isSelected()) {
-      entree.translate(deltaX, deltaY);
     }
   }
 
@@ -414,11 +412,17 @@ public class Plan implements Serializable {
   }
 
   public Entree getEntree() {
+    Entree entree =
+        (Entree)
+            chemins.getEnds().stream()
+                .filter(abstractPointChemin -> abstractPointChemin instanceof Entree)
+                .findFirst()
+                .orElse(null);
     return entree;
   }
 
   public Point getEntreePoint() {
-    return entree.getPoint();
+    return getEntree().getPoint();
   }
 
   public List<Element> getSelected() {
