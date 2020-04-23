@@ -498,8 +498,11 @@ public class MainWindow extends JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ajoutTasCoordButton)
-                                    .addComponent(jButton2))
-                                .addGap(30, 30, 30))
+                                    .addComponent(jButton2)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(modifierAngle)))
+                                .addGap(24, 24, 24))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(modeSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -537,9 +540,7 @@ public class MainWindow extends JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addGap(18, 18, 18)
-                                .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(modifierAngle))
+                                .addComponent(angleSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
@@ -1063,7 +1064,7 @@ public class MainWindow extends JFrame {
       drawingPanel.repaint();
     }//GEN-LAST:event_menuRedoActionPerformed
 
-    private void modifierAngleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierAngleActionPerformed
+    private void modifierAngleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_modifierAngleActionPerformed
         List<Equipement> equipements = controller.getEquipementList();
         
         double angle = Double.parseDouble(angleSpinner.getText());
@@ -2007,6 +2008,7 @@ public class MainWindow extends JFrame {
   public void rafraichissementTextField() {
     jTextArea1.setText("");
     jTextField2.setText("0");
+      angleSpinner.setText("0");
     textFieldCoordonneeX.setText("");
     textFieldCoordonneeY.setText("");
     dimensionTas.setText("");
@@ -2038,9 +2040,12 @@ public class MainWindow extends JFrame {
         String nom = String.format("\nCoordonnées du %s", equipement.getName());
         String xCoord = String.format(":\n x : %d", (int) equipement.getX());
         String yCoord = String.format(", y : %d", (int) equipement.getY());
+        String angle = String.format(", angle : %f", equipement.getAngle());
         String nombreTotal = String.format("%d", numTotal);
-        jTextArea1.append(nom + xCoord + yCoord);
+        String angleText = String.format("%f", equipement.getAngle());
+        jTextArea1.append(nom + xCoord + yCoord + angle);
         jTextField2.setText(nombreTotal);
+          angleSpinner.setText(angleText);
 
         if (equipement.getName().equals("Tas")) {
           String x = String.format("%d", (int) equipement.getX());
