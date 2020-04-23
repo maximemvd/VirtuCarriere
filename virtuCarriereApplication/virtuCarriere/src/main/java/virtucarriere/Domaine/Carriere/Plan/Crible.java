@@ -35,9 +35,4 @@ public class Crible extends Equipement {
   }
 
   public void setDimension(int newDimension) {}
-
-  @Override
-  public PointChargement getPointChargement() {
-    return null;
-  }
 }

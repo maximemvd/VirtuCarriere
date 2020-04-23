@@ -9,10 +9,6 @@ import java.awt.Color;
 import java.awt.Point;
 
 public class Noeud extends AbstractPointChemin {
-
-  private Color color;
-  private String name;
-
   public Noeud(Point point, int p_width, int p_length) {
     super(point, p_width, p_length, Color.CYAN);
     setName("Noeud");

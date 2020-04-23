@@ -21,11 +21,6 @@ public class Broyeur extends Equipement {
     setName("Broyeur");
   }
 
-  @Override
-  public PointChargement getPointChargement() {
-    return null;
-  }
-
   public int getDimension() {
     return 0;
   }

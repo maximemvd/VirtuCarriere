@@ -22,11 +22,6 @@ public class Concasseur extends Equipement {
     setName("Concasseur");
   }
 
-  @Override
-  public PointChargement getPointChargement() {
-    return null;
-  }
-
   public int getDimension() {
     return 0;
   }

@@ -305,7 +305,8 @@ public class Plan implements Serializable {
       if (item.isSelected()) {
         item.translate(deltaX, deltaY);
         if (item.getName().equals("Tas")) {
-          PointChargement pointChargement = item.getPointChargement();
+          Tas tas = (Tas) item;
+          PointChargement pointChargement = tas.getPointChargement();
           pointChargement.translate(deltaX, deltaY);
         }
       }
