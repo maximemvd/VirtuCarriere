@@ -58,7 +58,7 @@ public class Controller implements Serializable, Observer {
   
   @Override
   public void update(){
-    addElementToStack();
+    //addElementToStack();
   }
 
   public void addElementToStack() {
