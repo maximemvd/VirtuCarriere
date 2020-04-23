@@ -7,6 +7,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
+import static java.lang.Math.toRadians;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -50,10 +51,11 @@ public class Tas extends Equipement {
   }
 
   private List<Double> decalage() {
-    int offset = 10;
+    int offset = 20;
     double distance = dimension + offset;
-    double decalageX = distance * cos(getAngle());
-    double decalageY = distance * sin(getAngle());
+    double angleRadian = toRadians(getAngle());
+    double decalageX = distance * cos(angleRadian);
+    double decalageY = distance * sin(angleRadian);
     return Arrays.asList(decalageX, decalageY);
   }
 
