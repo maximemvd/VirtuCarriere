@@ -12,8 +12,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
@@ -26,7 +24,6 @@ import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
-import java.util.ArrayList;
 
 public class ElementContainer implements Serializable, Observer, Observable {
 
@@ -35,32 +32,31 @@ public class ElementContainer implements Serializable, Observer, Observable {
   static File file;
   private URL url = null;
   private List<Observer> observerList = new ArrayList<>();
-  
-  
-  public void initObserver(Controller controller){
+
+  public void initObserver(Controller controller) {
     plan.initObservers(controller);
     simulation.addObserver(controller);
   }
-  
+
   @Override
-  public void update(){
+  public void update() {
     notifyObservers();
   }
-  
+
   @Override
-  public void notifyObservers(){
-    for (Observer observer : this.observerList){
+  public void notifyObservers() {
+    for (Observer observer : this.observerList) {
       observer.update();
     }
   }
-  
+
   @Override
-  public void addObserver(Observer observer){
+  public void addObserver(Observer observer) {
     this.observerList.add(observer);
   }
-  
+
   @Override
-  public void removeObserver(Observer observer){
+  public void removeObserver(Observer observer) {
     this.observerList.remove(observer);
   }
 
@@ -72,7 +68,6 @@ public class ElementContainer implements Serializable, Observer, Observable {
     this.url = newUrl;
   }
 
-  // TODO add function to get element with argument point
   public void switchSelectionStatus(double x, double y, boolean isShiftDown) {
     plan.switchSelectionStatus(x, y);
   }

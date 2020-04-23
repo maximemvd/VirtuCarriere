@@ -26,25 +26,25 @@ public class Plan implements Serializable, Observable {
     pointsForArcList = new LinkedList<>();
   }
 
-  public void initObservers(Controller controller){
-      equipments.addObserver(controller);
-      chemins.addObserver(controller);
+  public void initObservers(Controller controller) {
+    equipments.addObserver(controller);
+    chemins.addObserver(controller);
   }
 
   @Override
-  public void notifyObservers(){
-    for (Observer observer : this.observerList){
+  public void notifyObservers() {
+    for (Observer observer : this.observerList) {
       observer.update();
     }
   }
 
   @Override
-  public void addObserver(Observer observer){
+  public void addObserver(Observer observer) {
     this.observerList.add(observer);
   }
 
   @Override
-  public void removeObserver(Observer observer){
+  public void removeObserver(Observer observer) {
     this.observerList.remove(observer);
   }
 
@@ -299,12 +299,6 @@ public class Plan implements Serializable, Observable {
     }
   }
 
-  public Element getElement(Element element) {
-    // TODO aller chercher
-
-    return element;
-  }
-
   public Element getElement(Point point) {
     Element returnElement =
         getAllElements().stream()
@@ -315,10 +309,6 @@ public class Plan implements Serializable, Observable {
       throw new RuntimeException("Aucun element a cette position");
     }
     return returnElement;
-  }
-
-  public void deleteSelected() {
-    // TODO delete les éléments sélectionnés
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
@@ -357,10 +347,6 @@ public class Plan implements Serializable, Observable {
     getAllElements().stream()
         .filter(element -> element.contains(x, y))
         .forEach(Element::switchSelectionStatus);
-  }
-
-  public void removePlan(Element element) {
-    // TODO implement remove element;
   }
 
   public void removeElement(Element element) {}
