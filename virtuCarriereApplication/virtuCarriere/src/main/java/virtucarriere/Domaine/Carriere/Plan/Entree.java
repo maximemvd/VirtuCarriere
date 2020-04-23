@@ -11,24 +11,12 @@ import java.awt.Point;
 /** @author maximemivilledeschenes */
 public class Entree extends AbstractPointChemin {
 
-  private double angle;
+  private Angle angle;
   private Color color;
-  private String name;
 
   public Entree(Point p_point, int p_width, int p_length, double p_angle) {
-    super(p_point, p_width, p_length);
-    this.angle = p_angle;
-    this.color = Color.DARK_GRAY;
-    this.name = "Entrée";
-  }
-
-  @Override
-  public Color getColor() {
-    return color;
-  }
-
-  @Override
-  public String getName() {
-    return name;
+    super(p_point, p_width, p_length, Color.DARK_GRAY);
+    this.angle = new Angle(p_angle);
+    setName("Entrée");
   }
 }

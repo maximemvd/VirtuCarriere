@@ -14,16 +14,7 @@ public class Noeud extends AbstractPointChemin {
   private String name;
 
   public Noeud(Point point, int p_width, int p_length) {
-    super(point, p_width, p_length);
-    this.color = Color.CYAN;
-    this.name = "Noeud";
-  }
-
-  public Color getColor() {
-    return color;
-  }
-
-  public String getName() {
-    return name;
+    super(point, p_width, p_length, Color.CYAN);
+    setName("Noeud");
   }
 }

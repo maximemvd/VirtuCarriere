@@ -11,17 +11,8 @@ import java.awt.Point;
 /** @author philippevincent */
 public class PointChargement extends AbstractPointChemin {
 
-  private Color color;
-
-  private Noeud noeud;
-
   public PointChargement(Point p_point, int p_width, int p_length) {
-    super(p_point, p_width, p_length);
-    this.color = Color.PINK;
+    super(p_point, p_width, p_length, Color.PINK);
     setName("Point de chargement");
-  }
-
-  public Color getColor() {
-    return color;
   }
 }
