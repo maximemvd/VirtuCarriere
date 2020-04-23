@@ -24,13 +24,19 @@ import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
+import virtucarriere.Domaine.Controller.Observable;
+import virtucarriere.Domaine.Controller.Observer;
 
-public class ElementContainer implements Serializable {
+public class ElementContainer implements Serializable, Observer {
 
   private Plan plan = new Plan();
   private Simulation simulation = new Simulation();
   static File file;
   private URL url = null;
+  
+  public void update(){
+      notifyObervers();
+  }
 
   public URL getBackGroundUrl() {
     return url;

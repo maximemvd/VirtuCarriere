@@ -21,7 +21,7 @@ import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
 
-public class Controller implements Serializable {
+public class Controller implements Serializable, Observer {
 
   private ElementContainer elementContainer;
   
@@ -50,6 +50,10 @@ public class Controller implements Serializable {
 
   public Controller() {
     elementContainer = new ElementContainer();
+  }
+  
+  public void update(){
+      addElementToStack();
   }
   
   public void addElementToStack() {
