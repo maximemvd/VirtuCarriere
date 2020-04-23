@@ -81,7 +81,7 @@ public class Tas extends Equipement {
 
   @Override
   public void setAngle(double p_angle) {
-    setAngle(p_angle);
+    super.setAngle(p_angle);
     pointChargement.setPoint(getNewPointPointChargement());
   }
 
