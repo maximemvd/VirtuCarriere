@@ -16,7 +16,6 @@ public class Tas extends Equipement {
   private String materialCode;
   private int dimension;
   private Color color;
-  private String name;
   private double quantite;
   private Point point;
 
@@ -33,7 +32,7 @@ public class Tas extends Equipement {
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.DARK_GRAY;
-    this.name = "Tas";
+    setName("Tas");
     this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
     Point newPoint = new Point(point.x - 55, point.y + 6);
@@ -98,11 +97,6 @@ public class Tas extends Equipement {
 
   public Color getColor() {
     return color;
-  }
-
-  @Override
-  public String getName() {
-    return name;
   }
 
   @Override

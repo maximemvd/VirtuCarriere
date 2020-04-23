@@ -46,8 +46,6 @@ public abstract class Equipement extends Element {
     angle.set(p_angle);
   }
 
-  public abstract String getName();
-
   public abstract PointChargement getPointChargement();
 
   public List<Class<? extends Equipement>> getDependency() {

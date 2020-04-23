@@ -14,7 +14,6 @@ public class Convoyeur extends AbstractLien<Equipement> {
   private Equipement arrival;
   private Equipement starting;
   private Color color;
-  private String name;
   private Noeud noeud;
 
   public Convoyeur(
@@ -24,7 +23,7 @@ public class Convoyeur extends AbstractLien<Equipement> {
     this.starting = starting;
     this.arrival = arrival;
     this.color = Color.YELLOW;
-    this.name = "Convoyeur";
+    setName("Convoyeur");
   }
 
   public void setStarting(Equipement starting) {
@@ -85,10 +84,5 @@ public class Convoyeur extends AbstractLien<Equipement> {
 
   public Color getColor() {
     return this.color;
-  }
-
-  @Override
-  public String getName() {
-    return name;
   }
 }

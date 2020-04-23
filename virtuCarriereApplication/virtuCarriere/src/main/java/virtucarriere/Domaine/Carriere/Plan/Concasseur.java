@@ -12,7 +12,6 @@ import java.util.List;
 
 public class Concasseur extends Equipement {
 
-  private String name;
   private static List<Class<? extends Equipement>> dependency =
       new ArrayList<Class<? extends Equipement>>(Collections.singleton(Broyeur.class));
 
@@ -20,11 +19,7 @@ public class Concasseur extends Equipement {
 
     super(point, p_width = 2, p_length = 2, p_angle, dependency);
 
-    this.name = "Concasseur";
-  }
-
-  public String getName() {
-    return name;
+    setName("Concasseur");
   }
 
   @Override

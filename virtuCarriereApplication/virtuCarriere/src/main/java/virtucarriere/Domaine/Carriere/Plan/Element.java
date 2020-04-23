@@ -15,6 +15,7 @@ public abstract class Element implements Serializable {
   private int length;
   private boolean selectionStatus;
   private int radius;
+  private String name;
 
   public Element(Point point, int p_width, int p_length) {
     this.point = point;
@@ -86,8 +87,6 @@ public abstract class Element implements Serializable {
     return length;
   }
 
-  public abstract String getName();
-
   public void setLength(int length) {
     this.length = length;
   }
@@ -103,5 +102,13 @@ public abstract class Element implements Serializable {
   public void translate(double deltaX, double deltaY) {
     this.point.x = (int) (this.point.getX() + deltaX);
     this.point.y = (int) (this.point.getY() + deltaY);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  protected void setName(String name) {
+    this.name = name;
   }
 }

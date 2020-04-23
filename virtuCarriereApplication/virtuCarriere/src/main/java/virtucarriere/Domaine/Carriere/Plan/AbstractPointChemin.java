@@ -10,6 +10,4 @@ public abstract class AbstractPointChemin extends Element {
   }
 
   public abstract Color getColor();
-
-  public abstract String getName();
 }

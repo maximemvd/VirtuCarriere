@@ -15,7 +15,6 @@ import java.util.List;
 public class Crible extends Equipement {
 
   private Color color;
-  private String name;
   private static List<Class<? extends Equipement>> dependency =
       new ArrayList<Class<? extends Equipement>>(Collections.singleton(Tas.class));
 
@@ -24,15 +23,11 @@ public class Crible extends Equipement {
     super(point, p_width = 2, p_length = 2, p_angle = 0, dependency);
 
     this.color = Color.RED;
-    this.name = "Crible";
+    setName("Crible");
   }
 
   public Color getColor() {
     return color;
-  }
-
-  public String getName() {
-    return name;
   }
 
   @Override

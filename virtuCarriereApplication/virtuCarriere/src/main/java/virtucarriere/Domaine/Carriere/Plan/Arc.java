@@ -14,7 +14,6 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
   private AbstractPointChemin starting;
   private AbstractPointChemin arrival;
   private Color color;
-  private String name;
 
   public Arc(
       Point point,
@@ -26,7 +25,7 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
     this.starting = starting;
     this.arrival = arrival;
     this.color = Color.BLACK;
-    this.name = "Arc";
+    setName("Arc");
     super.setPoint(
         new Point(
             (int) (starting.getX() + arrival.getX()) / 2,
