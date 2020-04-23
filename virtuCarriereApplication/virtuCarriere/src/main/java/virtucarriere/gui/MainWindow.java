@@ -2012,6 +2012,7 @@ public class MainWindow extends JFrame {
 
     Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
     TextSimulation.append("\n\nDebut du retour");
+    p_camion.setAngle(180);
 
     new Timer(
             50,

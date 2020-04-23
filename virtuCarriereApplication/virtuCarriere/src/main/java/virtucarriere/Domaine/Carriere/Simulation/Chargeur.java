@@ -16,8 +16,8 @@ public class Chargeur extends Vehicule {
   private Color color;
   private String name;
 
-  public Chargeur(Point point) {
-    super(point);
+  public Chargeur(Point point, double p_angle) {
+    super(point, p_angle);
     this.selectionStatus = false;
     this.color = Color.GREEN;
     this.name = "Chargeur";

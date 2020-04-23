@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.List;
+
+import virtucarriere.Domaine.Carriere.Plan.Angle;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
 public abstract class Vehicule implements Serializable {
@@ -22,11 +24,13 @@ public abstract class Vehicule implements Serializable {
   private Point point;
   private boolean selectionStatus;
   private int radius;
+  private Angle angle;
 
-  public Vehicule(Point point) {
+  public Vehicule(Point point, double p_angle) {
     this.point = point;
     this.pointInitial = point;
     this.selectionStatus = false;
+    this.angle = new Angle(p_angle);
     this.radius = 45;
   };
 
@@ -54,6 +58,15 @@ public abstract class Vehicule implements Serializable {
   private boolean yIsInsideElementLength(double p_y) {
     return ((p_y < point.getY() + radius) && (p_y > point.getY() - radius));
   }
+
+  public double getAngle() {
+    return angle.get();
+  }
+
+  public void setAngle(double p_angle) {
+    angle.set(p_angle);
+  }
+
 
   public boolean isSelected() {
     return selectionStatus;
