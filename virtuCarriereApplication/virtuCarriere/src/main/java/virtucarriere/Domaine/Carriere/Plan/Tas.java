@@ -39,10 +39,14 @@ public class Tas extends Equipement {
   }
 
   private void createPointChargement() {
+    this.pointChargement = new PointChargement(getNewPointPointChargement(), 3, 3);
+  }
+
+  private Point getNewPointPointChargement() {
     List<Double> decalage = decalage();
     Point newPoint =
         new Point((int) (point.x + decalage.get(0)), (int) (point.y + decalage.get(1)));
-    this.pointChargement = new PointChargement(newPoint, 3, 3);
+    return newPoint;
   }
 
   private List<Double> decalage() {
@@ -72,12 +76,13 @@ public class Tas extends Equipement {
   @Override
   public void setPoint(Point newPoint) {
     this.point = newPoint;
-    Point newPointChargement = new Point((int) newPoint.getX() - 25, (int) newPoint.getY() + 15);
-    setPointChargement(newPointChargement);
+    pointChargement.setPoint(getNewPointPointChargement());
   }
 
-  public void setPointChargement(Point newPoint) {
-    this.pointChargement = new PointChargement(newPoint, 3, 3);
+  @Override
+  public void setAngle(double p_angle) {
+    setAngle(p_angle);
+    pointChargement.setPoint(getNewPointPointChargement());
   }
 
   public PointChargement getPointChargement() {
