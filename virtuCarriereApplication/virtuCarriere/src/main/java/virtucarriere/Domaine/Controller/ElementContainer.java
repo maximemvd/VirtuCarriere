@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
@@ -24,18 +26,39 @@ import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
 import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 import virtucarriere.Domaine.Controller.Controller.EquipementModes;
-import virtucarriere.Domaine.Controller.Observable;
-import virtucarriere.Domaine.Controller.Observer;
+import java.util.ArrayList;
 
-public class ElementContainer implements Serializable, Observer {
+public class ElementContainer implements Serializable, Observer, Observable {
 
   private Plan plan = new Plan();
   private Simulation simulation = new Simulation();
   static File file;
   private URL url = null;
+  List<Observer> observerList = new ArrayList<Observer>();
+  
+  public ElementContainer(){
+      observerList.add((Observer) plan);
+  }
   
   public void update(){
-      notifyObervers();
+      notifyObservers();
+  }
+  
+  @Override
+  public void notifyObservers(){
+    for (Observer observer : this.observerList){
+      observer.update();
+    }
+  }
+  
+  @Override
+  public void addObserver(Observer observer){
+    this.observerList.add(observer);
+  }
+  
+  @Override
+  public void removeObserver(Observer observer){
+    this.observerList.remove(observer);
   }
 
   public URL getBackGroundUrl() {
