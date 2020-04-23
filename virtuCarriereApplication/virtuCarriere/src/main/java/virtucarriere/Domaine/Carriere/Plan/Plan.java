@@ -16,13 +16,11 @@ public class Plan implements Serializable {
   List<Equipement> equipementForConvList;
   List<AbstractPointChemin> pointsForArcList;
 
-  private Entree entree;
-
   public Plan() {
     equipments = new GraphConvoyeur();
     chemins = new GraphChemins();
-    noeudsForArcList = new LinkedList<Noeud>();
-    equipementForConvList = new LinkedList<Equipement>();
+    noeudsForArcList = new LinkedList<>();
+    equipementForConvList = new LinkedList<>();
     pointsForArcList = new LinkedList<>();
   }
 
@@ -168,8 +166,8 @@ public class Plan implements Serializable {
 
           switch (actualEquipement) {
             case "Crible":
-              if ((((Equipement) equipement).getName().equals("Broyeur"))
-                  || (((Equipement) equipement).getName().equals("Tas"))) {
+              if ((equipement.getName().equals("Broyeur"))
+                  || (equipement.getName().equals("Tas"))) {
                 equipementForConvList.add((Equipement) equipement);
                 equipement.setSelectionStatus(true);
               } else {
@@ -182,8 +180,8 @@ public class Plan implements Serializable {
               break;
 
             case "Broyeur":
-              if ((((Equipement) equipement).getName().equals("Crible"))
-                  || (((Equipement) equipement).getName().equals("Concasseur"))) {
+              if ((equipement.getName().equals("Crible"))
+                  || (equipement.getName().equals("Concasseur"))) {
                 equipementForConvList.add((Equipement) equipement);
                 equipement.setSelectionStatus(true);
               } else {
@@ -196,7 +194,7 @@ public class Plan implements Serializable {
               break;
 
             case "Concasseur":
-              if (((Equipement) equipement).getName().equals("Broyeur")) {
+              if (equipement.getName().equals("Broyeur")) {
                 equipementForConvList.add((Equipement) equipement);
                 equipement.setSelectionStatus(true);
               } else {
@@ -208,7 +206,7 @@ public class Plan implements Serializable {
               }
               break;
             case "Tas":
-              if (((Equipement) equipement).getName().equals("Crible")) {
+              if (equipement.getName().equals("Crible")) {
                 equipementForConvList.add((Equipement) equipement);
                 equipement.setSelectionStatus(true);
               } else {
@@ -328,8 +326,7 @@ public class Plan implements Serializable {
   }
 
   public boolean isEquipementPresent(Equipement equipement) {
-    // TODO
-    return true;
+    return getAllEquipments().stream().anyMatch(equipement1 -> equipement1 == equipement);
   }
 
   public void switchSelectionStatus(double x, double y) {
