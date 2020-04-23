@@ -25,8 +25,6 @@ public class Simulation implements Serializable, Observable {
   List<Observer> observerList = new LinkedList<>();
 
   public Simulation() {
-    simulationSpeed = 2;
-    simulationAnimation = false;
     camionList = new LinkedList<Camion>();
     chargeurList = new LinkedList<Chargeur>();
     algoChemin = new AlgoChemin(graphChemin);
@@ -57,26 +55,6 @@ public class Simulation implements Serializable, Observable {
   public void EditCamion(Camion p_camion, String nom, String produit, double qte) {
     Jeton jeton = new Jeton(nom, produit, qte);
     p_camion.editerParams(jeton);
-  }
-
-  public double getSimulationSpeed() {
-    return simulationSpeed;
-  }
-
-  public void setSimulationSpeed(double newSpeed) {
-    this.simulationSpeed = newSpeed;
-  }
-
-  public boolean getSimulationAnimation() {
-    return simulationAnimation;
-  }
-
-  public void startSimulation() {
-    this.simulationAnimation = true;
-  }
-
-  public void closeSimulation() {
-    this.simulationAnimation = false;
   }
 
   // camion
@@ -227,7 +205,6 @@ public class Simulation implements Serializable, Observable {
         cheminMinimal = cheminChargeurCourant;
       }
 
-      System.out.print(chargeurSimulation);
     }
     return chargeurSimulation;
   }

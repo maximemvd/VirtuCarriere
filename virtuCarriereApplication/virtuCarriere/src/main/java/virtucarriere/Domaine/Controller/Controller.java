@@ -418,25 +418,6 @@ public class Controller implements Serializable, Observer {
     }
   }
 
-  public boolean getSimulationAnimation() {
-    return elementContainer.getSimulationAnimation();
-  }
-
-  public void startSimulation() {
-    elementContainer.startSimulation();
-  }
-
-  public void closeSimulation() {
-    elementContainer.closeSimulation();
-  }
-
-  public double getSimulationSpeed() {
-    return elementContainer.getSimulationSpeed();
-  }
-
-  public void setSimulationSpeed(double newSpeed) {
-    elementContainer.setSimulationSpeed(newSpeed);
-  }
 
   public GraphChemins getGraphChemin() {
     return elementContainer.getGraphChemin();

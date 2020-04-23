@@ -1658,10 +1658,6 @@ public class MainWindow extends JFrame {
 
   private void dimensionTasActionPerformed(java.awt.event.ActionEvent evt) {}
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-    // TODO add your handling code here:
-    controller.closeSimulation();
-  }
 
   private void ajoutChargeurCoordActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ajoutChargeurCoordActionPerformed
@@ -2042,38 +2038,19 @@ public class MainWindow extends JFrame {
                         angleOf(
                             p_tas.getPointChargement().getPoint(),
                             cheminCamionRetour.get(count).getPoint());
-                    newPoint =
-                        new Point(
-                            cheminCamionRetour.get(count).getPoint().x
-                                - p_tas.getPointChargement().getPoint().x,
-                            cheminCamionRetour.get(count).getPoint().y
-                                - p_tas.getPointChargement().getPoint().y);
-                  } else {
-                    angle =
-                        angleOf(
+                  }
+                  else
+                      {
+                          angle = angleOf(
                             cheminCamionRetour.get(count - 1).getPoint(),
                             cheminCamionRetour.get(count).getPoint());
-                    newPoint =
-                        new Point(
-                            cheminCamionRetour.get(count).getPoint().x
-                                - cheminCamionRetour.get(count - 1).getPoint().x,
-                            cheminCamionRetour.get(count).getPoint().y
-                                - cheminCamionRetour.get(count - 1).getPoint().y);
-                  }
+                      }
 
                   int cosinus = (int) (-1 * Math.cos(angle) * simulationSpeed);
                   int sinus = (int) (-1 * Math.sin(angle) * simulationSpeed);
-                  System.out.println(angle + " angle");
-                  System.out.println(cosinus + " cos");
-                  System.out.println(sinus + " sin");
 
                   moveX = x - cosinus;
                   moveY = y - sinus;
-                  System.out.println(moveX + " cos");
-                  System.out.println(moveY + " sin");
-
-                  x = x + newPoint.x / simulationSpeed;
-                  y = y + newPoint.y / simulationSpeed;
                   p_camion.setPoint(new Point(moveX, moveY));
                   p_camion.setAngle(Math.toDegrees(angle));
                   drawingPanel.repaint();

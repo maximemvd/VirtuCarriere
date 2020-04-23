@@ -275,25 +275,10 @@ public class ElementContainer implements Serializable, Observer, Observable {
     }
   }
 
-  public boolean getSimulationAnimation() {
-    return simulation.getSimulationAnimation();
-  }
 
-  public void startSimulation() {
-    simulation.startSimulation();
-  }
 
-  public void closeSimulation() {
-    simulation.closeSimulation();
-  }
 
-  public double getSimulationSpeed() {
-    return simulation.getSimulationSpeed();
-  }
 
-  public void setSimulationSpeed(double newSpeed) {
-    simulation.setSimulationSpeed(newSpeed);
-  }
 
   private void snapElementToGrid(Element element, double gridGap) {
     int horizontal = (int) (element.getX() / gridGap);
