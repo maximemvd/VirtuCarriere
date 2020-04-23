@@ -33,12 +33,12 @@ public class Plan implements Serializable, Observable {
   
   @Override
   public void addObserver(Observer observer){
-      
+    this.observerList.add(observer);
   }
   
   @Override
-  public void removeObserver(){
-      
+  public void removeObserver(Observer observer){
+    this.observerList.remove(observer);
   }
 
   public void addArc(Point point) {
