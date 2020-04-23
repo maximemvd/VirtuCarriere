@@ -22,11 +22,6 @@ public class Crible extends Equipement {
 
     super(point, p_width = 2, p_length = 2, p_angle = 0, dependency);
 
-    this.color = Color.RED;
     setName("Crible");
-  }
-
-  public Color getColor() {
-    return color;
   }
 }
