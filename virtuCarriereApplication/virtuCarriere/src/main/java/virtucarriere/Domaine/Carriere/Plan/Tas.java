@@ -5,8 +5,12 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,9 +21,7 @@ public class Tas extends Equipement {
   private int dimension;
   private Color color;
   private double quantite;
-
   private Noeud noeudTas;
-
   private PointChargement pointChargement;
 
   private List<String> listMateriau;
@@ -33,8 +35,22 @@ public class Tas extends Equipement {
     setName("Tas");
     this.listMateriau = new LinkedList<>();
     this.setlistMateriau();
-    Point newPoint = new Point(point.x - 55, point.y + 6);
+    createPointChargement();
+  }
+
+  private void createPointChargement() {
+    List<Double> decalage = decalage();
+    Point newPoint =
+        new Point((int) (point.x + decalage.get(0)), (int) (point.y + decalage.get(1)));
     this.pointChargement = new PointChargement(newPoint, 3, 3);
+  }
+
+  private List<Double> decalage() {
+    int offset = 10;
+    double distance = dimension + offset;
+    double decalageX = distance * cos(getAngle());
+    double decalageY = distance * sin(getAngle());
+    return Arrays.asList(decalageX, decalageY);
   }
 
   public void setDimension(int newDimension) {
