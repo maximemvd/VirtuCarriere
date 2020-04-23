@@ -25,24 +25,24 @@ public class Plan implements Serializable, Observable {
     equipementForConvList = new LinkedList<>();
     pointsForArcList = new LinkedList<>();
   }
-  
+
   public void initObservers(Controller controller){
       equipments.addObserver(controller);
       chemins.addObserver(controller);
   }
-  
+
   @Override
   public void notifyObservers(){
     for (Observer observer : this.observerList){
       observer.update();
     }
   }
-  
+
   @Override
   public void addObserver(Observer observer){
     this.observerList.add(observer);
   }
-  
+
   @Override
   public void removeObserver(Observer observer){
     this.observerList.remove(observer);
@@ -156,8 +156,8 @@ public class Plan implements Serializable, Observable {
     }
   }
 
-  public void addTas(Point mousePoint, String code) {
-    Tas tas = new Tas(mousePoint, 1, 1, code, 25);
+  public void addTas(Point mousePoint, String code, double angle) {
+    Tas tas = new Tas(mousePoint, 1, 1, code, 25, angle);
     Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
     tas.setNoeudTas(noeud);
     chemins.addEnd(noeud);

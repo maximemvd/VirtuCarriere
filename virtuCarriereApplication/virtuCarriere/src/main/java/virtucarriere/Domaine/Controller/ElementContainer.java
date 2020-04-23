@@ -164,8 +164,8 @@ public class ElementContainer implements Serializable, Observer, Observable {
     plan.removeElement(element);
   }
 
-  public void addTas(Point mousePoint, String code) {
-    plan.addTas(mousePoint, code);
+  public void addTas(Point mousePoint, String code, double angle) {
+    plan.addTas(mousePoint, code, angle);
   }
 
   public void removeCamion(Camion p_camion) {

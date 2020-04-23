@@ -26,9 +26,9 @@ public class Tas extends Equipement {
 
   private List<String> listMateriau;
 
-  // TODO add attribut point de chargement;
-  public Tas(Point point, int p_width, int p_length, String materialCode, int dimension) {
-    super(point, p_width, p_length, 0, Collections.emptyList());
+  public Tas(
+      Point point, int p_width, int p_length, String materialCode, int dimension, double angle) {
+    super(point, p_width, p_length, angle, Collections.emptyList());
     this.materialCode = materialCode;
     this.dimension = dimension;
     this.color = Color.DARK_GRAY;

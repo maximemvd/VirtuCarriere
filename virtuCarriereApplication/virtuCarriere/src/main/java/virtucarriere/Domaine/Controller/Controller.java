@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
-
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -24,7 +23,7 @@ import virtucarriere.Domaine.Carriere.Simulation.Facture;
 public class Controller implements Serializable, Observer {
 
   private ElementContainer elementContainer;
-  
+
   private int undoRedoPointer = -1;
   private List<ElementContainer> elementStack = new ArrayList<ElementContainer>();
 
@@ -61,7 +60,7 @@ public class Controller implements Serializable, Observer {
   public void update(){
     addElementToStack();
   }
-  
+
   public void addElementToStack() {
     deleteElementsAfterPointer(undoRedoPointer);
     ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
@@ -69,19 +68,18 @@ public class Controller implements Serializable, Observer {
     undoRedoPointer++;
     System.out.print(elementStack.size());
   }
-  
+
   public void deleteElementsAfterPointer(int undoRedoPointer) {
-    if(elementStack.size() < 0) {
-        return;
+    if (elementStack.size() < 0) {
+      return;
     }
-    for(int i = elementStack.size()-1; i > undoRedoPointer; i--)
-    {
-        elementStack.remove(i);
+    for (int i = elementStack.size() - 1; i > undoRedoPointer; i--) {
+      elementStack.remove(i);
     }
   }
-  
+
   public void undo() {
-    if (undoRedoPointer <= 0){
+    if (undoRedoPointer <= 0) {
       return;
     }
     undoRedoPointer--;
@@ -89,34 +87,30 @@ public class Controller implements Serializable, Observer {
   }
 
   public void redo() {
-    if (undoRedoPointer == elementStack.size() - 1)
-        return;
+    if (undoRedoPointer == elementStack.size() - 1) return;
     undoRedoPointer++;
     setElement((ElementContainer) elementStack.get(undoRedoPointer));
   }
-  
-  //méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/
+
+  // méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/
   public static Object copy(Object orig) {
     Object obj = null;
     try {
-        // Write the object out to a byte array
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bos);
-        out.writeObject(orig);
-        out.flush();
-        out.close();
+      // Write the object out to a byte array
+      ByteArrayOutputStream bos = new ByteArrayOutputStream();
+      ObjectOutputStream out = new ObjectOutputStream(bos);
+      out.writeObject(orig);
+      out.flush();
+      out.close();
 
-        // Make an input stream from the byte array and read
-        // a copy of the object back in.
-        ObjectInputStream in = new ObjectInputStream(
-            new ByteArrayInputStream(bos.toByteArray()));
-        obj = in.readObject();
-    }
-    catch(IOException e) {
-        e.printStackTrace();
-    }
-    catch(ClassNotFoundException cnfe) {
-        cnfe.printStackTrace();
+      // Make an input stream from the byte array and read
+      // a copy of the object back in.
+      ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
+      obj = in.readObject();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException cnfe) {
+      cnfe.printStackTrace();
     }
     return obj;
   }
@@ -276,8 +270,8 @@ public class Controller implements Serializable, Observer {
       }
   }
 
-  public void addTas(Point mousePoint, String code) {
-    elementContainer.addTas(mousePoint, code);
+  public void addTas(Point mousePoint, String code, double angle) {
+    elementContainer.addTas(mousePoint, code, angle);
   }
 
   public void addNoeud(Point mousePoint, EquipementModes mode, double angle) {

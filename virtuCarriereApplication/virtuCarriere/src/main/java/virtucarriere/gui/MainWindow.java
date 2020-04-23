@@ -1689,7 +1689,8 @@ public class MainWindow extends JFrame {
 
     String code = (String) comboBoxMateriaux.getSelectedItem();
 
-    this.controller.addTas(point, code);
+    // TODO add angle
+    this.controller.addTas(point, code, 0);
     drawingPanel.repaint();
     rafraichissementTextField();
   } // GEN-LAST:event_jButton2ActionPerformed
@@ -2735,7 +2736,8 @@ public class MainWindow extends JFrame {
         double angle = Double.parseDouble(angleSpinner.getText());
         if (this.selectedEquipementMode == EquipementModes.TAS) {
           String code = (String) comboBoxMateriaux.getSelectedItem();
-          this.controller.addTas(point, code);
+          // TODO add angle
+          this.controller.addTas(point, code, 0);
         }
         Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
         this.controller.addEquipement(actualEquipement, point, angle);
