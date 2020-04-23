@@ -16,8 +16,8 @@ public class Camion extends Vehicule {
   private String name;
   private Facture factureCamion;
 
-  public Camion(Jeton jeton, Point point) {
-    super(point);
+  public Camion(Jeton jeton, Point point, double p_angle) {
+    super(point, p_angle = 0);
     this.jeton = jeton;
     this.name = "Camion";
     this.color = Color.MAGENTA;

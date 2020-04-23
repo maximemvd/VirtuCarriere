@@ -6,6 +6,7 @@
 package virtucarriere.Domaine.Drawing;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -145,18 +146,16 @@ public class CarriereDrawer {
       Point pointEntree = camion.getPoint();
       int camionPointX = pointEntree.x;
       int camionPointY = pointEntree.y;
+      double angle = camion.getAngle();
+      double angleRad = Math.toRadians(angle);
       if (camion.isSelected()) {
+        imageCamionSelected = rotate(imageCamionSelected, angleRad);
         g2d.drawImage(imageCamionSelected, (camionPointX - 50), camionPointY - 33, 100, 65, null);
 
       } else {
+        imageCamion = rotate(imageCamion, angleRad);
         g2d.drawImage(imageCamion, (camionPointX - 50), camionPointY - 33, 100, 65, null);
-        /*
-        Color couleurCamion = Color.YELLOW;
-        g2d.setColor(couleurCamion);
-        g2d.fillRoundRect(
-            camionPointX - radius, camionPointY - radius, radius * 2, radius * 2, radius, radius);
 
-         */
       }
     }
     g2d.scale(1 / zoom, 1 / zoom);
@@ -164,17 +163,26 @@ public class CarriereDrawer {
 
   // Code inspiré de https://stackoverflow.com/questions/4156518/rotate-an-image-in-java
   public static BufferedImage rotate(BufferedImage image, double angle) {
-    double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
-    int w = image.getWidth(), h = image.getHeight();
-    int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
-    GraphicsConfiguration gc = getDefaultConfiguration();
-    BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
-    Graphics2D g = result.createGraphics();
-    g.translate((neww - w) / 2, (newh - h) / 2);
-    g.rotate(angle, w / 2, h / 2);
-    g.drawRenderedImage(image, null);
-    g.dispose();
-    return result;
+    double rads = Math.toRadians(angle);
+    double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
+    int w = image.getWidth();
+    int h = image.getHeight();
+    int newWidth = (int) Math.floor(w * cos + h * sin);
+    int newHeight = (int) Math.floor(h * cos + w * sin);
+
+    BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g2d = rotated.createGraphics();
+    AffineTransform at = new AffineTransform();
+    at.translate((newWidth - w) / 2, (newHeight - h) / 2);
+
+    int x = w / 2;
+    int y = h / 2;
+
+    at.rotate(rads, x, y);
+    g2d.setTransform(at);
+    g2d.drawImage(image, 0, 0, null);
+    g2d.dispose();
+    return rotated;
   }
 
   private static GraphicsConfiguration getDefaultConfiguration() {
@@ -238,7 +246,7 @@ public class CarriereDrawer {
             double angle = equipement.getAngle();
             double angleRad = Math.toRadians(angle);
             if (equipement.isSelected()) {
-              imageConcasseurSelected = rotate(imageConcasseurSelected, angleRad);
+              imageConcasseurSelected = rotate(imageConcasseurSelected, angle);
               g.drawImage(
                   imageConcasseurSelected,
                   (int) (equipementPoint.getX() - 60),

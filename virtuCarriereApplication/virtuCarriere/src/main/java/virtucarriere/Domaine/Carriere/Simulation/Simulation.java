@@ -64,7 +64,7 @@ public class Simulation implements Serializable {
   public void CamionShowUp(Point point, String client, String produit, double quantite) {
     try {
       Jeton jeton = new Jeton(client, produit, quantite);
-      Camion camionSimulation = new Camion(jeton, point); // create camion
+      Camion camionSimulation = new Camion(jeton, point, 0); // create camion
       camionList.add(camionSimulation);
     } catch (Exception exception) {
       System.out.println(exception);
@@ -111,7 +111,7 @@ public class Simulation implements Serializable {
 
   public void addChargeur(Point p_point) {
     try {
-      Chargeur p_chargeur = new Chargeur(p_point);
+      Chargeur p_chargeur = new Chargeur(p_point, 0);
       chargeurList.add(p_chargeur);
     } catch (Exception error) {
       System.out.println(error);
