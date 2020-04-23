@@ -99,20 +99,20 @@ public class ElementContainer implements Serializable {
     plan.clearEquipementConv();
   }
 
-  public void addElement(Point mousePoint, EquipementModes mode) {
+  public void addElement(Point mousePoint, EquipementModes mode, double angle) {
     if (null != mode)
       switch (mode) {
         case CONVOYEUR:
           plan.addConvoyeur(mousePoint);
           break;
         case CONCASSEUR:
-          plan.addConcasseur(mousePoint);
+          plan.addConcasseur(mousePoint, angle);
           break;
         case CRIBLE:
-          plan.addCrible(mousePoint);
+          plan.addCrible(mousePoint, angle);
           break;
         case BROYEUR:
-          plan.addBroyeur(mousePoint);
+          plan.addBroyeur(mousePoint, angle);
           break;
         case NOEUD:
           plan.addNoeud(mousePoint);

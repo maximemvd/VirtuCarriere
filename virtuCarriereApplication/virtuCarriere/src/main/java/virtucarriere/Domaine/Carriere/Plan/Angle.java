@@ -8,12 +8,13 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.io.Serializable;
 
 public class Angle implements Serializable {
-  private Double degree;
+  private double degree;
 
-  Angle(double degree) {
+  public Angle(double degree) {
     if (degree > 360 || degree < 0) {
       throw new RuntimeException("L'angle en argument est invalide");
     }
+    this.degree = degree;
   }
 
   public double get() {

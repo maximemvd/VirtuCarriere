@@ -15,14 +15,8 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
-import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
-import virtucarriere.Domaine.Carriere.Plan.Arc;
-import virtucarriere.Domaine.Carriere.Plan.Convoyeur;
-import virtucarriere.Domaine.Carriere.Plan.Entree;
-import virtucarriere.Domaine.Carriere.Plan.Equipement;
-import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
-import virtucarriere.Domaine.Carriere.Plan.Noeud;
-import virtucarriere.Domaine.Carriere.Plan.Tas;
+
+import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
@@ -133,24 +127,24 @@ public class Controller implements Serializable {
     this.elementContainer = elementContainer;
   }
 
-  public void addConvoyeur(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
+  public void addConvoyeur(Point mousePoint, EquipementModes modes, double angle) {
+    elementContainer.addElement(mousePoint, modes, angle);
   }
 
   public void addConvoyeurForPopup(Equipement firstEquipement, Equipement secondEquipement) {
     elementContainer.addConvoyeurForPopup(firstEquipement, secondEquipement);
   }
 
-  public void addCrible(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
+  public void addCrible(Point mousePoint, EquipementModes modes, double angle) {
+    elementContainer.addElement(mousePoint, modes, angle);
   }
 
-  public void addConcasseur(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
+  public void addConcasseur(Point mousePoint, EquipementModes modes, double angle) {
+    elementContainer.addElement(mousePoint, modes, angle);
   }
 
-  public void addBroyeur(Point mousePoint, EquipementModes modes) {
-    elementContainer.addElement(mousePoint, modes);
+  public void addBroyeur(Point mousePoint, EquipementModes modes, double angle) {
+    elementContainer.addElement(mousePoint, modes, angle);
   }
 
   public Tas TrouverTasCorrespondant(List<Tas> tas, String produit) {
@@ -242,34 +236,34 @@ public class Controller implements Serializable {
     elementContainer.removeEquipement(equipement);
   }
 
-  public void addEquipement(EquipementModes mode, Point mousePoint) {
+  public void addEquipement(EquipementModes mode, Point mousePoint, double angle) {
     if (null != mode)
       switch (mode) {
         case CONVOYEUR:
-          addConvoyeur(mousePoint, mode);
+          addConvoyeur(mousePoint, mode, angle);
           addElementToStack();
           break;
         case CONCASSEUR:
-          addConcasseur(mousePoint, mode);
+          addConcasseur(mousePoint, mode, angle);
           addElementToStack();
           break;
         case CRIBLE:
-          addCrible(mousePoint, mode);
+          addCrible(mousePoint, mode, angle);
           addElementToStack();
           break;
         case BROYEUR:
-          addBroyeur(mousePoint, mode);
+          addBroyeur(mousePoint, mode, angle);
           addElementToStack();
           break;
         case NOEUD:
-          addNoeud(mousePoint, mode);
+          addNoeud(mousePoint, mode, angle);
           addElementToStack();
           break;
         case TAS:
           // addTas(mousePoint);
           break;
         case ENTREE:
-          addEntree(mousePoint, mode);
+          addEntree(mousePoint, mode, angle);
           addElementToStack();
           break;
         default:
@@ -281,8 +275,8 @@ public class Controller implements Serializable {
     elementContainer.addTas(mousePoint, code);
   }
 
-  public void addNoeud(Point mousePoint, EquipementModes mode) {
-    elementContainer.addElement(mousePoint, mode);
+  public void addNoeud(Point mousePoint, EquipementModes mode, double angle) {
+    elementContainer.addElement(mousePoint, mode, angle);
   }
 
   public List<Noeud> getAllNoeuds() {
@@ -309,11 +303,11 @@ public class Controller implements Serializable {
     elementContainer.removeConvoyeur(convoyeur);
   }
 
-  public void addEntree(Point mousePoint, EquipementModes mode) {
+  public void addEntree(Point mousePoint, EquipementModes mode, double angle) {
     if (elementContainer.getEntree() != null) {
       // TODO modifier emplacement de l'entrée
     } else {
-      elementContainer.addElement(mousePoint, mode);
+      elementContainer.addElement(mousePoint, mode, angle);
     }
   }
 

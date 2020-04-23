@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class Equipement extends Element {
 
-  private Angle angle;
+  private double angle;
   private List<Class<? extends Equipement>> dependency;
 
   public Equipement(
@@ -22,7 +22,7 @@ public abstract class Equipement extends Element {
 
     super(point, p_width, p_length);
 
-    this.angle = new Angle(p_angle);
+    this.angle = p_angle;
     this.dependency = dependency;
   }
 
@@ -31,7 +31,7 @@ public abstract class Equipement extends Element {
   }
 
   public double getAngle() {
-    return angle.get();
+    return angle;
   }
 
   public abstract String getMaterialCode();
@@ -43,7 +43,8 @@ public abstract class Equipement extends Element {
   public abstract void setMaterialCode(String newCode);
 
   public void setAngle(double p_angle) {
-    angle.set(p_angle);
+    this.angle = p_angle;
+
   }
 
   public abstract String getName();

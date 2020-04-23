@@ -5,11 +5,7 @@
  */
 package virtucarriere.Domaine.Drawing;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -55,9 +51,7 @@ public class CarriereDrawer {
       imageCamion = ImageIO.read(new File("ressources/images/camion.png"));
       imageCamionSelected = ImageIO.read(new File("ressources/images/camionSelected.png"));
       imageChargeur = ImageIO.read(new File("ressources/images/chargeur.png"));
-      ;
-      imageChargeurSelected =
-          imageChargeurSelected = ImageIO.read(new File("ressources/images/chargeurSelected.png"));
+      imageChargeurSelected = ImageIO.read(new File("ressources/images/chargeurSelected.png"));
       imageBroyeur = ImageIO.read(new File("ressources/images/broyeur.png"));
       imageBroyeurSelected = ImageIO.read(new File("ressources/images/broyeurSelected.png"));
       imageConcasseur = ImageIO.read(new File("ressources/images/concasseur.png"));
@@ -168,6 +162,27 @@ public class CarriereDrawer {
     g2d.scale(1 / zoom, 1 / zoom);
   }
 
+  //Code inspiré de https://stackoverflow.com/questions/4156518/rotate-an-image-in-java
+  public static BufferedImage rotate(BufferedImage image, double angle) {
+    double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
+    int w = image.getWidth(), h = image.getHeight();
+    int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
+    GraphicsConfiguration gc = getDefaultConfiguration();
+    BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
+    Graphics2D g = result.createGraphics();
+    g.translate((neww - w) / 2, (newh - h) / 2);
+    g.rotate(angle, w / 2, h / 2);
+    g.drawRenderedImage(image, null);
+    g.dispose();
+    return result;
+  }
+
+  private static GraphicsConfiguration getDefaultConfiguration() {
+    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    GraphicsDevice gd = ge.getDefaultScreenDevice();
+    return gd.getDefaultConfiguration();
+  }
+
   public void drawEquipement(Graphics2D g, double zoom) {
 
     g.scale(zoom, zoom);
@@ -194,8 +209,10 @@ public class CarriereDrawer {
                 equipement.getDimension() * 2);
           } else if (equipement.getName().equals("Broyeur")) {
             Point equipementPoint = equipement.getPoint();
-
+            double angle = equipement.getAngle();
+            double angleRad = Math.toRadians(angle);
             if (equipement.isSelected()) {
+               imageBroyeurSelected = rotate(imageBroyeurSelected, angleRad);
               g.drawImage(
                   imageBroyeurSelected,
                   (int) (equipementPoint.getX() - 20),
@@ -205,7 +222,7 @@ public class CarriereDrawer {
                   null);
 
             } else{
-
+              imageBroyeur = rotate(imageBroyeur, angleRad);
               g.drawImage(
                   imageBroyeur,
                   (int) (equipementPoint.getX() - 20),

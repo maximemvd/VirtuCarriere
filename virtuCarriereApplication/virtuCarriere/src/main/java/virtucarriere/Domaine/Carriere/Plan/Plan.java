@@ -104,8 +104,8 @@ public class Plan implements Serializable {
     equipments.addEnd(equipement);
   }
 
-  public void addBroyeur(Point mousePoint) {
-    Broyeur broyeur = new Broyeur(mousePoint, 1, 1, 0);
+  public void addBroyeur(Point mousePoint, double angle) {
+    Broyeur broyeur = new Broyeur(mousePoint, 1, 1,  angle);
     if (isElementPresent(broyeur)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
@@ -114,8 +114,8 @@ public class Plan implements Serializable {
     }
   }
 
-  public void addConcasseur(Point mousePoint) {
-    Concasseur concasseur = new Concasseur(mousePoint, 1, 1, 0);
+  public void addConcasseur(Point mousePoint, double angle) {
+    Concasseur concasseur = new Concasseur(mousePoint, 1, 1, angle);
     if (isElementPresent(concasseur)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
@@ -124,8 +124,8 @@ public class Plan implements Serializable {
     }
   }
 
-  public void addCrible(Point mousePoint) {
-    Crible crible = new Crible(mousePoint, 1, 1, 0);
+  public void addCrible(Point mousePoint, double angle) {
+    Crible crible = new Crible(mousePoint, 1, 1, angle);
     if (isElementPresent(crible)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
