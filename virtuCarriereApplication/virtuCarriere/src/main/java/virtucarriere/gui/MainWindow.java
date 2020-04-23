@@ -2527,17 +2527,6 @@ public class MainWindow extends JFrame {
     ArrayList<List<Convoyeur>> convoyeurs = controller.getConvoyeurList();
 
     ArrayList<List<Arc>> arcs = controller.getArcList();
-    Entree entree = controller.getEntree();
-
-    if (entree.isSelected()) {
-      numTotal++;
-      String nom = String.format("\nCoordonnées de l'%s", entree.getName());
-      String xCoord = String.format(":\n x : %d", (int) entree.getX());
-      String yCoord = String.format(", y : %d", (int) entree.getY());
-      String nombreTotal = String.format("%d", numTotal);
-      jTextArea1.append(nom + xCoord + yCoord);
-      jTextField2.setText(nombreTotal);
-    }
 
     for (Equipement equipement : equipements) {
       if (equipement.isSelected()) {
