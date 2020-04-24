@@ -65,7 +65,6 @@ public class Controller implements Serializable, Observer {
     ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
     this.elementStack.add((ElementContainer) deepCopy);
     undoRedoPointer++;
-    System.out.print(elementStack.size());
   }
 
   public void deleteElementsAfterPointer(int undoRedoPointer) {
