@@ -34,8 +34,9 @@ public class ElementContainer implements Serializable, Observer, Observable {
   private List<Observer> observerList = new ArrayList<>();
 
   public void initObserver(Controller controller) {
-    plan.initObservers(controller);
-    simulation.addObserver(controller);
+    observerList.add(controller);
+    plan.initObservers(this);
+    simulation.addObserver(this);
   }
 
   @Override

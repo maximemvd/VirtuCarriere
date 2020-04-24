@@ -52,7 +52,7 @@ public class Controller implements Serializable, Observer {
   }
   
   public void initObserver(){
-      this.elementContainer.initObserver(this);
+    this.elementContainer.initObserver(this);
   }
   
   @Override
@@ -128,6 +128,7 @@ public class Controller implements Serializable, Observer {
 
   public void setElement(ElementContainer elementContainer) {
     this.elementContainer = elementContainer;
+    initObserver();
   }
 
   public void addConvoyeur(Point mousePoint, EquipementModes modes, double angle) {
