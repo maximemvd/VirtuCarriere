@@ -1562,7 +1562,7 @@ public class MainWindow extends JFrame {
     // TODO add your handling code here:
     this.controller.redo();
     drawingPanel.repaint();
-  } // GEN-LAST:event_menuRedoActionPerformed
+  }
 
   private void modifierAngleActionPerformed(
       ActionEvent evt) { // GEN-FIRST:event_modifierAngleActionPerformed
@@ -1671,8 +1671,8 @@ public class MainWindow extends JFrame {
     simulationTextField();
   } // GEN-LAST:event_ajoutChargeurCoordActionPerformed
 
-  private void jButton2ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
+  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+      double angle = Double.parseDouble(angleSpinner.getText());
     if (this.currentApplicationMode != ApplicationMode.ADD_PLAN) {
       setAppMode(ApplicationMode.ADD_PLAN);
     }
@@ -1684,9 +1684,8 @@ public class MainWindow extends JFrame {
     Point point = new Point(coordX, coordY);
 
     String code = (String) comboBoxMateriaux.getSelectedItem();
-
-    // TODO add angle
-    this.controller.addTas(point, code, 0);
+    
+    this.controller.addTas(point, code, angle);
     drawingPanel.repaint();
     rafraichissementTextField();
   } // GEN-LAST:event_jButton2ActionPerformed
