@@ -49,7 +49,6 @@ public class Controller implements Serializable, Observer {
 
   public Controller() {
     elementContainer = new ElementContainer();
-    //elementContainer.initObserver();
   }
   
   public void initObserver(){
