@@ -26,9 +26,9 @@ public class Plan implements Serializable, Observable {
     pointsForArcList = new LinkedList<>();
   }
 
-  public void initObservers(Controller controller) {
-    equipments.addObserver(controller);
-    chemins.addObserver(controller);
+  public void initObservers(ElementContainer element) {
+    equipments.addObserver(element);
+    chemins.addObserver(element);
   }
 
   @Override

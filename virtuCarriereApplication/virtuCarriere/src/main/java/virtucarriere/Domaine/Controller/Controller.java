@@ -49,11 +49,10 @@ public class Controller implements Serializable, Observer {
 
   public Controller() {
     elementContainer = new ElementContainer();
-    //elementContainer.initObserver();
   }
   
   public void initObserver(){
-      this.elementContainer.initObserver(this);
+    elementContainer.initObserver(this);
   }
   
   @Override
@@ -62,18 +61,16 @@ public class Controller implements Serializable, Observer {
   }
 
   public void addElementToStack() {
-    deleteElementsAfterPointer(undoRedoPointer);
     ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
     this.elementStack.add((ElementContainer) deepCopy);
     undoRedoPointer++;
-    System.out.print(elementStack.size());
   }
 
-  public void deleteElementsAfterPointer(int undoRedoPointer) {
+  public void deleteElementsAfterPointer(int Pointer) {
     if (elementStack.size() < 0) {
       return;
     }
-    for (int i = elementStack.size() - 1; i > undoRedoPointer; i--) {
+    for (int i = elementStack.size() - 1; i > Pointer; i--) {
       elementStack.remove(i);
     }
   }
@@ -84,6 +81,7 @@ public class Controller implements Serializable, Observer {
     }
     undoRedoPointer--;
     setElement((ElementContainer) elementStack.get(undoRedoPointer));
+    System.out.print(undoRedoPointer);
   }
 
   public void redo() {
@@ -410,11 +408,11 @@ public class Controller implements Serializable, Observer {
     if (choix == 0) {
       save();
       this.elementContainer = new ElementContainer();
-      //elementContainer.initObserver();
+      elementContainer.addObserver(this);
     }
     if (choix == 1) {
       this.elementContainer = new ElementContainer();
-      //elementContainer.initObserver();
+      elementContainer.addObserver(this);
     }
   }
 
