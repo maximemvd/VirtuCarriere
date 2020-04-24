@@ -57,7 +57,6 @@ public class Controller implements Serializable, Observer {
   
   @Override
   public void update(){
-    System.out.print("CA UPDATE");
     addElementToStack();
   }
 
