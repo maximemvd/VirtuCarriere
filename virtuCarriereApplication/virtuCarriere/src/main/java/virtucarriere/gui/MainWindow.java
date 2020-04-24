@@ -2009,65 +2009,77 @@ public class MainWindow extends JFrame {
         .start();
   }
 
-  public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
+    public void simulationCamionRetour(Camion p_camion, Tas p_tas) {
 
-    Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
-    TextSimulation.append("\n\nDebut du retour");
-    p_camion.setAngle(180);
+        Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
+        TextSimulation.append("\n\nDebut du retour");
 
-    new Timer(
-            50,
-            new ActionListener() {
+        new Timer(
+                50,
+                new ActionListener() {
 
-              private int count = 0;
-              double angle = 0;
-              private int maxSizeCamionRetour = cheminCamionRetour.size();
-              int x = p_tas.getPointChargement().getPoint().x;
-              int y = p_tas.getPointChargement().getPoint().y;
-              Point newPoint;
-              Point point = p_tas.getPointChargement().getPoint();
-              int moveX = point.x;
-              int moveY = point.y;
+                    private int count = 0;
+                    double angle = 0;
+                    private int maxSizeCamionRetour = cheminCamionRetour.size();
+                    int x = p_tas.getPointChargement().getPoint().x;
+                    int y = p_tas.getPointChargement().getPoint().y;
+                    Point newPoint;
+                    Point point  = p_tas.getPointChargement().getPoint();
+                    int moveX = point.x;
+                    int moveY = point.y;
 
-              @Override
-              public void actionPerformed(ActionEvent e) {
-                if (pauseSimulation) {
-                } else if (count < maxSizeCamionRetour && !pauseSimulation) {
-                  if (count == 0) {
-                    angle =
-                        angleOf(
-                            p_tas.getPointChargement().getPoint(),
-                            cheminCamionRetour.get(count).getPoint());
-                  }
-                  else
-                      {
-                          angle = angleOf(
-                            cheminCamionRetour.get(count - 1).getPoint(),
-                            cheminCamionRetour.get(count).getPoint());
-                      }
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (pauseSimulation) {
+                            System.out.println("Simulation en pause");
+                        }else if (count < maxSizeCamionRetour && !pauseSimulation) {
+                            if (count == 0) {
+                                angle = angleOf(p_tas.getPointChargement().getPoint(), cheminCamionRetour.get(count).getPoint());
+                                newPoint =
+                                        new Point(
+                                                cheminCamionRetour.get(count).getPoint().x
+                                                        - p_tas.getPointChargement().getPoint().x,
+                                                cheminCamionRetour.get(count).getPoint().y
+                                                        - p_tas.getPointChargement().getPoint().y);
+                            } else {
+                                angle = angleOf(cheminCamionRetour.get(count - 1).getPoint(), cheminCamionRetour.get(count).getPoint());
+                                newPoint =
+                                        new Point(
+                                                cheminCamionRetour.get(count).getPoint().x
+                                                        - cheminCamionRetour.get(count - 1).getPoint().x,
+                                                cheminCamionRetour.get(count).getPoint().y
+                                                        - cheminCamionRetour.get(count - 1).getPoint().y);
+                            }
 
-                  int cosinus = (int) (-1 * Math.cos(angle) * simulationSpeed);
-                  int sinus = (int) (-1 * Math.sin(angle) * simulationSpeed);
+                            int cosinus  = (int) (-1 *  Math.cos(angle) * simulationSpeed);
+                            int sinus = (int) (-1 *  Math.sin(angle) * simulationSpeed);
+                            System.out.println(angle + " angle");
+                            System.out.println(cosinus + " cos");
+                            System.out.println(sinus + " sin");
 
-                  moveX = x - cosinus;
-                  moveY = y - sinus;
-                  p_camion.setPoint(new Point(moveX, moveY));
-                  p_camion.setAngle(Math.toDegrees(angle));
-                  drawingPanel.repaint();
-                  if (x <= cheminCamionRetour.get(count).getPoint().x) {
-                    count++;
-                  }
+                            moveX = x - cosinus;
+                            moveY = y - sinus;
+                            System.out.println(moveX + " cos");
+                            System.out.println(moveY + " sin");
 
-                } else {
-                  ((Timer) e.getSource()).stop();
-                  genererFacture(p_camion, p_camion.getJeton());
-                }
-              }
-            })
-        .start();
-  }
+                            x = x + newPoint.x / simulationSpeed;
+                            y = y + newPoint.y / simulationSpeed;
+                            p_camion.setPoint(new Point(moveX, moveY));
+                            drawingPanel.repaint();
+                            if (x <= cheminCamionRetour.get(count).getPoint().x) {
+                                count++;
+                            }
 
-  public void genererFacture(Camion camionCourant, Jeton jetonCamion) {
+                        } else {
+                            ((Timer) e.getSource()).stop();
+                            genererFacture(p_camion, p_camion.getJeton());
+                        }
+                    }
+                })
+                .start();
+    }
+
+    public void genererFacture(Camion camionCourant, Jeton jetonCamion) {
     camionCourant.changeEtat("FACTURE");
 
     TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
