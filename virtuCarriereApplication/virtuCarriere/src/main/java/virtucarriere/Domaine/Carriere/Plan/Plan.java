@@ -296,7 +296,13 @@ public class Plan implements Serializable, Observable {
     if (isElementPresent(noeud)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
-    } else {
+    }
+    else if(isArcPresent(noeud)){
+      JOptionPane.showMessageDialog(
+              null, "Attention, un arc est déjà présent à cette position");
+    }
+
+    else {
       chemins.addEnd(noeud);
     }
   }
@@ -448,5 +454,14 @@ public class Plan implements Serializable, Observable {
     List<Element> allElements = getAllElements();
     return allElements.stream()
         .anyMatch(element1 -> element.contains(element1.getX(), element1.getY()));
+  }
+
+  public boolean isArcPresent(Element element){
+    for(Arc arc : getAllArcs()){
+      if(arc.contains(element.getX(), element.getY())){
+        return true;
+      }
+    }
+    return false;
   }
 }

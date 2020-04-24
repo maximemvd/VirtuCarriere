@@ -1684,7 +1684,7 @@ public class MainWindow extends JFrame {
     Point point = new Point(coordX, coordY);
 
     String code = (String) comboBoxMateriaux.getSelectedItem();
-    
+
     this.controller.addTas(point, code, angle);
     drawingPanel.repaint();
     rafraichissementTextField();
@@ -2645,9 +2645,11 @@ public class MainWindow extends JFrame {
     this.currentMousePoint = evt.getPoint();
     if (evt.getPreciseWheelRotation() > 0) {
       drawingPanel.zoomIn(point);
+      drawingPanel.repaint();
     } else {
       drawingPanel.zoomOut(point);
     }
+    drawingPanel.repaint();
   } // GEN-LAST:event_drawingPanelMouseWheelMoved
 
   private void jComboBox1ActionPerformed(
