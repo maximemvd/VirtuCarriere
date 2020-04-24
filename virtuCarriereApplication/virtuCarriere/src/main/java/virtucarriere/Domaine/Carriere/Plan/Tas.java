@@ -50,6 +50,19 @@ public class Tas extends Equipement {
     return newPoint;
   }
 
+  @Override
+  public boolean contains(double p_x, double p_y) {
+    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
+  }
+
+  private boolean xIsInsideElementWidth(double p_x) {
+    return ((p_x < point.getX() + dimension) && (p_x > point.getX() - dimension));
+  }
+
+  private boolean yIsInsideElementLength(double p_y) {
+    return ((p_y < point.getY() + dimension) && (p_y > point.getY() - dimension));
+  }
+
   private List<Double> decalage() {
     int offset = 20;
     double distance = dimension + offset;

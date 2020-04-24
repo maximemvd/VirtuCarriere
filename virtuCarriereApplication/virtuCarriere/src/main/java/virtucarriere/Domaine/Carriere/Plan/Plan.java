@@ -167,6 +167,8 @@ public class Plan implements Serializable, Observable {
 
     Arc arc = new Arc(mousePoint, 3, 3, pointChargement, noeud);
     chemins.addLink(arc);
+    Arc arcRetour = new Arc(mousePoint, 3, 3, noeud, pointChargement);
+    chemins.addLink(arcRetour);
   }
 
   public void clearEquipementConv() {
