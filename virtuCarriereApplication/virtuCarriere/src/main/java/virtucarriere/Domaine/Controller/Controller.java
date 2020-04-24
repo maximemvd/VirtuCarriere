@@ -52,12 +52,13 @@ public class Controller implements Serializable, Observer {
   }
   
   public void initObserver(){
-    this.elementContainer.initObserver(this);
+    elementContainer.initObserver(this);
   }
   
   @Override
   public void update(){
-    //addElementToStack();
+    System.out.print("CA UPDATE");
+    addElementToStack();
   }
 
   public void addElementToStack() {
@@ -128,7 +129,6 @@ public class Controller implements Serializable, Observer {
 
   public void setElement(ElementContainer elementContainer) {
     this.elementContainer = elementContainer;
-    initObserver();
   }
 
   public void addConvoyeur(Point mousePoint, EquipementModes modes, double angle) {
@@ -409,11 +409,11 @@ public class Controller implements Serializable, Observer {
     if (choix == 0) {
       save();
       this.elementContainer = new ElementContainer();
-      //elementContainer.initObserver();
+      elementContainer.addObserver(this);
     }
     if (choix == 1) {
       this.elementContainer = new ElementContainer();
-      //elementContainer.initObserver();
+      elementContainer.addObserver(this);
     }
   }
 
