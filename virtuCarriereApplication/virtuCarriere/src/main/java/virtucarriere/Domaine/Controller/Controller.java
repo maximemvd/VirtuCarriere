@@ -57,21 +57,20 @@ public class Controller implements Serializable, Observer {
   
   @Override
   public void update(){
-    addElementToStack();
+    //addElementToStack();
   }
 
   public void addElementToStack() {
-    deleteElementsAfterPointer(undoRedoPointer);
     ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
     this.elementStack.add((ElementContainer) deepCopy);
     undoRedoPointer++;
   }
 
-  public void deleteElementsAfterPointer(int undoRedoPointer) {
+  public void deleteElementsAfterPointer(int Pointer) {
     if (elementStack.size() < 0) {
       return;
     }
-    for (int i = elementStack.size() - 1; i > undoRedoPointer; i--) {
+    for (int i = elementStack.size() - 1; i > Pointer; i--) {
       elementStack.remove(i);
     }
   }
@@ -82,6 +81,7 @@ public class Controller implements Serializable, Observer {
     }
     undoRedoPointer--;
     setElement((ElementContainer) elementStack.get(undoRedoPointer));
+    System.out.print(undoRedoPointer);
   }
 
   public void redo() {
