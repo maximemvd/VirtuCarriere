@@ -2053,14 +2053,9 @@ public class MainWindow extends JFrame {
 
                             int cosinus  = (int) (-1 *  Math.cos(angle) * simulationSpeed);
                             int sinus = (int) (-1 *  Math.sin(angle) * simulationSpeed);
-                            System.out.println(angle + " angle");
-                            System.out.println(cosinus + " cos");
-                            System.out.println(sinus + " sin");
 
                             moveX = x - cosinus;
                             moveY = y - sinus;
-                            System.out.println(moveX + " cos");
-                            System.out.println(moveY + " sin");
 
                             x = x + newPoint.x / simulationSpeed;
                             y = y + newPoint.y / simulationSpeed;

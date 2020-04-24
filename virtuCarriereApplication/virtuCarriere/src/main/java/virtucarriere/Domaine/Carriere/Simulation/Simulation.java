@@ -81,7 +81,6 @@ public class Simulation implements Serializable, Observable {
   }
 
 
-
   public void switchSelectionStatus(double x, double y) {
     camionList.stream()
         .filter(camion -> camion.contains(x, y))
