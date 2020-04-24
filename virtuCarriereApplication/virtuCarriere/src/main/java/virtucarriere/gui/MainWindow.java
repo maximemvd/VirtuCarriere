@@ -41,7 +41,7 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
-  public int simulationSpeed = 12;
+  public int simulationSpeed = 20;
 
   private boolean pauseSimulation = false;
 
@@ -70,7 +70,7 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-    if (simulationSpeed >= 20) {
+    if (simulationSpeed >= 30) {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
     } else {
       simulationSpeed = simulationSpeed + 2;
@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 6) {
+    if (simulationSpeed <= 10) {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
     } else {
       simulationSpeed = simulationSpeed - 2;
