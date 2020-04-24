@@ -20,8 +20,6 @@ public class Simulation implements Serializable, Observable {
   List<Camion> camionList;
   List<Chargeur> chargeurList;
   private Chargeur chargeurCourant;
-  private boolean simulationAnimation;
-  private double simulationSpeed;
   List<Observer> observerList = new LinkedList<>();
 
   public Simulation() {
@@ -82,13 +80,7 @@ public class Simulation implements Serializable, Observable {
     return camionList;
   }
 
-  public double camionListSize() {
-    return camionList.size();
-  }
 
-  public boolean camionIsEmpty() {
-    return camionList.isEmpty();
-  }
 
   public void switchSelectionStatus(double x, double y) {
     camionList.stream()

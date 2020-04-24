@@ -1901,10 +1901,12 @@ public class MainWindow extends JFrame {
                 private double angleChargeur = 0;
 
                 Point entreeCarriere = controller.getEntree().getPoint();
+
                 int x = entreeCarriere.x;
                 int y = entreeCarriere.y;
                 int chargeur_x = courantChargeur.getPointInitial().x;
                 int chargeur_y = courantChargeur.getPointInitial().y;
+
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
@@ -1914,6 +1916,7 @@ public class MainWindow extends JFrame {
 
                     if (chargeurCount < maxSizeChargeur) {
                       if (chargeurCount == 0) {
+
                         angleChargeur =
                             angleOf(
                                 courantChargeur.getPointInitial(),
@@ -1936,7 +1939,7 @@ public class MainWindow extends JFrame {
                     }
                     if (count < maxSizeCamionAller) {
                       if (count == 0) {
-                        angle = angleOf(entreeCarriere, cheminCamionAller.get(count).getPoint());
+                          angle = angleOf(entreeCarriere, cheminCamionAller.get(count).getPoint());
                       } else {
                         angle =
                             angleOf(
