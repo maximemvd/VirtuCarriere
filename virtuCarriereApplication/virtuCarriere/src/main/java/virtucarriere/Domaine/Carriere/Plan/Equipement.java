@@ -14,7 +14,7 @@ public abstract class Equipement extends Element {
 
   private Angle angle;
   private List<Class<? extends Equipement>> dependency;
-  private int height;
+  private int length;
   private int width;
 
   public Equipement(
@@ -27,10 +27,10 @@ public abstract class Equipement extends Element {
 
     this.angle = new Angle(p_angle);
     this.dependency = dependency;
-    this.height = p_length;
+    this.length = p_length;
     this.width = p_width;
-    Point upperLeft = new Point((int) getX(), (int) getY());
-    Rectangle shape = new Rectangle(upperLeft, new Dimension(height, width));
+    Point upperLeft = new Point((int) (getX() - p_length / 2), (int) (getY() - p_width / 2));
+    Rectangle shape = new Rectangle(upperLeft, new Dimension(length, width));
     setShape(shape);
   }
 
@@ -59,10 +59,10 @@ public abstract class Equipement extends Element {
   }
 
   public int getLength() {
-    return height;
+    return length;
   }
 
   public void setLength(int length) {
-    this.height = length;
+    this.length = length;
   }
 }
