@@ -9,8 +9,8 @@ public abstract class AbstractLien<EndType extends Element> extends Element {
   protected EndType arrival;
   protected EndType starting;
 
-  public AbstractLien(Point point, EndType starting, EndType arrival) {
-    super(point);
+  public AbstractLien(EndType starting, EndType arrival) {
+    super(new Point());
     this.starting = starting;
     this.arrival = arrival;
     super.setPoint(

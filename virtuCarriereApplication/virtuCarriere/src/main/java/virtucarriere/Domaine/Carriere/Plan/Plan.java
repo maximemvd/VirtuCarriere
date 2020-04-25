@@ -71,7 +71,7 @@ public class Plan implements Serializable, Observable {
     AbstractPointChemin arrival = getPointsForArcList().get(1);
     if (starting != arrival) {
       try {
-        Arc arc = new Arc(point, 5, 5, starting, arrival);
+        Arc arc = new Arc(starting, arrival);
         chemins.addLink(arc);
 
       } catch (RuntimeException e) {
@@ -165,9 +165,9 @@ public class Plan implements Serializable, Observable {
     PointChargement pointChargement = tas.getPointChargement();
     chemins.addEnd(pointChargement);
 
-    Arc arc = new Arc(mousePoint, 3, 3, pointChargement, noeud);
+    Arc arc = new Arc(pointChargement, noeud);
     chemins.addLink(arc);
-    Arc arcRetour = new Arc(mousePoint, 3, 3, noeud, pointChargement);
+    Arc arcRetour = new Arc(noeud, pointChargement);
     chemins.addLink(arcRetour);
   }
 
@@ -251,8 +251,7 @@ public class Plan implements Serializable, Observable {
 
     if (equipementForConvList.size() == 2) {
       Convoyeur convoyeur =
-          new Convoyeur(
-              mousePoint, 5, 5, equipementForConvList.get(0), equipementForConvList.get(1));
+          new Convoyeur(equipementForConvList.get(0), equipementForConvList.get(1));
       try {
         equipments.getLink(convoyeur.getArrival(), convoyeur.getStarting());
         JOptionPane.showMessageDialog(
@@ -282,12 +281,12 @@ public class Plan implements Serializable, Observable {
 
   public void addConvoyeurForPopup(Equipement starting, Equipement arrival) {
     Point point = new Point();
-    Convoyeur convoyeur = new Convoyeur(point, 3, 3, starting, arrival);
+    Convoyeur convoyeur = new Convoyeur(starting, arrival);
     equipments.addLink(convoyeur);
   }
 
   public void addEntree(Point mousePoint) {
-    Entree entree = new Entree(mousePoint, 100, 100, 0);
+    Entree entree = new Entree(mousePoint, 0);
     chemins.addEnd(entree);
   }
 
@@ -296,13 +295,9 @@ public class Plan implements Serializable, Observable {
     if (isElementPresent(noeud)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
-    }
-    else if(isArcPresent(noeud)){
-      JOptionPane.showMessageDialog(
-              null, "Attention, un arc est déjà présent à cette position");
-    }
-
-    else {
+    } else if (isArcPresent(noeud)) {
+      JOptionPane.showMessageDialog(null, "Attention, un arc est déjà présent à cette position");
+    } else {
       chemins.addEnd(noeud);
     }
   }
@@ -456,9 +451,9 @@ public class Plan implements Serializable, Observable {
         .anyMatch(element1 -> element.contains(element1.getX(), element1.getY()));
   }
 
-  public boolean isArcPresent(Element element){
-    for(Arc arc : getAllArcs()){
-      if(arc.contains(element.getX(), element.getY())){
+  public boolean isArcPresent(Element element) {
+    for (Arc arc : getAllArcs()) {
+      if (arc.contains(element.getX(), element.getY())) {
         return true;
       }
     }

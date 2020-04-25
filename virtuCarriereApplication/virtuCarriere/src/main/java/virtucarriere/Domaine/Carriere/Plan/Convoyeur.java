@@ -14,9 +14,8 @@ public class Convoyeur extends AbstractLien<Equipement> {
   private Color color;
   private Noeud noeud;
 
-  public Convoyeur(
-      Point point, int p_width, int p_length, Equipement starting, Equipement arrival) {
-    super(point, p_width, p_length, starting, arrival);
+  public Convoyeur(Equipement starting, Equipement arrival) {
+    super(starting, arrival);
 
     this.color = Color.YELLOW;
     setName("Convoyeur");
