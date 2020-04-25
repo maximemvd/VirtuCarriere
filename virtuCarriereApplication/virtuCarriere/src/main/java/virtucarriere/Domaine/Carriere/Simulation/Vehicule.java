@@ -7,6 +7,7 @@ package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Shape;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public abstract class Vehicule implements Serializable {
   private boolean selectionStatus;
   private int radius;
   private Angle angle;
+  
+  protected Shape shape;
 
   public Vehicule(Point point, double p_angle) {
     this.point = point;
@@ -99,6 +102,10 @@ public abstract class Vehicule implements Serializable {
   public void translate(double deltaX, double deltaY) {
     this.point.x = (int) (this.point.getX() + deltaX);
     this.point.y = (int) (this.point.getY() + deltaY);
+  }
+  
+  protected void setShape(Shape shape) {
+    this.shape = shape;
   }
 
   public abstract Color getColor();
