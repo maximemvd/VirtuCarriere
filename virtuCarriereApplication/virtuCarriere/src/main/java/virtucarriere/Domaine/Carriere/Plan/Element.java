@@ -11,26 +11,16 @@ import java.io.Serializable;
 public abstract class Element implements Serializable {
 
   protected Point point;
-  private int width;
-  private int length;
   private boolean selectionStatus;
-  private int radius;
   private String name;
 
-  public Element(Point point, int p_width, int p_length) {
+  public Element(Point point) {
     this.point = point;
-    this.width = p_width;
-    this.length = p_length;
     this.selectionStatus = false;
-    this.radius = 25;
   }
 
   public Point getPoint() {
     return point;
-  }
-
-  public void setPoint(int p_x, int p_y) {
-    this.point = new Point(p_x, p_y);
   }
 
   public double getX() {
@@ -45,17 +35,7 @@ public abstract class Element implements Serializable {
     this.point = newPoint;
   }
 
-  public boolean contains(double p_x, double p_y) {
-    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
-  }
-
-  private boolean xIsInsideElementWidth(double p_x) {
-    return ((p_x < point.getX() + radius) && (p_x > point.getX() - radius));
-  }
-
-  private boolean yIsInsideElementLength(double p_y) {
-    return ((p_y < point.getY() + radius) && (p_y > point.getY() - radius));
-  }
+  public abstract boolean contains(double p_x, double p_y);
 
   public boolean isSelected() {
     return selectionStatus;
@@ -63,30 +43,6 @@ public abstract class Element implements Serializable {
 
   public void switchSelectionStatus() {
     selectionStatus = !selectionStatus;
-  }
-
-  public void unselect() {
-    selectionStatus = false;
-  }
-
-  public int getRadius() {
-    return radius;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public void setWidth(int width) {
-    this.width = width;
-  }
-
-  public int getLength() {
-    return length;
-  }
-
-  public void setLength(int length) {
-    this.length = length;
   }
 
   public boolean getSelectionStatus() {
