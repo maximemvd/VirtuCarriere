@@ -237,7 +237,7 @@ public class CarriereDrawer {
             double angle = equipement.getAngle();
             double angleRad = Math.toRadians(angle);
             if (equipement.isSelected()) {
-              imageConcasseurSelected = rotate(imageConcasseurSelected, angle);
+              imageConcasseurSelected = rotate(imageConcasseurSelected, angleRad);
               g.drawImage(
                   imageConcasseurSelected,
                   (int) (equipementPoint.getX() - 60),
