@@ -2794,31 +2794,6 @@ public class MainWindow extends JFrame {
     System.exit(0);
   } // GEN-LAST:event_menuQuitterActionPerformed
 
-  private void buttonAjouterNoeudActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_buttonAjouterNoeudActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_buttonAjouterNoeudActionPerformed
-
-  private void buttonAjouterArcActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_buttonAjouterArcActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_buttonAjouterArcActionPerformed
-
-  private void buttonAjouterConcasseurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_buttonAjouterConcasseurActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_buttonAjouterConcasseurActionPerformed
-
-  private void buttonAjouterConvoyeurActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_buttonAjouterConvoyeurActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_buttonAjouterConvoyeurActionPerformed
-
-  private void jButton4ActionPerformed(
-      java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton4ActionPerformed
-    // TODO add your handling code here:
-  } // GEN-LAST:event_jButton4ActionPerformed
-
   private void menuAffichageGrilleActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_menuAffichageGrilleActionPerformed
     drawingPanel.setGridLines();
