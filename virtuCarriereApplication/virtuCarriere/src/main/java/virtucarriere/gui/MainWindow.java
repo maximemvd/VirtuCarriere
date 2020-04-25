@@ -21,6 +21,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
+import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Simulation.*;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.*;
@@ -41,7 +42,7 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
-  public int simulationSpeed = 20;
+  public int simulationSpeed = 15;
 
   private boolean pauseSimulation = false;
 
@@ -70,18 +71,24 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-    if (simulationSpeed >= 30) {
+    if (simulationSpeed >= 23) {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
     } else {
       simulationSpeed = simulationSpeed + 2;
+      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.pixelToMeter(simulationSpeed) + "mètres");
+      TextSimulation.append("\n\n /"+  0.05 + "secondes");
     }
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 10) {
+    if (simulationSpeed <= 7) {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
     } else {
       simulationSpeed = simulationSpeed - 2;
+      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.pixelToMeter(simulationSpeed) + "mètres");
+      TextSimulation.append("\n\n /"+  0.05 + "secondes");
+
+
     }
   }
 
@@ -1858,6 +1865,9 @@ public class MainWindow extends JFrame {
       TextSimulation.append(
           "\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
 
+        TextSimulation.append("\n\n Vitesse : 15 mètres");
+        TextSimulation.append("/"+  1  + "secondes");
+
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
       Jeton jetonCamionCourant = camionCourant.getJeton();
@@ -2524,10 +2534,12 @@ public class MainWindow extends JFrame {
         String nom = String.format("\nCoordonnées du %s", equipement.getName());
         String xCoord = String.format(":\n x : %d", (int) equipement.getX());
         String yCoord = String.format(", y : %d", (int) equipement.getY());
-        String angle = String.format(", angle : %f", equipement.getAngle());
+        String xCoordMetre = String.format(":\n x en mètres : %d", (int) UnitConverter.pixelToMeter(equipement.getX()));
+        String yCoordMetre = String.format(", y en mètres : %d", (int) UnitConverter.pixelToMeter(equipement.getY()));
+        String angle = String.format("\n Angle : %f", equipement.getAngle());
         String nombreTotal = String.format("%d", numTotal);
         String angleText = String.format("%f", equipement.getAngle());
-        jTextArea1.append(nom + xCoord + yCoord + angle);
+        jTextArea1.append(nom + xCoord +  yCoord + xCoordMetre +  yCoordMetre + angle);
         jTextField2.setText(nombreTotal);
         angleSpinner.setText(angleText);
 
