@@ -2722,8 +2722,7 @@ public class MainWindow extends JFrame {
         double angle = Double.parseDouble(angleSpinner.getText());
         if (this.selectedEquipementMode == EquipementModes.TAS) {
           String code = (String) comboBoxMateriaux.getSelectedItem();
-          // TODO add angle
-          this.controller.addTas(point, code, 0);
+          this.controller.addTas(point, code, 180);
         }
         Controller.EquipementModes actualEquipement = this.selectedEquipementMode;
         this.controller.addEquipement(actualEquipement, point, angle);
