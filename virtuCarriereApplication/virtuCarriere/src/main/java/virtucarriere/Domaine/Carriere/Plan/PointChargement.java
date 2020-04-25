@@ -11,8 +11,8 @@ import java.awt.Point;
 /** @author philippevincent */
 public class PointChargement extends AbstractPointChemin {
 
-  public PointChargement(Point p_point, int p_width, int p_length) {
-    super(p_point, p_width, p_length, Color.PINK);
+  public PointChargement(Point p_point) {
+    super(p_point, 10, Color.PINK);
     setName("Point de chargement");
   }
 }
