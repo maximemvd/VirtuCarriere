@@ -6,6 +6,7 @@
 package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.Point;
+import java.awt.Shape;
 import java.io.Serializable;
 
 public abstract class Element implements Serializable {
@@ -13,6 +14,7 @@ public abstract class Element implements Serializable {
   protected Point point;
   private boolean selectionStatus;
   private String name;
+  protected Shape shape;
 
   public Element(Point point) {
     this.point = point;
@@ -35,7 +37,9 @@ public abstract class Element implements Serializable {
     this.point = newPoint;
   }
 
-  public abstract boolean contains(double p_x, double p_y);
+  public boolean contains(double p_x, double p_y) {
+    return shape.contains(p_x, p_y);
+  }
 
   public boolean isSelected() {
     return selectionStatus;
@@ -64,5 +68,9 @@ public abstract class Element implements Serializable {
 
   protected void setName(String name) {
     this.name = name;
+  }
+
+  protected void setShape(Shape shape) {
+    this.shape = shape;
   }
 }

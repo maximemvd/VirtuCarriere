@@ -29,6 +29,9 @@ public abstract class Equipement extends Element {
     this.dependency = dependency;
     this.height = p_length;
     this.width = p_width;
+    Point upperLeft = new Point((int) getX(), (int) getY());
+    Rectangle shape = new Rectangle(upperLeft, new Dimension(height, width));
+    setShape(shape);
   }
 
   public static String equipement() {
@@ -45,13 +48,6 @@ public abstract class Equipement extends Element {
 
   public List<Class<? extends Equipement>> getDependency() {
     return dependency;
-  }
-
-  @Override
-  public boolean contains(double p_x, double p_y) {
-    Point upperLeft = new Point((int) getX(), (int) getY());
-    Rectangle shape = new Rectangle(upperLeft, new Dimension(height, width));
-    return shape.contains(p_x, p_y);
   }
 
   public int getWidth() {

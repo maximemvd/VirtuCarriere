@@ -13,15 +13,11 @@ public abstract class AbstractPointChemin extends Element {
   public AbstractPointChemin(Point point, int radius, Color color) {
     super(point);
     this.color = color;
+    Shape shape = new Ellipse2D.Double(point.getX(), point.getY(), radius, radius);
+    this.setShape(shape);
   }
 
   public Color getColor() {
     return color;
-  }
-
-  @Override
-  public boolean contains(double p_x, double p_y) {
-    Shape shape = new Ellipse2D.Double(point.getX(), point.getY(), radius, radius);
-    return shape.contains(p_x, p_y);
   }
 }
