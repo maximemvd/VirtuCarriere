@@ -2014,6 +2014,7 @@ public class MainWindow extends JFrame {
         Vector<AbstractPointChemin> cheminCamionRetour = controller.cheminDuCamionRetour(p_tas);
         TextSimulation.append("\n\nDebut du retour");
 
+
         new Timer(
                 50,
                 new ActionListener() {
@@ -2060,6 +2061,7 @@ public class MainWindow extends JFrame {
                             x = x + newPoint.x / simulationSpeed;
                             y = y + newPoint.y / simulationSpeed;
                             p_camion.setPoint(new Point(moveX, moveY));
+                            p_camion.setAngle(Math.toDegrees(angle));
                             drawingPanel.repaint();
                             if (x <= cheminCamionRetour.get(count).getPoint().x) {
                                 count++;
