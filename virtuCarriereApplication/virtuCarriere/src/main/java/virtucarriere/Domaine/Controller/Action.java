@@ -11,8 +11,22 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
  *
  * @author Francis_Boulianne
  */
-public interface Observer {
+public class Action {
     
-  public void update(String action, Element element);
+  private String action;
+  private Element element;
+  
+  public Action(String p_action, Element p_element){
+      this.action = p_action;
+      this.element = p_element;
+  }
+  
+  public String getAction(){
+      return this.action;
+  }
+  
+  public Element getElement(){
+      return this.element;
+  }
     
 }

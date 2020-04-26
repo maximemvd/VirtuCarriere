@@ -14,9 +14,9 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
   }
   
   @Override
-  public void notifyObservers(){
+  public void notifyObservers(String action, Element element){
     for (Observer observer : this.observerList){
-      observer.update();
+      observer.update(action, element);
     }
   }
   
@@ -37,7 +37,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
     }
     ends.add(end);
     links.add(new ArrayList<Arc>());
-    notifyObservers();
+    notifyObservers("add", end);
   }
 
   @Override
@@ -64,7 +64,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
       int index = ends.indexOf(end);
       ends.remove(end);
       links.remove(links.elementAt(index));
-      notifyObservers();
+      notifyObservers("delete", end);
 
     } else {
       throw new RuntimeException("Ce noeud n'existe pas");
@@ -83,6 +83,6 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
     }
     int index = ends.indexOf(link.getStarting());
     links.elementAt(index).add(link);
-    notifyObservers();
+    notifyObservers("add", link);
   }
 }

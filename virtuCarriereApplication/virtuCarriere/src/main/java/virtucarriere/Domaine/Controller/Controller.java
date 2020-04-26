@@ -25,7 +25,8 @@ public class Controller implements Serializable, Observer {
   private ElementContainer elementContainer;
 
   private int undoRedoPointer = -1;
-  private List<ElementContainer> elementStack = new ArrayList<ElementContainer>();
+  private List<Action> elementStack = new ArrayList<>();
+  private boolean needToDeleteElements = true;
 
   public enum EquipementModes {
     RIEN,
@@ -56,14 +57,19 @@ public class Controller implements Serializable, Observer {
   }
   
   @Override
-  public void update(){
-    //addElementToStack();
+  public void update(String action, Element element){
+    Action nouvelleAction = new Action(action, element);
+    addElementToStack(nouvelleAction);
   }
 
-  public void addElementToStack() {
-    ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
-    this.elementStack.add((ElementContainer) deepCopy);
-    undoRedoPointer++;
+  public void addElementToStack(Action nouvelleAction) {
+    if (needToDeleteElements){
+      deleteElementsAfterPointer(undoRedoPointer);
+      this.elementStack.add(nouvelleAction);
+      System.out.print(nouvelleAction.getAction() + " " + nouvelleAction.getElement());
+      undoRedoPointer++;
+    }
+    needToDeleteElements = true;
   }
 
   public void deleteElementsAfterPointer(int Pointer) {
@@ -79,15 +85,25 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer <= 0) {
       return;
     }
+    if (elementStack.get(undoRedoPointer).getAction().equals("add")){
+        needToDeleteElements = false;
+        elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+        //On enlève l'action qu'on vient d'ajouter en appelant la fonction removeEquipement
+        //elementStack.remove(elementStack.size() - 1);
+        //undoRedoPointer--;
+    }
     undoRedoPointer--;
-    setElement((ElementContainer) elementStack.get(undoRedoPointer));
-    System.out.print(undoRedoPointer);
   }
 
   public void redo() {
     if (undoRedoPointer == elementStack.size() - 1) return;
     undoRedoPointer++;
-    setElement((ElementContainer) elementStack.get(undoRedoPointer));
+    if (elementStack.get(undoRedoPointer).getAction().equals("add")){
+        needToDeleteElements = false;
+        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+        //elementStack.remove(elementStack.size() - 1);
+        //undoRedoPointer--;
+    }
   }
 
   // méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/

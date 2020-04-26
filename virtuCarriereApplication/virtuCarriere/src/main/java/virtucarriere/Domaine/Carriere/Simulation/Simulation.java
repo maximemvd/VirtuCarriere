@@ -11,6 +11,7 @@ import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Controller.*;
 
 public class Simulation implements Serializable, Observable {
@@ -28,9 +29,9 @@ public class Simulation implements Serializable, Observable {
   }
   
   @Override
-  public void notifyObservers(){
+  public void notifyObservers(String action, Element element){
     for (Observer observer : this.observerList){
-      observer.update();
+      observer.update(action, element);
     }
   }
   
@@ -59,7 +60,7 @@ public class Simulation implements Serializable, Observable {
       Jeton jeton = new Jeton(client, produit, quantite);
       Camion camionSimulation = new Camion(jeton, point, 0, p_temps); // create camion
       camionList.add(camionSimulation);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception exception) {
       System.out.println(exception);
     }
@@ -68,7 +69,7 @@ public class Simulation implements Serializable, Observable {
   public void removeCamion(Camion p_camion) {
     try {
       camionList.remove(p_camion);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -101,7 +102,7 @@ public class Simulation implements Serializable, Observable {
     try {
       Chargeur p_chargeur = new Chargeur(p_point, 0);
       chargeurList.add(p_chargeur);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -118,7 +119,7 @@ public class Simulation implements Serializable, Observable {
   public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
