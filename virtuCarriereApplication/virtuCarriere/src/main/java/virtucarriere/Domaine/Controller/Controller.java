@@ -95,6 +95,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeNoeud((Noeud) object);
       } else if (classe == Arc.class) {
         elementContainer.removeArc((Arc) object);
+      } else if (classe == Entree.class) {
+        elementContainer.removeNoeud((Entree) object);
       } else if (classe == Convoyeur.class) {
         elementContainer.removeConvoyeur((Convoyeur) object);
       } else if (classe == Camion.class) {
@@ -109,6 +111,8 @@ public class Controller implements Serializable, Observer {
 
       if (classe == Noeud.class) {
         elementContainer.quickAddNoeud((Noeud) object);
+      } else if (classe == Entree.class) {
+        elementContainer.quickAddNoeud((Entree) object);
       } else if (classe == Arc.class) {
         elementContainer.quickAddArc((Arc) object);
       } else if (classe == Convoyeur.class) {
@@ -136,6 +140,8 @@ public class Controller implements Serializable, Observer {
 
       if (classe == Noeud.class) {
         elementContainer.quickAddNoeud((Noeud) object);
+      } else if (classe == Entree.class) {
+        elementContainer.quickAddNoeud((Entree) object);
       } else if (classe == Arc.class) {
         elementContainer.quickAddArc((Arc) object);
       } else if (classe == Convoyeur.class) {
@@ -152,6 +158,8 @@ public class Controller implements Serializable, Observer {
 
       if (classe == Noeud.class) {
         elementContainer.removeNoeud((Noeud) object);
+      } else if (classe == Entree.class) {
+        elementContainer.removeNoeud((Entree) object);
       } else if (classe == Arc.class) {
         elementContainer.removeArc((Arc) object);
       } else if (classe == Convoyeur.class) {

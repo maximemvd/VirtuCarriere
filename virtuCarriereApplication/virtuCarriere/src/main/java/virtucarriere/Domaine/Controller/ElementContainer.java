@@ -119,7 +119,7 @@ public class ElementContainer implements Serializable, Observer, Observable {
     plan.addArc(point);
   }
   
-  public void quickAddNoeud(Noeud noeud){
+  public void quickAddNoeud(AbstractPointChemin noeud){
     plan.quickAddNoeud(noeud);
   }
   

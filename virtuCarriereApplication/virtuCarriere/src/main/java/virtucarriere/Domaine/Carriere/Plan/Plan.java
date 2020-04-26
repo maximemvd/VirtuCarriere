@@ -48,7 +48,7 @@ public class Plan implements Serializable, Observable {
     this.observerList.remove(observer);
   }
   
-  public void quickAddNoeud(Noeud noeud){
+  public void quickAddNoeud(AbstractPointChemin noeud){
     chemins.addEnd(noeud);
   }
   
