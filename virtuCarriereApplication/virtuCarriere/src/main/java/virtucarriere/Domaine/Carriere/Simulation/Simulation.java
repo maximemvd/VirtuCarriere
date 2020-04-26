@@ -56,10 +56,10 @@ public class Simulation implements Serializable, Observable {
   }
 
   // camion
-  public void CamionShowUp(Point point, String client, String produit, double quantite) {
+  public void CamionShowUp(Point point, String client, String produit, double quantite, int p_temps) {
     try {
       Jeton jeton = new Jeton(client, produit, quantite);
-      Camion camionSimulation = new Camion(jeton, point, 0); // create camion
+      Camion camionSimulation = new Camion(jeton, point, 0, p_temps); // create camion
       camionList.add(camionSimulation);
       notifyObservers();
     } catch (Exception exception) {

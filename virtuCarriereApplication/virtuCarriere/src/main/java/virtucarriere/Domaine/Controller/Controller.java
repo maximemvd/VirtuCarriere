@@ -174,8 +174,8 @@ public class Controller implements Serializable, Observer {
     elementContainer.addChargeur(point);
   }
 
-  public void addCamion(Point point, String client, String produit, double qte) {
-    elementContainer.addCamion(point, client, produit, qte);
+  public void addCamion(Point point, String client, String produit, double qte, int temps) {
+    elementContainer.addCamion(point, client, produit, qte, temps);
   }
 
   public Vector<AbstractPointChemin> cheminDuCamionRetour(Tas tas) {

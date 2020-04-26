@@ -168,8 +168,8 @@ public class ElementContainer implements Serializable, Observer, Observable {
     simulation.removeCamion(p_camion);
   }
 
-  public void addCamion(Point point, String client, String produit, double qte) {
-    simulation.CamionShowUp(point, client, produit, qte);
+  public void addCamion(Point point, String client, String produit, double qte, int p_temps) {
+    simulation.CamionShowUp(point, client, produit, qte, p_temps);
   }
 
   public void changementSelectionStatus(double x, double y) {

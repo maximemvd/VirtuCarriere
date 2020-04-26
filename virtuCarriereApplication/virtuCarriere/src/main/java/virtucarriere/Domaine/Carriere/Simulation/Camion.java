@@ -15,15 +15,24 @@ public class Camion extends Vehicule {
   private Point point;
   private String name;
   private Facture factureCamion;
+  private int tempsAttente;
 
-  public Camion(Jeton jeton, Point point, double p_angle) {
+  public Camion(Jeton jeton, Point point, double p_angle, int p_tempsAttente) {
     super(point, p_angle = 0);
     this.jeton = jeton;
     this.name = "Camion";
     this.color = Color.MAGENTA;
-    // createCamion(jeton, start, coordonnees);
+    this.tempsAttente = p_tempsAttente;
+
   }
 
+  public int getTempsAttente(){
+    return tempsAttente;
+  }
+
+  public void setTempsAttente(int p_temps){
+    this.tempsAttente = p_temps;
+  }
   public void setFacture(Facture p_facture) {
     this.factureCamion = p_facture;
   }

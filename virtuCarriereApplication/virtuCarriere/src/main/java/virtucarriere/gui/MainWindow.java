@@ -1701,6 +1701,7 @@ public class MainWindow extends JFrame {
     String nomClient = NomClient.getText();
     String materiau = (String) materiauxComboBox.getSelectedItem();
     double quantite = (Integer) quantiteSpinner.getValue();
+    int temps = (Integer) tempsAttente.getValue();
 
     if (nomClient.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Attention, vous devez entrer un nom valide");
@@ -1718,7 +1719,7 @@ public class MainWindow extends JFrame {
       Point newPoint = new Point(point.x - (70 * index), point.y);
 
       
-      controller.addCamion(newPoint, nomClient, materiau, quantite);
+      controller.addCamion(newPoint, nomClient, materiau, quantite, temps);
       drawingPanel.repaint();
       simulationTextField();
     }
@@ -1743,8 +1744,10 @@ public class MainWindow extends JFrame {
         TextSimulation.append("\n\nNom du client : " + nomClient);
         TextSimulation.append("\nCode du produit demandé : " + codeProduit);
         TextSimulation.append("\nQuantité demandé : " + laQuantite);
+        TextSimulation.append("\nTemps d'attente en secondes  : " + camion.getTempsAttente());
 
-        NomClient.setText(nomClient);
+
+          NomClient.setText(nomClient);
       }
     }
 
