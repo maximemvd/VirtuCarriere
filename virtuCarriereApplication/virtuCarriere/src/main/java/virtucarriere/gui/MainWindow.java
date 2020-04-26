@@ -1592,6 +1592,7 @@ public class MainWindow extends JFrame {
                         } else {
                             ((Timer) e.getSource()).stop();
                             genererFacture(p_camion, p_camion.getJeton());
+                            controller.removeCamion(p_camion);
                         }
                     }
                 })
