@@ -1809,11 +1809,15 @@ public class MainWindow extends JFrame {
     }
 
     for (List<Convoyeur> convoyeurList : convoyeurs) {
-      for (Convoyeur convoyeur : convoyeurList) {
-        if (convoyeur.isSelected()) {
-          controller.removeConvoyeur(convoyeur);
-          drawingPanel.repaint();
+      List<Convoyeur> convSupprime = new ArrayList<>();
+      for (Convoyeur conv : convoyeurList) {
+        if (conv.isSelected()) {
+          convSupprime.add(conv);
         }
+      }
+      for (Convoyeur convoyeur : convSupprime) {
+        controller.removeConvoyeur(convoyeur);
+        drawingPanel.repaint();
       }
     }
 

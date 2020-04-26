@@ -29,9 +29,6 @@ public abstract class Equipement extends Element {
     this.dependency = dependency;
     this.length = p_length;
     this.width = p_width;
-    Point upperLeft = new Point((int) (getX() - p_length / 2), (int) (getY() - p_width / 2));
-    Rectangle shape = new Rectangle(upperLeft, new Dimension(length, width));
-    setShape(shape);
   }
 
   public static String equipement() {
@@ -42,8 +39,7 @@ public abstract class Equipement extends Element {
   public void translate(double deltaX, double deltaY) {
     this.point.x = (int) (this.point.getX() + deltaX);
     this.point.y = (int) (this.point.getY() + deltaY);
-    Point upperLeft = new Point((int) (getX() - length / 2), (int) (getY() - width / 2));
-    setShape(new Rectangle(upperLeft, new Dimension(length, width)));
+    loadShape();
   }
 
   public double getAngle() {
@@ -72,5 +68,11 @@ public abstract class Equipement extends Element {
 
   public void setLength(int length) {
     this.length = length;
+  }
+
+  protected void loadShape() {
+    Point upperLeft = new Point((int) (getX() - length / 2), (int) (getY() - width / 2));
+    Rectangle shape = new Rectangle(upperLeft, new Dimension(length, width));
+    setShape(shape);
   }
 }

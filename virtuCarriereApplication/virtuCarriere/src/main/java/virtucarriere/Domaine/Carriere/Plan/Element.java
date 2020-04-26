@@ -60,7 +60,10 @@ public abstract class Element implements Serializable {
   public void translate(double deltaX, double deltaY) {
     this.point.x = (int) (this.point.getX() + deltaX);
     this.point.y = (int) (this.point.getY() + deltaY);
+    loadShape();
   }
+
+  protected abstract void loadShape();
 
   public String getName() {
     return name;
