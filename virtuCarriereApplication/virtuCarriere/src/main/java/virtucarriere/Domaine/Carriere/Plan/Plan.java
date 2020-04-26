@@ -55,8 +55,8 @@ public class Plan implements Serializable, Observable {
   public void quickAddConvoyeur(Convoyeur convoyeur){
     equipments.addLink(convoyeur);
   }
-  
-  public void quickAddArc(Arc arc){
+
+  public void quickAddArc(Arc arc) {
     chemins.addLink(arc);
   }
 
@@ -84,7 +84,7 @@ public class Plan implements Serializable, Observable {
     if (starting != arrival) {
       try {
         Arc arc = new Arc(starting, arrival);
-        if (intersectAny(arc)) {
+        if (intersectAnyForArc(arc)) {
           JOptionPane.showMessageDialog(
               null, "Cet arc croise un element du plan.", "Attention", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -489,5 +489,13 @@ public class Plan implements Serializable, Observable {
 
   private boolean intersectAny(Element element) {
     return getAllElements().stream().anyMatch(element::intersect);
+  }
+
+  private boolean intersectAnyForArc(Arc arc) {
+    List<Element> testElements =
+        getAllElements().stream()
+            .filter(element -> (!element.equals(arc.arrival) && !element.equals(arc.starting)))
+            .collect(Collectors.toList());
+    return testElements.stream().anyMatch(arc::intersect);
   }
 }
