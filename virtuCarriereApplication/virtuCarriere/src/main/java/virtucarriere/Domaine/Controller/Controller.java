@@ -70,7 +70,7 @@ public class Controller implements Serializable, Observer {
       this.elementStack.add(nouvelleAction);
       undoRedoPointer++;
     }
-    needToDeleteElements = true;
+    
   }
 
   public void deleteElementsAfterPointer(int Pointer) {
@@ -126,6 +126,7 @@ public class Controller implements Serializable, Observer {
       }
     }
     undoRedoPointer--;
+    needToDeleteElements = true;
   }
 
   public void redo() {
@@ -172,6 +173,7 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeEquipement((Equipement) object);
       }
     }
+    needToDeleteElements = true;
   }
 
   // méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/
@@ -412,6 +414,14 @@ public class Controller implements Serializable, Observer {
     elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
+  public void saveSimulation(){
+      return;
+  }
+  
+  public void openSimulation(){
+      return;
+  }
+  
   public void openFile() {
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
