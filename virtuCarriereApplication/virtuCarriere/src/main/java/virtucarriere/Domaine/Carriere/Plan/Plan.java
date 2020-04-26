@@ -158,7 +158,7 @@ public class Plan implements Serializable, Observable {
 
   public void addTas(Point mousePoint, String code, double angle) {
     Tas tas = new Tas(mousePoint, 1, 1, code, 25, angle);
-    Noeud noeud = new Noeud(tas.getPoint(), 3, 3);
+    Noeud noeud = new Noeud(tas.getPoint());
     tas.setNoeudTas(noeud);
     chemins.addEnd(noeud);
     addEquipment(tas);
@@ -291,7 +291,7 @@ public class Plan implements Serializable, Observable {
   }
 
   public void addNoeud(Point mousePoint) {
-    Noeud noeud = new Noeud(mousePoint, 3, 3);
+    Noeud noeud = new Noeud(mousePoint);
     if (isElementPresent(noeud)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
