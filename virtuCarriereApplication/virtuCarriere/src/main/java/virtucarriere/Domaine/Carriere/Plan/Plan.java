@@ -137,7 +137,7 @@ public class Plan implements Serializable, Observable {
   }
 
   public void addConcasseur(Point mousePoint, double angle) {
-    Concasseur concasseur = new Concasseur(mousePoint, 1, 1, angle);
+    Concasseur concasseur = new Concasseur(mousePoint, angle);
     if (isElementPresent(concasseur)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
@@ -147,7 +147,7 @@ public class Plan implements Serializable, Observable {
   }
 
   public void addCrible(Point mousePoint, double angle) {
-    Crible crible = new Crible(mousePoint, 1, 1, angle);
+    Crible crible = new Crible(mousePoint, angle);
     if (isElementPresent(crible)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
