@@ -36,13 +36,6 @@ public abstract class Equipement extends Element {
     return "First Commits";
   }
 
-  @Override
-  public void translate(double deltaX, double deltaY) {
-    this.point.x = (int) (this.point.getX() + deltaX);
-    this.point.y = (int) (this.point.getY() + deltaY);
-    loadShape();
-  }
-
   public double getAngle() {
     return angle.get();
   }
