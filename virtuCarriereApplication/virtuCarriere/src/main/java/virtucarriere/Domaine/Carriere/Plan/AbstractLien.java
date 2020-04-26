@@ -18,9 +18,7 @@ public abstract class AbstractLien<EndType extends Element> extends Element {
         new Point(
             (int) (starting.getX() + arrival.getX()) / 2,
             (int) (starting.getY() + arrival.getY()) / 2));
-    Line2D shape =
-        new Line2D.Double(starting.getX(), starting.getY(), arrival.getX(), arrival.getY());
-    setShape(shape);
+    loadShape();
   }
 
   public EndType getArrival() {
@@ -53,5 +51,12 @@ public abstract class AbstractLien<EndType extends Element> extends Element {
     int size = 4;
     Shape mouse = new Rectangle((int) (p_x - size / 2), (int) (p_y - 1.5), 2, 2);
     return shape.intersects((Rectangle2D) mouse);
+  }
+
+  @Override
+  protected void loadShape() {
+    Line2D shape =
+        new Line2D.Double(starting.getX(), starting.getY(), arrival.getX(), arrival.getY());
+    setShape(shape);
   }
 }
