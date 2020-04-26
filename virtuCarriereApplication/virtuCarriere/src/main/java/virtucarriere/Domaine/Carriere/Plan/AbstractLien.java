@@ -2,6 +2,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
 public abstract class AbstractLien<EndType extends Element> extends Element {
@@ -45,5 +46,12 @@ public abstract class AbstractLien<EndType extends Element> extends Element {
   @Override
   public int hashCode() {
     return Objects.hash(starting, arrival);
+  }
+
+  @Override
+  public boolean contains(double p_x, double p_y) {
+    int size = 4;
+    Shape mouse = new Rectangle((int) (p_x - size / 2), (int) (p_y - 1.5), 2, 2);
+    return shape.intersects((Rectangle2D) mouse);
   }
 }

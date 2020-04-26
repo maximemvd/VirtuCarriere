@@ -49,10 +49,14 @@ public class Plan implements Serializable, Observable {
   }
   
   public void quickAddNoeud(Noeud noeud){
-      chemins.addEnd(noeud);
+    chemins.addEnd(noeud);
   }
   
-  public void quickAddArc(Arc arc){
+  public void quickAddConvoyeur(Convoyeur convoyeur){
+    equipments.addLink(convoyeur);
+  }
+
+  public void quickAddArc(Arc arc) {
     chemins.addLink(arc);
   }
 
@@ -80,8 +84,12 @@ public class Plan implements Serializable, Observable {
     if (starting != arrival) {
       try {
         Arc arc = new Arc(starting, arrival);
-        chemins.addLink(arc);
-
+        if (intersectAnyForArc(arc)) {
+          JOptionPane.showMessageDialog(
+              null, "Cet arc croise un element du plan.", "Attention", JOptionPane.WARNING_MESSAGE);
+        } else {
+          chemins.addLink(arc);
+        }
       } catch (RuntimeException e) {
         JOptionPane.showMessageDialog(
             null, "Cet arc existe déjà.", "Attention", JOptionPane.WARNING_MESSAGE);
@@ -136,7 +144,7 @@ public class Plan implements Serializable, Observable {
 
   public void addBroyeur(Point mousePoint, double angle) {
     Broyeur broyeur = new Broyeur(mousePoint, 1, 1, angle);
-    if (isElementPresent(broyeur)) {
+    if (intersectAny(broyeur)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
     } else {
@@ -146,7 +154,7 @@ public class Plan implements Serializable, Observable {
 
   public void addConcasseur(Point mousePoint, double angle) {
     Concasseur concasseur = new Concasseur(mousePoint, angle);
-    if (isElementPresent(concasseur)) {
+    if (intersectAny(concasseur)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
     } else {
@@ -156,7 +164,7 @@ public class Plan implements Serializable, Observable {
 
   public void addCrible(Point mousePoint, double angle) {
     Crible crible = new Crible(mousePoint, angle);
-    if (isElementPresent(crible)) {
+    if (intersectAny(crible)) {
       JOptionPane.showMessageDialog(
           null, "Attention, un élément est déjà présent à cette position");
     } else {
@@ -168,15 +176,26 @@ public class Plan implements Serializable, Observable {
     Tas tas = new Tas(mousePoint, 1, 1, code, 25, angle);
     Noeud noeud = new Noeud(tas.getPoint());
     tas.setNoeudTas(noeud);
-    chemins.addEnd(noeud);
-    addEquipment(tas);
     PointChargement pointChargement = tas.getPointChargement();
-    chemins.addEnd(pointChargement);
-
-    Arc arc = new Arc(pointChargement, noeud);
-    chemins.addLink(arc);
+    Arc arcAller = new Arc(pointChargement, noeud);
     Arc arcRetour = new Arc(noeud, pointChargement);
-    chemins.addLink(arcRetour);
+    if (!intersectAny(tas)
+        && !intersectAny(noeud)
+        && !intersectAny(pointChargement)
+        && !intersectAny(arcAller)
+        && !intersectAny(arcRetour)) {
+      addEquipment(tas);
+      chemins.addEnd(noeud);
+      chemins.addEnd(pointChargement);
+      chemins.addLink(arcAller);
+      chemins.addLink(arcRetour);
+    } else {
+      JOptionPane.showMessageDialog(
+          null,
+          "Il existe déjà un element à cet endroit",
+          "Attention",
+          JOptionPane.WARNING_MESSAGE);
+    }
   }
 
   public void clearEquipementConv() {
@@ -466,5 +485,17 @@ public class Plan implements Serializable, Observable {
       }
     }
     return false;
+  }
+
+  private boolean intersectAny(Element element) {
+    return getAllElements().stream().anyMatch(element::intersect);
+  }
+
+  private boolean intersectAnyForArc(Arc arc) {
+    List<Element> testElements =
+        getAllElements().stream()
+            .filter(element -> (!element.equals(arc.arrival) && !element.equals(arc.starting)))
+            .collect(Collectors.toList());
+    return testElements.stream().anyMatch(arc::intersect);
   }
 }
