@@ -66,7 +66,6 @@ public class Controller implements Serializable, Observer {
     if (needToDeleteElements){
       deleteElementsAfterPointer(undoRedoPointer);
       this.elementStack.add(nouvelleAction);
-      System.out.print(nouvelleAction.getAction() + " " + nouvelleAction.getElement());
       undoRedoPointer++;
     }
     needToDeleteElements = true;
@@ -88,9 +87,6 @@ public class Controller implements Serializable, Observer {
     if (elementStack.get(undoRedoPointer).getAction().equals("add")){
         needToDeleteElements = false;
         elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
-        //On enlève l'action qu'on vient d'ajouter en appelant la fonction removeEquipement
-        //elementStack.remove(elementStack.size() - 1);
-        //undoRedoPointer--;
     }
     undoRedoPointer--;
   }
@@ -101,8 +97,6 @@ public class Controller implements Serializable, Observer {
     if (elementStack.get(undoRedoPointer).getAction().equals("add")){
         needToDeleteElements = false;
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
-        //elementStack.remove(elementStack.size() - 1);
-        //undoRedoPointer--;
     }
   }
 
