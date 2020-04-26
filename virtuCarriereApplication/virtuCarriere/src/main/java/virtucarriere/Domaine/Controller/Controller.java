@@ -414,6 +414,14 @@ public class Controller implements Serializable, Observer {
     elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
+  public void saveSimulation(){
+      return;
+  }
+  
+  public void openSimulation(){
+      return;
+  }
+  
   public void openFile() {
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
