@@ -111,6 +111,8 @@ public class Controller implements Serializable, Observer {
       }
       
       else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
+                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
         elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
                                 (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
       }

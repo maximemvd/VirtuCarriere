@@ -24,7 +24,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
                   .filter(endAbstractLien -> endAbstractLien.getArrival().equals(arc.getArrival()))
                   .findFirst();
       links.elementAt(index).remove(result.get());
-      notifyObservers("remove", arc);
+      notifyObservers("delete", arc);
     } else {
       throw new RuntimeException("Cet arc n'existe pas");
     }
