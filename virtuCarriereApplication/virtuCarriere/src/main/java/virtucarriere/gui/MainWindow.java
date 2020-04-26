@@ -1314,29 +1314,33 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_selectionSimulActionPerformed
 
   private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
-      for (Camion camionCourant : controller.getCamionList()) {
-          TextSimulation.append("\n\nTemps d'attente du camion  : " + camionCourant.getTempsAttente() + "secondes");
-          if (camionCourant.getTempsAttente() == 0)
-          {
-              cheminAllerSimulation(camionCourant);
-          }
-          else {
-              new Timer(
-                      1000,
-                      new ActionListener() {
-                          private int count = 0;
+      List<Chargeur> chargeurs = controller.getChargeurList();
+      if(chargeurs.size() == 0){
+          JOptionPane.showMessageDialog(null, "Attention un chargeur est nécessaire pour votre simulation");
+      }
+      else {
+          for (Camion camionCourant : controller.getCamionList()) {
+              TextSimulation.append("\n\nTemps d'attente du camion  : " + camionCourant.getTempsAttente() + "secondes");
+              if (camionCourant.getTempsAttente() == 0) {
+                  cheminAllerSimulation(camionCourant);
+              } else {
+                  new Timer(
+                          1000,
+                          new ActionListener() {
+                              private int count = 0;
 
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
-                              if (count < camionCourant.getTempsAttente()) {
-                                  count++;
-                              } else {
-                                  ((Timer) e.getSource()).stop();
-                                  cheminAllerSimulation(camionCourant);
+                              @Override
+                              public void actionPerformed(ActionEvent e) {
+                                  if (count < camionCourant.getTempsAttente()) {
+                                      count++;
+                                  } else {
+                                      ((Timer) e.getSource()).stop();
+                                      cheminAllerSimulation(camionCourant);
+                                  }
                               }
-                          }
-                      })
-                      .start();
+                          })
+                          .start();
+              }
           }
       }
   }
