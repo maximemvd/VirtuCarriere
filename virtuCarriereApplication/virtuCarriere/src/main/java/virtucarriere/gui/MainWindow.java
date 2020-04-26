@@ -1592,7 +1592,6 @@ public class MainWindow extends JFrame {
                         } else {
                             ((Timer) e.getSource()).stop();
                             genererFacture(p_camion, p_camion.getJeton());
-                            controller.removeCamion(p_camion);
                         }
                     }
                 })
@@ -1624,7 +1623,13 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
 
       TextSimulation.append(
-          "\n\nFin de la simulation pour le camion : " + jetonCamion.getRefClient());
+          "\n\nFin de la simulation pour le camion, : " + jetonCamion.getRefClient());
+
+        TextSimulation.append(
+                "\n\nLe camion s'en va de la carrière");
+
+        controller.removeCamion(camionCourant);
+
 
     } else {
       TextSimulation.append(
