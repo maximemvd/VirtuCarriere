@@ -19,5 +19,5 @@ public interface Observable {
   
   public void removeObserver(Observer observer);
   
-  public void notifyObservers(String action, Element element);
+  public void notifyObservers(String action, Object element);
 }

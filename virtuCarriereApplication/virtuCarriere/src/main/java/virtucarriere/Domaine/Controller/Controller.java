@@ -16,6 +16,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.*;
+import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
+import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
@@ -57,7 +59,7 @@ public class Controller implements Serializable, Observer {
   }
 
   @Override
-  public void update(String action, Element element) {
+  public void update(String action, Object element) {
     Action nouvelleAction = new Action(action, element);
     addElementToStack(nouvelleAction);
   }
@@ -84,15 +86,19 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer <= 0) {
       return;
     }
+    Object object = elementStack.get(undoRedoPointer).getElement();  
+    Class<?> classe = object.getClass();
     if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
-        elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.removeNoeud((Noeud) object);
+      } else if (classe == Arc.class) {
+        elementContainer.removeArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.removeConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.removeCamion((Camion) object);
       } else {
         elementContainer.removeEquipement(
             (Equipement) elementStack.get(undoRedoPointer).getElement());
@@ -100,11 +106,11 @@ public class Controller implements Serializable, Observer {
     } else {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+      if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Noeud")) {
         elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Arc")) {
         elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Convoyeur")) {
         elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
@@ -121,11 +127,11 @@ public class Controller implements Serializable, Observer {
     if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+      if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Noeud")) {
         elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Arc")) {
         elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Convoyeur")) {
         elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
@@ -133,11 +139,11 @@ public class Controller implements Serializable, Observer {
     } else {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+      if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Noeud")) {
         elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Arc")) {
         elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Convoyeur")) {
         elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.removeEquipement(

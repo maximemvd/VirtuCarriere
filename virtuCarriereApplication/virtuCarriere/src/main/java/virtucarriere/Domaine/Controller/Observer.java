@@ -13,6 +13,6 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
  */
 public interface Observer {
     
-  public void update(String action, Element element);
+  public void update(String action, Object element);
     
 }

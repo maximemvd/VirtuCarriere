@@ -32,7 +32,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
   }
   
   @Override
-  public void notifyObservers(String action, Element element){
+  public void notifyObservers(String action, Object element){
     for (Observer observer : this.observerList){
       observer.update(action, element);
     }

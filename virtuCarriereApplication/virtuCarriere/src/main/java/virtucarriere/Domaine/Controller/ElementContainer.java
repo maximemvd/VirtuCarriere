@@ -40,12 +40,12 @@ public class ElementContainer implements Serializable, Observer, Observable {
   }
 
   @Override
-  public void update(String action, Element element) {
+  public void update(String action, Object element) {
     notifyObservers(action, element);
   }
 
   @Override
-  public void notifyObservers(String action, Element element) {
+  public void notifyObservers(String action, Object element) {
     for (Observer observer : this.observerList) {
       observer.update(action, element);
     }
