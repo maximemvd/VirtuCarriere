@@ -107,7 +107,7 @@ public class Simulation implements Serializable, Observable {
     try {
       Chargeur p_chargeur = new Chargeur(p_point, 0);
       chargeurList.add(p_chargeur);
-      //notifyObservers();
+      notifyObservers("add", p_chargeur);
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -121,10 +121,14 @@ public class Simulation implements Serializable, Observable {
         .forEach(Vehicule::switchSelectionStatus);
   }
 
+  public void quickAddChargeur(Chargeur chargeur){
+    chargeurList.add(chargeur);
+  }
+  
   public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
-      //notifyObservers();
+      notifyObservers("delete", p_chargeur);
     } catch (Exception error) {
       System.out.println(error);
     }

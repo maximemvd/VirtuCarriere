@@ -99,9 +99,10 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeConvoyeur((Convoyeur) object);
       } else if (classe == Camion.class) {
         elementContainer.removeCamion((Camion) object);
-      } else {
-        elementContainer.removeEquipement(
-            (Equipement) elementStack.get(undoRedoPointer).getElement());
+      } else if (classe == Chargeur.class) {
+        elementContainer.removeChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
+        elementContainer.removeEquipement((Equipement) object);
       }
     } else {
       needToDeleteElements = false;
@@ -114,7 +115,9 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddConvoyeur((Convoyeur) object);
       } else if (classe == Camion.class) {
         elementContainer.quickAddCamion((Camion) object);
-      } else {
+      } else if (classe == Chargeur.class) {
+        elementContainer.quickAddChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
         elementContainer.addEquipement((Equipement) object);
       }
     }
@@ -139,7 +142,9 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddConvoyeur((Convoyeur) object);
       } else if (classe == Camion.class) {
         elementContainer.quickAddCamion((Camion) object);
-      } else {
+      } else if (classe == Chargeur.class) {
+        elementContainer.quickAddChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
         elementContainer.addEquipement((Equipement) object);
       }
     } else {
@@ -153,9 +158,10 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeConvoyeur((Convoyeur) object);
       } else if (classe == Camion.class) {
         elementContainer.removeCamion((Camion) object);
-      } else {
-        elementContainer.removeEquipement(
-            (Equipement) elementStack.get(undoRedoPointer).getElement());
+      } else if (classe == Chargeur.class) {
+        elementContainer.removeChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
+        elementContainer.removeEquipement((Equipement) object);
       }
     }
   }

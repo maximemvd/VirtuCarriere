@@ -199,6 +199,10 @@ public class ElementContainer implements Serializable, Observer, Observable {
   public void removeConvoyeur(Convoyeur convoyeur) {
     plan.removeConvoyeur(convoyeur);
   }
+  
+  public void quickAddChargeur(Chargeur chargeur){
+    simulation.quickAddChargeur(chargeur);
+  }
 
   public void addChargeur(Point point) {
     simulation.addChargeur(point);
