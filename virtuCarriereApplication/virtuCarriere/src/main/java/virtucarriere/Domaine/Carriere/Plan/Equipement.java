@@ -38,6 +38,14 @@ public abstract class Equipement extends Element {
     return "First Commits";
   }
 
+  @Override
+  public void translate(double deltaX, double deltaY) {
+    this.point.x = (int) (this.point.getX() + deltaX);
+    this.point.y = (int) (this.point.getY() + deltaY);
+    Point upperLeft = new Point((int) (getX() - length / 2), (int) (getY() - width / 2));
+    setShape(new Rectangle(upperLeft, new Dimension(length, width)));
+  }
+
   public double getAngle() {
     return angle.get();
   }

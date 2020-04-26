@@ -6,7 +6,9 @@
 package virtucarriere.Domaine.Carriere.Simulation;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 public class Camion extends Vehicule {
 
@@ -23,15 +25,18 @@ public class Camion extends Vehicule {
     this.name = "Camion";
     this.color = Color.MAGENTA;
     this.tempsAttente = p_tempsAttente;
-
   }
 
-  public int getTempsAttente(){
+  public int getTempsAttente() {
     return tempsAttente;
   }
 
-  public void setTempsAttente(int p_temps){
+  public void setTempsAttente(int p_temps) {
     this.tempsAttente = p_temps;
+    Point upperLeft = new Point((int) (getX() - 2), (int) (getY() - 2));
+    Rectangle shape = new Rectangle(upperLeft, new Dimension(2, 2));
+    setShape(shape);
+    // createCamion(jeton, start, coordonnees);
   }
 
   public void setFacture(Facture p_facture) {
@@ -68,14 +73,14 @@ public class Camion extends Vehicule {
     this.jeton = jeton;
   }
 
-  public void payeFacture(){
+  public void payeFacture() {
     System.out.println("Le camion paye la facture");
     this.factureCamion = null;
   }
 
   public boolean verifierFacturePayer() {
     boolean returnValue = false;
-    if (factureCamion == null){
+    if (factureCamion == null) {
       return true;
     }
     return returnValue;
