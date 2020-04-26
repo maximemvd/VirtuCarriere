@@ -5,13 +5,14 @@
  */
 package virtucarriere.Domaine.Controller;
 
+import java.io.Serializable;
 import virtucarriere.Domaine.Carriere.Plan.Element;
 
 /**
  *
  * @author Francis_Boulianne
  */
-public class Action {
+public class Action implements Serializable {
     
   private String action;
   private Object element;
