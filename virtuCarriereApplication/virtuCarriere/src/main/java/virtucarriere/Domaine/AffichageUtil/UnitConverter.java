@@ -26,18 +26,11 @@ public class UnitConverter {
     return converterUnit;
   }
 
-  public static void setConverterUnit(float p_converter){
-    if (p_converter > 0){
-      converterUnit = p_converter;
-    }
-  }
 
-  public static Point convertPointToMeter(Point p_point) {
-    return new Point((int) (p_point.x * converterUnit), (int) (p_point.y * converterUnit));
-  }
-
-
-  public static Point convertPointToPixel(Point p_point) {
-    return new Point((int) (p_point.x / converterUnit), (int) (p_point.y/ converterUnit));
+  public static double ConvertSpeedToKm(double speed, double time){
+    double rightSpeed = pixelToMeter(speed);
+    double rightTimeSeconde = time / 1000;
+    double vitesseMS = rightSpeed / rightTimeSeconde;
+    return vitesseMS * 3.6;
   }
 }
