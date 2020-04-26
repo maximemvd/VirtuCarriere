@@ -29,6 +29,7 @@ public abstract class Equipement extends Element {
     this.dependency = dependency;
     this.length = p_length;
     this.width = p_width;
+    loadShape();
   }
 
   public static String equipement() {
