@@ -2144,8 +2144,8 @@ public class MainWindow extends JFrame {
         String num = String.format(" #%d", numNoeud);
         String xCoord = String.format(":\n x : %d", (int) noeud.getX());
         String yCoord = String.format(", y : %d", (int) noeud.getY());
-        String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(noeud.getX()));
-        String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(noeud.getY()));
+        String xCoordMetre = String.format(":\n x En mètre : %d", (int) UnitConverter.pixelToMeter(noeud.getX()));
+        String yCoordMetre = String.format(", y En mètre : %d", (int) UnitConverter.pixelToMeter(noeud.getY()));
         String nombreTotal = String.format("%d", numTotal);
         jTextArea1.append(nom + num + xCoord + yCoord +  xCoordMetre +  yCoordMetre);
         jTextField2.setText(nombreTotal);
@@ -2201,8 +2201,6 @@ public class MainWindow extends JFrame {
   }
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
-    // Serait intéressant de dessiner l'arc au fur et à mesure :
-    // https://stackoverflow.com/questions/9711938/java-draw-line-as-the-mouse-is-moved
     Point mousePoint = evt.getPoint();
     double xCoord = UnitConverter.pixelToMeter(mousePoint.getX());
     double yCoord = UnitConverter.pixelToMeter(mousePoint.getY());
