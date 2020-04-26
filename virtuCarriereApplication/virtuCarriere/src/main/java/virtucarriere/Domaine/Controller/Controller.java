@@ -99,17 +99,9 @@ public class Controller implements Serializable, Observer {
       needToDeleteElements = false;
 
       if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.addElement(
-            elementStack.get(undoRedoPointer).getElement().getPoint(), EquipementModes.NOEUD, 0.0);
+        elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
       } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.addArc(
-            new Point(
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
-        elementContainer.addArc(
-            new Point(
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+        elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
       }
@@ -126,17 +118,9 @@ public class Controller implements Serializable, Observer {
       needToDeleteElements = false;
 
       if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.addElement(
-            elementStack.get(undoRedoPointer).getElement().getPoint(), EquipementModes.NOEUD, 0.0);
+        elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
       } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.addArc(
-            new Point(
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
-        elementContainer.addArc(
-            new Point(
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
-                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+        elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
       }
