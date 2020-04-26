@@ -18,9 +18,9 @@ public class Crible extends Equipement {
   private static List<Class<? extends Equipement>> dependency =
       new ArrayList<Class<? extends Equipement>>(Collections.singleton(Tas.class));
 
-  public Crible(Point point, int p_width, int p_length, double p_angle) {
+  public Crible(Point point, double p_angle) {
 
-    super(point, p_width = 2, p_length = 2, p_angle = 0, dependency);
+    super(point, 65, 40, p_angle = 0, dependency);
 
     setName("Crible");
   }
