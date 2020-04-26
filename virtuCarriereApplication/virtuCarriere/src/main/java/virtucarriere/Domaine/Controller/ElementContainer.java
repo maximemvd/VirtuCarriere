@@ -37,6 +37,11 @@ public class ElementContainer implements Serializable, Observer, Observable {
     return this.simulation;
   }
   
+  public void setSimulation(Simulation simulation){
+    setCamionList(simulation.getCamionList());
+    setChargeurList(simulation.getChargeurList());
+  }
+  
   public void setCamionList(List<Camion> camionList){
     simulation.setCamionList(camionList);
   }

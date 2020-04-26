@@ -21,6 +21,7 @@ import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
+import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 
 public class Controller implements Serializable, Observer {
 
@@ -445,13 +446,13 @@ public class Controller implements Serializable, Observer {
       try {
         FileInputStream inputFile = new FileInputStream(new File(String.valueOf(selectedFile)));
         ObjectInputStream inputObject = new ObjectInputStream(inputFile);
-        setElement((ElementContainer) inputObject.readObject());
+        elementContainer.setSimulation((Simulation) inputObject.readObject());
         System.out.println(selectedFile);
         selectedFile =
             new File(
                 String.valueOf(selectedFile)
                     .substring(0, String.valueOf(selectedFile).lastIndexOf('.')));
-        elementContainer.setFile(selectedFile);
+        //elementContainer.setFile(selectedFile);
 
       } catch (IOException e) {
         System.out.println(e);
