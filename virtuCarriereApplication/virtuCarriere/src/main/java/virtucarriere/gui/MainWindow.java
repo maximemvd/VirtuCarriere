@@ -2105,8 +2105,10 @@ public class MainWindow extends JFrame {
         String num = String.format(" #%d", numNoeud);
         String xCoord = String.format(":\n x : %d", (int) noeud.getX());
         String yCoord = String.format(", y : %d", (int) noeud.getY());
+        String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(noeud.getX()));
+        String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(noeud.getY()));
         String nombreTotal = String.format("%d", numTotal);
-        jTextArea1.append(nom + num + xCoord + yCoord);
+        jTextArea1.append(nom + num + xCoord + yCoord +  xCoordMetre +  yCoordMetre);
         jTextField2.setText(nombreTotal);
 
         String x = String.format("%d", (int) noeud.getX());
@@ -2132,8 +2134,10 @@ public class MainWindow extends JFrame {
           String num = String.format(" #%d", numConvoyeur);
           String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
           String yCoord = String.format(", y : %d", (int) middlePoint.getY());
+          String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(middlePoint.getX()));
+          String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(middlePoint.getY()));
           String nombreTotal = String.format("%d", numTotal);
-          jTextArea1.append(nom + num + xCoord + yCoord);
+          jTextArea1.append(nom + num + xCoord + yCoord + xCoordMetre + yCoordMetre);
           jTextField2.setText(nombreTotal);
         }
       }
@@ -2146,10 +2150,12 @@ public class MainWindow extends JFrame {
           numArc++;
           String nom = String.format("\nCoordonnées du point milieu de l'%s", arc.getName());
           String num = String.format(" #%d", numArc);
-          String xCoord = String.format(":\n x : %d", (int) arc.getX());
-          String yCoord = String.format(", y : %d", (int) arc.getY());
+            String xCoord = String.format(":\n x : %d", (int) arc.getX());
+            String yCoord = String.format(", y : %d", (int) arc.getY());
+            String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(arc.getX()));
+            String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(arc.getY()));
           String nombreTotal = String.format("%d", numTotal);
-          jTextArea1.append(nom + num + xCoord + yCoord);
+          jTextArea1.append(nom + num + xCoord + yCoord + xCoordMetre + yCoordMetre);
           jTextField2.setText(nombreTotal);
         }
     }
