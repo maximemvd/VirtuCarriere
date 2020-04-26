@@ -467,4 +467,8 @@ public class Plan implements Serializable, Observable {
     }
     return false;
   }
+
+  private boolean intersectAny(Element element) {
+    return getAllElements().stream().anyMatch(element::intersect);
+  }
 }
