@@ -65,6 +65,11 @@ public class Simulation implements Serializable, Observable {
       System.out.println(exception);
     }
   }
+  
+  public void quickAddCamion(Camion camion){
+    camionList.add(camion);
+    notifyObservers("add", camion);
+  }
 
   public void removeCamion(Camion p_camion) {
     try {

@@ -106,14 +106,16 @@ public class Controller implements Serializable, Observer {
     } else {
       needToDeleteElements = false;
 
-      if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Noeud")) {
-        elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Arc")) {
-        elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
-      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Convoyeur")) {
-        elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.quickAddNoeud((Noeud) object);
+      } else if (classe == Arc.class) {
+        elementContainer.quickAddArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.quickAddConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.quickAddCamion((Camion) object);
       } else {
-        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+        elementContainer.addEquipement((Equipement) object);
       }
     }
     undoRedoPointer--;
@@ -123,28 +125,34 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer == elementStack.size() - 1) return;
 
     undoRedoPointer++;
-
+    Object object = elementStack.get(undoRedoPointer).getElement();  
+    Class<?> classe = object.getClass();
+    
     if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
 
-      if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Noeud")) {
-        elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Arc")) {
-        elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
-      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Convoyeur")) {
-        elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.quickAddNoeud((Noeud) object);
+      } else if (classe == Arc.class) {
+        elementContainer.quickAddArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.quickAddConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.quickAddCamion((Camion) object);
       } else {
-        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+        elementContainer.addEquipement((Equipement) object);
       }
     } else {
       needToDeleteElements = false;
 
-      if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Noeud")) {
-        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Arc")) {
-        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
-      } else if (((Element)(elementStack.get(undoRedoPointer).getElement())).getName().equals("Convoyeur")) {
-        elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.removeNoeud((Noeud) object);
+      } else if (classe == Arc.class) {
+        elementContainer.removeArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.removeConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.removeCamion((Camion) object);
       } else {
         elementContainer.removeEquipement(
             (Equipement) elementStack.get(undoRedoPointer).getElement());
