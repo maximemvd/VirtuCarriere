@@ -58,6 +58,7 @@ public class Controller implements Serializable, Observer {
   
   @Override
   public void update(String action, Element element){
+      System.out.print("Salut");
     Action nouvelleAction = new Action(action, element);
     addElementToStack(nouvelleAction);
   }

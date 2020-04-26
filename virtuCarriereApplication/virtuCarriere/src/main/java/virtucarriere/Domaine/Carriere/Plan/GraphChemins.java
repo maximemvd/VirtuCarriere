@@ -3,6 +3,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import virtucarriere.Domaine.Controller.*;
 
 public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implements Serializable, Observable {
@@ -11,6 +12,23 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
     
   public double getCost(Arc arc) {
     return arc.getCost();
+  }
+  
+  @Override
+  public void removeLink(Arc arc){
+    if (linkExist(arc)) {
+      int index = ends.indexOf(arc.getStarting());
+      Optional<Arc> result =
+          (Optional<Arc>)
+              links.elementAt(index).stream()
+                  .filter(endAbstractLien -> endAbstractLien.getArrival().equals(arc.getArrival()))
+                  .findFirst();
+      links.elementAt(index).remove(result.get());
+      notifyObservers("remove", arc);
+    } else {
+      throw new RuntimeException("Cet arc n'existe pas");
+    }
+      
   }
   
   @Override
