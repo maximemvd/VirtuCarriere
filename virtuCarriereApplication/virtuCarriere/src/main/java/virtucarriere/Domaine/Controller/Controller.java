@@ -85,8 +85,39 @@ public class Controller implements Serializable, Observer {
       return;
     }
     if (elementStack.get(undoRedoPointer).getAction().equals("add")){
-        needToDeleteElements = false;
+      needToDeleteElements = false;
+      
+      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
+      }
+      
+      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      }
+      
+      else {
         elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      }
+    }
+    
+    else {
+      needToDeleteElements = false;
+      
+      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+        elementContainer.addElement(elementStack.get(undoRedoPointer).getElement().getPoint(),
+                                    EquipementModes.NOEUD,
+                                    0.0);
+      }
+      
+      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
+                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+      }
+      
+      else {
+        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      }
+        
     }
     undoRedoPointer--;
   }
