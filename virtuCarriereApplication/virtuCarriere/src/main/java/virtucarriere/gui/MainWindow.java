@@ -1314,26 +1314,31 @@ public class MainWindow extends JFrame {
   } // GEN-LAST:event_selectionSimulActionPerformed
 
   private void StartSimulationActionPerformed(java.awt.event.ActionEvent evt) {
-    if (delayTime == 0) {
-      cheminAllerSimulation();
-    } else {
-      new Timer(
-              1000,
-              new ActionListener() {
-                private int count = 0;
+      for (Camion camionCourant : controller.getCamionList()) {
+          TextSimulation.append("\n\nTemps d'attente du camion  : " + camionCourant.getTempsAttente() + "secondes");
+          if (camionCourant.getTempsAttente() == 0)
+          {
+              cheminAllerSimulation(camionCourant);
+          }
+          else {
+              new Timer(
+                      1000,
+                      new ActionListener() {
+                          private int count = 0;
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                  if (count < delayTime) {
-                    count++;
-                  } else {
-                    ((Timer) e.getSource()).stop();
-                    cheminAllerSimulation();
-                  }
-                }
-              })
-          .start();
-    }
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
+                              if (count < camionCourant.getTempsAttente()) {
+                                  count++;
+                              } else {
+                                  ((Timer) e.getSource()).stop();
+                                  cheminAllerSimulation(camionCourant);
+                              }
+                          }
+                      })
+                      .start();
+          }
+      }
   }
 
   public static double angleOf(Point p1, Point p2) {
@@ -1365,7 +1370,7 @@ public class MainWindow extends JFrame {
     return false;
   }
 
-  public void cheminAllerSimulation() {
+  public void cheminAllerSimulation(Camion camionCourant) {
     List<Equipement> EquipementList = controller.getEquipementList();
 
     List<Tas> listeTas = new LinkedList<>();
@@ -1377,7 +1382,7 @@ public class MainWindow extends JFrame {
       }
     }
 
-    for (Camion camionCourant : controller.getCamionList()) {
+
 
       TextSimulation.append(
           "\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
@@ -1488,7 +1493,6 @@ public class MainWindow extends JFrame {
                 }
               })
           .start();
-    }
   }
 
   private void chargementSimulation(Camion camionCourant, Chargeur chargeurCourant, Tas p_tas) {
