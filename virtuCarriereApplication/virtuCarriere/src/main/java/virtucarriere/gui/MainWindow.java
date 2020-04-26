@@ -1792,11 +1792,15 @@ public class MainWindow extends JFrame {
     }
 
     for (List<Arc> arcList : arcs) {
+      List<Arc> arcSupprime = new ArrayList<>();
       for (Arc arc : arcList) {
         if (arc.isSelected()) {
-          controller.removeArc(arc);
-          drawingPanel.repaint();
+          arcSupprime.add(arc);
         }
+      }
+      for (Arc arcc : arcSupprime){
+          controller.removeArc(arcc);
+          drawingPanel.repaint();
       }
     }
 
