@@ -49,7 +49,11 @@ public class Plan implements Serializable, Observable {
   }
   
   public void quickAddNoeud(Noeud noeud){
-      chemins.addEnd(noeud);
+    chemins.addEnd(noeud);
+  }
+  
+  public void quickAddConvoyeur(Convoyeur convoyeur){
+    equipments.addLink(convoyeur);
   }
   
   public void quickAddArc(Arc arc){

@@ -91,6 +91,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
       } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
         elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+        elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.removeEquipement(
             (Equipement) elementStack.get(undoRedoPointer).getElement());
@@ -102,6 +104,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
       } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
         elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+        elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
       }
@@ -121,6 +125,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
       } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
         elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+        elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
       }
@@ -131,6 +137,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
       } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
         elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
+        elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
       } else {
         elementContainer.removeEquipement(
             (Equipement) elementStack.get(undoRedoPointer).getElement());
