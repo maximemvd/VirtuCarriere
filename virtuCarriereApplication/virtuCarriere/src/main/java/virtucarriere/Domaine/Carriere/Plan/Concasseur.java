@@ -15,9 +15,9 @@ public class Concasseur extends Equipement {
   private static List<Class<? extends Equipement>> dependency =
       new ArrayList<Class<? extends Equipement>>(Collections.singleton(Broyeur.class));
 
-  public Concasseur(Point point, int p_width, int p_length, double p_angle) {
+  public Concasseur(Point point, double p_angle) {
 
-    super(point, p_width = 2, p_length = 2, p_angle, dependency);
+    super(point, 125, 90, p_angle, dependency);
     setName("Concasseur");
   }
 }

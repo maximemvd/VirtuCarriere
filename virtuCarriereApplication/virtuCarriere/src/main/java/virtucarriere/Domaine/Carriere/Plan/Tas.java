@@ -40,7 +40,7 @@ public class Tas extends Equipement {
   }
 
   private void createPointChargement() {
-    this.pointChargement = new PointChargement(getNewPointPointChargement(), 3, 3);
+    this.pointChargement = new PointChargement(getNewPointPointChargement());
   }
 
   private Point getNewPointPointChargement() {

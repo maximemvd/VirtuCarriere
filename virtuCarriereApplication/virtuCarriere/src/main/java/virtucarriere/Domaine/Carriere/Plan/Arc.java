@@ -12,13 +12,8 @@ public class Arc extends AbstractLien<AbstractPointChemin> {
 
   private Color color;
 
-  public Arc(
-      Point point,
-      int p_width,
-      int p_length,
-      AbstractPointChemin starting,
-      AbstractPointChemin arrival) {
-    super(point, p_width, p_length, starting, arrival);
+  public Arc(AbstractPointChemin starting, AbstractPointChemin arrival) {
+    super(starting, arrival);
     this.color = Color.BLACK;
     setName("Arc");
     super.setPoint(

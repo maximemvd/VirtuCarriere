@@ -5,13 +5,17 @@
  */
 package virtucarriere.Domaine.Carriere.Plan;
 
+import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.List;
 
 public abstract class Equipement extends Element {
 
   private Angle angle;
   private List<Class<? extends Equipement>> dependency;
+  private int length;
+  private int width;
 
   public Equipement(
       Point point,
@@ -19,11 +23,15 @@ public abstract class Equipement extends Element {
       int p_length,
       double p_angle,
       List<Class<? extends Equipement>> dependency) {
-
-    super(point, p_width, p_length);
+    super(point);
 
     this.angle = new Angle(p_angle);
     this.dependency = dependency;
+    this.length = p_length;
+    this.width = p_width;
+    Point upperLeft = new Point((int) (getX() - p_length / 2), (int) (getY() - p_width / 2));
+    Rectangle shape = new Rectangle(upperLeft, new Dimension(length, width));
+    setShape(shape);
   }
 
   public static String equipement() {
@@ -40,5 +48,21 @@ public abstract class Equipement extends Element {
 
   public List<Class<? extends Equipement>> getDependency() {
     return dependency;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public void setWidth(int width) {
+    this.width = width;
+  }
+
+  public int getLength() {
+    return length;
+  }
+
+  public void setLength(int length) {
+    this.length = length;
   }
 }

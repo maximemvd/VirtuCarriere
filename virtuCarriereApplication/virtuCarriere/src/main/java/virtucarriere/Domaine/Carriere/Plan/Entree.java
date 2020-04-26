@@ -14,8 +14,8 @@ public class Entree extends AbstractPointChemin {
   private Angle angle;
   private Color color;
 
-  public Entree(Point p_point, int p_width, int p_length, double p_angle) {
-    super(p_point, p_width, p_length, Color.DARK_GRAY);
+  public Entree(Point p_point, double p_angle) {
+    super(p_point, 10, Color.DARK_GRAY);
     this.angle = new Angle(p_angle);
     setName("Entrée");
   }

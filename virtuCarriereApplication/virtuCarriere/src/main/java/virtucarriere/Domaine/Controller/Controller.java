@@ -51,20 +51,19 @@ public class Controller implements Serializable, Observer {
   public Controller() {
     elementContainer = new ElementContainer();
   }
-  
-  public void initObserver(){
+
+  public void initObserver() {
     elementContainer.initObserver(this);
   }
-  
+
   @Override
-  public void update(String action, Element element){
-      System.out.print("Salut");
+  public void update(String action, Element element) {
     Action nouvelleAction = new Action(action, element);
     addElementToStack(nouvelleAction);
   }
 
   public void addElementToStack(Action nouvelleAction) {
-    if (needToDeleteElements){
+    if (needToDeleteElements) {
       deleteElementsAfterPointer(undoRedoPointer);
       this.elementStack.add(nouvelleAction);
       undoRedoPointer++;
@@ -85,87 +84,73 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer <= 0) {
       return;
     }
-    if (elementStack.get(undoRedoPointer).getAction().equals("add")){
+    if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
-      
+
       if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
         elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      }
-      
-      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
         elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      } else {
+        elementContainer.removeEquipement(
+            (Equipement) elementStack.get(undoRedoPointer).getElement());
       }
-      
-      else {
-        elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
-      }
-    }
-    
-    else {
+    } else {
       needToDeleteElements = false;
-      
+
       if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.addElement(elementStack.get(undoRedoPointer).getElement().getPoint(),
-                                    EquipementModes.NOEUD,
-                                    0.0);
-      }
-      
-      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
-                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
-        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
-                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
-      }
-      
-      else {
+        elementContainer.addElement(
+            elementStack.get(undoRedoPointer).getElement().getPoint(), EquipementModes.NOEUD, 0.0);
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.addArc(
+            new Point(
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
+        elementContainer.addArc(
+            new Point(
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+      } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
       }
-        
     }
     undoRedoPointer--;
   }
 
   public void redo() {
     if (undoRedoPointer == elementStack.size() - 1) return;
-    
+
     undoRedoPointer++;
-    
-    if (elementStack.get(undoRedoPointer).getAction().equals("add")){
+
+    if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
-      
+
       if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.addElement(elementStack.get(undoRedoPointer).getElement().getPoint(),
-                                    EquipementModes.NOEUD,
-                                    0.0);
-      }
-      
-      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
-                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
-        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
-                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
-      }
-      
-      else {
+        elementContainer.addElement(
+            elementStack.get(undoRedoPointer).getElement().getPoint(), EquipementModes.NOEUD, 0.0);
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.addArc(
+            new Point(
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
+        elementContainer.addArc(
+            new Point(
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
+                (int) ((Arc) elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+      } else {
         elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
       }
-    }
-    
-    else {
+    } else {
       needToDeleteElements = false;
-      
+
       if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
         elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      }
-      
-      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
         elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      } else {
+        elementContainer.removeEquipement(
+            (Equipement) elementStack.get(undoRedoPointer).getElement());
       }
-      
-      else {
-        elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
-      }
-        
     }
   }
 
@@ -494,7 +479,6 @@ public class Controller implements Serializable, Observer {
       elementContainer.addObserver(this);
     }
   }
-
 
   public GraphChemins getGraphChemin() {
     return elementContainer.getGraphChemin();
