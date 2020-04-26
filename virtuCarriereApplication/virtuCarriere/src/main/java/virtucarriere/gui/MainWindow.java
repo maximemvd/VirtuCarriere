@@ -46,8 +46,6 @@ public class MainWindow extends JFrame {
 
   private boolean pauseSimulation = false;
 
-  private int delayTime = 0;
-
   private List<Equipement> equipementsPopup = new LinkedList<>();
 
   /** Creates new form MainWindow */
@@ -96,13 +94,6 @@ public class MainWindow extends JFrame {
     pauseSimulation = !pauseSimulation;
   }
 
-  public void setDelayTime(int p_time) {
-    if (p_time < 0) {
-      TextSimulation.append("\n\nLe temps de delai ne peut pas être négatif");
-      return;
-    }
-    this.delayTime = p_time;
-  }
 
   public enum MeasurementUnitMode {
     METRIC
@@ -1605,7 +1596,6 @@ public class MainWindow extends JFrame {
                         } else {
                             ((Timer) e.getSource()).stop();
                             genererFacture(p_camion, p_camion.getJeton());
-                            controller.removeCamion(p_camion);
                         }
                     }
                 })
@@ -1637,7 +1627,13 @@ public class MainWindow extends JFrame {
       TextSimulation.append("\n\nNouvelle état du camion :  " + camionCourant.getEtat());
 
       TextSimulation.append(
-          "\n\nFin de la simulation pour le camion : " + jetonCamion.getRefClient());
+          "\n\nFin de la simulation pour le camion, : " + jetonCamion.getRefClient());
+
+        TextSimulation.append(
+                "\n\nLe camion s'en va de la carrière");
+
+        controller.removeCamion(camionCourant);
+
 
     } else {
       TextSimulation.append(
@@ -1753,6 +1749,8 @@ public class MainWindow extends JFrame {
         TextSimulation.append("\n\nNom du client : " + nomClient);
         TextSimulation.append("\nCode du produit demandé : " + codeProduit);
         TextSimulation.append("\nQuantité demandé : " + laQuantite);
+        TextSimulation.append("\nPosition des X en mètres: " + (int) UnitConverter.pixelToMeter(camion.getPoint().x));
+        TextSimulation.append("\nPosition des y en mètres: " + (int) UnitConverter.pixelToMeter(camion.getPoint().y));
         TextSimulation.append("\nTemps d'attente en secondes  : " + camion.getTempsAttente());
 
 
