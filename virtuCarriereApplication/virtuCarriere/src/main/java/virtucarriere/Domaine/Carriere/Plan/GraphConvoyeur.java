@@ -14,9 +14,9 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
   }
   
   @Override
-  public void notifyObservers(){
+  public void notifyObservers(String action, Element end){
     for (Observer observer : this.observerList){
-      observer.update();
+      observer.update(action, end);
     }
   }
   
@@ -37,7 +37,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     }
     ends.add(end);
     links.add(new ArrayList<Convoyeur>());
-    notifyObservers();
+    notifyObservers("add", end);
   }
 
   @Override
@@ -64,7 +64,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
       int index = ends.indexOf(end);
       ends.remove(end);
       links.remove(links.elementAt(index));
-      notifyObservers();
+      notifyObservers("delete", end);
 
     } else {
       throw new RuntimeException("Ce noeud n'existe pas");
@@ -83,7 +83,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
     }
     int index = ends.indexOf(link.getStarting());
     links.elementAt(index).add(link);
-    notifyObservers();
+    notifyObservers("add", link);
   }
 
   private boolean isValidLink(Equipement start, List<Equipement> end) {

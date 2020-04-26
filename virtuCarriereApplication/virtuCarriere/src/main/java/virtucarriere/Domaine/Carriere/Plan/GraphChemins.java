@@ -3,6 +3,7 @@ package virtucarriere.Domaine.Carriere.Plan;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import virtucarriere.Domaine.Controller.*;
 
 public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implements Serializable, Observable {
@@ -14,9 +15,26 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
   }
   
   @Override
-  public void notifyObservers(){
+  public void removeLink(Arc arc){
+    if (linkExist(arc)) {
+      int index = ends.indexOf(arc.getStarting());
+      Optional<Arc> result =
+          (Optional<Arc>)
+              links.elementAt(index).stream()
+                  .filter(endAbstractLien -> endAbstractLien.getArrival().equals(arc.getArrival()))
+                  .findFirst();
+      links.elementAt(index).remove(result.get());
+      notifyObservers("delete", arc);
+    } else {
+      throw new RuntimeException("Cet arc n'existe pas");
+    }
+      
+  }
+  
+  @Override
+  public void notifyObservers(String action, Element element){
     for (Observer observer : this.observerList){
-      observer.update();
+      observer.update(action, element);
     }
   }
   
@@ -37,7 +55,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
     }
     ends.add(end);
     links.add(new ArrayList<Arc>());
-    notifyObservers();
+    notifyObservers("add", end);
   }
 
   @Override
@@ -64,7 +82,7 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
       int index = ends.indexOf(end);
       ends.remove(end);
       links.remove(links.elementAt(index));
-      notifyObservers();
+      notifyObservers("delete", end);
 
     } else {
       throw new RuntimeException("Ce noeud n'existe pas");
@@ -83,6 +101,6 @@ public class GraphChemins extends AbstractGraph<AbstractPointChemin, Arc> implem
     }
     int index = ends.indexOf(link.getStarting());
     links.elementAt(index).add(link);
-    notifyObservers();
+    notifyObservers("add", link);
   }
 }

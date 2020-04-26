@@ -11,6 +11,7 @@ import virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin;
 import virtucarriere.Domaine.Carriere.Plan.Entree;
 import virtucarriere.Domaine.Carriere.Plan.GraphChemins;
 import virtucarriere.Domaine.Carriere.Plan.Tas;
+import virtucarriere.Domaine.Carriere.Plan.Element;
 import virtucarriere.Domaine.Controller.*;
 
 public class Simulation implements Serializable, Observable {
@@ -19,7 +20,6 @@ public class Simulation implements Serializable, Observable {
   private AlgoChemin algoChemin;
   List<Camion> camionList;
   List<Chargeur> chargeurList;
-  private Chargeur chargeurCourant;
   List<Observer> observerList = new LinkedList<>();
 
   public Simulation() {
@@ -29,9 +29,9 @@ public class Simulation implements Serializable, Observable {
   }
   
   @Override
-  public void notifyObservers(){
+  public void notifyObservers(String action, Element element){
     for (Observer observer : this.observerList){
-      observer.update();
+      observer.update(action, element);
     }
   }
   
@@ -55,13 +55,12 @@ public class Simulation implements Serializable, Observable {
     p_camion.editerParams(jeton);
   }
 
-  // camion
   public void CamionShowUp(Point point, String client, String produit, double quantite, int p_temps) {
     try {
       Jeton jeton = new Jeton(client, produit, quantite);
       Camion camionSimulation = new Camion(jeton, point, 0, p_temps); // create camion
       camionList.add(camionSimulation);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception exception) {
       System.out.println(exception);
     }
@@ -70,7 +69,7 @@ public class Simulation implements Serializable, Observable {
   public void removeCamion(Camion p_camion) {
     try {
       camionList.remove(p_camion);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -103,7 +102,7 @@ public class Simulation implements Serializable, Observable {
     try {
       Chargeur p_chargeur = new Chargeur(p_point, 0);
       chargeurList.add(p_chargeur);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -120,7 +119,7 @@ public class Simulation implements Serializable, Observable {
   public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
-      notifyObservers();
+      //notifyObservers();
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -130,13 +129,6 @@ public class Simulation implements Serializable, Observable {
     return chargeurList;
   }
 
-  public double chargeurListSize() {
-    return chargeurList.size();
-  }
-
-  public boolean chargeurIsEmpty() {
-    return chargeurList.isEmpty();
-  }
 
   public Jeton createToken(String client, String produit, double quantite) {
     return new Jeton(client, produit, quantite);
@@ -148,8 +140,7 @@ public class Simulation implements Serializable, Observable {
 
   public Facture genererFacture(Camion p_camion) {
     Jeton jeton = p_camion.getJeton();
-    Facture facture = new Facture(jeton.getCodeProduit(), jeton.getQuantite());
-    return facture;
+   return new Facture(jeton.getCodeProduit(), jeton.getQuantite());
   }
 
   public Tas trouverTas(List<Tas> tasList, String produit) {
@@ -195,28 +186,11 @@ public class Simulation implements Serializable, Observable {
         chargeurSimulation = chargeurCourant;
         cheminMinimal = cheminChargeurCourant;
       }
-
     }
     return chargeurSimulation;
   }
 
   public Vector<AbstractPointChemin> ChargeurCheminToPath(Chargeur p_chargeur, Tas p_tas) {
-
-    AtomicReference<Vector<AbstractPointChemin>> chemin = new AtomicReference<>();
-
     return algoChemin.getShortestPathBetweenTowPoints(p_chargeur.getPoint(), p_tas.getPoint());
-
-    /*graphChemin.getEnds().stream()
-        .filter(
-            abstractPointChemin ->
-                abstractPointChemin.contains(p_chargeur.getX(), p_chargeur.getY()))
-        .findFirst()
-        .ifPresent(
-            abstractPointChemin ->
-                chemin.set(
-                    algoChemin.getShortestPathBetweenTwoNoeuds(
-                        abstractPointChemin, p_tas.getNoeud())));
-
-    return chemin.get();*/
   }
 }

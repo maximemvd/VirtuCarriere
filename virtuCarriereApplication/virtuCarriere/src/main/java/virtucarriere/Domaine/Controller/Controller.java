@@ -25,7 +25,8 @@ public class Controller implements Serializable, Observer {
   private ElementContainer elementContainer;
 
   private int undoRedoPointer = -1;
-  private List<ElementContainer> elementStack = new ArrayList<ElementContainer>();
+  private List<Action> elementStack = new ArrayList<>();
+  private boolean needToDeleteElements = true;
 
   public enum EquipementModes {
     RIEN,
@@ -56,14 +57,19 @@ public class Controller implements Serializable, Observer {
   }
   
   @Override
-  public void update(){
-    //addElementToStack();
+  public void update(String action, Element element){
+      System.out.print("Salut");
+    Action nouvelleAction = new Action(action, element);
+    addElementToStack(nouvelleAction);
   }
 
-  public void addElementToStack() {
-    ElementContainer deepCopy = (ElementContainer) copy(this.elementContainer);
-    this.elementStack.add((ElementContainer) deepCopy);
-    undoRedoPointer++;
+  public void addElementToStack(Action nouvelleAction) {
+    if (needToDeleteElements){
+      deleteElementsAfterPointer(undoRedoPointer);
+      this.elementStack.add(nouvelleAction);
+      undoRedoPointer++;
+    }
+    needToDeleteElements = true;
   }
 
   public void deleteElementsAfterPointer(int Pointer) {
@@ -79,15 +85,88 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer <= 0) {
       return;
     }
+    if (elementStack.get(undoRedoPointer).getAction().equals("add")){
+      needToDeleteElements = false;
+      
+      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
+      }
+      
+      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      }
+      
+      else {
+        elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      }
+    }
+    
+    else {
+      needToDeleteElements = false;
+      
+      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+        elementContainer.addElement(elementStack.get(undoRedoPointer).getElement().getPoint(),
+                                    EquipementModes.NOEUD,
+                                    0.0);
+      }
+      
+      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
+                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
+        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
+                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+      }
+      
+      else {
+        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      }
+        
+    }
     undoRedoPointer--;
-    setElement((ElementContainer) elementStack.get(undoRedoPointer));
-    System.out.print(undoRedoPointer);
   }
 
   public void redo() {
     if (undoRedoPointer == elementStack.size() - 1) return;
+    
     undoRedoPointer++;
-    setElement((ElementContainer) elementStack.get(undoRedoPointer));
+    
+    if (elementStack.get(undoRedoPointer).getAction().equals("add")){
+      needToDeleteElements = false;
+      
+      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+        elementContainer.addElement(elementStack.get(undoRedoPointer).getElement().getPoint(),
+                                    EquipementModes.NOEUD,
+                                    0.0);
+      }
+      
+      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX(),
+                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getStarting().getX()));
+        elementContainer.addArc(new Point((int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX(),
+                                (int)((Arc)elementStack.get(undoRedoPointer).getElement()).getArrival().getX()));
+      }
+      
+      else {
+        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      }
+    }
+    
+    else {
+      needToDeleteElements = false;
+      
+      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
+        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
+      }
+      
+      else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
+        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
+      }
+      
+      else {
+        elementContainer.removeEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      }
+        
+    }
   }
 
   // méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/

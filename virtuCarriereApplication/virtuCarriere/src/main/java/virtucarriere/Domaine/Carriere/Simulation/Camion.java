@@ -33,6 +33,7 @@ public class Camion extends Vehicule {
   public void setTempsAttente(int p_temps){
     this.tempsAttente = p_temps;
   }
+
   public void setFacture(Facture p_facture) {
     this.factureCamion = p_facture;
   }
