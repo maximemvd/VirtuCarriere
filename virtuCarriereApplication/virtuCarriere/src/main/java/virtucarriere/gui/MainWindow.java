@@ -42,7 +42,9 @@ public class MainWindow extends JFrame {
 
   public Point initMousePoint = new Point();
 
-  public int simulationSpeed = 15;
+  public int simulationSpeed = 10;
+
+  public int intervalle = 240;
 
   private boolean pauseSimulation = false;
 
@@ -69,22 +71,20 @@ public class MainWindow extends JFrame {
   }
 
   public void accelererSimulation() {
-    if (simulationSpeed >= 23) {
+    if (simulationSpeed >= 20) {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus vite");
     } else {
       simulationSpeed = simulationSpeed + 2;
-      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.pixelToMeter(simulationSpeed) + "mètres");
-      TextSimulation.append("\n\n /"+  0.05 + "secondes");
+      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.ConvertSpeedToKm(simulationSpeed, intervalle) + "km/h");
     }
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 7) {
+    if (simulationSpeed <= 2) {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
     } else {
       simulationSpeed = simulationSpeed - 2;
-      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.pixelToMeter(simulationSpeed) + "mètres");
-      TextSimulation.append("\n\n /"+  0.05 + "secondes");
+      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.ConvertSpeedToKm(simulationSpeed, intervalle) + "km/h");
 
 
     }
@@ -1380,8 +1380,7 @@ public class MainWindow extends JFrame {
       TextSimulation.append(
           "\n\nLa simulation commence pour le camion : " + camionCourant.getJeton().getRefClient());
 
-        TextSimulation.append("\n\n Vitesse : 15 mètres");
-        TextSimulation.append("/"+  1  + "secondes");
+      TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.ConvertSpeedToKm(simulationSpeed, intervalle) + "km/h");
 
       controller.setGraphCheminSimulation(controller.getGraphChemin());
 
@@ -1417,7 +1416,7 @@ public class MainWindow extends JFrame {
 
       final int maxSizeChargeur = cheminChargeur.size();
       new Timer(
-              50,
+              intervalle,
               new ActionListener() {
                 private int count = 0;
                 private int chargeurCount = 0;
@@ -1540,7 +1539,7 @@ public class MainWindow extends JFrame {
 
 
         new Timer(
-                50,
+                intervalle,
                 new ActionListener() {
 
                     private int count = 0;
@@ -1582,7 +1581,7 @@ public class MainWindow extends JFrame {
                             moveX = x - cosinus;
                             moveY = y - sinus;
 
-                            x = x + newPoint.x / simulationSpeed;
+                            x = x + newPoint.x /simulationSpeed;
                             y = y + newPoint.y / simulationSpeed;
                             p_camion.setPoint(new Point(moveX, moveY));
                             p_camion.setAngle(Math.toDegrees(angle));
