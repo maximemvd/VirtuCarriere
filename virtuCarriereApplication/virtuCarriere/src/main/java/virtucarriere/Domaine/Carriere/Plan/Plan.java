@@ -32,7 +32,7 @@ public class Plan implements Serializable, Observable {
   }
 
   @Override
-  public void notifyObservers(String action, Element element) {
+  public void notifyObservers(String action, Object element) {
     for (Observer observer : this.observerList) {
       observer.update(action, element);
     }
@@ -48,7 +48,7 @@ public class Plan implements Serializable, Observable {
     this.observerList.remove(observer);
   }
   
-  public void quickAddNoeud(Noeud noeud){
+  public void quickAddNoeud(AbstractPointChemin noeud){
     chemins.addEnd(noeud);
   }
   

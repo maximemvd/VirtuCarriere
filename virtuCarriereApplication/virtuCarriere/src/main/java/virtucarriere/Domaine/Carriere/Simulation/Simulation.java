@@ -29,7 +29,7 @@ public class Simulation implements Serializable, Observable {
   }
   
   @Override
-  public void notifyObservers(String action, Element element){
+  public void notifyObservers(String action, Object element){
     for (Observer observer : this.observerList){
       observer.update(action, element);
     }
@@ -60,16 +60,21 @@ public class Simulation implements Serializable, Observable {
       Jeton jeton = new Jeton(client, produit, quantite);
       Camion camionSimulation = new Camion(jeton, point, 0, p_temps); // create camion
       camionList.add(camionSimulation);
-      //notifyObservers();
+      notifyObservers("add", camionSimulation);
     } catch (Exception exception) {
       System.out.println(exception);
     }
+  }
+  
+  public void quickAddCamion(Camion camion){
+    camionList.add(camion);
+    notifyObservers("add", camion);
   }
 
   public void removeCamion(Camion p_camion) {
     try {
       camionList.remove(p_camion);
-      //notifyObservers();
+      notifyObservers("delete", p_camion);
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -102,7 +107,7 @@ public class Simulation implements Serializable, Observable {
     try {
       Chargeur p_chargeur = new Chargeur(p_point, 0);
       chargeurList.add(p_chargeur);
-      //notifyObservers();
+      notifyObservers("add", p_chargeur);
     } catch (Exception error) {
       System.out.println(error);
     }
@@ -116,10 +121,14 @@ public class Simulation implements Serializable, Observable {
         .forEach(Vehicule::switchSelectionStatus);
   }
 
+  public void quickAddChargeur(Chargeur chargeur){
+    chargeurList.add(chargeur);
+  }
+  
   public void removeChargeur(Chargeur p_chargeur) {
     try {
       chargeurList.remove(p_chargeur);
-      //notifyObservers();
+      notifyObservers("delete", p_chargeur);
     } catch (Exception error) {
       System.out.println(error);
     }

@@ -40,12 +40,12 @@ public class ElementContainer implements Serializable, Observer, Observable {
   }
 
   @Override
-  public void update(String action, Element element) {
+  public void update(String action, Object element) {
     notifyObservers(action, element);
   }
 
   @Override
-  public void notifyObservers(String action, Element element) {
+  public void notifyObservers(String action, Object element) {
     for (Observer observer : this.observerList) {
       observer.update(action, element);
     }
@@ -119,7 +119,7 @@ public class ElementContainer implements Serializable, Observer, Observable {
     plan.addArc(point);
   }
   
-  public void quickAddNoeud(Noeud noeud){
+  public void quickAddNoeud(AbstractPointChemin noeud){
     plan.quickAddNoeud(noeud);
   }
   
@@ -179,6 +179,10 @@ public class ElementContainer implements Serializable, Observer, Observable {
   public void removeCamion(Camion p_camion) {
     simulation.removeCamion(p_camion);
   }
+  
+  public void quickAddCamion(Camion camion){
+    simulation.quickAddCamion(camion);
+  }
 
   public void addCamion(Point point, String client, String produit, double qte, int p_temps) {
     simulation.CamionShowUp(point, client, produit, qte, p_temps);
@@ -194,6 +198,10 @@ public class ElementContainer implements Serializable, Observer, Observable {
 
   public void removeConvoyeur(Convoyeur convoyeur) {
     plan.removeConvoyeur(convoyeur);
+  }
+  
+  public void quickAddChargeur(Chargeur chargeur){
+    simulation.quickAddChargeur(chargeur);
   }
 
   public void addChargeur(Point point) {

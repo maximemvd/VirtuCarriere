@@ -14,9 +14,9 @@ import virtucarriere.Domaine.Carriere.Plan.Element;
 public class Action {
     
   private String action;
-  private Element element;
+  private Object element;
   
-  public Action(String p_action, Element p_element){
+  public Action(String p_action, Object p_element){
       this.action = p_action;
       this.element = p_element;
   }
@@ -25,7 +25,7 @@ public class Action {
       return this.action;
   }
   
-  public Element getElement(){
+  public Object getElement(){
       return this.element;
   }
     

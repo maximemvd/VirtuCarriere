@@ -16,6 +16,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.Carriere.Plan.*;
+import virtucarriere.Domaine.Carriere.Simulation.Vehicule;
+import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
@@ -57,7 +59,7 @@ public class Controller implements Serializable, Observer {
   }
 
   @Override
-  public void update(String action, Element element) {
+  public void update(String action, Object element) {
     Action nouvelleAction = new Action(action, element);
     addElementToStack(nouvelleAction);
   }
@@ -84,30 +86,43 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer <= 0) {
       return;
     }
+    Object object = elementStack.get(undoRedoPointer).getElement();  
+    Class<?> classe = object.getClass();
     if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
-        elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
-      } else {
-        elementContainer.removeEquipement(
-            (Equipement) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.removeNoeud((Noeud) object);
+      } else if (classe == Arc.class) {
+        elementContainer.removeArc((Arc) object);
+      } else if (classe == Entree.class) {
+        elementContainer.removeNoeud((Entree) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.removeConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.removeCamion((Camion) object);
+      } else if (classe == Chargeur.class) {
+        elementContainer.removeChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
+        elementContainer.removeEquipement((Equipement) object);
       }
     } else {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
-        elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
-      } else {
-        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.quickAddNoeud((Noeud) object);
+      } else if (classe == Entree.class) {
+        elementContainer.quickAddNoeud((Entree) object);
+      } else if (classe == Arc.class) {
+        elementContainer.quickAddArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.quickAddConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.quickAddCamion((Camion) object);
+      } else if (classe == Chargeur.class) {
+        elementContainer.quickAddChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
+        elementContainer.addEquipement((Equipement) object);
       }
     }
     undoRedoPointer--;
@@ -117,31 +132,44 @@ public class Controller implements Serializable, Observer {
     if (undoRedoPointer == elementStack.size() - 1) return;
 
     undoRedoPointer++;
-
+    Object object = elementStack.get(undoRedoPointer).getElement();  
+    Class<?> classe = object.getClass();
+    
     if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.quickAddNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.quickAddArc((Arc)elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
-        elementContainer.quickAddConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
-      } else {
-        elementContainer.addEquipement((Equipement) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.quickAddNoeud((Noeud) object);
+      } else if (classe == Entree.class) {
+        elementContainer.quickAddNoeud((Entree) object);
+      } else if (classe == Arc.class) {
+        elementContainer.quickAddArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.quickAddConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.quickAddCamion((Camion) object);
+      } else if (classe == Chargeur.class) {
+        elementContainer.quickAddChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
+        elementContainer.addEquipement((Equipement) object);
       }
     } else {
       needToDeleteElements = false;
 
-      if (elementStack.get(undoRedoPointer).getElement().getName().equals("Noeud")) {
-        elementContainer.removeNoeud((Noeud) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Arc")) {
-        elementContainer.removeArc((Arc) elementStack.get(undoRedoPointer).getElement());
-      } else if (elementStack.get(undoRedoPointer).getElement().getName().equals("Convoyeur")) {
-        elementContainer.removeConvoyeur((Convoyeur) elementStack.get(undoRedoPointer).getElement());
-      } else {
-        elementContainer.removeEquipement(
-            (Equipement) elementStack.get(undoRedoPointer).getElement());
+      if (classe == Noeud.class) {
+        elementContainer.removeNoeud((Noeud) object);
+      } else if (classe == Entree.class) {
+        elementContainer.removeNoeud((Entree) object);
+      } else if (classe == Arc.class) {
+        elementContainer.removeArc((Arc) object);
+      } else if (classe == Convoyeur.class) {
+        elementContainer.removeConvoyeur((Convoyeur) object);
+      } else if (classe == Camion.class) {
+        elementContainer.removeCamion((Camion) object);
+      } else if (classe == Chargeur.class) {
+        elementContainer.removeChargeur((Chargeur) object);
+      } else if (classe == Equipement.class) {
+        elementContainer.removeEquipement((Equipement) object);
       }
     }
   }

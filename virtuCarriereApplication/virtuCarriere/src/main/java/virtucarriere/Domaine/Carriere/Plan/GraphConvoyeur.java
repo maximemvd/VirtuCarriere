@@ -14,7 +14,7 @@ public class GraphConvoyeur extends AbstractGraph<Equipement, Convoyeur> impleme
   }
   
   @Override
-  public void notifyObservers(String action, Element end){
+  public void notifyObservers(String action, Object end){
     for (Observer observer : this.observerList){
       observer.update(action, end);
     }
