@@ -73,4 +73,8 @@ public abstract class Element implements Serializable {
   protected void setShape(Shape shape) {
     this.shape = shape;
   }
+
+  public boolean intersect(Element element) {
+    return shape.getBounds2D().intersects(element.shape.getBounds2D());
+  }
 }
