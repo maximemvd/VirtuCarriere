@@ -10,7 +10,6 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.io.Serializable;
 import java.util.List;
-
 import virtucarriere.Domaine.Carriere.Plan.Angle;
 import virtucarriere.Domaine.Carriere.Plan.Noeud;
 
@@ -26,7 +25,7 @@ public abstract class Vehicule implements Serializable {
   private boolean selectionStatus;
   private int radius;
   private Angle angle;
-  
+
   protected Shape shape;
 
   public Vehicule(Point point, double p_angle) {
@@ -43,7 +42,7 @@ public abstract class Vehicule implements Serializable {
   }
 
   public boolean contains(double p_x, double p_y) {
-    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
+    return shape.contains(p_x, p_y);
   }
 
   public void setPoint(Point newPoint) {
@@ -69,7 +68,6 @@ public abstract class Vehicule implements Serializable {
   public void setAngle(double p_angle) {
     angle.set(p_angle);
   }
-
 
   public boolean isSelected() {
     return selectionStatus;
@@ -103,7 +101,7 @@ public abstract class Vehicule implements Serializable {
     this.point.x = (int) (this.point.getX() + deltaX);
     this.point.y = (int) (this.point.getY() + deltaY);
   }
-  
+
   protected void setShape(Shape shape) {
     this.shape = shape;
   }
