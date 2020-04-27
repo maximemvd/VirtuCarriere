@@ -21,7 +21,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
-import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Simulation.*;
 import virtucarriere.Domaine.Controller.Controller;
 import virtucarriere.Domaine.Controller.Controller.*;
@@ -1340,28 +1339,6 @@ public class MainWindow extends JFrame {
     return Math.atan2(deltaY, deltaX);
   }
 
-  public boolean isVehiculeStillOnRoute(Point pointCamion, Point debutChemin, Point finChemin) {
-    double dy = finChemin.getY() - debutChemin.getY();
-    double dx = finChemin.getX() - debutChemin.getX();
-    double distance = Math.sqrt(dx * dx + dy * dy);
-
-    double angle = Math.atan2(dy, dx);
-    double cos = Math.cos(-angle);
-    double sin = Math.sin(-angle);
-
-    double xRot =
-        (pointCamion.getX() - debutChemin.getX()) * cos
-            - (pointCamion.getY() - debutChemin.getY()) * sin;
-    double yRot =
-        (pointCamion.getX() - debutChemin.getX()) * sin
-            + (pointCamion.getY() - debutChemin.getY()) * cos;
-
-    if (0 <= xRot && xRot <= distance) {
-      double tolerance = 5;
-      return Math.abs(yRot) <= tolerance && Math.abs(xRot) <= tolerance;
-    }
-    return false;
-  }
 
   public void cheminAllerSimulation(Camion camionCourant) {
     List<Equipement> EquipementList = controller.getEquipementList();
@@ -1746,8 +1723,6 @@ public class MainWindow extends JFrame {
         TextSimulation.append("\n\nNom du client : " + nomClient);
         TextSimulation.append("\nCode du produit demandé : " + codeProduit);
         TextSimulation.append("\nQuantité demandé : " + laQuantite);
-        TextSimulation.append("\nPosition des X en mètres: " + (int) UnitConverter.pixelToMeter(camion.getPoint().x));
-        TextSimulation.append("\nPosition des y en mètres: " + (int) UnitConverter.pixelToMeter(camion.getPoint().y));
         TextSimulation.append("\nTemps d'attente en secondes  : " + camion.getTempsAttente());
 
 
@@ -2069,12 +2044,10 @@ public class MainWindow extends JFrame {
         String nom = String.format("\nCoordonnées du %s", equipement.getName());
         String xCoord = String.format(":\n x : %d", (int) equipement.getX());
         String yCoord = String.format(", y : %d", (int) equipement.getY());
-        String xCoordMetre = String.format(":\n x en mètres : %d", (int) UnitConverter.pixelToMeter(equipement.getX()));
-        String yCoordMetre = String.format(", y en mètres : %d", (int) UnitConverter.pixelToMeter(equipement.getY()));
         String angle = String.format("\n Angle : %f", equipement.getAngle());
         String nombreTotal = String.format("%d", numTotal);
         String angleText = String.format("%f", equipement.getAngle());
-        jTextArea1.append(nom + xCoord +  yCoord + xCoordMetre +  yCoordMetre + angle);
+        jTextArea1.append(nom + xCoord +  yCoord + angle);
         jTextField2.setText(nombreTotal);
         angleSpinner.setText(angleText);
 
@@ -2105,10 +2078,8 @@ public class MainWindow extends JFrame {
         String num = String.format(" #%d", numNoeud);
         String xCoord = String.format(":\n x : %d", (int) noeud.getX());
         String yCoord = String.format(", y : %d", (int) noeud.getY());
-        String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(noeud.getX()));
-        String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(noeud.getY()));
         String nombreTotal = String.format("%d", numTotal);
-        jTextArea1.append(nom + num + xCoord + yCoord +  xCoordMetre +  yCoordMetre);
+        jTextArea1.append(nom + num + xCoord + yCoord );
         jTextField2.setText(nombreTotal);
 
         String x = String.format("%d", (int) noeud.getX());
@@ -2134,10 +2105,8 @@ public class MainWindow extends JFrame {
           String num = String.format(" #%d", numConvoyeur);
           String xCoord = String.format(":\n x : %d", (int) middlePoint.getX());
           String yCoord = String.format(", y : %d", (int) middlePoint.getY());
-          String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(middlePoint.getX()));
-          String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(middlePoint.getY()));
           String nombreTotal = String.format("%d", numTotal);
-          jTextArea1.append(nom + num + xCoord + yCoord + xCoordMetre + yCoordMetre);
+          jTextArea1.append(nom + num + xCoord + yCoord);
           jTextField2.setText(nombreTotal);
         }
       }
@@ -2152,10 +2121,8 @@ public class MainWindow extends JFrame {
           String num = String.format(" #%d", numArc);
             String xCoord = String.format(":\n x : %d", (int) arc.getX());
             String yCoord = String.format(", y : %d", (int) arc.getY());
-            String xCoordMetre = String.format(":\n x en metre : %d", (int) UnitConverter.pixelToMeter(arc.getX()));
-            String yCoordMetre = String.format(", y en metre : %d", (int) UnitConverter.pixelToMeter(arc.getY()));
           String nombreTotal = String.format("%d", numTotal);
-          jTextArea1.append(nom + num + xCoord + yCoord + xCoordMetre + yCoordMetre);
+          jTextArea1.append(nom + num + xCoord + yCoord);
           jTextField2.setText(nombreTotal);
         }
     }
