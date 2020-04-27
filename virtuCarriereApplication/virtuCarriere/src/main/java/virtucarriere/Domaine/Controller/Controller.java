@@ -105,6 +105,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.removeChargeur((Chargeur) object);
+      } else if (classe == PointChargement.class) {
+        elementContainer.removeNoeud((PointChargement) object);
       } else {
         elementContainer.removeEquipement((Equipement) object);
       }
@@ -123,6 +125,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.quickAddChargeur((Chargeur) object);
+      } else if (classe == PointChargement.class) {
+        elementContainer.quickAddNoeud((PointChargement) object);
       } else {
         elementContainer.addEquipement((Equipement) object);
       }
@@ -153,6 +157,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.quickAddChargeur((Chargeur) object);
+      } else if (classe == PointChargement.class) {
+        elementContainer.quickAddNoeud((PointChargement) object);
       } else {
         elementContainer.addEquipement((Equipement) object);
       }
@@ -171,6 +177,8 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.removeChargeur((Chargeur) object);
+      } else if (classe == PointChargement.class) {
+        elementContainer.removeNoeud((PointChargement) object);
       } else {
         elementContainer.removeEquipement((Equipement) object);
       }
