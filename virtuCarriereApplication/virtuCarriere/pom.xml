@@ -44,6 +44,11 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory> ressources/images</directory>
+      </resource>
+    </resources>
     <finalName>${jar-file-name}</finalName>
     <plugins>
       <plugin>
