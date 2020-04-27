@@ -2169,10 +2169,8 @@ public class MainWindow extends JFrame {
 
   private void drawingPanelMouseDragged(java.awt.event.MouseEvent evt) {
     Point mousePoint = evt.getPoint();
-    double xCoord = UnitConverter.pixelToMeter(mousePoint.getX());
-    double yCoord = UnitConverter.pixelToMeter(mousePoint.getY());
-    UnitConverter.pixelToMeter(xCoord);
-    UnitConverter.pixelToMeter(yCoord);
+    double xCoord = mousePoint.getX();
+    double yCoord = mousePoint.getY();
     drawingPanel.setMouseX(xCoord);
     drawingPanel.setMouseY(yCoord);
     drawingPanel.repaint();
