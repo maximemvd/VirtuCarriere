@@ -1220,22 +1220,18 @@ public class MainWindow extends JFrame {
             if (pictureLongueur <= 0 && pictureLargeur <= 0)
             {
                 JOptionPane.showMessageDialog(null, "La valeur entrée doit être plus grande que zéro");
-                throw new ArithmeticException("Negative grid gap.");
+                throw new ArithmeticException("Dimension ne peut pas etre negative");
             }
             try
             {
                 UnitConverter.setLargeurImage(pictureLargeur);
                 UnitConverter.setLongueurImage(pictureLongueur);
                 controller.setUrlBackground(selectedFile.toURI().toURL());
-                System.out.println(pictureLargeur);
-                System.out.println(pictureLongueur);
-
             } catch (MalformedURLException ex)
             {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
       drawingPanel.repaint();
     }
   }
