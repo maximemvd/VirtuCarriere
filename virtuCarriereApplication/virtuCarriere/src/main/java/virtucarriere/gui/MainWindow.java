@@ -79,13 +79,13 @@ public class MainWindow extends JFrame {
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 2) {
+    if (simulationSpeed <= 2)
+    {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
-    } else {
+    }
+    else {
       simulationSpeed = simulationSpeed - 2;
       TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.ConvertSpeedToKm(simulationSpeed, intervalle) + "km/h");
-
-
     }
   }
 
@@ -1057,6 +1057,25 @@ public class MainWindow extends JFrame {
                 importImageActionPerformed(evt);
             }
         });
+
+        ajoutConcasseurPopup.addActionListener(new java.awt.event.ActionListener(){
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+              ajoutConcasseurViaPopup(evt);
+          }
+      });
+
+        ajoutCriblePopup.addActionListener(new java.awt.event.ActionListener(){
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               ajoutCribleViaPopup(evt);
+           }
+        });
+
+      ajoutBroyeurPopup.addActionListener(new java.awt.event.ActionListener(){
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+              ajoutBroyeurViaPopup(evt);
+          }
+      });
+
         importerMenu.add(importImage);
 
         resetImage.setText("Réinitialiser image");
@@ -1159,11 +1178,60 @@ public class MainWindow extends JFrame {
 
     if (returnValue == JFileChooser.APPROVE_OPTION) {
       File selectedFile = chooser.getSelectedFile();
-      try {
-        controller.setUrlBackground(selectedFile.toURI().toURL());
-      } catch (MalformedURLException ex) {
-        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-      }
+
+
+        JPanel fields = new JPanel(new GridLayout(2, 2));
+
+        JTextField textFieldLargeur = new JTextField();
+        textFieldLargeur.setPreferredSize(new Dimension(11, 15));
+
+        JTextField textFieldlongueur = new JTextField();
+        textFieldlongueur.setPreferredSize(new Dimension(11, 15));
+
+
+        JLabel labellongueur = new JLabel("La longueur de l'image");
+        JLabel labellargeur = new JLabel("La largeur de l'image");
+
+        fields.add(labellargeur);
+        fields.add(textFieldLargeur);
+        fields.add(labellongueur);
+        fields.add(textFieldlongueur);
+
+        int result =
+                JOptionPane.showConfirmDialog(
+                        null,
+                        fields,
+                        "Dimension de l'image",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            int pictureLongueur;
+            int pictureLargeur;
+            try {
+                pictureLargeur = Integer.parseInt(textFieldLargeur.getText());
+                pictureLongueur = Integer.parseInt(textFieldlongueur.getText());
+            }
+            catch (Exception exc)
+            {
+                JOptionPane.showMessageDialog(null, "La valeur entrée n'est pas un chiffre valide");
+                return;
+            }
+            if (pictureLongueur <= 0 && pictureLargeur <= 0)
+            {
+                JOptionPane.showMessageDialog(null, "La valeur entrée doit être plus grande que zéro");
+                throw new ArithmeticException("Dimension ne peut pas etre negative");
+            }
+            try
+            {
+                UnitConverter.setLargeurImage(pictureLargeur);
+                UnitConverter.setLongueurImage(pictureLongueur);
+                controller.setUrlBackground(selectedFile.toURI().toURL());
+            } catch (MalformedURLException ex)
+            {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
       drawingPanel.repaint();
     }
   }
@@ -1181,15 +1249,19 @@ public class MainWindow extends JFrame {
           switch (equipement.getName()) {
             case "Concasseur":
               ajoutCriblePopup.setEnabled(false);
+              ajoutConcasseurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
+              controller.addConvoyeur(point, EquipementModes.CONVOYEUR, 0);
               break;
             case "Broyeur":
               ajoutBroyeurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
+              controller.addConvoyeur(point, EquipementModes.CONVOYEUR, 0);
               break;
             case "Crible":
               ajoutConcasseurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
+              controller.addConvoyeur(point, EquipementModes.CONVOYEUR, 0);
               break;
           }
           popup.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -1694,6 +1766,7 @@ public class MainWindow extends JFrame {
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.BROYEUR, point, angle);
+    controller.addConvoyeur(point, EquipementModes.CONVOYEUR, angle);
     drawingPanel.repaint();
   }
 
@@ -1702,6 +1775,7 @@ public class MainWindow extends JFrame {
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.CRIBLE, point, angle);
+    controller.addConvoyeur(point, EquipementModes.CONVOYEUR, angle);
     drawingPanel.repaint();
   }
 
@@ -1710,6 +1784,7 @@ public class MainWindow extends JFrame {
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.CONCASSEUR, point, angle);
+    controller.addConvoyeur(point, EquipementModes.CONVOYEUR, angle);
     drawingPanel.repaint();
   }
 

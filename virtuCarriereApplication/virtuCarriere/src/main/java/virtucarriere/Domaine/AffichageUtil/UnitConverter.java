@@ -33,22 +33,9 @@ public class UnitConverter {
     return largeurImage;
   }
 
-
   public static double pixelToMeter(double pixel) {
-    // TODO calcul à faire selon la dimension de notre fenêtre
     return pixel * converterUnit;
   }
-
-  public static double meterToPixel(double meter) {
-    // TODO calcul à faire selon la dimension de notre fenêtre
-    return meter / converterUnit;
-  }
-
-
-  public static float getConverterUnit(){
-    return converterUnit;
-  }
-
 
   public static double ConvertSpeedToKm(double speed, double time){
     double rightSpeed = pixelToMeter(speed);

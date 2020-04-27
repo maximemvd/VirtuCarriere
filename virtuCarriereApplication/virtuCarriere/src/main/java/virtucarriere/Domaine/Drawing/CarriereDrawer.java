@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
+import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
@@ -78,15 +80,22 @@ public class CarriereDrawer {
     drawPointChargement(g2d, zoom);
   }
 
-  public void drawImage(Graphics2D g2d, double zoom) {
-    try {
+  public void drawImage(Graphics2D g2d, double zoom)
+  {
+    try
+    {
       g2d.scale(zoom, zoom);
       final BufferedImage bg = ImageIO.read(controller.getUrlBackground());
-      g2d.drawImage(bg, 0, 0, 1700, 1200, null);
+      g2d.drawImage(bg, 0, 0, UnitConverter.getLargeurImage(),  UnitConverter.getLongueurImage(), null);
       g2d.scale(1 / zoom, 1 / zoom);
-    } catch (MalformedURLException ex) {
+    }
+    catch (MalformedURLException ex)
+    {
       Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (IOException ex) {
+    }
+
+    catch (IOException ex)
+    {
       Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
@@ -141,7 +150,6 @@ public class CarriereDrawer {
 
     g2d.scale(zoom, zoom);
     List<Camion> camions = controller.getCamionList();
-    int numberOfCLient = camions.size();
     for (Camion camion : camions) {
       Point pointEntree = camion.getPoint();
       int camionPointX = pointEntree.x;
