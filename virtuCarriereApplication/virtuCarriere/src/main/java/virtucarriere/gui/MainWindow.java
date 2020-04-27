@@ -2172,6 +2172,8 @@ public class MainWindow extends JFrame {
     Point mousePoint = evt.getPoint();
     double xCoord = UnitConverter.pixelToMeter(mousePoint.getX());
     double yCoord = UnitConverter.pixelToMeter(mousePoint.getY());
+    UnitConverter.pixelToMeter(xCoord);
+    UnitConverter.pixelToMeter(yCoord);
     drawingPanel.setMouseX(xCoord);
     drawingPanel.setMouseY(yCoord);
     drawingPanel.repaint();
