@@ -79,13 +79,13 @@ public class MainWindow extends JFrame {
   }
 
   public void ralentirSimulation() {
-    if (simulationSpeed <= 2) {
+    if (simulationSpeed <= 2)
+    {
       TextSimulation.append("\n\n La simulation ne peut pas aller plus lentement");
-    } else {
+    }
+    else {
       simulationSpeed = simulationSpeed - 2;
       TextSimulation.append("\n\n Vitesse : "+ (int) UnitConverter.ConvertSpeedToKm(simulationSpeed, intervalle) + "km/h");
-
-
     }
   }
 
@@ -1163,20 +1163,20 @@ public class MainWindow extends JFrame {
 
         JPanel fields = new JPanel(new GridLayout(2, 2));
 
-        JTextField textField = new JTextField();
-        textField.setPreferredSize(new Dimension(11, 15));
+        JTextField textFieldLargeur = new JTextField();
+        textFieldLargeur.setPreferredSize(new Dimension(11, 15));
 
-        JTextField textField1 = new JTextField();
-        textField1.setPreferredSize(new Dimension(11, 15));
+        JTextField textFieldlongueur = new JTextField();
+        textFieldlongueur.setPreferredSize(new Dimension(11, 15));
 
 
         JLabel labellongueur = new JLabel("La longueur de l'image");
         JLabel labellargeur = new JLabel("La largeur de l'image");
 
-        fields.add(labellongueur);
-        fields.add(textField);
         fields.add(labellargeur);
-        fields.add(textField1);
+        fields.add(textFieldLargeur);
+        fields.add(labellongueur);
+        fields.add(textFieldlongueur);
 
         int result =
                 JOptionPane.showConfirmDialog(
@@ -1190,10 +1190,11 @@ public class MainWindow extends JFrame {
             int pictureLongueur;
             int pictureLargeur;
             try {
-                pictureLongueur = Integer.parseInt(textField.getText());
-                pictureLargeur = Integer.parseInt(textField1.getText());
+                pictureLargeur = Integer.parseInt(textFieldLargeur.getText());
+                pictureLongueur = Integer.parseInt(textFieldlongueur.getText());
             }
-            catch (Exception exc) {
+            catch (Exception exc)
+            {
                 JOptionPane.showMessageDialog(null, "La valeur entrée n'est pas un chiffre valide");
                 return;
             }
@@ -1204,9 +1205,9 @@ public class MainWindow extends JFrame {
             }
             try
             {
-                controller.setUrlBackground(selectedFile.toURI().toURL());
-                UnitConverter.setLongueurImage(pictureLongueur);
                 UnitConverter.setLargeurImage(pictureLargeur);
+                UnitConverter.setLongueurImage(pictureLongueur);
+                controller.setUrlBackground(selectedFile.toURI().toURL());
                 System.out.println(pictureLargeur);
                 System.out.println(pictureLongueur);
 
