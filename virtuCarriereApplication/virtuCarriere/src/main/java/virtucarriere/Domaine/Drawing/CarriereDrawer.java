@@ -6,9 +6,7 @@
 package virtucarriere.Domaine.Drawing;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -18,7 +16,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-
 import virtucarriere.Domaine.AffichageUtil.UnitConverter;
 import virtucarriere.Domaine.Carriere.Plan.*;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
@@ -51,16 +48,23 @@ public class CarriereDrawer {
     equipementColor.put(Crible.class.getName(), Color.RED);
     equipementColor.put(Tas.class.getName(), Color.DARK_GRAY);
     try {
-      imageCamion = ImageIO.read(new File("ressources/images/camion.png"));
-      imageCamionSelected = ImageIO.read(new File("ressources/images/camionSelected.png"));
-      imageChargeur = ImageIO.read(new File("ressources/images/chargeur.png"));
-      imageChargeurSelected = ImageIO.read(new File("ressources/images/chargeurSelected.png"));
-      imageBroyeur = ImageIO.read(new File("ressources/images/broyeur.png"));
-      imageBroyeurSelected = ImageIO.read(new File("ressources/images/broyeurSelected.png"));
-      imageConcasseur = ImageIO.read(new File("ressources/images/concasseur.png"));
-      imageConcasseurSelected = ImageIO.read(new File("ressources/images/concasseurSelected.png"));
-      imageCrible = ImageIO.read(new File("ressources/images/crible.png"));
-      imageCribleSelected = ImageIO.read(new File("ressources/images/cribleSelected.png"));
+      imageCamion = ImageIO.read(ClassLoader.getSystemResourceAsStream("images/camion.png"));
+      imageCamion = ImageIO.read(ClassLoader.getSystemResourceAsStream("images/camion.png"));
+      imageCamionSelected =
+          ImageIO.read(ClassLoader.getSystemResourceAsStream("images/camionSelected.png"));
+      imageChargeur = ImageIO.read(ClassLoader.getSystemResourceAsStream("images/chargeur.png"));
+      imageChargeurSelected =
+          ImageIO.read(ClassLoader.getSystemResourceAsStream("images/chargeurSelected.png"));
+      imageBroyeur = ImageIO.read(ClassLoader.getSystemResourceAsStream("images/broyeur.png"));
+      imageBroyeurSelected =
+          ImageIO.read(ClassLoader.getSystemResourceAsStream("images/broyeurSelected.png"));
+      imageConcasseur =
+          ImageIO.read(ClassLoader.getSystemResourceAsStream("images/concasseur.png"));
+      imageConcasseurSelected =
+          ImageIO.read(ClassLoader.getSystemResourceAsStream("images/concasseurSelected.png"));
+      imageCrible = ImageIO.read(ClassLoader.getSystemResourceAsStream("images/crible.png"));
+      imageCribleSelected =
+          ImageIO.read(ClassLoader.getSystemResourceAsStream("images/cribleSelected.png"));
     } catch (IOException e) {
       throw new RuntimeException("Probleme avec les images");
     }
@@ -80,22 +84,16 @@ public class CarriereDrawer {
     drawPointChargement(g2d, zoom);
   }
 
-  public void drawImage(Graphics2D g2d, double zoom)
-  {
-    try
-    {
+  public void drawImage(Graphics2D g2d, double zoom) {
+    try {
       g2d.scale(zoom, zoom);
       final BufferedImage bg = ImageIO.read(controller.getUrlBackground());
-      g2d.drawImage(bg, 0, 0, UnitConverter.getLargeurImage(),  UnitConverter.getLongueurImage(), null);
+      g2d.drawImage(
+          bg, 0, 0, UnitConverter.getLargeurImage(), UnitConverter.getLongueurImage(), null);
       g2d.scale(1 / zoom, 1 / zoom);
-    }
-    catch (MalformedURLException ex)
-    {
+    } catch (MalformedURLException ex) {
       Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-    catch (IOException ex)
-    {
+    } catch (IOException ex) {
       Logger.getLogger(CarriereDrawer.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
@@ -163,7 +161,6 @@ public class CarriereDrawer {
       } else {
         imageCamion = rotate(imageCamion, angleRad);
         g2d.drawImage(imageCamion, (camionPointX - 26), camionPointY - 25, 60, 45, null);
-
       }
     }
     g2d.scale(1 / zoom, 1 / zoom);
@@ -173,7 +170,7 @@ public class CarriereDrawer {
   public static BufferedImage rotate(BufferedImage image, double angle) {
     double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
     int w = image.getWidth(), h = image.getHeight();
-    int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
+    int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
     GraphicsConfiguration gc = getDefaultConfiguration();
     BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
     Graphics2D g = result.createGraphics();

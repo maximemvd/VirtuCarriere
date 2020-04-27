@@ -46,7 +46,7 @@
   <build>
     <resources>
       <resource>
-        <directory> ressources/images</directory>
+        <directory>src/main/resources</directory>
       </resource>
     </resources>
     <finalName>${jar-file-name}</finalName>
