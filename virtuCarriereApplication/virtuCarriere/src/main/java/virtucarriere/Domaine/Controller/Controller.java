@@ -84,13 +84,14 @@ public class Controller implements Serializable, Observer {
   }
 
   public void undo() {
-    if (undoRedoPointer <= 0) {
+    if (undoRedoPointer < 0) {
       return;
     }
     Object object = elementStack.get(undoRedoPointer).getElement();  
     Class<?> classe = object.getClass();
     if (elementStack.get(undoRedoPointer).getAction().equals("add")) {
       needToDeleteElements = false;
+      System.out.print("ONESTLA");
 
       if (classe == Noeud.class) {
         elementContainer.removeNoeud((Noeud) object);
@@ -104,7 +105,7 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.removeChargeur((Chargeur) object);
-      } else if (classe == Equipement.class) {
+      } else {
         elementContainer.removeEquipement((Equipement) object);
       }
     } else {
@@ -122,7 +123,7 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.quickAddChargeur((Chargeur) object);
-      } else if (classe == Equipement.class) {
+      } else {
         elementContainer.addEquipement((Equipement) object);
       }
     }
@@ -152,7 +153,7 @@ public class Controller implements Serializable, Observer {
         elementContainer.quickAddCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.quickAddChargeur((Chargeur) object);
-      } else if (classe == Equipement.class) {
+      } else {
         elementContainer.addEquipement((Equipement) object);
       }
     } else {
@@ -170,7 +171,7 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeCamion((Camion) object);
       } else if (classe == Chargeur.class) {
         elementContainer.removeChargeur((Chargeur) object);
-      } else if (classe == Equipement.class) {
+      } else {
         elementContainer.removeEquipement((Equipement) object);
       }
     }
