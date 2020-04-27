@@ -1159,11 +1159,63 @@ public class MainWindow extends JFrame {
 
     if (returnValue == JFileChooser.APPROVE_OPTION) {
       File selectedFile = chooser.getSelectedFile();
-      try {
-        controller.setUrlBackground(selectedFile.toURI().toURL());
-      } catch (MalformedURLException ex) {
-        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-      }
+
+
+        JPanel fields = new JPanel(new GridLayout(2, 2));
+
+        JTextField textField = new JTextField();
+        textField.setPreferredSize(new Dimension(11, 15));
+
+        JTextField textField1 = new JTextField();
+        textField1.setPreferredSize(new Dimension(11, 15));
+
+
+        JLabel labellongueur = new JLabel("La longueur de l'image");
+        JLabel labellargeur = new JLabel("La largeur de l'image");
+
+        fields.add(labellongueur);
+        fields.add(textField);
+        fields.add(labellargeur);
+        fields.add(textField1);
+
+        int result =
+                JOptionPane.showConfirmDialog(
+                        null,
+                        fields,
+                        "Dimension de l'image",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            int pictureLongueur;
+            int pictureLargeur;
+            try {
+                pictureLongueur = Integer.parseInt(textField.getText());
+                pictureLargeur = Integer.parseInt(textField1.getText());
+            }
+            catch (Exception exc) {
+                JOptionPane.showMessageDialog(null, "La valeur entrée n'est pas un chiffre valide");
+                return;
+            }
+            if (pictureLongueur <= 0 && pictureLargeur <= 0)
+            {
+                JOptionPane.showMessageDialog(null, "La valeur entrée doit être plus grande que zéro");
+                throw new ArithmeticException("Negative grid gap.");
+            }
+            try
+            {
+                controller.setUrlBackground(selectedFile.toURI().toURL());
+                UnitConverter.setLongueurImage(pictureLongueur);
+                UnitConverter.setLargeurImage(pictureLargeur);
+                System.out.println(pictureLargeur);
+                System.out.println(pictureLongueur);
+
+            } catch (MalformedURLException ex)
+            {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
       drawingPanel.repaint();
     }
   }
