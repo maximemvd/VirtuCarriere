@@ -83,23 +83,14 @@ public class Simulation implements Serializable, Observable {
     try {
       camionList.remove(p_camion);
       notifyObservers("delete", p_camion);
-    } catch (Exception error) {
+    }
+    catch (Exception error) {
       System.out.println(error);
     }
   }
 
   public List<Camion> getCamionList() {
     return camionList;
-  }
-
-
-  public void switchSelectionStatus(double x, double y) {
-    camionList.stream()
-        .filter(camion -> camion.contains(x, y))
-        .forEach(Vehicule::switchSelectionStatus);
-    chargeurList.stream()
-        .filter(chargeur -> chargeur.contains(x, y))
-        .forEach(Chargeur::switchSelectionStatus);
   }
 
   public void updateSelectedItemsPosition(double deltaX, double deltaY) {
