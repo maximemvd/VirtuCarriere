@@ -79,17 +79,17 @@ public class Plan implements Serializable, Observable {
   }
 
   public void verifieArc(Point point) {
-    AbstractPointChemin starting = getPointsForArcList().get(0);
+   AbstractPointChemin starting = getPointsForArcList().get(0);
     AbstractPointChemin arrival = getPointsForArcList().get(1);
     if (starting != arrival) {
       try {
         Arc arc = new Arc(starting, arrival);
-        if (intersectAnyForArc(arc)) {
-          JOptionPane.showMessageDialog(
-              null, "Cet arc croise un element du plan.", "Attention", JOptionPane.WARNING_MESSAGE);
-        } else {
+       // if (intersectAnyForArc(arc)) {
+        //  JOptionPane.showMessageDialog(
+          //    null, "Cet arc croise un element du plan.", "Attention", JOptionPane.WARNING_MESSAGE);
+      //  } else {
           chemins.addLink(arc);
-        }
+       // }
       } catch (RuntimeException e) {
         JOptionPane.showMessageDialog(
             null, "Cet arc existe déjà.", "Attention", JOptionPane.WARNING_MESSAGE);
