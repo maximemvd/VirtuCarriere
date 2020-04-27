@@ -9,7 +9,7 @@ import java.awt.Point;
 /** @author vincentmasse */
 public class UnitConverter {
 
-  private static float converterUnit = (float) 0.5;
+  private static float converterUnit = (float) 0.1;
 
   public static double pixelToMeter(double pixel) {
     // TODO calcul à faire selon la dimension de notre fenêtre
