@@ -1251,14 +1251,17 @@ public class MainWindow extends JFrame {
               ajoutCriblePopup.setEnabled(false);
               ajoutConcasseurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
+              controller.addConvoyeur(point, EquipementModes.CONVOYEUR, 0);
               break;
             case "Broyeur":
               ajoutBroyeurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
+              controller.addConvoyeur(point, EquipementModes.CONVOYEUR, 0);
               break;
             case "Crible":
               ajoutConcasseurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
+              controller.addConvoyeur(point, EquipementModes.CONVOYEUR, 0);
               break;
           }
           popup.show(evt.getComponent(), evt.getX(), evt.getY());
@@ -1763,6 +1766,7 @@ public class MainWindow extends JFrame {
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.BROYEUR, point, angle);
+    controller.addConvoyeur(point, EquipementModes.CONVOYEUR, angle);
     drawingPanel.repaint();
   }
 
@@ -1771,6 +1775,7 @@ public class MainWindow extends JFrame {
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.CRIBLE, point, angle);
+    controller.addConvoyeur(point, EquipementModes.CONVOYEUR, angle);
     drawingPanel.repaint();
   }
 
@@ -1779,6 +1784,7 @@ public class MainWindow extends JFrame {
     Point point = new Point((int) newPoint.getX() + 40, (int) newPoint.getY());
     double angle = Double.parseDouble(angleSpinner.getText());
     controller.addEquipement(EquipementModes.CONCASSEUR, point, angle);
+    controller.addConvoyeur(point, EquipementModes.CONVOYEUR, angle);
     drawingPanel.repaint();
   }
 
