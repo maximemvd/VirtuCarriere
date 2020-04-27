@@ -1994,6 +1994,7 @@ public class MainWindow extends JFrame {
       if (this.currentApplicationMode != ApplicationMode.ADD_SIMULATION) {
         setAppMode(ApplicationMode.ADD_SIMULATION);
       }
+      /*
       if (!controller.validateDependencies()) {
         jTabbedPane.setSelectedIndex(0);
         JOptionPane.showMessageDialog(
@@ -2003,7 +2004,7 @@ public class MainWindow extends JFrame {
                 + "Un crible doit être reliée à un broyeur\n"
                 + "Un broyeur doit être relié à une crible ou un concasseur\n"
                 + "Un concasseur doit être relié à un broyeur");
-      }
+      }*/
     }
   } // GEN-LAST:event_jTabbedPaneStateChanged
 

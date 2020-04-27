@@ -34,7 +34,6 @@ public class UnitConverter {
   }
 
 
-
   public static double pixelToMeter(double pixel) {
     // TODO calcul à faire selon la dimension de notre fenêtre
     return pixel * converterUnit;
