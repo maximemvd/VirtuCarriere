@@ -7,7 +7,7 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="174.5" y="112.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="174.5" y="88.0" />
   <SelectedNodes>
     <node>virtucarriere.Domaine.AffichageUtil.UnitConverter</node>
   </SelectedNodes>

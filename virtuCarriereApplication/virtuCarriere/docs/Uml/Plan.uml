@@ -34,55 +34,17 @@
       <point x="1101.2099696267273" y="423.0" />
       <point x="93.33333333333348" y="196.5" />
     </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.Graph" target="virtucarriere.Domaine.Carriere.Plan.Element">
-      <point x="-68.75" y="-112.0" />
-      <point x="675.7693690920817" y="423.0" />
-      <point x="914.5433029600604" y="423.0" />
-      <point x="-93.33333333333348" y="196.5" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.Entree" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
-      <point x="29.0" y="-40.0" />
-      <point x="3242.5590021774433" y="2157.0" />
-      <point x="3219.865860320152" y="2157.0" />
-      <point x="3219.865860320152" y="563.0" />
-      <point x="1890.2857272024848" y="563.0" />
-      <point x="90.90909090909099" y="40.0" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.AbstractGraph">
-      <point x="-112.5" y="-76.0" />
-      <point x="1648.497458677354" y="2157.0" />
-      <point x="932.8375109493732" y="2157.0" />
-      <point x="34.375" y="100.5" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.Graph">
-      <point x="-91.66666666666674" y="-100.5" />
-      <point x="806.7958442827064" y="1906.0" />
-      <point x="744.5193690920817" y="1906.0" />
-      <point x="0.0" y="112.0" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.Noeud" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
-      <point x="29.0" y="-40.0" />
-      <point x="0.0" y="40.0" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.Graph" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
-      <point x="68.75" y="-112.0" />
-      <point x="813.2693690920817" y="1587.0" />
-      <point x="900.497458677354" y="1587.0" />
-      <point x="-12.5" y="40.0" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.Crible" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
-      <point x="23.333333333333485" y="-64.0" />
-      <point x="2430.330792010687" y="1587.0" />
-      <point x="2410.9406005346455" y="1587.0" />
-      <point x="2410.9406005346455" y="1200.0" />
-      <point x="2692.771929824561" y="1200.0" />
-      <point x="-57.15789473684208" y="88.5" />
-    </edge>
     <edge source="virtucarriere.Domaine.Carriere.Plan.Tas" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
       <point x="131.57142857142867" y="-148.5" />
       <point x="2213.0688872487826" y="1170.0" />
       <point x="2635.6140350877195" y="1170.0" />
       <point x="-114.31578947368416" y="88.5" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="0.0" y="-100.5" />
+      <point x="898.4625109493732" y="1906.0" />
+      <point x="925.497458677354" y="1906.0" />
+      <point x="12.5" y="40.0" />
     </edge>
     <edge source="virtucarriere.Domaine.Carriere.Plan.Concasseur" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
       <point x="-70.0" y="-52.0" />
@@ -100,23 +62,25 @@
       <point x="976.7655251822825" y="443.0" />
       <point x="-31.111111111111313" y="196.5" />
     </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.Arc" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
-      <point x="196.125" y="-124.5" />
-      <point x="479.125" y="1577.0" />
-      <point x="875.497458677354" y="1577.0" />
-      <point x="-37.5" y="40.0" />
-    </edge>
-    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
-      <point x="0.0" y="-100.5" />
-      <point x="898.4625109493732" y="1906.0" />
-      <point x="925.497458677354" y="1906.0" />
-      <point x="12.5" y="40.0" />
-    </edge>
     <edge source="virtucarriere.Domaine.Carriere.Plan.GraphChemins" target="virtucarriere.Domaine.Carriere.Plan.AbstractGraph">
       <point x="122.25" y="-76.0" />
       <point x="683.9360357587484" y="2157.0" />
       <point x="864.0875109493732" y="2157.0" />
       <point x="-34.375" y="100.5" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Graph" target="virtucarriere.Domaine.Carriere.Plan.Element">
+      <point x="-68.75" y="-112.0" />
+      <point x="675.7693690920817" y="423.0" />
+      <point x="914.5433029600604" y="423.0" />
+      <point x="-93.33333333333348" y="196.5" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Entree" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="29.0" y="-40.0" />
+      <point x="3242.5590021774433" y="2157.0" />
+      <point x="3219.865860320152" y="2157.0" />
+      <point x="3219.865860320152" y="563.0" />
+      <point x="1890.2857272024848" y="563.0" />
+      <point x="90.90909090909099" y="40.0" />
     </edge>
     <edge source="virtucarriere.Domaine.Carriere.Plan.Broyeur" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
       <point x="70.0" y="-52.0" />
@@ -125,6 +89,22 @@
       <point x="2770.997458677354" y="1210.0" />
       <point x="2788.0350877192977" y="1210.0" />
       <point x="38.10526315789457" y="88.5" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Arc" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="196.125" y="-124.5" />
+      <point x="479.125" y="1577.0" />
+      <point x="875.497458677354" y="1577.0" />
+      <point x="-37.5" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.Graph">
+      <point x="-91.66666666666674" y="-100.5" />
+      <point x="806.7958442827064" y="1906.0" />
+      <point x="744.5193690920817" y="1906.0" />
+      <point x="0.0" y="112.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Noeud" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
+      <point x="29.0" y="-40.0" />
+      <point x="0.0" y="40.0" />
     </edge>
     <edge source="virtucarriere.Domaine.Carriere.Plan.AbstractGraph" target="virtucarriere.Domaine.Carriere.Plan.Element">
       <point x="91.66666666666663" y="-100.5" />
@@ -146,6 +126,12 @@
       <point x="1038.9877474045052" y="443.0" />
       <point x="31.111111111111313" y="196.5" />
     </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Graph" target="virtucarriere.Domaine.Carriere.Plan.AbstractLien">
+      <point x="68.75" y="-112.0" />
+      <point x="813.2693690920817" y="1587.0" />
+      <point x="900.497458677354" y="1587.0" />
+      <point x="-12.5" y="40.0" />
+    </edge>
     <edge source="virtucarriere.Domaine.Carriere.Plan.PointChargement" target="virtucarriere.Domaine.Carriere.Plan.AbstractPointChemin">
       <point x="56.0" y="-40.0" />
       <point x="2433.459969626727" y="753.0" />
@@ -153,6 +139,20 @@
       <point x="2410.959969626727" y="593.0" />
       <point x="1835.7402726570303" y="593.0" />
       <point x="36.36363636363649" y="40.0" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.GraphConvoyeur" target="virtucarriere.Domaine.Carriere.Plan.AbstractGraph">
+      <point x="-112.5" y="-76.0" />
+      <point x="1648.497458677354" y="2157.0" />
+      <point x="932.8375109493732" y="2157.0" />
+      <point x="34.375" y="100.5" />
+    </edge>
+    <edge source="virtucarriere.Domaine.Carriere.Plan.Crible" target="virtucarriere.Domaine.Carriere.Plan.Equipement">
+      <point x="23.333333333333485" y="-64.0" />
+      <point x="2430.330792010687" y="1587.0" />
+      <point x="2410.9406005346455" y="1587.0" />
+      <point x="2410.9406005346455" y="1200.0" />
+      <point x="2692.771929824561" y="1200.0" />
+      <point x="-57.15789473684208" y="88.5" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="0.1555793991416309" x="1747.0" y="1854.0" />
