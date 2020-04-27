@@ -58,11 +58,6 @@ public class DrawingPanel extends JPanel implements Serializable {
       carriereDrawer = new CarriereDrawer(mainWindow.controller, initialDimension);
       Graphics2D g2d = (Graphics2D) g;
 
-      // draw mouse coordinates
-      g.setColor(Color.black);
-      String s = " \n " + " " + (int) (mouseX / zoom) + ", " + (int) (mouseY / zoom);
-      g.drawString(s, (int) mouseX, (int) mouseY);
-
       try {
         carriereDrawer.draw(g2d, zoom);
       } catch (IOException e) {
@@ -114,6 +109,10 @@ public class DrawingPanel extends JPanel implements Serializable {
         }
         g2d.scale(1 / zoom, 1 / zoom);
       }
+    // draw mouse coordinates
+    g.setColor(Color.black);
+    String s = " \n " + " " + (int) (mouseX / zoom) + ", " + (int) (mouseY / zoom);
+    g.drawString(s, (int) mouseX, (int) mouseY);
     }
   }
 

@@ -11,6 +11,29 @@ public class UnitConverter {
 
   private static float converterUnit = (float) 0.1;
 
+  private static int longueurImage;
+
+  private static int largeurImage;
+
+  public static void setLargeurImage(int p_size)
+  {
+    largeurImage = p_size;
+  }
+
+  public static void  setLongueurImage(int p_size)
+  {
+    longueurImage = p_size;
+  }
+
+  public static int getLongueurImage() {
+    return longueurImage;
+  }
+
+  public static int getLargeurImage(){
+    return largeurImage;
+  }
+
+
   public static double pixelToMeter(double pixel) {
     // TODO calcul à faire selon la dimension de notre fenêtre
     return pixel * converterUnit;
@@ -31,6 +54,7 @@ public class UnitConverter {
     double rightSpeed = pixelToMeter(speed);
     double rightTimeSeconde = time / 1000;
     double vitesseMS = rightSpeed / rightTimeSeconde;
-    return vitesseMS * 3.6;
+    return (vitesseMS * 3.6);
   }
+
 }
