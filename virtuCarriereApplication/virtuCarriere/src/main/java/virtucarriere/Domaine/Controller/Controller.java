@@ -84,7 +84,7 @@ public class Controller implements Serializable, Observer {
   }
 
   public void undo() {
-    if (undoRedoPointer <= 0) {
+    if (undoRedoPointer < 0) {
       return;
     }
     Object object = elementStack.get(undoRedoPointer).getElement();  
