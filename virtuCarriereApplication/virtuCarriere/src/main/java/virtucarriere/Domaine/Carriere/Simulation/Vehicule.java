@@ -42,9 +42,9 @@ public abstract class Vehicule implements Serializable {
   }
 
   public boolean contains(double p_x, double p_y) {
-    return shape.contains(p_x, p_y);
+    return (xIsInsideElementWidth(p_x) && yIsInsideElementLength(p_y));
   }
-
+  
   public void setPoint(Point newPoint) {
     this.point = newPoint;
   }

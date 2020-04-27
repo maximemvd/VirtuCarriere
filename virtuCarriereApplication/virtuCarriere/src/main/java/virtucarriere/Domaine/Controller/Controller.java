@@ -21,6 +21,7 @@ import virtucarriere.Domaine.Carriere.Plan.Broyeur;
 import virtucarriere.Domaine.Carriere.Simulation.Camion;
 import virtucarriere.Domaine.Carriere.Simulation.Chargeur;
 import virtucarriere.Domaine.Carriere.Simulation.Facture;
+import virtucarriere.Domaine.Carriere.Simulation.Simulation;
 
 public class Controller implements Serializable, Observer {
 
@@ -70,7 +71,7 @@ public class Controller implements Serializable, Observer {
       this.elementStack.add(nouvelleAction);
       undoRedoPointer++;
     }
-    needToDeleteElements = true;
+    
   }
 
   public void deleteElementsAfterPointer(int Pointer) {
@@ -126,6 +127,7 @@ public class Controller implements Serializable, Observer {
       }
     }
     undoRedoPointer--;
+    needToDeleteElements = true;
   }
 
   public void redo() {
@@ -172,6 +174,7 @@ public class Controller implements Serializable, Observer {
         elementContainer.removeEquipement((Equipement) object);
       }
     }
+    needToDeleteElements = true;
   }
 
   // méthode copy inspirée de http://javatechniques.com/blog/faster-deep-copies-of-java-objects/
@@ -412,6 +415,53 @@ public class Controller implements Serializable, Observer {
     elementContainer.updateSelectedItemsPosition(deltaX, deltaY);
   }
 
+  public void saveSimulation(){
+    JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+    chooser.setDialogTitle("Save");
+    int returnValue = chooser.showDialog(null, "Save");
+
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = chooser.getSelectedFile();
+      try {
+        FileOutputStream fileOut = new FileOutputStream(selectedFile + ".ser");
+        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(this.elementContainer.getSimulation());
+        objectOut.close();
+        elementContainer.setFile(selectedFile);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+  
+  public void openSimulation(){
+    JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+    chooser.setDialogTitle("Open");
+    int returnValue = chooser.showDialog(null, "Open");
+
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = chooser.getSelectedFile();
+      try {
+        FileInputStream inputFile = new FileInputStream(new File(String.valueOf(selectedFile)));
+        ObjectInputStream inputObject = new ObjectInputStream(inputFile);
+        elementContainer.setSimulation((Simulation) inputObject.readObject());
+        System.out.println(selectedFile);
+        selectedFile =
+            new File(
+                String.valueOf(selectedFile)
+                    .substring(0, String.valueOf(selectedFile).lastIndexOf('.')));
+        //elementContainer.setFile(selectedFile);
+
+      } catch (IOException e) {
+        System.out.println(e);
+      } catch (ClassNotFoundException e) {
+        System.out.println(e);
+      }
+    }
+  }
+  
   public void openFile() {
     JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 

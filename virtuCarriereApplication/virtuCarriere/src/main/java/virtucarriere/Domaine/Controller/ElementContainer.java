@@ -32,6 +32,23 @@ public class ElementContainer implements Serializable, Observer, Observable {
   static File file;
   private URL url = null;
   private List<Observer> observerList = new ArrayList<>();
+  
+  public Simulation getSimulation(){
+    return this.simulation;
+  }
+  
+  public void setSimulation(Simulation simulation){
+    setCamionList(simulation.getCamionList());
+    setChargeurList(simulation.getChargeurList());
+  }
+  
+  public void setCamionList(List<Camion> camionList){
+    simulation.setCamionList(camionList);
+  }
+  
+  public void setChargeurList(List<Chargeur> chargeurList){
+    simulation.setChargeurList(chargeurList);
+  }
 
   public void initObserver(Controller controller) {
     addObserver(controller);

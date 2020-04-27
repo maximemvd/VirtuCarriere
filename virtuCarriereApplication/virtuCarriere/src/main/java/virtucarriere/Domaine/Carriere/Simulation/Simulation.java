@@ -28,6 +28,14 @@ public class Simulation implements Serializable, Observable {
     algoChemin = new AlgoChemin(graphChemin);
   }
   
+  public void setCamionList(List<Camion> camionList){
+    this.camionList = camionList;
+  }
+  
+  public void setChargeurList(List<Chargeur> chargeurList){
+    this.chargeurList = chargeurList;
+  }
+  
   @Override
   public void notifyObservers(String action, Object element){
     for (Observer observer : this.observerList){
