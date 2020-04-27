@@ -1057,6 +1057,25 @@ public class MainWindow extends JFrame {
                 importImageActionPerformed(evt);
             }
         });
+
+        ajoutConcasseurPopup.addActionListener(new java.awt.event.ActionListener(){
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+              ajoutConcasseurViaPopup(evt);
+          }
+      });
+
+        ajoutCriblePopup.addActionListener(new java.awt.event.ActionListener(){
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               ajoutCribleViaPopup(evt);
+           }
+        });
+
+      ajoutBroyeurPopup.addActionListener(new java.awt.event.ActionListener(){
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+              ajoutBroyeurViaPopup(evt);
+          }
+      });
+
         importerMenu.add(importImage);
 
         resetImage.setText("Réinitialiser image");
@@ -1230,6 +1249,7 @@ public class MainWindow extends JFrame {
           switch (equipement.getName()) {
             case "Concasseur":
               ajoutCriblePopup.setEnabled(false);
+              ajoutConcasseurPopup.setEnabled(false);
               equipementsPopup.add(equipement);
               break;
             case "Broyeur":
